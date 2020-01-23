@@ -1,49 +1,51 @@
 var gameData = {
     version: {alpha: 0, beta: 1},
-    uranium: 10,
-    uraniumMine: 0,
-    uraniumMineCost: 10,
-    uraniumMineMultiplier: 1.00,
-    uraniumMineCostMult: 1000,
-    plutoniumMine: 0,
-    plutoniumMineCost: 100,
-    plutoniumMineMultiplier: 1.00,
-    plutoniumMineCostMult: 10000
+    fuel: 10,
+    mine: [0, 0],
+    mineCost: [10, 100],
+    mineMult: [1.00, 1.00],
+    mineCostMult: [1000, 10000],
+    mineMultMult: 2.00
 }
 
-function buyUraniumMine() {
-    if (gameData.uranium >= gameData.uraniumMineCost) {
-        gameData.uranium -= gameData.uraniumMineCost;
-        gameData.uraniumMine += 1;
-        gameData.uraniumMineCost *= gameData.uraniumMineCostMult;
-        gameData.uraniumMineMultiplier *= 2;
+function buyThoriumMine() {
+    if (gameData.fuel >= gameData.mineCost[0]) {
+        gameData.fuel -= gameData.mineCost[0];
+        gameData.mine[0] += 1;
+        gameData.mineCost[0] *= gameData.mineCostMult[0];
+        gameData.mineMult[0] *= gameData.mineMultMult;
+        
+        document.getElementById("thoriumMine").innerText = "You have " + gameData.mine[0] + " Thorium Mines.";
+        document.getElementById("thoriumMineCost").innerHTML = "Buy for " + gameData.mineCost[0] + " Nuclear Fuel";
     }
 }
 
-function buyPlutoniumMine() {
-    if (gameData.uranium >= gameData.plutoniumMineCost) {
-        gameData.uranium -= gameData.plutoniumMineCost;
-        gameData.plutoniumMine += 1;
-        gameData.plutoniumMineCost *= gameData.plutoniumMineCostMult;
-        gameData.plutoniumMineMultiplier *= 2;
+function buyUraniumMine() {
+    if (gameData.fuel >= gameData.mineCost[1]) {
+        gameData.fuel -= gameData.mineCost[1];
+        gameData.mine[1] += 1;
+        gameData.mineCost[1] *= gameData.mineCostMult[1];
+        gameData.mineMult[1] *= gameData.mineMultMult;
         
+        document.getElementById("uraniumMine").innerText = "You have " + gameData.mine[1] + " Uranium Mines";
+        document.getElementById("uraniumMineCost").innerHTML = "Buy for " + gameData.mineCost[1] + " Nuclear Fuel";
     }
 }
 
 function update() {
-    var uraniumPerSecond = gameData.uraniumMine * gameData.uraniumMineMultiplier;
-    var uraniumMinePerSecond = gameData.plutoniumMine * gameData.plutoniumMineMultiplier;
-    gameData.uranium += uraniumPerSecond;
-    gameData.uraniumMine += uraniumMinePerSecond;
+    var fuelPerSecond = gameData.mine[0] * gameData.mineMult[0];
+    var thoriumMinePerSecond = gameData.mine[1] * gameData.mineMult[1];
+    gameData.fuel += fuelPerSecond;
+    gameData.mine[0] += uraniumMinePerSecond;
 
-    document.getElementById("uranium").innerText = "You have " + gameData.uranium + " Uranium.";
-    document.getElementById("uraniumMine").innerText = "You have " + gameData.uraniumMine + " Uranium Mines.";
-    document.getElementById("plutoniumMine").innerText = "You have " + gameData.plutoniumMine + " Plutonium Mines";
+    document.getElementById("fuel").innerText = "You have " + gameData.fuel + " units of Nuclear Fuel.";
+    document.getElementById("thoriumMine").innerText = "You have " + gameData.mine[0] + " Uranium Mines.";
+    document.getElementById("uraniumMine").innerText = "You have " + gameData.mine[1] + " Plutonium Mines";
 
-    document.getElementById("uraniumMineCost").innerHTML = "Buy for " + gameData.uraniumMineCost + " Uranium";
-    document.getElementById("plutoniumMineCost").innerHTML = "Buy for " + gameData.plutoniumMineCost + " Uranium";
+    document.getElementById("thoriumMineCost").innerHTML = "Buy for " + gameData.mineCost[0] + " Nuclear Fuel";
+    document.getElementById("uraniumMineCost").innerHTML = "Buy for " + gameData.mineCost[1] + " Nuclear Fuel";
 
-    document.getElementById("uraniumPerSecond").innerText = "You are gaining " + uraniumPerSecond + " Uranium per second."
+    document.getElementById("fuelPerSecond").innerText = "You are gaining " + fuelPerSecond + " Nuclear Fuel per second."
     document.getElementById("uraniumMinePerSecond").innerText = "You are gaining " + uraniumMinePerSecond + " Uranium Mines per second."
 }
 
