@@ -8,56 +8,84 @@
     <p id="fuel">You have 10 units of Nuclear Fuel.</p>
     <p id="fuelPerSecond">You are gaining 0 Nuclear Fuel per second.</p>
     
-    <table class="table">
-    <tbody id="parent">
-    	<tr style="font-size: 15px" id="firstRow">
-			<td id="thoriumMineMult" width="32%" class="rel">
-				Thorium Mine x1
-			</td>
-			<td>
-				<div id="thoriumMine">0</div>
-			</td>
-			<td align="right" width="10%">
-				<button id="thoriumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyThoriumMine()">Cost: 10</button>
-			</td>
-		</tr>
-		<tr style="font-size: 15px" id="firstRow">
-			<td id="uraniumMineMult" width="32%" class="rel">
-				Uranium Mine x1
-			</td>
-			<td>
-				<div id="uraniumMine">0</div>
-			</td>
-			<td align="right" width="10%">
-				<button id="uraniumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyUraniumMine()">Cost: 100</button>
-			</td>
-		</tr>
-		<tr style="font-size: 15px" id="firstRow">
-			<td id="plutoniumMineMult" width="32%" class="rel">
-				Plutonium Mine x1
-			</td>
-			<td>
-				<div id="plutoniumMine">0</div>
-			</td>
-			<td align="right" width="10%">
-				<button id="plutoniumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyPlutoniumMine()">Cost: 10000</button>
-			</td>
-		</tr>
-		<tr style="font-size: 15px" id="firstRow">
-			<td id="americiumMineMult" width="32%" class="rel">
-				Americium Mine x1
-			</td>
-			<td>
-				<div id="americiumMine">0</div>
-			</td>
-			<td align="right" width="10%">
-				<button id="americiumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyAmericiumMine()">Cost: 1000000</button>
-			</td>
-		</tr>
-	</table>
-	<br/>
-	<br/>
-	<button onclick="hardReset()"> Hard Reset the Game </button>
+	<div id="navibtn">
+		<table class="table" align="center" style="margin: auto" id="NaviTabButtons">
+			<tr>
+				<td id = "prodbtn">
+					<button onclick="showTab('production')">Production</button>
+				</td>
+				<td id = "prodbtn">
+					<button onclick="showTab('options')">Options</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+       
+    <div id="production" class="tab">
+		<table class="table" align="center" style="margin: auto" id="productionTabButtons">
+			<tr>
+				<td id="minebtn">
+					<button onclick="showProdTab('mines')">Mines</button>
+				</td>
+			</tr>
+		</table>
+		
+		<div id="mines" class = "subtab">
+		    <table class="table">
+		    <tbody id="parent">
+		    	<tr style="font-size: 15px" id="firstRow">
+					<td id="ThMineMult" width="32%" class="rel">
+						Thorium Mine ×1
+					</td>
+					<td>
+						<div id="ThMine">0</div>
+					</td>
+					<td align="right" width="10%">
+						<button id="ThMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(0)">Cost: 10</button>
+					</td>
+				</tr>
+				<tr style="font-size: 15px" id="firstRow">
+					<td id="UMineMult" width="32%" class="rel">
+						Uranium Mine ×1
+					</td>
+					<td>
+						<div id="UMine">0</div>
+					</td>
+					<td align="right" width="10%">
+						<button id="UMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(1)">Cost: 100</button>
+					</td>
+				</tr>
+				<tr style="font-size: 15px" id="firstRow">
+					<td id="PuMineMult" width="32%" class="rel">
+						Plutonium Mine ×1
+					</td>
+					<td>
+						<div id="PuMine">0</div>
+					</td>
+					<td align="right" width="10%">
+						<button id="PuMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(2)">Cost: 10000</button>
+					</td>
+				</tr>
+				<tr style="font-size: 15px" id="firstRow">
+					<td id="AmMineMult" width="32%" class="rel">
+						Americium Mine ×1
+					</td>
+					<td>
+						<div id="AmMine">0</div>
+					</td>
+					<td align="right" width="10%">
+						<button id="AmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(3)">Cost: 1000000</button>
+					</td>
+				</tr>
+			</table>
+			<button onclick="hardReset()"> Hard Reset the Game </button>
+		</div>
+		
+	</div>
+	
+	<div id="options" class="tab">
+		<button>hi</button>
+	</div>
                         
     <script src="main.js" charset="utf-8" type="text/javascript"></script>
   </body>
