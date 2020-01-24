@@ -79,15 +79,6 @@ if (save !== null) {
 	gameData = save;
 }
 
-/*Start Game*/
-showTab(gameData.currentTab);
-switch(gameData.currentTab) {
-	case "production":
-			showProdTab(gameData.currentProdTab);
-		break;
-	default:
-}
-
 /*Game Loops*/
 var saveGameLoop = window.setInterval(function() {
 	localStorage.setItem("fissionSimSave", JSON.stringify(gameData));
