@@ -7,7 +7,9 @@ var gameData = {
 	mineCostMult: [100, 1000, 100000, 10000000],
 	mineMultMult: 2.00
 }
-const elements = ["Th", "U", "Pu", "Am"];
+const e = ["Th", "U", "Pu", "Am"];
+const elements = ["Thorium", "Uranium", "Plutonium", "Americium"];
+var currentTab = "mines";
 
 var save = JSON.parse(localStorage.getItem("fissionSimSave"));
 if (save !== null) {
@@ -27,12 +29,13 @@ function hardReset() {
 }
 
 function showTab(tab) {
-	document.getElementById("production").style.display = "none";
-	document.getElementById("options").style.display = "none";
+	document.getElementById(currentTab).style.display = "none";
 	document.getElementById(tab).style.display = "inline-block";
+	currentTab = tab;
 }
+	
 
-function buyMine(int a) {
+function buyMine(a) {
 	if (gameData.fuel >= gameData.mineCost[a]) {
 		gameData.fuel -= gameData.mineCost[a];
 		
@@ -40,29 +43,29 @@ function buyMine(int a) {
 		gameData.mineCost[a] *= gameData.mineCostMult[a];
 		gameData.mineMult[a] *= gameData.mineMultMult;
 		
-		document.getElementById(elements[a] + "Mine").innerText = gameData.mine[a];
-		document.getElementById(elements[a] + "MineCost").innerHTML = gameData.mineCost[a];
+		document.getElementById(e[a] + "Mine").innerText = gameData.mine[a];
+		document.getElementById(e[a] + "MineCost").innerHTML = gameData.mineCost[a];
 	}
 }
 		
 function update() {
 	var fuelPerSecond = gameData.mine[0] * gameData.mineMult[0];
-	var thoriumMinePerSecond = gameData.mine[1] * gameData.mineMult[1];
-	var uraniumMinePerSecond = gameData.mine[2] * gameData.mineMult[2];
-	var plutoniumMinePerSecond = gameData.mine[3] * gameData.mineMult[3];
+	var ThMinePerSecond = gameData.mine[1] * gameData.mineMult[1];
+	var UMinePerSecond = gameData.mine[2] * gameData.mineMult[2];
+	var PuMinePerSecond = gameData.mine[3] * gameData.mineMult[3];
 	
 	gameData.fuel += fuelPerSecond / 20;
-	gameData.mine[0] += thoriumMinePerSecond / 20;
-	gameData.mine[1] += uraniumMinePerSecond / 20;
-	gameData.mine[2] += plutoniumMinePerSecond / 20;
+	gameData.mine[0] += ThMinePerSecond / 20;
+	gameData.mine[1] += UMinePerSecond / 20;
+	gameData.mine[2] += PuMinePerSecond / 20;
 
 	document.getElementById("fuel").innerText = "You have " + Math.round(gameData.fuel * 10) / 10 + " Nuclear Fuel.";
 	document.getElementById("fuelPerSecond").innerText = "You are gaining " + Math. round(fuelPerSecond * 10) / 10 + " Nuclear Fuel per second.";
 	var a;
-	for (a = 0; a < elements.length; a++) {
-		document.getElementById(elements[a] + "Mine").innerText = Math.round(gameData.mine[a] * 10) / 10;
-		document.getElementById(elements[a] + "MineCost").innerText = Math.round(gameData.mineCost[a] * 10) / 10;
-		document.getElementById(elements[a] + "MineMult").innerText = Math.round(gameData.mineMult[a] * 10) / 10;
+	for (a = 0; a < e.length; a++) {
+		document.getElementById(e[a] + "Mine").innerText = Math.round(gameData.mine[a] * 10) / 10;
+		document.getElementById(e[a] + "MineCost").innerText = "Cost: " +Math.round(gameData.mineCost[a] * 10) / 10;
+		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + Math.round(gameData.mineMult[a] * 10) / 10;
 	}
 }
 
