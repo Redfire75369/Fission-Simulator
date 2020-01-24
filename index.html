@@ -9,19 +9,28 @@
     <p id="fuelPerSecond">You are gaining 0 Nuclear Fuel per second.</p>
     
 	<div id="navibtn">
-		<button onclick="showTab('production')">Production</button>
-		<button onclick="showTab('options')">Options</button>
+		<table class="table" align="center" style="margin: auto" id="NaviTabButtons">
+			<tr>
+				<td id = "prodbtn">
+					<button onclick="showTab('production')">Production</button>
+				</td>
+				<td id = "prodbtn">
+					<button onclick="showTab('options')">Options</button>
+				</td>
+			</tr>
+		</table>
 	</div>
        
     <div id="production" class="tab">
 		<table class="table" align="center" style="margin: auto" id="productionTabButtons">
 			<tr>
 				<td id="minebtn">
-					<button onclick="showTab('mines')">Mines</button>
+					<button onclick="showProdTab('mines')">Mines</button>
 				</td>
 			</tr>
 		</table>
-		<div id="mines" class = "tab">
+		
+		<div id="mines" class = "subtab">
 		    <table class="table">
 		    <tbody id="parent">
 		    	<tr style="font-size: 15px" id="firstRow">
@@ -69,13 +78,13 @@
 					</td>
 				</tr>
 			</table>
-			<br/>
-			<br/>
 			<button onclick="hardReset()"> Hard Reset the Game </button>
 		</div>
+		
 	</div>
 	
 	<div id="options" class="tab">
+		<button>hi</button>
 	</div>
                         
     <script src="main.js" charset="utf-8" type="text/javascript"></script>

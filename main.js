@@ -1,39 +1,43 @@
 var gameData = {
-	version: {alpha: 0, beta: 2},
+	version: {alpha: 0, beta: 4},
 	fuel: 10,
 	mine: [0, 0, 0, 0],
 	mineCost: [10, 100, 10000, 1000000],
 	mineMult: [1.00, 1.00, 1.00, 1.00],
 	mineCostMult: [100, 1000, 100000, 10000000],
-	mineMultMult: 2.00
+	mineMultMult: 2.00,
+	currentTab: "production", 
+	currentProdTab: ""
 }
 const e = ["Th", "U", "Pu", "Am"];
 const elements = ["Thorium", "Uranium", "Plutonium", "Americium"];
-var currentTab = "mines";
-
-var save = JSON.parse(localStorage.getItem("fissionSimSave"));
-if (save !== null) {
-	gameData = save;
-}
 
 function hardReset() {
 	gameData = {
-	version: {alpha: 0, beta: 2},
+	version: {alpha: 0, beta: 4},
 	fuel: 10,
 	mine: [0, 0, 0, 0],
 	mineCost: [10, 100, 10000, 1000000],
 	mineMult: [1.00, 1.00, 1.00, 1.00],
 	mineCostMult: [100, 1000, 100000, 10000000],
-	mineMultMult: 2.00
+	mineMultMult: 2.00,
+	currentTab: "production", 
+	currentProdTab: ""
 	}
 }
 
 function showTab(tab) {
-	document.getElementById(currentTab).style.display = "none";
+	document.getElementById(gameData.currentTab).style.display = "none";
 	document.getElementById(tab).style.display = "inline-block";
-	currentTab = tab;
+	gameData.currentTab = tab;
 }
-	
+function showProdTab(tab) {
+	if (gameData.currentTab == "production") {
+		document.getElementById(gameData.currentProdTab).style.display = "none";
+		document.getElementById(tab).style.display = "inline-block";
+		gameData.currentProdTab = tab;
+	}
+}
 
 function buyMine(a) {
 	if (gameData.fuel >= gameData.mineCost[a]) {
@@ -64,15 +68,31 @@ function update() {
 	var a;
 	for (a = 0; a < e.length; a++) {
 		document.getElementById(e[a] + "Mine").innerText = Math.round(gameData.mine[a] * 10) / 10;
-		document.getElementById(e[a] + "MineCost").innerText = "Cost: " +Math.round(gameData.mineCost[a] * 10) / 10;
+		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + Math.round(gameData.mineCost[a] * 10) / 10;
 		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + Math.round(gameData.mineMult[a] * 10) / 10;
 	}
 }
 
-var mainGameLoop = window.setInterval(function() {
-	update();
-}, 50);
- 
+/*Load Save*/
+var save = JSON.parse(localStorage.getItem("fissionSimSave"));
+if (save !== null) {
+	gameData = save;
+}
+
+/*Start Game*/
+showTab(gameData.currentTab);
+switch(gameData.currentTab) {
+	case "production":
+			showProdTab(gameData.currentProdTab);
+		break;
+	default:
+}
+
+/*Game Loops*/
 var saveGameLoop = window.setInterval(function() {
 	localStorage.setItem("fissionSimSave", JSON.stringify(gameData));
 }, 5000);
+
+var mainGameLoop = window.setInterval(function() {
+	update();
+}, 50);
