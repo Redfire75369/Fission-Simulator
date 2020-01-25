@@ -30,9 +30,9 @@ function buyMine(a) {
 		player.mine.cost[a] = player.mine.cost[a].multiply(player.mine.costMult[a]);
 		player.mine.mult[a] = player.mine.mult[a].multiply(player.multMult);
 		
-		document.getElementById(e[a] + "Mine").innerText = player.mine.amount[a].toString();
-		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + player.mine.cost[a].toString();
-		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + player.mine.mult[a].toString();
+		document.getElementById(e[a] + "Mine").innerText = scientific(player.mine.amount[a]);
+		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + scientific(player.mine.cost[a]);
+		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + scientific(player.mine.mult[a]);
 	}
 }
 
@@ -62,6 +62,15 @@ function crust() {
 	}
 }
 
+
+function scientific(x) {
+	if (x.exponent <=3) {
+		return x;
+	} else {
+		return Math.round(x.mantissa * 100) / 100 + "e" + x.exponent;
+	}
+}
+
 function update() {
 	let fuelPerSecond = player.mine.amount[0].multiply(player.mine.mult[0]);
 	let ThMinePerSecond = player.mine.amount[1].multiply(player.mine.mult[1]);
@@ -73,13 +82,13 @@ function update() {
 	player.mine.amount[1] = player.mine.amount[1].plus(UMinePerSecond.dividedBy(20));
 	player.mine.amount[2] = player.mine.amount[2].plus(PuMinePerSecond.dividedBy(20));
 
-	document.getElementById("fuel").innerText = "You have " + player.fuel.floor().toString() + " Nuclear Fuel.";
-	document.getElementById("fuelPerSecond").innerText = "You are gaining " + fuelPerSecond.floor().toString() + " Nuclear Fuel per second.";
+	document.getElementById("fuel").innerText = "You have " + scientific(player.fuel.floor()) + " Nuclear Fuel.";
+	document.getElementById("fuelPerSecond").innerText = "You are gaining " + scientific(fuelPerSecond.floor()) + " Nuclear Fuel per second.";
 
-	for (let a = 0; a < 7; a++) {
-		document.getElementById(e[a] + "Mine").innerText = player.mine.amount[a].floor().toString();
-		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + player.mine.cost[a].toString();
-		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + player.mine.mult[a].toString();
+	for (let a = 0; a < (player.crust + 4); a++) {
+		document.getElementById(e[a] + "Mine").innerText = scientific(player.mine.amount[a].floor());
+		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + scientific(player.mine.cost[a]);
+		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + scientific(player.mine.mult[a]);
 	}
 }
 
@@ -88,7 +97,7 @@ function load_save() {
 	let save = JSON.parse(localStorage.getItem("fissionSimSave"));
 	player.version = save.version;
 	player.fuel = new Decimal(save.fuel);
-	for (let a = 0; a < 7; a++) {
+	for (let a = 0; a < player.crust + 4; a++) {
 		player.mine.amount[a] = new Decimal(save.mine.amount[a]);
 		player.mine.cost[a] = new Decimal(save.mine.cost[a]);
 		player.mine.mult[a] = new Decimal(save.mine.mult[a]);
@@ -108,15 +117,15 @@ function load_save() {
 }
 
 /*Initialise Game*/
-//load_save();
+load_save();
 document.getElementById("row5").style.display = "none";
 document.getElementById("row6").style.display = "none";
 document.getElementById("row7").style.display = "none";
 
 /*Game Loops*/
 var saveGameLoop = window.setInterval(function() {
-	//localStorage.setItem("FissionSimSave", JSON.stringify(player));
-}, 5000);
+	localStorage.setItem("fissionSimSave", JSON.stringify(player));
+}, 10000);
 
 var mainGameLoop = window.setInterval(function() {
 	update();
