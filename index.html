@@ -3,19 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Fission Simulator</title>
+    
+	<script defer src="break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="main.js" charset="utf-8" type="text/javascript"></script>
   </head>
   <body>
-    <p id="fuel">You have 10 units of Nuclear Fuel.</p>
-    <p id="fuelPerSecond">You are gaining 0 Nuclear Fuel per second.</p>
+    <p id="fuel" align="center" font-size=30px>You have 10 Nuclear Fuel.</p>
+    <p id="fuelPerSecond" align="center" font-size=20px>You are gaining 0 Nuclear Fuel per second.</p>
     
 	<div id="navibtn">
 		<table class="table" align="center" style="margin: auto" id="NaviTabButtons">
 			<tr>
-				<td id = "prodbtn">
-					<button onclick="showTab('production')">Production</button>
-				</td>
-				<td id = "prodbtn">
-					<button onclick="showTab('options')">Options</button>
+				<td>
 				</td>
 			</tr>
 		</table>
@@ -24,8 +23,7 @@
     <div id="production" class="tab">
 		<table class="table" align="center" style="margin: auto" id="productionTabButtons">
 			<tr>
-				<td id="minebtn">
-					<button onclick="showProdTab('mines')">Mines</button>
+				<td>
 				</td>
 			</tr>
 		</table>
@@ -84,9 +82,7 @@
 	</div>
 	
 	<div id="options" class="tab">
-		<button>hi</button>
 	</div>
-	<script src="break_infinity.js"></script>
-    <script src="main.js" charset="utf-8" type="text/javascript"></script>
+	
   </body>
 </html>
