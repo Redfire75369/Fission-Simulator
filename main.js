@@ -1,5 +1,5 @@
 var defaultData = {
-	version: {alpha: 0, beta: 5},
+	version: {alpha: 0, beta: 6},
 	fuel: new Decimal(10),
 	mine: {
 		amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
