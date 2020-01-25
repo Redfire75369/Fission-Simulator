@@ -12,8 +12,8 @@ var defaultData = {
 	meteor: 0,
 	meteorMult: new Decimal(2)
 }
-const e = ["Th", "U", "Pu", "Am"];
-const elements = ["Thorium", "Uranium", "Plutonium", "Americium"];
+const e = ["Th", "U", "Pu", "Am", "Cm", "Bk", "Cf"];
+const elements = ["Thorium", "Uranium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
 
 var player = defaultData;
 
@@ -38,23 +38,31 @@ function buyMine(a) {
 
 function meteor() {
 	if (player.meteor < 4) {
-		if (player.mine.amount[player.meteor + 4] > 2) {
+		if (player.mine.amount[player.meteor + 3].gte(2)) {
 			player.meteor += 1;
-			for (let a = 0; a < player.meteor;  a++) {
-				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult);
+			player.fuel = defaultData.fuel;
+			for (let a = 0; a < player.meteor + 3; a++) {
+				player.mine.amount[a] = defaultData.mine.amount[a];
+				player.mine.cost[a] = defaultData.mine.cost[a];
+				player.mine.bought[a] = defaultData.mine.bought[a];
+				player.mine.costMult[a] = defaultData.mine.costMult[a];
+				player.mine.mult[a] = defaultData.mine.mult[a];
 			}
-			document.getElementById("meteorCost").innerText = "Meteor Strike: Requires 2 " + elements[player.meteor] + " Mines"
+			for (let b = 0; b < player.meteor;  b++) {	
+				player.mine.mult[b] = player.mine.mult[b].multiply(player.meteorMult);
+			}
+			document.getElementById("meteorCost").innerText = "Meteor Strike: Requires 2 " + elements[player.meteor + 3] + " Mines"
 			document.getElementById("row" + (player.meteor + 4)).style.display = "table-row";
 		}
 	} else if (player.meteor < 9) {
-		if (player.mine.amount[7] > 2 + ((player.meteor - 4) * 2)) {
+		if (player.mine.amount[7].gte(2 + ((player.meteor - 4) * 2))) {
 			player.meteor += 1;
 			for (let a = 0; a < player.meteor;  a++) {
 				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult);
 			}
 		}
 	} else {
-		if (player.mine.amount[7] > 2 + ((player.meteor - 4) * 2)) {
+		if (player.mine.amount[7].gte(2 + ((player.meteor - 4) * 2))) {
 			player.meteor += 1;
 			for (let a = 0; a < 8;  a++) {
 				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult);
@@ -96,25 +104,26 @@ function update() {
 /*Load Save*/
 function load_save() {
 	let save = JSON.parse(localStorage.getItem("fissionSimSave"));
-	player.version = save.version;
-	player.fuel = new Decimal(save.fuel);
-	for (let a = 0; a < Math.min(player.meteor + 4, 7); a++) {
-		player.mine.amount[a] = new Decimal(save.mine.amount[a]);
-		player.mine.cost[a] = new Decimal(save.mine.cost[a]);
-		player.mine.mult[a] = new Decimal(save.mine.mult[a]);
-		player.mine.costMult[a] = new Decimal(save.mine.costMult[a]);
+	if(save !== undefined) {
+		player.version = save.version;
+		player.fuel = new Decimal(save.fuel);
+		for (let a = 0; a < Math.min(player.meteor + 4, 7); a++) {
+			player.mine.amount[a] = new Decimal(save.mine.amount[a]);
+			player.mine.cost[a] = new Decimal(save.mine.cost[a]);
+			player.mine.mult[a] = new Decimal(save.mine.mult[a]);
+			player.mine.costMult[a] = new Decimal(save.mine.costMult[a]);
+		}
+		player.multMult = new Decimal(save.multMult);
 	}
-	player.multMult = new Decimal(save.multMult);
-
-	if (player.version === undefined) { player.version = defaultSave.version; } 
-	if (player.fuel === undefined) { player.fuel = defaultSave.fuel; }
+	if (player.version === undefined) { player.version = defaultData.version; } 
+	if (player.fuel === undefined) { player.fuel = defaultData.fuel; }
 	for (let b = 0; b < 7; b++) {
-		if (player.mine.amount[b] === undefined) { player.mine.amount[b] = defaultSave.player.mine.amount[b]; }
-		if (player.mine.cost[b] === undefined) { player.mine.cost[b] = defaultSave.player.mine.cost[b]; }
-		if (player.mine.mult[b] === undefined) { player.mine.mult[b] = defaultSave.player.mine.mult[b]; }
-		if (player.mine.costMult[b] === undefined) { player.mine.costMult[b] = defaultSave.player.mine.costMult[b]; }
+		if (player.mine.amount[b] === undefined) { player.mine.amount[b] = defaultData.player.mine.amount[b]; }
+		if (player.mine.cost[b] === undefined) { player.mine.cost[b] = defaultData.player.mine.cost[b]; }
+		if (player.mine.mult[b] === undefined) { player.mine.mult[b] = defaultData.player.mine.mult[b]; }
+		if (player.mine.costMult[b] === undefined) { player.mine.costMult[b] = defaultData.player.mine.costMult[b]; }
 	}
-	if (player.multMult === undefined) { player.multMult = defaultSave.multMult; }
+	if (player.multMult === undefined) { player.multMult = defaultData.multMult; }
 }
 
 /*Initialise Game*/
