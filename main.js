@@ -2,12 +2,15 @@ var defaultData = {
 	version: {alpha: 0, beta: 4},
 	fuel: new Decimal(10),
 	mine: {
-		amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-		cost: [new Decimal("1e+1"), new Decimal("1e+2"), new Decimal("1e+4"), new Decimal("1e+7")],
-		mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
-		costMult: [new Decimal("1e+2"), new Decimal("1e+3"), new Decimal("1e+5"), new Decimal("1e+8")]
+		amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+		cost: [new Decimal("1e+1"), new Decimal("1e+2"), new Decimal("1e+4"), new Decimal("1e+7"), new Decimal("1e+11")],
+		costMult: [new Decimal("1e+2"), new Decimal("1e+3"), new Decimal("1e+5"), new Decimal("1e+8"), new Decimal("1e+12")],
+		bought: [0, 0, 0, 0],
+		mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
 	},
-	multMult: new Decimal(2)
+	multMult: new Decimal(2),
+	crust: 0,
+	crustMult: new Decimal(2)
 }
 const e = ["Th", "U", "Pu", "Am"];
 const elements = ["Thorium", "Uranium", "Plutonium", "Americium"];
@@ -23,15 +26,42 @@ function buyMine(a) {
 		player.fuel = player.fuel.minus(player.mine.cost[a]) ;
 		
 		player.mine.amount[a] = player.mine.amount[a].plus(1);
+		player.mine.bought[a] += 1;
 		player.mine.cost[a] = player.mine.cost[a].multiply(player.mine.costMult[a]);
-		player.mine.mult[a] = player.mine.mult[a].multiply(player.mine.MultMult);
+		player.mine.mult[a] = player.mine.mult[a].multiply(player.multMult);
 		
 		document.getElementById(e[a] + "Mine").innerText = player.mine.amount[a].toString();
-		document.getElementById(e[a] + "MineCost").innerText = player.mine.cost[a].toString();
+		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + player.mine.cost[a].toString();
+		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + player.mine.mult[a].toString();
 	}
 }
-		
-		
+
+function crust() {
+	if (player.crust < 4) {
+		if (player.mine.amount[player.crust + 4] > 2) {
+			player.crust += 1;
+			for (let a = 0; a < player.crust;  a++) {
+				player.mine.mult[a] = player.mine.mult[a].multiply(player.crustMult);
+			}
+			document.getElementById("row" + (player.crust + 4)).style.display = "table-row";
+		}
+	} else if (player.crust < 9) {
+		if (player.mine.amount[7] > 2 + ((player.crust - 4) * 2)) {
+			player.crust += 1;
+			for (let a = 0; a < player.crust;  a++) {
+				player.mine.mult[a] = player.mine.mult[a].multiply(player.crustMult);
+			}
+		}
+	} else {
+		if (player.mine.amount[7] > 2 + ((player.crust - 4) * 2)) {
+			player.crust += 1;
+			for (let a = 8; a < player.crust;  a++) {
+				player.mine.mult[a] = player.mine.mult[a].multiply(player.crustMult);
+			}
+		}
+	}
+}
+
 function update() {
 	let fuelPerSecond = player.mine.amount[0].multiply(player.mine.mult[0]);
 	let ThMinePerSecond = player.mine.amount[1].multiply(player.mine.mult[1]);
@@ -48,14 +78,14 @@ function update() {
 
 	for (let a = 0; a < 4; a++) {
 		document.getElementById(e[a] + "Mine").innerText = player.mine.amount[a].floor().toString();
-		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + player.mine.cost[a].floor().toString();
-		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + player.mine.mult[a].floor().toString();
+		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + player.mine.cost[a].toString();
+		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + player.mine.mult[a].toString();
 	}
 }
 
 /*Load Save*/
-var save = JSON.parse(localStorage.getItem("fissionSimSave"));
 function load_save() {
+	let save = JSON.parse(localStorage.getItem("fissionSimSave"));
 	player.version = save.version;
 	player.fuel = new Decimal(save.fuel);
 	for (let a = 0; a < 4; a++) {
@@ -64,7 +94,7 @@ function load_save() {
 		player.mine.mult[a] = new Decimal(save.mine.mult[a]);
 		player.mine.costMult[a] = new Decimal(save.mine.costMult[a]);
 	}
-	player.mine.MultMult = new Decimal(save.mine.MultMult);
+	player.multMult = new Decimal(save.multMult);
 
 	if (player.version === undefined) { player.version = defaultSave.version; } 
 	if (player.fuel === undefined) { player.fuel = defaultSave.fuel; }
@@ -74,15 +104,16 @@ function load_save() {
 		if (player.mine.mult[b] === undefined) { player.mine.mult[b] = defaultSave.player.mine.mult[b]; }
 		if (player.mine.costMult[b] === undefined) { player.mine.costMult[b] = defaultSave.player.mine.costMult[b]; }
 	}
-	if (player.mine.MultMult === undefined) { player.mine.MultMult = defaultSave.mine.MultMult; }
+	if (player.multMult === undefined) { player.multMult = defaultSave.multMult; }
 }
 
 /*Initialise Game*/
-load_save();
+//load_save();
+document.getElementById("row5").style.display = "none";
 
 /*Game Loops*/
 var saveGameLoop = window.setInterval(function() {
-	localStorage.setItem("fissionSimSave", JSON.stringify(player));
+	localStorage.setItem("FissionSimSave", JSON.stringify(player));
 }, 5000);
 
 var mainGameLoop = window.setInterval(function() {
