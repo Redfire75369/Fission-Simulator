@@ -1,12 +1,12 @@
 var defaultData = {
-	version: {alpha: 0, beta: 4},
+	version: {alpha: 0, beta: 5},
 	fuel: new Decimal(10),
 	mine: {
-		amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-		cost: [new Decimal("1e+1"), new Decimal("1e+2"), new Decimal("1e+4"), new Decimal("1e+7"), new Decimal("1e+11")],
-		costMult: [new Decimal("1e+2"), new Decimal("1e+3"), new Decimal("1e+5"), new Decimal("1e+8"), new Decimal("1e+12")],
-		bought: [0, 0, 0, 0],
-		mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
+		amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+		cost: [new Decimal("1e+1"), new Decimal("1e+2"), new Decimal("1e+4"), new Decimal("1e+7"), new Decimal("1e+11"), new Decimal("1e+16"), new Decimal("1e+22")],
+		costMult: [new Decimal("1e+2"), new Decimal("1e+3"), new Decimal("1e+5"), new Decimal("1e+8"), new Decimal("1e+12"), new Decimal("1e+17"), new Decimal("1e+23")],
+		bought: [0, 0, 0, 0, 0, 0, 0],
+		mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
 	},
 	multMult: new Decimal(2),
 	crust: 0,
@@ -55,7 +55,7 @@ function crust() {
 	} else {
 		if (player.mine.amount[7] > 2 + ((player.crust - 4) * 2)) {
 			player.crust += 1;
-			for (let a = 8; a < player.crust;  a++) {
+			for (let a = 0; a < 8;  a++) {
 				player.mine.mult[a] = player.mine.mult[a].multiply(player.crustMult);
 			}
 		}
@@ -76,7 +76,7 @@ function update() {
 	document.getElementById("fuel").innerText = "You have " + player.fuel.floor().toString() + " Nuclear Fuel.";
 	document.getElementById("fuelPerSecond").innerText = "You are gaining " + fuelPerSecond.floor().toString() + " Nuclear Fuel per second.";
 
-	for (let a = 0; a < 4; a++) {
+	for (let a = 0; a < 7; a++) {
 		document.getElementById(e[a] + "Mine").innerText = player.mine.amount[a].floor().toString();
 		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + player.mine.cost[a].toString();
 		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + player.mine.mult[a].toString();
@@ -88,7 +88,7 @@ function load_save() {
 	let save = JSON.parse(localStorage.getItem("fissionSimSave"));
 	player.version = save.version;
 	player.fuel = new Decimal(save.fuel);
-	for (let a = 0; a < 4; a++) {
+	for (let a = 0; a < 7; a++) {
 		player.mine.amount[a] = new Decimal(save.mine.amount[a]);
 		player.mine.cost[a] = new Decimal(save.mine.cost[a]);
 		player.mine.mult[a] = new Decimal(save.mine.mult[a]);
@@ -98,7 +98,7 @@ function load_save() {
 
 	if (player.version === undefined) { player.version = defaultSave.version; } 
 	if (player.fuel === undefined) { player.fuel = defaultSave.fuel; }
-	for (let b = 0; b < 4; b++) {
+	for (let b = 0; b < 7; b++) {
 		if (player.mine.amount[b] === undefined) { player.mine.amount[b] = defaultSave.player.mine.amount[b]; }
 		if (player.mine.cost[b] === undefined) { player.mine.cost[b] = defaultSave.player.mine.cost[b]; }
 		if (player.mine.mult[b] === undefined) { player.mine.mult[b] = defaultSave.player.mine.mult[b]; }
@@ -110,10 +110,12 @@ function load_save() {
 /*Initialise Game*/
 //load_save();
 document.getElementById("row5").style.display = "none";
+document.getElementById("row6").style.display = "none";
+document.getElementById("row7").style.display = "none";
 
 /*Game Loops*/
 var saveGameLoop = window.setInterval(function() {
-	localStorage.setItem("FissionSimSave", JSON.stringify(player));
+	//localStorage.setItem("FissionSimSave", JSON.stringify(player));
 }, 5000);
 
 var mainGameLoop = window.setInterval(function() {
