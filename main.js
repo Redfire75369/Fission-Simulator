@@ -9,8 +9,8 @@ var defaultData = {
 		mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
 	},
 	multMult: new Decimal(2),
-	crust: 0,
-	crustMult: new Decimal(2)
+	meteor: 0,
+	meteorMult: new Decimal(2)
 }
 const e = ["Th", "U", "Pu", "Am"];
 const elements = ["Thorium", "Uranium", "Plutonium", "Americium"];
@@ -36,27 +36,28 @@ function buyMine(a) {
 	}
 }
 
-function crust() {
-	if (player.crust < 4) {
-		if (player.mine.amount[player.crust + 4] > 2) {
-			player.crust += 1;
-			for (let a = 0; a < player.crust;  a++) {
-				player.mine.mult[a] = player.mine.mult[a].multiply(player.crustMult);
+function meteor() {
+	if (player.meteor < 4) {
+		if (player.mine.amount[player.meteor + 4] > 2) {
+			player.meteor += 1;
+			for (let a = 0; a < player.meteor;  a++) {
+				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult);
 			}
-			document.getElementById("row" + (player.crust + 4)).style.display = "table-row";
+			document.getElementById("meteorCost").innerText = "Meteor Strike: Requires 2 " + elements[player.meteor] + " Mines"
+			document.getElementById("row" + (player.meteor + 4)).style.display = "table-row";
 		}
-	} else if (player.crust < 9) {
-		if (player.mine.amount[7] > 2 + ((player.crust - 4) * 2)) {
-			player.crust += 1;
-			for (let a = 0; a < player.crust;  a++) {
-				player.mine.mult[a] = player.mine.mult[a].multiply(player.crustMult);
+	} else if (player.meteor < 9) {
+		if (player.mine.amount[7] > 2 + ((player.meteor - 4) * 2)) {
+			player.meteor += 1;
+			for (let a = 0; a < player.meteor;  a++) {
+				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult);
 			}
 		}
 	} else {
-		if (player.mine.amount[7] > 2 + ((player.crust - 4) * 2)) {
-			player.crust += 1;
+		if (player.mine.amount[7] > 2 + ((player.meteor - 4) * 2)) {
+			player.meteor += 1;
 			for (let a = 0; a < 8;  a++) {
-				player.mine.mult[a] = player.mine.mult[a].multiply(player.crustMult);
+				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult);
 			}
 		}
 	}
@@ -85,7 +86,7 @@ function update() {
 	document.getElementById("fuel").innerText = "You have " + scientific(player.fuel.floor()) + " Nuclear Fuel.";
 	document.getElementById("fuelPerSecond").innerText = "You are gaining " + scientific(fuelPerSecond.floor()) + " Nuclear Fuel per second.";
 
-	for (let a = 0; a < (player.crust + 4); a++) {
+	for (let a = 0; a < Math.min(player.meteor + 4, 7); a++) {
 		document.getElementById(e[a] + "Mine").innerText = scientific(player.mine.amount[a].floor());
 		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + scientific(player.mine.cost[a]);
 		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + scientific(player.mine.mult[a]);
@@ -97,7 +98,7 @@ function load_save() {
 	let save = JSON.parse(localStorage.getItem("fissionSimSave"));
 	player.version = save.version;
 	player.fuel = new Decimal(save.fuel);
-	for (let a = 0; a < player.crust + 4; a++) {
+	for (let a = 0; a < Math.min(player.meteor + 4, 7); a++) {
 		player.mine.amount[a] = new Decimal(save.mine.amount[a]);
 		player.mine.cost[a] = new Decimal(save.mine.cost[a]);
 		player.mine.mult[a] = new Decimal(save.mine.mult[a]);
