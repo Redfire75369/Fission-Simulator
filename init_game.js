@@ -48,5 +48,6 @@ function hideMines() {
 function init_game() {
 	load_save();
 	hideMines();
+	showNaviTab("production");
 	document.getElementById("meteorCost").innerText = "Meteor Strike: Requires 2 " + elements[player.meteor + 3] + " Mines"
 }

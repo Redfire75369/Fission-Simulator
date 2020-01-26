@@ -1,12 +1,21 @@
 function getDefaultData() {
 	return {
-		version: {alpha: 0, beta: 7},
+		version: {alpha: 0, beta: 8},
+		options: {
+			notation: "Scientific",
+			notationNo: 0,
+			updateRate: 50
+		},
+		navigation: {
+			naviTab: "options",
+			prodTab: "mines"
+		},
 		fuel: new Decimal(10),
 		eff: {
 			bought: 0,
 			cost: new Decimal("1e+3"),
 			costMult: new Decimal("1e+1"),
-			mult: new Decimal(5),
+			mult: new Decimal(1),
 			multMult: new Decimal(1.1)
 		},
 		mine: {
@@ -18,10 +27,7 @@ function getDefaultData() {
 		},
 		multMult: new Decimal(2),
 		meteor: 0,
-		meteorMult: new Decimal(2),
-		notation: "scientific",
-		notationNo: 0,
-		lastPlayed: new Date().getTime()
+		meteorMult: new Decimal(2)
 	}
 }
 const e = ["Th", "U", "Pu", "Am", "Cm", "Bk", "Cf", "Es"];
@@ -57,7 +63,9 @@ function buyEff() {
 
 		player.eff.bought += 1;
 		player.eff.cost = player.eff.cost.multiply(player.eff.costMult);
-		player.eff.mult = player.eff.mult.multiply(player.eff.mineMult);
+		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);
+		document.getElementById("effCost").innerText = "Cost: " + notation(player.eff.cost);
+		document.getElementById("eff").innerText = "Efficiency: " + notation(player.eff.mult);
 	}
 }
 
@@ -97,35 +105,42 @@ function meteor() {
 		}
 	}
 }
-
+let notations = ["Scientific", "Logarithmic"];
 function notationChange() {
-	let notations = ["scientific", "logarithm"];
-	let notationsCap = ["Scientific", "Logarithmic"];
-	if (player.notationNo + 1 == notations.length) {
-		player.notation = notations[0];
-		player.notationNo = 0;
-		document.getElementById("notation").innerText = "Notation: " +  notationsCap[0];
+	if (player.options.notationNo + 1 == notations.length) {
+		player.options.notationNo = 0;
+		player.options.notation = notations[player.options.notationNo];
+		document.getElementById("notation").innerText = "Notation: " +  player.options.notation;
 	} else {
-		player.notation = notations[player.notationNo + 1];
-		player.notationNo += 1;
-		document.getElementById("notation").innerText = "Notation: " +  notationsCap[player.notationNo];
+		player.options.notationNo += 1;
+		player.options.notation = notations[player.options.notationNo];
+		document.getElementById("notation").innerText = "Notation: " + player.options.notation;
 	}
 }
 
+document.getElementById("updaterateslider").oninput = function() {
+	document.getElementById("updaterate").innerText = "Game Update Rate: " + this.value + "ms";
+}
+
+function showNaviTab(tab) {
+	document.getElementById(player.navigation.naviTab).style.display = "none";
+	document.getElementById(tab).style.display = "inline-block";
+	player.currentNaviTab = tab;
+}
 
 function update() {
 	let fuelPerSecond = player.mine.amount[0].multiply(player.mine.mult[0]);
 	let perSecond = [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)];
 	
-	player.fuel = player.fuel.plus(fuelPerSecond.dividedBy(20));
-	document.getElementById("fuel").innerText = "You have " + notation(player.fuel.floor()) + " Nuclear Fuel.";
-	document.getElementById("fuelPerSecond").innerText = "You are gaining " + notation(fuelPerSecond.floor()) + " Nuclear Fuel per second.";
+	player.fuel = player.fuel.plus(fuelPerSecond.multiply(player.options.updateRate/1000));
+	document.getElementById("fuel").innerText = "You have " + notation(player.fuel) + " Nuclear Fuel.";
+	document.getElementById("fuelPerSecond").innerText = "You are gaining " + notation(fuelPerSecond) + " Nuclear Fuel per second.";
 
 	for (let a = 0; a < Math.min(player.meteor + 4, 8); a++) {
 		if (a != 7) {
-			player.mine.amount[a] = player.mine.amount[a].plus((player.mine.amount[a + 1].multiply(player.mine.mult[a + 1]).multiply(player.eff.mult)).dividedBy(20));
+			player.mine.amount[a] = player.mine.amount[a].plus((player.mine.amount[a + 1].multiply(player.mine.mult[a + 1]).multiply(player.eff.mult)).multiply(player.options.updateRate/1000));
 		}
-		document.getElementById(e[a] + "Mine").innerText = notation(player.mine.amount[a].floor());
+		document.getElementById(e[a] + "Mine").innerText = notation(player.mine.amount[a]);
 		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + notation(player.mine.cost[a]);
 		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + notation(player.mine.mult[a]);
 	}
@@ -152,4 +167,4 @@ var saveGameLoop = window.setInterval(function() {
 
 var mainGameLoop = window.setInterval(function() {
 	update();
-}, 50);
+}, player.options.updateRate);

@@ -1,9 +1,9 @@
 function notation(x) {
-	switch(player.notation) {
-		case "scientific":
+	switch(player.options.notation) {
+		case "Scientific":
 			return scientific(x);
 			break;
-		case "logarithm":
+		case "Logarithmic":
 			return logarithm(x);
 			break;
 		default:
@@ -13,7 +13,7 @@ function notation(x) {
 /*Notations*/
 function scientific(x) {
 	if (x.exponent < 4) {
-		return x
+		return round(x, 2)
 	} else if (x.mantissa > 9.995) {
 		return 1 + "e" + (x.exponent + 1);
 	} else if (x.mantissa < 9.995) {
@@ -23,8 +23,8 @@ function scientific(x) {
 
 function logarithm(x) {
 	if (x.exponent < 4) {
-		return x;
+		return round(x, 2);
 	} else {
-		return "e" + (round(x.exponent + Math.log(x.mantissa, 10), 2));
+		return (round(x.exponent + Math.log(x.mantissa, 10), 2));
 	}
 }

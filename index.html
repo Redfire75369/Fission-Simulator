@@ -11,19 +11,29 @@
 	<script defer src="main.js" charset="utf-8" type="text/javascript"></script>
   </head>
   <body>
-    <p id="fuel" align="center" font-size=30px>You have 10 Nuclear Fuel.</p>
-    <p id="fuelPerSecond" align="center" font-size=20px>You are gaining 0 Nuclear Fuel per second.</p>
-    
-	<div id="navibtn">
-		<table class="table" align="center" style="margin: auto" id="NaviTabButtons">
+	<div align="center">
+		<p id="fuel" style="font-size:25px">You have 10 Nuclear Fuel.</p>
+    	<p id="fuelPerSecond" style="font-size:20px">You are gaining 0 Nuclear Fuel per second.</p>
+	</div>
+    <tr>
+		<div align="center">
+			<p>Increase efficiency of all mines by 10%</p>
+			<button onclick="buyEff()" id="effCost">Cost: 1000</button>
+			<p id="eff">Efficiency: 1.00</p>
+		</div>
+	</tr>
+	<div id="navibtn" align="center">
+		<table class="table"  style="margin: auto" id="NaviTabButtons">
 			<tr>
 				<td>
+					<button onclick="showNaviTab('production')" id="prodbtn">Production</button>
+					<button onclick="showNaviTab('options')" id="optionsbtn">Options</button>
 				</td>
 			</tr>
 		</table>
 	</div>
        
-    <div id="production" class="tab">
+    <div id="production">
 		<table class="table" align="center" style="margin: auto" id="productionTabButtons">
 			<tr>
 				<td>
@@ -53,7 +63,7 @@
 						<div id="ThMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="ThMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(0)">Cost: 10</button>
+						<button onclick="buyMine(0)" id="ThMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 10</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row2">
@@ -64,7 +74,7 @@
 						<div id="UMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="UMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(1)">Cost: 100</button>
+						<button onclick="buyMine(1)" id="UMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 100</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row3">
@@ -75,7 +85,7 @@
 						<div id="PuMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="PuMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(2)">Cost: 1.00e4</button>
+						<button onclick="buyMine(2)" id="PuMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e4</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row4">
@@ -86,7 +96,7 @@
 						<div id="AmMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="AmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(3)">Cost: 1.00e6</button>
+						<button onclick="buyMine(3)" id="AmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e6</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row5">
@@ -97,7 +107,7 @@
 						<div id="CmMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="CmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(4)">Cost: 1.00e9</button>
+						<button onclick="buyMine(4)" id="CmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e9</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row6">
@@ -108,7 +118,7 @@
 						<div id="BkMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="BkMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(5)">Cost: 1.00e13</button>
+						<button onclick="buyMine(5)" id="BkMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e13</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row7">
@@ -119,7 +129,7 @@
 						<div id="CfMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="CfMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(6)">Cost: 1.00e18</button>
+						<button onclick="buyMine(6)" id="CfMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e18</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row8">
@@ -130,7 +140,7 @@
 						<div id="EsMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="EsMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(7)">Cost: 1.00e24</button>
+						<button onclick="buyMine(7)" id="EsMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e24</button>
 					</td>
 				</tr>
 			</table>
@@ -140,7 +150,7 @@
 						Meteor Strike: Requires 2 Americium Mines
 					</td>
 					<td>
-						<button id="meteor" style="color:black; width: 200px; height: 25px; font-size: 9px" onclick="meteor()">Reset the game for a new Mine</button>
+						<button onclick="meteor()" id="meteor" style="color:black; width: 200px; height: 25px; font-size: 9px">Reset the game for a new Mine</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px">
@@ -151,16 +161,24 @@
 						<button onclick="setFuel()"> Stuff </button>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<button id = "notation" onclick="notationChange()"> Notation: Scientific </button>
-					</td>
-				</tr>
 			</table>
 		</div>
 	</div>
 	
-	<div id="options" class="tab">
+	<div id="options">
+		<table>
+			<tr>
+				<td>
+					<button id = "notation" onclick="notationChange()"> Notation: Scientific </button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b id="updaterate">Game Update Rate: 50ms</b>
+					<input id="updaterateslider" style="width: 170px;" type="range" min="50" max="1000" value="50" class="slider" >
+				</td>
+			</tr>
+		</table>
 	</div>
 	
   </body>
