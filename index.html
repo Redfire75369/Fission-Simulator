@@ -72,7 +72,7 @@
 						<div id="PuMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="PuMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(2)">Cost: 10000</button>
+						<button id="PuMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(2)">Cost: 1e4</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row4">
@@ -83,7 +83,7 @@
 						<div id="AmMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="AmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(3)">Cost: 10000000</button>
+						<button id="AmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(3)">Cost: 1e7</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row5">
@@ -94,7 +94,7 @@
 						<div id="CmMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="CmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(4)">Cost: 100000000000</button>
+						<button id="CmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(4)">Cost: 1e11</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row6">
@@ -105,7 +105,7 @@
 						<div id="BkMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="BkMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(5)">Cost: 10000000000000000</button>
+						<button id="BkMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(5)">Cost: 1e16</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row7">
@@ -116,7 +116,7 @@
 						<div id="CfMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="CfMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(6)">Cost: 10000000000000000000000</button>
+						<button id="CfMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(6)">Cost: 1e22</button>
 					</td>
 				</tr>
 			</table>
@@ -133,10 +133,17 @@
 					<td>
 						<button onclick="hardReset()"> Hard Reset the Game </button>
 					</td>
+					<td>
+						<button onclick="setFuel()"> Stuff </button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id = "notation" onclick="notationChange()"> Notation: Scientific </button>
+					</td>
 				</tr>
 			</table>
 		</div>
-		
 	</div>
 	
 	<div id="options" class="tab">
