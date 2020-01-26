@@ -1,33 +1,35 @@
-var defaultData = {
-	version: {alpha: 0, beta: 7},
-	fuel: new Decimal(10),
-	eff: {
-		bought: 0,
-		cost: new Decimal("1e+3"),
-		costMult: new Decimal("1e+1"),
-		mult: new Decimal(1),
-		multMult: new Decimal(1.1)
-	},
-	mine: {
-		amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-		cost: [new Decimal("1e+1"), new Decimal("1e+2"), new Decimal("1e+4"), new Decimal("1e+6"), new Decimal("1e+9"), new Decimal("1e+13"), new Decimal("1e+18")],
-		costMult: [new Decimal("1e+3"), new Decimal("1e+4"), new Decimal("1e+5"), new Decimal("1e+6"), new Decimal("1e+8"), new Decimal("1e+10"), new Decimal("1e+12")],
-		bought: [0, 0, 0, 0, 0, 0, 0],
-		mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
-	},
-	multMult: new Decimal(2),
-	meteor: 0,
-	meteorMult: new Decimal(2),
-	notation: "scientific",
-	notationNo: 0,
-	lastPlayed: new Date().getTime()
+function getDefaultData() {
+	return {
+		version: {alpha: 0, beta: 7},
+		fuel: new Decimal(10),
+		eff: {
+			bought: 0,
+			cost: new Decimal("1e+3"),
+			costMult: new Decimal("1e+1"),
+			mult: new Decimal(5),
+			multMult: new Decimal(1.1)
+		},
+		mine: {
+			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
+			cost: [new Decimal("1e+1"), new Decimal("1e+2"), new Decimal("1e+4"), new Decimal("1e+6"), new Decimal("1e+9"), new Decimal("1e+13"), new Decimal("1e+18"), new Decimal("1e+24")],
+			costMult: [new Decimal("1e+3"), new Decimal("1e+4"), new Decimal("1e+5"), new Decimal("1e+6"), new Decimal("1e+8"), new Decimal("1e+10"), new Decimal("1e+12"), new Decimal("1e+15")],
+			bought: [0, 0, 0, 0, 0, 0, 0, 0],
+			mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
+		},
+		multMult: new Decimal(2),
+		meteor: 0,
+		meteorMult: new Decimal(2),
+		notation: "scientific",
+		notationNo: 0,
+		lastPlayed: new Date().getTime()
+	}
 }
-const e = ["Th", "U", "Pu", "Am", "Cm", "Bk", "Cf"];
-const elements = ["Thorium", "Uranium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
-var player = defaultData;
+const e = ["Th", "U", "Pu", "Am", "Cm", "Bk", "Cf", "Es"];
+const elements = ["Thorium", "Uranium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium", "Einsteinium"];
+var player = getDefaultData();
 
 function hardReset() {
-	player = defaultData;
+	player = getDefaultData();
 }
 function setFuel() {
 	player.fuel = new Decimal("1e+100");
@@ -50,7 +52,7 @@ function buyMine(a) {
 function buyEff() {
 	if (player.fuel.gte(player.eff.cost)) {
 		player.fuel = player.fuel.minus(player.eff.cost);
-		
+
 		player.eff.bought += 1;
 		player.eff.cost = player.eff.cost.multiply(player.eff.costMult);
 		player.eff.mult = player.eff.mult.multiply(player.eff.mineMult);
@@ -61,13 +63,13 @@ function meteor() {
 	if (player.meteor < 4) {
 		if (player.mine.amount[player.meteor + 3].gte(2)) {
 			player.meteor += 1;
-			player.fuel = defaultData.fuel;
+			player.fuel = getDefaultData().fuel;
 			for (let a = 0; a < player.meteor + 3; a++) {
-				player.mine.amount[a] = defaultData.mine.amount[a];
-				player.mine.cost[a] = defaultData.mine.cost[a];
-				player.mine.bought[a] = defaultData.mine.bought[a];
-				player.mine.costMult[a] = defaultData.mine.costMult[a];
-				player.mine.mult[a] = defaultData.mine.mult[a];
+				player.mine.amount[a] = getDefaultData().mine.amount[a];
+				player.mine.cost[a] = getDefaultData().mine.cost[a];
+				player.mine.bought[a] = getDefaultData().mine.bought[a];
+				player.mine.costMult[a] = getDefaultData().mine.costMult[a];
+				player.mine.mult[a] = getDefaultData().mine.mult[a];
 			}
 			for (let b = 0; b < player.meteor;  b++) {	
 				player.mine.mult[b] = player.mine.mult[b].multiply(player.meteorMult);
@@ -107,7 +109,6 @@ function notationChange() {
 
 
 function update() {
-	
 	let fuelPerSecond = player.mine.amount[0].multiply(player.mine.mult[0]);
 	let perSecond = [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)];
 	
@@ -115,8 +116,8 @@ function update() {
 	document.getElementById("fuel").innerText = "You have " + notation(player.fuel.floor()) + " Nuclear Fuel.";
 	document.getElementById("fuelPerSecond").innerText = "You are gaining " + notation(fuelPerSecond.floor()) + " Nuclear Fuel per second.";
 
-	for (let a = 0; a < Math.min(player.meteor + 4, 7); a++) {
-		player.mine.amount[a] = player.mine.amount[a].plus((player.mine.amount[a + 1].multiply(player.mine.mult[a + 1])).dividedBy(20));
+	for (let a = 0; a < Math.min(player.meteor + 4, 8); a++) {
+		player.mine.amount[a] = player.mine.amount[a].plus((player.mine.amount[a + 1].multiply(player.mine.mult[a + 1]).multiply(player.eff.mult)).dividedBy(20));
 		document.getElementById(e[a] + "Mine").innerText = notation(player.mine.amount[a].floor());
 		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + notation(player.mine.cost[a]);
 		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + notation(player.mine.mult[a]);
