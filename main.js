@@ -30,6 +30,8 @@ var player = getDefaultData();
 
 function hardReset() {
 	player = getDefaultData();
+	localStorage.setItem("fissionSimSave", JSON.stringify(player));
+	hideMines();
 }
 function setFuel() {
 	player.fuel = new Decimal("1e+100");
@@ -71,8 +73,8 @@ function meteor() {
 				player.mine.costMult[a] = getDefaultData().mine.costMult[a];
 				player.mine.mult[a] = getDefaultData().mine.mult[a];
 			}
-			for (let b = 0; b < player.meteor;  b++) {	
-				player.mine.mult[b] = player.mine.mult[b].multiply(player.meteorMult);
+			for (let a = 0; a < player.meteor;  a++) {
+				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult.pow(player.meteor - a));
 			}
 			document.getElementById("meteorCost").innerText = "Meteor Strike: Requires 2 " + elements[player.meteor + 3] + " Mines"
 			document.getElementById("row" + (player.meteor + 4)).style.display = "table-row";
@@ -80,19 +82,22 @@ function meteor() {
 	} else if (player.meteor < 9) {
 		if (player.mine.amount[7].gte(2 + ((player.meteor - 4) * 2))) {
 			player.meteor += 1;
-			for (let a = 0; a < player.meteor;  a++) {
-				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult);
+			player.fuel = getDefaultData().fuel;
+			for (let a = 0; a < player.meteor + 3; a++) {
+				player.mine.amount[a] = getDefaultData().mine.amount[a];
+				player.mine.cost[a] = getDefaultData().mine.cost[a];
+				player.mine.bought[a] = getDefaultData().mine.bought[a];
+				player.mine.costMult[a] = getDefaultData().mine.costMult[a];
+				player.mine.mult[a] = getDefaultData().mine.mult[a];
 			}
-		}
-	} else {
-		if (player.mine.amount[7].gte(2 + ((player.meteor - 4) * 2))) {
-			player.meteor += 1;
-			for (let a = 0; a < 8;  a++) {
-				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult);
+			for (let a = 0; a < Math.min(player.meteor, 8);  a++) {
+				player.mine.mult[a] = player.mine.mult[a].multiply(player.meteorMult.pow(player.meteor - a));
 			}
+			document.getElementById("meteorCost").innerText = "Tectonic Initiation: Requires " + (2 + ((player.meteor - 4) * 2)) + " Einsteinium Mines";
 		}
 	}
 }
+
 function notationChange() {
 	let notations = ["scientific", "logarithm"];
 	let notationsCap = ["Scientific", "Logarithmic"];
@@ -117,10 +122,23 @@ function update() {
 	document.getElementById("fuelPerSecond").innerText = "You are gaining " + notation(fuelPerSecond.floor()) + " Nuclear Fuel per second.";
 
 	for (let a = 0; a < Math.min(player.meteor + 4, 8); a++) {
-		player.mine.amount[a] = player.mine.amount[a].plus((player.mine.amount[a + 1].multiply(player.mine.mult[a + 1]).multiply(player.eff.mult)).dividedBy(20));
+		if (a != 7) {
+			player.mine.amount[a] = player.mine.amount[a].plus((player.mine.amount[a + 1].multiply(player.mine.mult[a + 1]).multiply(player.eff.mult)).dividedBy(20));
+		}
 		document.getElementById(e[a] + "Mine").innerText = notation(player.mine.amount[a].floor());
 		document.getElementById(e[a] + "MineCost").innerText = "Cost: " + notation(player.mine.cost[a]);
 		document.getElementById(e[a] + "MineMult").innerText = elements[a] + " Mine ×" + notation(player.mine.mult[a]);
+	}
+
+	switch(player.meteor) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			document.getElementById("meteorCost").innerText = "Meteor Strike: Requires 2 " + elements[player.meteor + 3] + " Mines"
+			break;
+		default:
+			document.getElementById("meteorCost").innerText = "Tectonic Initiation: Requires " + (2 + ((player.meteor - 4) * 2)) + " Einsteinium Mines";
 	}
 }
 

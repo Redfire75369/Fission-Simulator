@@ -25,6 +25,6 @@ function logarithm(x) {
 	if (x.exponent < 4) {
 		return x;
 	} else {
-		return "e" + (x.exponent + round(Math.log(x.mantissa, 10), 2));
+		return "e" + (round(x.exponent + Math.log(x.mantissa, 10), 2));
 	}
 }
