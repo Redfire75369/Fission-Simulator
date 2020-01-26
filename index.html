@@ -5,6 +5,9 @@
     <title>Fission Simulator</title>
     
 	<script defer src="break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="math.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="notation.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="init_game.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="main.js" charset="utf-8" type="text/javascript"></script>
   </head>
   <body>
@@ -72,7 +75,7 @@
 						<div id="PuMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="PuMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(2)">Cost: 10000</button>
+						<button id="PuMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(2)">Cost: 1.00e4</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row4">
@@ -83,7 +86,7 @@
 						<div id="AmMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="AmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(3)">Cost: 10000000</button>
+						<button id="AmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(3)">Cost: 1.00e6</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row5">
@@ -94,7 +97,7 @@
 						<div id="CmMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="CmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(4)">Cost: 100000000000</button>
+						<button id="CmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(4)">Cost: 1.00e9</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row6">
@@ -105,7 +108,7 @@
 						<div id="BkMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="BkMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(5)">Cost: 10000000000000000</button>
+						<button id="BkMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(5)">Cost: 1.00e13</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row7">
@@ -116,7 +119,18 @@
 						<div id="CfMine">0</div>
 					</td>
 					<td align="right" width="10%">
-						<button id="CfMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(6)">Cost: 10000000000000000000000</button>
+						<button id="CfMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(6)">Cost: 1.00e18</button>
+					</td>
+				</tr>
+				<tr style="font-size: 15px" id="row8">
+					<td id="EsMineMult" width="32%" class="rel">
+						Einsteinium Mine ×1
+					</td>
+					<td>
+						<div id="EsMine">0</div>
+					</td>
+					<td align="right" width="10%">
+						<button id="EsMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(7)">Cost: 1.00e24</button>
 					</td>
 				</tr>
 			</table>
@@ -133,10 +147,17 @@
 					<td>
 						<button onclick="hardReset()"> Hard Reset the Game </button>
 					</td>
+					<td>
+						<button onclick="setFuel()"> Stuff </button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button id = "notation" onclick="notationChange()"> Notation: Scientific </button>
+					</td>
 				</tr>
 			</table>
 		</div>
-		
 	</div>
 	
 	<div id="options" class="tab">
