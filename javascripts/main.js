@@ -71,7 +71,7 @@ function update() {
 }
 
 /*Initialise Game*/
-//init_game();
+init_game();
 
 /*Game Loops*/
 var saveGameLoop = window.setInterval(function() {

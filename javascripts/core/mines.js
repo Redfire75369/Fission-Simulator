@@ -52,30 +52,30 @@ function updateMines() {
 		document.getElementById(elements[tier] + "MineCost").innerText = "Cost: " + notation(getMineCost(tier));
 		document.getElementById(elements[tier] + "MineMult").innerText = elements[tier] + " Mine ×" + notation(getTotalMineMult(tier));
 	}
-	if (player.meteor = 0) {
+	if (player.meteor == 0) {
 		document.getElementById("row5").style.display = "none";
 		document.getElementById("row6").style.display = "none";
 		document.getElementById("row7").style.display = "none";
 		document.getElementById("row8").style.display = "none";
-	} else if (player.meteor = 1) {
-		document.getElementById("row5").style.display = "inline-row";
+	} else if (player.meteor == 1) {
+		document.getElementById("row5").style.display = "table-row";
 		document.getElementById("row6").style.display = "none";
 		document.getElementById("row7").style.display = "none";
 		document.getElementById("row8").style.display = "none";
-	} else if (player.meteor = 2) {
-		document.getElementById("row5").style.display = "inline-row";
-		document.getElementById("row6").style.display = "inline-row";
+	} else if (player.meteor == 2) {
+		document.getElementById("row5").style.display = "table-row";
+		document.getElementById("row6").style.display = "table-row";
 		document.getElementById("row7").style.display = "none";
 		document.getElementById("row8").style.display = "none";
-	} else if (player.meteor = 3) {
-		document.getElementById("row5").style.display = "inline-row";
-		document.getElementById("row6").style.display = "inline-row";
-		document.getElementById("row7").style.display = "inline-row";
+	} else if (player.meteor == 3) {
+		document.getElementById("row5").style.display = "table-row";
+		document.getElementById("row6").style.display = "table-row";
+		document.getElementById("row7").style.display = "table-row";
 		document.getElementById("row8").style.display = "none";
 	} else {
-		document.getElementById("row5").style.display = "inline-row";
-		document.getElementById("row6").style.display = "inline-row";
-		document.getElementById("row7").style.display = "inline-row";
-		document.getElementById("row8").style.display = "inline-row";
+		document.getElementById("row5").style.display = "table-row";
+		document.getElementById("row6").style.display = "table-row";
+		document.getElementById("row7").style.display = "table-row";
+		document.getElementById("row8").style.display = "table-row";
 	}
 }
