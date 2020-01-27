@@ -30,24 +30,7 @@ function load_save() {
 	if (player.multMult === undefined) { player.multMult = getDefaultData().multMult; }
 }
 
-/*Hide higher tier mines*/
-function hideMines() {
-	switch(player.meteor) {
-		case 0:
-			document.getElementById("row5").style.display = "none";
-		case 1:
-			document.getElementById("row6").style.display = "none";
-		case 2:
-			document.getElementById("row7").style.display = "none";
-		case 3:
-			document.getElementById("row8").style.display = "none";
-		default:
-	}
-}
-
 function init_game() {
 	load_save();
-	hideMines();
 	showNaviTab("production");
-	document.getElementById("meteorCost").innerText = "Meteor Strike: Requires 2 " + elements[player.meteor + 3] + " Mines"
 }
