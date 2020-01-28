@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Fission Simulator</title>
-    
+    <link rel="stylesheet" href="style.css" />
 	<script defer src="javascripts/break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/prestige/meteor.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
@@ -13,8 +13,9 @@
 	<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
+	
   </head>
-  <body>
+  <body bgcolor="1c1c1c">
 	<div align="center">
 		<p id="fuel" style="font-size:25px">You have 10 Nuclear Fuel.</p>
     	<p id="fuelPerSecond" style="font-size:20px">You are gaining 0 Nuclear Fuel per second.</p>
@@ -48,103 +49,92 @@
 		<div id="mines" class = "subtab">
 		    <table class="table">
 		    <tbody id="parent">
-				<tr style="font-size: 15px" id="row0">
-					<td id="mine" width="32%" class="rel">
-						Mine
-					</td>
-					<td>
-						Number of Mines
-					</td>
-					<td align="right" width="12%">
-						Cost
-					</td>
-				</tr>
 		    	<tr style="font-size: 15px" id="row1">
-					<td id="ThoriumMineMult" width="32%" class="rel">
+					<td id="ThoriumMineMult" style="color: #c0c0c0">
 						Thorium Mine ×1
 					</td>
-					<td>
-						<div id="ThoriumMine">0</div>
+					<td id="ThoriumMine" class="mineamt">
+						0
 					</td>
 					<td align="right" width="10%">
-						<button onclick="buyMine(0)" id="ThoriumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 10</button>
+						<button onclick="buyMine(0)" id="ThoriumMineCost">Cost: 10</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row2">
-					<td id="UraniumMineMult" width="32%" class="rel">
+					<td id="UraniumMineMult" style="color: #c0c0c0">
 						Uranium Mine ×1
 					</td>
-					<td>
-						<div id="UraniumMine">0</div>
+					<td id="UraniumMine" class="mineamt" align="center">
+						0
 					</td>
 					<td align="right" width="10%">
-						<button onclick="buyMine(1)" id="UraniumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 100</button>
+						<button onclick="buyMine(1)" id="UraniumMineCost">Cost: 100</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row3">
-					<td id="PlutoniumMineMult" width="32%" class="rel">
+					<td id="PlutoniumMineMult" style="color: #c0c0c0">
 						Plutonium Mine ×1
 					</td>
-					<td>
-						<div id="PlutoniumMine">0</div>
+					<td id="PlutoniumMine" class="mineamt">
+						0
 					</td>
 					<td align="right" width="10%">
-						<button onclick="buyMine(2)" id="PlutoniumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e4</button>
+						<button onclick="buyMine(2)" id="PlutoniumMineCost">Cost: 1.00e4</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row4">
-					<td id="AmericiumMineMult" width="32%" class="rel">
+					<td id="AmericiumMineMult" style="color: #c0c0c0">
 						Americium Mine ×1
 					</td>
-					<td>
-						<div id="AmericiumMine">0</div>
+					<td id="AmericiumMine" class="mineamt">
+						0
 					</td>
 					<td align="right" width="10%">
-						<button onclick="buyMine(3)" id="AmericiumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e6</button>
+						<button onclick="buyMine(3)" id="AmericiumMineCost">Cost: 1.00e6</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row5">
-					<td id="CuriumMineMult" width="32%" class="rel">
+					<td id="CuriumMineMult" style="color: #c0c0c0">
 						Curium Mine ×1
 					</td>
-					<td>
-						<div id="CuriumMine">0</div>
+					<td id="CuriumMine" class="mineamt">
+						0
 					</td>
 					<td align="right" width="10%">
-						<button onclick="buyMine(4)" id="CuriumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e9</button>
+						<button onclick="buyMine(4)" id="CuriumMineCost">Cost: 1.00e9</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row6">
-					<td id="BerkeliumMineMult" width="32%" class="rel">
+					<td id="BerkeliumMineMult" style="color: #c0c0c0">
 						Berkelium Mine ×1
 					</td>
-					<td>
-						<div id="BerkeliumMine">0</div>
+					<td id="BerkeliumMine" class="mineamt">
+						0
 					</td>
 					<td align="right" width="10%">
-						<button onclick="buyMine(5)" id="BerkeliumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e13</button>
+						<button onclick="buyMine(5)" id="BerkeliumMineCost">Cost: 1.00e13</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row7">
-					<td id="CaliforniumMineMult" width="32%" class="rel">
+					<td id="CaliforniumMineMult" style="color: #c0c0c0">
 						Californium Mine ×1
 					</td>
-					<td>
-						<div id="CaliforniumMine">0</div>
+					<td id="CaliforniumMine" class="mineamt">
+						0
 					</td>
 					<td align="right" width="10%">
-						<button onclick="buyMine(6)" id="CaliforniumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e18</button>
+						<button onclick="buyMine(6)" id="CaliforniumMineCost">Cost: 1.00e18</button>
 					</td>
 				</tr>
 				<tr style="font-size: 15px" id="row8">
-					<td id="EinsteiniumMineMult" width="32%" class="rel">
+					<td id="EinsteiniumMineMult" style="color: #c0c0c0">
 						Einsteinium Mine ×1
 					</td>
-					<td>
-						<div id="EinsteiniumMine">0</div>
+					<td id="EinsteiniumMine" class="mineamt">
+						0
 					</td>
 					<td align="right" width="10%">
-						<button onclick="buyMine(7)" id="EinsteiniumMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px"align="right">Cost: 1.00e24</button>
+						<button onclick="buyMine(7)" id="EinsteiniumMineCost">Cost: 1.00e24</button>
 					</td>
 				</tr>
 			</table>

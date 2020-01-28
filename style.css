@@ -1,0 +1,19 @@
+.minebtnbuy {
+	width: 120px;
+	height: 20px;
+	color: #c0c0c0;
+	background: #455a64;
+	border: 3px solid #33ef47;
+	border-radius: 3px;
+}
+.minebtnlocked {
+	width: 120px;
+	height: 20px;
+	color: #c0c0c0;
+	background: #37474f;
+	border: 3px solid #e53935;
+	border-radius: 3px;
+}
+.mineamt {
+	color: #c0c0c0;
+}

@@ -50,6 +50,7 @@ function updateMines() {
 		player.mine.amount[tier] = player.mine.amount[tier].plus(getMinePerSecond(tier).multiply(20 / 1000));
 		document.getElementById(elements[tier] + "Mine").innerText = notation(player.mine.amount[tier]);
 		document.getElementById(elements[tier] + "MineCost").innerText = "Cost: " + notation(getMineCost(tier));
+		document.getElementById(elements[tier] + "MineCost").className = canBuyMine(tier) ? "minebtnbuy" : "minebtnlocked";
 		document.getElementById(elements[tier] + "MineMult").innerText = elements[tier] + " Mine ×" + notation(getTotalMineMult(tier));
 	}
 	
