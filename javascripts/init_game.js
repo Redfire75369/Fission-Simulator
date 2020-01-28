@@ -7,12 +7,17 @@ function load_save() {
 		player.fuel = new Decimal(save.fuel);
 		player.meteor = save.meteor;
 		player.meteorMult = new Decimal(save.meteorMult);
-		player.notation = save.notation;
-		for (let a = 0; a < 8; a++) {
-			player.mine.amount[a] = new Decimal(save.mine.amount[a]);
-			player.mine.cost[a] = new Decimal(save.mine.cost[a]);
-			player.mine.mult[a] = new Decimal(save.mine.mult[a]);
-			player.mine.costMult[a] = new Decimal(save.mine.costMult[a]);
+		player.eff.bought = new Decimal(save.eff.bought);
+		player.eff.cost = new Decimal(save.eff.cost);
+		player.eff.costMult = new Decimal(save.eff.costMult);
+		player.eff.mult = new Decimal(save.eff.mult);
+		player.eff.multMult = new Decimal(save.eff.multMult);
+		for (let tier = 0; tier < 8; tier++) {
+			player.mine.amount[tier] = new Decimal(save.mine.amount[tier]);
+			player.mine.bought[tier] = new Decimal(save.mine.bought[tier]);
+			player.mine.cost[tier] = new Decimal(save.mine.cost[tier]);
+			player.mine.mult[tier] = new Decimal(save.mine.mult[tier]);
+			player.mine.costMult[tier] = new Decimal(save.mine.costMult[tier]);
 		}
 		player.multMult = new Decimal(save.multMult);
 	}
@@ -20,12 +25,17 @@ function load_save() {
 	if (player.fuel === undefined) { player.fuel = getDefaultData().fuel; }
 	if (player.meteor === undefined) { player.meteor = getDefaultData().meteor; }
 	if (player.meteorMult === undefined) { player.meteorMult = getDefaultData().meteorMult; }
-	if (player.notation === undefined) { player.notation = getDefaultData().notation; }
-	for (let b = 0; b < 8; b++) {
-		if (player.mine.amount[b] === undefined) { player.mine.amount[b] = getDefaultData().player.mine.amount[b]; }
-		if (player.mine.cost[b] === undefined) { player.mine.cost[b] = getDefaultData().player.mine.cost[b]; }
-		if (player.mine.mult[b] === undefined) { player.mine.mult[b] = getDefaultData().player.mine.mult[b]; }
-		if (player.mine.costMult[b] === undefined) { player.mine.costMult[b] = getDefaultData().player.mine.costMult[b]; }
+	if (player.eff.bought === undefined) { player.eff.bought = getDefaultData().eff.bought; }
+	if (player.eff.cost === undefined) { player.eff.cost = getDefaultData().eff.cost; }
+	if (player.eff.costMult === undefined) { player.eff.costMult = getDefaultData().eff.costMult; }
+	if (player.eff.mult === undefined) { player.eff.mult = getDefaultData().eff.mult; }
+	if (player.eff.multMult === undefined) { player.eff.multMult = getDefaultData().eff.multMult; }
+	for (let tier = 0; tier < 8; tier++) {
+		if (player.mine.amount[tier] === undefined) { player.mine.amount[tier] = getDefaultData().player.mine.amount[tier]; }
+		if (player.mine.bought[tier] === undefined) { player.mine.bought[tier] = getDefaultData().player.mine.bought[tier]; }
+		if (player.mine.cost[tier] === undefined) { player.mine.cost[tier] = getDefaultData().player.mine.cost[tier]; }
+		if (player.mine.mult[tier] === undefined) { player.mine.mult[tier] = getDefaultData().player.mine.mult[tier]; }
+		if (player.mine.costMult[tier] === undefined) { player.mine.costMult[tier] = getDefaultData().player.mine.costMult[tier]; }
 	}
 	if (player.multMult === undefined) { player.multMult = getDefaultData().multMult; }
 }

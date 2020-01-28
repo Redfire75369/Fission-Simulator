@@ -2,7 +2,7 @@ function getMeteorCost() {
 	if (player.meteor < 4) {
 		return [2, player.meteor + 3];
 	} else {
-		return [(2 + player.meteor - 4) * 2, 7];
+		return [2 + (player.meteor - 4) * 2, 7];
 	}
 }
 
@@ -44,5 +44,5 @@ function updateMeteor() {
 		type = "Tectonic Inititation";
 		document.getElementById("meteor").innerText = "Reset the game for a Boost";
 	}
-	document.getElementById("meteorCost").innerText = type + ": Requires " + getMeteorCost()[0] + " " + elements[getMeteorCost()[1]] + " Mines";
+	document.getElementById("meteorCost").innerText = type + " (" + player.meteor + "): Requires " + getMeteorCost()[0] + " " + elements[getMeteorCost()[1]] + " Mines";
 }

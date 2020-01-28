@@ -22,15 +22,15 @@ function scientific(x) {
 	} else if (x.mantissa > 9.995) {
 		return 1 + "e" + (x.exponent + 1);
 	} else if (x.mantissa < 9.995) {
-		return round(x.mantissa, 2)+ "e" + x.exponent;
+		return round(x.mantissa, 2) + "e" + x.exponent;
 	}
 }
 
 function logarithm(x) {
-	if (x.exponent < 4) {
+	if (x.exponent < 3) {
 		return round(x, 2);
 	} else {
-		return (round(x.exponent + Math.log(x.mantissa, 10), 2));
+		return "e" + (round(x.exponent + Math.log(x.mantissa, 10), 2));
 	}
 }
 

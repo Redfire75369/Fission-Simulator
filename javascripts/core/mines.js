@@ -41,7 +41,7 @@ function getMinePerSecond(tier) {
 	if (tier < 7) {
 		return player.mine.amount[tier + 1].multiply(getTotalMineMult(tier + 1)).multiply(player.eff.mult);
 	} else {
-		return 0
+		return new Decimal(0);
 	}
 }
 
@@ -52,6 +52,7 @@ function updateMines() {
 		document.getElementById(elements[tier] + "MineCost").innerText = "Cost: " + notation(getMineCost(tier));
 		document.getElementById(elements[tier] + "MineMult").innerText = elements[tier] + " Mine ×" + notation(getTotalMineMult(tier));
 	}
+	
 	if (player.meteor == 0) {
 		document.getElementById("row5").style.display = "none";
 		document.getElementById("row6").style.display = "none";
@@ -72,7 +73,7 @@ function updateMines() {
 		document.getElementById("row6").style.display = "table-row";
 		document.getElementById("row7").style.display = "table-row";
 		document.getElementById("row8").style.display = "none";
-	} else {
+	} else if (player.meteor >= 4) {
 		document.getElementById("row5").style.display = "table-row";
 		document.getElementById("row6").style.display = "table-row";
 		document.getElementById("row7").style.display = "table-row";

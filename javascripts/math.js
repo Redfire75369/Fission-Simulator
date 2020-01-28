@@ -10,9 +10,9 @@ function round(x, dp) {
 function floor(x) {
 	return Math.floor(x);
 }
-function min(x) {
-	return Math.min(x);
+function min(x, y) {
+	return Math.min(x, y);
 }
-function max(x) {
-	return Math.max(x);
+function max(x, y) {
+	return Math.max(x, y);
 }

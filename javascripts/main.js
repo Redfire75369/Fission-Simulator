@@ -3,8 +3,7 @@ function getDefaultData() {
 		version: {alpha: 0, beta: 8},
 		options: {
 			notation: "Scientific",
-			notationNo: 0,
-			updateRate: 50
+			notationNo: 0
 		},
 		navigation: {
 			naviTab: "options",
@@ -53,14 +52,10 @@ function notationChange() {
 	}
 }
 
-document.getElementById("updaterateslider").oninput = function() {
-	document.getElementById("updaterate").innerText = "Game Update Rate: " + this.value + "ms";
-}
-
 function showNaviTab(tab) {
 	document.getElementById(player.navigation.naviTab).style.display = "none";
 	document.getElementById(tab).style.display = "inline-block";
-	player.currentNaviTab = tab;
+	player.navigation.naviTab = tab;
 }
 
 function update() {
