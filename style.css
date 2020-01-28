@@ -16,7 +16,7 @@
 	font-size: 13px;
 	color: #c0c0c0;
 	background: #455a64;
-	border: 3px solid #33ef47;
+	border: 3px solid #127A20;
 	border-radius: 3px;
 }
 .effbtnlocked {
@@ -46,23 +46,44 @@
 }
 .minebtnbuy {
 	width: 120px;
-	height: 20px;
+	height: 25px;
 	font-size: 13px;
 	color: #c0c0c0;
 	background: #455a64;
-	border: 3px solid #33ef47;
-	border-radius: 3px;
+	border: 2px solid #127A20;
+	border-radius: 2px;
 }
 .minebtnlocked {
 	width: 120px;
-	height: 20px;
+	height: 25px;
 	font-size: 13px;
 	color: #c0c0c0;
 	background: #37474f;
-	border: 3px solid #e53935;
-	border-radius: 3px;
+	border: 2px solid #e53935;
+	border-radius: 2px;
 }
 
 .meteor {
+	width: 200px;
+	height: 25px;
+	font-size: 15px;
 	color: #c0c0c0;
+}
+.meteorbtnbuy {
+	width: 200px;
+	height: 25px;
+	font-size: 9px;
+	color: #c0c0c0;
+	background: #455a64;
+	border: 3px solid #127A20;
+	border-radius: 3px;
+}
+.meteorbtnlocked {
+	width: 200px;
+	height: 25px;
+	font-size: 9px;
+	color: #c0c0c0;
+	background: #455a64;
+	border: 3px solid #e53935;
+	border-radius: 3px;
 }

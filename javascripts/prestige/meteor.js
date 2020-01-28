@@ -45,4 +45,5 @@ function updateMeteor() {
 		document.getElementById("meteor").innerText = "Reset the game for a Boost";
 	}
 	document.getElementById("meteorCost").innerText = type + " (" + player.meteor + "): Requires " + getMeteorCost()[0] + " " + elements[getMeteorCost()[1]] + " Mines";
+	document.getElementById("meteor").className = canBuyMeteor() ? "meteorbtnbuy" : "meteorbtnlocked";
 }

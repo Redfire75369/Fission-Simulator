@@ -168,19 +168,11 @@
 			</table>
 			<table style="width: 100%">
 				<tr>
-					<td id="meteorCost">
+					<td id="meteorCost" class="meteor" align="left">
 						Meteor Strike: Requires 2 Americium Mines
 					</td>
-					<td>
-						<button onclick="buyMeteor()" id="meteor" style="color:black; width: 200px; height: 25px; font-size: 9px">Reset the game for a new Mine</button>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button onclick="hardReset()"> Hard Reset the Game </button>
-					</td>
-					<td>
-						<button onclick="setFuel('1e+308')"> Stuff </button>
+					<td align="right">
+						<button onclick="buyMeteor()" id="meteor">Reset the game for a new Mine</button>
 					</td>
 				</tr>
 			</table>
@@ -188,10 +180,18 @@
 	</div>
 	
 	<div id="options">
-		<table>
+		<table class="table">
 			<tr>
 				<td>
 					<button id = "notation" onclick="notationChange()"> Notation: Scientific </button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button onclick="hardReset()"> Hard Reset the Game </button>
+				</td>
+				<td>
+					<button onclick="setFuel('1e+308')"> Stuff </button>
 				</td>
 			</tr>
 		</table>
