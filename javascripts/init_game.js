@@ -7,14 +7,14 @@ function load_save() {
 		player.fuel = new Decimal(save.fuel);
 		player.meteor = save.meteor;
 		player.meteorMult = new Decimal(save.meteorMult);
-		player.eff.bought = new Decimal(save.eff.bought);
+		player.eff.bought = save.eff.bought;
 		player.eff.cost = new Decimal(save.eff.cost);
 		player.eff.costMult = new Decimal(save.eff.costMult);
 		player.eff.mult = new Decimal(save.eff.mult);
 		player.eff.multMult = new Decimal(save.eff.multMult);
 		for (let tier = 0; tier < 8; tier++) {
 			player.mine.amount[tier] = new Decimal(save.mine.amount[tier]);
-			player.mine.bought[tier] = new Decimal(save.mine.bought[tier]);
+			player.mine.bought[tier] = save.mine.bought[tier];
 			player.mine.cost[tier] = new Decimal(save.mine.cost[tier]);
 			player.mine.mult[tier] = new Decimal(save.mine.mult[tier]);
 			player.mine.costMult[tier] = new Decimal(save.mine.costMult[tier]);
@@ -31,11 +31,11 @@ function load_save() {
 	if (player.eff.mult === undefined) { player.eff.mult = getDefaultData().eff.mult; }
 	if (player.eff.multMult === undefined) { player.eff.multMult = getDefaultData().eff.multMult; }
 	for (let tier = 0; tier < 8; tier++) {
-		if (player.mine.amount[tier] === undefined) { player.mine.amount[tier] = getDefaultData().player.mine.amount[tier]; }
-		if (player.mine.bought[tier] === undefined) { player.mine.bought[tier] = getDefaultData().player.mine.bought[tier]; }
-		if (player.mine.cost[tier] === undefined) { player.mine.cost[tier] = getDefaultData().player.mine.cost[tier]; }
-		if (player.mine.mult[tier] === undefined) { player.mine.mult[tier] = getDefaultData().player.mine.mult[tier]; }
-		if (player.mine.costMult[tier] === undefined) { player.mine.costMult[tier] = getDefaultData().player.mine.costMult[tier]; }
+		if (player.mine.amount[tier] === undefined) { player.mine.amount[tier] = getDefaultData().mine.amount[tier]; }
+		if (player.mine.bought[tier] === undefined) { player.mine.bought[tier] = getDefaultData().mine.bought[tier]; }
+		if (player.mine.cost[tier] === undefined) { player.mine.cost[tier] = getDefaultData().mine.cost[tier]; }
+		if (player.mine.costMult[tier] === undefined) { player.mine.costMult[tier] = getDefaultData().mine.costMult[tier]; }
+		if (player.mine.mult[tier] === undefined) { player.mine.mult[tier] = getDefaultData().mine.mult[tier]; }
 	}
 	if (player.multMult === undefined) { player.multMult = getDefaultData().multMult; }
 }

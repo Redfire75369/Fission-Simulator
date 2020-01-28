@@ -1,6 +1,53 @@
+.fuel {
+	color: #c0c0c0;
+	font-size: 25px;
+}
+.fuelpersecond {
+	color: #c0c0c0;
+	font-size:20px;
+}
+
+.eff {
+	color: #c0c0c0;
+}
+.effbtnbuy {
+	width: 120px;
+	height: 20px;
+	font-size: 13px;
+	color: #c0c0c0;
+	background: #455a64;
+	border: 3px solid #33ef47;
+	border-radius: 3px;
+}
+.effbtnlocked {
+	width: 120px;
+	height: 20px;
+	font-size: 13px;
+	color: #c0c0c0;
+	background: #37474f;
+	border: 3px solid #e53935;
+	border-radius: 3px;
+}
+
+.navibtn {
+	width: 180px;
+	height: 40px;
+	color: #c0c0c0;
+	background: #37474f;
+	border: 4px solid #ffffff;
+	border-radius: 4px;
+}
+
+.mineamt {
+	color: #c0c0c0;
+}
+.minemult {
+	color: #c0c0c0;
+}
 .minebtnbuy {
 	width: 120px;
 	height: 20px;
+	font-size: 13px;
 	color: #c0c0c0;
 	background: #455a64;
 	border: 3px solid #33ef47;
@@ -9,11 +56,13 @@
 .minebtnlocked {
 	width: 120px;
 	height: 20px;
+	font-size: 13px;
 	color: #c0c0c0;
 	background: #37474f;
 	border: 3px solid #e53935;
 	border-radius: 3px;
 }
-.mineamt {
+
+.meteor {
 	color: #c0c0c0;
 }

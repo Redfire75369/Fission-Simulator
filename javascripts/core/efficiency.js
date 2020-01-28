@@ -22,7 +22,17 @@ function buyEff() {
 	}
 }
 
+function buyMaxEff() {
+	while (canBuyEff()) {
+		player.fuel = player.fuel.minus(getEffCost());
+		player.eff.bought += 1;
+		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);
+	}
+}
+
 function updateEff() {
-	document.getElementById("effCost").innerText = "Cost: " + notation(getEffCost());
+	document.getElementById("effBuySingle").innerText = "Cost: " + notation(getEffCost());
 	document.getElementById("eff").innerText = "Efficiency: " + notation(player.eff.mult);
+	document.getElementById("effBuySingle").className = canBuyEff() ? "effbtnbuy" : "effbtnlocked";
+	document.getElementById("effBuyMax").className = canBuyEff() ? "effbtnbuy" : "effbtnlocked";
 }
