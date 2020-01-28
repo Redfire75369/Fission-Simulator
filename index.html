@@ -3,27 +3,46 @@
   <head>
     <meta charset="utf-8">
     <title>Fission Simulator</title>
-    
-	<script defer src="break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="math.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="notation.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="init_game.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="main.js" charset="utf-8" type="text/javascript"></script>
+    <link rel="stylesheet" href="style.css" />
+	<script defer src="javascripts/break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/prestige/meteor.js" charset ="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/core/fuel.js" charset ="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/core/mines.js" charset ="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
+	
   </head>
-  <body>
-    <p id="fuel" align="center" font-size=30px>You have 10 Nuclear Fuel.</p>
-    <p id="fuelPerSecond" align="center" font-size=20px>You are gaining 0 Nuclear Fuel per second.</p>
-    
-	<div id="navibtn">
-		<table class="table" align="center" style="margin: auto" id="NaviTabButtons">
+  <body bgcolor="1c1c1c">
+  	
+	<div align="center">
+		<p id="fuel" class="fuel">You have 10 Nuclear Fuel.</p>
+    	<p id="fuelPerSecond" class="fuelpersecond">You are gaining 0 Nuclear Fuel per second.</p>
+	</div>
+	
+    <tr>
+		<div align="center">
+			<p class="eff">Increase efficiency of all mines by 10%</p>
+			<button onclick="buyEff()" id="effBuySingle">Cost: 1.00e3</button>
+			<button onclick="buyMaxEff()" id="effBuyMax">Buy Max</button>
+			<p id="eff" class="eff">Efficiency: 1.00</p>
+		</div>
+	</tr>
+	
+	<div id="navibtn" align="center">
+		<table class="table" style="margin: auto">
 			<tr>
 				<td>
+					<button onclick="showNaviTab('production')" id="prodbtn" class="navibtn">Production</button>
+					<button onclick="showNaviTab('options')" id="optionsbtn" class="navibtn">Options</button>
 				</td>
 			</tr>
 		</table>
 	</div>
        
-    <div id="production" class="tab">
+    <div id="production">
 		<table class="table" align="center" style="margin: auto" id="productionTabButtons">
 			<tr>
 				<td>
@@ -32,135 +51,150 @@
 		</table>
 		
 		<div id="mines" class = "subtab">
-		    <table class="table">
+		    <table class="table" align="center">
 		    <tbody id="parent">
-				<tr style="font-size: 15px" id="row0">
-					<td id="mine" width="32%" class="rel">
-						Mine
-					</td>
-					<td>
-						Number of Mines
-					</td>
-					<td align="right" width="12%">
-						Cost
-					</td>
-				</tr>
-		    	<tr style="font-size: 15px" id="row1">
-					<td id="ThMineMult" width="32%" class="rel">
+		    	<tr id="row1">
+					<td id="ThoriumMineMult" class="minemult" align="left" width="25%">
 						Thorium Mine ×1
 					</td>
-					<td>
-						<div id="ThMine">0</div>
+					<td id="ThoriumMine" class="mineamt" align="center" width="50%">
+						0
 					</td>
-					<td align="right" width="10%">
-						<button id="ThMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(0)">Cost: 10</button>
+					<td align="right">
+						<button onclick="buyMine(0)" id="ThoriumBuySingle" align="right" width="12.5%">Cost: 10</button>
+					</td>
+					<td align="right">
+						<button onclick="buyMaxMine(0)" id="ThoriumBuyMax" align="right" width="12.5%">Buy Max</button>
 					</td>
 				</tr>
-				<tr style="font-size: 15px" id="row2">
-					<td id="UMineMult" width="32%" class="rel">
+				<tr id="row2">
+					<td id="UraniumMineMult" class="minemult" align="left" width="25%">
 						Uranium Mine ×1
 					</td>
-					<td>
-						<div id="UMine">0</div>
+					<td id="UraniumMine" class="mineamt" align="center" width="65%">
+						0
 					</td>
-					<td align="right" width="10%">
-						<button id="UMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(1)">Cost: 100</button>
+					<td align="right">
+						<button onclick="buyMine(1)" id="UraniumBuySingle" align="right" width="10%">Cost: 100</button>
+					</td>
+					<td align="right">
+						<button onclick="buyMaxMine(1)" id="UraniumBuyMax" align="right" width="12.5%">Buy Max</button>
 					</td>
 				</tr>
-				<tr style="font-size: 15px" id="row3">
-					<td id="PuMineMult" width="32%" class="rel">
+				<tr id="row3">
+					<td id="PlutoniumMineMult" class="minemult" align="left" width="25%">
 						Plutonium Mine ×1
 					</td>
-					<td>
-						<div id="PuMine">0</div>
+					<td id="PlutoniumMine" class="mineamt" align="center" width="65%">
+						0
 					</td>
-					<td align="right" width="10%">
-						<button id="PuMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(2)">Cost: 1.00e4</button>
+					<td align="right">
+						<button onclick="buyMine(2)" id="PlutoniumBuySingle" align="right" width="10%">Cost: 1.00e4</button>
+					</td>
+					<td align="right">
+						<button onclick="buyMaxMine(2)" id="PlutoniumBuyMax" align="right" width="12.5%">Buy Max</button>
 					</td>
 				</tr>
-				<tr style="font-size: 15px" id="row4">
-					<td id="AmMineMult" width="32%" class="rel">
+				<tr id="row4">
+					<td id="AmericiumMineMult" class="minemult" align="left" width="25%">
 						Americium Mine ×1
 					</td>
-					<td>
-						<div id="AmMine">0</div>
+					<td id="AmericiumMine" class="mineamt" align="center" width="65%">
+						0
 					</td>
-					<td align="right" width="10%">
-						<button id="AmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(3)">Cost: 1.00e6</button>
+					<td align="right">
+						<button onclick="buyMine(3)" id="AmericiumBuySingle" align="right" width="10%">Cost: 1.00e6</button>
+					</td>
+					<td align="right">
+						<button onclick="buyMaxMine(3)" id="AmericiumBuyMax" align="right" width="12.5%">Buy Max</button>
 					</td>
 				</tr>
-				<tr style="font-size: 15px" id="row5">
-					<td id="CmMineMult" width="32%" class="rel">
+				<tr id="row5">
+					<td id="CuriumMineMult" class="minemult" align="left" width="25%">
 						Curium Mine ×1
 					</td>
-					<td>
-						<div id="CmMine">0</div>
+					<td id="CuriumMine" class="mineamt" align="center" width="65%">
+						0
 					</td>
-					<td align="right" width="10%">
-						<button id="CmMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(4)">Cost: 1.00e9</button>
+					<td align="right">
+						<button onclick="buyMine(4)" id="CuriumBuySingle" align="right" width="10%">Cost: 1.00e9</button>
+					</td>
+					<td align="right">
+						<button onclick="buyMaxMine(4)" id="CuriumBuyMax" align="right" width="12.5%">Buy Max</button>
 					</td>
 				</tr>
-				<tr style="font-size: 15px" id="row6">
-					<td id="BkMineMult" width="32%" class="rel">
+				<tr id="row6">
+					<td id="BerkeliumMineMult" class="minemult" align="left" width="25%">
 						Berkelium Mine ×1
 					</td>
-					<td>
-						<div id="BkMine">0</div>
+					<td id="BerkeliumMine" class="mineamt" align="center" width="65%">
+						0
 					</td>
-					<td align="right" width="10%">
-						<button id="BkMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(5)">Cost: 1.00e13</button>
+					<td align="right">
+						<button onclick="buyMine(5)" id="BerkeliumBuySingle" align="right" width="10%">Cost: 1.00e13</button>
+					</td>
+					<td align="right">
+						<button onclick="buyMaxMine(5)" id="BerkeliumBuyMax" align="right" width="12.5%">Buy Max</button>
 					</td>
 				</tr>
-				<tr style="font-size: 15px" id="row7">
-					<td id="CfMineMult" width="32%" class="rel">
+				<tr id="row7">
+					<td id="CaliforniumMineMult" class="minemult" align="left" width="25%">
 						Californium Mine ×1
 					</td>
-					<td>
-						<div id="CfMine">0</div>
+					<td id="CaliforniumMine" class="mineamt" align="center" width="65%">
+						0
 					</td>
-					<td align="right" width="10%">
-						<button id="CfMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(6)">Cost: 1.00e18</button>
+					<td align="right">
+						<button onclick="buyMine(6)" id="CaliforniumBuySingle" align="right" width="10%">Cost: 1.00e18</button>
+					</td>
+					<td align="right">
+						<button onclick="buyMaxMine(6)" id="CaliforniumBuyMax" align="right" width="12.5%">Buy Max</button>
 					</td>
 				</tr>
-				<tr style="font-size: 15px" id="row8">
-					<td id="EsMineMult" width="32%" class="rel">
+				<tr id="row8">
+					<td id="EinsteiniumMineMult" style="color: #c0c0c0">
 						Einsteinium Mine ×1
 					</td>
-					<td>
-						<div id="EsMine">0</div>
+					<td id="EinsteiniumMine" class="mineamt" align="center" width="65%" text-align="center">
+						0
 					</td>
-					<td align="right" width="10%">
-						<button id="EsMineCost" style="color:black; height: 25px; font-size: 10px; width: 135px" class="storebtn" align="right" onclick="buyMine(7)">Cost: 1.00e24</button>
+					<td align="right">
+						<button onclick="buyMine(7)" id="EinsteiniumBuySingle">Cost: 1.00e24</button>
+					</td>
+					<td align="right">
+						<button onclick="buyMaxMine(7)" id="EinsteiniumBuyMax" align="right" width="12.5%">Buy Max</button>
 					</td>
 				</tr>
 			</table>
 			<table style="width: 100%">
-				<tr style="font-size: 15px">
-					<td id="meteorCost">
+				<tr>
+					<td id="meteorCost" class="meteor" align="left">
 						Meteor Strike: Requires 2 Americium Mines
 					</td>
-					<td>
-						<button id="meteor" style="color:black; width: 200px; height: 25px; font-size: 9px" onclick="meteor()">Reset the game for a new Mine</button>
-					</td>
-				</tr>
-				<tr style="font-size: 15px">
-					<td>
-						<button onclick="hardReset()"> Hard Reset the Game </button>
-					</td>
-					<td>
-						<button onclick="setFuel()"> Stuff </button>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button id = "notation" onclick="notationChange()"> Notation: Scientific </button>
+					<td align="right">
+						<button onclick="buyMeteor()" id="meteor">Reset the game for a new Mine</button>
 					</td>
 				</tr>
 			</table>
 		</div>
 	</div>
 	
-	<div id="options" class="tab">
+	<div id="options">
+		<table class="table">
+			<tr>
+				<td>
+					<button id = "notation" onclick="notationChange()"> Notation: Scientific </button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button onclick="hardReset()"> Hard Reset the Game </button>
+				</td>
+				<td>
+					<button onclick="setFuel('1e+308')"> Stuff </button>
+				</td>
+			</tr>
+		</table>
 	</div>
 	
   </body>
