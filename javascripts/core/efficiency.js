@@ -7,7 +7,7 @@ function resetEff() {
 }
 
 function canBuyEff() {
-	if (player.fuel.gte(getEffCost())) {
+	if (player.energy.gte(getEffCost())) {
 		return true;
 	} else {
 		return false;
@@ -16,7 +16,7 @@ function canBuyEff() {
 
 function buyEff() {
 	if (canBuyEff()) {
-		player.fuel = player.fuel.minus(getEffCost());
+		player.energy = player.energy.minus(getEffCost());
 		player.eff.bought += 1;
 		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);
 	}
@@ -24,7 +24,7 @@ function buyEff() {
 
 function buyMaxEff() {
 	while (canBuyEff()) {
-		player.fuel = player.fuel.minus(getEffCost());
+		player.energy = player.energy.minus(getEffCost());
 		player.eff.bought += 1;
 		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);
 	}

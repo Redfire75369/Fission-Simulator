@@ -7,9 +7,9 @@ function getDefaultData() {
 		},
 		navigation: {
 			naviTab: "options",
-			prodTab: "mines"
+			prodTab: "reactors"
 		},
-		fuel: new Decimal(10),
+		energy: new Decimal(80),
 		eff: {
 			bought: 0,
 			cost: new Decimal("1e+3"),
@@ -17,30 +17,32 @@ function getDefaultData() {
 			mult: new Decimal(1),
 			multMult: new Decimal(1.1)
 		},
-		mine: {
+		reactor: {
 			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
 			cost: [new Decimal("1e+1"), new Decimal("1e+2"), new Decimal("1e+4"), new Decimal("1e+6"), new Decimal("1e+9"), new Decimal("1e+13"), new Decimal("1e+18"), new Decimal("1e+24")],
 			costMult: [new Decimal("1e+3"), new Decimal("1e+4"), new Decimal("1e+5"), new Decimal("1e+6"), new Decimal("1e+8"), new Decimal("1e+10"), new Decimal("1e+12"), new Decimal("1e+15")],
 			bought: [0, 0, 0, 0, 0, 0, 0, 0],
 			mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
 		},
+		costMultMult: new Decimal(10),
 		multMult: new Decimal(2),
 		meteor: 0,
-		meteorMult: new Decimal(2)
+		meteorMult: new Decimal(2), 
+		nano: 0,
+		nanomaterial: new Decimal(0)
 	}
 }
-const el = ["Th", "U", "Pu", "Am", "Cm", "Bk", "Cf", "Es"];
-const elements = ["Thorium", "Uranium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium", "Einsteinium"];
+const elements = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
+const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241", "Americium-243", "Curium-247", "Berkelium-247", "Californium-252"];
 var player = getDefaultData();
 
 function hardReset() {
 	player = getDefaultData();
 	localStorage.setItem("fissionSimSave", JSON.stringify(player));
-	hideMines();
 }
 
 function notationChange() {
-	let notations = ["Scientific", "Logarithmic", "Engineering", "Standard"];
+	let notations = ["Scientific", "Logarithmic", "Engineering", "Standard", "YesNo"];
 	if (player.options.notationNo + 1 == notations.length) {
 		player.options.notationNo = 0;
 		player.options.notation = notations[player.options.notationNo];
@@ -59,14 +61,15 @@ function showNaviTab(tab) {
 }
 
 function update() {
+	//updateNano();
 	updateMeteor();
-	updateMines();
+	updateReactors();
 	updateEff();
-	updateFuel();
+	updateEnergy();
 }
 
 /*Initialise Game*/
-init_game();
+//init_game();
 
 /*Game Loops*/
 var saveGameLoop = window.setInterval(function() {

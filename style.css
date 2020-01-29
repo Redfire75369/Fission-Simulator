@@ -1,8 +1,8 @@
-.fuel {
+.energy {
 	color: #c0c0c0;
 	font-size: 25px;
 }
-.fuelpersecond {
+.energypersecond {
 	color: #c0c0c0;
 	font-size:20px;
 }
@@ -38,13 +38,13 @@
 	border-radius: 4px;
 }
 
-.mineamt {
+.reactoramt {
 	color: #c0c0c0;
 }
-.minemult {
+.reactormult {
 	color: #c0c0c0;
 }
-.minebtnbuy {
+.reactorbtnbuy {
 	width: 120px;
 	height: 25px;
 	font-size: 13px;
@@ -53,7 +53,7 @@
 	border: 2px solid #127A20;
 	border-radius: 2px;
 }
-.minebtnlocked {
+.reactorbtnlocked {
 	width: 120px;
 	height: 25px;
 	font-size: 13px;

@@ -11,6 +11,8 @@ function notation(x) {
 			break;
 		case "Standard":
 			return standard(x);
+		case "YesNo":
+			return yesNo(x);
 		default:
 	}
 }
@@ -18,7 +20,7 @@ function notation(x) {
 /*Notations*/
 function scientific(x) {
 	if (x.exponent < 3) {
-		return round(x, 2)
+		return round(x, 2);
 	} else if (x.mantissa > 9.995) {
 		return 1 + "e" + (x.exponent + 1);
 	} else if (x.mantissa < 9.995) {
@@ -90,5 +92,13 @@ function standard(x) {
 				break;
 			default:
 		}
+	}
+}
+
+function yesNo(x) {
+	if (player.fuel ==0) {
+		return "No";
+	} else {
+		return "Yes";
 	}
 }
