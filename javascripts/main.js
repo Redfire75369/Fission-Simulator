@@ -25,10 +25,15 @@ function getDefaultData() {
 		},
 		costMultMult: new Decimal(10),
 		multMult: new Decimal(2),
-		meteor: 0,
-		meteorMult: new Decimal(2), 
-		nano: 0,
-		nanite: new Decimal(0), 
+		meteor: {
+			meteor: 0,
+			meteorMult: new Decimal(2)
+		},
+		nanites: {
+			nano: 0,
+			nanites: new Decimal(2),
+			naniteUpg: [false]
+		},
 		lastUpdate: Date.now()
 	}
 }
@@ -49,6 +54,7 @@ function showNaviTab(tab) {
 
 function update() {
 	updateNano();
+	updateNaniteUpgrades();
 	updateMeteor();
 	updateReactors();
 	updateEff();

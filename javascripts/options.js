@@ -18,32 +18,28 @@ function targetedNotationChange(notation) {
 	}
 }
 
-/*Import/Export*/
-function importSave() {
-}
-function exportSave() {
-	copyStringToClipboard(getSaveString());
-}
-
 /*Save/Load*/
 function getSaveString() {
-	return JSON.parse(localStorage.getItem("fissionSimSave"));
+	return btoa(JSON.stringify(player));
+}
+function getSave() {
+	if (!localStorage.getItem("fissionSimSave")) return;
+	return JSON.parse(atob(localStorage.getItem("fissionSimSave")));
 }
 function saveGame() {
-	localStorage.setItem("fissionSimSave", JSON.stringify(player));
+	localStorage.setItem("fissionSimSave", getSaveString());
 }
-function loadSave() {
-	let save = getSaveString();
-	
+function loadSave(save) {
 	player.version = save.version;
 	player.navigation.naviTab = save.navigation.naviTab;
 	player.options.notation = save.options.notation;
 	player.options.notationNo = save.options.notationNo;
 	player.energy = new Decimal(save.energy);
-	player.nano = save.nano;
-	player.nanomaterial = new Decimal(save.nanomaterial);
-	player.meteor = save.meteor;
-	player.meteorMult = new Decimal(save.meteorMult);
+	player.nanites.nano = save.nanites.nano;
+	player.nanites.nanites = new Decimal(save.nanites.nanites);
+	player.nanites.naniteUpg = player.nanites.naniteUpg;
+	player.meteor.meteor = save.meteor.meteor;
+	player.meteor.meteorMult = new Decimal(save.meteor.meteorMult);
 	player.eff.bought = save.eff.bought;
 	player.eff.cost = new Decimal(save.eff.cost);
 	player.eff.costMult = new Decimal(save.eff.costMult);
@@ -77,4 +73,12 @@ function loadSave() {
 		if (player.reactor.mult[tier] === undefined) { player.reactor.mult[tier] = getDefaultData().reactor.mult[tier]; }
 	}
 	if (player.multMult === undefined) { player.multMult = getDefaultData().multMult; }
+}
+/*Import/Export*/
+function importSave() {
+	var save = prompt("Input your save. (your current save file will be overwritten!)");
+	loadSave(save);
+}
+function exportSave() {
+	copyStringToClipboard(getSaveString());
 }

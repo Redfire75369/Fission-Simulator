@@ -1,13 +1,13 @@
 function getMeteorCost() {
-	if (player.meteor < 4) {
-		return [2, player.meteor + 3];
+	if (player.meteor.meteor < 4) {
+		return [2, player.meteor.meteor + 3];
 	} else {
-		return [2 + (player.meteor - 4) * 2, 7];
+		return [2 + (player.meteor.meteor - 4) * 2, 7];
 	}
 }
 
 function resetMeteor() {
-	player.meteor = getDefaultData().meteor;
+	player.meteor.meteor = getDefaultData().meteor.meteor;
 }
 
 function canBuyMeteor() {
@@ -16,7 +16,7 @@ function canBuyMeteor() {
 
 function buyMeteor() {
 	if (canBuyMeteor()) {
-		player.meteor += 1;
+		player.meteor.meteor += 1;
 		resetEnergy();
 		resetEff();
 		resetReactors();
@@ -24,11 +24,11 @@ function buyMeteor() {
 }
 
 function buyMaxMeteor() {
-	if (player.meteor < 4) {
+	if (player.meteor.meteor < 4) {
 		buyMeteor();
 	} else if (canBuyMeteor()) {
 		max = floor(((player.reactor.bought[7] - 2) / 2) - 4) + 4;
-		player.meteor = max;
+		player.meteor.meteor = max;
 		resetEnergy();
 		resetEff();
 		resetReactors();
@@ -37,13 +37,13 @@ function buyMaxMeteor() {
 
 function updateMeteor() {
 	let type;
-	if (player.meteor < 4) {
+	if (player.meteor.meteor < 4) {
 		type = "Meteor Shower";
 		document.getElementById("meteor").innerText = "Reset the game for a new Mine";
 	} else {
 		type = "Tectonic Inititation";
 		document.getElementById("meteor").innerText = "Reset the game for a Boost";
 	}
-	document.getElementById("meteorCost").innerText = type + " (" + player.meteor + "): Requires " + getMeteorCost()[0] + " " + isotopes[getMeteorCost()[1]] + " Reactors";
+	document.getElementById("meteorCost").innerText = type + " (" + player.meteor.meteor + "): Requires " + getMeteorCost()[0] + " " + isotopes[getMeteorCost()[1]] + " Reactors";
 	document.getElementById("meteor").className = canBuyMeteor() ? "softresetbtnbuy" : "softresetbtnlocked";
 }

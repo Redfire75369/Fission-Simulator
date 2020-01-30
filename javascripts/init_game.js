@@ -1,6 +1,6 @@
 function init_game() {
 	player = getDefaultData();
-	loadSave();
+	loadSave(getSave());
 	document.getElementById("production").style.display = "none";
 	document.getElementById("nanites").style.display = "none";
 	document.getElementById("options").style.display = "none";

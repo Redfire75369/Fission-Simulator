@@ -8,6 +8,7 @@
 	<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/prestige/meteor.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/core/nanites/upgrades.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/core/energy.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/core/reactors.js" charset ="utf-8" type="text/javascript"></script>
@@ -194,14 +195,18 @@
 	</div>
 	
 	<div id="nanites" class="tab">
+		<div>
+			You have <span id="naniteCount">0</span> Nanites.
+		</div>
+		<button onclick="upgradeEffMult()" class="nanitestorebtn">Spend 1 Nanite to improve Efficiency Multiplier.</button><br>
 		<table>
 			<tbody>
 				<tr>
 					<td>
 						<div>
-							<button onclick="buyNaniteUpgrade(0)" id="naniteupg1">
+							<button onclick="buyNaniteUpgrade(0)">
 								Thorium-232 Reactors get a boost based on unspent Nanites <br/>
-								Currently: 1.00× <br/>
+								Currently: <span id="naniteupg1">1.00</span>× <br/>
 								Cost: 2 Nanites
 							</button>
 						</div>
@@ -218,6 +223,18 @@
 					<td>
 						<div>
 							<button onclick="notationChange()" id="notation" class="optionsbtn" align="right"> Notation: Scientific </button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div>
+							<button onclick="saveGame()" id="save" class="optionsbtn" align="center"> Save </button>
+						</div>
+					</td>
+					<td>
+						<div>
+							<button onclick="loadSave()" id="load" class="optionsbtn" align="center"> Load </button>
 						</div>
 					</td>
 				</tr>
