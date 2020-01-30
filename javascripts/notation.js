@@ -96,9 +96,9 @@ function standard(x) {
 }
 
 function yesNo(x) {
-	if (player.fuel ==0) {
-		return "No";
+	if (x.equals(0)) {
+		return "NO";
 	} else {
-		return "Yes";
+		return "YES";
 	}
 }

@@ -18,18 +18,22 @@ function buyReactor(tier) {
 		player.energy = player.energy.minus(player.reactor.cost[tier]);
 		player.reactor.bought[tier] += 1;
 		player.reactor.amount[tier] = player.reactor.amount[tier].plus(1);
-		player.reactor.cost = player.reactor.cost[tier].multiply(player.reactor.costMult[tier]);
-		player.reactor.costMult[tier] = player.reactor.costMult[tier].multiply(player.costMultMult);
+		player.reactor.cost[tier]= player.reactor.cost[tier].multiply(player.reactor.costMult[tier]);
+		if (player.reactor.cost[tier].gte(new Decimal("1e+308"))) {
+			player.reactor.costMult[tier] = player.reactor.costMult[tier].multiply(player.costMultMult);
+		}
 	}
 }
 
 function buyMaxReactor(tier) {
 	while (canBuyReactor(tier)) {
-			player.energy = player.energy.minus(player.reactor.cost[tier]);
-			player.reactor.bought[tier] += 1;
-			player.reactor.amount[tier] = player.reactor.amount[tier].plus(1);
-			player.reactor.cost[tier] = player.reactor.cost[tier].multiply(player.reactor.costMult[tier]);
+		player.energy = player.energy.minus(player.reactor.cost[tier]);
+		player.reactor.bought[tier] += 1;
+		player.reactor.amount[tier] = player.reactor.amount[tier].plus(1);
+		player.reactor.cost[tier] = player.reactor.cost[tier].multiply(player.reactor.costMult[tier]);
+		if (player.reactor.cost[tier].gte(new Decimal("1e+308"))) {
 			player.reactor.costMult[tier] = player.reactor.costMult[tier].multiply(player.costMultMult);
+		}
 	}
 }
 
@@ -54,35 +58,17 @@ function updateReactors() {
 		player.reactor.amount[tier] = player.reactor.amount[tier].plus(getReactorPerSecond(tier).multiply(20 / 1000));
 		document.getElementById(elements[tier] + "Reactor").innerText = notation(player.reactor.amount[tier]) + " (" + player.reactor.bought[tier] + ")";
 		document.getElementById(elements[tier] + "BuySingle").innerText = "Cost: " + notation(player.reactor.cost[tier]);
-		document.getElementById(elements[tier] + "BuySingle").className = canBuyReactor(tier) ? "reactorbtnbuy" : "reactorbtnlocked";
-		document.getElementById(elements[tier] + "BuyMax").className = canBuyReactor(tier) ? "reactorbtnbuy" : "reactorbtnlocked";
+		document.getElementById(elements[tier] + "BuySingle").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";
+		document.getElementById(elements[tier] + "BuyMax").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";
 		document.getElementById(elements[tier] + "ReactorMult").innerText = isotopes[tier] + " Reactor ×" + notation(getTotalReactorMult(tier));
 	}
-
-	if (player.meteor == 0) {
-		document.getElementById("row5").style.display = "none";
-		document.getElementById("row6").style.display = "none";
-		document.getElementById("row7").style.display = "none";
-		document.getElementById("row8").style.display = "none";
-	} else if (player.meteor == 1) {
-		document.getElementById("row5").style.display = "table-row";
-		document.getElementById("row6").style.display = "none";
-		document.getElementById("row7").style.display = "none";
-		document.getElementById("row8").style.display = "none";
-	} else if (player.meteor == 2) {
-		document.getElementById("row5").style.display = "table-row";
-		document.getElementById("row6").style.display = "table-row";
-		document.getElementById("row7").style.display = "none";
-		document.getElementById("row8").style.display = "none";
-	} else if (player.meteor == 3) {
-		document.getElementById("row5").style.display = "table-row";
-		document.getElementById("row6").style.display = "table-row";
-		document.getElementById("row7").style.display = "table-row";
-		document.getElementById("row8").style.display = "none";
-	} else if (player.meteor >= 4) {
-		document.getElementById("row5").style.display = "table-row";
-		document.getElementById("row6").style.display = "table-row";
-		document.getElementById("row7").style.display = "table-row";
-		document.getElementById("row8").style.display = "table-row";
+	for (let tier = 0; tier < 8; tier++) {
+		if (tier != 0) { 
+			if (((player.meteor + 4) > tier) & (player.reactor.bought[tier - 1] > 0)) {
+				document.getElementById("row" + (tier + 1)).style.display="table-row";
+			} else {
+				document.getElementById("row" + (tier + 1)).style.display="none";
+			}
+		}
 	}
 }

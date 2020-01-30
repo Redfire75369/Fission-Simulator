@@ -1,6 +1,6 @@
 function getDefaultData() {
 	return {
-		version: {alpha: 0, beta: 8},
+		version: {alpha: 0, beta: 9},
 		options: {
 			notation: "Scientific",
 			notationNo: 0
@@ -29,7 +29,8 @@ function getDefaultData() {
 		meteor: 0,
 		meteorMult: new Decimal(2), 
 		nano: 0,
-		nanomaterial: new Decimal(0)
+		nanite: new Decimal(0), 
+		lastUpdate: Date.now()
 	}
 }
 const elements = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
@@ -41,19 +42,6 @@ function hardReset() {
 	localStorage.setItem("fissionSimSave", JSON.stringify(player));
 }
 
-function notationChange() {
-	let notations = ["Scientific", "Logarithmic", "Engineering", "Standard", "YesNo"];
-	if (player.options.notationNo + 1 == notations.length) {
-		player.options.notationNo = 0;
-		player.options.notation = notations[player.options.notationNo];
-		document.getElementById("notation").innerText = "Notation: " +  player.options.notation;
-	} else {
-		player.options.notationNo += 1;
-		player.options.notation = notations[player.options.notationNo];
-		document.getElementById("notation").innerText = "Notation: " + player.options.notation;
-	}
-}
-
 function showNaviTab(tab) {
 	document.getElementById(player.navigation.naviTab).style.display = "none";
 	document.getElementById(tab).style.display = "inline-block";
@@ -61,7 +49,7 @@ function showNaviTab(tab) {
 }
 
 function update() {
-	//updateNano();
+	updateNano();
 	updateMeteor();
 	updateReactors();
 	updateEff();
@@ -69,7 +57,7 @@ function update() {
 }
 
 /*Initialise Game*/
-//init_game();
+init_game();
 
 /*Game Loops*/
 var saveGameLoop = window.setInterval(function() {

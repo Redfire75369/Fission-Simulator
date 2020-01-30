@@ -1,34 +1,3 @@
-.energy {
-	color: #c0c0c0;
-	font-size: 25px;
-}
-.energypersecond {
-	color: #c0c0c0;
-	font-size:20px;
-}
-
-.eff {
-	color: #c0c0c0;
-}
-.effbtnbuy {
-	width: 120px;
-	height: 20px;
-	font-size: 13px;
-	color: #c0c0c0;
-	background: #455a64;
-	border: 3px solid #127A20;
-	border-radius: 3px;
-}
-.effbtnlocked {
-	width: 120px;
-	height: 20px;
-	font-size: 13px;
-	color: #c0c0c0;
-	background: #37474f;
-	border: 3px solid #e53935;
-	border-radius: 3px;
-}
-
 .navibtn {
 	width: 180px;
 	height: 40px;
@@ -38,52 +7,63 @@
 	border-radius: 4px;
 }
 
-.reactoramt {
+.energy {
 	color: #c0c0c0;
+	font-size: 25px;
 }
-.reactormult {
+.energypersecond {
 	color: #c0c0c0;
+	font-size:20px;
 }
-.reactorbtnbuy {
+.text {
+	color: #c0c0c0;
+	font-size: 15px
+}
+
+.btnbuy {
 	width: 120px;
-	height: 25px;
-	font-size: 13px;
+	height: 30px;
+	font-size: 12px;
 	color: #c0c0c0;
 	background: #455a64;
 	border: 2px solid #127A20;
 	border-radius: 2px;
 }
-.reactorbtnlocked {
+.btnlocked {
 	width: 120px;
-	height: 25px;
-	font-size: 13px;
+	height: 30px;
+	font-size: 12px;
 	color: #c0c0c0;
 	background: #37474f;
 	border: 2px solid #e53935;
 	border-radius: 2px;
 }
 
-.meteor {
-	width: 200px;
-	height: 25px;
-	font-size: 15px;
-	color: #c0c0c0;
-}
-.meteorbtnbuy {
-	width: 200px;
-	height: 25px;
-	font-size: 9px;
+.softresetbtnbuy {
+	width: 360px;
+	height: 30px;
+	font-size: 12px;
 	color: #c0c0c0;
 	background: #455a64;
-	border: 3px solid #127A20;
-	border-radius: 3px;
+	border: 2px solid #127a20;
+	border-radius: 2px;
 }
-.meteorbtnlocked {
+.softresetbtnlocked {
+	width: 360px;
+	height: 30px;
+	font-size: 12px;
+	color: #c0c0c0;
+	background: #37474f;
+	border: 2px solid #e53935;
+	border-radius: 2px;
+}
+
+.optionsbtn {
 	width: 200px;
-	height: 25px;
-	font-size: 9px;
+	height: 55px;
+	font-size: 20px;
 	color: #c0c0c0;
 	background: #455a64;
-	border: 3px solid #e53935;
-	border-radius: 3px;
+	border: 2px solid #dddddd;
+	border-radius: 2px
 }

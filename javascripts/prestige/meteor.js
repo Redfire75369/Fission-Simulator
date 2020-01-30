@@ -49,5 +49,5 @@ function updateMeteor() {
 		document.getElementById("meteor").innerText = "Reset the game for a Boost";
 	}
 	document.getElementById("meteorCost").innerText = type + " (" + player.meteor + "): Requires " + getMeteorCost()[0] + " " + isotopes[getMeteorCost()[1]] + " Reactors";
-	document.getElementById("meteor").className = canBuyMeteor() ? "meteorbtnbuy" : "meteorbtnlocked";
+	document.getElementById("meteor").className = canBuyMeteor() ? "softresetbtnbuy" : "softresetbtnlocked";
 }

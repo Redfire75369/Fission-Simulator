@@ -1,5 +1,5 @@
 /*Load Save*/
-function load_save() {
+function onLoad() {
 	player = getDefaultData();
 	if (localStorage.getItem("fissionSimSave") !== null) {
 		let save = JSON.parse(localStorage.getItem("fissionSimSave"));
@@ -43,6 +43,7 @@ function load_save() {
 }
 
 function init_game() {
-	load_save();
+	onLoad();
 	showNaviTab("production");
+	targetedNotationChange(player.options.notation);
 }
