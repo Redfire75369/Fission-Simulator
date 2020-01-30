@@ -7,11 +7,7 @@ function resetEff() {
 }
 
 function canBuyEff() {
-	if (player.energy.gte(getEffCost())) {
-		return true;
-	} else {
-		return false;
-	}
+	return player.energy.gte(getEffCost());
 }
 
 function buyEff() {

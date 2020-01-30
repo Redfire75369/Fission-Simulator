@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Fission Simulator</title>
     <link rel="stylesheet" href="style.css" />
-	<script defer src="javascripts/break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/libs/break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/prestige/meteor.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
@@ -17,7 +18,7 @@
 	<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 	
   </head>
-  <body bgcolor="1c1c1c">
+  <body bgcolor="1c1c1c" align="center">
   	
 	<div align="center">
 		<p id="energy" class="energy">You have 80.0 Energy.</p>
@@ -38,6 +39,7 @@
 			<tr>
 				<td>
 					<button onclick="showNaviTab('production')" id="prodbtn" class="navibtn">Production</button>
+					<button onclick="showNaviTab('nanites')" id="nanitebtn" class="navibtn">Nanites</button>
 					<button onclick="showNaviTab('options')" id="optionsbtn" class="navibtn">Options</button>
 				</td>
 			</tr>
@@ -84,7 +86,7 @@
 						</td>
 					</tr>
 					<tr id="row3">
-						<td id="NeptuniumReactorMult" class="text" width="30%">
+						<td id="NeptuniumReactorMult" class="text" align="left" width="30%">
 							Neptunium-237 Reactor ×1
 						</td>
 						<td id="NeptuniumReactor" class="text" align="center" width="45%">
@@ -191,8 +193,22 @@
 		</div>
 	</div>
 	
-	<div id="nano">
-		
+	<div id="nanites" class="tab">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<div>
+							<button onclick="buyNaniteUpgrade(0)" id="naniteupg1">
+								Thorium-232 Reactors get a boost based on unspent Nanites <br/>
+								Currently: 1.00× <br/>
+								Cost: 2 Nanites
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	
 	<div id="options" class="tab">
@@ -201,16 +217,20 @@
 				<tr>
 					<td>
 						<div>
-							<button onclick="notationChange()" id="notation" class="optionsbtn" align="center"> Notation: Scientific </button>
+							<button onclick="notationChange()" id="notation" class="optionsbtn" align="right"> Notation: Scientific </button>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<button onclick="importSave()" id="import" class="optionsbtn" align="center"> Import Save </button>
+						<div>
+							<button onclick="importSave()" id="import" class="optionsbtn" align="center"> Import Save </button>
+						</div>
 					</td>
 					<td>
-						<button onclick="exportSave()" id="import" class="optionsbtn" align="center"> Export Save </button>
+						<div>
+							<button onclick="exportSave()" id="export" class="optionsbtn" align="center"> Export Save </button>
+						</div>
 					</td>
 				</tr>
 				<tr>

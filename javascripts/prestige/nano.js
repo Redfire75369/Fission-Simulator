@@ -8,11 +8,7 @@ function resetNano() {
 }
 
 function canBuyNano() {
-	if (player.reactor.bought[7] >= getNanoCost()) {
-		return true;
-	} else {
-		return false;
-	}
+	return player.reactor.bought[7] >= getNanoCost();
 }
 
 function buyNano() {

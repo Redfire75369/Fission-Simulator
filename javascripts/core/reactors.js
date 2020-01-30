@@ -6,11 +6,7 @@ function resetReactors() {
 	player.reactor = getDefaultData().reactor;
 }
 function canBuyReactor(tier) {
-	if (player.energy.gte(getReactorCost(tier))) {
-		return true;
-	} else {
-		return false;
-	}
+	return player.energy.gte(getReactorCost(tier));
 }
 
 function buyReactor(tier) {

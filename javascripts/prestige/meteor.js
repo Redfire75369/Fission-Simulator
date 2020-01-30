@@ -11,11 +11,7 @@ function resetMeteor() {
 }
 
 function canBuyMeteor() {
-	if (player.reactor.bought[getMeteorCost()[1]] >= getMeteorCost()[0]) {
-		return true;
-	} else {
-		return false;
-	}
+	return player.reactor.bought[getMeteorCost()[1]] >= getMeteorCost()[0];
 }
 
 function buyMeteor() {

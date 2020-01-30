@@ -6,8 +6,7 @@ function getDefaultData() {
 			notationNo: 0
 		},
 		navigation: {
-			naviTab: "options",
-			prodTab: "reactors"
+			naviTab: "production"
 		},
 		energy: new Decimal(80),
 		eff: {
@@ -61,8 +60,8 @@ init_game();
 
 /*Game Loops*/
 var saveGameLoop = window.setInterval(function() {
-	localStorage.setItem("fissionSimSave", JSON.stringify(player));
-}, 10000);
+	saveGame();
+}, 15000);
 
 var mainGameLoop = window.setInterval(function() {
 	update();
