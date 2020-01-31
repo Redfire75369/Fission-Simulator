@@ -27,4 +27,12 @@ function getNaniteBoost(num) {
 function updateNaniteUpgrades() {
 	document.getElementById("naniteCount").innerText = notation(player.nanites.nanites);
 	document.getElementById("naniteupg1").innerText = notation(getNaniteBoost(0));
+	
+	for (let num = 0; num < 1; num++) {
+		if (player.nanites.naniteUpg[num] == true) {
+			document.getElementById("naniteupg" + (num + 1)).className = "naniteupgbtnbought";
+		} else {
+			document.getElementById("naniteupg" + (num + 1)).className = canBuyNaniteUpgrade(num) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
+		}
+	}
 }

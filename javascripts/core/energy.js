@@ -12,6 +12,6 @@ function getEnergyPerSecond() {
 
 function updateEnergy() {
 	player.energy = player.energy.plus(getEnergyPerSecond().multiply(0.05));
-	document.getElementById("energy").innerText = "You have " + notation(player.energy) + " Energy.";
-	document.getElementById("energyPerSecond").innerText = "You are gaining " + notation(getEnergyPerSecond()) + " Energy per second.";
+	document.getElementById("energy").innerText = notation(player.energy);
+	document.getElementById("energyPerSecond").innerText = notation(getEnergyPerSecond());
 }

@@ -67,3 +67,31 @@
 	border: 2px solid #dddddd;
 	border-radius: 2px
 }
+
+.naniteupgbtnbuy {
+	width: 190px;
+	height: 90px;
+	font-size:  10px;
+	border: 1px solid;
+	border-radius: 4px;
+	color: #c0c0c0;
+	background: #1F1F1F;
+}
+.naniteupgbtnlocked {
+	width: 190px;
+	height: 90px;
+	font-size:  10px;
+	border: 1px solid;
+	border-radius: 4px;
+	color: #c0c0c0;
+	background: #404040;
+}
+.naniteupgbtnbought {
+	width: 190px;
+	height: 90px;
+	font-size:  10px;
+	border: 1px solid;
+	border-radius: 4px;
+	color: #c0c0c0;
+	background: #000000;
+}

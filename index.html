@@ -22,16 +22,16 @@
   <body bgcolor="1c1c1c" align="center">
   	
 	<div align="center">
-		<p id="energy" class="energy">You have 80.0 Energy.</p>
-    	<p id="energyPerSecond" class="energypersecond">You are gaining 0 Energy per second.</p>
+		<p class="energy">You have <span id="energy">80.0</span> Energy.</p>
+    	<p class="energypersecond">You are gaining <span id="energyPerSecond">0.00</span> Energy per second.</p>
 	</div>
 	
     <tr>
 		<div align="center">
 			<p class="text">Increase efficiency of all mines by 10%</p>
-			<button onclick="buyEff()" id="effBuySingle">Cost: 1.00e3</button>
+			<button onclick="buyEff()" id="effBuySingle">Cost: <span id="effCost">1.00e3</span></button>
 			<button onclick="buyMaxEff()" id="effBuyMax">Buy Max</button>
-			<p id="eff" class="text">Efficiency: 1.00</p>
+			<p class="text">Efficiency: <span id="eff">1.00</span></p>
 		</div>
 	</tr>
 	
@@ -59,112 +59,112 @@
 		    <table class="table" align="center">
 			    <tbody>
 			    	<tr id="row1">
-						<td id="ThoriumReactorMult" class="text" align="left" width="30%">
-							Thorium-232 Reactor ×1
+						<td class="text" align="left" width="30%">
+							Thorium-232 Reactor ×<span id="ThoriumReactorMult">1</span>
 						</td>
-						<td id="ThoriumReactor" class="text" align="center" width="45%">
-							0
+						<td class="text" align="center" width="45%">
+							<span id="ThoriumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(0)" id="ThoriumBuySingle" align="right" width="12.5%">Cost: 10</button>
+							<button onclick="buyReactor(0)" id="ThoriumBuySingle" align="right" width="12.5%">Cost: <span id="ThoriumReactorCost">10.00</span></button>
 						</td>
 						<td align="right">
 							<button onclick="buyMaxReactor(0)" id="ThoriumBuyMax" align="right" width="12.5%">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row2">
-						<td id="UraniumReactorMult" class="text" align="left" width="30%">
-							Uranium-235 Reactor ×1
+						<td class="text" align="left" width="30%">
+							Uranium-235 Reactor ×<span id="UraniumReactorMult">1</span>
 						</td>
 						<td id="UraniumReactor" class="text" align="center" width="45%">
-							0
+							<span id="UraniumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(1)" id="UraniumBuySingle" align="right" width="10%">Cost: 100</button>
+							<button onclick="buyReactor(1)" id="UraniumBuySingle" align="right" width="10%">Cost: <span id="UraniumReactorCost">100.00</span></button>
 						</td>
 						<td align="right">
 							<button onclick="buyMaxReactor(1)" id="UraniumBuyMax" align="right" width="12.5%">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row3">
-						<td id="NeptuniumReactorMult" class="text" align="left" width="30%">
-							Neptunium-237 Reactor ×1
+						<td class="text" align="left" width="30%">
+							Neptunium-237 Reactor ×<span id="NeptuniumReactorMult">1</span>
 						</td>
 						<td id="NeptuniumReactor" class="text" align="center" width="45%">
-							0
+							<span id="NeptuniumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(2)" id="NeptuniumBuySingle" align="right" width="12.5%">Cost: 1.00e4</button>
+							<button onclick="buyReactor(2)" id="NeptuniumBuySingle" align="right" width="12.5%">Cost: <span id="NeptuniumReactorCost">1.00e4 </span></button>
 						</td>
 						<td align="right">
 							<button onclick="buyMaxReactor(2)" id="NeptuniumBuyMax" align="right" width="12.5%">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row4">
-						<td id="PlutoniumReactorMult" class="text" align="left" width="30%">
-							Plutonium-241 Reactor ×1
+						<td class="text" align="left" width="30%">
+							Plutonium-241 Reactor ×<span id="PlutoniumReactorMult">1</span>
 						</td>
-						<td id="PlutoniumReactor" class="text" align="center" width="45%">
-							0
+						<td class="text" align="center" width="45%">
+							<span id="PlutoniumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(3)" id="PlutoniumBuySingle" align="right" width="12.5%">Cost: 1.00e6</button>
+							<button onclick="buyReactor(3)" id="PlutoniumBuySingle" align="right" width="12.5%">Cost: <span id="PlutoniumReactorCost">1.00e6</span></button>
 						</td>
 						<td align="right">
 							<button onclick="buyMaxReactor(3)" id="PlutoniumBuyMax" align="right" width="12.5%">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row5">
-						<td id="AmericiumReactorMult" class="text" align="left" width="30%">
-							Americium-243 Reactor ×1
+						<td class="text" align="left" width="30%">
+							Americium-243 Reactor ×<span id="AmericiumReactorMult">1</span>
 						</td>
-						<td id="AmericiumReactor" class="text" align="center" width="45%">
-							0
+						<td class="text" align="center" width="45%">
+							<span id="AmericiumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(4)" id="AmericiumBuySingle" align="right" width="12.5%">Cost: 1.00e9</button>
+							<button onclick="buyReactor(4)" id="AmericiumBuySingle" align="right" width="12.5%">Cost: <span id="AmericiumReactorCost">1.00e9</span></button>
 						</td>
 						<td align="right">
 							<button onclick="buyMaxReactor(4)" id="AmericiumBuyMax" align="right" width="12.5%">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row6">
-						<td id="CuriumReactorMult" class="text" align="left" width="30%">
-							Curium-247 Reactor ×1
+						<td class="text" align="left" width="30%">
+							Curium-247 Reactor ×<span id="CuriumReactorMult">1</span>
 						</td>
-						<td id="CuriumReactor" class="text" align="center" width="45%">
-							0
+						<td class="text" align="center" width="45%">
+							<span id="CuriumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(5)" id="CuriumBuySingle" align="right" width="12.5%">Cost: 1.00e13</button>
+							<button onclick="buyReactor(5)" id="CuriumBuySingle" align="right" width="12.5%">Cost: <span id="CuriumReactorCost">1.00e13</span></button>
 						</td>
 						<td align="right">
 							<button onclick="buyMaxReactor(5)" id="CuriumBuyMax" align="right" width="12.5%">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row7">
-						<td id="BerkeliumReactorMult" class="text" align="left" width="30%">
-							Berkelium-247 Reactor ×1
+						<td class="text" align="left" width="30%">
+							Berkelium-247 Reactor ×<span id="BerkeliumReactorMult">1</span>
 						</td>
-						<td id="BerkeliumReactor" class="text" align="center" width="45%">
-							0
+						<td class="text" align="center" width="45%">
+							<span id="BerkeliumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(6)" id="BerkeliumBuySingle" align="right" width="12.5%">Cost: 1.00e18</button>
+							<button onclick="buyReactor(6)" id="BerkeliumBuySingle" align="right" width="12.5%">Cost: <span id="BerkeliumReactorCost">1.00e18</span></button>
 						</td>
 						<td align="right">
 							<button onclick="buyMaxReactor(6)" id="BerkeliumBuyMax" align="right" width="12.5%">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="row8">
-						<td id="CaliforniumReactorMult" class="text" align="left" width="30%">
-							Californium-252 Reactor ×1
+						<td class="text" align="left" width="30%">
+							Californium-252 Reactor ×<span id="CaliforniumReactorMult">1</span>
 						</td>
-						<td id="CaliforniumReactor" class="text" align="center" width="45%">
-							0
+						<td class="text" align="center" width="45%">
+							<span id="CaliforniumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(7)" id="CaliforniumBuySingle" align="right" width="12.5%">Cost: 1.00e24</button>
+							<button onclick="buyReactor(7)" id="CaliforniumBuySingle" align="right" width="12.5%">Cost: <span id="CaliforniumReactorCost">1.00e24</span></button>
 						</td>
 						<td align="right">
 							<button onclick="buyMaxReactor(7)" id="CaliforniumBuyMax" align="right" width="12.5%">Buy Max</button>
