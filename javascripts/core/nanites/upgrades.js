@@ -6,7 +6,7 @@ function canBuyNaniteUpgrade(num) {
 
 function upgradeEffMult() {
 	player.nanites.nanites -= 1;
-	player.eff.multMult = new Decimal(1.21);
+	player.eff.multMult = player.eff.multMult.multiply(1.1);
 }
 
 function buyNaniteUpgrade(num) {
@@ -26,7 +26,7 @@ function getNaniteBoost(num) {
 
 function updateNaniteUpgrades() {
 	document.getElementById("naniteCount").innerText = notation(player.nanites.nanites);
-	document.getElementById("naniteupg1").innerText = notation(getNaniteBoost(0));
+	document.getElementById("naniteupgmult1").innerText = notation(getNaniteBoost(0));
 	
 	for (let num = 0; num < 1; num++) {
 		if (player.nanites.naniteUpg[num] == true) {
