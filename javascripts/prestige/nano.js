@@ -1,20 +1,21 @@
-function getNanoCost() {
-	return 5 + player.nanites.nano * 5;
+function getNaniteResearchCost() {
+	return 5 + player.nanites.research * 5;
 }
 
-function resetNano() {
-	player.nanites.nano = getDefaultData().nanites.nano;
+function resetNaniteResearch() {
+	player.nanites.research = getDefaultData().nanites.research;
 	player.nanites.nanites = getDefaultData().nanites.nanites;
 }
 
-function canBuyNano() {
-	return player.reactor.bought[7] >= getNanoCost();
+function canBuyNaniteResearch() {
+	return player.reactor.bought[7] >= getNaniteResearchCost();
 }
 
-function buyNano() {
-	if (canBuyNano()) {
-		player.nanites.nano += 1;
-		player.nanites.nanites = player.nanites.nanites.plus(player.nano);
+function buyNaniteResearch() {
+	if (canBuyNaniteResearch()) {
+		player.nanites.research += 1;
+		player.nanites.nanites = player.nanites.nanites.plus(1);
+		player.nanites.time = 0;
 		resetEnergy();
 		resetEff();
 		resetReactors();
@@ -22,10 +23,11 @@ function buyNano() {
 	}
 }
 
-function buyMaxNano() {
-	if (canBuyNano()) {
+function buyMaxNaniteResearch() {
+	if (canBuyNaniteResearch()) {
 		max = (player.reactor.bought[7] - 5) / 5;
-		player.nanites.nano = max;
+		player.nanites.research = max;
+		player.nanites.time = 0;
 		resetEnergy();
 		resetEff();
 		resetReactors();
@@ -33,8 +35,8 @@ function buyMaxNano() {
 	}
 }
 
-function updateNano() {
-	document.getElementById("nanoCost").innerText = "Nanomaterial Research (" + player.nanites.nano + "): Requires " + getNanoCost() + " Californium-252 Reactors"
-	document.getElementById("nano").innerText = "Reset the game for a boost to efficiency and " + (player.nanites.nano + 1) + " Nanite";
-	document.getElementById("nano").className = canBuyNano() ? "softresetbtnbuy" : "softresetbtnlocked";
+function updateNaniteResearch() {
+	document.getElementById("naniteamt").innerText = player.nanites.research;
+	document.getElementById("naniteCost").innerText = getNaniteResearchCost();
+	document.getElementById("nano").className = canBuyNaniteResearch() ? "softresetbtnbuy" : "softresetbtnlocked";
 }

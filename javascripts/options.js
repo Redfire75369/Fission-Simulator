@@ -76,9 +76,11 @@ function loadSave(save) {
 }
 /*Import/Export*/
 function importSave() {
-	var save = prompt("Input your save. (your current save file will be overwritten!)");
+	var save = prompt("Input your save (your current save file will be overwritten!)");
 	loadSave(save);
+	saveGame();
 }
 function exportSave() {
+	saveGame();
 	copyStringToClipboard(getSaveString());
 }

@@ -27,13 +27,16 @@ function getDefaultData() {
 		multMult: new Decimal(2),
 		meteor: {
 			meteor: 0,
-			meteorMult: new Decimal(2)
+			meteorMult: new Decimal(2),
+			time: 0
 		},
 		nanites: {
-			nano: 0,
-			nanites: new Decimal(2),
-			naniteUpg: [false]
+			research: 0,
+			nanites: new Decimal(0),
+			naniteUpg: ["", false],
+			time: 0
 		},
+		time: 0,
 		lastUpdate: Date.now()
 	}
 }
@@ -42,7 +45,9 @@ const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241"
 var player = getDefaultData();
 
 function hardReset() {
+	let tab = player.navigation;
 	player = getDefaultData();
+	player.navigation.naviTab = tab.naviTab;
 	localStorage.setItem("fissionSimSave", JSON.stringify(player));
 }
 
@@ -53,7 +58,7 @@ function showNaviTab(tab) {
 }
 
 function update() {
-	updateNano();
+	updateNaniteResearch();
 	updateNaniteUpgrades();
 	updateMeteor();
 	updateReactors();
@@ -71,4 +76,10 @@ var saveGameLoop = window.setInterval(function() {
 
 var mainGameLoop = window.setInterval(function() {
 	update();
+}, 50);
+
+var timerLoop = window.setInterval(function() {
+	player.time += 0.05;
+	player.meteor.time += 0.05;
+	player.nanites.time += 0.05;
 }, 50);

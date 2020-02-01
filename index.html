@@ -40,7 +40,7 @@
 			<tr>
 				<td>
 					<button onclick="showNaviTab('production')" id="prodbtn" class="navibtn">Production</button>
-					<button onclick="showNaviTab('nanites')" id="nanitebtn" class="navibtn">Nanites</button>
+					<button onclick="showNaviTab('nanite')" id="nanitebtn" class="navibtn">Nanites</button>
 					<button onclick="showNaviTab('options')" id="optionsbtn" class="navibtn">Options</button>
 				</td>
 			</tr>
@@ -56,7 +56,7 @@
 		</table>
 		
 		<div id="mines" class = "subtab">
-		    <table class="table" align="center" width="100%">
+		    <table class="table" align="center" style="width:100%">
 			    <tbody>
 			    	<tr id="row1">
 						<td class="text" align="left">
@@ -129,7 +129,7 @@
 						</td>
 					</tr>
 					<tr id="row6">
-						<td class="text" align="left"
+						<td class="text" align="left">
 							Curium-247 Reactor ×<span id="CuriumReactorMult">1</span>
 						</td>
 						<td class="text" align="center">
@@ -173,38 +173,38 @@
 				</tbody>
 			</table>
 			
-			<table style="width: 100%">
+			<table width="100%">
 				<tr>
 					<td id="meteorCost" class="text" align="left" width="75%">
-						Meteor Shower: Requires 2 Plutonium-241 Reactors
+						<span id="meteorScaling">Meteor Shower</span> (<span id="meteoramt">0</span>): Requires <span>2 Plutonium-241</span> Reactors
 					</td>
 					<td align="right">
 						<button onclick="buyMeteor()" id="meteor">Reset the game for a new Mine</button>
 					</td>
 				</tr>
 				<tr>
-					<td id="nanoCost" class="text" align="left" width="75%">
-						Nanomaterial Research: Requires 5 Californium-252 Reactors
+					<td class="text" align="left" width="75%">
+						<span id="naniteScaling">Nanite Research</span> (<span id="naniteamt">0</span>): Requires <span id="naniteCost">5</span> Californium-252 Reactors
 					</td>
 					<td align="right">
-						<button onclick="buyNano()" id="nano"> Reset the game for a boost to efficiency and 1 Nanite
+						<button onclick="buyNano()" id="nano">Reset the game for <span id="naniteonprestige">1 Nanite</span></button>
 					</td>
 				</tr>
 			</table>
 		</div>
 	</div>
 	
-	<div id="nanites" class="tab">
-		<div>
-			You have <span id="naniteCount">0</span> Nanites.
+	<div id="nanite" class="tab">
+		<div class="text">
+			You have <span id="nanites">0</span> Nanites.
 		</div>
-		<button onclick="upgradeEffMult()" class="naniteupgbtn">Spend 1 Nanite to improve Efficiency Multiplier.</button><br>
+		<button onclick="buyNaniteUpgrade(0)" id="naniteupg0">Spend 1 Nanite to improve Efficiency Multiplier.</button><br>
 		<table>
 			<tbody>
 				<tr>
 					<td>
 						<div>
-							<button onclick="buyNaniteUpgrade(0)" id="naniteupg1">
+							<button onclick="buyNaniteUpgrade(1)" id="naniteupg1">
 								Thorium-232 Reactors get a boost based on unspent Nanites <br/>
 								Currently: <span id="naniteupgmult1">1.00</span>× <br/>
 								Cost: 2 Nanites
