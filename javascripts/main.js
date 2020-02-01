@@ -26,7 +26,7 @@ function getDefaultData() {
 		costMultMult: new Decimal(10),
 		multMult: new Decimal(2),
 		meteor: {
-			meteor: 0,
+			shower: 0,
 			meteorMult: new Decimal(2),
 			time: 0
 		},

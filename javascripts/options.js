@@ -31,15 +31,18 @@ function saveGame() {
 }
 function loadSave(save) {
 	player.version = save.version;
+	player.time = save.time;
 	player.navigation.naviTab = save.navigation.naviTab;
 	player.options.notation = save.options.notation;
 	player.options.notationNo = save.options.notationNo;
 	player.energy = new Decimal(save.energy);
-	player.nanites.nano = save.nanites.nano;
+	player.nanites.research = save.nanites.research;
 	player.nanites.nanites = new Decimal(save.nanites.nanites);
-	player.nanites.naniteUpg = player.nanites.naniteUpg;
-	player.meteor.meteor = save.meteor.meteor;
+	player.nanites.naniteUpg = save.nanites.naniteUpg;
+	player.nanites.time = save.nanites.time;
+	player.meteor.shower = save.meteor.shower;
 	player.meteor.meteorMult = new Decimal(save.meteor.meteorMult);
+	player.meteor.time = save.meteor.time;
 	player.eff.bought = save.eff.bought;
 	player.eff.cost = new Decimal(save.eff.cost);
 	player.eff.costMult = new Decimal(save.eff.costMult);

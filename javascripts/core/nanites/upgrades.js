@@ -28,7 +28,7 @@ function getNaniteUpgradeMult(num) {
 
 function updateNaniteUpgrades() {
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
-	document.getElementById("naniteupgmult1").innerText = notation(getNaniteUpgradeMult(0));
+	document.getElementById("naniteupgmult1").innerText = notation(getNaniteUpgradeMult(1));
 	
 	for (let num = 0; num < player.nanites.naniteUpg.length; num++) {
 		if (player.nanites.naniteUpg[num] == true) {

@@ -34,8 +34,8 @@ function buyMaxReactor(tier) {
 }
 
 function getTotalReactorMult(tier) {
-	if (player.meteor.meteor >= tier) {
-		return (getDefaultData().reactor.mult[tier].multiply(player.multMult.pow(player.reactor.bought[tier]))).multiply((player.meteor.meteorMult).pow(player.meteor.meteor - tier));
+	if (player.meteor.shower >= tier) {
+		return (getDefaultData().reactor.mult[tier].multiply(player.multMult.pow(player.reactor.bought[tier]))).multiply((player.meteor.meteorMult).pow(player.meteor.shower - tier));
 	} else {
 		return getDefaultData().reactor.mult[tier].multiply(player.multMult.pow(player.reactor.bought[tier]));
 	}
@@ -50,7 +50,7 @@ function getReactorPerSecond(tier) {
 }
 
 function updateReactors() {
-	for (let tier = 0; tier < min(player.meteor.meteor + 4, 8); tier++) {
+	for (let tier = 0; tier < min(player.meteor.shower + 4, 8); tier++) {
 		player.reactor.amount[tier] = player.reactor.amount[tier].plus(getReactorPerSecond(tier).multiply(20 / 1000));
 		document.getElementById(elements[tier] + "Reactor").innerText = notation(player.reactor.amount[tier]) + " (" + player.reactor.bought[tier] + ")";
 		document.getElementById(elements[tier] + "ReactorCost").innerText = notation(player.reactor.cost[tier]);
@@ -60,7 +60,7 @@ function updateReactors() {
 	}
 	for (let tier = 0; tier < 8; tier++) {
 		if (tier != 0) { 
-			if (((player.meteor.meteor + 4) > tier) & (player.reactor.bought[tier - 1] > 0)) {
+			if (((player.meteor.shower + 4) > tier) & (player.reactor.bought[tier - 1] > 0)) {
 				document.getElementById("row" + (tier + 1)).style.display="table-row";
 			} else {
 				document.getElementById("row" + (tier + 1)).style.display="none";
