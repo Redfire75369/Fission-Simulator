@@ -16,7 +16,7 @@ function buyReactor(tier) {
 		player.reactor.amount[tier] = player.reactor.amount[tier].plus(1);
 		player.reactor.cost[tier]= player.reactor.cost[tier].multiply(player.reactor.costMult[tier]);
 		if (player.reactor.cost[tier].gte(new Decimal("1e+308"))) {
-			player.reactor.costMult[tier] = player.reactor.costMult[tier].multiply(player.costMultMult);
+			player.reactor.costMult[tier] = player.reactor.costMult[tier].multiply(player.reactor.costMultMult);
 		}
 	}
 }
@@ -27,18 +27,15 @@ function buyMaxReactor(tier) {
 		player.reactor.bought[tier] += 1;
 		player.reactor.amount[tier] = player.reactor.amount[tier].plus(1);
 		player.reactor.cost[tier] = player.reactor.cost[tier].multiply(player.reactor.costMult[tier]);
+		player.reactor.mult[tier] = player.reactor.mult[tier].multiply(player.reactor.multMult);
 		if (player.reactor.cost[tier].gte(new Decimal("1e+308"))) {
-			player.reactor.costMult[tier] = player.reactor.costMult[tier].multiply(player.costMultMult);
+			player.reactor.costMult[tier] = player.reactor.costMult[tier].multiply(player.reactor.costMultMult);
 		}
 	}
 }
 
 function getTotalReactorMult(tier) {
-	if (player.meteor.shower >= tier) {
-		return (getDefaultData().reactor.mult[tier].multiply(player.multMult.pow(player.reactor.bought[tier]))).multiply((player.meteor.meteorMult).pow(player.meteor.shower - tier));
-	} else {
-		return getDefaultData().reactor.mult[tier].multiply(player.multMult.pow(player.reactor.bought[tier]));
-	}
+	return player.reactor.mult.multiply(player.meteor.meteorMult.pow(min(0, player.meteor.shower - tier)));
 }
 
 function getReactorPerSecond(tier) {

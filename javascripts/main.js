@@ -1,6 +1,9 @@
 function getDefaultData() {
 	return {
-		version: {alpha: 0, beta: 9},
+		version: {
+			alpha: 0, 
+			beta: 9
+		},
 		options: {
 			notation: "Scientific",
 			notationNo: 0
@@ -22,9 +25,9 @@ function getDefaultData() {
 			costMult: [new Decimal("1e+3"), new Decimal("1e+4"), new Decimal("1e+5"), new Decimal("1e+6"), new Decimal("1e+8"), new Decimal("1e+10"), new Decimal("1e+12"), new Decimal("1e+15")],
 			bought: [0, 0, 0, 0, 0, 0, 0, 0],
 			mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
+			costMultMult: new Decimal(10),
+			multMult: new Decimal(2),
 		},
-		costMultMult: new Decimal(10),
-		multMult: new Decimal(2),
 		meteor: {
 			shower: 0,
 			meteorMult: new Decimal(2),

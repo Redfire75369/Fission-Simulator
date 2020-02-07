@@ -48,27 +48,6 @@
 	border-radius: 2px;
 }
 
-.softresetbtnbuy {
-	width: 360px;
-	height: 30px;
-	font-size: 12px;
-	color: #d0d0d0;
-	background: #455a64;
-	border: 2px solid #127a20;
-	border-radius: 2px;
-}
-.softresetbtnlocked {
-	width: 360px;
-	height: 30px;
-	font-size: 12px;
-	color: #d0d0d0;
-	background: #37474f;
-	border: 2px solid #e53935;
-	border-radius: 2px;
-}
-
-
-
 .naniteupgbtnbuy {
 	width: 190px;
 	height: 90px;

@@ -1,4 +1,4 @@
-let naniteUpgradeCost = [new Decimal(1), new Decimal(2)];
+let naniteUpgradeCost = [new Decimal(1), new Decimal(2), new Decimal(2)];
 
 function canBuyNaniteUpgrade(num) {
 	return (player.nanites.nanites.gte(naniteUpgradeCost[num]));
@@ -21,7 +21,9 @@ function getNaniteUpgradeMult(num) {
 		case 0:
 			return;
 		case 1:
-			return player.nanites.nanites.plus(1);
+			return max(1, 2 * log(player.time, 256) - 1);
+		case 2:
+			return 1;
 		default:
 	}
 }

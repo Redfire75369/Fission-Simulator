@@ -29,6 +29,7 @@ function buyMaxEff() {
 function updateEff() {
 	document.getElementById("effCost").innerText = notation(getEffCost());
 	document.getElementById("eff").innerText = notation(player.eff.mult);
+	document.getElementById("effMult").innerText = round((player.eff.multMult - 1) * 100, 2);
 	document.getElementById("effBuySingle").className = canBuyEff() ? "btnbuy" : "btnlocked";
 	document.getElementById("effBuyMax").className = canBuyEff() ? "btnbuy" : "btnlocked";
 }

@@ -38,5 +38,5 @@ function buyMaxNaniteResearch() {
 function updateNaniteResearch() {
 	document.getElementById("naniteamt").innerText = player.nanites.research;
 	document.getElementById("naniteCost").innerText = getNaniteResearchCost();
-	document.getElementById("nano").className = canBuyNaniteResearch() ? "softresetbtnbuy" : "softresetbtnlocked";
+	document.getElementById("nano").className = canBuyNaniteResearch() ? "btnbuy" : "btnlocked";
 }
