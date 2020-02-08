@@ -1,4 +1,3 @@
-/*Save/Load*/
 function getSaveString() {
 	return btoa(JSON.stringify(player));
 }
@@ -13,32 +12,35 @@ function loadSave(save) {
 	if (save === undefined) {
 		return;
 	} else {
-		for (let key in player) {
-			if (player[key] instanceof HashMap) {
-				for (let k in player[key]) {
-					if (Array.isArray(player[key][k])) {
-						for (let ki in player[key][k]) {
-							if (getDefaultData[key][k][ki].isDecimal()) {
-								player[key][k][ki] = new Decimal(save[key][k][ki)];
-							}
-							if (player[key][k][ki] === undefined) {
-								player[key][k][ki] = getDefaultData()[key][k][ki]
-							}
+		for (let a in player) {
+			switch (getType(player[a])) {
+				case "object":
+					for (let b in player[a]) {
+						switch (getType(player[a][b])) {
+							case "Array":
+								for (let c in player[a][b]) {
+									if (Decimal.isDecimal(getDefaultData()[a][b][c])) {
+										player[a][b][c] = new Decimal(save[a][b][c]);
+									} else {
+										player[a][b][c] = save[a][b][c];
+									}
+								}
+								break;
+							default:
+								if (Decimal.isDecimal(getDefaultData()[a][b])) {
+									player[a][b] = new Decimal(save[a][b]);
+								} else {
+									player[a][b] = save[a][b];
+								}
 						}
 					}
-				}
-			} else if (player[key] instanceof Array) {
-				for (let k in player[key]) {
-					player[key][k] = save[key][k];
-					if (player[key][k] === undefined) {
-						player[key][k] = getDefaultData()[key][k];
+					break;
+				default:
+					if (Decimal.isDecimal(getDefaultData()[a])) {
+						player[a] = new Decimal(save[a]);
+					} else {
+						player[a] = save[a];
 					}
-				}
-			} else {
-				player[key] = save[key];
-				if (player[key] === undefined) {
-					player[key] = getDefaultData()[key];
-				}
 			}
 		}
 	}

@@ -16,6 +16,7 @@ function getDefaultData() {
 			bought: 0,
 			cost: new Decimal("1e+3"),
 			costMult: new Decimal("1e+1"),
+			costMultMult: new Decimal(10),
 			mult: new Decimal(1),
 			multMult: new Decimal(1.1)
 		},
@@ -45,7 +46,11 @@ function getDefaultData() {
 }
 const elements = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
 const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241", "Americium-243", "Curium-247", "Berkelium-247", "Californium-252"];
-var player = getDefaultData();
+
+
+function getType(x) {
+	return (typeof x);
+}
 
 function hardReset() {
 	let tab = player.navigation;
@@ -70,6 +75,7 @@ function update() {
 }
 
 /*Initialise Game*/
+var player = getDefaultData();
 init_game();
 
 /*Game Loops*/

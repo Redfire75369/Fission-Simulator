@@ -1,12 +1,8 @@
-function getReactorCost(tier) {
-	return getDefaultData().reactor.cost[tier].multiply(player.reactor.costMult[tier].pow(player.reactor.bought[tier]));
-}
-
 function resetReactors() {
 	player.reactor = getDefaultData().reactor;
 }
 function canBuyReactor(tier) {
-	return player.energy.gte(getReactorCost(tier));
+	return player.energy.gte(player.reactor.cost[tier]);
 }
 
 function buyReactor(tier) {
@@ -15,6 +11,7 @@ function buyReactor(tier) {
 		player.reactor.bought[tier] += 1;
 		player.reactor.amount[tier] = player.reactor.amount[tier].plus(1);
 		player.reactor.cost[tier]= player.reactor.cost[tier].multiply(player.reactor.costMult[tier]);
+		player.reactor.mult[tier] = player.reactor.mult[tier].multiply(player.reactor.multMult);
 		if (player.reactor.cost[tier].gte(new Decimal("1e+308"))) {
 			player.reactor.costMult[tier] = player.reactor.costMult[tier].multiply(player.reactor.costMultMult);
 		}
@@ -35,7 +32,7 @@ function buyMaxReactor(tier) {
 }
 
 function getTotalReactorMult(tier) {
-	return player.reactor.mult.multiply(player.meteor.meteorMult.pow(min(0, player.meteor.shower - tier)));
+	return player.reactor.mult[tier].multiply(player.meteor.meteorMult.pow(max(0, player.meteor.shower - tier)));
 }
 
 function getReactorPerSecond(tier) {
