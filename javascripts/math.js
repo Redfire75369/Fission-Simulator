@@ -2,7 +2,7 @@ function pow(x, y) {
 	return Math.pow(x, y);
 }
 function log(x, y) {
-	return Math.log(x, y);
+	return (Math.log(x)/Math.log(y));
 }
 function round(x, dp) {
 	return (x.toFixed(dp));

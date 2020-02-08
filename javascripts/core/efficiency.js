@@ -8,7 +8,7 @@ function canBuyEff() {
 
 function buyEff() {
 	if (canBuyEff()) {
-		player.energy = player.energy.minus(getEffCost());
+		player.energy = player.energy.minus(player.eff.cost);
 		player.eff.bought += 1;
 		player.eff.cost = player.eff.cost.multiply(player.eff.costMult);
 		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);
@@ -20,7 +20,7 @@ function buyEff() {
 
 function buyMaxEff() {
 	while (canBuyEff()) {
-		player.energy = player.energy.minus(getEffCost());
+		player.energy = player.energy.minus(player.eff.cost);
 		player.eff.bought += 1;
 		player.eff.cost = player.eff.cost.multiply(player.eff.costMult);
 		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);

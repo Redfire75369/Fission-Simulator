@@ -21,7 +21,7 @@ function getNaniteUpgradeMult(num) {
 		case 0:
 			return;
 		case 1:
-			return max(1, 2 * log(player.time, 256) - 1);
+			return [0, new Decimal(max(1, 2 * log(player.time, 256) - 1))];
 		case 2:
 			return 1;
 		default:
@@ -30,7 +30,7 @@ function getNaniteUpgradeMult(num) {
 
 function updateNaniteUpgrades() {
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
-	document.getElementById("naniteupgmult1").innerText = notation(getNaniteUpgradeMult(1));
+	document.getElementById("naniteupgmult1").innerText = notation(getNaniteUpgradeMult(1)[1]);
 	
 	for (let num = 0; num < player.nanites.naniteUpg.length; num++) {
 		if (player.nanites.naniteUpg[num] == true) {

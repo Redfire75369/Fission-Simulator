@@ -37,7 +37,7 @@ function getDefaultData() {
 		nanites: {
 			research: 0,
 			nanites: new Decimal(0),
-			naniteUpg: ["", false],
+			naniteUpg: ["", false, false],
 			time: 0
 		},
 		time: 0,
