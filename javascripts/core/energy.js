@@ -7,7 +7,13 @@ function resetEnergy() {
 }
 
 function getEnergyPerSecond() {
-	return player.reactor.amount[0].multiply(getTotalReactorMult(0)).multiply(player.eff.mult);
+	let x = 0;
+	for (let a=0; a < 8; a++) {
+		if (player.reactor.amount[a].gt(0)) {
+			x++;
+		}
+	}
+	return player.reactor.amount[0].multiply(getTotalReactorMult(0)).multiply(player.eff.mult).multiply(x);
 }
 
 function updateEnergy() {

@@ -8,6 +8,7 @@
 	<script defer src="javascripts/libs/break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/libs/loading.js" charset ="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/libs/lodash.min.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
@@ -78,7 +79,7 @@
 						<td class="text" align="left">
 							Uranium-235 Reactor ×<span id="UraniumReactorMult">1</span>
 						</td>
-						<td id="UraniumReactor" class="text" align="center">
+						<td class="text" align="center">
 							<span id="UraniumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
@@ -92,7 +93,7 @@
 						<td class="text" align="left">
 							Neptunium-237 Reactor ×<span id="NeptuniumReactorMult">1</span>
 						</td>
-						<td id="NeptuniumReactor" class="text" align="center">
+						<td class="text" align="center">
 							<span id="NeptuniumReactor">0.00 (0)</span>
 						</td>
 						<td align="right">
@@ -178,18 +179,18 @@
 			<table width="100%">
 				<tr>
 					<td id="meteorCost" class="text" align="left" width="75%">
-						<span id="meteorScaling">Meteor Shower</span> (<span id="meteoramt">0</span>): Requires <span>2 Plutonium-241</span> Reactors
+						<span id="meteorscaling">Meteor Shower</span> (<span id="meteoramt">0</span>): Requires <span>2 Plutonium-241</span> Reactors
 					</td>
 					<td align="right">
-						<button onclick="buyMeteor()" id="meteor" style="width: 200px; height: 25px">Reset the game for a new Mine</button>
+						<button onclick="buyMaxMeteor()" id="meteorshower" style="width: 200px; height: 25px">Reset the game for a new Mine</button>
 					</td>
 				</tr>
 				<tr>
 					<td class="text" align="left" width="75%">
-						<span id="naniteScaling">Nanite Research</span> (<span id="naniteamt">0</span>): Requires <span id="naniteCost">5</span> Californium-252 Reactors
+						<span id="nanitescaling">Nanite Research</span>: Requires <span id="nanitecost">5</span> Californium-252 Reactors
 					</td>
 					<td align="right">
-						<button onclick="buyNano()" id="nano" style="width: 200px; height: 35px">Reset the game for <span id="naniteonprestige">1 Nanite</span></button>
+						<button onclick="buyNaniteResearch()" id="naniteresearch" style="width: 200px; height: 35px">Reset the game for <span id="naniteonprestige">1</span> Nanites </button>
 					</td>
 				</tr>
 			</table>
@@ -207,7 +208,8 @@
 					<td>
 						<div>
 							<button onclick="buyNaniteUpgrade(1)" id="naniteupg1">
-								All Mines get a boost based on time played
+								All Mines get a boost based on time played<br/>
+								Formula: 2 * log_256(x) - 1<br/>
 								Currently: <span id="naniteupgmult1">1.00</span>× <br/>
 								Cost: 2 Nanites
 							</button>
@@ -216,7 +218,8 @@
 					<td>
 						<div>
 							<button onclick="buyNaniteUpgrade(2)" id="naniteupg2">
-								All Mines get a boost based on time since last meteor shower
+								All Mines get a boost based on number of meteor showers<br/>
+								Formula: x / 4 + 1<br/>
 								Currently: <span id="naniteupgmult2">1.00</span>× <br/>
 								Cost: 2 Nanites
 							</button>
@@ -245,7 +248,7 @@
 					</td>
 					<td>
 						<div>
-							<button onclick="loadSave(getSave())" id="load" class="optionsbtn" align="center"> Load </button>
+							<button onclick="loadSave(getSave(), true)" id="load" class="optionsbtn" align="center"> Load </button>
 						</div>
 					</td>
 				</tr>
@@ -275,7 +278,6 @@
 				</tr>
 			</tbody>
 		</table>
-		<div id="random" class="text">
 			
 		</div>
 	</div>

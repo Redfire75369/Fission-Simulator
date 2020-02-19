@@ -39,11 +39,11 @@ function updateMeteor() {
 	let type;
 	if (player.meteor.shower < 4) {
 		type = "Meteor Shower";
-		document.getElementById("meteor").innerText = "Reset the game for a new Mine";
+		document.getElementById("meteorshower").innerText = "Reset the game for a new Mine";
 	} else {
 		type = "Tectonic Inititation";
-		document.getElementById("meteor").innerText = "Reset the game for a Boost";
+		document.getElementById("meteorshower").innerText = "Reset the game for a Boost";
 	}
 	document.getElementById("meteorCost").innerText = type + " (" + player.meteor.shower + "): Requires " + getMeteorCost()[0] + " " + isotopes[getMeteorCost()[1]] + " Reactors";
-	document.getElementById("meteor").className = canBuyMeteor() ? "btnbuy" : "btnlocked";
+	document.getElementById("meteorshower").className = canBuyMeteor() ? "btnbuy" : "btnlocked";
 }

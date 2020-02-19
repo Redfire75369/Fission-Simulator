@@ -1,4 +1,3 @@
-// Edited from https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
 function copyStringToClipboard(str) {
   var el = document.createElement("textarea");
   el.value = str;
@@ -12,7 +11,6 @@ function copyStringToClipboard(str) {
   document.body.removeChild(el);
 }
 
-// Copied from https://stackoverflow.com/questions/34045777/copy-to-clipboard-using-javascript-in-ios
 function copyToClipboard(el) {
     el = (typeof el === "string") ? document.querySelector(el) : el;
     if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {

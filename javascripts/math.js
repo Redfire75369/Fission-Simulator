@@ -1,6 +1,9 @@
 function pow(x, y) {
 	return Math.pow(x, y);
 }
+function sqrt(x) {
+	return Math.sqrt(x);
+}
 function log(x, y) {
 	return (Math.log(x)/Math.log(y));
 }

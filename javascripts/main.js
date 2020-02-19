@@ -35,10 +35,9 @@ function getDefaultData() {
 			time: 0
 		},
 		nanites: {
-			research: 0,
 			nanites: new Decimal(0),
-			naniteUpg: ["", false, false],
-			time: 0
+			upgrades: [0, false, false],
+			lastNanites: new Decimal(0)
 		},
 		time: 0,
 		lastUpdate: Date.now()
@@ -90,5 +89,4 @@ var mainGameLoop = window.setInterval(function() {
 var timerLoop = window.setInterval(function() {
 	player.time += 0.05;
 	player.meteor.time += 0.05;
-	player.nanites.time += 0.05;
 }, 50);
