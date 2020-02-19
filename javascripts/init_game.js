@@ -1,5 +1,5 @@
 function init_game() {
-	loadSave(getSaveString());
+	loadSave();
 	document.getElementById("production").style.display = "none";
 	document.getElementById("nanite").style.display = "none";
 	document.getElementById("options").style.display = "none";
