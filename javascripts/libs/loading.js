@@ -41,22 +41,23 @@ function saveGame() {
 
 function loadSave(save, imported = false) {
   try {
-    var save = JSON.parse(atob(save))
-    let refLists = listItems(getDefaultData())
-    let saveLists = listItems(save)
-    let missingItem = refLists[0].diff(saveLists[0])
+	if (save === undefined) save = localStorage.getItem("fissionSimSave1");
+    var save = JSON.parse(atob(save));
+    let refLists = listItems(getDefaultData());
+    let saveLists = listItems(save);
+    let missingItem = refLists[0].diff(saveLists[0]);
     if (missingItem.includes("save")) {
-      console.log("Unrecoverable corrupted save detected, loading default save...")
-      return
+      console.log("Unrecoverable corrupted save detected, loading default save...");
+      return;
     }
     if (missingItem.length != 0 && imported) {
       if (!confirm(importDangerAlertText)) {
-        return
+        return;
       }
     }
 
     missingItem.forEach(function (value) {
-      if (value != versionTagName) _.set(save, value, _.get(getDefaultData(), value))
+      if (value != versionTagName) _.set(save, value, _.get(getDefaultData(), value));
     })
 
     let decimalList = saveLists[1].diff(refLists[1])
