@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="style.css" />
     
 	<script defer src="javascripts/libs/break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/libs/ad-notations.min.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/libs/ad-notations.community.min.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/libs/mousetrap.min.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/libs/loading.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/libs/lodash.min.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
@@ -20,6 +23,7 @@
 	<script defer src="javascripts/prestige/meteor.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/core/nanites/upgrades.js" charset ="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 	
   </head>
   <body bgcolor="1c1c1c" align="center">
@@ -39,7 +43,7 @@
 	</tr>
 	
 	<div id="navibtn" align="center">
-		<table class="table" style="margin: auto">
+		<table align="center">
 			<tr>
 				<td>
 					<button onclick="showNaviTab('production')" id="prodbtn" class="navibtn">Production</button>
@@ -51,7 +55,7 @@
 	</div>
        
     <div id="production">
-		<table class="table" align="center" style="margin: auto" id="productionTabButtons">
+		<table class="table" align="center" id="productionTabButtons">
 			<tr>
 				<td>
 				</td>
@@ -59,7 +63,7 @@
 		</table>
 		
 		<div id="mines" class="subtab">
-		    <table class="table" align="center" style="width:100vw">
+		    <table class="table" align="center">
 			    <tbody>
 			    	<tr id="row1">
 						<td class="text" align="left">
@@ -176,7 +180,7 @@
 				</tbody>
 			</table>
 			
-			<table width="100%">
+			<table class="table" align="center">
 				<tr>
 					<td id="meteorCost" class="text" align="left" width="75%">
 						<span id="meteorscaling">Meteor Shower</span> (<span id="meteoramt">0</span>): Requires <span>2 Plutonium-241</span> Reactors
@@ -202,7 +206,7 @@
 			You have <span id="nanites">0</span> Nanites.
 		</div>
 		<button onclick="buyNaniteUpgrade(0)" id="naniteupg0">Spend 1 Nanite to improve Efficiency Multiplier.</button></br>
-		<table>
+		<table align="center">
 			<tbody>
 				<tr>
 					<td>
@@ -231,7 +235,7 @@
 	</div>
 	
 	<div id="options" class="tab">
-		<table>
+		<table align="center">
 			<tbody>
 				<tr>
 					<td>

@@ -1,6 +1,6 @@
 /*Notations Change*/
 function notationChange() {
-	let notations = ["Scientific", "Logarithmic", "Engineering", "Standard", "YesNo"];
+	let notations = ["Scientific", "Logarithmic", "Brackets", "Omega", "Cancer", "Zalgo", "Prime", "Blind"];
 	if (player.options.notationNo + 1 == notations.length) {
 		player.options.notationNo = 0;
 		player.options.notation = notations[player.options.notationNo];

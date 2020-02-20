@@ -7,6 +7,12 @@
 	border-radius: 4px;
 }
 
+.table {
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+}
+
 .optionsbtn {
 	width: 200px;
 	height: 55px;

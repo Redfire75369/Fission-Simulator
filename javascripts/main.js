@@ -83,7 +83,11 @@ var saveGameLoop = window.setInterval(function() {
 }, 15000);
 
 var mainGameLoop = window.setInterval(function() {
+	if (Date.now() > player.lastUpdate) {
+		simulateTime(player.lastUpdate - Date.now());
+	}
 	update();
+	player.lastUpdate = Date.now();
 }, 50);
 
 var timerLoop = window.setInterval(function() {
