@@ -1,94 +1,34 @@
+const not = ADNotations;
+const not2 = ADCommunityNotations;
+const scientific = new not.ScientificNotation();
+const logarithmic = new not.LogarithmNotation();
+const brackets = new not.BracketsNotation();
+const omega = new not2.OmegaNotation();
+const cancer = new not.CancerNotation();
+const zalgo = new not.ZalgoNotation();
+const prime = new not.PrimeNotation();
+const blind = new not.BlindNotation();
+
 function notation(x) {
-	switch(player.options.notation) {
+	switch (player.options.notation) {
 		case "Scientific":
-			return scientific(x);
-			break;
+			return scientific.format(x, 2, 2);
 		case "Logarithmic":
-			return logarithm(x);
-			break;
-		case "Engineering":
-			return engineering(x);
-			break;
-		case "Standard":
-			return standard(x);
+			return logarithmic.format(x, 2, 2);
+		case "Brackets":
+			return brackets.format(x, 2, 2);
+		case "Omega":
+			return omega.format(x, 2, 2);
+		case "Cancer":
+			return cancer.format(x, 2, 2);
+		case "Zalgo":
+			return zalgo.format(x, 2, 2);
+		case "Prime":
+			return prime.format(x, 2, 2);
+		case "Blind":
+			return blind.format(x, 2, 2)
 		default:
 	}
 }
 
-/*Notations*/
-function scientific(x) {
-	if (x.exponent < 3) {
-		return round(x, 2)
-	} else if (x.mantissa > 9.995) {
-		return 1 + "e" + (x.exponent + 1);
-	} else if (x.mantissa < 9.995) {
-		return round(x.mantissa, 2) + "e" + x.exponent;
-	}
-}
 
-function logarithm(x) {
-	if (x.exponent < 3) {
-		return round(x, 2);
-	} else {
-		return "e" + (round(x.exponent + Math.log(x.mantissa, 10), 2));
-	}
-}
-
-function engineering(x) {
-	if (x.exponent < 3) {
-		return round(x, 2);
-	} else {
-		switch(x.exponent % 3) {
-			case 0:
-				return round(x.mantissa, 2) + "e" + x.exponent;
-				break;
-			case 1:
-				return round(x.mantissa * 10, 2) + "e" + (x.exponent - 1);
-				break;
-			case 2:
-				return round(x.mantissa * 100, 2) + "e" + (x.exponent - 2);
-				break;
-			default:
-		}
-	}
-}
-
-function standard(x) {
-	let basic = ["K", "M", "B", "T", "Qa", "Qt", "Sx", "Sp", "Oc", "No", "Dc"];
-	let advanced = [
-		["", "U", "D", "T", "Qa", "Qt", "Sx", "Sp", "O", "N"],
-		["", "Dc", "Vg", "Tg", "Qd", "Qi", "Se", "St", "Og", "Nn"],
-		["", "Ce", "Dn", "Tc", "Qe", "Qu", "Sc", "Si", "Oe", "Ne"]
-	];
-	if (x.exponent < 3) {
-		return round(x, 2);
-	} else if (x.exponent < 36) {
-		switch(x.exponent % 3) {
-			case 0:
-				return round(x.mantissa, 2) + " " + basic[x.exponent / 3 - 1];
-				break;
-			case 1:
-				return round(x.mantissa * 10, 2) + " " + basic[(x.exponent - 1) / 3 - 1];
-				break;
-			case 2:
-				return round(x.mantissa * 100, 2) + " " + basic[(x. exponent - 2) / 3 - 1];
-				break;
-			default:
-		}
-	} else {
-		let exp = Math.floor(x.exponent / 3) - 1;
-		suffix = advanced[0][exp % 10] + advanced[1][(exp % 100 - exp % 10) / 10] + advanced[2][(exp - (exp % 100)) / 100]; 
-		switch(x.exponent % 3) {
-			case 0:
-				return round(x.mantissa, 2) + " " + suffix;
-				break;
-			case 1:
-				return round(x.mantissa * 10, 2) + " " + suffix;
-				break;
-			case 2:
-				return round(x.mantissa * 100, 2) + " " + suffix;
-				break;
-			default:
-		}
-	}
-}

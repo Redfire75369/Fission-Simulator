@@ -1,38 +1,39 @@
-function getEffCost() {
-	return getDefaultData().eff.cost.multiply(player.eff.costMult.pow(player.eff.bought));
-}
-
 function resetEff() {
 	player.eff = getDefaultData().eff;
 }
 
 function canBuyEff() {
-	if (player.fuel.gte(getEffCost())) {
-		return true;
-	} else {
-		return false;
-	}
+	return player.energy.gte(player.eff.cost);
 }
 
 function buyEff() {
 	if (canBuyEff()) {
-		player.fuel = player.fuel.minus(getEffCost());
+		player.energy = player.energy.minus(player.eff.cost);
 		player.eff.bought += 1;
+		player.eff.cost = player.eff.cost.multiply(player.eff.costMult);
 		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);
+		if (player.eff.cost.gte(new Decimal("1e+308"))) {
+			player.eff.costMult = player.eff.costMult.multiply(player.eff.costMultMult);
+		}
 	}
 }
 
 function buyMaxEff() {
 	while (canBuyEff()) {
-		player.fuel = player.fuel.minus(getEffCost());
+		player.energy = player.energy.minus(player.eff.cost);
 		player.eff.bought += 1;
+		player.eff.cost = player.eff.cost.multiply(player.eff.costMult);
 		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);
+		if (player.eff.cost.gte(new Decimal("1e+308"))) {
+			player.eff.costMult = player.eff.costMult.multiply(player.eff.costMultMult);
+		}
 	}
 }
 
 function updateEff() {
-	document.getElementById("effBuySingle").innerText = "Cost: " + notation(getEffCost());
-	document.getElementById("eff").innerText = "Efficiency: " + notation(player.eff.mult);
-	document.getElementById("effBuySingle").className = canBuyEff() ? "effbtnbuy" : "effbtnlocked";
-	document.getElementById("effBuyMax").className = canBuyEff() ? "effbtnbuy" : "effbtnlocked";
+	document.getElementById("effCost").innerText = notation(player.eff.cost);
+	document.getElementById("eff").innerText = notation(player.eff.mult);
+	document.getElementById("effMult").innerText = round((player.eff.multMult - 1) * 100, 2);
+	document.getElementById("effBuySingle").className = canBuyEff() ? "btnbuy" : "btnlocked";
+	document.getElementById("effBuyMax").className = canBuyEff() ? "btnbuy" : "btnlocked";
 }

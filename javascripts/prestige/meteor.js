@@ -1,49 +1,49 @@
 function getMeteorCost() {
-	if (player.meteor < 4) {
-		return [2, player.meteor + 3];
+	if (player.meteor.shower < 4) {
+		return [2, player.meteor.shower + 3];
 	} else {
-		return [2 + (player.meteor - 4) * 2, 7];
+		return [2 + (player.meteor.shower - 4) * 2, 7];
 	}
 }
 
+function resetMeteor() {
+	player.meteor.shower = getDefaultData().meteor.shower;
+}
+
 function canBuyMeteor() {
-	if (player.mine.bought[getMeteorCost()[1]] >= getMeteorCost()[0]) {
-		return true;
-	} else {
-		return false;
-	}
+	return player.reactor.bought[getMeteorCost()[1]] >= getMeteorCost()[0];
 }
 
 function buyMeteor() {
 	if (canBuyMeteor()) {
-		player.meteor += 1;
-		resetFuel();
+		player.meteor.shower += 1;
+		resetEnergy();
 		resetEff();
-		resetMines();
+		resetReactors();
 	}
 }
 
 function buyMaxMeteor() {
-	if (player.meteor < 4) {
+	if (player.meteor.shower < 4) {
 		buyMeteor();
 	} else if (canBuyMeteor()) {
-		max = floor(((player.mine.bought[7] - 2) / 2) - 4) + 4;
-		player.meteor = max;
-		resetFuel();
+		max = floor(((player.reactor.bought[7] - 2) / 2) - 4) + 4;
+		player.meteor.shower = max;
+		resetEnergy();
 		resetEff();
-		resetMines();
+		resetReactors();
 	}
 }
 
 function updateMeteor() {
 	let type;
-	if (player.meteor < 4) {
-		type = "Meteor Strike";
-		document.getElementById("meteor").innerText = "Reset the game for a new Mine";
+	if (player.meteor.shower < 4) {
+		type = "Meteor Shower";
+		document.getElementById("meteorshower").innerText = "Reset the game for a new Mine";
 	} else {
 		type = "Tectonic Inititation";
-		document.getElementById("meteor").innerText = "Reset the game for a Boost";
+		document.getElementById("meteorshower").innerText = "Reset the game for a Boost";
 	}
-	document.getElementById("meteorCost").innerText = type + " (" + player.meteor + "): Requires " + getMeteorCost()[0] + " " + elements[getMeteorCost()[1]] + " Mines";
-	document.getElementById("meteor").className = canBuyMeteor() ? "meteorbtnbuy" : "meteorbtnlocked";
+	document.getElementById("meteorCost").innerText = type + " (" + player.meteor.shower + "): Requires " + getMeteorCost()[0] + " " + isotopes[getMeteorCost()[1]] + " Reactors";
+	document.getElementById("meteorshower").className = canBuyMeteor() ? "btnbuy" : "btnlocked";
 }
