@@ -27,8 +27,7 @@ function buyMaxMeteor() {
 	if (player.meteor.shower < 4) {
 		buyMeteor();
 	} else if (canBuyMeteor()) {
-		max = floor(((player.reactor.bought[7] - 2) / 2) - 4) + 4;
-		player.meteor.shower = max;
+		player.meteor.shower = floor(((player.reactor.bought[7] - 2) / 2) + 5);
 		resetEnergy();
 		resetEff();
 		resetReactors();
