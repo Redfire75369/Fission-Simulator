@@ -7,7 +7,7 @@ function canBuyNaniteResearch() {
 	if (player.reactor.bought[7]  < 5) {
 		return false;
 	} else {
-		return player.reactor.bought[7] >= player.nanites.lastNanites;
+		return (player.reactor.amount[7].gt(player.nanites.lastNanites));
 	}
 }
 
@@ -33,7 +33,7 @@ function updateNaniteResearch() {
 		document.getElementById("nanitecost").innerText = player.nanites.lastNanites.plus(1);
 	}
 	if (getNanitesOnPrestige().lt(0)) {
-		document.getElementById("nanitecost").innerText = 0;
+		document.getElementById("naniteonprestige").innerText = 0;
 	} else {
 		document.getElementById("naniteonprestige").innerText = notation(getNanitesOnPrestige());
 	} 
