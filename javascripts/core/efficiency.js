@@ -1,5 +1,7 @@
 function resetEff() {
+	let effMultMult = player.eff.multMult;
 	player.eff = getDefaultData().eff;
+	player.eff.multMult = effMultMult;
 }
 
 function canBuyEff() {

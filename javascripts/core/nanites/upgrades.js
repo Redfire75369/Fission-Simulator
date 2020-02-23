@@ -1,30 +1,31 @@
 let naniteUpgradeCost = [new Decimal(1), new Decimal(2), new Decimal(2)];
 
-function canBuyNaniteUpgrade(num) {
-	return (player.nanites.nanites.gte(naniteUpgradeCost[num]));
+function canBuyNaniteUpgrade(id) {
+	return (player.nanites.nanites.gte(naniteUpgradeCost[id]) & player.nanites.ups[id]);
 }
 
-function buyNaniteUpgrade(num) {
-	if (canBuyNaniteUpgrade(num) & !player.nanites.upgrades[num]) {
-		if (num == 0) {
-			player.nanites.nanites = player.nanites.nanites.minus(naniteUpgradeCost[num]);
+function buyNaniteUpgrade(id) {
+	if (canBuyNaniteUpgrade(id) & !player.nanites.ups[id]) {
+		if (id == 0) {
+			player.nanites.nanites = player.nanites.nanites.minus(naniteUpgradeCost[id]);
 			player.eff.multMult = player.eff.multMult.multiply(1.1);
-			player.nanites.nanites[num] += 1;
+			player.eff.mult = player.eff.multMult.pow(player.eff.bought);
+			player.nanites.nanites[id] += 1;
 		} else {
-			player.nanites.nanites = player.nanites.nanites.minus(naniteUpgradeCost[num]);
-			player.nanites.nanites[num] = true;
+			player.nanites.nanites = player.nanites.nanites.minus(naniteUpgradeCost[id]);
+			player.nanites.nanites[id] += 1;
 		}
 	}
 }
 
-function getNaniteUpgradeMult(num) {
-	switch(num) {
+function getNaniteUpgradeMult(id) {
+	switch(id) {
 		case 0:
 			return;
 		case 1:
-			return [8, new Decimal(max(1, (2 * log(player.time, 256)) - 1))];
+			return [8, max(1, log(player.time, 16))];
 		case 2:
-			return [8, new Decimal(player.meteor.shower / 4 + 1)];
+			return [8, max(1, 1)];
 		default:
 	}
 }
@@ -32,7 +33,7 @@ function getNaniteUpgradeMult(num) {
 function getTotalNaniteUpgradeMult(tier) {
 	let ret = new Decimal(1);
 	for (let a = 1; a < 8; a++) {
-		if (player.nanites.upgrades[a]) {
+		if (player.nanites.ups[a]) {
 			if (getNaniteUpgradeMult(a)[0].equals(tier)|getNaniteUpgradeMult(a)[0].equals(8)) {
 				ret.multiply(getNaniteUpgradeMult(a)[1]);
 			}
@@ -41,17 +42,17 @@ function getTotalNaniteUpgradeMult(tier) {
 	return ret;
 }
 
-function updateNaniteUpgrades() {
+function updateNaniteUps() {
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
 	
-	for (let num = 0; num < player.nanites.upgrades.length; num++) {
-		if (num != 0) {
-			document.getElementById("naniteupgmult" + num).innerText = notation(getNaniteUpgradeMult(num)[1]);
+	for (let id = 0; id < player.nanites.ups.length; id++) {
+		if (id != 0) {
+			document.getElementById("naniteupgmult" + id).innerText = notation(getNaniteUpgradeMult(id)[1]);
 		}
-		if (player.nanites.upgrades[num] == true) {
-			document.getElementById("naniteupg" + num).className = "naniteupgbtnbought";
+		if (player.nanites.ups[id] == true) {
+			document.getElementById("naniteupg" + id).className = "naniteupgbtnbought";
 		} else {
-			document.getElementById("naniteupg" + num).className = canBuyNaniteUpgrade(num) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
+			document.getElementById("naniteupg" + id).className = canBuyNaniteUpgrade(id) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
 		}
 	}
 }

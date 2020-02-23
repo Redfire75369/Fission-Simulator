@@ -31,6 +31,13 @@ function buyMaxReactor(tier) {
 	}
 }
 
+function buyMaxAllReactorEff() {
+	for (let tier = 0; tier < (player.meteor.shower + 4); tier++) {
+		buyMaxReactor(tier);
+	}
+	buyMaxEff();
+}
+
 function getTotalReactorMult(tier) {
 	let mult = player.reactor.mult[tier];
 	mult = mult.multiply(player.meteor.meteorMult.pow(max(0, player.meteor.shower - tier)));
@@ -48,7 +55,7 @@ function getReactorPerSecond(tier) {
 
 function updateReactors() {
 	for (let tier = 0; tier < min(player.meteor.shower + 4, 8); tier++) {
-		player.reactor.amount[tier] = player.reactor.amount[tier].plus(getReactorPerSecond(tier).multiply(20 / 1000));
+		player.reactor.amount[tier] = player.reactor.amount[tier].plus(getReactorPerSecond(tier).multiply(50 / 1000));
 		document.getElementById(elements[tier] + "Reactor").innerText = notation(player.reactor.amount[tier]) + " (" + player.reactor.bought[tier] + ")";
 		document.getElementById(elements[tier] + "ReactorCost").innerText = notation(player.reactor.cost[tier]);
 		document.getElementById(elements[tier] + "BuySingle").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";

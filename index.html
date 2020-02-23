@@ -18,8 +18,8 @@
 	<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/core/energy.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/core/reactors.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
+	<script defer src="javascripts/core/reactors.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/prestige/meteor.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
 	<script defer src="javascripts/core/nanites/upgrades.js" charset ="utf-8" type="text/javascript"></script>
@@ -63,6 +63,9 @@
 		</table>
 		
 		<div id="mines" class="subtab">
+			<div>
+				<button onclick="buyMaxAllReactorEff()" align="center" class="btnbuy" style="width: 120px; height: 25px">Max All (M)</button>
+			</div>
 		    <table class="table" align="center">
 			    <tbody>
 			    	<tr id="row1">
@@ -213,7 +216,7 @@
 						<div>
 							<button onclick="buyNaniteUpgrade(1)" id="naniteupg1">
 								All Mines get a boost based on time played<br/>
-								Formula: 2 * log_256(x) - 1<br/>
+								Formula: log₁₆(x) - 1<br/>
 								Currently: <span id="naniteupgmult1">1.00</span>× <br/>
 								Cost: 2 Nanites
 							</button>
@@ -241,6 +244,11 @@
 					<td>
 						<div>
 							<button onclick="notationChange()" id="notation" class="optionsbtn" align="right"> Notation: Scientific </button>
+						</div>
+					</td>
+					<td>
+						<div>
+							<button id="theme" class="optionsbtn" align="right"> Theme: Default (WIP) </button>
 						</div>
 					</td>
 				</tr>

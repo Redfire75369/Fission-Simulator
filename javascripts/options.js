@@ -4,18 +4,18 @@ function notationChange() {
 	if (player.options.notationNo + 1 == notations.length) {
 		player.options.notationNo = 0;
 		player.options.notation = notations[player.options.notationNo];
-		document.getElementById("notation").innerText = "Notation: " +  player.options.notation;
 	} else {
 		player.options.notationNo += 1;
 		player.options.notation = notations[player.options.notationNo];
-		document.getElementById("notation").innerText = "Notation: " + player.options.notation;
 	}
+	document.getElementById("notation").innerText = "Notation: " + player.options.notation;
 }
 
 function targetedNotationChange(notation) {
 	while (player.options.notation != notation) {
 		notationChange();
 	}
+	document.getElementById("notation").innerText = "Notation: " + player.options.notation;
 }
 
 /*Save/Load*/

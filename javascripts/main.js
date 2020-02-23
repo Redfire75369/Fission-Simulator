@@ -4,6 +4,7 @@ function getDefaultData() {
 			alpha: 0, 
 			beta: 9
 		},
+		
 		options: {
 			notation: "Scientific",
 			notationNo: 0
@@ -11,6 +12,7 @@ function getDefaultData() {
 		navigation: {
 			naviTab: "production"
 		},
+		
 		energy: new Decimal(80),
 		eff: {
 			bought: 0,
@@ -28,17 +30,25 @@ function getDefaultData() {
 			mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
 			costMultMult: new Decimal(10),
 			multMult: new Decimal(2),
+			maxTier: 3
 		},
+		
 		meteor: {
 			shower: 0,
-			meteorMult: new Decimal(2),
-			time: 0
+			meteorMult: new Decimal(2)
 		},
+		
 		nanites: {
 			nanites: new Decimal(0),
-			upgrades: [0, false, false],
+			total: new Decimal(0),
+			ups: [0, 0, 0],
 			lastNanites: new Decimal(0)
 		},
+		
+		meltdown: {
+			time: 0
+		},
+		
 		time: 0,
 		lastUpdate: Date.now()
 	}
@@ -66,7 +76,7 @@ function showNaviTab(tab) {
 
 function update() {
 	updateNaniteResearch();
-	updateNaniteUpgrades();
+	updateNaniteUps();
 	updateMeteor();
 	updateReactors();
 	updateEff();
@@ -84,7 +94,7 @@ var saveGameLoop = window.setInterval(function() {
 
 var mainGameLoop = window.setInterval(function() {
 	if (Date.now() > player.lastUpdate) {
-		simulateTime(player.lastUpdate - Date.now());
+		simulateTime(Date.now() - player.lastUpdate);
 	}
 	update();
 	player.lastUpdate = Date.now();
@@ -92,5 +102,5 @@ var mainGameLoop = window.setInterval(function() {
 
 var timerLoop = window.setInterval(function() {
 	player.time += 0.05;
-	player.meteor.time += 0.05;
+	player.meltdown.time += 0.05;
 }, 50);
