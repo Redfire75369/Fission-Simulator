@@ -18,6 +18,7 @@ function getEnergyPerSecond() {
 
 function updateEnergy() {
 	player.energy = player.energy.plus(getEnergyPerSecond().multiply(0.05));
+	player.totalEnergy = player.totalEnergy.plus(getEnergyPerSecond().multiply(0.05));
 	document.getElementById("energy").innerText = notation(player.energy);
 	document.getElementById("energyPerSecond").innerText = notation(getEnergyPerSecond());
 }

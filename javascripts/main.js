@@ -14,6 +14,8 @@ function getDefaultData() {
 		},
 		
 		energy: new Decimal(80),
+		totalEnergy: new Decimal(80),
+		
 		eff: {
 			bought: 0,
 			cost: new Decimal("1e+3"),

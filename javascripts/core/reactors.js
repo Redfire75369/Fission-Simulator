@@ -32,7 +32,7 @@ function buyMaxReactor(tier) {
 }
 
 function buyMaxAllReactorEff() {
-	for (let tier = 0; tier < (player.meteor.shower + 4); tier++) {
+	for (let tier = 0; tier < min(8, max(4, player.meteor.shower + 4)); tier++) {
 		buyMaxReactor(tier);
 	}
 	buyMaxEff();
@@ -41,7 +41,7 @@ function buyMaxAllReactorEff() {
 function getTotalReactorMult(tier) {
 	let mult = player.reactor.mult[tier];
 	mult = mult.multiply(player.meteor.meteorMult.pow(max(0, player.meteor.shower - tier)));
-	mult = mult.multiply(getTotalNaniteUpgradeMult(tier));
+	mult = mult.multiply(getTotalNaniteUpMult(tier));
 	return mult;
 }
 
