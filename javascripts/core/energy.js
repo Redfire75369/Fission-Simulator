@@ -13,7 +13,7 @@ function getEnergyPerSecond() {
 			x++;
 		}
 	}
-	return player.reactor.amount[0].multiply(getTotalReactorMult(0)).multiply(player.eff.mult).multiply((5 ** (x + 1) - 1)/4);
+	return player.reactor.amount[0].multiply(getTotalReactorMult(0)).multiply(player.eff.mult).multiply((3 ** (x + 1) - 1)/2);
 }
 
 function updateEnergy() {
