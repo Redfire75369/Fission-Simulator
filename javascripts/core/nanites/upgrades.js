@@ -1,7 +1,7 @@
 let naniteUpCost = [new Decimal(1), new Decimal(1), new Decimal(1)];
 
 function canBuyNaniteUp(id) {
-	if (id == 0 & player.nanites.ups < 2) {
+	if (id == 0 & player.nanites.ups[id] < 2) {
 		return player.nanites.nanites.gte(naniteUpCost[id]);
 	}
 	return (player.nanites.nanites.gte(naniteUpCost[id]) & player.nanites.ups[id]==0);
@@ -11,7 +11,8 @@ function buyNaniteUp(id) {
 	if (canBuyNaniteUp(id)) {
 		if (id == 0) {
 			player.nanites.nanites = player.nanites.nanites.minus(naniteUpCost[id]);
-			let effUpg = 0;
+			player.nanites.ups[id] += 1;
+			let effUpg = player.nanites.ups[id];
 			if (effUpg <= 2) {
 				player.eff.multMult = new Decimal(1.1 + 0.02 * effUpg);
 			} else {
