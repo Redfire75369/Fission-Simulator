@@ -1,5 +1,6 @@
 const not = ADNotations;
 const not2 = ADCommunityNotations;
+
 const scientific = new not.ScientificNotation();
 const logarithmic = new not.LogarithmNotation();
 const brackets = new not.BracketsNotation();

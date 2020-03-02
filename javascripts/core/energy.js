@@ -13,12 +13,15 @@ function getEnergyPerSecond() {
 			x++;
 		}
 	}
-	return player.reactor.amount[0].multiply(getTotalReactorMult(0)).multiply(player.eff.mult).multiply((3 ** (x + 1) - 1)/2);
+	return player.reactor.amount[0].mul(getTotalReactorMult(0)).mul(player.eff.mult).mul(((3 ** x) - 1)/2);
 }
 
-function updateEnergy() {
-	player.energy = player.energy.plus(getEnergyPerSecond().multiply(0.05));
-	player.totalEnergy = player.totalEnergy.plus(getEnergyPerSecond().multiply(0.05));
+function updateEnergy(tickInterval = 50) {
+	player.energy = player.energy.add(getEnergyPerSecond().mul(tickInterval / 1000));
+	player.totalEnergy = player.totalEnergy.plus(getEnergyPerSecond().mul(tickInterval / 1000));
+}
+
+function updateUIEnergy() {
 	document.getElementById("energy").innerText = notation(player.energy);
 	document.getElementById("energyPerSecond").innerText = notation(getEnergyPerSecond());
 }

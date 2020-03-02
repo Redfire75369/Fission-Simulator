@@ -10,29 +10,29 @@ function canBuyEff() {
 
 function buyEff() {
 	if (canBuyEff()) {
-		player.energy = player.energy.minus(player.eff.cost);
+		player.energy = player.energy.sub(player.eff.cost);
 		player.eff.bought += 1;
-		player.eff.cost = player.eff.cost.multiply(player.eff.costMult);
-		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);
+		player.eff.cost = player.eff.cost.mul(player.eff.costMult);
+		player.eff.mult = player.eff.mult.mul(player.eff.multMult);
 		if (player.eff.cost.gte(new Decimal("1e+308"))) {
-			player.eff.costMult = player.eff.costMult.multiply(player.eff.costMultMult);
+			player.eff.costMult = player.eff.costMult.mul(player.eff.costMultMult);
 		}
 	}
 }
 
 function buyMaxEff() {
 	while (canBuyEff()) {
-		player.energy = player.energy.minus(player.eff.cost);
+		player.energy = player.energy.sub(player.eff.cost);
 		player.eff.bought += 1;
-		player.eff.cost = player.eff.cost.multiply(player.eff.costMult);
-		player.eff.mult = player.eff.mult.multiply(player.eff.multMult);
+		player.eff.cost = player.eff.cost.mul(player.eff.costMult);
+		player.eff.mult = player.eff.mult.mul(player.eff.multMult);
 		if (player.eff.cost.gte(new Decimal("1e+308"))) {
-			player.eff.costMult = player.eff.costMult.multiply(player.eff.costMultMult);
+			player.eff.costMult = player.eff.costMult.mul(player.eff.costMultMult);
 		}
 	}
 }
 
-function updateEff() {
+function updateUIEff() {
 	document.getElementById("effCost").innerText = notation(player.eff.cost);
 	document.getElementById("eff").innerText = notation(player.eff.mult);
 	document.getElementById("effMult").innerText = round((player.eff.multMult - 1) * 100, 2);

@@ -13,6 +13,11 @@ function getDefaultData() {
 			naviTab: "production"
 		},
 		
+		unlocked: {
+				naniteUps: 0,
+				meltdown: 0,
+				decayHasten: 0
+		},
 		energy: new Decimal(80),
 		totalEnergy: new Decimal(80),
 		
@@ -43,7 +48,16 @@ function getDefaultData() {
 		nanites: {
 			nanites: new Decimal(0),
 			total: new Decimal(0),
-			ups: [0, 0, 0],
+			ups: {
+				0: 0,
+				11: 0,
+				21: 0,
+				22: 0,
+				31: 0,
+				32: 0,
+				41: 0,
+				42: 0
+			}, 
 			lastNanites: new Decimal(0)
 		},
 		
@@ -70,39 +84,40 @@ function hardReset() {
 	localStorage.setItem("fissionSimSave", JSON.stringify(player));
 }
 
-function showNaviTab(tab) {
-	document.getElementById(player.navigation.naviTab).style.display = "none";
-	document.getElementById(tab).style.display = "inline-block";
-	player.navigation.naviTab = tab;
+function updateUI() {
+	updateUINaniteResearch();
+	updateUINaniteUps();
+	updateUIMeteor();
+	updateUIEff();
+	updateUIReactors();
+	updateUIEnergy();
+	updateUIStats();
+}
+function updateGame(tickInterval) {
+	updateReactors(tickInterval);
+	updateEnergy(tickInterval);
 }
 
-function update() {
-	updateNaniteResearch();
-	updateNaniteUps();
-	updateMeteor();
-	updateReactors();
-	updateEff();
-	updateEnergy();
-}
-
-/*Initialise Game*/
 var player = getDefaultData();
-init_game();
 
 /*Game Loops*/
-var saveGameLoop = window.setInterval(function() {
+var saveGameLoop = setInterval(function() {
 	saveGame();
 }, 15000);
 
-var mainGameLoop = window.setInterval(function() {
-	if (Date.now() > player.lastUpdate) {
-		simulateTime(Date.now() - player.lastUpdate);
+var updateGameLoop = setInterval(function() {
+	if (Date.now() > player.lastUpdate + 1000) {
+		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
-	update();
+	updateGame(50);
 	player.lastUpdate = Date.now();
 }, 50);
 
-var timerLoop = window.setInterval(function() {
+var updateUILoop = setInterval(function() {
+	updateUI();
+}, 50);
+
+var timerLoop = setInterval(function() {
 	player.time += 0.05;
 	player.meltdown.time += 0.05;
 }, 50);

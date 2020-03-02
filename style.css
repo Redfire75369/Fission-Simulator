@@ -1,10 +1,27 @@
 .navibtn {
 	width: 180px;
 	height: 40px;
+	font-size: 20px;
 	color: #d0d0d0;
-	background: #37474f;
-	border: 2px solid #e8e8e8;
+	background: #101010;
+	border: 2px solid #2828bf;
 	border-radius: 4px;
+}
+
+.popup {
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	color: #d0d0d0;
+    background: #455a64;
+    border: 3px solid black;
+    border-radius: 6px;
+    text-align:center;
+    z-index: 2;
+    padding: 10px;
+    padding-bottom: 15px;
 }
 
 .table {
@@ -55,8 +72,6 @@
 }
 
 .naniteupgbtnbuy {
-	width: 190px;
-	height: 90px;
 	font-size:  10px;
 	border: 1px solid;
 	border-radius: 4px;
@@ -64,8 +79,6 @@
 	background: #1F1F1F;
 }
 .naniteupgbtnlocked {
-	width: 190px;
-	height: 90px;
 	font-size:  10px;
 	border: 1px solid;
 	border-radius: 4px;
@@ -73,8 +86,6 @@
 	background: #404040;
 }
 .naniteupgbtnbought {
-	width: 190px;
-	height: 90px;
 	font-size:  10px;
 	border: 1px solid;
 	border-radius: 4px;

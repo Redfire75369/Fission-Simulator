@@ -34,7 +34,7 @@ function buyMaxMeteor() {
 	}
 }
 
-function updateMeteor() {
+function updateUIMeteor() {
 	let type;
 	if (player.meteor.shower < 4) {
 		type = "Meteor Shower";
