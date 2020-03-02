@@ -53,11 +53,11 @@ function getNaniteUpMult(id) {
 				return [8, new Decimal(max(1, (player.meteor.shower - 9) * (log(player.meteor.shower, 8) ** 0.5)))];
 			}
 		case 31:
-			return [8, Decimal.max(1, player.energy.log(25).div(75).pow(2))];
+			return [8, Decimal.max(1, new Decimal(player.energy.log(25)).div(75).pow(2))];
 		case 32:
-			return [8, Decimal.max(1, player.totalEnergy.log(25).div(75).pow(2))];
+			return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(25)).div(75).pow(2))];
 		case 42:
-			return [8, player.nanites.total.pow(8/9)];
+			return [8, player.nanites.total.log(1.1)];
 		default:
 			return [9, new Decimal(1)];
 	}

@@ -73,10 +73,6 @@ const elements = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "
 const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241", "Americium-243", "Curium-247", "Berkelium-247", "Californium-252"];
 
 
-function getType(x) {
-	return (typeof x);
-}
-
 function hardReset() {
 	let tab = player.navigation;
 	player = getDefaultData();
