@@ -5,10 +5,10 @@ function sqrt(x) {
 	return Math.sqrt(x);
 }
 function log(x, y) {
-	return (Math.log(x)/Math.log(y));
+	return Math.log(x)/Math.log(y);
 }
 function round(x, dp) {
-	return (x.toFixed(dp));
+	return x.toFixed(dp);
 }
 function floor(x) {
 	return Math.floor(x);

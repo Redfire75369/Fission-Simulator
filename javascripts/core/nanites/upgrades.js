@@ -29,7 +29,9 @@ function buyNaniteUp(id) {
 				player.eff.multMult = new Decimal(1.25).mul(new Decimal(1.036).pow(effUpg - 2));
 			}
 		} else if (id == 41) {
+			player.nanites.nanites = player.nanites.nanites.sub(naniteUpCost[41]);
 			player.meteor.meteorMult = 2.2;
+			player.nanites.ups[id] += 1;
 		} else {
 			player.nanites.nanites = player.nanites.nanites.sub(naniteUpCost[id]);
 			player.nanites.ups[id] += 1;
@@ -57,7 +59,7 @@ function getNaniteUpMult(id) {
 		case 32:
 			return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(25)).div(75).pow(2))];
 		case 42:
-			return [8, player.nanites.total.log(1.1)];
+			return [8, new Decimal(player.nanites.total.log(1.1))];
 		default:
 			return [9, new Decimal(1)];
 	}

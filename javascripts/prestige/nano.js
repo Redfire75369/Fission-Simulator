@@ -37,8 +37,6 @@ function buyNaniteResearch() {
 }
 
 function updateUINaniteResearch() {
-	console.log("Prestige Amount:" + getNanitesOnPrestige());
-	console.log("Total Nanites:" + player.nanites.total);
 	if (player.nanites.lastNanites.equals(0)) {
 		document.getElementById("nanitecost").innerText = 5;
 	} else {

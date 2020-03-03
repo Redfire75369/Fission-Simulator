@@ -54,15 +54,14 @@ function getReactorPerSecond(tier) {
 }
 
 function updateReactors(tickInterval = 50) {
-	for (let tier = min(7, player.meteor.shower + 3); tier >= 0; tier--) {
+	for (let tier = Math.min(7, player.meteor.shower + 3); tier >= 0; tier--) {
 		player.reactor.amount[tier] = player.reactor.amount[tier].add(getReactorPerSecond(tier).mul(tickInterval / 1000));
-		
 	}
 	
 }
 
 function updateUIReactors() {
-	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
+	for (let tier = 0; tier < Math.min(8, player.meteor.shower + 4); tier++) {
 		document.getElementById(elements[tier] + "Reactor").innerText = notation(player.reactor.amount[tier]) + " (" + player.reactor.bought[tier] + ")";
 		document.getElementById(elements[tier] + "ReactorCost").innerText = notation(player.reactor.cost[tier]);
 		document.getElementById(elements[tier] + "BuySingle").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";

@@ -217,14 +217,23 @@
 				<tbody>
 					<tr>
 						<td class="text" align="left">
-							Total Energy Produced:
+							Total time played:
+						</td>
+						<td class="text" align="right">
+							<span id="statsTimePlayedTotal">0 seconds</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="text" align="left">
+							Total energy generated:
 						</td>
 						<td class="text" align="right">
 							<span id="statsTotalEnergy">80</span>
 						</td>
-						<tr>
+					</tr>
+					<tr>
 						<td class="text" align="left">
-							Total Nanites Researched:
+							Total nanites researched:
 						</td>
 						<td class="text" align="right">
 							<span id="statsTotalNanites">0.00</span>
@@ -334,7 +343,7 @@
 						<td><div>
 							<button onclick="buyNaniteUp(42)" id="naniteup42" style="width:190px; height:90px">
 								All reactors get a boost based on total nanites gained<br/>
-								Formula: x<sup>8/9</sup><br/>
+								Formula: log<sub>1.1</sub>(x)<br/>
 								Currently: <span id="naniteupmult42">1.00</span>× <br/>
 								Cost: 4 Nanites
 							</button>
