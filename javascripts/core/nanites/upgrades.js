@@ -10,18 +10,38 @@ let naniteUpCost = {
 };
 let naniteUpList = [0, 11, 21, 22, 31, 32, 41, 42];
 
+function resetNaniteUps() {
+	player.nanites.ups = getDefaultData().nanites.ups;
+	player.nanites.effUpCost = getDefaultData().nanites.effUpCost;
+	player.eff.multMult = getDefaultData().eff.multMult;
+}
 function canBuyNaniteUp(id) {
-	if (id == 0 & player.nanites.ups[id] < 2) {
-		return player.nanites.nanites.gte(naniteUpCost[id]);
+	if (id == 0) {
+		let boughtAll = true;
+		for (let up = 1; up < player.nanites.ups.length; up++) {
+			if (player.nanites.ups[up] != 1) {
+				boughtAll=false;
+			}
+		}
+		if (boughtAll) {
+			return player.nanites.nanites.gte(player.nanites.effUpCost);
+		} else if (player.nanites.ups[0] < 2) {
+			return player.nanites.nanites.gte(player.nanites.effUpCost);
+		} else {
+			return false;
+		}
 	}
-	return (player.nanites.nanites.gte(naniteUpCost[id]) & player.nanites.ups[id]==0);
+	return (player.nanites.nanites.gte(naniteUpCost[id]));
 }
 
 function buyNaniteUp(id) {
 	if (canBuyNaniteUp(id)) {
 		if (id == 0) {
-			player.nanites.nanites = player.nanites.nanites.sub(naniteUpCost[0]);
+			player.nanites.nanites = player.nanites.nanites.sub(player.nanites.effUpCost);
 			player.nanites.ups[0] += 1;
+			if (player.nanites.ups[0] >= 2 & player.nanites.ups[0]) {
+				player.nanites.effUpCost = player.nanites.effUpCost.add(1);
+			}
 			let effUpg = player.nanites.ups[0];
 			if (effUpg <= 2) {
 				player.eff.multMult = new Decimal(1.1 + 0.02 * effUpg);
@@ -30,7 +50,7 @@ function buyNaniteUp(id) {
 			}
 		} else if (id == 41) {
 			player.nanites.nanites = player.nanites.nanites.sub(naniteUpCost[41]);
-			player.meteor.meteorMult = 2.2;
+			player.meteor.meteorMult = new Decimal(2.2);
 			player.nanites.ups[id] += 1;
 		} else {
 			player.nanites.nanites = player.nanites.nanites.sub(naniteUpCost[id]);
@@ -80,9 +100,9 @@ function getTotalNaniteUpMult(tier) {
 function updateUINaniteUps() {
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
 	if (player.nanites.ups[11] == 0) {
-		document.getElementById("naniteupformula11").innerHTML = "sqrt(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1)";
+		document.getElementById("naniteupformula11").innerHTML = "√(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1)";
 	} else {
-		document.getElementById("naniteupformula11").innerHTML = "sqrt(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1) * (m / 5)";
+		document.getElementById("naniteupformula11").innerHTML = "√(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1) * (m / 5)";
 	}
 	if (player.meteor.shower <= 13) {
 		document.getElementById("naniteupformula22").innerHTML = "(log<sub>10</sub>(x))<sup>x</sup>"

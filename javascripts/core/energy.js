@@ -16,7 +16,7 @@ function getEnergyPerSecond() {
 	return player.reactor.amount[0].mul(getTotalReactorMult(0)).mul(player.eff.mult).mul(((3 ** x) - 1)/2);
 }
 
-function updateEnergy(tickInterval = 50) {
+function simulateEnergy(tickInterval = 50) {
 	player.energy = player.energy.add(getEnergyPerSecond().mul(tickInterval / 1000));
 	player.totalEnergy = player.totalEnergy.plus(getEnergyPerSecond().mul(tickInterval / 1000));
 }

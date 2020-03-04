@@ -33,19 +33,16 @@ function notation(x) {
 }
 
 function formatTime(time) {
-	if (time <= 100) return (time/10).toFixed(3) + " seconds"
-	time = Decimal.floor(time / 10)
-	
-	if (time >= 31536000) {
-		return Decimal.floor(time / 31536000) + " years, " + Decimal.floor((time % 31536000) / 86400) + " days, " + Decimal.floor((time % 86400) / 3600) + " hours, " + Decimal.floor((time % 3600) / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
-	} else if (time >= 86400) {
-		return Decimal.floor(time / 86400) + " days, " + Decimal.floor((time % 86400) / 3600) + " hours, " + Decimal.floor((time % 3600) / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
-	} else if (time >= 3600) {
-		return Decimal.floor(time / 3600) + " hours, " + Decimal.floor((time % 3600) / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
-	} else if (time >= 60) {
-		return Decimal.floor(time / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
+	if (time >= 31536000000) {
+		return floor(time / 31536000000) + " years, " + floor((time % 31536000000) / 86400000) + " days, " + floor((time % 86400000) / 3600000) + " hours, " + floor((time % 3600000) / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
+	} else if (time >= 86400000) {
+		return floor(time / 86400000) + " days, " + floor((time % 86400000) / 3600000) + " hours, " + floor((time % 3600000) / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
+	} else if (time >= 3600000) {
+		return floor(time / 3600000) + " hours, " + floor((time % 3600000) / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
+	} else if (time >= 60000) {
+		return floor(time / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
 	} else {
-		return Decimal.floor(time % 60) + " seconds"
+		return round(time / 1000, 3) + " seconds"
 	} 
 }
 formatTime();

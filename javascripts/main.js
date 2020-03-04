@@ -10,7 +10,8 @@ function getDefaultData() {
 			notationNo: 0
 		},
 		navigation: {
-			naviTab: "production"
+			naviTab: "production",
+			production: "reactors"
 		},
 		
 		unlocked: {
@@ -48,6 +49,7 @@ function getDefaultData() {
 		nanites: {
 			nanites: new Decimal(0),
 			total: new Decimal(0),
+			lastResearch: new Decimal(0),
 			ups: {
 				0: 0,
 				11: 0,
@@ -57,8 +59,8 @@ function getDefaultData() {
 				32: 0,
 				41: 0,
 				42: 0
-			}, 
-			lastNanites: new Decimal(0)
+			},
+			effUpCost: new Decimal(1),
 		},
 		
 		meltdown: {
@@ -74,9 +76,8 @@ const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241"
 
 
 function hardReset() {
-	let tab = player.navigation;
 	player = getDefaultData();
-	player.navigation.naviTab = tab.naviTab;
+	showNaviTab("production");
 	localStorage.setItem("fissionSimSave", JSON.stringify(player));
 }
 
@@ -90,8 +91,8 @@ function updateUI() {
 	updateUIStats();
 }
 function updateGame(tickInterval) {
-	updateReactors(tickInterval);
-	updateEnergy(tickInterval);
+	simulateReactors(tickInterval);
+	simulateEnergy(tickInterval);
 }
 
 var player = getDefaultData();
@@ -105,15 +106,17 @@ var updateGameLoop = setInterval(function() {
 	if (Date.now() > player.lastUpdate + 1000) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
-	updateGame(50);
+	updateGame(25);
 	player.lastUpdate = Date.now();
-}, 50);
+}, 25);
 
 var updateUILoop = setInterval(function() {
 	updateUI();
 }, 50);
 
 var timerLoop = setInterval(function() {
-	player.time += 0.05;
-	player.meltdown.time += 0.05;
+	player.time += 50;
+	player.time = floor(player.time);
+	player.meltdown.time += 50;
+	player.meltdown.time = floor(player.meltdown.time);
 }, 50);

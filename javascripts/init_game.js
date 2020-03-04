@@ -12,7 +12,10 @@ function simulateTime(seconds, actual) {
 	}
 	let offlinePopup = "While you were away, "
 	if (player.energy.gt(start.energy)) {
-		offlinePopup += "your energy increased by " + notation(player.energy.log(10) - start.energy.log(10)) + " Orders of Magnitude.";
+		offlinePopup += "your energy increased by " + notation(player.energy.log10() - start.energy.log10()) + " Orders of Magnitude.";
+	}
+	if (offlinePopup == "While you were away, ") {
+		offlinePopup += "nothing happened.";
 	}
 	document.getElementById("offlinePopup").style.display = "block";
     document.getElementById("offlineProgress").innerHTML = offlinePopup;
@@ -29,7 +32,7 @@ function init_game() {
 	document.getElementById("statistics").style.display = "none";
 	document.getElementById("options").style.display = "none";
 	document.getElementById("nanite").style.display = "none";
-	document.getElementById(player.navigation.naviTab).style.display = "inline-block";
+	showNaviTab(player.navigation.naviTab);
 	targetedNotationChange(player.options.notation);
 	simulateTime((Date.now() - player.lastUpdate) / 1000);
 }
