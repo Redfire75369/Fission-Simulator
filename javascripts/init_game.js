@@ -28,7 +28,6 @@ function closeOfflineProgress() {
 }
 
 function init_game() {
-	localStorage.removeItem("fissionSimSave1");
 	var player = getDefaultData();
 	loadSave();
 	document.getElementById("production").style.display = "none";
@@ -37,7 +36,9 @@ function init_game() {
 	document.getElementById("nanite").style.display = "none";
 	showNaviTab(player.navigation.naviTab);
 	targetedNotationChange(player.options.notation);
-	simulateTime((Date.now() - player.lastUpdate) / 1000);
+	if (Date.now() > player.lastUpdate + 1000) {
+		simulateTime((Date.now() - player.lastUpdate) / 1000);
+	}
 }
 
 

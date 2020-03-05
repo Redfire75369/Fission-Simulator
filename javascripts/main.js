@@ -1,8 +1,9 @@
 function getDefaultData() {
 	return {
 		version: {
-			alpha: 0, 
-			beta: 10
+			x: 0,
+			alpha: 1,
+			beta: 1
 		},
 		
 		options: {
@@ -104,7 +105,7 @@ var saveGameLoop = setInterval(function() {
 }, 15000);
 
 var updateGameLoop = setInterval(function() {
-	if (Date.now() > player.lastUpdate + 1000 & player.time > 2500) {
+	if (Date.now() > player.lastUpdate + 1000) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
 	updateGame(25);
