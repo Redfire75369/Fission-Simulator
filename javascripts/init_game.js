@@ -10,6 +10,8 @@ function simulateTime(seconds, actual) {
 	for (let complete = 0; complete < ticks; complete++) {
 		updateGame(tickInterval)
 	}
+	player.time += seconds * 1000;
+	player.meltdown.time += seconds * 1000;
 	let offlinePopup = "While you were away, "
 	if (player.energy.gt(start.energy)) {
 		offlinePopup += "your energy increased by " + notation(player.energy.log10() - start.energy.log10()) + " Orders of Magnitude.";
@@ -26,6 +28,7 @@ function closeOfflineProgress() {
 }
 
 function init_game() {
+	localStorage.removeItem("fissionSimSave1");
 	var player = getDefaultData();
 	loadSave();
 	document.getElementById("production").style.display = "none";

@@ -68,6 +68,7 @@ function getDefaultData() {
 		},
 		
 		time: 0,
+		timeOnline: 0,
 		lastUpdate: Date.now()
 	}
 }
@@ -103,7 +104,7 @@ var saveGameLoop = setInterval(function() {
 }, 15000);
 
 var updateGameLoop = setInterval(function() {
-	if (Date.now() > player.lastUpdate + 1000) {
+	if (Date.now() > player.lastUpdate + 1000 & player.time > 2500) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
 	updateGame(25);
@@ -117,6 +118,8 @@ var updateUILoop = setInterval(function() {
 var timerLoop = setInterval(function() {
 	player.time += 50;
 	player.time = floor(player.time);
+	player.timeOnline += 50;
+	player.timeOnline = floor(player.timeOnline);
 	player.meltdown.time += 50;
 	player.meltdown.time = floor(player.meltdown.time);
 }, 50);
