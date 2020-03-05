@@ -1,11 +1,12 @@
 const key = Mousetrap;
 
-key.bind("m", function(){
-	for (let i = 0; i < 8; i++) {
-		buyMaxReactor(i);
-	}
-	buyMaxEff();
-});
+key.bind("m", buyMaxAllReactorEff);
+key.bind("e", buyMaxEff);
+for (let tier = 0; tier < 8; tier++) {
+	key.bind((tier+1).toString(), function() {
+		buyMaxReactor(tier);
+	});
+}
 
 key.bind("s", function(){
 	buyMeteor();

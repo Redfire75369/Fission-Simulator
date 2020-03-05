@@ -1,5 +1,6 @@
 const not = ADNotations;
 const not2 = ADCommunityNotations;
+
 const scientific = new not.ScientificNotation();
 const logarithmic = new not.LogarithmNotation();
 const brackets = new not.BracketsNotation();
@@ -31,4 +32,16 @@ function notation(x) {
 	}
 }
 
-
+function formatTime(time) {
+	if (time >= 31536000000) {
+		return floor(time / 31536000000) + " years, " + floor((time % 31536000000) / 86400000) + " days, " + floor((time % 86400000) / 3600000) + " hours, " + floor((time % 3600000) / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
+	} else if (time >= 86400000) {
+		return floor(time / 86400000) + " days, " + floor((time % 86400000) / 3600000) + " hours, " + floor((time % 3600000) / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
+	} else if (time >= 3600000) {
+		return floor(time / 3600000) + " hours, " + floor((time % 3600000) / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
+	} else if (time >= 60000) {
+		return floor(time / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
+	} else {
+		return round(time / 1000, 3) + " seconds"
+	} 
+}

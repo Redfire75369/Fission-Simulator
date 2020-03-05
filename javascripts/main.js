@@ -1,17 +1,29 @@
 function getDefaultData() {
 	return {
 		version: {
-			alpha: 0, 
-			beta: 9
+			x: 0,
+			alpha: 1,
+			beta: 1
 		},
+
 		options: {
 			notation: "Scientific",
 			notationNo: 0
 		},
 		navigation: {
-			naviTab: "production"
+			naviTab: "production",
+			production: "reactors"
 		},
+		
+		unlocked: {
+				naniteUps: 0,
+				meltdown: 0,
+				decayHasten: 0
+		},
+		
 		energy: new Decimal(80),
+		totalEnergy: new Decimal(80),
+		
 		eff: {
 			bought: 0,
 			cost: new Decimal("1e+3"),
@@ -27,70 +39,88 @@ function getDefaultData() {
 			bought: [0, 0, 0, 0, 0, 0, 0, 0],
 			mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
 			costMultMult: new Decimal(10),
-			multMult: new Decimal(2),
+			multMult: new Decimal(2)
 		},
+		
 		meteor: {
 			shower: 0,
-			meteorMult: new Decimal(2),
-			time: 0
+			meteorMult: new Decimal(2)
 		},
+		
 		nanites: {
 			nanites: new Decimal(0),
-			upgrades: [0, false, false],
-			lastNanites: new Decimal(0)
+			total: new Decimal(0),
+			lastResearch: new Decimal(0),
+			ups: {
+				0: 0,
+				11: 0,
+				21: 0,
+				22: 0,
+				31: 0,
+				32: 0,
+				41: 0,
+				42: 0
+			},
+			effUpCost: new Decimal(1),
 		},
+		
+		meltdown: {
+			time: 0
+		},
+		
 		time: 0,
+		timeOnline: 0,
 		lastUpdate: Date.now()
 	}
 }
 const elements = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
 const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241", "Americium-243", "Curium-247", "Berkelium-247", "Californium-252"];
 
-
-function getType(x) {
-	return (typeof x);
-}
-
 function hardReset() {
 	let tab = player.navigation;
 	player = getDefaultData();
-	player.navigation.naviTab = tab.naviTab;
+	showNaviTab("production");
 	localStorage.setItem("fissionSimSave", JSON.stringify(player));
 }
 
-function showNaviTab(tab) {
-	document.getElementById(player.navigation.naviTab).style.display = "none";
-	document.getElementById(tab).style.display = "inline-block";
-	player.navigation.naviTab = tab;
+function updateUI() {
+	updateUINaniteResearch();
+	updateUINaniteUps();
+	updateUIMeteor();
+	updateUIEff();
+	updateUIReactors();
+	updateUIEnergy();
+	updateUIStats();
+}
+function updateGame(tickInterval) {
+	simulateReactors(tickInterval);
+	simulateEnergy(tickInterval);
 }
 
-function update() {
-	updateNaniteResearch();
-	updateNaniteUpgrades();
-	updateMeteor();
-	updateReactors();
-	updateEff();
-	updateEnergy();
-}
-
-/*Initialise Game*/
 var player = getDefaultData();
-init_game();
 
 /*Game Loops*/
-var saveGameLoop = window.setInterval(function() {
+var saveGameLoop = setInterval(function() {
 	saveGame();
 }, 15000);
 
-var mainGameLoop = window.setInterval(function() {
-	if (Date.now() > player.lastUpdate) {
-		simulateTime(Date.now() - player.lastUpdate);
+var updateGameLoop = setInterval(function() {
+	if (Date.now() > player.lastUpdate + 1000) {
+		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
-	update();
+	updateGame(25);
 	player.lastUpdate = Date.now();
+}, 25);
+
+var updateUILoop = setInterval(function() {
+	updateUI();
 }, 50);
 
-var timerLoop = window.setInterval(function() {
-	player.time += 0.05;
-	player.meteor.time += 0.05;
+var timerLoop = setInterval(function() {
+	player.time += 50;
+	player.time = floor(player.time);
+	player.timeOnline += 50;
+	player.timeOnline = floor(player.timeOnline);
+	player.meltdown.time += 50;
+	player.meltdown.time = floor(player.meltdown.time);
 }, 50);

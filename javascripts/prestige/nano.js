@@ -1,23 +1,34 @@
 function resetNaniteResearch() {
-	player.nanites.research = getDefaultData().nanites.research;
 	player.nanites.nanites = getDefaultData().nanites.nanites;
+	player.nanites.total = getDefaultData().nanites.total;
+	player.nanites.lastResearch = getDefaultData().nanites.lastResearch;
 }
 
 function canBuyNaniteResearch() {
 	if (player.reactor.bought[7]  < 5) {
 		return false;
 	} else {
-		return player.reactor.bought[7] >= player.nanites.lastNanites;
+		return (getNanitesOnPrestige().gt(0));
 	}
 }
 
 function getNanitesOnPrestige() {
-	return player.reactor.amount[7].pow(2 / 3).multiply(log(player.reactor.bought[7] / 10 + 1, 5)).multiply(sqrt(2)).minus(player.nanites.lastNanites);
+	let ret = player.reactor.amount[7].pow(2 / 3).mul(log(player.reactor.bought[7] / 10 + 1, 5)).mul(sqrt(2));
+	if (player.nanites.ups[11] == 1) {
+		ret = ret.mul(player.meteor.shower / 5);
+	}
+	ret = ret.sub(player.nanites.total);
+	if (ret.gt(0)) {
+		return ret;
+	} else {
+		return new Decimal(0);
+	}
 }
 
 function buyNaniteResearch() {
 	if (canBuyNaniteResearch()) {
-		player.nanites.nanites = player.nanites.nanites.plus(getNanitesOnPrestige());
+		player.nanites.nanites = player.nanites.nanites.add(getNanitesOnPrestige());
+		player.nanites.total = player.nanites.total.add(getNanitesOnPrestige());
 		player.nanites.lastNanites = player.reactor.amount[7];
 		resetEnergy();
 		resetEff();
@@ -26,16 +37,12 @@ function buyNaniteResearch() {
 	}
 }
 
-function updateNaniteResearch() {
-	if (player.nanites.lastNanites.equals(0)) {
+function updateUINaniteResearch() {
+	if (player.nanites.lastResearch.equals(0)) {
 		document.getElementById("nanitecost").innerText = 5;
 	} else {
-		document.getElementById("nanitecost").innerText = player.nanites.lastNanites.plus(1);
+		document.getElementById("nanitecost").innerText = player.nanites.lastResearch.add(1);
 	}
-	if (getNanitesOnPrestige().lt(0)) {
-		document.getElementById("nanitecost").innerText = 0;
-	} else {
-		document.getElementById("naniteonprestige").innerText = notation(getNanitesOnPrestige());
-	} 
+	document.getElementById("naniteonprestige").innerText = notation(getNanitesOnPrestige());
 	document.getElementById("naniteresearch").className = canBuyNaniteResearch() ? "btnbuy" : "btnlocked";
 }

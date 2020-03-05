@@ -1,295 +1,357 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Fission Simulator</title>
-    <link rel="stylesheet" href="style.css" />
-    
-	<script defer src="javascripts/libs/break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/libs/ad-notations.min.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/libs/ad-notations.community.min.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/libs/mousetrap.min.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/libs/loading.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/libs/lodash.min.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/core/energy.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/core/reactors.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/prestige/meteor.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/core/nanites/upgrades.js" charset ="utf-8" type="text/javascript"></script>
-	<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
-	
-  </head>
-  <body bgcolor="1c1c1c" align="center">
-  	
-	<div align="center">
-		<p class="energy">You have <span id="energy">80.00</span> Energy.</p>
-    	<p class="energypersecond">You are gaining <span id="energyPerSecond">0.00</span> Energy per second.</p>
-	</div>
-	
-    <tr>
-		<div align="center">
-			<p class="text">Increase efficiency of all mines by <span id="effMult">10.00</span>%</p>
-			<button onclick="buyEff()" id="effBuySingle">Cost: <span id="effCost">1.00e3</span></button>
-			<button onclick="buyMaxEff()" id="effBuyMax">Buy Max</button>
-			<p class="text">Efficiency: <span id="eff">1.00</span></p>
-		</div>
-	</tr>
-	
-	<div id="navibtn" align="center">
-		<table align="center">
-			<tr>
-				<td>
-					<button onclick="showNaviTab('production')" id="prodbtn" class="navibtn">Production</button>
-					<button onclick="showNaviTab('nanite')" id="nanitebtn" class="navibtn">Nanites</button>
-					<button onclick="showNaviTab('options')" id="optionsbtn" class="navibtn">Options</button>
-				</td>
-			</tr>
-		</table>
-	</div>
-       
-    <div id="production">
-		<table class="table" align="center" id="productionTabButtons">
-			<tr>
-				<td>
-				</td>
-			</tr>
-		</table>
+	<head>
+	    <meta charset="utf-8">
+	    <title>Fission Simulator</title>
+	    <link rel="stylesheet" href="style.css"/>
+	    
+		<script defer src="javascripts/libs/break_infinity.min.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/ad-notations.min.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/ad-notations.community.min.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/mousetrap.min.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/loading.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/lodash.min.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/navigation.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/energy.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/reactors.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/prestige/meteor.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/nanites/upgrades.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 		
-		<div id="mines" class="subtab">
-		    <table class="table" align="center">
-			    <tbody>
-			    	<tr id="row1">
-						<td class="text" align="left">
-							Thorium-232 Reactor ×<span id="ThoriumReactorMult">1</span>
-						</td>
-						<td class="text" align="center">
-							<span id="ThoriumReactor">0.00 (0)</span>
+	</head>
+	<body bgcolor="1c1c1c" align="center">
+		
+	 	<div class="popup" id="offlinePopup" style="width: 450px; height: 200px;">
+			<div id="offlineProgress" style="height: 150px"></div>
+			<button class="btnbuy" style="font-size: 15px" onclick="closeOfflineProgress()" style="display: inline">Close</button>
+		</div>
+		
+		<div align="center">
+			<p class="energy">You have <span id="energy">80.00</span> Energy.</p>
+	    	<p class="energypersecond">You are gaining <span id="energyPerSecond">0.00</span> Energy per second.</p>
+		</div>
+		
+	    <tr>
+			<div align="center">
+				<p class="text">Increase efficiency of all mines by <span id="effMult">10.00</span>%</p>
+				<button onclick="buyEff()" id="effBuySingle">Cost: <span id="effCost">1.00e3</span></button>
+				<button onclick="buyMaxEff()" id="effBuyMax">Buy Max</button>
+				<p class="text">Efficiency: <span id="eff">1.00</span></p>
+			</div>
+		</tr>
+		
+		<div id="navibtn" align="center">
+			<table align="center">
+				<tr>
+					<td>
+						<button onclick="showNaviTab('production')" id="prodbtn" class="navibtn">Production</button>
+						<button onclick="showNaviTab('statistics')" id="statsbtn" class="navibtn">Statistics</button>
+						<button onclick="showNaviTab('options')" id="optionsbtn" class="navibtn">Options</button>
+						<button onclick="showNaviTab('nanite')" id="nanitebtn" class="navibtn" style="color:#4848ef">Nanites</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	       
+	    <div id="production">
+			<table class="table" align="center" id="productionTabButtons">
+				<tr>
+					<td>
+					</td>
+				</tr>
+			</table>
+			
+			<div id="mines" class="subtab">
+				<div>
+					<button onclick="buyMaxAllReactorEff()" align="center" class="btnbuy" style="width: 120px; height: 25px">Max All (M)</button>
+				</div>
+			    <table class="table" align="center">
+				    <tbody>
+				    	<tr id="row1">
+							<td class="text" align="left">
+								Thorium-232 Reactor ×<span id="ThoriumReactorMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="ThoriumReactor">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyReactor(0)" id="ThoriumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="ThoriumReactorCost">10.00</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxReactor(0)" id="ThoriumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="row2">
+							<td class="text" align="left">
+								Uranium-235 Reactor ×<span id="UraniumReactorMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="UraniumReactor">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyReactor(1)" id="UraniumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="UraniumReactorCost">100.00</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxReactor(1)" id="UraniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="row3">
+							<td class="text" align="left">
+								Neptunium-237 Reactor ×<span id="NeptuniumReactorMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="NeptuniumReactor">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyReactor(2)" id="NeptuniumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="NeptuniumReactorCost">1.00e4 </span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxReactor(2)" id="NeptuniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="row4">
+							<td class="text" align="left">
+								Plutonium-241 Reactor ×<span id="PlutoniumReactorMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="PlutoniumReactor">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyReactor(3)" id="PlutoniumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="PlutoniumReactorCost">1.00e6</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxReactor(3)" id="PlutoniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="row5">
+							<td class="text" align="left">
+								Americium-243 Reactor ×<span id="AmericiumReactorMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="AmericiumReactor">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyReactor(4)" id="AmericiumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="AmericiumReactorCost">1.00e9</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxReactor(4)" id="AmericiumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="row6">
+							<td class="text" align="left">
+								Curium-247 Reactor ×<span id="CuriumReactorMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="CuriumReactor">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyReactor(5)" id="CuriumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="CuriumReactorCost">1.00e13</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxReactor(5)" id="CuriumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="row7">
+							<td class="text" align="left">
+								Berkelium-247 Reactor ×<span id="BerkeliumReactorMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="BerkeliumReactor">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyReactor(6)" id="BerkeliumBuySingle" style="width: 120px; height: 25px">Cost: <span id="BerkeliumReactorCost">1.00e18</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxReactor(6)" id="BerkeliumBuyMax" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="row8">
+							<td class="text" align="left">
+								Californium-252 Reactor ×<span id="CaliforniumReactorMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="CaliforniumReactor">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyReactor(7)" id="CaliforniumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="CaliforniumReactorCost">1.00e24</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxReactor(7)" id="CaliforniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<table class="table" align="center">
+					<tr>
+						<td id="meteorCost" class="text" align="left" width="75%">
+							<span id="meteorscaling">Meteor Shower</span> (<span id="meteoramt">0</span>): Requires <span>2 Plutonium-241</span> Reactors
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(0)" id="ThoriumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="ThoriumReactorCost">10.00</span></button>
-						</td>
-						<td align="right">
-							<button onclick="buyMaxReactor(0)" id="ThoriumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="buyMaxMeteor()" id="meteorshower" style="width: 200px; height: 25px">Reset the game for a new Mine</button>
 						</td>
 					</tr>
-					<tr id="row2">
-						<td class="text" align="left">
-							Uranium-235 Reactor ×<span id="UraniumReactorMult">1</span>
-						</td>
-						<td class="text" align="center">
-							<span id="UraniumReactor">0.00 (0)</span>
+					<tr>
+						<td class="text" align="left" width="75%">
+							<span id="nanitescaling">Nanite Research</span>: Requires <span id="nanitecost">5</span> Californium-252 Reactors
 						</td>
 						<td align="right">
-							<button onclick="buyReactor(1)" id="UraniumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="UraniumReactorCost">100.00</span></button>
-						</td>
-						<td align="right">
-							<button onclick="buyMaxReactor(1)" id="UraniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="buyNaniteResearch()" id="naniteresearch" style="width: 200px; height: 35px">Reset the game for <span id="naniteonprestige">1</span> Nanites </button>
 						</td>
 					</tr>
-					<tr id="row3">
+				</table>
+			</div>
+		</div>
+		
+		<div id="statistics" class="tab">
+			<table>
+				<tbody>
+					<tr>
 						<td class="text" align="left">
-							Neptunium-237 Reactor ×<span id="NeptuniumReactorMult">1</span>
+							Total time played:
 						</td>
-						<td class="text" align="center">
-							<span id="NeptuniumReactor">0.00 (0)</span>
-						</td>
-						<td align="right">
-							<button onclick="buyReactor(2)" id="NeptuniumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="NeptuniumReactorCost">1.00e4 </span></button>
-						</td>
-						<td align="right">
-							<button onclick="buyMaxReactor(2)" id="NeptuniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td class="text" align="right">
+							<span id="statsTimePlayedTotal">0 seconds</span>
 						</td>
 					</tr>
-					<tr id="row4">
+					<tr>
 						<td class="text" align="left">
-							Plutonium-241 Reactor ×<span id="PlutoniumReactorMult">1</span>
+							Total energy generated:
 						</td>
-						<td class="text" align="center">
-							<span id="PlutoniumReactor">0.00 (0)</span>
-						</td>
-						<td align="right">
-							<button onclick="buyReactor(3)" id="PlutoniumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="PlutoniumReactorCost">1.00e6</span></button>
-						</td>
-						<td align="right">
-							<button onclick="buyMaxReactor(3)" id="PlutoniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td class="text" align="right">
+							<span id="statsTotalEnergy">80</span>
 						</td>
 					</tr>
-					<tr id="row5">
+					<tr>
 						<td class="text" align="left">
-							Americium-243 Reactor ×<span id="AmericiumReactorMult">1</span>
+							Total nanites researched:
 						</td>
-						<td class="text" align="center">
-							<span id="AmericiumReactor">0.00 (0)</span>
-						</td>
-						<td align="right">
-							<button onclick="buyReactor(4)" id="AmericiumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="AmericiumReactorCost">1.00e9</span></button>
-						</td>
-						<td align="right">
-							<button onclick="buyMaxReactor(4)" id="AmericiumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td class="text" align="right">
+							<span id="statsTotalNanites">0.00</span>
 						</td>
 					</tr>
-					<tr id="row6">
-						<td class="text" align="left">
-							Curium-247 Reactor ×<span id="CuriumReactorMult">1</span>
-						</td>
-						<td class="text" align="center">
-							<span id="CuriumReactor">0.00 (0)</span>
-						</td>
-						<td align="right">
-							<button onclick="buyReactor(5)" id="CuriumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="CuriumReactorCost">1.00e13</span></button>
-						</td>
-						<td align="right">
-							<button onclick="buyMaxReactor(5)" id="CuriumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
-						</td>
+			</table>
+		</div>
+		
+		<div id="options" class="tab">
+			<table align="center">
+				<tbody>
+					<tr>
+						<td><div>
+								<button onclick="notationChange()" id="notation" class="optionsbtn" align="right"> Notation: Scientific </button>
+						</div></td>
+						<td><div>
+								<button id="theme" class="optionsbtn" align="right"> Theme: Default (WIP) </button>
+						</div></td>
 					</tr>
-					<tr id="row7">
-						<td class="text" align="left">
-							Berkelium-247 Reactor ×<span id="BerkeliumReactorMult">1</span>
-						</td>
-						<td class="text" align="center">
-							<span id="BerkeliumReactor">0.00 (0)</span>
-						</td>
-						<td align="right">
-							<button onclick="buyReactor(6)" id="BerkeliumBuySingle" style="width: 120px; height: 25px">Cost: <span id="BerkeliumReactorCost">1.00e18</span></button>
-						</td>
-						<td align="right">
-							<button onclick="buyMaxReactor(6)" id="BerkeliumBuyMax" style="width: 120px; height: 25px">Buy Max</button>
-						</td>
+					<tr>
+						<td><div>
+								<button onclick="saveGame()" id="save" class="optionsbtn" align="center"> Save </button>
+						</div></td>
+						<td><div>
+								<button onclick="loadSave(getSaveString())" id="load" class="optionsbtn" align="center"> Load </button>
+						</div></td>
 					</tr>
-					<tr id="row8">
-						<td class="text" align="left">
-							Californium-252 Reactor ×<span id="CaliforniumReactorMult">1</span>
-						</td>
-						<td class="text" align="center">
-							<span id="CaliforniumReactor">0.00 (0)</span>
-						</td>
-						<td align="right">
-							<button onclick="buyReactor(7)" id="CaliforniumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="CaliforniumReactorCost">1.00e24</span></button>
-						</td>
-						<td align="right">
-							<button onclick="buyMaxReactor(7)" id="CaliforniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
-						</td>
+					<tr>
+						<td><div>
+								<button onclick="importSave()" id="import" class="optionsbtn" align="center"> Import Save </button>
+						</div></td>
+						<td><div>
+								<button onclick="exportSave()" id="export" class="optionsbtn" align="center"> Export Save </button>
+						</div></td>
+					</tr>
+					<tr>
+						<td><div>
+								<button onclick="hardReset()" id="hardreset" class="optionsbtn" align="center"> Hard Reset the Game </button>
+						</div></td>
+						<td><div>
+								<button onclick="" class="optionsbtn" align="center"> Stuff </button>
+						</div></td>
 					</tr>
 				</tbody>
 			</table>
-			
-			<table class="table" align="center">
-				<tr>
-					<td id="meteorCost" class="text" align="left" width="75%">
-						<span id="meteorscaling">Meteor Shower</span> (<span id="meteoramt">0</span>): Requires <span>2 Plutonium-241</span> Reactors
-					</td>
-					<td align="right">
-						<button onclick="buyMaxMeteor()" id="meteorshower" style="width: 200px; height: 25px">Reset the game for a new Mine</button>
-					</td>
-				</tr>
-				<tr>
-					<td class="text" align="left" width="75%">
-						<span id="nanitescaling">Nanite Research</span>: Requires <span id="nanitecost">5</span> Californium-252 Reactors
-					</td>
-					<td align="right">
-						<button onclick="buyNaniteResearch()" id="naniteresearch" style="width: 200px; height: 35px">Reset the game for <span id="naniteonprestige">1</span> Nanites </button>
-					</td>
-				</tr>
+				
+			</div>
+		</div>
+		<div id="nanite" class="tab">
+			<div class="text">
+				You have <span id="nanites">0</span> Nanites.
+			</div>
+			<button onclick="buyNaniteUp(0)" id="naniteup0"style="width:190px; height:90px">Spend 1 Nanite to improve Efficiency Multiplier.</button></br>
+			<table align="center">
+				<tbody>
+					<tr><div>
+						<button onclick="buyNaniteUp(11)" id="naniteup11" style="width:285px; height:90px">
+							Number of Tectonic Initiations boosts nanite gain<br/>
+							Formula: <span id="naniteupformula11">√(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1)</span><br/>
+							Currently: <span id="naniteupmult11">1.00</span>× <br/>
+							Cost: 2 Nanites
+						</button>
+					</div></tr>
+					<tr>
+						<td><div>
+							<button onclick="buyNaniteUp(21)" id="naniteup21" style="width:190px; height:90px">
+								All reactors get a boost based on time played<br/>
+								Formula: log₁₆(x) - 1<br/>
+								Currently: <span id="naniteupmult21">1.00</span>× <br/>
+								Cost: 1 Nanite
+							</button>
+						</div></td>
+						<td><div>
+							<button onclick="buyNaniteUp(22)" id="naniteup22" style="width:190px; height:90px" >
+								All reactors get a boost based on number of meteor showers<br/>
+								Formula: <span id="naniteupformula22"></span><br/>
+								Currently: <span id="naniteupmult22">1.00</span>× <br/>
+								Cost: 2 Nanites
+							</button>
+						</div></td>
+					</tr>
+					<tr>
+						<td><div>
+							<button onclick="buyNaniteUp(31)" id="naniteup31" style="width:190px; height:90px">
+								All reactors get a boost based on current energy<br/>
+								Formula: (log<sub>25</sub>(x)/75)<sup>2</sup><br/>
+								Currently: <span id="naniteupmult31">1.00</span>× <br/>
+								Cost: 1 Nanite
+							</button>
+						</div></td>
+						<td><div>
+							<button onclick="buyNaniteUp(32)" id="naniteup32" style="width:190px; height:90px" >
+								All reactors get a boost based on number of meteor showers<br/>
+								Formula: (log<sub>25</sub>(x)/50)<sup>2</sup><br/>
+								Currently: <span id="naniteupmult32">1.00</span>× <br/>
+								Cost: 2 Nanites
+							</button>
+						</div></td>
+					</tr>
+					<tr>
+						<td><div>
+							<button onclick="buyNaniteUp(41)" id="naniteup41" style="width:190px; height:90px">
+								Increase multiplier from Tectonic Initiations from 2→2.2×<br/>
+								Cost: 3 Nanites
+							</button>
+						</div></td>
+						<td><div>
+							<button onclick="buyNaniteUp(42)" id="naniteup42" style="width:190px; height:90px">
+								All reactors get a boost based on total nanites gained<br/>
+								Formula: log<sub>1.1</sub>(x)<br/>
+								Currently: <span id="naniteupmult42">1.00</span>× <br/>
+								Cost: 4 Nanites
+							</button>
+						</div></td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
-	</div>
-	
-	<div id="nanite" class="tab">
-		<div class="text">
-			You have <span id="nanites">0</span> Nanites.
-		</div>
-		<button onclick="buyNaniteUpgrade(0)" id="naniteupg0">Spend 1 Nanite to improve Efficiency Multiplier.</button></br>
-		<table align="center">
-			<tbody>
-				<tr>
-					<td>
-						<div>
-							<button onclick="buyNaniteUpgrade(1)" id="naniteupg1">
-								All Mines get a boost based on time played<br/>
-								Formula: 2 * log_256(x) - 1<br/>
-								Currently: <span id="naniteupgmult1">1.00</span>× <br/>
-								Cost: 2 Nanites
-							</button>
-						</div>
-					</td>
-					<td>
-						<div>
-							<button onclick="buyNaniteUpgrade(2)" id="naniteupg2">
-								All Mines get a boost based on number of meteor showers<br/>
-								Formula: x / 4 + 1<br/>
-								Currently: <span id="naniteupgmult2">1.00</span>× <br/>
-								Cost: 2 Nanites
-							</button>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
-	<div id="options" class="tab">
-		<table align="center">
-			<tbody>
-				<tr>
-					<td>
-						<div>
-							<button onclick="notationChange()" id="notation" class="optionsbtn" align="right"> Notation: Scientific </button>
-						</div>
-					</td>
-					<td>
-						<div>
-							<button id="theme" class="optionsbtn" align="right"> Theme: Default (WIP) </button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<button onclick="saveGame()" id="save" class="optionsbtn" align="center"> Save </button>
-						</div>
-					</td>
-					<td>
-						<div>
-							<button onclick="loadSave(getSaveString())" id="load" class="optionsbtn" align="center"> Load </button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<button onclick="importSave()" id="import" class="optionsbtn" align="center"> Import Save </button>
-						</div>
-					</td>
-					<td>
-						<div>
-							<button onclick="exportSave()" id="export" class="optionsbtn" align="center"> Export Save </button>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<button onclick="hardReset()" id="hardreset" class="optionsbtn" align="center"> Hard Reset the Game </button>
-						</div>
-					</td>
-					<td>
-						<div>
-							<button onclick="setEnergy('1e+308')" class="optionsbtn" align="center"> Stuff </button>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-			
-		</div>
-	</div>
-	
-  </body>
+	</body>
+>>>>>>> Alpha
 </html>
