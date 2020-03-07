@@ -72,23 +72,33 @@
 }
 
 .naniteupgbtnbuy {
-	font-size:  10px;
+	font-size: 10px;
 	border: 1px solid;
 	border-radius: 4px;
 	color: #d0d0d0;
 	background: #1F1F1F;
 }
 .naniteupgbtnlocked {
-	font-size:  10px;
+	font-size: 10px;
 	border: 1px solid;
 	border-radius: 4px;
 	color: #d0d0d0;
 	background: #404040;
 }
 .naniteupgbtnbought {
-	font-size:  10px;
+	font-size: 10px;
 	border: 1px solid;
 	border-radius: 4px;
 	color: #d0d0d0;
 	background: #000000;
+}
+
+.meltdownbtn {
+	width: 210px;
+	height: 70px;
+	font-size: 10px;
+	border: 2px solid green;
+	border-radius: 6px;
+	color: #d0d0d0;
+	background: #202020;
 }

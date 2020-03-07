@@ -19,7 +19,7 @@ function getNanitesOnPrestige() {
 	}
 	ret = ret.sub(player.nanites.total);
 	if (ret.gt(0)) {
-		return ret;
+		return Decimal.floor(ret);
 	} else {
 		return new Decimal(0);
 	}
@@ -39,10 +39,10 @@ function buyNaniteResearch() {
 
 function updateUINaniteResearch() {
 	if (player.nanites.lastResearch.equals(0)) {
-		document.getElementById("nanitecost").innerText = 5;
+		document.getElementById("naniteResearchCost").innerText = 5;
 	} else {
-		document.getElementById("nanitecost").innerText = player.nanites.lastResearch.add(1);
+		document.getElementById("naniteResearchCost").innerText = player.nanites.lastResearch.add(1);
 	}
-	document.getElementById("naniteonprestige").innerText = notation(getNanitesOnPrestige());
-	document.getElementById("naniteresearch").className = canBuyNaniteResearch() ? "btnbuy" : "btnlocked";
+	document.getElementById("nanitesOnResearch").innerText = notation(getNanitesOnPrestige());
+	document.getElementById("naniteResearch").className = canBuyNaniteResearch() ? "btnbuy" : "btnlocked";
 }

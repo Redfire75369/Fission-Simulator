@@ -1,5 +1,5 @@
 function setEnergy(num) {
-	player.energy = new Decimal(num);
+	player.energy = Decimal.pow(2, 1024);
 }
 
 function resetEnergy() {

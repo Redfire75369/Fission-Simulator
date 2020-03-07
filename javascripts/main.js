@@ -65,6 +65,9 @@ function getDefaultData() {
 		},
 		
 		meltdown: {
+			corium: new Decimal(0),
+			total: new Decimal(0),
+			energyGoal: Decimal.pow(2, 1024),
 			time: 0
 		},
 		
@@ -75,21 +78,29 @@ function getDefaultData() {
 }
 const elements = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
 const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241", "Americium-243", "Curium-247", "Berkelium-247", "Californium-252"];
+var focused = true;
 
+window.onfocus = function(){  
+  focused=true;  
+}
+window.onblur = function(){  
+  focused=false;  
+}  
 
 function hardReset() {
-	player = getDefaultData();
 	showNaviTab("production");
+	player = getDefaultData();
 	localStorage.setItem("fissionSimSave", JSON.stringify(player));
 }
 
 function updateUI() {
-	updateUINaniteResearch();
-	updateUINaniteUps();
-	updateUIMeteor();
-	updateUIEff();
-	updateUIReactors();
 	updateUIEnergy();
+	updateUIReactors();
+	updateUIEff();
+	updateUIMeteor();
+	updateUINaniteUps();
+	updateUINaniteResearch();
+	updateUIMeltdown();
 	updateUIStats();
 }
 function updateGame(tickInterval) {
@@ -105,7 +116,7 @@ var saveGameLoop = setInterval(function() {
 }, 15000);
 
 var updateGameLoop = setInterval(function() {
-	if (Date.now() > player.lastUpdate + 1000) {
+	if (Date.now() > player.lastUpdate + 1000 & focused) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
 	updateGame(25);
