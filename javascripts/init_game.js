@@ -19,8 +19,10 @@ function simulateTime(seconds, actual) {
 	if (offlinePopup == "While you were away, ") {
 		offlinePopup += "nothing happened.";
 	}
-	document.getElementById("offlinePopup").style.display = "block";
-    document.getElementById("offlineProgress").innerHTML = offlinePopup;
+	if (seconds > 1000) {
+		document.getElementById("offlinePopup").style.display = "block";
+	    document.getElementById("offlineProgress").innerHTML = offlinePopup;
+	}
 }
 
 function closeOfflineProgress() {
@@ -31,10 +33,14 @@ function init_game() {
 	var player = getDefaultData();
 	loadSave();
 	document.getElementById("production").style.display = "none";
+	document.getElementById("mines").style.display = "none";
+	document.getElementById("reactors").style.display = "none";
 	document.getElementById("statistics").style.display = "none";
 	document.getElementById("options").style.display = "none";
 	document.getElementById("nanite").style.display = "none";
-	showNaviTab(player.navigation.naviTab);
+	player.navigation = getDefaultData().navigation;
+	showNaviTab("production");
+	showProdTab("mines");
 	targetedNotationChange(player.options.notation);
 	if (Date.now() > player.lastUpdate + 1000) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);

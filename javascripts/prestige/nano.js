@@ -29,7 +29,7 @@ function buyNaniteResearch() {
 	if (canBuyNaniteResearch()) {
 		player.nanites.nanites = player.nanites.nanites.add(getNanitesOnPrestige());
 		player.nanites.total = player.nanites.total.add(getNanitesOnPrestige());
-		player.nanites.lastNanites = player.reactor.amount[7];
+		player.nanites.lastResearch = player.reactor.amount[7];
 		resetEnergy();
 		resetEff();
 		resetReactors();

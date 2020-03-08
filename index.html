@@ -18,7 +18,9 @@
 		<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/energy.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/nuclearFuel.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/mines.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/reactors.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/meteor.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
@@ -42,7 +44,7 @@
 		</div>
 		<div align="center">
 			<p class="text">You have <span id="energy">80.00</span> Energy.</p>
-	    	<p class="text">You are gaining <span id="energyPerSecond">0.00</span> Energy per second.</p>
+	    	<p class="text">You are gaining <span id="energyGain">0.00</span> Energy per second.</p>
 		</div>
 		
 	    <tr>
@@ -71,6 +73,8 @@
 			<table class="table" align="center" id="productionTabButtons">
 				<tr>
 					<td>
+						<button onclick="showProdTab('mines')" id="prodbtn" class="navibtn">Mines</button>
+						<button onclick="showProdTab('reactors')" id="statsbtn" class="navibtn">Reactors</button>
 					</td>
 				</tr>
 			</table>
@@ -81,7 +85,129 @@
 				</div>
 			    <table class="table" align="center">
 				    <tbody>
-				    	<tr id="row1">
+				    	<tr id="mineRow1">
+							<td class="text" align="left">
+								Iron-Tipped Drill Mine ×<span id="IronMineMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="IronMine">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyMine(0)" id="IronBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="IronMineCost">10.00</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxMine(0)" id="IronBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="mineRow2">
+							<td class="text" align="left">
+								Steel-Tipped Drill Mine ×<span id="SteelMineMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="SteelMine">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyMine(1)" id="SteelBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="SteelMineCost">100.00</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxMine(1)" id="SteelBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="mineRow3">
+							<td class="text" align="left">
+								Titanium-Tipped Drill Mine ×<span id="TitaniumMineMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="TitaniumMine">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyMine(2)" id="TitaniumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="TitaniumMineCost">1.00e4 </span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxMine(2)" id="TitaniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="mineRow4">
+							<td class="text" align="left">
+								Iridium-Tipped Drill Mine ×<span id="IridiumMineMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="IridiumMine">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyMine(3)" id="IridiumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="IridiumMineCost">1.00e6</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxMine(3)" id="IridiumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="mineRow5">
+							<td class="text" align="left">
+								Tungstensteel-Tipped Drill Mine ×<span id="TungstensteelMineMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="TungstensteelMine">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyMine(4)" id="TungstensteelBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="TungstensteelMineCost">1.00e9</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxMine(4)" id="AmericiumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="mineRow6">
+							<td class="text" align="left">
+								Osmium-Tipped Drill Mine ×<span id="OsmiumMineMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="OsmiumMine">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyMine(5)" id="OsmiumBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="OsmiumMineCost">1.00e13</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxMine(5)" id="OsmiumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="mineRow7">
+							<td class="text" align="left">
+								Diamond-Tipped Drill Mine ×<span id="DiamondMineMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="DiamondMine">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyMine(6)" id="DiamondBuySingle" style="width: 120px; height: 25px">Cost: <span id="DiamondMineCost">1.00e18</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxMine(6)" id="DiamondBuyMax" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+						<tr id="mineRow8">
+							<td class="text" align="left">
+								 Laser Drill Mine ×<span id="LaserMineMult">1</span>
+							</td>
+							<td class="text" align="center">
+								<span id="LaserMine">0.00 (0)</span>
+							</td>
+							<td align="right">
+								<button onclick="buyMine(7)" id="LaserBuySingle" align="right" style="width: 120px; height: 25px">Cost: <span id="LaserMineCost">1.00e24</span></button>
+							</td>
+							<td align="right">
+								<button onclick="buyMaxMine(7)" id="LaserBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div id="reactors" class="subtab">
+				<div>
+					<button onclick="buyMaxAllReactorEff()" align="center" class="btnbuy" style="width: 120px; height: 25px">Max All (M)</button>
+				</div>
+			    <table class="table" align="center">
+				    <tbody>
+				    	<tr id="reactorRow1">
 							<td class="text" align="left">
 								Thorium-232 Reactor ×<span id="ThoriumReactorMult">1</span>
 							</td>
@@ -95,7 +221,7 @@
 								<button onclick="buyMaxReactor(0)" id="ThoriumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
 							</td>
 						</tr>
-						<tr id="row2">
+						<tr id="reactorRow2">
 							<td class="text" align="left">
 								Uranium-235 Reactor ×<span id="UraniumReactorMult">1</span>
 							</td>
@@ -109,7 +235,7 @@
 								<button onclick="buyMaxReactor(1)" id="UraniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
 							</td>
 						</tr>
-						<tr id="row3">
+						<tr id="reactorRow3">
 							<td class="text" align="left">
 								Neptunium-237 Reactor ×<span id="NeptuniumReactorMult">1</span>
 							</td>
@@ -123,7 +249,7 @@
 								<button onclick="buyMaxReactor(2)" id="NeptuniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
 							</td>
 						</tr>
-						<tr id="row4">
+						<tr id="reactorRow4">
 							<td class="text" align="left">
 								Plutonium-241 Reactor ×<span id="PlutoniumReactorMult">1</span>
 							</td>
@@ -137,7 +263,7 @@
 								<button onclick="buyMaxReactor(3)" id="PlutoniumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
 							</td>
 						</tr>
-						<tr id="row5">
+						<tr id="reactorRow5">
 							<td class="text" align="left">
 								Americium-243 Reactor ×<span id="AmericiumReactorMult">1</span>
 							</td>
@@ -151,7 +277,7 @@
 								<button onclick="buyMaxReactor(4)" id="AmericiumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
 							</td>
 						</tr>
-						<tr id="row6">
+						<tr id="reactorRow6">
 							<td class="text" align="left">
 								Curium-247 Reactor ×<span id="CuriumReactorMult">1</span>
 							</td>
@@ -165,7 +291,7 @@
 								<button onclick="buyMaxReactor(5)" id="CuriumBuyMax" align="right" style="width: 120px; height: 25px">Buy Max</button>
 							</td>
 						</tr>
-						<tr id="row7">
+						<tr id="reactorRow7">
 							<td class="text" align="left">
 								Berkelium-247 Reactor ×<span id="BerkeliumReactorMult">1</span>
 							</td>
@@ -179,7 +305,7 @@
 								<button onclick="buyMaxReactor(6)" id="BerkeliumBuyMax" style="width: 120px; height: 25px">Buy Max</button>
 							</td>
 						</tr>
-						<tr id="row8">
+						<tr id="reactorRow8">
 							<td class="text" align="left">
 								Californium-252 Reactor ×<span id="CaliforniumReactorMult">1</span>
 							</td>
@@ -313,8 +439,8 @@
 						</div></td>
 						<td><div>
 							<button onclick="buyNaniteUp(22)" id="naniteup22" style="width:190px; height:90px" >
-								All reactors get a boost based on number of meteor showers<br/>
-								Formula: <span id="naniteupformula22"></span><br/>
+								All reactors get a boost based on number of Tectonic Inititations<br/>
+								Formula: <span id="naniteupformula22">(log<sub>10</sub>(x))<sup>x</sup></span><br/>
 								Currently: <span id="naniteupmult22">1.00</span>× <br/>
 								Cost: 2 Nanites
 							</button>
@@ -331,7 +457,7 @@
 						</div></td>
 						<td><div>
 							<button onclick="buyNaniteUp(32)" id="naniteup32" style="width:190px; height:90px" >
-								All reactors get a boost based on number of meteor showers<br/>
+								All reactors get a boost based on total energy<br/>
 								Formula: (log<sub>25</sub>(x)/50)<sup>2</sup><br/>
 								Currently: <span id="naniteupmult32">1.00</span>× <br/>
 								Cost: 2 Nanites
@@ -348,7 +474,7 @@
 						<td><div>
 							<button onclick="buyNaniteUp(42)" id="naniteup42" style="width:190px; height:90px">
 								All reactors get a boost based on total nanites gained<br/>
-								Formula: log<sub>1.1</sub>(x)<br/>
+								Formula: log<sub>1.2</sub>(x)<br/>
 								Currently: <span id="naniteupmult42">1.00</span>× <br/>
 								Cost: 4 Nanites
 							</button>
