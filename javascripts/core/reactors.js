@@ -32,9 +32,10 @@ function buyMaxReactor(tier) {
 	}
 }
 
-function buyMaxAllReactorEff() {
+function buyMaxAll() {
 	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
 		buyMaxReactor(tier);
+		buyMaxMine(tier);
 	}
 	buyMaxEff();
 }

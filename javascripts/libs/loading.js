@@ -5,6 +5,8 @@ function getArrayTypeList() {
   let ret = {};
   ["amount", "cost", "costMult", "mult"].forEach(function(itemProperty) {
     ret[`reactor.${itemProperty}`] = "Decimal"
+    ret[`mine.${itemProperty}`] = "Decimal"
+    ret[`fuel`] = "Decimal"
   })
   return ret
 }

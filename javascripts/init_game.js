@@ -33,6 +33,7 @@ function init_game() {
 	var player = getDefaultData();
 	loadSave();
 	document.getElementById("production").style.display = "none";
+	document.getElementById("resources").style.display = "none";
 	document.getElementById("mines").style.display = "none";
 	document.getElementById("reactors").style.display = "none";
 	document.getElementById("statistics").style.display = "none";
@@ -40,7 +41,7 @@ function init_game() {
 	document.getElementById("nanite").style.display = "none";
 	player.navigation = getDefaultData().navigation;
 	showNaviTab("production");
-	showProdTab("mines");
+	showProdTab("resources");
 	targetedNotationChange(player.options.notation);
 	if (Date.now() > player.lastUpdate + 1000) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);

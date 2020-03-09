@@ -30,9 +30,11 @@ function getTotalFuelGain(tier) {
 
 function getFuelUsage(tier) {
 	if (player.fuel[tier].gt(0)) {
-		return getEnergyGain(tier).div(JkgLEF[tier]);
-	} else {
+		return getEnergyGain(tier).div(kgLEFJ[tier]);
+	} else if (getEnergyGain(tier).div(kgLEFJ[tier]).gt(getTotalFuelGain(tier))) {
 		return getTotalFuelGain(tier);
+	} else {
+		return new Decimal(0);
 	}
 }
 function getNetFuel(tier) {
@@ -46,5 +48,10 @@ function simulateFuel(tickInterval = 50) {
 }
 
 function updateUIFuel() {
-	console.log(JSON.stringify(player.fuel));
+	for (let tier = 0; tier < 1; tier++) {
+		document.getElementById(LEF[tier]).innerText = notation(player.fuel[tier]);
+		document.getElementById(LEF[tier] + "Gain").innerText = notation(getTotalFuelGain(tier));
+		document.getElementById(LEF[tier] + "Usage").innerText = notation(getFuelUsage(tier));
+		document.getElementById("net" +LEF[tier]).innerText = notation(getNetFuel(tier));
+	}
 }
