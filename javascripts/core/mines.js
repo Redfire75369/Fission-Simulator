@@ -54,7 +54,6 @@ function simulateMines(tickInterval = 50) {
 }
 
 function updateUIMines() {
-	console.log(JSON.stringify(player.mine));
 	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
 		document.getElementById(mining[tier] + "Mine").innerText = notation(player.mine.amount[tier]) + " (" + player.mine.bought[tier] + ")";
 		document.getElementById(mining[tier] + "MineCost").innerText = notation(player.mine.cost[tier]);

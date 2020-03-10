@@ -49,7 +49,7 @@ function getTotalReactorMult(tier) {
 
 function getReactorGain(tier) {
 	if (tier < 7) {
-		return getMineGain(tier).sqrt();
+		return getMineGain(tier);
 	} else {
 		return new Decimal(0);
 	}

@@ -28,30 +28,24 @@ function getTotalFuelGain(tier) {
 	return getFuelMineGain(tier).add(getFuelReactorGain(tier));
 }
 
-function getFuelUsage(tier) {
-	if (player.fuel[tier].gt(0)) {
-		return getEnergyGain(tier).div(kgLEFJ[tier]);
-	} else if (getEnergyGain(tier).div(kgLEFJ[tier]).gt(getTotalFuelGain(tier))) {
-		return getTotalFuelGain(tier);
-	} else {
-		return new Decimal(0);
-	}
-}
-function getNetFuel(tier) {
-	return getTotalFuelGain(tier).sub(getFuelUsage(tier));
-}
-	
 function simulateFuel(tickInterval = 50) {
 	for (let tier = 0; tier < 8; tier++) {
-		player.fuel[tier] = player.fuel[tier].add(getNetFuel(tier).mul(tickInterval / 1000));
+		player.fuel[tier] = player.fuel[tier].add(getTotalFuelGain(tier).mul(tickInterval / 1000));
 	}
 }
 
 function updateUIFuel() {
-	for (let tier = 0; tier < 1; tier++) {
+	for (let tier = 0; tier < 8; tier++) {
 		document.getElementById(LEF[tier]).innerText = notation(player.fuel[tier]);
 		document.getElementById(LEF[tier] + "Gain").innerText = notation(getTotalFuelGain(tier));
-		document.getElementById(LEF[tier] + "Usage").innerText = notation(getFuelUsage(tier));
-		document.getElementById("net" +LEF[tier]).innerText = notation(getNetFuel(tier));
+	}
+	for (let tier = 0; tier < 8; tier++) {
+		if (tier != 0) { 
+			if (((player.meteor.shower + 4) > tier) && (player.mine.bought[tier - 1] > 0)) {
+				document.getElementById(LEF[tier] + "Row").style.display="table-row";
+			} else {
+				document.getElementById(LEF[tier] + "Row").style.display="none";
+			}
+		}
 	}
 }

@@ -8,6 +8,16 @@
 	border-radius: 4px;
 }
 
+.prodbtn {
+	width: 150px;
+	height: 30px;
+	font-size: 16px;
+	color: #d0d0d0;
+	background: #101010;
+	border: 2px solid #dfdfdf;
+	border-radius: 4px;
+}
+
 .popup {
 	display: none;
 	position: fixed;

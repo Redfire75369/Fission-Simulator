@@ -1,9 +1,9 @@
 function getDefaultData() {
 	return {
 		version: {
-			x: 0,
-			alpha: 1,
-			beta: 5
+			release: 0,
+			alpha: 2,
+			beta: 0
 		},
 		
 		options: {

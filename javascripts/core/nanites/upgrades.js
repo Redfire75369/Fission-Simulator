@@ -29,7 +29,7 @@ function canBuyNaniteUp(id) {
 			return false;
 		}
 	} 
-	if (player.nanites.ups[id] != 0) {
+	if (player.nanites.ups[id] == 0) {
 		return (player.nanites.nanites.gte(naniteUpCost[id]));
 	}
 }

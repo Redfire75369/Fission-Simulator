@@ -7,7 +7,9 @@ function getMeteorCost() {
 }
 
 function resetMeteor() {
+	mult = player.meteor.meteorMult;
 	player.meteor.shower = getDefaultData().meteor.shower;
+	player.meteor.meteorMult = mult;
 }
 
 function canBuyMeteor() {
@@ -18,8 +20,10 @@ function buyMeteor() {
 	if (canBuyMeteor()) {
 		player.meteor.shower += 1;
 		resetEnergy();
-		resetEff();
+		resetFuel();
+		resetMines();
 		resetReactors();
+		resetEff();
 	}
 }
 
@@ -29,8 +33,10 @@ function buyMaxMeteor() {
 	} else if (canBuyMeteor()) {
 		player.meteor.shower = floor(((player.reactor.bought[7] - 2) / 2) + 5);
 		resetEnergy();
-		resetEff();
+		resetFuel();
+		resetMines();
 		resetReactors();
+		resetEff();
 	}
 }
 
