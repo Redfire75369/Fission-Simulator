@@ -11,9 +11,9 @@ function getMaxEnergyGain(tier) {
 }
 function getEnergyGain(tier) {
 	if (player.fuel[tier].mul(JkgLEF[tier]).gt(getMaxEnergyGain(tier))) {
-		return getMaxEnergyGain();
+		return getMaxEnergyGain(tier);
 	} else {
-		return player.fuel[tier].mul(JkgLEF[tier])
+		return player.fuel[tier].mul(JkgLEF[tier]);
 	}
 }
 function getTotalEnergyGain() {
@@ -30,6 +30,7 @@ function simulateEnergy(tickInterval = 50) {
 }
 
 function updateUIEnergy() {
+	console.log(getMaxEnergyGain(0));
 	document.getElementById("energy").innerText = notation(player.energy);
 	document.getElementById("netEnergy").innerText = notation(getTotalEnergyGain());
 	document.getElementById("energy2").innerText = notation(player.energy);

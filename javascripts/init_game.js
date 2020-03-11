@@ -1,5 +1,5 @@
 /*Offline Progress*/
-function simulateTime(seconds, actual) {
+function simulateTime(seconds, actual, testing) {
 	let ticks = seconds * 20;
 	let tickInterval = 50;
 	if (ticks > 1000 & !actual) {
@@ -8,6 +8,9 @@ function simulateTime(seconds, actual) {
 	}
 	let start = Object.assign({}, player);
 	for (let complete = 0; complete < ticks; complete++) {
+		if (testing) {
+			buyMaxAll();
+		}
 		updateGame(tickInterval)
 	}
 	player.time += seconds * 1000;
