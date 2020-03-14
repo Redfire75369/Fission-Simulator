@@ -40,11 +40,7 @@ function buyNaniteResearch() {
 }
 
 function updateUINaniteResearch() {
-	if (player.nanites.lastResearch.equals(0)) {
-		document.getElementById("naniteResearchCost").innerText = 5;
-	} else {
-		document.getElementById("naniteResearchCost").innerText = player.nanites.lastResearch.add(1);
-	}
+	document.getElementById("naniteResearchCost").innerText = (player.nanites.lastResearch.equals(0)) ? "5" : player.nanites.lastResearch.add(1);
 	document.getElementById("nanitesOnResearch").innerText = notation(getNanitesOnPrestige());
 	document.getElementById("naniteResearch").className = canBuyNaniteResearch() ? "btnbuy" : "btnlocked";
 }

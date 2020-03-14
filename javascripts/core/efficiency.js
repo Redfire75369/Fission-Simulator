@@ -14,7 +14,7 @@ function buyEff() {
 		player.eff.bought += 1;
 		player.eff.cost = player.eff.cost.mul(player.eff.costMult);
 		player.eff.mult = player.eff.mult.mul(player.eff.multMult);
-		if (player.eff.cost.gte(new Decimal("1e+308"))) {
+		if (player.eff.cost.gte(infinity)) {
 			player.eff.costMult = player.eff.costMult.mul(player.eff.costMultMult);
 		}
 	}
@@ -26,7 +26,7 @@ function buyMaxEff() {
 		player.eff.bought += 1;
 		player.eff.cost = player.eff.cost.mul(player.eff.costMult);
 		player.eff.mult = player.eff.mult.mul(player.eff.multMult);
-		if (player.eff.cost.gte(new Decimal("1e+308"))) {
+		if (player.eff.cost.gte(infinity)) {
 			player.eff.costMult = player.eff.costMult.mul(player.eff.costMultMult);
 		}
 	}

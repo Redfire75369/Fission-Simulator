@@ -69,13 +69,7 @@ function updateUIReactors() {
 		document.getElementById(fissile[tier] + "BuyMax").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";
 		document.getElementById(fissile[tier] + "ReactorMult").innerText = notation(getTotalReactorMult(tier));
 	}
-	for (let tier = 0; tier < 8; tier++) {
-		if (tier != 0) { 
-			if (((player.meteor.shower + 4) > tier) && (player.reactor.bought[tier - 1] > 0)) {
-				document.getElementById("reactorRow" + (tier + 1)).style.display="table-row";
-			} else {
-				document.getElementById("reactorRow" + (tier + 1)).style.display="none";
-			}
-		}
+	for (let tier = 1; tier < 8; tier++) {
+		document.getElementById("reactorRow" + (tier + 1)).style.display = (player.meteor.shower + 4 > tier && player.reactor.bought[tier - 1] > 0) ? "table-row" : "none";
 	}
 }

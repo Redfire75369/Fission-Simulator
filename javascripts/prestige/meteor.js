@@ -7,7 +7,7 @@ function getMeteorCost() {
 }
 
 function resetMeteor() {
-	mult = player.meteor.meteorMult;
+	let mult = player.meteor.meteorMult;
 	player.meteor.shower = getDefaultData().meteor.shower;
 	player.meteor.meteorMult = mult;
 }
@@ -41,14 +41,8 @@ function buyMaxMeteor() {
 }
 
 function updateUIMeteor() {
-	let type;
-	if (player.meteor.shower < 4) {
-		type = "Meteor Shower";
-		document.getElementById("meteorShower").innerText = "Reset the game for a new Mine";
-	} else {
-		type = "Tectonic Inititation";
-		document.getElementById("meteorShower").innerText = "Reset the game for a Boost";
-	}
+	document.getElementById("meteorShower").innerText = (player.meteor.shower < 4) ? "Reset the game for a new Reactor" : "Reset the game for a Boost";
+	let type = (player.meteor.shower < 4) ? "Meteor Shower" : "Tectonic Initiation";
 	document.getElementById("meteorCost").innerText = type + " (" + player.meteor.shower + "): Requires " + getMeteorCost()[1] + " " + isotopes[getMeteorCost()[0]] + " Reactors";
 	document.getElementById("meteorShower").className = canBuyMeteor() ? "btnbuy" : "btnlocked";
 }

@@ -27,15 +27,7 @@ function meltdown() {
 
 function updateUIMeltdown() {
 	document.getElementById("corium").innerText = notation(player.meltdown.corium);
-	if (player.meltdown.total.gt(0)) {
-		document.getElementById("coriumAmt").style.display = "inline-block";
-	} else {
-		document.getElementById("coriumAmt").style.display = "none";
-	}
-	if (canMeltdown()) {
-		document.getElementById("meltdown").style.display = "inline-block";
-		document.getElementById("coriumOnMeltdown").innerText = notation(getCoriumOnPrestige());
-	} else {
-		document.getElementById("meltdown").style.display = "none";
-	}
+	document.getElementById("coriumAmt").style.display = (player.meltdown.total.gt(0)) ? "inline-block" : "none";
+	document.getElementById("meltdown").style.display = (canMeltdown()) ? "inline-block" : "none";
+	document.getElementById("coriumOnMeltdown").innerText = notation(getCoriumOnPrestige());
 }

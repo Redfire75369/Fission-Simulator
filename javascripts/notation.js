@@ -10,24 +10,24 @@ const zalgo = new not.ZalgoNotation();
 const prime = new not.PrimeNotation();
 const blind = new not.BlindNotation();
 
-function notation(x) {
+function notation(x, dp = 2, dpUnder1e5 = 2) {
 	switch (player.options.notation) {
 		case "Scientific":
-			return scientific.format(x, 2, 2);
+			return scientific.format(x, dp, dpUnder1e5);
 		case "Logarithmic":
-			return logarithmic.format(x, 2, 2);
+			return logarithmic.format(x, dp, dpUnder1e5);
 		case "Brackets":
-			return brackets.format(x, 2, 2);
+			return brackets.format(x, dp, dpUnder1e5);
 		case "Omega":
-			return omega.format(x, 2, 2);
+			return omega.format(x, dp, dpUnder1e5);
 		case "Cancer":
-			return cancer.format(x, 2, 2);
+			return cancer.format(x, dp, dpUnder1e5);
 		case "Zalgo":
-			return zalgo.format(x, 2, 2);
+			return zalgo.format(x, dp, dpUnder1e5);
 		case "Prime":
-			return prime.format(x, 2, 2);
+			return prime.format(x, dp, dpUnder1e5);
 		case "Blind":
-			return blind.format(x, 2, 2)
+			return blind.format(x, dp, dpUnder1e5);
 		default:
 	}
 }
@@ -45,4 +45,3 @@ function formatTime(time) {
 		return round(time / 1000, 3) + " seconds"
 	} 
 }
-formatTime();

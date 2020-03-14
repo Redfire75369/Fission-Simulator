@@ -87,13 +87,9 @@ function getNaniteUpMult(id) {
 
 function getTotalNaniteUpMult(tier) {
 	let ret = new Decimal(1);
-	let up;
 	for (let id = 0; id < naniteUpList.length; id++) {
-		up = naniteUpList[id];
-		if (player.nanites.ups[up] >= 1) {
-			if (getNaniteUpMult(up)[0] == tier || getNaniteUpMult(up)[0] == 8) {
-				ret = ret.mul(getNaniteUpMult(up)[1]);
-			}
+		if (player.nanites.ups[naniteUpList[id]] >= 1 & (getNaniteUpMult(naniteUpList[id])[0] == tier || getNaniteUpMult(naniteUpList[id])[0] == 8)) {
+			ret = ret.mul(getNaniteUpMult(naniteUpList[id])[1]);
 		}
 	}
 	return ret;
@@ -101,26 +97,12 @@ function getTotalNaniteUpMult(tier) {
 
 function updateUINaniteUps() {
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
-	if (player.nanites.ups[11] == 0) {
-		document.getElementById("naniteupformula11").innerHTML = "√(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1)";
-	} else {
-		document.getElementById("naniteupformula11").innerHTML = "√(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1) * (m / 5)";
-	}
-	if (player.meteor.shower <= 13) {
-		document.getElementById("naniteupformula22").innerHTML = "(log<sub>10</sub>(x))<sup>x</sup>"
-	} else if (player.meteor.shower > 13) {
-		document.getElementById("naniteupformula22").innerHTML = "(x - 9) * log<sub>8</sub>(x)<sup>0.5</sup>"
-	}
-	let id = 0;
+	document.getElementById("naniteupformula11").innerHTML = (player.nanites.ups[11] == 0) ? "√(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1)" : "√(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1) * (m / 5)";
+	document.getElementById("naniteupformula22").innerHTML = (player.meteor.shower <= 13) ? "(log<sub>10</sub>(x))<sup>x</sup>" : "(x - 9) * log<sub>8</sub>(x)<sup>0.5</sup>";
 	for (let i = 0; i < naniteUpList.length; i++) {
-		id = naniteUpList[i];
-		if (id != 0 && id != 41) {
-			document.getElementById("naniteupmult" + id).innerText = notation(getNaniteUpMult(id)[1]);
+		if (naniteUpList[i] != 0 && naniteUpList[i] != 41) {
+			document.getElementById("naniteupmult" + naniteUpList[i]).innerText = notation(getNaniteUpMult(naniteUpList[i])[1]);
 		}
-		if (player.nanites.ups[id] == 1 && id != 0) {
-			document.getElementById("naniteup" + id).className = "naniteupgbtnbought";
-		} else {
-			document.getElementById("naniteup" + id).className = canBuyNaniteUp(id) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
-		}
+		document.getElementById("naniteup" + naniteUpList[i]).className = (player.nanites.ups[naniteUpList[i]] == 1 && naniteUpList[i] != 0) ? "naniteupgbtnbought" : canBuyNaniteUp(naniteUpList[i]) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
 	}
 }

@@ -13,7 +13,7 @@ function buyMine(tier) {
 		player.mine.amount[tier] = player.mine.amount[tier].add(1);
 		player.mine.cost[tier]= player.mine.cost[tier].mul(player.mine.costMult[tier]);
 		player.mine.mult[tier] = player.mine.mult[tier].mul(player.mine.multMult);
-		if (player.mine.cost[tier].gte(new Decimal("1e308"))) {
+		if (player.mine.cost[tier].gte(infinity)) {
 			player.mine.costMult[tier] = player.mine.costMult[tier].mul(player.mine.costMultMult);
 		}
 	}
@@ -26,7 +26,7 @@ function buyMaxMine(tier) {
 		player.mine.amount[tier] = player.mine.amount[tier].add(1);
 		player.mine.cost[tier] = player.mine.cost[tier].mul(player.mine.costMult[tier]);
 		player.mine.mult[tier] = player.mine.mult[tier].mul(player.mine.multMult);
-		if (player.mine.cost[tier].gte(new Decimal("1e308"))) {
+		if (player.mine.cost[tier].gte(infinity)) {
 			player.mine.costMult[tier] = player.mine.costMult[tier].mul(player.mine.costMultMult);
 		}
 	}
@@ -40,11 +40,7 @@ function getTotalMineMult(tier) {
 }
 
 function getMineGain(tier) {
-	if (tier < 7) {
-		return player.mine.amount[tier + 1].mul(getTotalMineMult(tier + 1)).mul(player.eff.mult);
-	} else {
-		return new Decimal(0);
-	}
+	return tier < 7 ? player.mine.amount[tier + 1].mul(getTotalMineMult(tier + 1)).mul(player.eff.mult) : zero;
 }
 
 function simulateMines(tickInterval = 50) {
@@ -61,13 +57,7 @@ function updateUIMines() {
 		document.getElementById(mining[tier] + "BuyMax").className = canBuyMine(tier) ? "btnbuy" : "btnlocked";
 		document.getElementById(mining[tier] + "MineMult").innerText = notation(getTotalMineMult(tier));
 	}
-	for (let tier = 0; tier < 8; tier++) {
-		if (tier != 0) { 
-			if (((player.meteor.shower + 4) > tier) && (player.mine.bought[tier - 1] > 0)) {
-				document.getElementById("mineRow" + (tier + 1)).style.display="table-row";
-			} else {
-				document.getElementById("mineRow" + (tier + 1)).style.display="none";
-			}
-		}
+	for (let tier = 1; tier < 8; tier++) {
+		document.getElementById("mineRow" + (tier + 1)).style.display = (player.meteor.shower + 4 > tier && player.mine.bought[tier - 1] > 0) ? "table-row" : "none";
 	}
 }
