@@ -71,7 +71,7 @@
 		
 	    <div id="production">
 			<table class="table" align="center" id="productionTabButtons">
-				<tr>
+				<tr align="center">
 					<td>
 						<button onclick="showProdTab('resources')" id="prodbtn" class="prodbtn">Resources</button>
 						<button onclick="showProdTab('mines')" id="prodbtn" class="prodbtn">Mines</button>
@@ -80,7 +80,7 @@
 				</tr>
 			</table>
 			
-			<div>
+			<div align="center">
 				<button onclick="buyMaxAll()" align="center" class="btnbuy" style="width: 120px; height: 25px">Max All (M)</button>
 			</div>
 			
@@ -459,68 +459,67 @@
 			</div>
 		</div>
 		
-		<div id="statistics" class="tab">
-			<table>
-				<tbody>
-					<tr>
-						<td class="text" align="left">
-							Total time played:
-						</td>
-						<td class="text" align="right">
-							<span id="statsTimePlayedTotal">0 seconds</span>
-						</td>
-					</tr>
-					<tr>
-						<td class="text" align="left">
-							Total energy generated:
-						</td>
-						<td class="text" align="right">
-							<span id="statsTotalEnergy">80</span>
-						</td>
-					</tr>
-					<tr>
-						<td class="text" align="left">
-							Total nanites researched:
-						</td>
-						<td class="text" align="right">
-							<span id="statsTotalNanites">0.00</span>
-						</td>
-					</tr>
+		<div id="statistics" class="tab" align="center">
+			<table class="table" align="center">
+				<tr align="center">
+					<td class="text" align="right">
+						Total time played:
+					</td>
+					<td class="text" align="left">
+						<span id="statsTimePlayedTotal">0 seconds</span>
+					</td>
+				</tr>
+				<tr align="center">
+					<td class="text" align="right">
+						Total energy generated:
+					</td>
+					<td class="text" align="left">
+						<span id="statsTotalEnergy">80</span>
+					</td>
+				</tr>
+				<tr align="center">
+					<td class="text" align="right">
+						Total nanites researched:
+					</td>
+					<td class="text" align="left">
+						<span id="statsTotalNanites">0.00</span>
+					</td>
+				</tr>
 			</table>
 		</div>
 		
 		<div id="options" class="tab">
-			<table align="center">
+			<table class="table" align="center">
 				<tbody>
 					<tr>
-						<td><div>
+						<td align="right"><div>
 								<button onclick="notationChange()" id="notation" class="optionsbtn" align="right"> Notation: Scientific </button>
 						</div></td>
-						<td><div>
+						<td align="left"><div>
 								<button id="theme" class="optionsbtn" align="right"> Theme: Default (WIP) </button>
 						</div></td>
 					</tr>
 					<tr>
-						<td><div>
+						<td align="right"><div>
 								<button onclick="saveGame()" id="save" class="optionsbtn" align="center"> Save </button>
 						</div></td>
-						<td><div>
+						<td align="left"><div>
 								<button onclick="loadSave(getSaveString())" id="load" class="optionsbtn" align="center"> Load </button>
 						</div></td>
 					</tr>
 					<tr>
-						<td><div>
+						<td align="right"><div>
 								<button onclick="importSave()" id="import" class="optionsbtn" align="center"> Import Save </button>
 						</div></td>
-						<td><div>
+						<td align="left"><div>
 								<button onclick="exportSave()" id="export" class="optionsbtn" align="center"> Export Save </button>
 						</div></td>
 					</tr>
 					<tr>
-						<td><div>
+						<td align="right"><div>
 								<button onclick="hardReset()" id="hardreset" class="optionsbtn" align="center"> Hard Reset the Game </button>
 						</div></td>
-						<td><div>
+						<td align="left"><div>
 								<button onclick="simulateTime(100, true, true)" class="optionsbtn" align="center"> Stuff </button>
 						</div></td>
 					</tr>
@@ -530,22 +529,24 @@
 			</div>
 		</div>
 		<div id="nanite" class="tab">
-			<div class="text">
+			<div class="text" align="center">
 				You have <span id="nanites">0</span> Nanites.
 			</div>
-			<button onclick="buyNaniteUp(0)" id="naniteup0"style="width:190px; height:90px">Spend 1 Nanite to improve Efficiency Multiplier.</button></br>
-			<table align="center">
+			<div align="center">
+				<button onclick="buyNaniteUp(0)" id="naniteup0"style="width:190px; height:90px" align="center">Spend 1 Nanite to improve Efficiency Multiplier.</button></br>
+			</div>
+			<div align="center">
+				<button onclick="buyNaniteUp(11)" id="naniteup11" style="width:285px; height:90px" align="center">
+					Number of Tectonic Initiations boosts nanite gain<br/>
+					Formula: <span id="naniteupformula11">√(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1)</span><br/>
+					Currently: <span id="naniteupmult11">1.00</span>× <br/>
+					Cost: 2 Nanites
+				</button>
+			</div>
+			<table class="table" align="center">
 				<tbody>
-					<tr><div>
-						<button onclick="buyNaniteUp(11)" id="naniteup11" style="width:285px; height:90px">
-							Number of Tectonic Initiations boosts nanite gain<br/>
-							Formula: <span id="naniteupformula11">√(2) * x<sup>2/3</sup> * log<sub>5</sub>(x / 10 + 1)</span><br/>
-							Currently: <span id="naniteupmult11">1.00</span>× <br/>
-							Cost: 2 Nanites
-						</button>
-					</div></tr>
-					<tr>
-						<td><div>
+					<tr align="center">
+						<td align="right"><div>
 							<button onclick="buyNaniteUp(21)" id="naniteup21" style="width:190px; height:90px">
 								All reactors get a boost based on time played<br/>
 								Formula: log₁₆(x) - 1<br/>
@@ -553,7 +554,7 @@
 								Cost: 1 Nanite
 							</button>
 						</div></td>
-						<td><div>
+						<td align="left"><div>
 							<button onclick="buyNaniteUp(22)" id="naniteup22" style="width:190px; height:90px" >
 								All reactors get a boost based on number of Tectonic Inititations<br/>
 								Formula: <span id="naniteupformula22">(log<sub>10</sub>(x))<sup>x</sup></span><br/>
@@ -562,8 +563,8 @@
 							</button>
 						</div></td>
 					</tr>
-					<tr>
-						<td><div>
+					<tr align="center">
+						<td align="right"><div>
 							<button onclick="buyNaniteUp(31)" id="naniteup31" style="width:190px; height:90px">
 								All reactors get a boost based on current energy<br/>
 								Formula: (log<sub>25</sub>(x)/75)<sup>2</sup><br/>
@@ -571,7 +572,7 @@
 								Cost: 1 Nanite
 							</button>
 						</div></td>
-						<td><div>
+						<td align="left"><div>
 							<button onclick="buyNaniteUp(32)" id="naniteup32" style="width:190px; height:90px" >
 								All reactors get a boost based on total energy<br/>
 								Formula: (log<sub>25</sub>(x)/50)<sup>2</sup><br/>
@@ -580,14 +581,14 @@
 							</button>
 						</div></td>
 					</tr>
-					<tr>
-						<td><div>
+					<tr align="center">
+						<td align="right"><div>
 							<button onclick="buyNaniteUp(41)" id="naniteup41" style="width:190px; height:90px">
 								Increase multiplier from Tectonic Initiations from 2→2.2×<br/>
 								Cost: 3 Nanites
 							</button>
 						</div></td>
-						<td><div>
+						<td align="left"><div>
 							<button onclick="buyNaniteUp(42)" id="naniteup42" style="width:190px; height:90px">
 								All reactors get a boost based on total nanites gained<br/>
 								Formula: log<sub>1.2</sub>(x)<br/>
