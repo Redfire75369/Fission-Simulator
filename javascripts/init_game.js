@@ -42,9 +42,8 @@ function init_game() {
 	document.getElementById("statistics").style.display = "none";
 	document.getElementById("options").style.display = "none";
 	document.getElementById("nanite").style.display = "none";
-	player.navigation = getDefaultData().navigation;
-	showNaviTab("production");
-	showProdTab("resources");
+	showNaviTab(player.navigation.naviTab);
+	showSubTab();
 	targetedNotationChange(player.options.notation);
 	if (Date.now() > player.lastUpdate + 1000) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);

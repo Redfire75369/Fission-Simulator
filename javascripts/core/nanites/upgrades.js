@@ -60,9 +60,6 @@ function buyNaniteUp(id) {
 }
 
 function getNaniteUpMult(id) {
-	if (player.nanites.ups[id] == 0) {
-		return [9, new Decimal(1)];
-	}
 	switch(id) {
 		case 11:
 			return [9, new Decimal(max(1, player.meteor.shower / 5))]
