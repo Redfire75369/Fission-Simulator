@@ -10,7 +10,7 @@ function getMaxEnergyGain(tier) {
 	return player.reactor.amount[0].mul(getTotalReactorMult(0)).mul(player.eff.mult).mul(3 ** tier).mul(4);
 }
 function getEnergyGain(tier) {
-	return (player.fuel[tier].mul(JkgLEF[tier]).gt(getMaxEnergyGain(tier))) ? getMaxEnergyGain(tier) : player.fuel[tier].mul(JkgLEF[tier]);
+	return (getTotalFuelGain(tier).mul(JkgLEF[tier]).gt(getMaxEnergyGain(tier))) ? getMaxEnergyGain(tier) : getTotalFuelGain(tier).mul(JkgLEF[tier]);
 }
 function getTotalEnergyGain() {
 	let ret = zero;
@@ -27,7 +27,5 @@ function simulateEnergy(tickInterval = 50) {
 
 function updateUIEnergy() {
 	document.getElementById("energy").innerText = notation(player.energy);
-	document.getElementById("netEnergy").innerText = notation(getTotalEnergyGain());
-	document.getElementById("energy2").innerText = notation(player.energy);
 	document.getElementById("energyGain").innerText = notation(getTotalEnergyGain());
 }

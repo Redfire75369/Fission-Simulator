@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			alpha: 2,
-			beta: 0
+			beta: 3
 		},
 		
 		options: {
@@ -22,7 +22,6 @@ function getDefaultData() {
 		},
 		energy: new Decimal(100),
 		totalEnergy: new Decimal(100),
-		fuel: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
 		
 		eff: {
 			bought: 0,
@@ -123,7 +122,6 @@ function updateUI() {
 }
 function updateGame(tickInterval) {
 	simulateMines(tickInterval);
-	simulateFuel(tickInterval);
 	simulateReactors(tickInterval);
 	simulateEnergy(tickInterval);
 }

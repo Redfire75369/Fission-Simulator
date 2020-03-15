@@ -69,17 +69,13 @@ function getNaniteUpMult(id) {
 		case 21:
 			return [8, new Decimal(max(1, log(player.time / 1000, 16) - 1))];
 		case 22:
-			if (player.meteor.shower <= 13) {
-				return [8, new Decimal(max(1, log(player.meteor.shower, 10) ** player.meteor.shower))];
-			} else {
-				return [8, new Decimal(max(1, (player.meteor.shower - 9) * (log(player.meteor.shower, 8) ** 0.5)))];
-			}
+			return (player.meteor.shower <= 10) ? [8, Decimal.max(1, (player.meteor.shower ** log(player.meteor.shower, 10)) / 3)] : [8, Decimal.max(1, (player.meteor.shower - 7) * (log(player.meteor.shower, 8) ** 0.5))];
 		case 31:
 			return [8, Decimal.max(1, new Decimal(player.energy.log(25)).div(75).pow(2))];
 		case 32:
 			return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(25)).div(75).pow(2))];
 		case 42:
-			return [8, new Decimal(player.nanites.total.log(1.2))];
+			return [8, Decimal.max(1, player.nanites.total.log(1.2))];
 		default:
 			return [9, new Decimal(1)];
 	}

@@ -27,15 +27,8 @@ function getTotalFuelGain(tier) {
 	return getFuelMineGain(tier).add(getFuelReactorGain(tier));
 }
 
-function simulateFuel(tickInterval = 50) {
-	for (let tier = 0; tier < 8; tier++) {
-		player.fuel[tier] = player.fuel[tier].add(getTotalFuelGain(tier).mul(tickInterval / 1000));
-	}
-}
-
 function updateUIFuel() {
 	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
-		document.getElementById(LEF[tier]).innerText = notation(player.fuel[tier]);
 		document.getElementById(LEF[tier] + "Gain").innerText = notation(getTotalFuelGain(tier));
 	}
 	for (let tier = 1; tier < 8; tier++) {
