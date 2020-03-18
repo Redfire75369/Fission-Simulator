@@ -43,7 +43,7 @@ function buyMaxAll() {
 function getTotalReactorMult(tier) {
 	let mult = player.reactor.mult[tier];
 	mult = mult.mul(player.meteor.meteorMult.pow(max(0, player.meteor.shower - tier)));
-	mult = mult.mul(getTotalNaniteUpMult(tier, "r"));
+	mult = mult.mul(getTotalNaniteUpMult(tier));
 	return mult;
 }
 

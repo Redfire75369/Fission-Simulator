@@ -33,8 +33,8 @@ function closeOfflineProgress() {
 }
 
 function init_game() {
-	var player = getDefaultData();
-	loadSave();
+	player = getDefaultData();
+	loadSave(getSave());
 	document.getElementById("production").style.display = "none";
 	document.getElementById("resources").style.display = "none";
 	document.getElementById("mines").style.display = "none";
@@ -43,7 +43,6 @@ function init_game() {
 	document.getElementById("options").style.display = "none";
 	document.getElementById("nanite").style.display = "none";
 	showNaviTab(player.navigation.naviTab);
-	showSubTab();
 	targetedNotationChange(player.options.notation);
 	if (Date.now() > player.lastUpdate + 1000) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);

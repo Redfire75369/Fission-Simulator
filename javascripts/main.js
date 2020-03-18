@@ -16,20 +16,16 @@ function getDefaultData() {
 		},
 		
 		unlocked: {
-				naniteUps: 0,
-				meltdown: 0,
-				decayHasten: 0
+				naniteUps: false,
+				meltdown: false,
+				decayHasten: false
 		},
 		energy: new Decimal(100),
 		totalEnergy: new Decimal(100),
 		
 		eff: {
 			bought: 0,
-			cost: new Decimal("1e3"),
-			costMult: new Decimal("1e1"),
-			costMultMult: new Decimal(10),
-			mult: new Decimal(1),
-			multMult: new Decimal(1.1)
+			costMultMult: new Decimal(10)
 		},
 		mine: {
 			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
@@ -58,25 +54,26 @@ function getDefaultData() {
 		nanites: {
 			nanites: new Decimal(0),
 			total: new Decimal(0),
-			lastResearch: new Decimal(0),
+			effUpCost: new Decimal(1),
 			ups: {
 				0: 0,
 				11: 0,
+				12: 0,
 				21: 0,
 				22: 0,
 				31: 0,
-				32: 0,
-				41: 0,
-				42: 0
-			},
-			effUpCost: new Decimal(1),
+				32: 0
+			}
 		},
 		
 		meltdown: {
 			corium: new Decimal(0),
 			total: new Decimal(0),
 			energyGoal: Decimal.pow(2, 1024),
-			time: 0
+			time: 0,
+			bestTime: 756864000000,
+			ups: {},
+			breakups: {0: 0}
 		},
 		
 		time: 0,
@@ -102,10 +99,13 @@ window.onblur = function() {
 }  
 
 function hardReset() {
-	showNaviTab("production");
-	showProdTab("resources"); 
-	player = getDefaultData();
-	localStorage.setItem("fissionSimSave", JSON.stringify(player));
+	let confirmation = prompt("This will completely reset your game. If you are sure, type in \"Hitchiker's Guide to the Fusion-Driven Galaxy\"");
+	if (confirmation == "Hitchiker's Guide to the Fusion-Driven Galaxy") {
+		showNaviTab("production");
+		showProdTab("resources"); 
+		player = getDefaultData();
+		saveGame();
+	}
 }
 
 function updateUI() {

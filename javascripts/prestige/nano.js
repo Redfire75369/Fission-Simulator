@@ -1,7 +1,6 @@
 function resetNaniteResearch() {
 	player.nanites.nanites = getDefaultData().nanites.nanites;
 	player.nanites.total = getDefaultData().nanites.total;
-	player.nanites.lastResearch = getDefaultData().nanites.lastResearch;
 }
 
 function canBuyNaniteResearch() {
@@ -13,9 +12,13 @@ function canBuyNaniteResearch() {
 }
 
 function getNanitesOnPrestige() {
-	let ret = player.reactor.amount[7].pow(2 / 3).mul(log(player.reactor.bought[7] / 10 + 1, 5)).mul(sqrt(2));
-	if (player.nanites.ups[11] == 1) {
-		ret = ret.mul(player.meteor.shower / 5);
+	let ret = new Decimal(0);
+	if (player.reactor.amount[7].lte(19)) {
+		ret = player.reactor.amount[7].sub(4);
+	} else if (player.reactor.amount[7].lte(5050)) {
+		ret = player.reactor.amount[7].pow(2).div(32).sub(player.reactor.amount[7].mul(7).div(8)).add(20);
+	} else {
+		ret = zero;
 	}
 	ret = ret.sub(player.nanites.total);
 	if (ret.gt(0)) {
@@ -29,7 +32,7 @@ function buyNaniteResearch() {
 	if (canBuyNaniteResearch()) {
 		player.nanites.nanites = player.nanites.nanites.add(getNanitesOnPrestige());
 		player.nanites.total = player.nanites.total.add(getNanitesOnPrestige());
-		player.nanites.lastResearch = player.reactor.amount[7];
+		player.unlocked.naniteUps = true;
 		resetEnergy();
 		resetFuel();
 		resetMines();
@@ -40,7 +43,7 @@ function buyNaniteResearch() {
 }
 
 function updateUINaniteResearch() {
-	document.getElementById("naniteResearchCost").innerText = (player.nanites.lastResearch.equals(0)) ? "5" : player.nanites.lastResearch.add(1);
+	document.getElementById("naniteResearchCost").innerText = (player.nanites.total.equals(0)) ? "5" : (player.nanites.total.lt(15)) ? (player.nanites.total + 5) : (player.nanites.total.lt(792544.375)) ? new Decimal(15).add(Decimal.floor(player.nanites.total.mul(32).sub(444).sqrt())) : infinity;
 	document.getElementById("nanitesOnResearch").innerText = notation(getNanitesOnPrestige());
 	document.getElementById("naniteResearch").className = canBuyNaniteResearch() ? "btnbuy" : "btnlocked";
 }

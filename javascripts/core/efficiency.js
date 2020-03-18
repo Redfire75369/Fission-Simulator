@@ -1,41 +1,45 @@
 function resetEff() {
-	let effMultMult = player.eff.multMult;
 	player.eff = getDefaultData().eff;
-	player.eff.multMult = effMultMult;
+}
+
+function getEffCost() {
+	return new Decimal(1000).mul(Decimal.pow(10, player.eff.bought)).mul(Decimal.pow(10 - 0.5 * player.meltdown.breakups[0], Decimal.max(0, player.eff.bought - 103).mul(player.eff.bought - 102).div(2)));
 }
 
 function canBuyEff() {
-	return player.energy.gte(player.eff.cost);
+	return player.energy.gte(getEffCost());
+}
+
+function getEffIncrement() {
+	let effUpg = player.nanites.ups[0];
+	if (effUpg <= 2) {
+			return new Decimal(1.1 + 0.02 * effUpg);
+	} else {
+			return new Decimal(1.25).mul(new Decimal(1.036).pow(effUpg - 2));
+	}
+}
+function getEff() {
+	return getEffIncrement(player.eff.bought);
 }
 
 function buyEff() {
 	if (canBuyEff()) {
-		player.energy = player.energy.sub(player.eff.cost);
+		player.energy = player.energy.sub(getEffCost());
 		player.eff.bought += 1;
-		player.eff.cost = player.eff.cost.mul(player.eff.costMult);
-		player.eff.mult = player.eff.mult.mul(player.eff.multMult);
-		if (player.eff.cost.gte(infinity)) {
-			player.eff.costMult = player.eff.costMult.mul(player.eff.costMultMult);
-		}
 	}
 }
 
 function buyMaxEff() {
 	while (canBuyEff()) {
-		player.energy = player.energy.sub(player.eff.cost);
+		player.energy = player.energy.sub(getEffCost());
 		player.eff.bought += 1;
-		player.eff.cost = player.eff.cost.mul(player.eff.costMult);
-		player.eff.mult = player.eff.mult.mul(player.eff.multMult);
-		if (player.eff.cost.gte(infinity)) {
-			player.eff.costMult = player.eff.costMult.mul(player.eff.costMultMult);
-		}
 	}
 }
 
 function updateUIEff() {
-	document.getElementById("effCost").innerText = notation(player.eff.cost);
-	document.getElementById("eff").innerText = notation(player.eff.mult);
-	document.getElementById("effMult").innerText = round((player.eff.multMult - 1) * 100, 2);
+	document.getElementById("effCost").innerText = notation(getEffCost());
+	document.getElementById("eff").innerText = notation(getEff());
+	document.getElementById("effMult").innerText = round((getEffIncrement() - 1) * 100, 2);
 	document.getElementById("effBuySingle").className = canBuyEff() ? "btnbuy" : "btnlocked";
 	document.getElementById("effBuyMax").className = canBuyEff() ? "btnbuy" : "btnlocked";
 }

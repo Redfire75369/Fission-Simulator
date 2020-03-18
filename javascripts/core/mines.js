@@ -35,12 +35,12 @@ function buyMaxMine(tier) {
 function getTotalMineMult(tier) {
 	let mult = player.mine.mult[tier];
 	mult = mult.mul(player.meteor.meteorMult.pow(max(0, player.meteor.shower - tier)));
-	mult = mult.mul(getTotalNaniteUpMult(tier, "m"));
+	mult = mult.mul(getTotalNaniteUpMult(tier));
 	return mult;
 }
 
 function getMineGain(tier) {
-	return tier < 7 ? player.mine.amount[tier + 1].mul(getTotalMineMult(tier + 1)).mul(player.eff.mult) : zero;
+	return tier < 7 ? player.mine.amount[tier + 1].mul(getTotalMineMult(tier + 1)).mul(getEff()) : zero;
 }
 
 function simulateMines(tickInterval = 50) {

@@ -15,19 +15,24 @@ function meltdown() {
 	if (canMeltdown()) {
 		player.meltdown.corium = player.meltdown.corium.add(getCoriumOnPrestige());
 		player.meltdown.total = player.meltdown.total.add(getCoriumOnPrestige());
+		player.unlocked.meltdown = true;
+		if (player.meltdown.time < player.meltdown.bestTime) {
+			player.meltdown.bestTime = player.meltdown.time;
+		}
+		player.meltdown.time = 0;
 		resetEnergy();
 		resetEff();
+		resetMines();
 		resetReactors();
 		resetMeteor();
 		resetNaniteResearch();
 		resetNaniteUps();
-		player.meltdown.time = 0;
 	}
 }
 
 function updateUIMeltdown() {
 	document.getElementById("corium").innerText = notation(player.meltdown.corium);
-	document.getElementById("coriumAmt").style.display = (player.meltdown.total.gt(0)) ? "inline-block" : "none";
+	document.getElementById("coriumAmt").style.display = (player.unlocked.meltdown) ? "inline-block" : "none";
 	document.getElementById("meltdown").style.display = (canMeltdown()) ? "inline-block" : "none";
 	document.getElementById("coriumOnMeltdown").innerText = notation(getCoriumOnPrestige());
 }

@@ -41,8 +41,8 @@ function buyMaxMeteor() {
 }
 
 function updateUIMeteor() {
-	document.getElementById("meteorShower").innerText = (player.meteor.shower < 4) ? "Reset the game for a new Reactor" : "Reset the game for a Boost";
-	let type = (player.meteor.shower < 4) ? "Meteor Shower" : "Tectonic Initiation";
+	document.getElementById("meteorShower").innerText = (player.meteor.shower < 4) ? "Reset the game for a new mine and reactor" : "Reset the game for a boost to mines and reactors";
+	let type = (player.meteor.shower < 4) ? "Stellar Nucleosynthesis" : "Nucleosynthesis";
 	document.getElementById("meteorCost").innerText = type + " (" + player.meteor.shower + "): Requires " + getMeteorCost()[1] + " " + isotopes[getMeteorCost()[0]] + " Reactors";
 	document.getElementById("meteorShower").className = canBuyMeteor() ? "btnbuy" : "btnlocked";
 }

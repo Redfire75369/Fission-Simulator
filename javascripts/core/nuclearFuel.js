@@ -9,7 +9,7 @@ function getFuelMineGain(tier) {
 			x++;
 		}
 	}
-	return player.mine.amount[tier].mul(getTotalMineMult(tier)).mul(player.eff.mult).mul(((3 ** x) - 1)/2).div(tier + 1);
+	return player.mine.amount[tier].mul(getTotalMineMult(tier)).mul(getEff()).mul(((3 ** x) - 1)/2).div(tier + 1);
 }
 function getFuelReactorGain(tier) {
 	if (tier = 7) {
