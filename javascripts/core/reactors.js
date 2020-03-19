@@ -1,34 +1,36 @@
+const reactorCostVar = {
+	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e4"), new Decimal("1e6"), new Decimal("1e9"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e24")],
+	costMult: [new Decimal("1e3"), new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e10"), new Decimal("1e12"), new Decimal("1e15")],
+	pre308: [102, 76, 60, 50, 37, 29, 24, 18]
+}
+
 function resetReactors() {
 	player.reactor = getDefaultData().reactor;
 }
 
+function getReactorCost(tier) {
+	return reactorCostVar.cost[tier].mul(reactorCostVar.costMult[tier].pow(player.reactor.bought[tier])).mul(Decimal.pow(10 - 0.5 * player.meltdown.breakUps[0], Decimal.max(0, player.reactor.bought[tier] - reactorCostVar.pre308[tier] - 1).mul(player.reactor.bought[tier] - reactorCostVar.pre308[tier]).div(2)));
+}
+
 function canBuyReactor(tier) {
-	return player.energy.gte(player.reactor.cost[tier]);
+	return player.energy.gte(getReactorCost(tier));
 }
 
 function buyReactor(tier) {
 	if (canBuyReactor(tier)) {
-		player.energy = player.energy.sub(player.reactor.cost[tier]);
+		player.energy = player.energy.sub(getReactorCost(tier));
 		player.reactor.bought[tier] += 1;
 		player.reactor.amount[tier] = player.reactor.amount[tier].add(1);
-		player.reactor.cost[tier]= player.reactor.cost[tier].mul(player.reactor.costMult[tier]);
 		player.reactor.mult[tier] = player.reactor.mult[tier].mul(player.reactor.multMult);
-		if (player.reactor.cost[tier].gte(new Decimal("1e308"))) {
-			player.reactor.costMult[tier] = player.reactor.costMult[tier].mul(player.reactor.costMultMult);
-		}
 	}
 }
 
 function buyMaxReactor(tier) {
 	while (canBuyReactor(tier)) {
-		player.energy = player.energy.sub(player.reactor.cost[tier]);
+		player.energy = player.energy.sub(getReactorCost(tier));
 		player.reactor.bought[tier] += 1;
 		player.reactor.amount[tier] = player.reactor.amount[tier].add(1);
-		player.reactor.cost[tier] = player.reactor.cost[tier].mul(player.reactor.costMult[tier]);
 		player.reactor.mult[tier] = player.reactor.mult[tier].mul(player.reactor.multMult);
-		if (player.reactor.cost[tier].gte(new Decimal("1e308"))) {
-			player.reactor.costMult[tier] = player.reactor.costMult[tier].mul(player.reactor.costMultMult);
-		}
 	}
 }
 
@@ -64,7 +66,7 @@ function simulateReactors(tickInterval = 50) {
 function updateUIReactors() {
 	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
 		document.getElementById(fissile[tier] + "Reactor").innerText = notation(player.reactor.amount[tier]) + " (" + player.reactor.bought[tier] + ")";
-		document.getElementById(fissile[tier] + "ReactorCost").innerText = notation(player.reactor.cost[tier]);
+		document.getElementById(fissile[tier] + "ReactorCost").innerText = notation(getReactorCost(tier));
 		document.getElementById(fissile[tier] + "BuySingle").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";
 		document.getElementById(fissile[tier] + "BuyMax").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";
 		document.getElementById(fissile[tier] + "ReactorMult").innerText = notation(getTotalReactorMult(tier));

@@ -30,4 +30,5 @@ function importSave() {
 function exportSave() {
 	saveGame();
 	copyStringToClipboard(getSaveString());
+	alert("Save copied to clipboard");
 }

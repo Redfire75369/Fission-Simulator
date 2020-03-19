@@ -29,20 +29,14 @@ function getDefaultData() {
 		},
 		mine: {
 			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-			cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e4"), new Decimal("1e6"), new Decimal("1e9"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e24")],
-			costMult: [new Decimal("1e3"), new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e10"), new Decimal("1e12"), new Decimal("1e15")],
 			bought: [0, 0, 0, 0, 0, 0, 0, 0],
 			mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
-			costMultMult: new Decimal(10),
 			multMult: new Decimal(2),
 		},
 		reactor: {
 			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-			cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e4"), new Decimal("1e6"), new Decimal("1e9"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e24")],
-			costMult: [new Decimal("1e3"), new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e10"), new Decimal("1e12"), new Decimal("1e15")],
 			bought: [0, 0, 0, 0, 0, 0, 0, 0],
 			mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
-			costMultMult: new Decimal(10),
 			multMult: new Decimal(2),
 		},
 		
@@ -73,7 +67,7 @@ function getDefaultData() {
 			time: 0,
 			bestTime: 756864000000,
 			ups: {},
-			breakups: {0: 0}
+			breakUps: {0: 0}
 		},
 		
 		time: 0,
@@ -131,6 +125,7 @@ var player = getDefaultData();
 /*Game Loops*/
 var saveGameLoop = setInterval(function() {
 	saveGame();
+	console.log("Game successfully autosaved");
 }, 15000);
 
 var updateGameLoop = setInterval(function() {

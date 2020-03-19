@@ -6,7 +6,7 @@ const naniteUpCost = {
 	31: new Decimal(3),
 	32: new Decimal(4)
 };
-const naniteUpList = [0, 11, 12, 21, 22, 31, 32];
+const naniteUpList = [11, 12, 21, 22, 31, 32];
 
 function resetNaniteUps() {
 	player.nanites.ups = getDefaultData().nanites.ups;
@@ -69,7 +69,7 @@ function getNaniteUpMult(id) {
 
 function getTotalNaniteUpMult(tier) {
 	let ret = new Decimal(1);
-	for (let id = 1; id < naniteUpList.length; id++) {
+	for (let id = 0; id < naniteUpList.length; id++) {
 		if (player.nanites.ups[naniteUpList[id]] == 1 & (getNaniteUpMult(naniteUpList[id])[0] == tier || getNaniteUpMult(naniteUpList[id])[0] == 8)) {
 			ret = ret.mul(getNaniteUpMult(naniteUpList[id])[1]);
 		}
@@ -80,12 +80,13 @@ function getTotalNaniteUpMult(tier) {
 function updateUINaniteUps() {
 	document.getElementById("nanitebtn").style.display = (player.unlocked.naniteUps) ? "inline-block" : "none";
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
-	document.getElementById("naniteupcost0").innerText = (!player.nanites.effUpCost.eq(1)) ? (player.nanites.effUpCos0a + "Nanites") : "1 Nanite";
+	document.getElementById("naniteupcost0").innerText = (!player.nanites.effUpCost.eq(1)) ? (player.nanites.effUpCost + "Nanites") : "1 Nanite";
+	document.getElementById("naniteup0").className = (canBuyNaniteUp(0)) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
 	document.getElementById("naniteupformula12").innerHTML = (player.meteor.shower <= 13) ? "x<sup>log<sub>10</sub>(x)</sup>" : "(x - 7) * log<sub>8</sub>(x)<sup>0.5</sup>";
 	for (let i = 0; i < naniteUpList.length; i++) {
 		if (naniteUpList[i] != 0 && naniteUpList[i] != 31) {
 			document.getElementById("naniteupmult" + naniteUpList[i]).innerText = notation(getNaniteUpMult(naniteUpList[i])[1]);
 		}
-		document.getElementById("naniteup" + naniteUpList[i]).className = (player.nanites.ups[naniteUpList[i]] == 1 && naniteUpList[i] != 0) ? "naniteupgbtnbought" : canBuyNaniteUp(naniteUpList[i]) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
+		document.getElementById("naniteup" + naniteUpList[i]).className = (player.nanites.ups[naniteUpList[i]] == 1 && naniteUpList[i] != 0) ? "naniteupgbtnbought" : (canBuyNaniteUp(naniteUpList[i])) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
 	}
 }

@@ -424,34 +424,34 @@
 		<div id="statistics" class="tab" align="center">
 			<table class="table" align="center">
 				<tr align="center">
-					<td class="text" align="right">
+					<td class="text" style="width:50vw" align="right">
 						Total time played:
 					</td>
-					<td class="text" align="left">
+					<td class="text" style="width:50vw" align="left">
 						<span id="statsTimePlayedTotal">0 seconds</span>
 					</td>
 				</tr>
 				<tr align="center">
-					<td class="text" align="right">
+					<td class="text" style="width:50vw" align="right">
 						Total energy generated:
 					</td>
-					<td class="text" align="left">
+					<td class="text" style="width:50vw" align="left">
 						<span id="statsTotalEnergy">80</span>
 					</td>
 				</tr>
 				<tr align="center">
-					<td class="text" align="right">
+					<td class="text" style="width:50vw" align="right">
 						Total nanites researched:
 					</td>
-					<td class="text" align="left">
+					<td class="text" style="width:50vw" align="left">
 						<span id="statsTotalNanites">0.00</span>
 					</td>
 				</tr>
-				<tr align="center">
-					<td class="text" align="right">
+				<tr id="fastestMeltdown" align="center">
+					<td class="text" style="width:50vw" align="right">
 						Fastest Meltdown Time: 
 					</td>
-					<td class="text" align="left">
+					<td class="text" style="width:50vw" align="left">
 						<span id="statsFastestMeltdown">0.00</span>
 					</td>
 				</tr>
@@ -471,10 +471,10 @@
 					</tr>
 					<tr>
 						<td align="right"><div>
-								<button onclick="saveGame()" id="save" class="optionsbtn" align="center"> Save </button>
+								<button onclick="save()" id="save" class="optionsbtn" align="center"> Save </button>
 						</div></td>
 						<td align="left"><div>
-								<button onclick="loadSave(getSaveString())" id="load" class="optionsbtn" align="center"> Load </button>
+								<button onclick="load()" id="load" class="optionsbtn" align="center"> Load </button>
 						</div></td>
 					</tr>
 					<tr>
@@ -495,7 +495,6 @@
 					</tr>
 				</tbody>
 			</table>
-				
 			</div>
 		</div>
 		<div id="nanite" class="tab">

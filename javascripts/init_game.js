@@ -34,7 +34,7 @@ function closeOfflineProgress() {
 
 function init_game() {
 	player = getDefaultData();
-	loadSave(getSave());
+	loadSave();
 	document.getElementById("production").style.display = "none";
 	document.getElementById("resources").style.display = "none";
 	document.getElementById("mines").style.display = "none";

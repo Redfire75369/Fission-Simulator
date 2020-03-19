@@ -5,5 +5,5 @@ function updateUIStats() {
 	if (player.unlocked.meltdown) {
 		document.getElementById("statsFastestMeltdown").innerText = formatTime(player.meltdown.bestTime);
 	}
-	document.getElementById("statsFastestMeltdown").style.display = (player.unlocked.meltdown) ? "table-row" : "none";
+	document.getElementById("fastestMeltdown").style.display = (player.unlocked.meltdown) ? "table-row" : "none";
 }

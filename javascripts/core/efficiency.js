@@ -3,7 +3,7 @@ function resetEff() {
 }
 
 function getEffCost() {
-	return new Decimal(1000).mul(Decimal.pow(10, player.eff.bought)).mul(Decimal.pow(10 - 0.5 * player.meltdown.breakups[0], Decimal.max(0, player.eff.bought - 103).mul(player.eff.bought - 102).div(2)));
+	return new Decimal(1000).mul(Decimal.pow(10, player.eff.bought)).mul(Decimal.pow(10 - 0.5 * player.meltdown.breakUps[0], Decimal.max(0, player.eff.bought - 306).mul(player.eff.bought - 305).div(2)));
 }
 
 function canBuyEff() {
