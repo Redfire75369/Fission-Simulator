@@ -19,7 +19,7 @@ function getEffIncrement() {
 	}
 }
 function getEff() {
-	return getEffIncrement(player.eff.bought);
+	return getEffIncrement().pow(player.eff.bought);
 }
 
 function buyEff() {

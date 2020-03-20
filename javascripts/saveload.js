@@ -19,8 +19,16 @@ function loadSave(save, imported = false) {
 		if (save === undefined) {
 			save = localStorage.getItem("fissionSimSave1");
 		}
+		
 		save = JSON.parse(atob(save));
-		if (Object.keys(getDefaultData()) != Object.keys(save) && getDefaultData().version != save.version && imported) {
+		let diffVer = ((getDefaultData().version.release != save.version.release) && (getDefaultData().version.beta != save.version.beta) && (getDefaultData().version.alpha != save.version.alpha));
+		let diffProp = false;
+		for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
+			if (keys[i] != Object.keys(save)[i]) {
+				diffProp = true;
+			}
+		}
+		if (diffProp && diffVer && imported) {
 			if (!confirm("Your imported save seems to be missing some values, which means importing this save might be destructive, if you have made a backup of your current save and are sure about importing this save please press OK, if not, press cancel and the save will not be imported.")) {
 				return;
 			}

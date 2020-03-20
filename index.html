@@ -26,6 +26,7 @@
 		<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/meltdown.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/nanites/upgrades.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/meltdown/upgrades.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
@@ -402,11 +403,11 @@
 				
 				<table class="table" align="center">
 					<tr>
-						<td id="meteorCost" class="text" align="left" style="width:50vw">
-							<span id="meteorScaling">Meteor Shower</span> (<span id="meteorAmt">0</span>): Requires <span>2 Plutonium-241</span> Reactors
+						<td class="text" align="left" style="width:50vw">
+							<span id="nucleoScaling">Stellar Nucleosynthesis</span> (<span id="nucleoAmt">0</span>): Requires <span id="nucleoCost">2 Plutonium-241</span> Reactors
 						</td>
 						<td align="right" style="width:50vw">
-							<button onclick="buyMaxMeteor()" id="meteorShower" style="width: 300px; height: 30px">Reset the game for a new Mine</button>
+							<button onclick="buyMaxNucleosynthesis()" id="nucleosynthesis" style="width: 300px; height: 30px">Reset the game for a new Mine</button>
 						</td>
 					</tr>
 					<tr>

@@ -40,8 +40,9 @@ function buyMaxNucleosynthesis() {
 }
 
 function updateUINucleosynthesis() {
-	document.getElementById("meteorShower").innerText = (player.nucleosynthesis < 4) ? "Reset the game for a new mine and reactor" : "Reset the game for a boost to mines and reactors";
-	let type = (player.nucleosynthesis < 4) ? "Stellar Nucleosynthesis" : "Nucleosynthesis";
-	document.getElementById("meteorCost").innerText = type + " (" + player.nucleosynthesis + "): Requires " + getNucleosynthesisCost()[1] + " " + isotopes[getNucleosynthesisCost()[0]] + " Reactors";
-	document.getElementById("meteorShower").className = canBuyNucleosynthesis() ? "btnbuy" : "btnlocked";
+	document.getElementById("nucleosynthesis").innerText = (player.nucleosynthesis < 4) ? "Reset the game for a new mine and reactor" : "Reset the game for a boost to mines and reactors";
+	document.getElementById("nucleoScaling").innerText = (player.nucleosynthesis < 4) ? "Stellar Nucleosynthesis" : "Nucleosynthesis";
+	document.getElementById("nucleoAmt").innerText = player.nucleosynthesis;
+	document.getElementById("nucleoCost").innerText = getNucleosynthesisCost()[1] + " " + isotopes[getNucleosynthesisCost()[0]];
+	document.getElementById("nucleosynthesis").className = canBuyNucleosynthesis() ? "btnbuy" : "btnlocked";
 }

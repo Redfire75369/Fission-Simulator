@@ -42,7 +42,6 @@ function buyNaniteUp(id) {
 		}
 		player.nanites.nanites = player.nanites.nanites.sub(naniteUpCost[id]);
 		player.nanites.ups[id] += 1;
-		}
 	}
 }
 

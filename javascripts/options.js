@@ -25,8 +25,10 @@ function load() {
 function importSave() {
 	let save = prompt("Input your save. WARNING: Your current save file will be overwritten.");
 	player.import42 = (save == "42") ? true : player.import42;
-	loadSave(save, true);
-	saveGame();
+	if (save !== null) {
+		loadSave(save, true);
+		saveGame();
+	}
 }
 function exportSave() {
 	saveGame();
