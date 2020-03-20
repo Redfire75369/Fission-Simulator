@@ -24,7 +24,7 @@ function loadSave(save, imported = false) {
 		let diffVer = ((getDefaultData().version.release != save.version.release) && (getDefaultData().version.beta != save.version.beta) && (getDefaultData().version.alpha != save.version.alpha));
 		let diffProp = false;
 		for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
-			if (keys[i] != Object.keys(save)[i]) {
+			if (!(Object.keys(save)[i].includes(keys[i]))){
 				diffProp = true;
 			}
 		}

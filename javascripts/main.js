@@ -53,6 +53,7 @@ function getDefaultData() {
 		},
 		
 		meltdown: {
+			amount: 0,
 			corium: new Decimal(0),
 			total: new Decimal(0),
 			energyGoal: Decimal.pow(2, 1024),
@@ -110,6 +111,9 @@ function updateUI() {
 	updateUIStats();
 }
 function updateGame(tickInterval) {
+	if (leverMaxAll) {
+		buyMaxAll();
+	}
 	simulateMines(tickInterval);
 	simulateReactors(tickInterval);
 	simulateEnergy(tickInterval);

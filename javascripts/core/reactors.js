@@ -21,7 +21,6 @@ function buyReactor(tier) {
 		player.energy = player.energy.sub(getReactorCost(tier));
 		player.reactor.bought[tier] += 1;
 		player.reactor.amount[tier] = player.reactor.amount[tier].add(1);
-		player.reactor.mult[tier] = player.reactor.mult[tier].mul(player.reactor.multMult);
 	}
 }
 
@@ -30,7 +29,6 @@ function buyMaxReactor(tier) {
 		player.energy = player.energy.sub(getReactorCost(tier));
 		player.reactor.bought[tier] += 1;
 		player.reactor.amount[tier] = player.reactor.amount[tier].add(1);
-		player.reactor.mult[tier] = player.reactor.mult[tier].mul(player.reactor.multMult);
 	}
 }
 
