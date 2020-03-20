@@ -28,10 +28,10 @@ function getTotalFuelGain(tier) {
 }
 
 function updateUIFuel() {
-	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
+	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
 		document.getElementById(LEF[tier] + "Gain").innerText = notation(getTotalFuelGain(tier));
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById(LEF[tier] + "Row").style.display= (player.meteor.shower + 4 > tier && player.mine.bought[tier - 1] > 0) ? "table-row" : "none";
+		document.getElementById(LEF[tier] + "Row").style.display= (player.nucleosynthesis + 4 > tier && player.mine.bought[tier - 1] > 0) ? "table-row" : "none";
 	}
 }

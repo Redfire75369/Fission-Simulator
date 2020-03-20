@@ -1,6 +1,6 @@
 function resetNaniteResearch() {
-	player.nanites.nanites = getDefaultData().nanites.nanites;
-	player.nanites.total = getDefaultData().nanites.total;
+	player.nanites.nanites = (player.meltdown.ups[0] == 1) ? new Decimal(1) : zero;
+	player.nanites.total = (player.meltdown.ups[0] == 1) ? new Decimal(1) : zero;
 }
 
 function canBuyNaniteResearch() {

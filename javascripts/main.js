@@ -24,26 +24,18 @@ function getDefaultData() {
 		totalEnergy: new Decimal(100),
 		
 		eff: {
-			bought: 0,
-			costMultMult: new Decimal(10)
+			bought: 0
 		},
 		mine: {
 			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-			bought: [0, 0, 0, 0, 0, 0, 0, 0],
-			mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
-			multMult: new Decimal(2),
+			bought: [0, 0, 0, 0, 0, 0, 0, 0]
 		},
 		reactor: {
 			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-			bought: [0, 0, 0, 0, 0, 0, 0, 0],
-			mult: [new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1), new Decimal(1)],
-			multMult: new Decimal(2),
+			bought: [0, 0, 0, 0, 0, 0, 0, 0]
 		},
 		
-		meteor: {
-			shower: 0,
-			meteorMult: new Decimal(2)
-		},
+		nucleosynthesis: 0,
 		
 		nanites: {
 			nanites: new Decimal(0),
@@ -69,6 +61,8 @@ function getDefaultData() {
 			ups: {},
 			breakUps: {0: 0}
 		},
+		
+		imported42: false,
 		
 		time: 0,
 		timeOnline: 0,
@@ -108,10 +102,11 @@ function updateUI() {
 	updateUIMines();
 	updateUIReactors();
 	updateUIEff();
-	updateUIMeteor();
+	updateUINucleosynthesis();
 	updateUINaniteUps();
 	updateUINaniteResearch();
 	updateUIMeltdown();
+	updateUIMeltdownUps();
 	updateUIStats();
 }
 function updateGame(tickInterval) {
@@ -125,7 +120,6 @@ var player = getDefaultData();
 /*Game Loops*/
 var saveGameLoop = setInterval(function() {
 	saveGame();
-	console.log("Game successfully autosaved");
 }, 15000);
 
 var updateGameLoop = setInterval(function() {

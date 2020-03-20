@@ -35,7 +35,7 @@ function buyMaxReactor(tier) {
 }
 
 function buyMaxAll() {
-	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
+	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
 		buyMaxReactor(tier);
 		buyMaxMine(tier);
 	}
@@ -43,10 +43,13 @@ function buyMaxAll() {
 }
 
 function getTotalReactorMult(tier) {
-	let mult = player.reactor.mult[tier];
-	mult = mult.mul(player.meteor.meteorMult.pow(max(0, player.meteor.shower - tier)));
+	let mult = new Decimal(1);
+	let perBuyMult = new Decimal(2);
+	let nucleoMult = (player.nanites.ups[31] == 1) ? new Decimal(2.2) : new Decimal(2);
+	mult = mult.mul(perBuyMult.pow(player.reactor.bought[tier])).mul(nucleoMult.pow(max(0, player.nucleosynthesis - tier)));
 	mult = mult.mul(getTotalNaniteUpMult(tier));
-	return mult;
+	mult = mult.mul((player.import42) ? 2 : 1);
+	return Decimal.max(1, mult);
 }
 
 function getReactorGain(tier) {
@@ -58,13 +61,13 @@ function getReactorGain(tier) {
 }
 
 function simulateReactors(tickInterval = 50) {
-	for (let tier = min(7, player.meteor.shower + 3); tier >= 0; tier--) {
+	for (let tier = min(7, player.nucleosynthesis + 3); tier >= 0; tier--) {
 		player.reactor.amount[tier] = player.reactor.amount[tier].add(getReactorGain(tier).mul(tickInterval / 1000));
 	}
 }
 
 function updateUIReactors() {
-	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
+	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
 		document.getElementById(fissile[tier] + "Reactor").innerText = notation(player.reactor.amount[tier]) + " (" + player.reactor.bought[tier] + ")";
 		document.getElementById(fissile[tier] + "ReactorCost").innerText = notation(getReactorCost(tier));
 		document.getElementById(fissile[tier] + "BuySingle").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";
@@ -72,6 +75,6 @@ function updateUIReactors() {
 		document.getElementById(fissile[tier] + "ReactorMult").innerText = notation(getTotalReactorMult(tier));
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById("reactorRow" + (tier + 1)).style.display = (player.meteor.shower + 4 > tier && player.reactor.bought[tier - 1] > 0) ? "table-row" : "none";
+		document.getElementById("reactorRow" + (tier + 1)).style.display = (player.nucleosynthesis + 4 > tier && player.reactor.bought[tier - 1] > 0) ? "table-row" : "none";
 	}
 }

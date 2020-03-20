@@ -21,7 +21,6 @@ function buyMine(tier) {
 		player.energy = player.energy.sub(getMineCost(tier));
 		player.mine.bought[tier] += 1;
 		player.mine.amount[tier] = player.mine.amount[tier].add(1);
-		player.mine.mult[tier] = player.mine.mult[tier].mul(player.mine.multMult);
 	}
 }
 
@@ -30,15 +29,17 @@ function buyMaxMine(tier) {
 		player.energy = player.energy.sub(getMineCost(tier));
 		player.mine.bought[tier] += 1;
 		player.mine.amount[tier] = player.mine.amount[tier].add(1);
-		player.mine.mult[tier] = player.mine.mult[tier].mul(player.mine.multMult);
 	}
 }
 
 function getTotalMineMult(tier) {
-	let mult = player.mine.mult[tier];
-	mult = mult.mul(player.meteor.meteorMult.pow(max(0, player.meteor.shower - tier)));
+	let mult = new Decimal(1);
+	let perBuyMult = new Decimal(2);
+	let nucleoMult = (player.nanites.ups[31] == 1) ? new Decimal(2.2) : new Decimal(2);
+	mult = mult.mul(perBuyMult.pow(player.mine.bought[tier])).mul(nucleoMult.pow(max(0, player.nucleosynthesis - tier)));
 	mult = mult.mul(getTotalNaniteUpMult(tier));
-	return mult;
+	mult = mult.mul((player.import42) ? 2 : 1);
+	return Decimal.max(1, mult);
 }
 
 function getMineGain(tier) {
@@ -46,13 +47,13 @@ function getMineGain(tier) {
 }
 
 function simulateMines(tickInterval = 50) {
-	for (let tier = min(7, player.meteor.shower + 3); tier >= 0; tier--) {
+	for (let tier = min(7, player.nucleosynthesis + 3); tier >= 0; tier--) {
 		player.mine.amount[tier] = player.mine.amount[tier].add(getMineGain(tier).mul(tickInterval / 1000));
 	}
 }
 
 function updateUIMines() {
-	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
+	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
 		document.getElementById(mining[tier] + "Mine").innerText = notation(player.mine.amount[tier]) + " (" + player.mine.bought[tier] + ")";
 		document.getElementById(mining[tier] + "MineCost").innerText = notation(getMineCost(tier));
 		document.getElementById(mining[tier] + "BuySingle").className = canBuyMine(tier) ? "btnbuy" : "btnlocked";
@@ -60,6 +61,6 @@ function updateUIMines() {
 		document.getElementById(mining[tier] + "MineMult").innerText = notation(getTotalMineMult(tier));
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById("mineRow" + (tier + 1)).style.display = (player.meteor.shower + 4 > tier && player.mine.bought[tier - 1] > 0) ? "table-row" : "none";
+		document.getElementById("mineRow" + (tier + 1)).style.display = (player.nucleosynthesis + 4 > tier && player.mine.bought[tier - 1] > 0) ? "table-row" : "none";
 	}
 }

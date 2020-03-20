@@ -14,7 +14,7 @@ function getEnergyGain(tier) {
 }
 function getTotalEnergyGain() {
 	let ret = zero;
-	for (let tier = 0; tier < min(8, player.meteor.shower + 4); tier++) {
+	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
 		ret = ret.add(getEnergyGain(tier));
 	}
 	return ret;
