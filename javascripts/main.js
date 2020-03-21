@@ -2,8 +2,8 @@ function getDefaultData() {
 	return {
 		version: {
 			release: 0,
-			alpha: 2,
-			beta: 3
+			beta: 3,
+			alpha: 14
 		},
 		
 		options: {
@@ -80,10 +80,10 @@ const infinity = Decimal.pow(2, 1024);
 const zero = new Decimal(0);
 
 var focused = true;
-window.onfocus = function() {  
+window.onfocus = function() {
   focused=true;  
 }
-window.onblur = function() {  
+window.onblur = function() {
   focused=false;  
 }  
 
@@ -122,11 +122,11 @@ function updateGame(tickInterval) {
 var player = getDefaultData();
 
 /*Game Loops*/
-var saveGameLoop = setInterval(function() {
+setInterval(function() {
 	saveGame();
 }, 15000);
 
-var updateGameLoop = setInterval(function() {
+setInterval(function() {
 	if (Date.now() > player.lastUpdate + 1000 && focused) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
@@ -134,11 +134,11 @@ var updateGameLoop = setInterval(function() {
 	player.lastUpdate = Date.now();
 }, 25);
 
-var updateUILoop = setInterval(function() {
+setInterval(function() {
 	updateUI();
 }, 50);
 
-var timerLoop = setInterval(function() {
+setInterval(function() {
 	player.time += 50;
 	player.time = floor(player.time);
 	player.timeOnline += 50;

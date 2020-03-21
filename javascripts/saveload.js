@@ -66,6 +66,7 @@ function loadSave(save, imported = false) {
 				}
 			}
 		}
+		player.version = getDefaultData().version;
 		if (imported) {
 			alert("Save imported successfully.");
 		} else {

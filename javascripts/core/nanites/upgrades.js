@@ -35,10 +35,13 @@ function canBuyNaniteUp(id) {
 
 function buyNaniteUp(id) {
 	if (canBuyNaniteUp(id)) {
-		if (id == 0 && player.nanites.ups[0] >= 2) {
+		if (id == 0) {
+			player.nanites.nanites = player.nanites.nanites.sub(player.nanites.effUpCost);
+			player.nanites.ups[id] += 1;
 			if (player.nanites.ups[0] >= 2) {
 				player.nanites.effUpCost = player.nanites.effUpCost.add(1);
 			}
+			return;
 		}
 		player.nanites.nanites = player.nanites.nanites.sub(naniteUpCost[id]);
 		player.nanites.ups[id] += 1;
@@ -75,13 +78,13 @@ function getTotalNaniteUpMult(tier) {
 function updateUINaniteUps() {
 	document.getElementById("nanitebtn").style.display = (player.unlocked.naniteUps) ? "inline-block" : "none";
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
-	document.getElementById("naniteupcost0").innerText = (!player.nanites.effUpCost.eq(1)) ? (player.nanites.effUpCost + "Nanites") : "1 Nanite";
+	document.getElementById("naniteupcost0").innerText = (!player.nanites.effUpCost.eq(1)) ? (player.nanites.effUpCost + " Nanites") : "1 Nanite";
 	document.getElementById("naniteup0").className = (canBuyNaniteUp(0)) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
 	document.getElementById("naniteupformula12").innerHTML = (player.nucleosynthesis <= 13) ? "x<sup>log<sub>10</sub>(x)</sup>" : "(x - 7) * log<sub>8</sub>(x)<sup>0.5</sup>";
 	for (let i = 0; i < naniteUpList.length; i++) {
 		if (naniteUpList[i] != 0 && naniteUpList[i] != 31) {
 			document.getElementById("naniteupmult" + naniteUpList[i]).innerText = notation(getNaniteUpMult(naniteUpList[i])[1]);
 		}
-		document.getElementById("naniteup" + naniteUpList[i]).className = (player.nanites.ups[naniteUpList[i]] == 1 && naniteUpList[i] != 0) ? "naniteupgbtnbought" : (canBuyNaniteUp(naniteUpList[i])) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
+		document.getElementById("naniteup" + naniteUpList[i]).className = (player.nanites.ups[naniteUpList[i]] == 1) ? "naniteupgbtnbought" : (canBuyNaniteUp(naniteUpList[i])) ? "naniteupgbtnbuy" : "naniteupgbtnlocked";
 	}
 }

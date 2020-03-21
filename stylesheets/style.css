@@ -1,8 +1,12 @@
+body {
+	background-color:#1c1c1c;
+}
 table {
 	width: 100vw;
 	margin: 0;
 	padding: 0;
 }
+
 .navibtn {
 	width: 180px;
 	height: 40px;
