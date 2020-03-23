@@ -1,5 +1,117 @@
+body {
+	background-color:#1c1c1c;
+}
 table {
 	width: 100vw;
 	margin: 0;
 	padding: 0;
 }
+
+.navibtn {
+	width: 180px;
+	height: 40px;
+	font-size: 20px;
+	color: #d0d0d0;
+	background: #1c1c1c;
+	border: 2px solid #2828bf;
+	border-radius: 4px;
+}
+
+.prodbtn {
+	width: 150px;
+	height: 30px;
+	font-size: 16px;
+	color: #d0d0d0;
+	background: #101010;
+	border: 2px solid #dfdfdf;
+	border-radius: 4px;
+}
+
+.popup {
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	color: #d0d0d0;
+    background: #455a64;
+    border: 3px solid black;
+    border-radius: 6px;
+    text-align:center;
+    z-index: 2;
+    padding: 10px;
+    padding-bottom: 15px;
+}
+
+.optionsbtn {
+	width: 200px;
+	height: 55px;
+	font-size: 20px;
+	color: #d0d0d0;
+	background: #455a64;
+	border: 2px solid #e8e8e8;
+	border-radius: 2px;
+}
+.optionsbtn:hover {
+	background: #1e88e5;
+}
+
+.energy {
+	color: #d0d0d0;
+	font-size: 25px;
+}
+.energypersecond {
+	color: #d0d0d0;
+	font-size:20px;
+}
+.text {
+	color: #d0d0d0;
+	font-size: 15px;
+}
+
+.btnbuy {
+	font-size: 12px;
+	color: #d0d0d0;
+	background: #1c1c1c;
+	border: 2px solid #127A20;
+	border-radius: 2px;
+}
+.btnlocked {
+	font-size: 12px;
+	color: #d0d0d0;
+	background: #37474f;
+	border: 2px solid #e53935;
+	border-radius: 2px;
+}
+
+.naniteupgbtnbuy {
+	font-size: 10px;
+	border: 1px solid #DAA520;
+	border-radius: 4px;
+	color: #d0d0d0;
+	background: #1F1F1F;
+}
+.naniteupgbtnlocked {
+	font-size: 10px;
+	border: 1px solid;
+	border-radius: 4px;
+	color: #d0d0d0;
+	background: #404040;
+}
+.naniteupgbtnbought {
+	font-size: 10px;
+	border: 1px solid green;
+	border-radius: 4px;
+	color: #d0d0d0;
+	background: #000000;
+}
+
+.meltdownbtn {
+	width: 210px;
+	height: 70px;
+	font-size: 10px;
+	border: 2px solid green;
+	border-radius: 6px;
+	color: #d0d0d0;
+	background: #1C1C1C;
+} 
