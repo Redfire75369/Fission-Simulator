@@ -15,11 +15,21 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Code Optimisations
 -->
+## [v0.3.15] - 21/3/20 **PR**
+### Added
+
+### Modified
+- Fuel density of all fuels increased
+- Max energy gain depends on fuel type as well
+- Nanite research and meltdown reset Nucleosynthesis
+
+### Code Optimisations
 
 ## [v0.3.14] - 21/3/20 **PR**
 
 ### Added
 - Changelog
+- simulateTime() cheat button
 - New CSS stylesheets for other themes
 
 ### Modified

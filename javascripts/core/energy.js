@@ -7,7 +7,7 @@ function resetEnergy() {
 }
 
 function getMaxEnergyGain(tier) {
-	return player.reactor.amount[0].mul(getTotalReactorMult(0)).mul(getEff()).mul(3 ** tier).mul(4);
+	return player.reactor.amount[0].mul(getTotalReactorMult(0)).mul(getEff()).mul(3 ** tier).mul(JkgLEF[tier]);
 }
 function getEnergyGain(tier) {
 	return (getTotalFuelGain(tier).mul(JkgLEF[tier]).gt(getMaxEnergyGain(tier))) ? getMaxEnergyGain(tier) : getTotalFuelGain(tier).mul(JkgLEF[tier]);

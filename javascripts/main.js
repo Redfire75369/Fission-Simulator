@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 3,
-			alpha: 14
+			alpha: 15
 		},
 		
 		options: {
@@ -74,8 +74,7 @@ const mining = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium
 const fissile = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
 const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241", "Americium-243", "Curium-247", "Berkelium-247", "Californium-252"];
 const LEF = ["LET", "LEU", "LENp", "LEPu", "LEAm", "LECu", "LEBk", "LECf"];
-const kgLEFJ = [new Decimal(1), new Decimal(4), new Decimal(16), new Decimal(64), new Decimal(256), new Decimal(1024), new Decimal(4096), new Decimal(16384)];
-const JkgLEF = [new Decimal(2), new Decimal(8), new Decimal(32), new Decimal(128), new Decimal(512), new Decimal(2048), new Decimal(8192), new Decimal(32768)];
+const JkgLEF = [new Decimal(4), new Decimal(16), new Decimal(64), new Decimal(256), new Decimal(1024), new Decimal(4096), new Decimal(16384), new Decimal(65536)];
 const infinity = Decimal.pow(2, 1024);
 const zero = new Decimal(0);
 

@@ -24,7 +24,7 @@ function nanitesGain() {
 	if (ret.gt(0)) {
 		return Decimal.floor(ret);
 	} else {
-		return new Decimal(0);
+		return zero;
 	}
 }
 
@@ -38,7 +38,7 @@ function buyNaniteResearch() {
 		resetMines();
 		resetReactors();
 		resetEff();
-		resetMeteor();
+		resetNucleosynthesis();
 	}
 }
 

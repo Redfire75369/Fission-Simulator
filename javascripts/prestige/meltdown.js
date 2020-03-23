@@ -11,7 +11,7 @@ function coriumGain() {
 	return Decimal.floor(ret);
 }
 function coriumGainPassive() {
-	return new Decimal(0);
+	return zero;
 }
 
 function meltdownGain() {
@@ -36,7 +36,7 @@ function meltdown() {
 		resetEff();
 		resetMines();
 		resetReactors();
-		resetMeteor();
+		resetNucleosynthesis();
 		resetNaniteResearch();
 		resetNaniteUps();
 	}

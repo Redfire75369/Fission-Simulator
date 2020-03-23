@@ -21,7 +21,7 @@ function getFuelReactorGain(tier) {
 			y++;
 		}
 	}
-	return player.reactor.amount[tier + 1].mul(getTotalReactorMult(tier + 1)).mul(player.eff.mult).mul(((3 ** y) - 1)/2);
+	return player.reactor.amount[tier + 1].mul(getTotalReactorMult(tier + 1)).mul(getEff()).mul(((3 ** y) - 1)/2);
 }
 function getTotalFuelGain(tier) {
 	return getFuelMineGain(tier).add(getFuelReactorGain(tier));
