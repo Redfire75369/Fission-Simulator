@@ -8,7 +8,9 @@ function getDefaultData() {
 		
 		options: {
 			notation: "Scientific",
-			notationNo: 0
+			notationNo: 0,
+			theme: "Light",
+			themeNo: 0
 		},
 		navigation: {
 			naviTab: "production",

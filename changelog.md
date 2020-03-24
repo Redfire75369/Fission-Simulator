@@ -15,6 +15,16 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Code Optimisations
 -->
+## [v0.3.16] - 22/3/20 **PR**
+### Added
+- Themes (From dystopia)
+- Theme changing
+
+### Modified
+- Passive meltdown stat fix
+
+### Code Optimisations
+
 ## [v0.3.15] - 21/3/20 **PR**
 ### Added
 

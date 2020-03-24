@@ -3,7 +3,7 @@
 	<head>
 	    <meta charset="utf-8">
 	    <title>Fission Simulator</title>
-	    <link rel="stylesheet" href="stylesheets/styles.css" />
+	    <link id="style" rel="stylesheet" href="stylesheets/styles.css" />
 	    
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/ad-notations.min.js" charset="utf-8" type="text/javascript"></script>
@@ -459,10 +459,10 @@
 			<table align="center">
 				<tr>
 					<td align="right">
-							<button onclick="notationChange()" class="optionsbtn" align="right"> Notation: Scientific </button>
+							<button onclick="notationChange()" id="notation" class="optionsbtn" align="right"> Notation: Scientific </button>
 					</td>
 					<td align="left">
-							<button class="optionsbtn" align="right"> Theme: Default (WIP) </button>
+							<button onclick="themeChange()" id="theme" class="optionsbtn" align="right"> Theme: Light </button>
 					</td>
 				</tr>
 				<tr>

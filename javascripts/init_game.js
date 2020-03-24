@@ -43,6 +43,7 @@ function init_game() {
 	document.getElementById("nanite").style.display = "none";
 	showNaviTab(player.navigation.naviTab);
 	targetedNotationChange(player.options.notation);
+	targetedThemeChange(player.options.theme);
 	if (Date.now() > player.lastUpdate + 1000) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
