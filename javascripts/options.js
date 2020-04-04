@@ -1,5 +1,5 @@
 const notations = ["Scientific", "Logarithmic", "Brackets", "Omega", "Cancer", "Zalgo", "Prime", "Blind"];
-const themes = ["Light", "Dark"];
+const themes = ["Light", "Dark", "Inverted", "Midnight", "Void"];
 
 /*Notations Change*/
 function notationChange() {
