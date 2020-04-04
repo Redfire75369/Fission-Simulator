@@ -12,7 +12,8 @@ function simulateTime(seconds, actual, testing) {
 	}
 	let start = Object.assign({}, player);
 	for (let complete = 0; complete < ticks; complete++) {
-		updateGame(tickInterval)
+		updateGame(tickInterval);
+		player.lastUpdate = Date.now();
 	}
 	player.time += seconds * 1000;
 	player.meltdown.time += seconds * 1000;
