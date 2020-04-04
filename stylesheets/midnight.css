@@ -11,7 +11,7 @@ table {
 	width: 180px;
 	height: 40px;
 	font-size: 20px;
-	border: 0px solid black;
+	border: 1px solid black;
 	color: #ffffff;
 	background: #000000;
 }
@@ -20,7 +20,7 @@ table {
 	width: 150px;
 	height: 30px;
 	font-size: 16px;
-	border: 0px solid black;
+	border: 1px solid black;
 	color: #ffffff;
 	background: #000000;
 }
@@ -32,7 +32,7 @@ table {
 	top: 50%;
 	transform: translateX(-50%) translateY(-50%);
 	color: #ffffff;
-	border: 0px solid black;
+	border: 1px solid black;
     background: #000000;
     text-align:center;
     z-index: 2;
@@ -44,7 +44,7 @@ table {
 	width: 200px;
 	height: 55px;
 	font-size: 20px;
-	border: 0px solid black;
+	border: 1px solid black;
 	color: #ffffff;
 	background: #000000;
 }
@@ -63,32 +63,32 @@ table {
 
 .btnbuy {
 	font-size: 12px;
-	border: 0px solid black;
+	border: 1px solid black;
 	color: #ffffff;
 	background: #000000;
 }
 .btnlocked {
 	font-size: 12px;
-	border: 0px solid black;
+	border: 1px solid black;
 	color: #ffffff;
 	background: #000000;
 }
 
 .naniteupgbtnbuy {
 	font-size: 10px;
-	border: 0px solid black;
+	border: 1px solid black;
 	color: #ffffff;
 	background: #000000;
 }
 .naniteupgbtnlocked {
 	font-size: 10px;
-	border: 0px solid black;
+	border: 1px solid black;
 	color: #ffffff;
 	background: #000000;
 }
 .naniteupgbtnbought {
 	font-size: 10px;
-	border: 0px solid black;
+	border: 1px solid black;
 	color: #000000;
 	background: #000000;
 }
@@ -97,7 +97,7 @@ table {
 	width: 210px;
 	height: 70px;
 	font-size: 10px;
-	border: 0px solid black;
+	border: 1px solid black;
 	color: #ffffff;
 	background: #000000;
 }
