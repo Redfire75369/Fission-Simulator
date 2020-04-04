@@ -137,6 +137,7 @@ setInterval(function() {
 	if (player.lastUpdate === undefined) {
 		player.lastUpdate = Date.now();
 	}
+	console.log(Date.now() - player.lastUpdate);
 	if (Date.now() > player.lastUpdate && focused) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 		player.lastUpdate = Date.now();
