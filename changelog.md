@@ -22,6 +22,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 - More themes (By Dystopia)
 
 ### Modified
+- Many bugfixes
 - Infinite offline progress loop stopped.
 
 ### Code Optimisations
