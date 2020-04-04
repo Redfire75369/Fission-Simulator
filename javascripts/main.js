@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 3,
-			alpha: 15
+			alpha: 17
 		},
 		
 		options: {
@@ -14,7 +14,7 @@ function getDefaultData() {
 		},
 		navigation: {
 			naviTab: "production",
-			production: "resources"
+			production: "mines"
 		},
 		
 		unlocked: {
@@ -22,6 +22,12 @@ function getDefaultData() {
 				meltdown: false,
 				decayHasten: false
 		},
+		
+		achievements: {
+			r11: false,
+			r12: false
+		},
+		
 		energy: new Decimal(100),
 		totalEnergy: new Decimal(100),
 		
@@ -128,22 +134,15 @@ setInterval(function() {
 }, 15000);
 
 setInterval(function() {
-	if (Date.now() > player.lastUpdate + 1000 && focused) {
-		simulateTime((Date.now() - player.lastUpdate) / 1000);
+	if (player.lastUpdate === undefined) {
+		player.lastUpdate = Date.now();
 	}
-	updateGame(25);
-	player.lastUpdate = Date.now();
+	if (Date.now() > player.lastUpdate && focused) {
+		simulateTime((Date.now() - player.lastUpdate) / 1000);
+		player.lastUpdate = Date.now();
+	}
 }, 25);
 
 setInterval(function() {
 	updateUI();
-}, 50);
-
-setInterval(function() {
-	player.time += 50;
-	player.time = floor(player.time);
-	player.timeOnline += 50;
-	player.timeOnline = floor(player.timeOnline);
-	player.meltdown.time += 50;
-	player.meltdown.time = floor(player.meltdown.time);
 }, 50);

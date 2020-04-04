@@ -1,5 +1,9 @@
 /*Offline Progress*/
 function simulateTime(seconds, actual, testing) {
+	if (seconds > 10) {
+		document.getElementById("offlinePopup").style.display = "block";
+		document.getElementById("offlineProgress").innerText = "Simulating " + seconds + " seconds of progress.";
+	}
 	let ticks = seconds * 20;
 	let tickInterval = 50;
 	if (ticks > 1000 & !actual) {
@@ -22,9 +26,12 @@ function simulateTime(seconds, actual, testing) {
 	if (offlinePopup == "While you were away, ") {
 		offlinePopup += "nothing happened.";
 	}
+	if (seconds > 1) {
+		document.getElementById("offlinePopup").style.display = "none";
+	}
 	if (seconds > 1000) {
 		document.getElementById("offlinePopup").style.display = "block";
-	    document.getElementById("offlineProgress").innerHTML = offlinePopup;
+		document.getElementById("offlineProgress").innerText = offlinePopup;
 	}
 }
 
@@ -35,7 +42,7 @@ function closeOfflineProgress() {
 function init_game() {
 	loadSave();
 	document.getElementById("production").style.display = "none";
-	document.getElementById("resources").style.display = "none";
+	document.getElementById("fuel").style.display = "none";
 	document.getElementById("mines").style.display = "none";
 	document.getElementById("reactors").style.display = "none";
 	document.getElementById("statistics").style.display = "none";

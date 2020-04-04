@@ -30,6 +30,9 @@ function nanitesGain() {
 
 function buyNaniteResearch() {
 	if (canBuyNaniteResearch()) {
+		if (!player.unlocked.naniteUps && !player.unlocked.meltdown) {
+			showNaviTab("nanite");
+		}
 		player.nanites.nanites = player.nanites.nanites.add(nanitesGain());
 		player.nanites.total = player.nanites.total.add(nanitesGain());
 		player.unlocked.naniteUps = true;

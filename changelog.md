@@ -15,6 +15,19 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Code Optimisations
 -->
+
+## [v0.3.17] - 4/4/20 **PR**
+### Added
+- Achievements framework
+
+### Modified
+- More user-friendly
+
+### Code Optimisations
+- Improved simulations
+- Unified energy and fuel code
+- Unified mines and reactors code
+
 ## [v0.3.16] - 22/3/20 **PR**
 ### Added
 - Themes (From dystopia)

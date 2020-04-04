@@ -17,11 +17,9 @@
 		<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/energy.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/nuclearFuel.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/resources.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/basicProd.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/mines.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/reactors.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nucleosynthesis.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/meltdown.js" charset ="utf-8" type="text/javascript"></script>
@@ -35,7 +33,7 @@
 	</head>
 	<body bgcolor="1c1c1c" align="center">
 		
-	 	<div class="popup" id="offlinePopup" style="width: 450px; height: 200px;">
+	 	<div id="offlinePopup" class="popup" style="width: 450px; height: 200px;">
 			<div id="offlineProgress" style="height: 150px"></div>
 			<button class="btnbuy" style="font-size: 15px" onclick="closeOfflineProgress()" style="display: inline">Close</button>
 		</div>
@@ -76,7 +74,7 @@
 			<table align="center">
 				<tr align="center">
 					<td>
-						<button onclick="showProdTab('resources')" id="prodresourcesbtn" class="prodbtn">Resources</button>
+						<button onclick="showProdTab('fuel')" id="prodfuelbtn" class="prodbtn">Fuel</button>
 						<button onclick="showProdTab('mines')" id="prodminesbtn" class="prodbtn">Mines</button>
 						<button onclick="showProdTab('reactors')" id="prodreactorsbtn" class="prodbtn">Reactors</button>
 					</td>
@@ -87,78 +85,159 @@
 				<button onclick="buyMaxAll()" align="center" class="btnbuy" style="width: 120px; height: 25px">Max All (M)</button>
 			</div>
 			
-			<div id="resources">
+			<div id="fuel">
 				<table align="center">
 					<tr>
-						<td class="text" style="width:50vw" align="left">
-							Resource
+						<td class="text" style="width:19vw" align="left">
+							Fuel Type
 						</td>
-						<td class="text" style="width:50vw" align="center">
-							Resource Gain
+						<td class="text" style="width:19vw" align="center">
+							Fuel Gain
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							Fuel Gain from Mines
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							Fuel Gain from Reactors
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							Fuel Gain from Decay
 						</td>
 					</tr>
 					<tr id="LETRow">
-						<td class="text" style="width:50vw" align="left">
+						<td class="text" style="width:19vw" align="left">
 							LET-232 Fuel
 						</td>
-						<td class="text" style="width:50vw" align="center">
+						<td class="text" style="width:19vw" align="center">
 							<span id="LETGain">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LETGainMine">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LETGainReactor">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LETGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LEURow">
-						<td class="text" style="width:50vw" align="left">
+						<td class="text" style="width:19vw" align="left">
 							LEU-235 Fuel
 						</td>
-						<td class="text" style="width:50vw" align="center">
+						<td class="text" style="width:19vw" align="center">
 							<span id="LEUGain">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEUGainMine">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEUGainReactor">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEUGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LENpRow">
-						<td class="text" style="width:50vw" align="left">
+						<td class="text" style="width:19vw" align="left">
 							LENp-237 Fuel
 						</td>
-						<td class="text" style="width:50vw" align="center">
+						<td class="text" style="width:19vw" align="center">
 							<span id="LENpGain">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LENpGainMine">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LENpGainReactor">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LENpGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LEPuRow">
-						<td class="text" style="width:50vw" align="left">
+						<td class="text" style="width:19vw" align="left">
 							LEPu-241 Fuel
 						</td>
-						<td class="text" style="width:50vw" align="center">
+						<td class="text" style="width:19vw" align="center">
 							<span id="LEPuGain">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEPuGainMine">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEPuGainReactor">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEPuGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LEAmRow">
-						<td class="text" style="width:50vw" align="left">
+						<td class="text" style="width:19vw" align="left">
 							LEAm-243 Fuel
 						</td>
-						<td class="text" style="width:50vw" align="center">
+						<td class="text" style="width:19vw" align="center">
 							<span id="LEAmGain">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEAmGainMine">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEAmGainReactor">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEAmGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LECuRow">
-						<td class="text" style="width:50vw" align="left">
+						<td class="text" style="width:19vw" align="left">
 							LECu-247 Fuel
 						</td>
-						<td class="text" style="width:50vw" align="center">
+						<td class="text" style="width:19vw" align="center">
 							<span id="LECuGain">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LECuGainMine">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LECuGainReactor">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LECuGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LEBkRow">
-						<td class="text" style="width:50vw" align="left">
+						<td class="text" style="width:19vw" align="left">
 							LEBk-247 Fuel
 						</td>
-						<td class="text" style="width:50vw" align="center">
+						<td class="text" style="width:19vw" align="center">
 							<span id="LEBkGain">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEBkGainMine">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEBkGainReactor">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LEBkGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LECfRow">
-						<td class="text" style="width:50vw" align="left">
+						<td class="text" style="width:19vw" align="left">
 							LECf-252 Fuel
 						</td>
-						<td class="text" style="width:50vw" align="center">
+						<td class="text" style="width:19vw" align="center">
 							<span id="LECfGain">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LECfGainMine">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LECfGainReactor">0.00</span> kg/s
+						</td>
+						<td class="text" style="width:19vw" align="center">
+							<span id="LECfGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 				</table>

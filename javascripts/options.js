@@ -12,6 +12,7 @@ function targetedNotationChange(notation) {
 	while (player.options.notation != notation) {
 		notationChange();
 	}
+	document.getElementById("notation").innerText = "Notation: " + player.options.notation;
 }
 
 /*Theme Change*/
@@ -26,6 +27,8 @@ function targetedThemeChange(theme) {
 	while (player.options.theme != theme) {
 		themeChange();
 	}
+	document.getElementById("theme").innerText = "Theme: " + player.options.theme;
+	document.getElementById("style").setAttribute("href", "stylesheets/" + player.options.theme.toLowerCase() + ".css");
 }
 
 /*Save/Load*/
@@ -40,8 +43,8 @@ function load() {
 function importSave() {
 	let save = prompt("Input your save. WARNING: Your current save file will be overwritten.");
 	player.import42 = (save == "42") ? true : player.import42;
-	if (save === null) {
-		return
+	if (save === null || save == "42") {
+		return;
 	}
 	loadSave(save, true);
 	saveGame();

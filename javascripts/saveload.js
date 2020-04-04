@@ -17,60 +17,33 @@ function saveGame() {
 function loadSave(save, imported = false) {
 	try {
 		if (save === undefined) {
-			save = localStorage.getItem("fissionSimSave1");
+			save = getSave();
 		}
-		
 		save = JSON.parse(atob(save));
-		let diffVer = ((getDefaultData().version.release != save.version.release) && (getDefaultData().version.beta != save.version.beta) && (getDefaultData().version.alpha != save.version.alpha));
-		let diffProp = false;
+		
 		for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
-			if (!(Object.keys(save)[i].includes(keys[i]))){
-				diffProp = true;
-			}
-		}
-		if (diffProp && diffVer && imported) {
-			if (!confirm("Your imported save seems to be missing some values, which means importing this save might be destructive, if you have made a backup of your current save and are sure about importing this save please press OK, if not, press cancel and the save will not be imported.")) {
-				return;
-			}
-		}
-		for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
-			if (typeof getDefaultData()[keys[i]] == "object" && !(getDefaultData()[keys[i]] instanceof Decimal)) {
-				for (let j = 0, keys2 = Object.keys(getDefaultData()[keys[i]]), jj = keys2.length; j < jj; j++) {
-					if (getDefaultData()[keys[i]][keys2[j]] instanceof Array) {
-						for (let k = 0; k < getDefaultData()[keys[i]][keys2[j]].length; k++) {
-							if (getDefaultData()[keys[i]][keys2[j]][k] instanceof Decimal) {
-								player[keys[i]][keys2[j]][k] = new Decimal(save[keys[i]][keys2[j]][k]);
-							} else {
-								player[keys[i]][keys2[j]][k] = save[keys[i]][keys2[j]][k];
-							}
+			let key = keys[i];
+			if (typeof getDefaultData()[key] == "object" && !(getDefaultData()[key] instanceof ExpantaNum) && !(getDefaultData()[key] instanceof Array)) {
+				for (let j = 0, keys2 = Object.keys(getDefaultData()[key]), jj = keys2.length; j < jj; j++) {
+					let key2= keys2[j];
+					
+					if (typeof getDefaultData()[key][key2] == "object" && !(getDefaultData()[key][key2] instanceof ExpantaNum) && !(getDefaultData()[key][key2] instanceof Array)) {
+						for (let k = 0, keys3 = Object.keys(getDefaultData()[key][key2]), kk = keys3.length; k < kk; k++) {							
+							let key3 = keys3[k];
+							
+							checkAssign(getDefaultData()[key][key2][key3], save[key][key2][key3], key, key2, key3);
 						}
-					} else if (getDefaultData()[keys[i]][keys2[j]] instanceof Decimal) {
-						player[keys[i]][keys2[j]] = new Decimal(save[keys[i]][keys2[j]]);
 					} else {
-						player[keys[i]][keys2[j]] = save[keys[i]][keys2[j]];
-					}
-				}
-			} else if (getDefaultData()[keys[i]] instanceof Array) {
-				for (let j = 0; j < getDefaultData()[keys[i]].length; j++){
-					if (getDefaultData()[keys[i]][j] instanceof Decimal) {
-						player[keys[i]][j] = new Decimal(save[keys[i]][j]);
-					} else {
-						player[keys[i]][j] = save[keys[i]][j];
+						checkAssign(getDefaultData()[key][key2], save[key][key2], key, key2);
 					}
 				}
 			} else {
-				if (getDefaultData()[keys[i]] instanceof Decimal) {
-					player[keys[i]] = new Decimal(save[keys[i]]);
-				} else {
-					player[keys[i]] = save[keys[i]];
-				}
+				checkAssign(getDefaultData()[key], save[key], key);
 			}
 		}
-		player.version = getDefaultData().version;
+		
 		if (imported) {
 			alert("Save imported successfully.");
-		} else {
-			console.log("Save succesfully loaded");
 		}
 	} catch(err) {
 		console.log(err);
@@ -78,6 +51,70 @@ function loadSave(save, imported = false) {
 			alert("Error: Imported save is in invalid format, please make sure you've copied the save correctly and isn't just typing gibberish.");
 		} else {
 			console.log("The save didn't load.");
+		}
+	}
+}
+
+function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3, assignToKey4, assignToKey5) {
+	if (assignFrom !== undefined) {
+		if (assignToKey5 !== undefined) {
+			if (check instanceof ExpantaNum) {
+				player[assignToKey1][assignToKey2][assignToKey3][assignToKey5] = ENify(assignFrom);
+			} else {
+				player[assignToKey1][assignToKey2][assignToKey3][assignToKey5] = assignFrom;
+			}
+		} else if (assignToKey4 !== undefined) {
+			if (check instanceof Array) {
+				for (let x = 0; x < check.length; x++){
+					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, assignToKey3, assignToKey4, x);
+				}
+			} else if (check instanceof ExpantaNum) {
+				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = ENify(assignFrom);
+			} else {
+				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = assignFrom;
+			}
+		} else if (assignToKey3 !== undefined) {
+			if (check instanceof Array) {
+				for (let x = 0; x < check.length; x++){
+					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, assignToKey3, x);
+				}
+			} else if (check instanceof ExpantaNum) {
+				player[assignToKey1][assignToKey2][assignToKey3] = ENify(assignFrom);
+			} else {
+				player[assignToKey1][assignToKey2][assignToKey3] = assignFrom;
+			}
+		} else if (assignToKey2 !== undefined) {
+			if (check instanceof Array) {
+				for (let x = 0; x < check.length; x++){
+					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, x);
+				}
+			} else if (check instanceof ExpantaNum) {
+				player[assignToKey1][assignToKey2] = ENify(assignFrom);
+			} else {
+				player[assignToKey1][assignToKey2] = assignFrom;
+			}
+		} else if (assignToKey1 !== undefined) {
+			if (check instanceof Array) {
+				for (let x = 0; x < check.length; x++){
+					checkAssign(check[x], assignFrom[x], assignToKey1, x);
+				}
+			} else if (check instanceof ExpantaNum) {
+				player[assignToKey1] = ENify(assignFrom);
+			} else {
+				player[assignToKey1] = assignFrom;
+			}
+		}
+	} else {
+		if (assignToKey5 !== undefined) {
+			player[assignToKey1][assignToKey2][assignToKey3][assignToKey5] = getDefaultData()[assignToKey1][assignToKey2][assignToKey3][assignToKey4][assignToKey5];
+		} else if (assignToKey4 !== undefined) {
+			player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = getDefaultData()[assignToKey1][assignToKey2][assignToKey3][assignToKey4];
+		} else if (assignToKey3 !== undefined) {
+			player[assignToKey1][assignToKey2][assignToKey3] = getDefaultData()[assignToKey1][assignToKey2][assignToKey3];
+		} else if (assignToKey2 !== undefined) {
+			player[assignToKey1][assignToKey2] = getDefaultData()[assignToKey1][assignToKey2];
+		} else if (assignToKey1 !== undefined) {
+			player[assignToKey1] = getDefaultData()[assignToKey1];
 		}
 	}
 }
