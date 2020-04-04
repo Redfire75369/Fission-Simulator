@@ -23,11 +23,11 @@ function loadSave(save, imported = false) {
 		
 		for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
 			let key = keys[i];
-			if (typeof getDefaultData()[key] == "object" && !(getDefaultData()[key] instanceof ExpantaNum) && !(getDefaultData()[key] instanceof Array)) {
+			if (typeof getDefaultData()[key] == "object" && !(getDefaultData()[key] instanceof Decimal) && !(getDefaultData()[key] instanceof Array)) {
 				for (let j = 0, keys2 = Object.keys(getDefaultData()[key]), jj = keys2.length; j < jj; j++) {
 					let key2= keys2[j];
 					
-					if (typeof getDefaultData()[key][key2] == "object" && !(getDefaultData()[key][key2] instanceof ExpantaNum) && !(getDefaultData()[key][key2] instanceof Array)) {
+					if (typeof getDefaultData()[key][key2] == "object" && !(getDefaultData()[key][key2] instanceof Decimal) && !(getDefaultData()[key][key2] instanceof Array)) {
 						for (let k = 0, keys3 = Object.keys(getDefaultData()[key][key2]), kk = keys3.length; k < kk; k++) {							
 							let key3 = keys3[k];
 							
@@ -58,8 +58,8 @@ function loadSave(save, imported = false) {
 function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3, assignToKey4, assignToKey5) {
 	if (assignFrom !== undefined) {
 		if (assignToKey5 !== undefined) {
-			if (check instanceof ExpantaNum) {
-				player[assignToKey1][assignToKey2][assignToKey3][assignToKey5] = ENify(assignFrom);
+			if (check instanceof Decimal) {
+				player[assignToKey1][assignToKey2][assignToKey3][assignToKey5] = new Decimal(assignFrom);
 			} else {
 				player[assignToKey1][assignToKey2][assignToKey3][assignToKey5] = assignFrom;
 			}
@@ -68,8 +68,8 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 				for (let x = 0; x < check.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, assignToKey3, assignToKey4, x);
 				}
-			} else if (check instanceof ExpantaNum) {
-				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = ENify(assignFrom);
+			} else if (check instanceof Decimal) {
+				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = new Decimal(assignFrom);
 			} else {
 				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = assignFrom;
 			}
@@ -78,8 +78,8 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 				for (let x = 0; x < check.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, assignToKey3, x);
 				}
-			} else if (check instanceof ExpantaNum) {
-				player[assignToKey1][assignToKey2][assignToKey3] = ENify(assignFrom);
+			} else if (check instanceof Decimal) {
+				player[assignToKey1][assignToKey2][assignToKey3] = new Decimal(assignFrom);
 			} else {
 				player[assignToKey1][assignToKey2][assignToKey3] = assignFrom;
 			}
@@ -88,8 +88,8 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 				for (let x = 0; x < check.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, x);
 				}
-			} else if (check instanceof ExpantaNum) {
-				player[assignToKey1][assignToKey2] = ENify(assignFrom);
+			} else if (check instanceof Decimal) {
+				player[assignToKey1][assignToKey2] = new Decimal(assignFrom);
 			} else {
 				player[assignToKey1][assignToKey2] = assignFrom;
 			}
@@ -98,8 +98,8 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 				for (let x = 0; x < check.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, x);
 				}
-			} else if (check instanceof ExpantaNum) {
-				player[assignToKey1] = ENify(assignFrom);
+			} else if (check instanceof Decimal) {
+				player[assignToKey1] = new Decimal(assignFrom);
 			} else {
 				player[assignToKey1] = assignFrom;
 			}

@@ -24,6 +24,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 - More user-friendly
 
 ### Code Optimisations
+- Loading Optimisations
 - Improved simulations
 - Unified energy and fuel code
 - Unified mines and reactors code

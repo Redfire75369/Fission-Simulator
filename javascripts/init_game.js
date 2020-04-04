@@ -12,19 +12,15 @@ function simulateTime(seconds, actual, testing) {
 	}
 	let start = Object.assign({}, player);
 	for (let complete = 0; complete < ticks; complete++) {
-		if (testing) {
-			buyMaxAll();
-		}
 		updateGame(tickInterval)
 	}
 	player.time += seconds * 1000;
-	player.meltdown.time += seconds * 1000;
 	let offlinePopup = "While you were away, "
 	if (player.energy.gt(start.energy)) {
-		offlinePopup += "your energy increased by " + notation(player.energy.log10() - start.energy.log10()) + " Orders of Magnitude.";
+		offlinePopup += "your energy increased by " + notation(player.energy.logBase(10) - start.energy.logBase(10)) + " Orders of Magnitude.";
 	}
 	if (offlinePopup == "While you were away, ") {
-		offlinePopup += "nothing happened.";
+		offlinePopup += "nothing happened...";
 	}
 	if (seconds > 1) {
 		document.getElementById("offlinePopup").style.display = "none";
