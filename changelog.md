@@ -17,6 +17,18 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 -->
 
 ## [v0.3.17] - 4/4/20 **PR**
+
+### Added
+- More themes (By Dystopia)
+
+### Modified
+- Infinite offline progress loop stopped.
+
+### Code Optimisations
+
+
+## [v0.3.17] - 4/4/20 **PR**
+
 ### Added
 - Achievements framework
 
@@ -31,7 +43,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ## [v0.3.16] - 22/3/20 **PR**
 ### Added
-- Themes (From dystopia)
+- Themes (By Dystopia)
 - Theme changing
 
 ### Modified

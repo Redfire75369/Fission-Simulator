@@ -17,7 +17,7 @@ function simulateTime(seconds, actual, testing) {
 	player.time += seconds * 1000;
 	let offlinePopup = "While you were away, "
 	if (player.energy.gt(start.energy)) {
-		offlinePopup += "your energy increased by " + notation(player.energy.logBase(10) - start.energy.logBase(10)) + " Orders of Magnitude.";
+		offlinePopup += "your energy increased by " + notation(player.energy.log10() - start.energy.log10() + " Orders of Magnitude.";
 	}
 	if (offlinePopup == "While you were away, ") {
 		offlinePopup += "nothing happened...";
