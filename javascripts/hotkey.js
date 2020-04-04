@@ -9,7 +9,7 @@ for (let tier = 0; tier < 8; tier++) {
 }
 
 key.bind("s", function(){
-	buyMeteor();
+	buyMaxNucleosynthesis();
 });
 
 key.bind("n", function(){

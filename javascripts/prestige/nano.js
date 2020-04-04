@@ -24,12 +24,15 @@ function nanitesGain() {
 	if (ret.gt(0)) {
 		return Decimal.floor(ret);
 	} else {
-		return new Decimal(0);
+		return zero;
 	}
 }
 
 function buyNaniteResearch() {
 	if (canBuyNaniteResearch()) {
+		if (!player.unlocked.naniteUps && !player.unlocked.meltdown) {
+			showNaviTab("nanite");
+		}
 		player.nanites.nanites = player.nanites.nanites.add(nanitesGain());
 		player.nanites.total = player.nanites.total.add(nanitesGain());
 		player.unlocked.naniteUps = true;
@@ -38,7 +41,7 @@ function buyNaniteResearch() {
 		resetMines();
 		resetReactors();
 		resetEff();
-		resetMeteor();
+		resetNucleosynthesis();
 	}
 }
 

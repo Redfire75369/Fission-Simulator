@@ -16,10 +16,44 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
+## [v0.3.17] - 4/4/20 **PR**
+### Added
+- Achievements framework
+
+### Modified
+- More user-friendly
+
+### Code Optimisations
+- Loading Optimisations
+- Improved simulations
+- Unified energy and fuel code
+- Unified mines and reactors code
+
+## [v0.3.16] - 22/3/20 **PR**
+### Added
+- Themes (From dystopia)
+- Theme changing
+
+### Modified
+- Passive meltdown stat fix
+
+### Code Optimisations
+
+## [v0.3.15] - 21/3/20 **PR**
+### Added
+
+### Modified
+- Fuel density of all fuels increased
+- Max energy gain depends on fuel type as well
+- Nanite research and meltdown reset Nucleosynthesis
+
+### Code Optimisations
+
 ## [v0.3.14] - 21/3/20 **PR**
 
 ### Added
 - Changelog
+- simulateTime() cheat button
 - New CSS stylesheets for other themes
 
 ### Modified

@@ -3,16 +3,18 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 3,
-			alpha: 14
+			alpha: 17
 		},
 		
 		options: {
 			notation: "Scientific",
-			notationNo: 0
+			notationNo: 0,
+			theme: "Light",
+			themeNo: 0
 		},
 		navigation: {
 			naviTab: "production",
-			production: "resources"
+			production: "mines"
 		},
 		
 		unlocked: {
@@ -20,6 +22,12 @@ function getDefaultData() {
 				meltdown: false,
 				decayHasten: false
 		},
+		
+		achievements: {
+			r11: false,
+			r12: false
+		},
+		
 		energy: new Decimal(100),
 		totalEnergy: new Decimal(100),
 		
@@ -74,8 +82,7 @@ const mining = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium
 const fissile = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
 const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241", "Americium-243", "Curium-247", "Berkelium-247", "Californium-252"];
 const LEF = ["LET", "LEU", "LENp", "LEPu", "LEAm", "LECu", "LEBk", "LECf"];
-const kgLEFJ = [new Decimal(1), new Decimal(4), new Decimal(16), new Decimal(64), new Decimal(256), new Decimal(1024), new Decimal(4096), new Decimal(16384)];
-const JkgLEF = [new Decimal(2), new Decimal(8), new Decimal(32), new Decimal(128), new Decimal(512), new Decimal(2048), new Decimal(8192), new Decimal(32768)];
+const JkgLEF = [new Decimal(4), new Decimal(16), new Decimal(64), new Decimal(256), new Decimal(1024), new Decimal(4096), new Decimal(16384), new Decimal(65536)];
 const infinity = Decimal.pow(2, 1024);
 const zero = new Decimal(0);
 
@@ -127,22 +134,15 @@ setInterval(function() {
 }, 15000);
 
 setInterval(function() {
-	if (Date.now() > player.lastUpdate + 1000 && focused) {
-		simulateTime((Date.now() - player.lastUpdate) / 1000);
+	if (player.lastUpdate === undefined) {
+		player.lastUpdate = Date.now();
 	}
-	updateGame(25);
-	player.lastUpdate = Date.now();
+	if (Date.now() > player.lastUpdate && focused) {
+		simulateTime((Date.now() - player.lastUpdate) / 1000);
+		player.lastUpdate = Date.now();
+	}
 }, 25);
 
 setInterval(function() {
 	updateUI();
-}, 50);
-
-setInterval(function() {
-	player.time += 50;
-	player.time = floor(player.time);
-	player.timeOnline += 50;
-	player.timeOnline = floor(player.timeOnline);
-	player.meltdown.time += 50;
-	player.meltdown.time = floor(player.meltdown.time);
 }, 50);

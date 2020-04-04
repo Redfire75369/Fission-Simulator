@@ -11,7 +11,7 @@ function coriumGain() {
 	return Decimal.floor(ret);
 }
 function coriumGainPassive() {
-	return new Decimal(0);
+	return zero;
 }
 
 function meltdownGain() {
@@ -36,7 +36,7 @@ function meltdown() {
 		resetEff();
 		resetMines();
 		resetReactors();
-		resetMeteor();
+		resetNucleosynthesis();
 		resetNaniteResearch();
 		resetNaniteUps();
 	}
@@ -44,7 +44,7 @@ function meltdown() {
 
 function simulateMeltdown(tickinterval = 50) {
 	player.meltdown.corium = player.meltdown.corium.add(coriumGainPassive());
-	player.meltdown.amount += meltdownGainPassive();
+	player.meltdown.amount += meltdownGainPassive() * tickInterval / 1000;
 }
 function updateUIMeltdown() {
 	document.getElementById("corium").innerText = notation(player.meltdown.corium);
