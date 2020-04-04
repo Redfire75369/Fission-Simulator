@@ -1,0 +1,94 @@
+body {
+	background-color:#000000;
+}
+table {
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+}
+
+.navibtn {
+	width: 180px;
+	height: 40px;
+	font-size: 20px;
+	color: #ffffff;
+	background: #000000;
+}
+
+.prodbtn {
+	width: 150px;
+	height: 30px;
+	font-size: 16px;
+	color: #ffffff;
+	background: #000000;
+}
+
+.popup {
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	color: #ffffff;
+    background: #000000;
+    text-align:center;
+    z-index: 2;
+    padding: 10px;
+    padding-bottom: 15px;
+}
+
+.optionsbtn {
+	width: 200px;
+	height: 55px;
+	font-size: 20px;
+	color: #ffffff;
+	background: #000000;
+}
+.energy {
+	color: #ffffff;
+	font-size: 25px;
+}
+.energypersecond {
+	color: #ffffff;
+	font-size:20px;
+}
+.text {
+	color: #ffffff;
+	font-size: 15px;
+}
+
+.btnbuy {
+	font-size: 12px;
+	color: #ffffff;
+	background: #000000;
+}
+.btnlocked {
+	font-size: 12px;
+	color: #ffffff;
+	background: #000000;
+}
+
+.naniteupgbtnbuy {
+	font-size: 10px;
+	color: #ffffff;
+	background: #000000;
+}
+.naniteupgbtnlocked {
+	font-size: 10px;
+	color: #ffffff;
+	background: #000000;
+}
+.naniteupgbtnbought {
+	font-size: 10px;
+	border-radius: 4px;
+	color: #000000;
+	background: #000000;
+}
+
+.meltdownbtn {
+	width: 210px;
+	height: 70px;
+	font-size: 10px;
+	color: #ffffff;
+	background: #000000;
+}
