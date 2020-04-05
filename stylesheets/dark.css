@@ -47,7 +47,6 @@ table {
 }
 .nenr {
     color: #000000;
-    /*transition: transform 1s;*/
     position: fixed;
 	bottom: 0;
     display: inline-block;
