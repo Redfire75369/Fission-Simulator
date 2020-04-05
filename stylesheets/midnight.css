@@ -28,6 +28,14 @@ table {
 	background: #000000;
 }
 
+.nenr {
+    color: #ffffff;
+    position: fixed;
+	bottom: 0;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold
+}
 .popup {
 	display: none;
 	position: fixed;
