@@ -58,7 +58,14 @@ table {
 .optionsbtn:hover {
 	background: #0101ff;
 }
-
+.nenr {
+    color: #ffffff;
+    position: fixed;
+	bottom: 0;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold
+}
 .energy {
 	color: #ffffff;
 	font-size: 25px;
