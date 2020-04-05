@@ -6,7 +6,12 @@ table {
 	margin: 0;
 	padding: 0;
 }
-
+.nenr {
+    position: fixed;
+    bottom: 0;
+    display: inline-block;
+    white-space: nowrap;
+}
 .popup {
 	display: none;
 	position: fixed;
