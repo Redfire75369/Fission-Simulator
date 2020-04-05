@@ -2,6 +2,7 @@ var leverMaxAll = false;
 
 function enableCheatsTab() {
 	document.getElementById("cheatsbtn").style.display = "inline-block";
+	//localStorage.setItem("fissionSimSave1", null)
 	//clearInterval(saveGameLoop);
 }
 

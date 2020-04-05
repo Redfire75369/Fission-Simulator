@@ -16,7 +16,29 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
-## [v0.3.17] - 4/4/20 **PR**
+## [v0.3.19] - 5/4/20 **PR**
+
+### Added
+- Achievements
+
+### Modified
+
+### Code Optimisations
+
+
+## [v0.3.19] - 5/4/20 **PR**
+
+### Added
+- Nuclear Experimental News Relay
+
+### Modified
+- Fix bug with Nanite Upgrade 11
+- Change keybinds
+
+### Code Optimisations
+
+
+## [v0.3.18] - 4/4/20 **PR**
 
 ### Added
 - More themes (By Dystopia)

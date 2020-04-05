@@ -30,6 +30,26 @@ table {
 	border-radius: 4px;
 }
 
+.achpic {
+	width: 100px;
+    height: 100px;
+    opacity: 0.7;
+}
+.achcomplete {
+	width: 100px;
+    height: 100px;
+    margin: 100px;
+    border: 1px solid #004400;
+    background: #008000;
+}
+.achlocked {
+	width: 100px;
+    height: 100px;
+    margin: 100px;
+    border: 1px solid red;
+    background: #808080;
+}
+
 .popup {
 	display: none;
 	position: fixed;
@@ -47,7 +67,6 @@ table {
 }
 .nenr {
     color: #000000;
-    /*transition: transform 1s;*/
     position: fixed;
 	bottom: 0;
     display: inline-block;

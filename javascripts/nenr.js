@@ -1,8 +1,11 @@
 const nenrArray = [
 	["News brought to you by Nuclear Experimental News Array, in partnership with Hevipelle.", true],
 	["Don't worry, you'll cause more :.|:; eventually", true],
-	["Colonel Rhdmskyh looked over the horizon.            There was nothing abnormal happening. There were no nuclear explosions, no radioactive waste leaking out, only the beautiful skyline of the city of Yhwisirk.        He did not expect for it to change so suddenly, as an experiment was interfered. “Colonel! The nuclear lab-” The messenger’s voice was quickly drowned out by a shattering just a few miles away. The silhouette of a mushroom cloud could be seen in the distance. “Colonel, you know the experiment with the nucleosynthesis thing?  It was sabotaged.” The colonel froze. Sabotaged? It was the first time in millennia that the Universal Nucleosynthesis Experiment had been sabotaged. More distant explosions could be heard. “I shall attend a meeting with the council members on this matter immediately,” he proclaimed. And it was done. “Colonel Rhdmskyh Swasikova of legion 8e4 at celestial body 478-X3E, report on the situation at 478-X3E immediately.” “Instructions clear, O8-CXVI. The Universal Nucleosynthesis Experiment has been sabotaged. Current situation 58,976 dead, 890,578 injured. 5 facilities were destroyed.” An awkward silence followed. O8-LIV could be heard typing vigorously. “I have compiled a list of civilizations that don’t have the best relationship with us humans. The most likely suspect would be the zalgans. Colonel, I expect you to have your army on your way to celestial body  580-Z8L immediately.”", true]
-];
+	["Scientists found out that nuclear reactors are more efficient than antimatter. Experts say the reason could be the explosions created by the antimatter made the measuring device broken beyond repair, resulting in the reading of 0.", true],
+	["Martha! Why is there suddenly a reactor melting down in my backyard?", true],
+	["People are complaining about radioactivity leaking from our site, Captain!. Should I silence them?", true],
+	["Colonel Rhdmskyh looked over the horizon. There was nothing abnormal happening. There were no nuclear explosions, no radioactive waste leaking out, only the beautiful skyline of the city of Yhwisirk.        He did not expect for it to change so suddenly, as an experiment was interfered. “Colonel! The nuclear lab-” The messenger’s voice was quickly drowned out by a shattering just a few miles away. The silhouette of a mushroom cloud could be seen in the distance. “Colonel, you know the experiment with the nucleosynthesis thing?  It was sabotaged.” The colonel froze. Sabotaged? It was the first time in millennia that the Universal Nucleosynthesis Experiment had been sabotaged. More distant explosions could be heard. “I shall attend a meeting with the council members on this matter immediately,” he proclaimed. And it was done. “Colonel Rhdmskyh Swasikova of legion 8e4 at celestial body 478-X3E, report on the situation at 478-X3E immediately.” “Instructions clear, O8-CXVI. The Universal Nucleosynthesis Experiment has been sabotaged. Current situation 58,976 dead, 890,578 injured. 5 facilities were destroyed.” An awkward silence followed. O8-LIV could be heard typing vigorously. “I have compiled a list of civilizations that don’t have the best relationship with us humans. The most likely suspect would be the zalgans. Colonel, I expect you to have your army on your way to celestial body  580-Z8L immediately.”", true]
+]; 
 
 var s = document.getElementById('nenr');
 document.addEventListener("visibilitychange", function() {if (!document.hidden) {scrollNextNENR();}}, false);
@@ -10,7 +13,6 @@ var scrollTimeouts = [];
 var nextMsgIndex;
 
 function scrollNextNENR() {
-  //select a message at random
   try {
     do {nextMsgIndex = Math.floor(Math.random() * nenrArray.length)} while (!eval(nenrArray[nextMsgIndex][1]))
   } catch(e) {
