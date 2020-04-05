@@ -1,5 +1,8 @@
 body {
+	color: #d0d0d0;
+	font-size: 15px;
 	background-color:#1c1c1c;
+	overflow-x: hidden;
 }
 table {
 	width: 100vw;
@@ -64,10 +67,6 @@ table {
 	color: #d0d0d0;
 	font-size:20px;
 }
-.text {
-	color: #d0d0d0;
-	font-size: 15px;
-}
 
 .btnbuy {
 	font-size: 12px;
@@ -114,4 +113,4 @@ table {
 	border-radius: 6px;
 	color: #d0d0d0;
 	background: #1C1C1C;
-} 
+}

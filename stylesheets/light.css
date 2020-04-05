@@ -1,5 +1,8 @@
 body {
+	color: #202020;
+	font-size: 15px;
 	background-color:#ffffff;
+	overflow-x: hidden;
 }
 table {
 	width: 100vw;
@@ -42,6 +45,16 @@ table {
     padding: 10px;
     padding-bottom: 15px;
 }
+.nenr {
+    color: #000000;
+    /*transition: transform 1s;*/
+    position: fixed;
+	bottom: 0;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold
+}
+
 
 .optionsbtn {
 	width: 200px;
@@ -63,10 +76,6 @@ table {
 .energypersecond {
 	color: #303030;
 	font-size:20px;
-}
-.text {
-	color: #202020;
-	font-size: 15px;
 }
 
 .btnbuy {

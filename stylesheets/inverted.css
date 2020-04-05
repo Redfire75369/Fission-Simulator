@@ -1,5 +1,8 @@
 body {
+	color: #dfdfdf;
+	font-size: 15px;
 	background-color:#000000;
+	overflow-x: hidden;
 }
 table {
 	width: 100vw;
@@ -63,10 +66,6 @@ table {
 .energypersecond {
 	color: #cfcfcf;
 	font-size:20px;
-}
-.text {
-	color: #dfdfdf;
-	font-size: 15px;
 }
 
 .btnbuy {

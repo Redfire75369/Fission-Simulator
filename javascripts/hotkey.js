@@ -8,10 +8,10 @@ for (let tier = 0; tier < 8; tier++) {
 	});
 }
 
-key.bind("s", function(){
+key.bind("n", function(){
 	buyMaxNucleosynthesis();
 });
 
-key.bind("n", function(){
+key.bind("r", function(){
 	buyNaniteResearch();
 });

@@ -23,7 +23,7 @@ function getDefaultData() {
 				decayHasten: false
 		},
 		
-		achievements: {
+		achs: {
 			r11: false,
 			r12: false
 		},
@@ -114,7 +114,7 @@ function updateUI() {
 	updateUINaniteUps();
 	updateUINaniteResearch();
 	updateUIMeltdown();
-	updateUIMeltdownUps();
+	//updateUIMeltdownUps();
 	updateUIStats();
 }
 function updateGame(tickInterval) {
@@ -126,10 +126,52 @@ function updateGame(tickInterval) {
 	simulateEnergy(tickInterval);
 }
 
+/*Offline Progress*/
+function simulateTime(seconds, actual, testing) {
+	if (seconds > 10) {
+		document.getElementById("offlinePopup").style.display = "block";
+		document.getElementById("offlineProgress").innerText = "Simulating " + seconds + " seconds of progress.";
+	}
+	let ticks = seconds * 20;
+	let tickInterval = 50;
+	if (ticks > 1000 & !actual) {
+		tickInterval += (ticks - 1000) / 20;
+		ticks = 1000;
+	}
+	let start = Object.assign({}, player);
+	for (let complete = 0; complete < ticks; complete++) {
+		if (testing) {
+			buyMaxAll();
+		}
+		updateGame(tickInterval);
+		player.lastUpdate = Date.now();
+	}
+	player.time += seconds * 1000;
+	player.meltdown.time += seconds * 1000;
+	let offlinePopup = "While you were away, "
+	if (player.energy.gt(start.energy)) {
+		offlinePopup += "your energy increased by " + notation(player.energy.log10() - start.energy.log10()) + " Orders of Magnitude.";
+	}
+	if (offlinePopup == "While you were away, ") {
+		offlinePopup += "nothing happened...";
+	}
+	if (seconds > 1) {
+		document.getElementById("offlinePopup").style.display = "none";
+	}
+	if (seconds > 1000) {
+		document.getElementById("offlinePopup").style.display = "block";
+		document.getElementById("offlineProgress").innerText = offlinePopup;
+	}
+}
+
+function closeOfflineProgress() {
+	document.getElementById("offlinePopup").style.display = "none";
+}
+
 var player = getDefaultData();
 
 /*Game Loops*/
-setInterval(function() {
+var saveGameLoop = setInterval(function() {
 	saveGame();
 }, 15000);
 

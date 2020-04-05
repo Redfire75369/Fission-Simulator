@@ -41,6 +41,6 @@ function getTotalMeltdownUpMult(tier) {
 
 function updateUIMeltdownUps() {
 	for (let i = 0; i < meltdownUpList.length; i++) {
-		
+		console.log(0);
 	}
 }

@@ -2,6 +2,7 @@ var leverMaxAll = false;
 
 function enableCheatsTab() {
 	document.getElementById("cheatsbtn").style.display = "inline-block";
+	//clearInterval(saveGameLoop);
 }
 
 function defaultEnergy() {
@@ -32,6 +33,10 @@ function harderReset() {
 	player = getDefaultData();
 	player.navigation.naviTab = "cheats";
 	saveGame();
+}
+
+function spin3d() {
+	document.getElementById("body").style.animation = document.getElementById("body").style.animation === "" ? "spin3d 2s infinite" : "";
 }
 
 document.getElementById("cheatsbtn").style.display = "none";

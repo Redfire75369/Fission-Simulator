@@ -26,7 +26,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 - Infinite offline progress loop stopped.
 
 ### Code Optimisations
-
+- Moved offline progress to main.js
 
 ## [v0.3.17] - 4/4/20 **PR**
 
