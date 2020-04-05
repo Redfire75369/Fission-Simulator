@@ -45,6 +45,15 @@ table {
     padding: 10px;
     padding-bottom: 15px;
 }
+.nenr {
+    color: #000000;
+    /*transition: transform 1s;*/
+    position: fixed;
+	bottom: 0;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold
+}
 
 .optionsbtn {
 	width: 200px;
