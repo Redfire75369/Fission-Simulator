@@ -46,6 +46,14 @@ table {
     padding-bottom: 15px;
 }
 
+.nenr {
+    color: #ffffff;
+    position: fixed;
+	bottom: 0;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold
+}
 .optionsbtn {
 	width: 200px;
 	height: 55px;
