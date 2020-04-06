@@ -23,7 +23,7 @@ function scrollNextNENR() {
   scrollTimeouts = [];
 
   //set the text
-  s.textContent = nenrArray[nextMsgIndex][0];
+  s.innerHTML = nenrArray[nextMsgIndex][0];
 
   //get the parent width so we can start the message beyond it
   let parentWidth = s.parentElement.clientWidth;
