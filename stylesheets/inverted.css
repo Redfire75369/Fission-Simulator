@@ -5,7 +5,8 @@ body {
 	overflow-x: hidden;
 }
 table {
-	width: 100vw;
+	width: 100%;
+	align: center;
 	margin: 0;
 	padding: 0;
 }
@@ -30,6 +31,26 @@ table {
 	border-radius: 4px;
 }
 
+.achpic {
+	width: 100px;
+    height: 100px;
+    opacity: 0.7;
+}
+.achcomplete {
+	width: 100px;
+    height: 100px;
+    margin: 100px;
+    border: 1px solid #ffbbff;
+    background: #ff7fff;
+}
+.achlocked {
+	width: 100px;
+    height: 100px;
+    margin: 100px;
+    border: 1px solid #00ffff;
+    background: #7f7f7f;
+}
+
 .popup {
 	display: none;
 	position: fixed;
@@ -38,12 +59,29 @@ table {
 	transform: translateX(-50%) translateY(-50%);
 	color: #202020;
     background: #000000;
-    border: 3px solid white;
+    border: 3px solid #ffffff;
     border-radius: 6px;
     text-align:center;
     z-index: 2;
     padding: 10px;
     padding-bottom: 15px;
+}
+#newsb {
+	width: 80%;
+	height: 20px;
+	border: 3px solid #ffffff;
+    border-radius: 4px;
+    padding: 2px;
+    overflow: hidden;
+    margin: auto;
+    text-align: left;
+}
+#news {
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold;
 }
 
 .optionsbtn {
@@ -83,21 +121,21 @@ table {
 	border-radius: 2px;
 }
 
-.naniteupgbtnbuy {
+.naniteupbuy {
 	font-size: 10px;
 	border: 1px solid #255adf;
 	border-radius: 4px;
 	color: #cfcfcf;
 	background: #000000;
 }
-.naniteupgbtnlocked {
+.naniteuplocked {
 	font-size: 10px;
 	border: 1px solid;
 	border-radius: 4px;
 	color: #cfcfcf;
 	background: #5c5c5c;
 }
-.naniteupgbtnbought {
+.naniteupbought {
 	font-size: 10px;
 	border: 1px solid #ff7fff;
 	border-radius: 4px;
@@ -113,4 +151,31 @@ table {
 	border-radius: 6px;
 	color: #ffffff;
 	background: #000000;
+}
+
+.meltdownupbuy {
+    width: 20%;
+    height: 150px;
+    border: 3px solid #255adf;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 3px;
+    font-weight: bold;
+}
+.meltdownuplocked {
+    width: 20%;
+    height: 150px;
+    border: 3px solid #00ffff;
+    background-color: #aaaaaa;
+    color: #ffffff;
+    border-radius: 3px;
+}
+.meltdownupbought {
+    width: 20%;
+    height: 150px;
+    border: 3px solid #255adf;
+    background-color: #bb3399;
+    color: #ffffff;
+    border-radius: 3px;
+    font-weight: bold;
 }

@@ -1,5 +1,11 @@
+function rot(s, i) {
+    return s.replace(/[a-zA-Z]/g, function (c) {
+        return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + i) ? c : c - 26);
+    });
+}
+
 function getSaveString() {
-	return btoa(JSON.stringify(player));
+	return LZString.compressToBase64(JSON.stringify(player));
 }
 
 function getSave() {
@@ -19,8 +25,12 @@ function loadSave(save, imported = false) {
 		if (save === undefined) {
 			save = getSave();
 		}
-		save = JSON.parse(atob(save));
-		
+		if (save.startsWith("ey")) {
+			save = JSON.parse(atob(save));
+		} else {
+			save = JSON.parse(LZString.decompressFromBase64(save));
+		}
+			
 		for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
 			let key = keys[i];
 			if (typeof getDefaultData()[key] == "object" && !(getDefaultData()[key] instanceof Decimal) && !(getDefaultData()[key] instanceof Array)) {

@@ -5,7 +5,8 @@ body {
 	overflow-x: hidden;
 }
 table {
-	width: 100vw;
+	width: 100%;
+	align: center;
 	margin: 0;
 	padding: 0;
 }
@@ -28,6 +29,20 @@ table {
 	background: #000000;
 }
 
+.achpic {
+	width: 100px;
+    height: 100px;
+    opacity: 0.7;
+}
+.achcomplete {
+	width: 100px;
+    height: 100px;
+}
+.achlocked {
+	width: 100px;
+    height: 100px;
+}
+
 .popup {
 	display: none;
 	position: fixed;
@@ -41,6 +56,23 @@ table {
     z-index: 2;
     padding: 10px;
     padding-bottom: 15px;
+}
+#newsb {
+	width: 80%;
+	height: 20px;
+	border: 3px solid #ffffff;
+    border-radius: 4px;
+    padding: 2px;
+    overflow: hidden;
+    margin: auto;
+    text-align: left;
+}
+#news {
+    color: #ffffff;
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold;
 }
 
 .optionsbtn {
@@ -73,19 +105,19 @@ table {
 	background: #000000;
 }
 
-.naniteupgbtnbuy {
+.naniteupbuy {
 	font-size: 10px;
 	border: none;
 	color: #ffffff;
 	background: #000000;
 }
-.naniteupgbtnlocked {
+.naniteuplocked {
 	font-size: 10px;
 	border: none;
 	color: #ffffff;
 	background: #000000;
 }
-.naniteupgbtnbought {
+.naniteupbought {
 	font-size: 10px;
 	border: none;
 	color: #ffffff;
@@ -99,4 +131,26 @@ table {
 	border: none;
 	color: #ffffff;
 	background: #000000;
+}
+
+.meltdownupbuy {
+    width: 20%;
+    height: 150px;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+}
+.meltdownuplocked {
+    width: 20%;
+    height: 150px;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+}
+.meltdownupbought {
+    width: 20%;
+    height: 150px;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
 }

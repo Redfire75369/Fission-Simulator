@@ -1,19 +1,46 @@
 body {
-	overflow-x: hidden;
+    overflow-x: hidden;
 }
 table {
-	width: 100vw;
-	margin: 0;
-	padding: 0;
+    width: 100%;
+	align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.achpic {
+    width: 100px;
+    height: 100px;
+    opacity: 0.7;
+}
+.achcomplete {
+    width: 100px;
+    height: 100px;
+}
+.achlocked {
+    width: 100px;
+    height: 100px;
 }
 
 .popup {
-	display: none;
-	position: fixed;
-	background-color: white;
-	left: 50%;
-	top: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	text-align:center;
-	z-index: 2;
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    z-index: 2;
+}
+#newsb {
+	width: 80%;
+	height: 20px;
+    padding: 2px;
+    overflow: hidden;
+    margin: auto;
+    text-align: left;
+}
+#news {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
 }

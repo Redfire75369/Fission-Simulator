@@ -2,8 +2,8 @@ function getDefaultData() {
 	return {
 		version: {
 			release: 0,
-			beta: 3,
-			alpha: 20
+			beta: 4,
+			alpha: 0
 		},
 		
 		options: {
@@ -61,13 +61,33 @@ function getDefaultData() {
 		},
 		
 		meltdown: {
+			totalNanites: new Decimal(0),
+			
 			amount: 0,
 			corium: new Decimal(0),
 			total: new Decimal(0),
+			
 			energyGoal: Decimal.pow(2, 1024),
 			time: 0,
 			bestTime: 756864000000,
-			ups: {},
+			ups: {
+				11: 0,
+				12: 0,
+				13: 0,
+				14: 0,
+				21: 0,
+				22: 0,
+				23: 0,
+				24: 0,
+				31: 0,
+				32: 0,
+				33: 0,
+				34: 0,
+				41: 0,
+				42: 0,
+				43: 0,
+				44: 0,
+			},
 			breakUps: {0: 0}
 		},
 		
@@ -114,7 +134,7 @@ function updateUI() {
 	updateUINaniteUps();
 	updateUINaniteResearch();
 	updateUIMeltdown();
-	//updateUIMeltdownUps();
+	updateUIMeltdownUps();
 	updateUIStats();
 }
 function updateGame(tickInterval) {
@@ -146,8 +166,10 @@ function simulateTime(seconds, actual, testing) {
 		updateGame(tickInterval);
 		player.lastUpdate = Date.now();
 	}
+	
 	player.time += seconds * 1000;
 	player.meltdown.time += seconds * 1000;
+	
 	let offlinePopup = "While you were away, "
 	if (player.energy.gt(start.energy)) {
 		offlinePopup += "your energy increased by " + notation(player.energy.log10() - start.energy.log10()) + " Orders of Magnitude.";

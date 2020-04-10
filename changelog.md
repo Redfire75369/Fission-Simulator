@@ -8,15 +8,26 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 <!-- This is an example of a update block
 ## [v0.0.0] - 30/2/20 **PR**
+### Added
+### Modified
+### Code Optimisations
+-->
+
+## [v0.4.0] - 10/4/20 **PR**
 
 ### Added
+- More news relays
+- News Relay and Achievements for all styles
+- Meltdown Upgrades
 
 ### Modified
 
 ### Code Optimisations
--->
+- Reduced code repetitions in News Relay code
+- Added save compression using LZString
 
-## [v0.3.19] - 5/4/20 **PR**
+
+## [v0.3.20] - 5/4/20 **PR**
 
 ### Added
 - Achievements

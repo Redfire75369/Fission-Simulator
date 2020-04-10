@@ -35,6 +35,7 @@ function buyNaniteResearch() {
 		}
 		player.nanites.nanites = player.nanites.nanites.add(nanitesGain());
 		player.nanites.total = player.nanites.total.add(nanitesGain());
+		player.meltdown.totalNanites = player.meltdown.totalNanites.add(nanitesGain());
 		player.unlocked.naniteUps = true;
 		resetEnergy();
 		resetFuel();

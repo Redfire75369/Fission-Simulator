@@ -6,8 +6,9 @@
 	    <link id="style" rel="stylesheet" href="stylesheets/light.css" />
 	    
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/ad-notations.min.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/ad-notations.community.min.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/ad-notations.umd.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/ad-notations.community.umd.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/lz-string.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/mousetrap.min.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/saveload.js" charset ="utf-8" type="text/javascript"></script>
@@ -27,7 +28,7 @@
 		<script defer src="javascripts/core/meltdown/upgrades.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/cheats.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/nenr.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 		
@@ -40,7 +41,7 @@
 		</div>
 		
 		<div align="center">
-			<p id="coriumAmt" class="text" style="color: green">You have <span id="corium">0.00</span> Corium.</p> </br>
+			<p id="coriumAmt" class="text" style="color: #88ee44">You have <span id="corium">0.00</span> Corium.</p> </br>
 			<button onclick="meltdown()" id="meltdown" class="meltdownbtn">Meltdown for <span id="coriumOnMeltdown">1</span> Corium</button>
 		</div>
 		<div align="center">
@@ -66,7 +67,8 @@
 						<button onclick="showNaviTab('achievements')" id="achsbtn" class="navibtn">Achievements</button>
 						<button onclick="showNaviTab('options')" id="optionsbtn" class="navibtn">Options</button>
 						<button onclick="showNaviTab('nanite')" id="nanitebtn" class="navibtn" style="color:#4848ef">Nanites</button>
-						<button onclick="showNaviTab('cheats')" id="cheatsbtn" class="navibtn" style="color:orange">Cheats</button>
+						<button onclick="showNaviTab('meltdownt')" id="meltdowntbtn" class="navibtn" style="color:#88ee44">Meltdown</button>
+						<button onclick="showNaviTab('cheats')" id="cheatsbtn" class="navibtn" style="color:#ffa500">Cheats</button>
 					</td>
 				</tr>
 			</table>
@@ -539,8 +541,8 @@
 		<div id="achievements">
 			<table>
 				<tr>
-					<td id="ach11" class="achlocked">
-						<image class="achpic" src="resources/null.png"/>
+					<td id="ach11" class="achlocked" align="center">
+						<image class="achpic" src="resources/images/null.png"/>
 					</td>
 				</tr>
 			</table>
@@ -595,7 +597,7 @@
 					<td align="right">
 						<button onclick="buyNaniteUp(11)" id="naniteup11" style="width:190px; height:90px">
 							All reactors get a boost based on time played<br>
-							Formula: log₁₆(x) - 1<br>
+							Formula: log<sub>10</sub>(x) - 1<br>
 							Currently: <span id="naniteupmult11">1.00</span>× <br>
 							Cost: 1 Nanite
 						</button>
@@ -645,6 +647,131 @@
 				</tr>
 			</table>
 		</div>
+		
+		<div id="meltdownt">
+			<table>
+				<tr align="center">
+					<td align="right">
+						<button onclick="buyMeltdownUp(11)" id="meltdownup11" style="width:250px; height:120px">
+							Mines and reactors get a multiplier based on meltdown stat<br>
+							Formula: 1 + x / 2<br>
+							Currently: <span id="meltdownupmult11">1.00</span>× <br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="center">
+						<button onclick="buyMeltdownUp(12)" id="meltdownup12" style="width:250px; height:120px">
+							Mines and reactors are significantly stronger in the first 100 seconds of resets<br>
+							Formula: (x + 1) / 2<sup>25 / (x + 1) + 1</sup><br>
+							Currently: <span id="meltdownupmult12">1.00</span>× <br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="center">
+						<button onclick="buyMeltdownUp(13)" id="meltdownup13" style="width:250px; height:120px">
+							Mines and reactors get a multiplier based on time spent in this meltdown<br>
+							Formula: x<sup>0.2</sup><br>
+							Currently: <span id="meltdownupmult13">1.00</span>× <br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="left">
+						<button onclick="buyMeltdownUp(14)" id="meltdownup14" style="width:250px; height:120px">
+							Mines and reactors get a multiplier based on total amount of Cf-252 reactors bought this meltdown<br>
+							Formula: x<br>
+							Currently: <span id="meltdownupmult14">1.00</span>× <br>
+							Cost: 1 Corium
+						</button>
+					</td>
+				</tr>
+				<tr align="center">
+					<td align="right">
+						<button onclick="buyMeltdownUp(21)" id="meltdownup21" style="width:250px; height:120px">
+							Mines and reactors get a multiplier based on total nanites<br>
+							Formula: x<sup>0.2</sup><br>
+							Currently: <span id="meltdownupmult21">1.00</span>× <br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="center">
+						<button onclick="buyMeltdownUp(22)" id="meltdownup22" style="width:250px; height:120px">
+							Mines and reactors get a multiplier based on corium<br>
+							Formula: (log<sub>2</sub>(x+1))<sup>0.9</sup><br>
+							Currently: <span id="meltdownupmult22">1.00</span>× <br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="center">
+						<button onclick="buyMeltdownUp(23)" id="meltdownup23" style="width:250px; height:120px">
+							<br>
+							Formula: <br>
+							Currently: <span id="meltdownupmult23">1.00</span>× <br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="left">
+						<button onclick="buyMeltdownUp(24)" id="meltdownup24" style="width:250px; height:120px">
+							<br>
+							Formula: <br>
+							Currently: <span id="meltdownupmult24">1.00</span>× <br>
+							Cost: 1 Corium
+						</button>
+					</td>
+				</tr>
+				<tr align="center">
+					<td align="right">
+						<button onclick="buyMeltdownUp(31)" id="meltdownup31" style="width:250px; height:120px">
+							Each bought reactor increases fuel gain from reactors by 4% multiplicatively<br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="center">
+						<button onclick="buyMeltdownUp(32)" id="meltdownup32" style="width:250px; height:120px">
+							Non-Rebuyable nanite upgrades are more powerful<br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="center">
+						<button onclick="buyMeltdownUp(33)" id="meltdownup33" style="width:250px; height:120px">
+							The multiplier per bought mine and reactor is increased to 2.5x<br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="left">
+						<button onclick="buyMeltdownUp(34)" id="meltdownup34" style="width:250px; height:120px">
+							<br>
+							Cost: 1 Corium
+						</button>
+					</td>
+				</tr>
+				<tr align="center">
+					<td align="right">
+						<button onclick="buyMeltdownUp(41)" id="meltdownup41" style="width:250px; height:120px">
+							Reactors and Mines boost each other<br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="center">
+						<button onclick="buyMeltdownUp(42)" id="meltdownup42" style="width:250px; height:120px">
+							You passively gain Corium and Meltdown stat<br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="center">
+						<button onclick="buyMeltdownUp(43)" id="meltdownup43" style="width:250px; height:120px">
+							You start with Nucleosynthesises<br>
+							Cost: 1 Corium
+						</button>
+					</td>
+					<td align="left">
+						<button onclick="buyMeltdownUp(44)" id="meltdownup44" style="width:250px; height:120px">
+							You start with nanites<br>
+							Cost: 1 Corium
+						</button>
+					</td>
+				</tr>
+			</table>
+		</div>	
 		
 		<div id="cheats">
 			<table>
@@ -703,8 +830,10 @@
 			</table>
 		</div>
 		
-		<div id="nenr" class="nenr">
-			news
+		<div id="newsb" align="center">
+			<div id="news" align="center">
+				
+			</div>
 		</div>
 	</body>
 </html>
