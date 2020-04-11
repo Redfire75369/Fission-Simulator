@@ -1,4 +1,5 @@
 function init_game() {
+	updateUI();
 	loadSave();
 	document.getElementById("production").style.display = "none";
 	document.getElementById("fuel").style.display = "none";
@@ -17,7 +18,3 @@ function init_game() {
 	}
 	nextNews();
 }
-
-
-/*Initialise Game*/
-init_game();

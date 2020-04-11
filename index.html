@@ -4,9 +4,11 @@
 	    <meta charset="utf-8">
 	    <title>Fission Simulator</title>
 	    <link id="style" rel="stylesheet" href="stylesheets/light.css" />
+		<link rel="stylesheet" href="stylesheets/katex.css" />
 	    
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/mathjax.min.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/auto-render.js" charset="utf-8" type="text/javascript" onload="renderMathInElement(document.body)"></script>
 		<script defer src="javascripts/libs/ad-notations.umd.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/ad-notations.community.umd.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/lz-string.js" charset="utf-8" type="text/javascript"></script>
@@ -17,9 +19,10 @@
 		<script defer src="javascripts/navigation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/resources.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/basicProd.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/basic_production.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nucleosynthesis.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
@@ -30,8 +33,8 @@
 		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/cheats.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript" onload="init_game()"></script>
+		
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 		
 	</head>

@@ -12,7 +12,7 @@ const prime = new not.PrimeNotation();
 const blind = new not.BlindNotation();
 
 function notation(x, dp = 2, dpUnder1e5 = 2, showAboveInfinite = false) {
-	if (x.gte(getLimit()) && !showAboveInfinite) {
+	if (Decimal.gte(x, getLimit()) && !showAboveInfinite) {
 		return "Infinite";
 	}
 	switch (player.options.notation) {

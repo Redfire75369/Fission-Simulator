@@ -13,6 +13,19 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
+## [v0.4.2] - 12/4/20 **PR**
+
+### Added
+- KaTeX-based Formulas
+- Working Meltdown Upgrade Multipliers(Upgrades 11 to 24)
+
+### Modified
+- Removed Mathjax
+- Fixed bugs with getLimit() and meltdown upgrade 22
+
+### Code Optimisations
+- Changed to more efficient KaTeX over Mathjax
+
 ## [v0.4.1] - 11/4/20 **PR**
 
 ### Added

@@ -49,7 +49,7 @@ function getMeltdownUpMult(id) {
 		case 21:
 			return [8, player.meltdown.totalNanites.pow(1.2).max(1)];
 		case 22:
-			return [8, player.meltdown.corium.add(2).log2().pow(0.9).max(1)];
+			return [8, Decimal.pow(player.meltdown.corium.add(2).log2(), 0.9).max(1)];
 		default:
 			return [9, new Decimal(1)];
 	}
@@ -71,7 +71,7 @@ function updateUIMeltdownUps() {
 	for (let i = 0; i < meltdownUpList.length; i++) {
 		if (meltdownUpList[i] < 41) {
 			if (meltdownUpList[i] < 31) {
-				document.getElementById("meltdownupmult" + meltdownUpList[i]).innerText = notation(getTotalMeltdownUpMult(meltdownUpList[i]));
+				document.getElementById("meltdownupmult" + meltdownUpList[i]).innerText = notation(getMeltdownUpMult(meltdownUpList[i])[1]);
 			}
 			document.getElementById("meltdownup" + meltdownUpList[i]).className = (player.meltdown.ups[meltdownUpList[i]] == 1) ? "meltdownupbought" : (canBuyMeltdownUp(meltdownUpList[i])) ? "meltdownupbuy" : "meltdownuplocked";
 		} else {

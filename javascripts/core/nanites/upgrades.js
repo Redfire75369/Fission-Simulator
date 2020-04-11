@@ -76,7 +76,7 @@ function getTotalNaniteUpMult(tier) {
 }
 
 function updateUINaniteUps() {
-	document.getElementById("nanitebtn").style.display = (player.unlocked.naniteUps) ? "inline-block" : "none";
+	document.getElementById("nanitebtn").style.display = (player.unlocked.naniteUps || player.unlocked.meltdown) ? "inline-block" : "none";
 	
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
 	
