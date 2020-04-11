@@ -4,8 +4,8 @@ const mineCostVar = {
 	pre308: [102, 76, 60, 50, 37, 29, 24, 18]
 }
 const reactorCostVar = {
-	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e4"), new Decimal("1e6"), new Decimal("1e9"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e24")],
-	costMult: [new Decimal("1e3"), new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e10"), new Decimal("1e12"), new Decimal("1e15")],
+	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e4"), new Decimal("1e6"), new Decimal("1e9"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e30")],
+	costMult: [new Decimal("1e3"), new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e10"), new Decimal("1e12"), new Decimal("1e14")],
 	pre308: [102, 76, 60, 50, 37, 29, 24, 18]
 }
 

@@ -5,12 +5,16 @@ const scientific = new not.ScientificNotation();
 const logarithmic = new not.LogarithmNotation();
 const brackets = new not.BracketsNotation();
 const omega = new not2.OmegaNotation();
+const imperial = new not.ImperialNotation();
 const cancer = new not.CancerNotation();
 const zalgo = new not.ZalgoNotation();
 const prime = new not.PrimeNotation();
 const blind = new not.BlindNotation();
 
-function notation(x, dp = 2, dpUnder1e5 = 2) {
+function notation(x, dp = 2, dpUnder1e5 = 2, showAboveInfinite = false) {
+	if (x.gte(getLimit()) && !showAboveInfinite) {
+		return "Infinite";
+	}
 	switch (player.options.notation) {
 		case "Scientific":
 			return scientific.format(x, dp, dpUnder1e5);
@@ -20,6 +24,8 @@ function notation(x, dp = 2, dpUnder1e5 = 2) {
 			return brackets.format(x, dp, dpUnder1e5);
 		case "Omega":
 			return omega.format(x, dp, dpUnder1e5);
+		case "Imperial":
+			return imperial.format(x, dp, dpUnder1e5);
 		case "Cancer":
 			return cancer.format(x, dp, dpUnder1e5);
 		case "Zalgo":
@@ -29,6 +35,7 @@ function notation(x, dp = 2, dpUnder1e5 = 2) {
 		case "Blind":
 			return blind.format(x, dp, dpUnder1e5);
 		default:
+			return "NaN";
 	}
 }
 

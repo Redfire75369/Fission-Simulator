@@ -7,7 +7,8 @@ function canMeltdown() {
 }
 
 function coriumGain() {
-	let ret = Decimal.pow(4, (player.energy.log2() - 1024)/1024);
+	let min = player.energy.gt(getLimit()) ? getLimit() : player.energy;
+	let ret = Decimal.pow(4, (min.log2() - 1024)/1024);
 	return Decimal.floor(ret);
 }
 function coriumGainPassive() {

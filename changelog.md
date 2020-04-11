@@ -13,6 +13,17 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
+## [v0.4.1] - 11/4/20 **PR**
+
+### Added
+- Mathjax-based Formulas
+- Moderators and Limits
+
+### Modified
+- Costs and cost scaling of Cf-251
+
+### Code Optimisations
+
 ## [v0.4.0] - 10/4/20 **PR**
 
 ### Added

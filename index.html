@@ -6,6 +6,7 @@
 	    <link id="style" rel="stylesheet" href="stylesheets/light.css" />
 	    
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/mathjax.min.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/ad-notations.umd.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/ad-notations.community.umd.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/lz-string.js" charset="utf-8" type="text/javascript"></script>
@@ -16,7 +17,6 @@
 		<script defer src="javascripts/navigation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/resources.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/basicProd.js" charset ="utf-8" type="text/javascript"></script>
@@ -26,10 +26,12 @@
 		<script defer src="javascripts/prestige/meltdown.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/nanites/upgrades.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/meltdown/upgrades.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/meltdown/moderator.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/cheats.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 		
 	</head>
@@ -102,9 +104,6 @@
 							Fuel Gain from Mines
 						</td>
 						<td class="text" style="width:19vw" align="center">
-							Fuel Gain from Reactors
-						</td>
-						<td class="text" style="width:19vw" align="center">
 							Fuel Gain from Decay
 						</td>
 					</tr>
@@ -117,9 +116,6 @@
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LETGainMine">0.00</span> kg/s
-						</td>
-						<td class="text" style="width:19vw" align="center">
-							<span id="LETGainReactor">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LETGainDecay">0.00</span> kg/s
@@ -136,15 +132,12 @@
 							<span id="LEUGainMine">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
-							<span id="LEUGainReactor">0.00</span> kg/s
-						</td>
-						<td class="text" style="width:19vw" align="center">
 							<span id="LEUGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LENpRow">
 						<td class="text" style="width:19vw" align="left">
-							LENp-237 Fuel
+							LENp-234 Fuel
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LENpGain">0.00</span> kg/s
@@ -153,24 +146,18 @@
 							<span id="LENpGainMine">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
-							<span id="LENpGainReactor">0.00</span> kg/s
-						</td>
-						<td class="text" style="width:19vw" align="center">
 							<span id="LENpGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LEPuRow">
 						<td class="text" style="width:19vw" align="left">
-							LEPu-241 Fuel
+							LEPu-237 Fuel
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LEPuGain">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LEPuGainMine">0.00</span> kg/s
-						</td>
-						<td class="text" style="width:19vw" align="center">
-							<span id="LEPuGainReactor">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LEPuGainDecay">0.00</span> kg/s
@@ -187,32 +174,26 @@
 							<span id="LEAmGainMine">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
-							<span id="LEAmGainReactor">0.00</span> kg/s
-						</td>
-						<td class="text" style="width:19vw" align="center">
 							<span id="LEAmGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
-					<tr id="LECuRow">
+					<tr id="LECmRow">
 						<td class="text" style="width:19vw" align="left">
-							LECu-247 Fuel
+							LECm-245 Fuel
 						</td>
 						<td class="text" style="width:19vw" align="center">
-							<span id="LECuGain">0.00</span> kg/s
+							<span id="LECmGain">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
-							<span id="LECuGainMine">0.00</span> kg/s
+							<span id="LECmGainMine">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
-							<span id="LECuGainReactor">0.00</span> kg/s
-						</td>
-						<td class="text" style="width:19vw" align="center">
-							<span id="LECuGainDecay">0.00</span> kg/s
+							<span id="LECmGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LEBkRow">
 						<td class="text" style="width:19vw" align="left">
-							LEBk-247 Fuel
+							LEBk-248 Fuel
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LEBkGain">0.00</span> kg/s
@@ -221,24 +202,18 @@
 							<span id="LEBkGainMine">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
-							<span id="LEBkGainReactor">0.00</span> kg/s
-						</td>
-						<td class="text" style="width:19vw" align="center">
 							<span id="LEBkGainDecay">0.00</span> kg/s
 						</td>
 					</tr>
 					<tr id="LECfRow">
 						<td class="text" style="width:19vw" align="left">
-							LECf-252 Fuel
+							LECf-251 Fuel
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LECfGain">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LECfGainMine">0.00</span> kg/s
-						</td>
-						<td class="text" style="width:19vw" align="center">
-							<span id="LECfGainReactor">0.00</span> kg/s
 						</td>
 						<td class="text" style="width:19vw" align="center">
 							<span id="LECfGainDecay">0.00</span> kg/s
@@ -368,7 +343,7 @@
 			    <table>
 			    	<tr id="reactorRow1">
 						<td class="text" style="width:40vw" align="left">
-							Thorium-232 Reactor ×<span id="ThoriumReactorMult">1</span>
+							Thorium-227 Reactor ×<span id="ThoriumReactorMult">1</span>
 						</td>
 						<td class="text" style="width:40vw">
 							<span id="ThoriumReactor">0.00 (0)</span>
@@ -396,7 +371,7 @@
 					</tr>
 					<tr id="reactorRow3">
 						<td class="text" style="width:40vw" align="left">
-							Neptunium-237 Reactor ×<span id="NeptuniumReactorMult">1</span>
+							Neptunium-234 Reactor ×<span id="NeptuniumReactorMult">1</span>
 						</td>
 						<td class="text" style="width:40vw">
 							<span id="NeptuniumReactor">0.00 (0)</span>
@@ -410,7 +385,7 @@
 					</tr>
 					<tr id="reactorRow4">
 						<td class="text" style="width:40vw" align="left">
-							Plutonium-241 Reactor ×<span id="PlutoniumReactorMult">1</span>
+							Plutonium-237 Reactor ×<span id="PlutoniumReactorMult">1</span>
 						</td>
 						<td class="text" style="width:40vw">
 							<span id="PlutoniumReactor">0.00 (0)</span>
@@ -424,7 +399,7 @@
 					</tr>
 					<tr id="reactorRow5">
 						<td class="text" style="width:40vw" align="left">
-							Americium-243 Reactor ×<span id="AmericiumReactorMult">1</span>
+							Americium-242m Reactor ×<span id="AmericiumReactorMult">1</span>
 						</td>
 						<td class="text" style="width:40vw">
 							<span id="AmericiumReactor">0.00 (0)</span>
@@ -438,7 +413,7 @@
 					</tr>
 					<tr id="reactorRow6">
 						<td class="text" style="width:40vw" align="left">
-							Curium-247 Reactor ×<span id="CuriumReactorMult">1</span>
+							Curium-245 Reactor ×<span id="CuriumReactorMult">1</span>
 						</td>
 						<td class="text" style="width:40vw">
 							<span id="CuriumReactor">0.00 (0)</span>
@@ -452,7 +427,7 @@
 					</tr>
 					<tr id="reactorRow7">
 						<td class="text" style="width:40vw" align="left">
-							Berkelium-247 Reactor ×<span id="BerkeliumReactorMult">1</span>
+							Berkelium-248 Reactor ×<span id="BerkeliumReactorMult">1</span>
 						</td>
 						<td class="text" style="width:40vw">
 							<span id="BerkeliumReactor">0.00 (0)</span>
@@ -466,7 +441,7 @@
 					</tr>
 					<tr id="reactorRow8">
 						<td class="text" style="width:40vw" align="left">
-							Californium-252 Reactor ×<span id="CaliforniumReactorMult">1</span>
+							Californium-251 Reactor ×<span id="CaliforniumReactorMult">1</span>
 						</td>
 						<td class="text" style="width:40vw">
 							<span id="CaliforniumReactor">0.00 (0)</span>
@@ -483,7 +458,7 @@
 				<table>
 					<tr>
 						<td class="text" align="left" style="width:50vw">
-							<span id="nucleoScaling">Stellar Nucleosynthesis</span> (<span id="nucleoAmt">0</span>): Requires <span id="nucleoCost">2 Plutonium-241</span> Reactors
+							<span id="nucleoScaling">Stellar Nucleosynthesis</span> (<span id="nucleoAmt">0</span>): Requires <span id="nucleoCost">2 Plutonium-238</span> Reactors
 						</td>
 						<td align="right" style="width:50vw">
 							<button onclick="buyMaxNucleosynthesis()" id="nucleosynthesis" style="width: 300px; height: 30px">Reset the game for a new Mine</button>
@@ -491,7 +466,7 @@
 					</tr>
 					<tr>
 						<td class="text" align="left" style="width:50vw">
-							Nanite Research: Requires <span id="naniteResearchCost">5</span> Californium-252 Reactors
+							Nanite Research: Requires <span id="naniteResearchCost">5</span> Californium-251 Reactors
 						</td>
 						<td align="right" style="width:50vw">
 							<button onclick="buyNaniteResearch()" id="naniteResearch" style="width: 300px; height: 40px">Reset the game for <span id="nanitesOnResearch">1</span> Nanites </button>
@@ -597,7 +572,7 @@
 					<td align="right">
 						<button onclick="buyNaniteUp(11)" id="naniteup11" style="width:190px; height:90px">
 							All reactors get a boost based on time played<br>
-							Formula: log<sub>10</sub>(x) - 1<br>
+							Formula: \(log_{10}(x)\)<br>
 							Currently: <span id="naniteupmult11">1.00</span>× <br>
 							Cost: 1 Nanite
 						</button>
@@ -605,7 +580,7 @@
 					<td align="left">
 						<button onclick="buyNaniteUp(12)" id="naniteup12" style="width:190px; height:90px" >
 							All reactors get a boost based on number of Nucleosyntheses<br>
-							Formula: <span id="naniteupformula12">x<sup>log<sub>10</sub>(x)</sup></span><br>
+							Formula: <span id="naniteupformula12v1">\(x^{log_{10}(x+1)}\)</span><span id="naniteupformula12v2">\((x - 7) * log_{8}(x)^{0.5}\)</span><br>
 							Currently: <span id="naniteupmult12">1.00</span>× <br>
 							Cost: 2 Nanites
 						</button>
@@ -615,7 +590,7 @@
 					<td align="right">
 						<button onclick="buyNaniteUp(21)" id="naniteup21" style="width:190px; height:90px">
 							All reactors get a boost based on current energy<br>
-							Formula: (log<sub>25</sub>(x)/75)<sup>2</sup><br>
+							Formula: \((\frac{log_{20}(x)}{20})^{2}\)<br>
 							Currently: <span id="naniteupmult21">1.00</span>× <br>
 							Cost: 1 Nanite
 						</button>
@@ -623,7 +598,7 @@
 					<td align="left">
 						<button onclick="buyNaniteUp(22)" id="naniteup22" style="width:190px; height:90px" >
 							All reactors get a boost based on total energy<br>
-							Formula: (log<sub>25</sub>(x)/50)<sup>2</sup><br>
+							Formula: \((\frac{log_{25}(x)}{40})^{2}\)<br>
 							Currently: <span id="naniteupmult22">1.00</span>× <br>
 							Cost: 2 Nanites
 						</button>
@@ -639,7 +614,7 @@
 					<td align="left">
 						<button onclick="buyNaniteUp(32)" id="naniteup32" style="width:190px; height:90px">
 							All reactors get a boost based on total nanites gained<br>
-							Formula: log<sub>1.2</sub>(x)<br>
+							Formula: \(log_{1.2}(x)\)<br>
 							Currently: <span id="naniteupmult32">1.00</span>× <br>
 							Cost: 4 Nanites
 						</button>
@@ -654,7 +629,7 @@
 					<td align="right">
 						<button onclick="buyMeltdownUp(11)" id="meltdownup11" style="width:250px; height:120px">
 							Mines and reactors get a multiplier based on meltdown stat<br>
-							Formula: 1 + x / 2<br>
+							Formula: \(1 + \frac{x}{2}\)<br>
 							Currently: <span id="meltdownupmult11">1.00</span>× <br>
 							Cost: 1 Corium
 						</button>
@@ -662,7 +637,7 @@
 					<td align="center">
 						<button onclick="buyMeltdownUp(12)" id="meltdownup12" style="width:250px; height:120px">
 							Mines and reactors are significantly stronger in the first 100 seconds of resets<br>
-							Formula: (x + 1) / 2<sup>25 / (x + 1) + 1</sup><br>
+							Formula: \((\frac{x + 1}{2})^{\frac{25}{x + 1}+1}\)</sup><br>
 							Currently: <span id="meltdownupmult12">1.00</span>× <br>
 							Cost: 1 Corium
 						</button>
@@ -670,15 +645,15 @@
 					<td align="center">
 						<button onclick="buyMeltdownUp(13)" id="meltdownup13" style="width:250px; height:120px">
 							Mines and reactors get a multiplier based on time spent in this meltdown<br>
-							Formula: x<sup>0.2</sup><br>
+							Formula: \(x^{0.2}\)<br>
 							Currently: <span id="meltdownupmult13">1.00</span>× <br>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="left">
 						<button onclick="buyMeltdownUp(14)" id="meltdownup14" style="width:250px; height:120px">
-							Mines and reactors get a multiplier based on total amount of Cf-252 reactors bought this meltdown<br>
-							Formula: x<br>
+							Mines and reactors get a multiplier based on total amount of Cf-251 reactors bought this meltdown<br>
+							Formula: \(x\)<br>
 							Currently: <span id="meltdownupmult14">1.00</span>× <br>
 							Cost: 1 Corium
 						</button>
@@ -688,7 +663,7 @@
 					<td align="right">
 						<button onclick="buyMeltdownUp(21)" id="meltdownup21" style="width:250px; height:120px">
 							Mines and reactors get a multiplier based on total nanites<br>
-							Formula: x<sup>0.2</sup><br>
+							Formula: \(x^{1.2}\)<br>
 							Currently: <span id="meltdownupmult21">1.00</span>× <br>
 							Cost: 1 Corium
 						</button>
@@ -696,7 +671,7 @@
 					<td align="center">
 						<button onclick="buyMeltdownUp(22)" id="meltdownup22" style="width:250px; height:120px">
 							Mines and reactors get a multiplier based on corium<br>
-							Formula: (log<sub>2</sub>(x+1))<sup>0.9</sup><br>
+							Formula: \(log_{2}(x+2)^{0.9}\)<br>
 							Currently: <span id="meltdownupmult22">1.00</span>× <br>
 							Cost: 1 Corium
 						</button>
@@ -704,7 +679,7 @@
 					<td align="center">
 						<button onclick="buyMeltdownUp(23)" id="meltdownup23" style="width:250px; height:120px">
 							<br>
-							Formula: <br>
+							Formula: \(\)<br>
 							Currently: <span id="meltdownupmult23">1.00</span>× <br>
 							Cost: 1 Corium
 						</button>
@@ -712,7 +687,7 @@
 					<td align="left">
 						<button onclick="buyMeltdownUp(24)" id="meltdownup24" style="width:250px; height:120px">
 							<br>
-							Formula: <br>
+							Formula: \(\)<br>
 							Currently: <span id="meltdownupmult24">1.00</span>× <br>
 							Cost: 1 Corium
 						</button>

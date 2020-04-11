@@ -55,9 +55,9 @@ function getNaniteUpMult(id) {
 		case 12:
 			return (player.nucleosynthesis <= 10) ? [8, Decimal.max(1, (player.nucleosynthesis ** log(player.nucleosynthesis + 1, 10)) / 3)] : [8, Decimal.max(1, (player.nucleosynthesis - 7) * (log(player.nucleosynthesis, 8) ** 0.5))];
 		case 21:
-			return [8, Decimal.max(1, new Decimal(player.energy.log(25)).div(75).pow(2))];
+			return [8, Decimal.max(1, new Decimal(player.energy.log(20)).div(20).pow(2))];
 		case 22:
-			return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(25)).div(75).pow(2))];
+			return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(25)).div(40).pow(2))];
 		case 32:
 			return [8, Decimal.max(1, player.nanites.total.log(1.2))];
 		default:
@@ -77,10 +77,15 @@ function getTotalNaniteUpMult(tier) {
 
 function updateUINaniteUps() {
 	document.getElementById("nanitebtn").style.display = (player.unlocked.naniteUps) ? "inline-block" : "none";
+	
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
+	
 	document.getElementById("naniteupcost0").innerText = (!player.nanites.effUpCost.eq(1)) ? (player.nanites.effUpCost + " Nanites") : "1 Nanite";
 	document.getElementById("naniteup0").className = (canBuyNaniteUp(0)) ? "naniteupbuy" : "naniteuplocked";
-	document.getElementById("naniteupformula12").innerHTML = (player.nucleosynthesis <= 13) ? "x<sup>log<sub>10</sub>(x+1)</sup>" : "(x - 7) * log<sub>8</sub>(x)<sup>0.5</sup>";
+	
+	document.getElementById("naniteupformula12v1").style.display =  (player.nucleosynthesis <= 13) ? "inline-block" : "none";
+	document.getElementById("naniteupformula12v2").style.display =  (player.nucleosynthesis > 13) ? "inline-block" : "none";
+
 	for (let i = 0; i < naniteUpList.length; i++) {
 		if (naniteUpList[i] != 0 && naniteUpList[i] != 31) {
 			document.getElementById("naniteupmult" + naniteUpList[i]).innerText = notation(getNaniteUpMult(naniteUpList[i])[1]);

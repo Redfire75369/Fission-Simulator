@@ -1,4 +1,4 @@
-const notations = ["Scientific", "Logarithmic", "Brackets", "Omega", "Cancer", "Zalgo", "Prime", "Blind"];
+const notations = ["Scientific", "Logarithmic", "Brackets", "Omega", "Imperial", "Cancer", "Zalgo", "Prime", "Blind"];
 const themes = ["Light", "Dark", "Inverted", "Midnight", "Void"];
 
 /*Notations Change*/
@@ -53,4 +53,14 @@ function exportSave() {
 	saveGame();
 	copyStringToClipboard(getSaveString());
 	alert("Save copied to clipboard");
+}
+
+/*Hard Reset*/
+function hardReset() {
+	let confirmation = prompt("This will completely reset your game. If you are sure, type in “Hitchhiker's Guide to the Fusion-Driven Galaxy”");
+	if (confirmation == "Hitchhiker's Guide to the Fusion-Driven Galaxy") {
+		showNaviTab("production");
+		player = getDefaultData();
+		saveGame();
+	}
 }

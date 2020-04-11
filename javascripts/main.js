@@ -12,6 +12,7 @@ function getDefaultData() {
 			theme: "Light",
 			themeNo: 0
 		},
+		
 		navigation: {
 			naviTab: "production",
 			production: "mines"
@@ -30,6 +31,8 @@ function getDefaultData() {
 		
 		energy: new Decimal(100),
 		totalEnergy: new Decimal(100),
+		
+		moderator: 0,
 		
 		eff: {
 			bought: 0
@@ -100,8 +103,8 @@ function getDefaultData() {
 }
 const mining = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium", "Diamond", "Laser"];
 const fissile = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
-const isotopes = ["Thorium-232", "Uranium-235", "Neptunium-237", "Plutonium-241", "Americium-243", "Curium-247", "Berkelium-247", "Californium-252"];
-const LEF = ["LET", "LEU", "LENp", "LEPu", "LEAm", "LECu", "LEBk", "LECf"];
+const isotopes = ["Thorium-227", "Uranium-235", "Neptunium-234", "Plutonium-237", "Americium-242m", "Curium-245", "Berkelium-248", "Californium-251"];
+const LEF = ["LET", "LEU", "LENp", "LEPu", "LEAm", "LECm", "LEBk", "LECf"];
 const JkgLEF = [new Decimal(4), new Decimal(16), new Decimal(64), new Decimal(256), new Decimal(1024), new Decimal(4096), new Decimal(16384), new Decimal(65536)];
 const infinity = Decimal.pow(2, 1024);
 const zero = new Decimal(0);
@@ -113,16 +116,6 @@ window.onfocus = function() {
 window.onblur = function() {
   focused=false;  
 }  
-
-function hardReset() {
-	let confirmation = prompt("This will completely reset your game. If you are sure, type in \"Hitchiker's Guide to the Fusion-Driven Galaxy\"");
-	if (confirmation == "Hitchiker's Guide to the Fusion-Driven Galaxy") {
-		showNaviTab("production");
-		showProdTab("resources"); 
-		player = getDefaultData();
-		saveGame();
-	}
-}
 
 function updateUI() {
 	updateUIEnergy();

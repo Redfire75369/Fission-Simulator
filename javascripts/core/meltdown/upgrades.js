@@ -47,9 +47,9 @@ function getMeltdownUpMult(id) {
 		case 14:
 			return [8, player.reactor.amount[7].max(1)];
 		case 21:
-			return [8, player.meltdown.totalNanites.pow(1.2)];
+			return [8, player.meltdown.totalNanites.pow(1.2).max(1)];
 		case 22:
-			return [8, player.corium.add(2).log2().pow(0.9).max(1)];
+			return [8, player.meltdown.corium.add(2).log2().pow(0.9).max(1)];
 		default:
 			return [9, new Decimal(1)];
 	}
@@ -67,6 +67,7 @@ function getTotalMeltdownUpMult(tier) {
 
 function updateUIMeltdownUps() {
 	document.getElementById("meltdowntbtn").style.display = player.unlocked.meltdown ? "inline-block" : "none";
+	
 	for (let i = 0; i < meltdownUpList.length; i++) {
 		if (meltdownUpList[i] < 41) {
 			if (meltdownUpList[i] < 31) {
