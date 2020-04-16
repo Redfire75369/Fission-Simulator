@@ -20,6 +20,12 @@ table {
 	border-radius: 4px;
 }
 
+.navibtn:hover {
+	transition-duration: 0.2s;
+	background: #aaaaaa;
+	color: #ffffff;
+}
+
 .prodbtn {
 	width: 150px;
 	height: 30px;
@@ -30,11 +36,18 @@ table {
 	border-radius: 4px;
 }
 
+.prodbtn:hover {
+	transition-duration: 0.2s;
+	background: #aaaaaa;
+	color: #ffffff;
+}
+
 .achpic {
 	width: 100px;
 	height: 100px;
 	opacity: 0.7;
 }
+
 .achcomplete {
 	width: 100px;
 	height: 100px;
@@ -65,6 +78,19 @@ table {
 	padding: 10px;
 	padding-bottom: 15px;
 }
+
+#nanitebtn {
+	border: 2px solid #020724;
+	background: #0887cc;
+	color: #020724;
+}
+
+#nanitebtn:hover {
+	transition-duration: 0.2s;
+	background: #020724;
+	color: #ffffff;
+}
+
 #newsb {
 	width: 75%;
 	height: 20px;
@@ -144,6 +170,11 @@ table {
 	border: 1px solid green;
 	border-radius: 4px;
 	color: #000000;
+	background: #81a6ff;
+}
+
+.naniteupbuy:hover {
+	color: #2d3b5c;
 	background: #81a6ff;
 }
 
