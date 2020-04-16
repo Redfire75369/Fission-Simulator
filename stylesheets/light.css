@@ -119,6 +119,12 @@ table {
 	border-radius: 2px;
 }
 
+.btnbuy:hover {
+	transition-duration: 0.2s;
+	background: #10c921;
+	color: #ffffff;
+}
+
 .naniteupbuy {
 	font-size: 10px;
 	border: 1px solid #DAA520;
