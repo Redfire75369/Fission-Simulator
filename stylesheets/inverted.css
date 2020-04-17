@@ -14,7 +14,7 @@ button {
 }
 button:hover {
 	border-color: #0b2da7;
-	box-shadow: 0px 0px 8px #0b2da7;
+	box-shadow: 0px 0px 8px 1px #0b2da7;
 }
 .navibtn {
 	width: 180px;
