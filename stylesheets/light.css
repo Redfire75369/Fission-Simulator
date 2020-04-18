@@ -177,11 +177,12 @@ button:hover {
 }
 
 .naniteupbuy:hover {
+	transition-duration: 0.2s;
 	color: #2d3b5c;
 	background: #81a6ff;
 }
 
-.meltdownbtn {
+#meltdownbtn {
 	width: 210px;
 	height: 70px;
 	font-size: 10px;
@@ -189,6 +190,13 @@ button:hover {
 	border-radius: 6px;
 	color: #000000;
 	background: #ffffff;
+}
+
+#meltdownbtn:hover {
+	transition-duration: 0.2s;
+	color: #000000;
+	background: green;
+	border: 2px solid #000000;
 }
 
 .meltdownupbuy {
@@ -200,6 +208,7 @@ button:hover {
 	border-radius: 3px;
 	font-weight: bold;
 }
+
 .meltdownuplocked {
 	width: 20%;
 	height: 150px;
@@ -208,6 +217,7 @@ button:hover {
 	color: #000000;
 	border-radius: 3px;
 }
+
 .meltdownupbought {
 	width: 20%;
 	height: 150px;
@@ -216,4 +226,11 @@ button:hover {
 	color: #000000;
 	border-radius: 3px;
 	font-weight: bold;
+}
+
+.meltdownupbuy:hover {
+	transition-duration: 0.2s;
+	color: #000000;
+	background: green;
+	border: 2px solid #000000;
 }
