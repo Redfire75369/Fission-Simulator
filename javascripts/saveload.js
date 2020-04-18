@@ -52,6 +52,13 @@ function loadSave(save, imported = false) {
 			}
 		}
 		
+		if (!player.navigation.naviTab.includes("_tab")) {
+			player.navigation.naviTab = player.navigation.naviTab + "_tab";
+		}
+		if (!player.navigation.production.includes("_subtab")) {
+			player.navigation.production = player.navigation.production + "_subtab";
+		}
+		
 		if (imported) {
 			alert("Save imported successfully.");
 		}

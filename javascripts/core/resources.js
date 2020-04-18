@@ -9,11 +9,19 @@ function resetFuel() {
 	player.fuel = getDefaultData().fuel;
 }
 
+function getMinFuel(tier) {
+	let minFuelReduction = player.meltdown.ups[31] == 1 ? 1/1.05 : 1;
+	return player.reactor.amount[tier].mul(8 - tier);
+}
+function getFuelReactorIncrement(tier) {
+	return Decimal.max(1, getTotalFuelGain(tier).sub(getMinFuel(tier)).log(1.1));
+}
+
 function getMaxEnergyGain(tier) {
-	return player.reactor.amount[0].mul(getTotalReactorMult(0)).mul(getEff()).mul(3 ** tier).mul(JkgLEF[tier]);
+	return player.reactor.amount[0].mul(getTotalReactorMult(0)).mul(getEff()).mul(3 ** tier);
 }
 function getEnergyGain(tier) {
-	return (getTotalFuelGain(tier).mul(JkgLEF[tier]).gt(getMaxEnergyGain(tier))) ? getMaxEnergyGain(tier) : getTotalFuelGain(tier).mul(JkgLEF[tier]);
+	return getTotalFuelGain(tier).gt(getMinFuel(tier)) ? getMaxEnergyGain(tier).mul(getFuelReactorIncrement(tier)) : getTotalFuelGain(tier).mul(getFuelReactorIncrement(tier));
 }
 function getTotalEnergyGain() {
 	let ret = zero;
@@ -51,15 +59,15 @@ function simulateEnergy(tickInterval = 50) {
 
 function updateUIEnergy() {
 	document.getElementById("energy").innerText = notation(player.energy);
-	document.getElementById("energyGain").innerText = notation(getTotalEnergyGain());
+	document.getElementById("energy_gain").innerText = notation(getTotalEnergyGain());
 }
 function updateUIFuel() {
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
-		document.getElementById(LEF[tier] + "Gain").innerText = notation(getTotalFuelGain(tier));
-		document.getElementById(LEF[tier] + "GainMine").innerText = notation(getFuelMineGain(tier));
-		document.getElementById(LEF[tier] + "GainDecay").innerText = notation(getFuelDecayGain(tier));
+		document.getElementById("fuel_totalgain" + (tier + 1)).innerText = notation(getTotalFuelGain(tier));
+		document.getElementById("fuel_minegain" + (tier + 1)).innerText = notation(getFuelMineGain(tier));
+		document.getElementById("fuel_decaygain" + (tier + 1)).innerText = notation(getFuelDecayGain(tier));
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById(LEF[tier] + "Row").style.display= (player.nucleosynthesis + 4 > tier && player.mine.bought[tier - 1] > 0) ? "table-row" : "none";
+		document.getElementById("fuel_row" + (tier + 1)).style.display= player.nucleosynthesis + 4 > tier && player.mine.bought[tier - 1] > 0 ? "table-row" : "none";
 	}
 }

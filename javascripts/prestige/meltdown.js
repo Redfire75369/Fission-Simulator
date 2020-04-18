@@ -49,7 +49,7 @@ function simulateMeltdown(tickinterval = 50) {
 }
 function updateUIMeltdown() {
 	document.getElementById("corium").innerText = notation(player.meltdown.corium);
-	document.getElementById("coriumAmt").style.display = (player.unlocked.meltdown) ? "inline-block" : "none";
+	document.getElementById("corium_amt").style.display = (player.unlocked.meltdown) ? "inline-block" : "none";
 	document.getElementById("meltdown").style.display = (canMeltdown()) ? "inline-block" : "none";
-	document.getElementById("coriumOnMeltdown").innerText = notation(coriumGain());
+	document.getElementById("corium_gain").innerText = notation(coriumGain());
 }

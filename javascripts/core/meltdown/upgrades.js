@@ -66,16 +66,16 @@ function getTotalMeltdownUpMult(tier) {
 }
 
 function updateUIMeltdownUps() {
-	document.getElementById("meltdowntbtn").style.display = player.unlocked.meltdown ? "inline-block" : "none";
+	document.getElementById("meltdown_navibtn").style.display = player.unlocked.meltdown ? "inline-block" : "none";
 	
 	for (let i = 0; i < meltdownUpList.length; i++) {
 		if (meltdownUpList[i] < 41) {
 			if (meltdownUpList[i] < 31) {
-				document.getElementById("meltdownupmult" + meltdownUpList[i]).innerText = notation(getMeltdownUpMult(meltdownUpList[i])[1]);
+				document.getElementById("meltdown_upmult" + meltdownUpList[i]).innerText = notation(getMeltdownUpMult(meltdownUpList[i])[1]);
 			}
-			document.getElementById("meltdownup" + meltdownUpList[i]).className = (player.meltdown.ups[meltdownUpList[i]] == 1) ? "meltdownupbought" : (canBuyMeltdownUp(meltdownUpList[i])) ? "meltdownupbuy" : "meltdownuplocked";
+			document.getElementById("meltdown_up" + meltdownUpList[i]).className = player.meltdown.ups[meltdownUpList[i]] == 1 ? "meltdownupbought" : canBuyMeltdownUp(meltdownUpList[i]) ? "meltdownupbuy" : "meltdownuplocked";
 		} else {
-			document.getElementById("meltdownup" + meltdownUpList[i]).className = (player.meltdown.ups[meltdownUpList[i]] == 4) ? "meltdownupbought" : (canBuyMeltdownUp(meltdownUpList[i])) ? "meltdownupbuy" : "meltdownuplocked";
+			document.getElementById("meltdown_up" + meltdownUpList[i]).className = player.meltdown.ups[meltdownUpList[i]] == 4 ? "meltdownupbought" : canBuyMeltdownUp(meltdownUpList[i]) ? "meltdownupbuy" : "meltdownuplocked";
 		}
 	}
 }

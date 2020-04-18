@@ -16,7 +16,8 @@ button:hover {
 	border-color: #f4d258;
 	box-shadow: 0px 0px 8px 1px #f4d258;
 }
-.navibtn {
+
+.navitabbtn {
 	width: 180px;
 	height: 40px;
 	font-size: 20px;
@@ -25,14 +26,24 @@ button:hover {
 	border: 2px solid #000000;
 	border-radius: 4px;
 }
-
-.navibtn:hover {
+.navitabbtn:hover {
 	transition-duration: 0.2s;
 	background: #aaaaaa;
 	color: #ffffff;
 }
 
-.prodbtn {
+.navitabbtn.nanite {
+	border: 2px solid #020724;
+	background: #0887cc;
+	color: ##4848ef;
+}
+.navitabbtn.nanite:hover {
+	transition-duration: 0.2s;
+	background: #020724;
+	color: #4848ef;
+}
+
+.subtabbtn {
 	width: 150px;
 	height: 30px;
 	font-size: 16px;
@@ -41,8 +52,7 @@ button:hover {
 	border: 2px solid #101010;
 	border-radius: 4px;
 }
-
-.prodbtn:hover {
+.subtabbtn:hover {
 	transition-duration: 0.2s;
 	background: #aaaaaa;
 	color: #ffffff;
@@ -53,7 +63,6 @@ button:hover {
 	height: 100px;
 	opacity: 0.7;
 }
-
 .achcomplete {
 	width: 100px;
 	height: 100px;
@@ -70,7 +79,8 @@ button:hover {
 }
 
 .popup {
-	display: none;
+	display: flex;
+	align-items: center;
 	position: fixed;
 	left: 50%;
 	top: 50%;
@@ -85,19 +95,7 @@ button:hover {
 	padding-bottom: 15px;
 }
 
-#nanitebtn {
-	border: 2px solid #020724;
-	background: #0887cc;
-	color: #020724;
-}
-
-#nanitebtn:hover {
-	transition-duration: 0.2s;
-	background: #020724;
-	color: #ffffff;
-}
-
-#newsb {
+#newsbar {
 	width: 75%;
 	height: 20px;
 	border: 3px solid #000000;
@@ -140,6 +138,11 @@ button:hover {
 	border: 2px solid #127A20;
 	border-radius: 2px;
 }
+.btnbuy:hover {
+	transition-duration: 0.2s;
+	background: #10c921;
+	color: #ffffff;
+}
 .btnlocked {
 	font-size: 12px;
 	color: #202020;
@@ -147,29 +150,41 @@ button:hover {
 	border: 2px solid #e53935;
 	border-radius: 2px;
 }
+.btnlocked:hover {
+}
 
-.btnbuy:hover {
-	transition-duration: 0.2s;
-	background: #10c921;
-	color: #ffffff;
+.btnbuy.mines {
+}
+.btnlocked.mines {
+}
+
+.btnbuy.reactors {
+}
+.btnlocked.reactors {
 }
 
 .naniteupbuy {
-	font-size: 10px;
+	width: 300px;
+	height: 150px;
+	font-size: 15px;
 	border: 1px solid #DAA520;
 	border-radius: 4px;
 	color: #81a6ff;
 	background: #ffffff;
 }
 .naniteuplocked {
-	font-size: 10px;
+	width: 300px;
+	height: 150px;
+	font-size: 15px;
 	border: 1px solid;
 	border-radius: 4px;
 	color: #303030;
 	background: #a3a3a3;
 }
 .naniteupbought {
-	font-size: 10px;
+	width: 300px;
+	height: 150px;
+	font-size: 15px;
 	border: 1px solid green;
 	border-radius: 4px;
 	color: #000000;
@@ -182,7 +197,7 @@ button:hover {
 	background: #81a6ff;
 }
 
-#meltdownbtn {
+#meltdown {
 	width: 210px;
 	height: 70px;
 	font-size: 10px;
@@ -191,8 +206,7 @@ button:hover {
 	color: #000000;
 	background: #ffffff;
 }
-
-#meltdownbtn:hover {
+#meltdown:hover {
 	transition-duration: 0.2s;
 	color: #000000;
 	background: green;
@@ -200,7 +214,7 @@ button:hover {
 }
 
 .meltdownupbuy {
-	width: 20%;
+	width: 100%;
 	height: 150px;
 	border: 3px solid #daa520;
 	background-color: #000000;
@@ -208,29 +222,26 @@ button:hover {
 	border-radius: 3px;
 	font-weight: bold;
 }
-
+.meltdownupbuy:hover {
+	transition-duration: 0.2s;
+	color: #000000;
+	background: green;
+	border: 2px solid #000000;
+}
 .meltdownuplocked {
-	width: 20%;
+	width: 100%;
 	height: 150px;
 	border: 3px solid #ff0000;
 	background-color: #555555;
 	color: #000000;
 	border-radius: 3px;
 }
-
 .meltdownupbought {
-	width: 20%;
+	width: 100%;
 	height: 150px;
 	border: 3px solid #daa520;
 	background-color: #44cc66;
 	color: #000000;
 	border-radius: 3px;
 	font-weight: bold;
-}
-
-.meltdownupbuy:hover {
-	transition-duration: 0.2s;
-	color: #000000;
-	background: green;
-	border: 2px solid #000000;
 }

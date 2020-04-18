@@ -1,7 +1,7 @@
 var leverMaxAll = false;
 
 function enableCheatsTab() {
-	document.getElementById("cheatsbtn").style.display = "inline-block";
+	document.getElementById("cheats_navibtn").style.display = "inline-block";
 	//localStorage.setItem("fissionSimSave1", null)
 	//clearInterval(saveGameLoop);
 }
@@ -20,7 +20,7 @@ function infiniteEnergy() {
 }
 
 function addNucleosynthesis() {
-	if (player.nucleosynthesis < 13) {
+	if (player.nucleosynthesis < 14) {
 		player.nucleosynthesis += 1;
 	}
 }
@@ -30,9 +30,9 @@ function toggleLeverMaxAll() {
 }
 
 function harderReset() {
-	showNaviTab("cheats");
+	showNaviTab("cheats_tab");
 	player = getDefaultData();
-	player.navigation.naviTab = "cheats";
+	player.navigation.naviTab = "cheats_tab";
 	saveGame();
 }
 
@@ -40,6 +40,6 @@ function spin3d() {
 	document.getElementById("body").style.animation = document.getElementById("body").style.animation === "" ? "spin3d 2s infinite" : "";
 }
 
-document.getElementById("cheatsbtn").style.display = "none";
-document.getElementById("cheats").style.display = "none";
+document.getElementById("cheats_navibtn").style.display = "none";
+document.getElementById("cheats_tab").style.display = "none";
 //Remove onclick in release version from index.html document.getElementById("stuff").onclick = "enableCheatsTab()";

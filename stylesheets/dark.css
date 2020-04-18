@@ -16,7 +16,7 @@ button:hover {
 	border-color: #f4d258;
 	box-shadow: 0px 0px 8px 1px #f4d258;
 }
-.navibtn {
+.navitabbtn {
 	width: 180px;
 	height: 40px;
 	font-size: 20px;
@@ -25,8 +25,10 @@ button:hover {
 	border: 2px solid #2828bf;
 	border-radius: 4px;
 }
+.navitabbtn:hover {	
+}
 
-.prodbtn {
+.subtabbtn {
 	width: 150px;
 	height: 30px;
 	font-size: 16px;
@@ -34,6 +36,8 @@ button:hover {
 	background: #101010;
 	border: 2px solid #dfdfdf;
 	border-radius: 4px;
+}
+.subtabbtn:hover {	
 }
 
 .achpic {
@@ -114,6 +118,8 @@ button:hover {
 	border: 2px solid #127A20;
 	border-radius: 2px;
 }
+.btnbuy:hover {
+}
 .btnlocked {
 	font-size: 12px;
 	color: #d0d0d0;
@@ -121,30 +127,48 @@ button:hover {
 	border: 2px solid #e53935;
 	border-radius: 2px;
 }
+.btnlocked:hover {
+}
+
+.btnbuy.mines {
+}
+.btnlocked.mines {
+}
+
+.btnbuy.reactors {
+}
+.btnlocked.reactors {
+}
 
 .naniteupbuy {
-	font-size: 10px;
+	width: 300px;
+	height: 150px;
+	font-size: 15px;
 	border: 1px solid #DAA520;
 	border-radius: 4px;
 	color: #81a6ff;
 	background: #000000;
 }
 .naniteuplocked {
-	font-size: 10px;
+	width: 300px;
+	height: 150px;
+	font-size: 15px;
 	border: 1px solid white;
 	border-radius: 4px;
 	color: #d0d0d0;
 	background: #505050;
 }
 .naniteupbought {
-	font-size: 10px;
+	width: 300px;
+	height: 150px;
+	font-size: 15px;
 	border: 1px solid green;
 	border-radius: 4px;
 	color: #000000;
 	background: #81a6ff;
 }
 
-.meltdownbtn {
+#meltdown {
 	width: 210px;
 	height: 70px;
 	font-size: 10px;
@@ -153,9 +177,11 @@ button:hover {
 	color: #d0d0d0;
 	background: #1c1c1c;
 }
+#meltdown:hover {
+}
 
 .meltdownupbuy {
-	width: 20%;
+	width: 100%;
 	height: 150px;
 	border: 3px solid #daa520;
 	background-color: #000000;
@@ -163,8 +189,10 @@ button:hover {
 	border-radius: 3px;
 	font-weight: bold;
 }
+.meltdownupbuy:hover {
+}
 .meltdownuplocked {
-	width: 20%;
+	width: 100%;
 	height: 150px;
 	border: 3px solid #ff0000;
 	background-color: #555555;
@@ -172,7 +200,7 @@ button:hover {
 	border-radius: 3px;
 }
 .meltdownupbought {
-	width: 20%;
+	width: 100%;
 	height: 150px;
 	border: 3px solid #daa520;
 	background-color: #44CC66;

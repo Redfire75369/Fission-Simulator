@@ -1,12 +1,12 @@
 const mineCostVar = {
-	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e4"), new Decimal("1e6"), new Decimal("1e9"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e24")],
-	costMult: [new Decimal("1e3"), new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e10"), new Decimal("1e12"), new Decimal("1e15")],
-	pre308: [102, 76, 60, 50, 37, 29, 24, 18]
+	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e5"), new Decimal("1e8"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e24"), new Decimal("1e30")],
+	costMult: [new Decimal("1e3"), new Decimal("1e5"), new Decimal("1e7"), new Decimal("1e10"), new Decimal("1e13"), new Decimal("1e16"), new Decimal("1e20"), new Decimal("1e25")],
+	pre308: [102, 76, 60, 50, 37, 29, 24, 20]
 }
 const reactorCostVar = {
-	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e4"), new Decimal("1e6"), new Decimal("1e9"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e30")],
-	costMult: [new Decimal("1e3"), new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e10"), new Decimal("1e12"), new Decimal("1e14")],
-	pre308: [102, 76, 60, 50, 37, 29, 24, 18]
+	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e5"), new Decimal("1e8"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e25"), new Decimal("1e32")],
+	costMult: [new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e9"), new Decimal("1e12"), new Decimal("1e14"), new Decimal("1e15")],
+	pre308: [76, 61, 50, 37, 33, 24, 20, 18]
 }
 
 function resetMines() {
@@ -24,10 +24,10 @@ function getReactorCost(tier) {
 }
 
 function canBuyMine(tier) {
-	return player.energy.gte(getMineCost(tier));
+	return player.energy.gte(getMineCost(tier)) && getMineCost(tier).lt(getLimit());
 }
 function canBuyReactor(tier) {
-	return player.energy.gte(getReactorCost(tier));
+	return player.energy.gte(getReactorCost(tier)) && getReactorCost(tier).lt(getLimit());
 }
 
 function buyMine(tier) {
@@ -85,8 +85,9 @@ function buyMaxAll() {
 
 function getTotalMineMult(tier) {
 	let mult = new Decimal(1);
-	let perBuyMult = new Decimal(2);
+	let perBuyMult = player.meltdown.ups[31] == 1 ? new Decimal(3) : new Decimal(2);
 	let nucleoMult = (player.nanites.ups[31] == 1) ? new Decimal(2.2) : new Decimal(2);
+	
 	mult = mult.mul(perBuyMult.pow(player.mine.bought[tier])).mul(nucleoMult.pow(max(0, player.nucleosynthesis - tier)));
 	mult = mult.mul(getTotalNaniteUpMult(tier));
 	mult = mult.mul(getTotalMeltdownUpMult(tier));
@@ -95,8 +96,9 @@ function getTotalMineMult(tier) {
 }
 function getTotalReactorMult(tier) {
 	let mult = new Decimal(1);
-	let perBuyMult = new Decimal(2);
-	let nucleoMult = (player.nanites.ups[31] == 1) ? new Decimal(2.2) : new Decimal(2);
+	let perBuyMult = player.meltdown.ups[31] == 1 ? new Decimal(2.5) : new Decimal(2);
+	let nucleoMult = player.nanites.ups[31] == 1 ? new Decimal(2.2) : new Decimal(2);
+	
 	mult = mult.mul(perBuyMult.pow(player.reactor.bought[tier])).mul(nucleoMult.pow(max(0, player.nucleosynthesis - tier)));
 	mult = mult.mul(getTotalNaniteUpMult(tier));
 	mult = mult.mul(getTotalMeltdownUpMult(tier));
@@ -108,11 +110,7 @@ function getMineGain(tier) {
 	return tier < 7 ? player.mine.amount[tier + 1].mul(getTotalMineMult(tier + 1)).mul(getEff()) : zero;
 }
 function getReactorGain(tier) {
-	if (tier < 7) {
-		return getMineGain(tier);
-	} else {
-		return new Decimal(0);
-	}
+	return getMineGain(tier);
 }
 
 function simulateMines(tickInterval = 50) {
@@ -128,25 +126,25 @@ function simulateReactors(tickInterval = 50) {
 
 function updateUIMines() {
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
-		document.getElementById(mining[tier] + "Mine").innerText = notation(player.mine.amount[tier]) + " (" + player.mine.bought[tier] + ")";
-		document.getElementById(mining[tier] + "MineCost").innerText = notation(getMineCost(tier));
-		document.getElementById(mining[tier] + "BuySingle").className = canBuyMine(tier) ? "btnbuy" : "btnlocked";
-		document.getElementById(mining[tier] + "BuyMax").className = canBuyMine(tier) ? "btnbuy" : "btnlocked";
-		document.getElementById(mining[tier] + "MineMult").innerText = notation(getTotalMineMult(tier));
+		document.getElementById("mine_amt" + (tier + 1)).innerText = notation(player.mine.amount[tier]) + " (" + player.mine.bought[tier] + ")";
+		document.getElementById("mine_cost" + (tier + 1)).innerText = notation(getMineCost(tier));
+		document.getElementById("mine_buysingle" + (tier + 1)).className = canBuyMine(tier) ? "btnbuy mine" : "btnlocked mine";
+		document.getElementById("mine_buymax" + (tier + 1)).className = canBuyMine(tier) ? "btnbuy mine" : "btnlocked mine";
+		document.getElementById("mine_mult" + (tier + 1)).innerText = notation(getTotalMineMult(tier));
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById("mineRow" + (tier + 1)).style.display = (player.nucleosynthesis + 4 > tier && player.mine.bought[tier - 1] > 0) ? "table-row" : "none";
+		document.getElementById("mine_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.mine.bought[tier - 1] > 0 ? "table-row" : "none";
 	}
 }
 function updateUIReactors() {
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
-		document.getElementById(fissile[tier] + "Reactor").innerText = notation(player.reactor.amount[tier]) + " (" + player.reactor.bought[tier] + ")";
-		document.getElementById(fissile[tier] + "ReactorCost").innerText = notation(getReactorCost(tier));
-		document.getElementById(fissile[tier] + "BuySingle").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";
-		document.getElementById(fissile[tier] + "BuyMax").className = canBuyReactor(tier) ? "btnbuy" : "btnlocked";
-		document.getElementById(fissile[tier] + "ReactorMult").innerText = notation(getTotalReactorMult(tier));
+		document.getElementById("reactor_amt" + (tier + 1)).innerText = notation(player.reactor.amount[tier]) + " (" + player.reactor.bought[tier] + ")";
+		document.getElementById("reactor_cost" + (tier + 1)).innerText = notation(getReactorCost(tier));
+		document.getElementById("reactor_buysingle" + (tier + 1)).className = canBuyReactor(tier) ? "btnbuy reactor" : "btnlocked reactor";
+		document.getElementById("reactor_buymax" + (tier + 1)).className = canBuyReactor(tier) ? "btnbuy reactor" : "btnlocked reactor";
+		document.getElementById("reactor_mult" + (tier + 1)).innerText = notation(getTotalReactorMult(tier));
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById("reactorRow" + (tier + 1)).style.display = (player.nucleosynthesis + 4 > tier && player.reactor.bought[tier - 1] > 0) ? "table-row" : "none";
+		document.getElementById("reactor_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.reactor.bought[tier - 1] > 0 ? "table-row" : "none";
 	}
 }

@@ -1,15 +1,15 @@
 function init_game() {
 	updateUI();
 	loadSave();
-	document.getElementById("production").style.display = "none";
-	document.getElementById("fuel").style.display = "none";
-	document.getElementById("mines").style.display = "none";
-	document.getElementById("reactors").style.display = "none";
-	document.getElementById("statistics").style.display = "none";
-	document.getElementById("achievements").style.display = "none";
-	document.getElementById("options").style.display = "none";
-	document.getElementById("nanite").style.display = "none";
-	document.getElementById("meltdownt").style.display = "none";
+	document.getElementById("production_tab").style.display = "none";
+	document.getElementById("fuel_subtab").style.display = "none";
+	document.getElementById("mines_subtab").style.display = "none";
+	document.getElementById("reactors_subtab").style.display = "none";
+	document.getElementById("statistics_tab").style.display = "none";
+	document.getElementById("achievements_tab").style.display = "none";
+	document.getElementById("options_tab").style.display = "none";
+	document.getElementById("nanites_tab").style.display = "none";
+	document.getElementById("meltdown_tab").style.display = "none";
 	showNaviTab(player.navigation.naviTab);
 	targetedNotationChange(player.options.notation);
 	targetedThemeChange(player.options.theme);

@@ -6,7 +6,7 @@ function showNaviTab(tab) {
 }
  function showSubTab() {
 	switch (player.navigation.naviTab) {
-		case "production":
+		case "production_tab":
 			showProdTab(player.navigation.production);
 			break;
 		default:

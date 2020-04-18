@@ -37,9 +37,9 @@ function buyMaxEff() {
 }
 
 function updateUIEff() {
-	document.getElementById("effCost").innerText = notation(getEffCost());
-	document.getElementById("eff").innerText = notation(getEff());
-	document.getElementById("effMult").innerText = round((getEffIncrement() - 1) * 100, 2);
-	document.getElementById("effBuySingle").className = canBuyEff() ? "btnbuy" : "btnlocked";
-	document.getElementById("effBuyMax").className = canBuyEff() ? "btnbuy" : "btnlocked";
+	document.getElementById("eff_mult").innerText = notation(getEff());
+	document.getElementById("eff_increment").innerText = notation((getEffIncrement() - 1) * 100, 2);
+	document.getElementById("eff_cost").innerText = notation(getEffCost());
+	document.getElementById("eff_buysingle").className = canBuyEff() ? "btnbuy" : "btnlocked";
+	document.getElementById("eff_buymax").className = canBuyEff() ? "btnbuy" : "btnlocked";
 }

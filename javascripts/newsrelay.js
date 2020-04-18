@@ -9,7 +9,13 @@ const newsArray = [
 	["Tensions between Ywisirk and Blotranka continue to rise. The leader of Blotranka threatens that “if Ywisirk continues to place a 100% tax rate on imported goods” Blotranka will “leak all their personal letters which spread the propaganda that fission reactors are real”. Ywisirk's foreign affairs department has yet to respond.", true],
 	["Object#: PAO-2038 Object Class: <s>Safe</s> Keter Containment Procedures: PAO-2038 is to be kept in an air-tight room which should be kept as close to a true vacuum as possible. The room should be lined with at least 10 metres of lead and insulator, and with shock-absorbent materials. Description: PAO-2038 is a metal box with dimensions 40cmx40cmx10cm. <s>PAO-2038 appears to be completely harmless but processes some anomalous properties such as not being able to be bent nor broken</s> PAO-2038 is now considered Keter class after incident 2038-1. PAO gained a white glow and converted the surrounding matter into explodium-357. It subsequently created neutrons which lead the explodium to fission, destroying most of Site-394. No more further sightings of the event have been noticed.", true],
 	["Disclaimer: Redfire corp. (we, us, our company, redfire, redfire corp.) is in no way responsible or accountable for any consequences caused through the use of Redfire corp. products. These consequences may include, but are not limited to, sudden reality destabilization, time warping, molecular instability, and instant death.", true],
-	["Most recently, the news relay has been hijacked by a bunch of middle-schoolers, who care about nothing but to post low-quality memes over the internet. Part of the news relay has already degraded into nothing but jokes, and BUY GOLD, BYE", true]
+	["Most recently, the news relay has been hijacked by a bunch of middle-schoolers, who care about nothing but to post low-quality memes over the internet. Part of the news relay has already degraded into nothing but jokes, and BUY GOLD, BYE", true],
+	["Most recently, a lawsuit has been filed by caer Srot Pwllgwyngyll of Otarensin, claiming that “reactor backwards is srotcaer” or something. He went on about something about how “srotcaer was some really special name only ment for him”. The opposition won immediately after the lawsuit was filed.", true],
+	["There have been complaints against the build of a highly radioactive reactor in the middle of New York", true],
+	["Sir... Sir.... SIR!!!! WHAT!!!! Ummm, there's an old man with a shotgun pointing at me wanting to know why we're burying those barrels in his backyard...", true],
+	["“To reactor or not to reactor... to mine or not to mine... THAT is the true Quarry!”  -- Mine Reactor General Digger", true],
+	["e is an interesting letter when pressed it seems to make things run just a bit better in the ole reactor and mine areas.... go figure!", true],
+	["It's over Anakin, I have the radioactive ground!", true]
 ];
 
 document.addEventListener("visibilitychange", function() {
@@ -35,10 +41,12 @@ function nextNews() {
 	});
 	
 	scroll = [];
+	
+	document.getElementById("news").innerHTML = newsArray[nextNewsIndex][0];
+	
 	let pwidth = document.getElementById("news").parentElement.clientWidth;
 	let cwidth = document.getElementById("news").clientWidth;
 	
-	document.getElementById("news").innerHTML = newsArray[nextNewsIndex][0];
 	document.getElementById("news").style.transition = "";
 	document.getElementById("news").style.transform = 'translateX('+pwidth+'px)';
 
@@ -46,8 +54,9 @@ function nextNews() {
 		let dist = pwidth + cwidth + 20;
 		let rate = 100;
 		let transformDuration = dist / rate;
+		
 		document.getElementById("news").style.transition = 'transform '+transformDuration+'s linear';
-		document.getElementById("news").style.transform = 'translateX(-'+(cwidth*2+5)+'px)';
+		document.getElementById("news").style.transform = 'translateX(-'+(cwidth+5)+'px)';
 		scroll.push(setTimeout(nextNews, Math.ceil(transformDuration * 1000)));
 	}, 100));
 }

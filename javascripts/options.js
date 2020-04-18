@@ -3,7 +3,7 @@ const themes = ["Light", "Dark", "Inverted", "Midnight", "Void"];
 
 /*Notations Change*/
 function notationChange() {
-	player.options.notationNo = (player.options.notationNo + 1 == notations.length) ? 0 : player.options.notationNo + 1;
+	player.options.notationNo = player.options.notationNo + 1 == notations.length ? 0 : player.options.notationNo + 1;
 	player.options.notation = notations[player.options.notationNo];
 	document.getElementById("notation").innerText = "Notation: " + player.options.notation;
 }
@@ -17,7 +17,7 @@ function targetedNotationChange(notation) {
 
 /*Theme Change*/
 function themeChange() {
-	player.options.themeNo = (player.options.themeNo + 1 == themes.length) ? 0 : player.options.themeNo + 1;
+	player.options.themeNo = player.options.themeNo + 1 == themes.length ? 0 : player.options.themeNo + 1;
 	player.options.theme = themes[player.options.themeNo];
 	document.getElementById("theme").innerText = "Theme: " + player.options.theme;
 	document.getElementById("style").setAttribute("href", "stylesheets/" + player.options.theme.toLowerCase() + ".css");
@@ -42,11 +42,14 @@ function load() {
 /*Import/Export*/
 function importSave() {
 	let save = prompt("Input your save. WARNING: Your current save file will be overwritten.");
-	player.import42 = (save == "42") ? true : player.import42;
+	player.import42 = save == "42" ? true : player.import42;
 	if (save === null || save == "42") {
 		return;
 	}
 	loadSave(save, true);
+	showNaviTab(player.navigation.naviTab);
+	targetedNotationChange(player.options.notation);
+	targetedThemeChange(player.options.theme);
 	saveGame();
 }
 function exportSave() {
@@ -59,7 +62,7 @@ function exportSave() {
 function hardReset() {
 	let confirmation = prompt("This will completely reset your game. If you are sure, type in “Hitchhiker's Guide to the Fusion-Driven Galaxy”");
 	if (confirmation == "Hitchhiker's Guide to the Fusion-Driven Galaxy") {
-		showNaviTab("production");
+		showNaviTab("production_tab");
 		player = getDefaultData();
 		saveGame();
 	}

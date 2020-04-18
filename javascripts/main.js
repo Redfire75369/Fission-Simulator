@@ -14,8 +14,8 @@ function getDefaultData() {
 		},
 		
 		navigation: {
-			naviTab: "production",
-			production: "mines"
+			naviTab: "production_tab",
+			production: "mines_subtab"
 		},
 		
 		unlocked: {
@@ -102,10 +102,8 @@ function getDefaultData() {
 	}
 }
 const mining = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium", "Diamond", "Laser"];
-const fissile = ["Thorium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium"];
 const isotopes = ["Thorium-227", "Uranium-235", "Neptunium-234", "Plutonium-237", "Americium-242m", "Curium-245", "Berkelium-248", "Californium-251"];
-const LEF = ["LET", "LEU", "LENp", "LEPu", "LEAm", "LECm", "LEBk", "LECf"];
-const JkgLEF = [new Decimal(4), new Decimal(16), new Decimal(64), new Decimal(256), new Decimal(1024), new Decimal(4096), new Decimal(16384), new Decimal(65536)];
+const diminishFactor = [100, 200, 350, 488, 600, 733, 850, 1000];
 const infinity = Decimal.pow(2, 1024);
 const zero = new Decimal(0);
 
@@ -129,6 +127,7 @@ function updateUI() {
 	updateUIMeltdown();
 	updateUIMeltdownUps();
 	updateUIStats();
+	updateHotkeys();
 }
 function updateGame(tickInterval) {
 	if (leverMaxAll) {
@@ -142,8 +141,8 @@ function updateGame(tickInterval) {
 /*Offline Progress*/
 function simulateTime(seconds, actual, testing) {
 	if (seconds > 10) {
-		document.getElementById("offlinePopup").style.display = "block";
-		document.getElementById("offlineProgress").innerText = "Simulating " + seconds + " seconds of progress.";
+		document.getElementById("offline_popup").style.display = "block";
+		document.getElementById("offline_progress").innerText = "Simulating " + seconds + " seconds of progress.";
 	}
 	let ticks = seconds * 20;
 	let tickInterval = 50;
@@ -171,16 +170,16 @@ function simulateTime(seconds, actual, testing) {
 		offlinePopup += "nothing happened...";
 	}
 	if (seconds > 1) {
-		document.getElementById("offlinePopup").style.display = "none";
+		document.getElementById("offline_popup").style.display = "none";
 	}
 	if (seconds > 1000) {
-		document.getElementById("offlinePopup").style.display = "block";
-		document.getElementById("offlineProgress").innerText = offlinePopup;
+		document.getElementById("offline_popup").style.display = "block";
+		document.getElementById("offline_progress").innerText = offlinePopup;
 	}
 }
 
 function closeOfflineProgress() {
-	document.getElementById("offlinePopup").style.display = "none";
+	document.getElementById("offline_popup").style.display = "none";
 }
 
 var player = getDefaultData();

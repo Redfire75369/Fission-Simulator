@@ -1,9 +1,9 @@
 function updateUIStats() {
-	document.getElementById("statsTimePlayedTotal").innerText = formatTime(player.time);
-	document.getElementById("statsTotalEnergy").innerText = notation(player.totalEnergy);
-	document.getElementById("statsTotalNanites").innerText = notation(player.nanites.total);
+	document.getElementById("statistics_totaltime").innerText = formatTime(player.time);
+	document.getElementById("statistics_totalenergy").innerText = notation(player.totalEnergy);
+	document.getElementById("statistics_totalnanites").innerText = notation(player.nanites.total);
 	if (player.unlocked.meltdown) {
-		document.getElementById("statsFastestMeltdown").innerText = formatTime(player.meltdown.bestTime);
+		document.getElementById("statistics_bestmeltdowntime").innerText = formatTime(player.meltdown.bestTime);
 	}
-	document.getElementById("fastestMeltdown").style.display = (player.unlocked.meltdown) ? "table-row" : "none";
+	document.getElementById("statistics_rowbestmeltdowntime").style.display = (player.unlocked.meltdown) ? "table-row" : "none";
 }

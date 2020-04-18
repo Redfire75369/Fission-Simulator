@@ -13,11 +13,28 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
+## [v0.4.3] - 18/4/20 **PR**
+
+### Added
+- Mines and Reactors cannot be bought after Infinity
+- More news relays
+
+### Modified
+- Changed fuel requirement for max production of energy
+- Removed fuel generation by reactors
+- Max All can only be used after first Nanite Research
+- Fixed News Relay Speed
+- Rebalanced costs and cost scalings
+
+### Code Optimisations
+- Standardised HTML Elements (Removed some unnecessary consts)
+- Added CSS subclasses and hover styles 
+
 ## [v0.4.2] - 12/4/20 **PR**
 
 ### Added
 - KaTeX-based Formulas
-- Working Meltdown Upgrade Multipliers(Upgrades 11 to 24)
+- Working Meltdown Upgrade Multipliers (Upgrades 11 to 24)
 
 ### Modified
 - Removed Mathjax
@@ -100,6 +117,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 - Unified mines and reactors code
 
 ## [v0.3.16] - 22/3/20 **PR**
+
 ### Added
 - Themes (By Dystopia)
 - Theme changing

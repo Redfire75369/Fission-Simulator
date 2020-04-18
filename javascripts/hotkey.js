@@ -1,6 +1,5 @@
 const key = Mousetrap;
 
-key.bind("m", buyMaxAll);
 key.bind("e", buyMaxEff);
 for (let tier = 0; tier < 8; tier++) {
 	key.bind((tier+1).toString(), function() {
@@ -15,3 +14,14 @@ key.bind("n", function(){
 key.bind("r", function(){
 	buyNaniteResearch();
 });
+
+function updateHotkeys() {
+	if (player.unlocked.naniteUps || player.unlocked.meltdown) {
+		key.bind("m", buyMaxAll);
+		document.getElementById("max_all").style.display = "inline-block";
+	} else {
+		key.unbind('m');
+		document.getElementById("max_all").style.display = "none";
+	}
+	
+}
