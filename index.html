@@ -20,7 +20,6 @@
 		<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/resources.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/basic_production.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
@@ -30,6 +29,7 @@
 		<script defer src="javascripts/core/nanites/upgrades.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/meltdown/upgrades.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/meltdown/moderator.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/cheats.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
@@ -41,7 +41,7 @@
 		
 	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px;">
 			<div id="offline_progress" style="height:175px; display:flex; align-items:center"></div>
-			<button  onclick="closeOfflineProgress()" align="center" class="btnbuy" style="font-size:15px;">Close</button>
+			<button  onclick="closeOfflineProgress()" align="center" class="storebtn buy" style="font-size:15px; margin:auto;">Close</button>
 		</div>
 		
 		<div align="center">
@@ -73,13 +73,13 @@
 			<table>
 				<tr align="center">
 					<td>
-						<button onclick="showNaviTab('production_tab')" id="production_navibtn" class="navitabbtn">Production</button>
-						<button onclick="showNaviTab('statistics_tab')" id="statistics_navibtn" class="navitabbtn">Statistics</button>
-						<button onclick="showNaviTab('achievements_tab')" id="achievements_navibtn" class="navitabbtn">Achievements</button>
-						<button onclick="showNaviTab('options_tab')" id="options_navibtn" class="navitabbtn">Options</button>
-						<button onclick="showNaviTab('nanites_tab')" id="nanites_navibtn" class="navitabbtn nanite">Nanites</button>
-						<button onclick="showNaviTab('meltdown_tab')" id="meltdown_navibtn" class="navitabbtn" style="color:#88ee44">Meltdown</button>
-						<button onclick="showNaviTab('cheats_tab')" id="cheats_navibtn" class="navitabbtn" style="color:#ffa500">Cheats</button>
+						<button onclick="showNaviTab('production_tab')" id="production_tabbtn" class="navitabbtn">Production</button>
+						<button onclick="showNaviTab('statistics_tab')" id="statistics_tabbtn" class="navitabbtn">Statistics</button>
+						<button onclick="showNaviTab('achievements_tab')" id="achievements_tabbtn" class="navitabbtn">Achievements</button>
+						<button onclick="showNaviTab('options_tab')" id="options_tabbtn" class="navitabbtn">Options</button>
+						<button onclick="showNaviTab('nanites_tab')" id="nanites_tabbtn" class="navitabbtn nanite">Nanites</button>
+						<button onclick="showNaviTab('meltdown_tab')" id="meltdown_tabbtn" class="navitabbtn" style="color:#88ee44">Meltdown</button>
+						<button onclick="showNaviTab('cheats_tab')" id="cheats_tabbtn" class="navitabbtn" style="color:#ffa500">Cheats</button>
 					</td>
 				</tr>
 			</table>
@@ -89,15 +89,15 @@
 			<table>
 				<tr align="center">
 					<td>
-						<button onclick="showProdTab('fuel_subtab')" id="production_fuel_navibtn" class="subtabbtn">Fuel</button>
-						<button onclick="showProdTab('mines_subtab')" id="production_mines_navibtn" class="subtabbtn">Mines</button>
-						<button onclick="showProdTab('reactors_subtab')" id="production_reactors_navibtn" class="subtabbtn">Reactors</button>
+						<button onclick="showProdTab('fuel_subtab')" id="production_fuel_subtabbtn" class="subtabbtn">Fuel</button>
+						<button onclick="showProdTab('mines_subtab')" id="production_mines_subtabbtn" class="subtabbtn">Mines</button>
+						<button onclick="showProdTab('reactors_subtab')" id="production_reactors_subtabbtn" class="subtabbtn">Reactors</button>
 					</td>
 				</tr>
 			</table>
 			
 			<div align="center">
-				<button onclick="buyMaxAll()" id="max_all" align="center" class="btnbuy" style="width: 120px; height: 25px">Max All (M)</button>
+				<button onclick="buyMaxAll()" id="max_all" align="center" class="storebtn buy" style="width: 120px; height: 25px">Max All (M)</button>
 			</div>
 			
 			<div id="fuel_subtab">
@@ -241,10 +241,10 @@
 							<span id="mine_amt1">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyMine(0)" id="mine_buysingle1" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost1">10.00</span></button>
+							<button onclick="player.mines[0].buy()" id="mine_buysingle1" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost1">10.00</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxMine(0)" id="mine_buymax1" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.mines[0].buyMax()" id="mine_buymax1" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row2">
@@ -255,10 +255,10 @@
 							<span id="mine_amt2">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyMine(1)" id="mine_buysingle2" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost2">100.00</span></button>
+							<button onclick="player.mines[1].buy()" id="mine_buysingle2" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost2">100.00</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxMine(1)" id="mine_buymax2" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.mines[1].buyMax()" id="mine_buymax2" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row3">
@@ -269,10 +269,10 @@
 							<span id="mine_amt3">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyMine(2)" id="mine_buysingle3" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost3">1.00e4 </span></button>
+							<button onclick="player.mines[2].buy()" id="mine_buysingle3" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost3">1.00e4 </span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxMine(2)" id="mine_buymax3" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.mines[2].buyMax()" id="mine_buymax3" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row4">
@@ -283,10 +283,10 @@
 							<span id="mine_amt4">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyMine(3)" id="mine_buysingle4" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost4">1.00e6</span></button>
+							<button onclick="player.mines[3].buy()" id="mine_buysingle4" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost4">1.00e6</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxMine(3)" id="mine_buymax4" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.mines[3].buyMax()" id="mine_buymax4" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row5">
@@ -297,10 +297,10 @@
 							<span id="mine_amt5">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyMine(4)" id="mine_buysingle5" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost5">1.00e9</span></button>
+							<button onclick="player.mines[4].buy()" id="mine_buysingle5" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost5">1.00e9</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxMine(4)" id="mine_buymax5" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.mines[4].buyMax()" id="mine_buymax5" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row6">
@@ -311,10 +311,10 @@
 							<span id="mine_amt6">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyMine(5)" id="mine_buysingle6" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost6">1.00e13</span></button>
+							<button onclick="player.mines[5].buy()" id="mine_buysingle6" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost6">1.00e13</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxMine(5)" id="mine_buymax6" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.mines[5].buyMax()" id="mine_buymax6" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row7">
@@ -325,10 +325,10 @@
 							<span id="mine_amt7">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyMine(6)" id="mine_buysingle7" style="width: 120px; height: 25px">Cost: <span id="mine_cost7">1.00e18</span></button>
+							<button onclick="player.mines[6].buy()" id="mine_buysingle7" style="width: 120px; height: 25px">Cost: <span id="mine_cost7">1.00e18</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxMine(6)" id="mine_buymax7" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.mines[6].buyMax()" id="mine_buymax7" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row8">
@@ -339,10 +339,10 @@
 							<span id="mine_amt8">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyMine(7)" id="mine_buysingle8" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost8">1.00e24</span></button>
+							<button onclick="player.mines[7].buy()" id="mine_buysingle8" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost8">1.00e24</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxMine(7)" id="mine_buymax8" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.mines[7].buyMax()" id="mine_buymax8" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 				</table>
@@ -358,10 +358,10 @@
 							<span id="reactor_amt1">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyReactor(0)" id="reactor_buysingle1" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost1">10.00</span></button>
+							<button onclick="player.reactors[0].buy()" id="reactor_buysingle1" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost1">10.00</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxReactor(0)" id="reactor_buymax1" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.reactors[0].buyMax()" id="reactor_buymax1" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row2">
@@ -372,10 +372,10 @@
 							<span id="reactor_amt2">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyReactor(1)" id="reactor_buysingle2" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost2">100.00</span></button>
+							<button onclick="player.reactors[1].buy()" id="reactor_buysingle2" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost2">100.00</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxReactor(1)" id="reactor_buymax2" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.reactors[1].buyMax()" id="reactor_buymax2" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row3">
@@ -386,10 +386,10 @@
 							<span id="reactor_amt3">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyReactor(2)" id="reactor_buysingle3" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost3">1.00e4 </span></button>
+							<button onclick="player.reactors[2].buy()" id="reactor_buysingle3" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost3">1.00e4 </span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxReactor(2)" id="reactor_buymax3" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.reactors[2].buyMax()" id="reactor_buymax3" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row4">
@@ -400,10 +400,10 @@
 							<span id="reactor_amt4">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyReactor(3)" id="reactor_buysingle4" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost4">1.00e6</span></button>
+							<button onclick="player.reactors[3].buy()" id="reactor_buysingle4" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost4">1.00e6</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxReactor(3)" id="reactor_buymax4" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.reactors[3].buyMax()" id="reactor_buymax4" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row5">
@@ -414,10 +414,10 @@
 							<span id="reactor_amt5">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyReactor(4)" id="reactor_buysingle5" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost5">1.00e9</span></button>
+							<button onclick="player.reactors[4].buy()" id="reactor_buysingle5" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost5">1.00e9</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxReactor(4)" id="reactor_buymax5" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.reactors[4].buyMax()" id="reactor_buymax5" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row6">
@@ -428,10 +428,10 @@
 							<span id="reactor_amt6">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyReactor(5)" id="reactor_buysingle6" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost6">1.00e13</span></button>
+							<button onclick="player.reactors[5].buy()" id="reactor_buysingle6" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost6">1.00e13</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxReactor(5)" id="reactor_buymax6" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.reactors[5].buyMax()" id="reactor_buymax6" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row7">
@@ -442,10 +442,10 @@
 							<span id="reactor_amt7">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyReactor(6)" id="reactor_buysingle7" style="width: 120px; height: 25px">Cost: <span id="reactor_cost7">1.00e18</span></button>
+							<button onclick="player.reactors[6].buy()" id="reactor_buysingle7" style="width: 120px; height: 25px">Cost: <span id="reactor_cost7">1.00e18</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxReactor(6)" id="reactor_buymax7" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.reactors[6].buyMax()" id="reactor_buymax7" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row8">
@@ -456,10 +456,10 @@
 							<span id="reactor_amt8">0.00 (0)</span>
 						</td>
 						<td style="width:10vw">
-							<button onclick="buyReactor(7)" id="reactor_buysingle8" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost8">1.00e24</span></button>
+							<button onclick="player.reactors[7].buy()" id="reactor_buysingle8" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost8">1.00e24</span></button>
 						</td>
 						<td align="right" style="width:10vw">
-							<button onclick="buyMaxReactor(7)" id="reactor_buymax8" align="right" style="width: 120px; height: 25px">Buy Max</button>
+							<button onclick="player.reactors[7].buyMax()" id="reactor_buymax8" align="right" style="width: 120px; height: 25px">Buy Max</button>
 						</td>
 					</tr>
 				</table>
@@ -761,52 +761,52 @@
 			<table>
 				<tr style="width:420px" align="center">
 					<td style="width:105px">
-						<button class="btnbuy" onclick="defaultEnergy()" style="width: 200px; height: 40px">
+						<button class="storebtn buy" onclick="defaultEnergy()" style="width: 200px; height: 40px">
 							Default Energy
 						</button>
 					</td>
 					<td style="width:105px">
-						<button class="btnbuy" onclick="infiniteEnergy()"style="width: 200px; height: 40px">
+						<button class="storebtn buy" onclick="infiniteEnergy()"style="width: 200px; height: 40px">
 							Infinite Energy
 						</button>
 					</td>
 					<td style="width:105px">
-						<button class="btnbuy" onclick="doubleEnergy()" style="width: 200px; height: 40px">
+						<button class="storebtn buy" onclick="doubleEnergy()" style="width: 200px; height: 40px">
 							Double Energy
 						</button>
 					</td>
 					<td style="width:105px">
-						<button class="btnbuy" onclick="squareEnergy()" style="width: 200px; height: 40px">
+						<button class="storebtn buy" onclick="squareEnergy()" style="width: 200px; height: 40px">
 							Square Energy
 						</button>
 					</td>
 				</tr>
 				<tr style="width:420px" align="center">
 					<td style="width:105px">
-						<button class="btnbuy" onclick="addNucleosynthesis()" style="width: 200px; height: 40px">
+						<button class="storebtn buy" onclick="addNucleosynthesis()" style="width: 200px; height: 40px">
 							Forced Nucleosynthesis w/o reset
 						</button>
 					</td>
 					<td style="width:105px">
-						<button class="btnbuy" onclick="toggleLeverMaxAll()" style="width: 200px; height: 40px">
+						<button class="storebtn buy" onclick="toggleLeverMaxAll()" style="width: 200px; height: 40px">
 							Toggle Lever Max All
 						</button>
 					</td>
 
 					<td style="width:105px">
-						<button class="btnbuy" onclick="simulateTime(100, true, true)" style="width: 200px; height: 40px">
+						<button class="storebtn buy" onclick="simulateTime(100, true, true)" style="width: 200px; height: 40px">
 							Simulate 100 seconds
 						</button>
 					</td>
 					<td style="width:105px">
-						<button class="btnbuy" onclick="harderReset()" style="width: 200px; height: 40px">
+						<button class="storebtn buy" onclick="harderReset()" style="width: 200px; height: 40px">
 							Hard Reset w/o confirmation
 						</button>
 					</td>
 				</tr>
 				<tr style="width:420px" align="center">
 					<td style="width:105px">
-						<button class="btnbuy" onclick="spin3d()" style="width: 200px; height: 40px">
+						<button class="storebtn buy" onclick="spin3d()" style="width: 200px; height: 40px">
 							Spin 3D
 						</button>
 					</td>

@@ -1,5 +1,5 @@
 function resetNucleosynthesis() {
-	player.nucleosynthesis = (player.meltdown.ups[0] == 1) ? 4 : (player.meltdown.ups[0] == 1) ? 3 : (player.meltdown.ups[0] == 1) ? 2 : (player.meltdown.ups[0] == 1) ? 1 : 0;
+	player.nucleosynthesis = player.meltdown.ups[0] == 1 ? 4 : player.meltdown.ups[0] == 1 ? 3 : player.meltdown.ups[0] == 1 ? 2 : player.meltdown.ups[0] == 1 ? 1 : 0;
 }
 
 function getNucleosynthesisCost() {
@@ -10,9 +10,8 @@ function getNucleosynthesisCost() {
 	}
 }
 
-
 function canBuyNucleosynthesis() {
-	return player.reactor.bought[getNucleosynthesisCost()[0]] >= getNucleosynthesisCost()[1];
+	return player.reactors[getNucleosynthesisCost()[0]].bought >= getNucleosynthesisCost()[1];
 }
 
 function buyNucleosynthesis() {
@@ -30,7 +29,7 @@ function buyMaxNucleosynthesis() {
 	if (player.nucleosynthesis < 4) {
 		buyNucleosynthesis();
 	} else if (canBuyNucleosynthesis()) {
-		player.nucleosynthesis = floor(((player.reactor.bought[7] - 2) / 2) + 5);
+		player.nucleosynthesis = floor(((player.reactors[7].bought - 2) / 2) + 5);
 		resetEnergy();
 		resetFuel();
 		resetMines();
@@ -44,5 +43,5 @@ function updateUINucleosynthesis() {
 	document.getElementById("nucleosynthesis_scaling").innerText = (player.nucleosynthesis < 4) ? "Stellar Nucleosynthesis" : "Nucleosynthesis";
 	document.getElementById("nucleosynthesis_amt").innerText = player.nucleosynthesis;
 	document.getElementById("nucleosynthesis_cost").innerText = getNucleosynthesisCost()[1] + " " + isotopes[getNucleosynthesisCost()[0]];
-	document.getElementById("nucleosynthesis_btn").className = canBuyNucleosynthesis() ? "btnbuy" : "btnlocked";
+	document.getElementById("nucleosynthesis_btn").className = canBuyNucleosynthesis() ? "storebtn buy" : "storebtn locked";
 }

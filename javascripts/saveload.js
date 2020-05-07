@@ -30,35 +30,42 @@ function loadSave(save, imported = false) {
 		} else {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
-			
-		for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
-			let key = keys[i];
-			if (typeof getDefaultData()[key] == "object" && !(getDefaultData()[key] instanceof Decimal) && !(getDefaultData()[key] instanceof Array)) {
-				for (let j = 0, keys2 = Object.keys(getDefaultData()[key]), jj = keys2.length; j < jj; j++) {
-					let key2= keys2[j];
-					
-					if (typeof getDefaultData()[key][key2] == "object" && !(getDefaultData()[key][key2] instanceof Decimal) && !(getDefaultData()[key][key2] instanceof Array)) {
-						for (let k = 0, keys3 = Object.keys(getDefaultData()[key][key2]), kk = keys3.length; k < kk; k++) {							
-							let key3 = keys3[k];
-							
-							checkAssign(getDefaultData()[key][key2][key3], save[key][key2][key3], key, key2, key3);
+		if (save !== undefined) {
+			for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
+				let key = keys[i];
+				
+				if (typeof getDefaultData()[key] == "object" && checkObj(getDefaultData()[key])) {
+					for (let j = 0, keys2 = Object.keys(getDefaultData()[key]), jj = keys2.length; j < jj; j++) {
+						let key2= keys2[j];
+						
+						if (typeof getDefaultData()[key][key2] == "object" && checkObj(getDefaultData()[key][key2])) {
+							for (let k = 0, keys3 = Object.keys(getDefaultData()[key][key2]), kk = keys3.length; k < kk; k++) {							
+								let key3 = keys3[k];
+								
+								checkAssign(getDefaultData()[key][key2][key3], save[key][key2][key3], key, key2, key3);
+							}
+						} else {
+							checkAssign(getDefaultData()[key][key2], save[key][key2], key, key2);
 						}
-					} else {
-						checkAssign(getDefaultData()[key][key2], save[key][key2], key, key2);
 					}
+				} else {
+					checkAssign(getDefaultData()[key], save[key], key);
 				}
-			} else {
-				checkAssign(getDefaultData()[key], save[key], key);
 			}
+
+			if (!player.navigation.naviTab.includes("_tab")) {
+				player.navigation.naviTab = player.navigation.naviTab + "_tab";
+			}
+			if (!player.navigation.production.includes("_subtab")) {
+				player.navigation.production = player.navigation.production + "_subtab";
+			}
+			
+			if (!player.navigation.production.includes("resources")) {
+				player.navigation.production = "fuel_subtab";
+			}
+		} else {
+			console.log("No existing save found");
 		}
-		
-		if (!player.navigation.naviTab.includes("_tab")) {
-			player.navigation.naviTab = player.navigation.naviTab + "_tab";
-		}
-		if (!player.navigation.production.includes("_subtab")) {
-			player.navigation.production = player.navigation.production + "_subtab";
-		}
-		
 		if (imported) {
 			alert("Save imported successfully.");
 		}
@@ -76,9 +83,7 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 	if (assignFrom !== undefined) {
 		if (assignToKey5 !== undefined) {
 			if (check instanceof Decimal) {
-				player[assignToKey1][assignToKey2][assignToKey3][assignToKey5] = new Decimal(assignFrom);
-			} else {
-				player[assignToKey1][assignToKey2][assignToKey3][assignToKey5] = assignFrom;
+				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4][assignToKey5] = objectify(assignFrom, getDefaultData()[assignToKey1][assignToKey2][assignToKey3][assignToKey4][assignToKey5]);
 			}
 		} else if (assignToKey4 !== undefined) {
 			if (check instanceof Array) {
@@ -86,39 +91,31 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, assignToKey3, assignToKey4, x);
 				}
 			} else if (check instanceof Decimal) {
-				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = new Decimal(assignFrom);
-			} else {
-				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = assignFrom;
+				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = objectify(assignFrom, getDefaultData()[assignToKey1][assignToKey2][assignToKey3][assignToKey4]);
 			}
 		} else if (assignToKey3 !== undefined) {
 			if (check instanceof Array) {
 				for (let x = 0; x < check.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, assignToKey3, x);
 				}
-			} else if (check instanceof Decimal) {
-				player[assignToKey1][assignToKey2][assignToKey3] = new Decimal(assignFrom);
 			} else {
-				player[assignToKey1][assignToKey2][assignToKey3] = assignFrom;
+				player[assignToKey1][assignToKey2][assignToKey3] = objectify(assignFrom, getDefaultData()[assignToKey1][assignToKey2][assignToKey3]);
 			}
 		} else if (assignToKey2 !== undefined) {
 			if (check instanceof Array) {
 				for (let x = 0; x < check.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, x);
 				}
-			} else if (check instanceof Decimal) {
-				player[assignToKey1][assignToKey2] = new Decimal(assignFrom);
 			} else {
-				player[assignToKey1][assignToKey2] = assignFrom;
+				player[assignToKey1][assignToKey2] = objectify(assignFrom, getDefaultData()[assignToKey1][assignToKey2]);
 			}
 		} else if (assignToKey1 !== undefined) {
 			if (check instanceof Array) {
 				for (let x = 0; x < check.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, x);
 				}
-			} else if (check instanceof Decimal) {
-				player[assignToKey1] = new Decimal(assignFrom);
 			} else {
-				player[assignToKey1] = assignFrom;
+				player[assignToKey1] = objectify(assignFrom, getDefaultData()[assignToKey1]);
 			}
 		}
 	} else {
@@ -133,5 +130,31 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 		} else if (assignToKey1 !== undefined) {
 			player[assignToKey1] = getDefaultData()[assignToKey1];
 		}
+	}
+}
+
+function checkObj(obj) {
+	return !(obj instanceof Decimal) && !(obj instanceof Array) && !(obj instanceof Mine) && !(obj instanceof Reactor) && !(obj instanceof Efficiency);
+}
+
+function objectify(x, type) {
+	if (type instanceof Decimal) {
+		return new Decimal(x);
+	} else if (type instanceof Mine) {
+		let ret = new Mine(type.tier, type.costStart, type.costMult);
+		ret.amount = new Decimal(x.amount);
+		ret.bought = x.bought;
+		return ret;
+	} else if (type instanceof Reactor) {
+		let ret = new Reactor(type.tier, type.costStart, type.costMult);
+		ret.amount = new Decimal(x.amount);
+		ret.bought = x.bought;
+		return ret;
+	} else if (type instanceof Efficiency) {
+		let ret = new Efficiency(type.costStart, type.costMult);
+		ret.bought = x.bought;
+		return ret;
+	} else {
+		return x;
 	}
 }

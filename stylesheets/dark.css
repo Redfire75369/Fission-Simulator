@@ -1,7 +1,7 @@
 body {
 	color: #d0d0d0;
-	font-size: 15px;
 	background-color:#1c1c1c;
+	font-size: 15px;
 	overflow-x: hidden;
 }
 table {
@@ -16,24 +16,25 @@ button:hover {
 	border-color: #f4d258;
 	box-shadow: 0px 0px 8px 1px #f4d258;
 }
+
 .navitabbtn {
 	width: 180px;
 	height: 40px;
-	font-size: 20px;
 	color: #d0d0d0;
-	background: #1c1c1c;
+	background-color: #1c1c1c;
+	font-size: 20px;
 	border: 2px solid #2828bf;
 	border-radius: 4px;
 }
-.navitabbtn:hover {	
+.navitabbtn:hover {
 }
 
 .subtabbtn {
 	width: 150px;
 	height: 30px;
-	font-size: 16px;
 	color: #d0d0d0;
-	background: #101010;
+	background-color: #101010;
+	font-size: 16px;
 	border: 2px solid #dfdfdf;
 	border-radius: 4px;
 }
@@ -48,46 +49,46 @@ button:hover {
 .achcomplete {
 	width: 100px;
 	height: 100px;
-	margin: 100px;
+	background-color: #008000;
 	border: 1px solid #004400;
-	background: #008000;
+	margin: 100px;
 }
 .achlocked {
 	width: 100px;
 	height: 100px;
-	margin: 100px;
+	background-color: #808080;
 	border: 1px solid red;
-	background: #808080;
+	margin: 100px;
 }
 
 .popup {
-	display: none;
 	position: fixed;
-	left: 50%;
 	top: 50%;
-	transform: translateX(-50%) translateY(-50%);
+	left: 50%;
 	color: #d0d0d0;
-	background: #455a64;
+	background-color: #455a64;
 	border: 3px solid #ffffff;
 	border-radius: 6px;
+	display: none;
 	text-align:center;
-	z-index: 2;
 	padding: 10px;
 	padding-bottom: 15px;
+	z-index: 2;
+	transform: translateX(-50%) translateY(-50%);
 }
 #newsb {
 	width: 80%;
 	height: 20px;
 	border: 3px solid #d0d0d0;
 	border-radius: 4px;
-	padding: 2px;
+	text-align: left;
 	overflow: hidden;
 	margin: auto;
-	text-align: left;
+	padding: 2px;
 }
 #news {
-	color: #d0d0d0;
 	position: relative;
+	color: #d0d0d0;
 	display: inline-block;
 	white-space: nowrap;
 }
@@ -95,9 +96,9 @@ button:hover {
 .optionsbtn {
 	width: 200px;
 	height: 55px;
-	font-size: 20px;
 	color: #d0d0d0;
-	background: #455a64;
+	background-color: #455a64;
+	font-size: 20px;
 	border: 2px solid #e8e8e8;
 	border-radius: 2px;
 }
@@ -108,103 +109,91 @@ button:hover {
 }
 .energypersecond {
 	color: #d0d0d0;
-	font-size:20px;
+	font-size: 20px;
 }
 
-.btnbuy {
+.storebtn {
 	font-size: 12px;
+	border-radius: 2px;
+}
+.storebtn.buy {
 	color: #d0d0d0;
-	background: #1c1c1c;
+	background-color: #1c1c1c;
 	border: 2px solid #127A20;
-	border-radius: 2px;
 }
-.btnbuy:hover {
+.storebtn.buy:hover {
 }
-.btnlocked {
-	font-size: 12px;
+.storebtn.locked {
 	color: #d0d0d0;
-	background: #37474f;
+	background-color: #37474f;
 	border: 2px solid #e53935;
-	border-radius: 2px;
 }
-.btnlocked:hover {
-}
-
-.btnbuy.mines {
-}
-.btnlocked.mines {
+.storebtn.locked:hover {
 }
 
-.btnbuy.reactors {
+.storebtn.mines {
 }
-.btnlocked.reactors {
+.storebtn.mines {
 }
 
-.naniteupbuy {
+.storebtn.reactors {
+}
+.storebtn.reactors {
+}
+
+.naniteup {
 	width: 300px;
 	height: 150px;
 	font-size: 15px;
-	border: 1px solid #DAA520;
 	border-radius: 4px;
+}
+.naniteup.buy {
 	color: #81a6ff;
-	background: #000000;
+	background-color: #000000;
+	border: 1px solid #DAA520;
 }
-.naniteuplocked {
-	width: 300px;
-	height: 150px;
-	font-size: 15px;
-	border: 1px solid white;
-	border-radius: 4px;
+.naniteup.locked {
 	color: #d0d0d0;
-	background: #505050;
+	background-color: #505050;
+	border: 1px solid white;
 }
-.naniteupbought {
-	width: 300px;
-	height: 150px;
-	font-size: 15px;
-	border: 1px solid green;
-	border-radius: 4px;
+.naniteup.bought {
 	color: #000000;
-	background: #81a6ff;
+	background-color: #81a6ff;
+	border: 1px solid green;
 }
 
 #meltdown {
 	width: 210px;
 	height: 70px;
+	color: #d0d0d0;
+	background-color: #1c1c1c;
 	font-size: 10px;
 	border: 2px solid green;
 	border-radius: 6px;
-	color: #d0d0d0;
-	background: #1c1c1c;
 }
 #meltdown:hover {
 }
 
-.meltdownupbuy {
+.meltdownup {
 	width: 100%;
 	height: 150px;
-	border: 3px solid #daa520;
-	background-color: #000000;
+	border-radius: 3px;
+}
+.meltdownup.buy {
 	color: #ffffff;
-	border-radius: 3px;
-	font-weight: bold;
+	background-color: #000000;
+	border: 3px solid #daa520;
 }
-.meltdownupbuy:hover {
+.meltdownup.buy:hover {
 }
-.meltdownuplocked {
-	width: 100%;
-	height: 150px;
-	border: 3px solid #ff0000;
-	background-color: #555555;
+.meltdownup.locked {
 	color: #000000;
-	border-radius: 3px;
+	background-color: #555555;
+	border: 3px solid #ff0000;
 }
 .meltdownupbought {
-	width: 100%;
-	height: 150px;
-	border: 3px solid #daa520;
-	background-color: #44CC66;
 	color: #000000;
-	border-radius: 3px;
-	font-weight: bold;
+	background-color: #44CC66;
+	border: 3px solid #daa520;
 }

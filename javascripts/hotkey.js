@@ -1,4 +1,4 @@
-const key = Mousetrap;
+/*const key = Mousetrap;
 
 key.bind("e", buyMaxEff);
 for (let tier = 0; tier < 8; tier++) {
@@ -24,4 +24,4 @@ function updateHotkeys() {
 		document.getElementById("max_all").style.display = "none";
 	}
 	
-}
+}*/

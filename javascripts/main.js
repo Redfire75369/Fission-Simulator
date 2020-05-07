@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 4,
-			alpha: 2
+			alpha: 3
 		},
 		
 		options: {
@@ -34,17 +34,9 @@ function getDefaultData() {
 		
 		moderator: 0,
 		
-		eff: {
-			bought: 0
-		},
-		mine: {
-			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-			bought: [0, 0, 0, 0, 0, 0, 0, 0]
-		},
-		reactor: {
-			amount: [new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0), new Decimal(0)],
-			bought: [0, 0, 0, 0, 0, 0, 0, 0]
-		},
+		eff: new Efficiency(1e3, 1e1),
+		mines: [new Mine(0, 1e1, 1e3), new Mine(1, 1e2, 1e5), new Mine(2, 1e5, 1e7), new Mine(3, 1e8, 1e10), new Mine(4, 1e13, 1e13), new Mine(5, 1e18, 1e16), new Mine(6, 1e24, 1e20), new Mine(7, 1e30, 1e25)],
+		reactors: [new Reactor(0, 1e1, 1e3), new Reactor(1, 1e2, 1e5), new Reactor(2, 1e5, 1e7), new Reactor(3, 1e8, 1e10), new Reactor(4, 1e13, 1e13), new Reactor(5, 1e18, 1e16), new Reactor(6, 1e24, 1e20), new Reactor(7, 1e30, 1e25)],
 		
 		nucleosynthesis: 0,
 		
@@ -108,12 +100,9 @@ const infinity = Decimal.pow(2, 1024);
 const zero = new Decimal(0);
 
 var focused = true;
-window.onfocus = function() {
-  focused=true;  
+window.onvisibilitychange = function() {
+  focused=!focused;  
 }
-window.onblur = function() {
-  focused=false;  
-}  
 
 function updateUI() {
 	updateUIEnergy();
@@ -127,7 +116,7 @@ function updateUI() {
 	updateUIMeltdown();
 	updateUIMeltdownUps();
 	updateUIStats();
-	updateHotkeys();
+	//updateHotkeys();
 }
 function updateGame(tickInterval) {
 	if (leverMaxAll) {
@@ -189,14 +178,14 @@ var saveGameLoop = setInterval(function() {
 	saveGame();
 }, 15000);
 
-setInterval(function() {
+/*setInterval(function() {
 	if (player.lastUpdate === undefined) {
 		player.lastUpdate = Date.now();
 	}
 	if (Date.now() > player.lastUpdate && focused) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
-}, 25);
+}, 25);*/
 
 setInterval(function() {
 	updateUI();

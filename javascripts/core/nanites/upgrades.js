@@ -76,12 +76,12 @@ function getTotalNaniteUpMult(tier) {
 }
 
 function updateUINaniteUps() {
-	document.getElementById("nanites_navibtn").style.display = player.unlocked.naniteUps || player.unlocked.meltdown ? "inline-block" : "none";
+	document.getElementById("nanites_tabbtn").style.display = player.unlocked.naniteUps || player.unlocked.meltdown ? "inline-block" : "none";
 	
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
 	
 	document.getElementById("nanite_upcost0").innerText = player.nanites.effUpCost.neq(1) ? (player.nanites.effUpCost + " Nanites") : "1 Nanite";
-	document.getElementById("nanite_up0").className = canBuyNaniteUp(0) ? "naniteupbuy" : "naniteuplocked";
+	document.getElementById("nanite_up0").className = canBuyNaniteUp(0) ? "naniteup buy" : "naniteup locked";
 	
 	document.getElementById("nanite_upformula12v1").style.display =  player.nucleosynthesis <= 13 ? "inline-block" : "none";
 	document.getElementById("nanite_upformula12v2").style.display =  player.nucleosynthesis > 13 ? "inline-block" : "none";
@@ -90,6 +90,6 @@ function updateUINaniteUps() {
 		if (naniteUpList[i] != 0 && naniteUpList[i] != 31) {
 			document.getElementById("nanite_upmult" + naniteUpList[i]).innerText = notation(getNaniteUpMult(naniteUpList[i])[1]);
 		}
-		document.getElementById("nanite_up" + naniteUpList[i]).className = player.nanites.ups[naniteUpList[i]] == 1 ? "naniteupbought" : canBuyNaniteUp(naniteUpList[i]) ? "naniteupbuy" : "naniteuplocked";
+		document.getElementById("nanite_up" + naniteUpList[i]).className = player.nanites.ups[naniteUpList[i]] == 1 ? "naniteup bought" : canBuyNaniteUp(naniteUpList[i]) ? "naniteup buy" : "naniteup locked";
 	}
 }

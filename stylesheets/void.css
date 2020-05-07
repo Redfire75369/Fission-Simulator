@@ -1,45 +1,45 @@
 body {
-    overflow-x: hidden;
+	overflow-x: hidden;
 }
 table {
-    width: 100vw;
-    margin: 0;
-    padding: 0;
+	width: 100vw;
+	margin: 0;
+	padding: 0;
 }
 
 .achpic {
-    width: 100px;
-    height: 100px;
-    opacity: 0.7;
+	width: 100px;
+	height: 100px;
+	opacity: 0.7;
 }
 .achcomplete {
-    width: 100px;
-    height: 100px;
+	width: 100px;
+	height: 100px;
 }
 .achlocked {
-    width: 100px;
-    height: 100px;
+	width: 100px;
+	height: 100px;
 }
 
 .popup {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    text-align: center;
-    z-index: 2;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	display: none;
+	text-align: center;
+	z-index: 2;
+	transform: translateX(-50%) translateY(-50%);
 }
 #newsb {
 	width: 80%;
 	height: 20px;
-    padding: 2px;
-    overflow: hidden;
-    margin: auto;
-    text-align: left;
+	text-align: left;
+	margin: auto;
+	padding: 2px;
+	overflow: hidden;
 }
 #news {
-    position: relative;
-    display: inline-block;
-    white-space: nowrap;
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
 }

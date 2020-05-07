@@ -1,7 +1,7 @@
 var leverMaxAll = false;
 
 function enableCheatsTab() {
-	document.getElementById("cheats_navibtn").style.display = "inline-block";
+	document.getElementById("cheats_tabbtn").style.display = "inline-block";
 	//localStorage.setItem("fissionSimSave1", null)
 	//clearInterval(saveGameLoop);
 }
@@ -40,6 +40,6 @@ function spin3d() {
 	document.getElementById("body").style.animation = document.getElementById("body").style.animation === "" ? "spin3d 2s infinite" : "";
 }
 
-document.getElementById("cheats_navibtn").style.display = "none";
+document.getElementById("cheats_tabbtn").style.display = "none";
 document.getElementById("cheats_tab").style.display = "none";
 //Remove onclick in release version from index.html document.getElementById("stuff").onclick = "enableCheatsTab()";

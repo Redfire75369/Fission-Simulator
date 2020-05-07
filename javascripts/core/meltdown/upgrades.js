@@ -45,7 +45,7 @@ function getMeltdownUpMult(id) {
 		case 13:
 			return [8, Decimal.max(1, Math.pow(player.meltdown.time / 1000, 0.2))];
 		case 14:
-			return [8, player.reactor.amount[7].max(1)];
+			return [8, player.reactors[7].amount.max(1)];
 		case 21:
 			return [8, player.meltdown.totalNanites.pow(1.2).max(1)];
 		case 22:
@@ -66,16 +66,16 @@ function getTotalMeltdownUpMult(tier) {
 }
 
 function updateUIMeltdownUps() {
-	document.getElementById("meltdown_navibtn").style.display = player.unlocked.meltdown ? "inline-block" : "none";
+	document.getElementById("meltdown_tabbtn").style.display = player.unlocked.meltdown ? "inline-block" : "none";
 	
 	for (let i = 0; i < meltdownUpList.length; i++) {
 		if (meltdownUpList[i] < 41) {
 			if (meltdownUpList[i] < 31) {
 				document.getElementById("meltdown_upmult" + meltdownUpList[i]).innerText = notation(getMeltdownUpMult(meltdownUpList[i])[1]);
 			}
-			document.getElementById("meltdown_up" + meltdownUpList[i]).className = player.meltdown.ups[meltdownUpList[i]] == 1 ? "meltdownupbought" : canBuyMeltdownUp(meltdownUpList[i]) ? "meltdownupbuy" : "meltdownuplocked";
+			document.getElementById("meltdown_up" + meltdownUpList[i]).className = player.meltdown.ups[meltdownUpList[i]] == 1 ? "meltdownup bought" : canBuyMeltdownUp(meltdownUpList[i]) ? "meltdownup buy" : "meltdownup locked";
 		} else {
-			document.getElementById("meltdown_up" + meltdownUpList[i]).className = player.meltdown.ups[meltdownUpList[i]] == 4 ? "meltdownupbought" : canBuyMeltdownUp(meltdownUpList[i]) ? "meltdownupbuy" : "meltdownuplocked";
+			document.getElementById("meltdown_up" + meltdownUpList[i]).className = player.meltdown.ups[meltdownUpList[i]] == 4 ? "meltdownup bought" : canBuyMeltdownUp(meltdownUpList[i]) ? "meltdownup buy" : "meltdownup locked";
 		}
 	}
 }
