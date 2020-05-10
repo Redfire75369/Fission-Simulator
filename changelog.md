@@ -13,6 +13,28 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
+## [v0.4.5] - 10/5/20 **PR**
+
+### Added
+- Added hotkeys and max all back in
+
+### Modified
+- Fixed bug with updateGame loop not working
+- Fixed bug with old saves
+
+### Code Optimisations
+
+## [v0.4.4] - 7/5/20 **PR**
+
+### Added
+
+### Modified
+
+### Code Optimisations
+- Improved onvisibilitychange code
+- Changed CSS to use more subclasses
+- Changed Mines, Reactors and Efficiency to use classes
+
 ## [v0.4.3] - 18/4/20 **PR**
 
 ### Added

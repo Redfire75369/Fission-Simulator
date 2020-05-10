@@ -141,11 +141,11 @@ function resetReactors() {
 }
 
 function buyMaxAll() {
-	/*for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
-		buyMaxMine(tier);
-		buyMaxReactor(tier);
+	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
+		player.reactors[tier].buyMax();
+		player.mines[tier].buyMax()
 	}
-	buyMaxEff();*/
+	player.eff.buyMax();
 }
 
 function getMineGain(tier) {

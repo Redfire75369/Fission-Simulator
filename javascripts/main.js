@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 4,
-			alpha: 3
+			alpha: 5
 		},
 		
 		options: {
@@ -116,7 +116,7 @@ function updateUI() {
 	updateUIMeltdown();
 	updateUIMeltdownUps();
 	updateUIStats();
-	//updateHotkeys();
+	updateHotkeys();
 }
 function updateGame(tickInterval) {
 	if (leverMaxAll) {
@@ -178,14 +178,14 @@ var saveGameLoop = setInterval(function() {
 	saveGame();
 }, 15000);
 
-/*setInterval(function() {
+setInterval(function() {
 	if (player.lastUpdate === undefined) {
 		player.lastUpdate = Date.now();
 	}
 	if (Date.now() > player.lastUpdate && focused) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
-}, 25);*/
+}, 25);
 
 setInterval(function() {
 	updateUI();

@@ -30,6 +30,13 @@ function loadSave(save, imported = false) {
 		} else {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
+		
+		if (save.version.alpha < 4 || (save.version.alpha == 4 && save.version.beta < 4)) {
+			alert("Your save is from a much older version and is thus, incompatible with the current version. Your save has been reset.");
+            localStorage.removeItem("fissionSimSave1")
+            save = JSON.parse(LZString.decompressFromBase64(LZString.compressToBase64(JSON.stringify(getDefaultData()))));
+        }
+        
 		if (save !== undefined) {
 			for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
 				let key = keys[i];

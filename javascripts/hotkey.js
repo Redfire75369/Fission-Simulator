@@ -1,9 +1,9 @@
-/*const key = Mousetrap;
+const key = Mousetrap;
 
-key.bind("e", buyMaxEff);
+key.bind("e", player.eff.buyMax);
 for (let tier = 0; tier < 8; tier++) {
 	key.bind((tier+1).toString(), function() {
-		buyMaxReactor(tier);
+		player.reactors[tier].buyMax()
 	});
 }
 
@@ -24,4 +24,4 @@ function updateHotkeys() {
 		document.getElementById("max_all").style.display = "none";
 	}
 	
-}*/
+}
