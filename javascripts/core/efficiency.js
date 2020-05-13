@@ -12,24 +12,30 @@ class Efficiency {
 		return this.costStart.mul(this.costMult.pow(this.bought)).mul(Decimal.pow(10 - 0.5 * player.meltdown.breakUps[0],Decimal.max(0, this.bought - this.preInf - 1).mul(this.bought - this.preInf).div(2)));
 	}
 	
+	get buyable() {
+		return player.energy.gte(this.cost) && this.cost.lt(getLimit());
+	}
+	
 	reset() {
 		this.amount = 0;
 	}
 	
 	buy() {
-		if (buyable) {
+		if (this.buyable) {
 			player.energy = player.energy.sub(this.cost);
 			this.bought++;
 			this.amount = this.amount.add(1);
 		}
 	}
 	buyBulk(num) {
-		for (let i = 0; i < bulk + 1 && buyable; i++) {
-			
+		for (let i = 0; i < bulk + 1 && this.buyable; i++) {
+			player.energy = player.energy.sub(this.cost);
+			this.bought++;
+			this.amount = this.amount.add(1);
 		}
 	}
 	buyMax() {
-		while (buyable) {
+		while (this.buyable) {
 			player.energy = player.energy.sub(this.cost);
 			this.bought++;
 			this.amount = this.amount.add(1);

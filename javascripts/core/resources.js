@@ -18,7 +18,7 @@ function getFuelReactorIncrement(tier) {
 }
 
 function getMaxEnergyGain(tier) {
-	return player.reactors[0].amount.mul(player.reactors[0].totalMult).mul(getEff()).mul(3 ** tier);
+	return player.reactors[0].amount.mul(player.reactors[0].totalMult).mul(player.eff.eff).mul(3 ** tier);
 }
 function getEnergyGain(tier) {
 	return getTotalFuelGain(tier).gt(getMinFuel(tier)) ? getMaxEnergyGain(tier).mul(getFuelReactorIncrement(tier)) : getTotalFuelGain(tier).mul(getFuelReactorIncrement(tier));
@@ -38,7 +38,7 @@ function getFuelMineGain(tier) {
 			x++;
 		}
 	}
-	return player.mines[tier].amount.mul(player.mines[tier]).mul(player.mines[tier].totalMult).mul(((3 ** x) - 1)/2).div(tier + 1);
+	return player.mines[tier].amount.mul(player.mines[tier].totalMult).mul(((3 ** x) - 1)/2).div(tier + 1);
 }
 
 function getFuelDecayGain(tier) {

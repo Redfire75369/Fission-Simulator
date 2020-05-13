@@ -13,6 +13,15 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
+## [v0.4.6] - 14/5/20 **PR**
+
+### Added
+
+### Modified
+- Fixed issues with Efficiency
+
+### Code Optimisations
+
 ## [v0.4.5] - 10/5/20 **PR**
 
 ### Added
