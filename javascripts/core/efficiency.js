@@ -24,21 +24,18 @@ class Efficiency {
 		if (this.buyable) {
 			player.energy = player.energy.sub(this.cost);
 			this.bought++;
-			this.amount = this.amount.add(1);
 		}
 	}
 	buyBulk(num) {
 		for (let i = 0; i < bulk + 1 && this.buyable; i++) {
 			player.energy = player.energy.sub(this.cost);
 			this.bought++;
-			this.amount = this.amount.add(1);
 		}
 	}
 	buyMax() {
 		while (this.buyable) {
 			player.energy = player.energy.sub(this.cost);
 			this.bought++;
-			this.amount = this.amount.add(1);
 		}
 	}
 	
