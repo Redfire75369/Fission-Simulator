@@ -13,6 +13,16 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
+## [v0.4.7] - 14/5/20 **PR**
+
+### Added
+
+### Modified
+- Fixed issues with buying Efficiency
+
+### Code Optimisations
+
+
 ## [v0.4.6] - 14/5/20 **PR**
 
 ### Added
