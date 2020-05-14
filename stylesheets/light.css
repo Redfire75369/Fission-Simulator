@@ -12,7 +12,9 @@ table {
 button {
 	transition: all 0.5s;
 }
+
 button:hover {
+	cursor: pointer;
 	border-color: #f4d258;
 	box-shadow: 0px 0px 8px 1px #f4d258;
 }
@@ -26,10 +28,24 @@ button:hover {
 	border: 2px solid #000000;
 	border-radius: 4px;
 }
+
 .navitabbtn:hover {
 	color: #ffffff;
 	background-color: #aaaaaa;
 	transition-duration: 0.2s;
+}
+
+/* When player clicks on a tab */
+.navitabbtn:active {
+	color: #aaaaaa;
+	background-color: #ffffff;
+	transition-duration: 0.1s;
+}
+
+/* When player is in a tab */
+.navitabbtn.active {
+	color: #ffffff;
+	background-color: #202020;
 }
 
 .navitabbtn.nanite {
@@ -52,10 +68,24 @@ button:hover {
 	border: 2px solid #101010;
 	border-radius: 4px;
 }
+
 .subtabbtn:hover {
 	color: #ffffff;
 	background-color: #aaaaaa;
 	transition-duration: 0.2s;
+}
+
+/* When player clicks on a subtab */
+.subtabbtn:active {
+	color: #aaaaaa;
+	background-color: #ffffff;
+	transition-duration: 0.1s;
+}
+
+/* When player is in a subtab */
+.subtabbtn.active {
+	color: #efefef;
+	background-color: #101010;
 }
 
 .achpic {
