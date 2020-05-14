@@ -13,12 +13,24 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
+
 ## [v0.4.8] - 14/5/20 **PR**
 
 ### Added
 
 ### Modified
 - Fixed another issue with buying Efficiency
+
+### Code Optimisations
+
+## [v0.4.8] - 14/5/20 **PR**
+
+### Added
+
+### Modified
+- Fixed issue with efficiency hotkey
+- Made reactors directly affect reactor production
+- Fixed a few minor bugs
 
 ### Code Optimisations
 

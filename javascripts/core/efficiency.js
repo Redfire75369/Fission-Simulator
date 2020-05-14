@@ -17,7 +17,7 @@ class Efficiency {
 	}
 	
 	reset() {
-		this.amount = 0;
+		this.bought = 0;
 	}
 	
 	buy() {

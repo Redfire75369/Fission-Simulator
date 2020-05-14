@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 4,
-			alpha: 8
+			alpha: 9
 		},
 		
 		options: {
