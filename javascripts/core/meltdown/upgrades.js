@@ -23,8 +23,14 @@ function resetMeltdownUps() {
 }
 
 function canBuyMeltdownUp(id) {
-	if (player.meltdown.ups[id] == 0) {
-		return (player.meltdown.corium.gte(meltdownUpCost[id]));
+	if (id < 41) {
+		if (player.meltdown.ups[id] == 0) {
+			return player.meltdown.corium.gte(meltdownUpCost[id]);
+		}
+	} else {
+		if (player.meltdown.ups[id] < 4) {
+			return player.meltdown.corium.gte(meltdownUpCost[id]);
+		}
 	}
 	return false;
 }
@@ -58,35 +64,36 @@ function getMeltdownUpMult(id) {
 function getMeltdownUp41Mult(tier) {
 	switch(player.meltdown.ups[41]) {
 		case 4:
-			if (tier == 1) {
-				return player.mines[8].amount.add(player.reactors[8]).add(10).log10().mul(8);
-			}
-			if (tier == 8) {
-				return player.mines[1].amount.add(player.reactors[1]).add(10).log10().mul(1);
-			}
-		case 3:
-			if (tier == 2) {
-				return player.mines[7].amount.add(player.reactors[7]).add(10).log10().mul(7);
+			if (tier == 0) {
+				return Decimal.max(1, player.mines[7].amount.add(player.reactors[7].amount).log10() * 7);
 			}
 			if (tier == 7) {
-				return player.mines[2].amount.add(player.reactors[2]).add(10).log10().mul(2);
+				return Decimal.max(1, player.mines[0].amount.add(player.reactors[0].amount).log10() * 1);
 			}
-		case 2:
-			if (tier == 3) {
-				return player.mines[6].amount.add(player.reactors[6]).add(10).log10().mul(6);
+		case 3:
+			if (tier == 1) {
+				return Decimal.max(1, player.mines[6].amount.add(player.reactors[6].amount).log10() * 6);
 			}
 			if (tier == 6) {
-				return player.mines[3].amount.add(player.reactors[3]).add(10).log10().mul(3);
+				return Decimal.max(1, player.mines[1].amount.add(player.reactors[1].amount).log10() * 1);
 			}
-		case 1:
-			if (tier == 4) {
-				return player.mines[5].amount.add(player.reactors[5]).add(10).log10().mul(5);
+		case 2:
+			if (tier == 2) {
+				return Decimal.max(1, player.mines[5].amount.add(player.reactors[5].amount).log10() * 5);
 			}
 			if (tier == 5) {
-				return player.mines[4].amount.add(player.reactors[4]).add(10).log10().mul(4);
+				return Decimal.max(1, player.mines[2].amount.add(player.reactors[2].amount).log10() * 2);
+			}
+		case 1:
+			if (tier == 3) {
+				return Decimal.max(1, player.mines[4].amount.add(player.reactors[4].amount).log10() * 4);
+			}
+			if (tier == 4) {
+				return Decimal.max(1, player.mines[3].amount.add(player.reactors[3].amount).log10() * 3);
 			}
 		default:
 			return new Decimal(1);
+	}
 }
 
 function getTotalMeltdownUpMult(tier) {
@@ -113,8 +120,9 @@ function updateUIMeltdownUps() {
 			document.getElementById("meltdown_up" + meltdownUpList[i]).className = player.meltdown.ups[meltdownUpList[i]] == 4 ? "meltdownup bought" : canBuyMeltdownUp(meltdownUpList[i]) ? "meltdownup buy" : "meltdownup locked";
 		}
 	}
+	
 	document.getElementById("meltdown_up41_text").innerText = player.meltdown.ups[41] == 4 ? "New to This Tier: Cf-251 Reactors and Laser Drill Mines Boost Th-229 Reactors and Iron-Tipped Drill Mines" : player.meltdown.ups[41] == 3 ? "New to This Tier: Bk-248 Reactors and Diamond-Tipped Drill Mines Boost U-235 Reactors and Steel-Tipped Drill Mines" : player.meltdown.ups[41] == 2 ? "New to This Tier: Cu-245 Reactors and Osmium-Tipped Drill Mines Boost Np-237 Reactors and Titanium-Tipped Drill Mines" : player.meltdown.ups[41] == 1 ? "New to This Tier: Am-242m Reactors and Tungstensteel-Tipped Drill Mines Boost Pu-237 Reactors and Iridium-Tipped Drill Mines" : "No effects currently";
 	document.getElementById("meltdown_up42_text").innerText = player.meltdown.ups[42] == 4 ? "You gain 3 Corium and 3 Meltdown Stat every minute.": player.meltdown.ups[42] == 3 ? "You gain Corium and Meltdown Stat 12 times slower than your fastest meltdown." : player.meltdown.ups[42] == 2 ? "You gain Corium and Meltdown Stat based on the number of Meltdown Upgrades bought." : player.meltdown.ups[42] == 1 ? "You gain 1 Corium and Meltdown Stat every 30 minutes" : "No effects currently";
-	document.getElementById("meltdown_up43_text").innerText = "You start Nanite Researches and Meltdowns with " + player.meltdown.ups[43] + "Nucleosynthesises";
-	document.getElementById("meltdown_up44_text").innerText = player.meltdown.ups[44] == 4 ? "You keep all nanites and nanite upgrades on Meltdown.": player.meltdown.ups[44] == 3 ? "You keep total nanites on Meltdown." : player.meltdown.ups[44] == 2 ? "You start with nanites based on your corium(\(log_{2}(3c-3)-1.5\))" : player.meltdown.ups[44] == 1 ? "You start with 1 nanite." : "No effects currently";
+	document.getElementById("meltdown_up43_text").innerText = "You start Nanite Researches and Meltdowns with " + player.meltdown.ups[43] + " Nucleosynthesis";
+	document.getElementById("meltdown_up44_text").innerText = player.meltdown.ups[44] == 4 ? "You keep all nanites and nanite upgrades on Meltdown." : player.meltdown.ups[44] == 3 ? "You keep total nanites on Meltdown." : player.meltdown.ups[44] == 2 ? "You start with nanites based on your corium(\(log_{2}(3c-3)-1.5\))" : player.meltdown.ups[44] == 1 ? "You start with 1 nanite." : "No effects currently";
 }
