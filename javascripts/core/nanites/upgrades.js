@@ -9,8 +9,10 @@ const naniteUpCost = {
 const naniteUpList = [11, 12, 21, 22, 31, 32];
 
 function resetNaniteUps() {
-	player.nanites.ups = getDefaultData().nanites.ups;
-	player.nanites.effUpCost = getDefaultData().nanites.effUpCost;
+	if (player.meltdown.ups[44] < 4) {
+		player.nanites.ups = getDefaultData().nanites.ups;
+		player.nanites.effUpCost = getDefaultData().nanites.effUpCost;
+	}
 }
 
 function canBuyNaniteUp(id) {

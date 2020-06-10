@@ -12,7 +12,17 @@ function coriumGain() {
 	return Decimal.floor(ret);
 }
 function coriumGainPassive() {
-	return zero;
+	let ret = player.meltdown.ups[42] == 4 ? new Decimal(3) : player.meltdown.ups[42] == 3 ? new Decimal((player.meltdown.bestTime / 1000) * 720) : player.meltdown.ups[42] == 1 ? new Decimal(1/30) : zero;
+	if (player.meltdown.ups[42] == 2) {
+		let y = 0
+		for (let i = 0, keys = Object.keys(player.meltdown.ups), ii = keys.length; i < ii; i++) {
+			if (player.meltdown.ups[keys[i]] > 0) {
+				y++;
+			}
+		}
+		ret = new Decimal(1 / (17 - y));
+	}
+	return ret.div(60);
 }
 
 function meltdownGain() {
@@ -20,7 +30,17 @@ function meltdownGain() {
 }
 
 function meltdownGainPassive() {
-	return 0;
+	let ret = player.meltdown.ups[42] == 4 ? 3 : player.meltdown.ups[42] == 3 ? (player.meltdown.bestTime / 1000) * 12 : player.meltdown.ups[42] == 1 ? 1/30  : 0;
+	if (player.meltdown.ups[42] == 2) {
+		let y = 0
+		for (let i = 0, keys = Object.keys(player.meltdown.ups), ii = keys.length; i < ii; i++) {
+			if (player.meltdown.ups[keys[i]] > 0) {
+				y++;
+			}
+		}
+		ret = 1 / (17 - y);
+	}
+	return ret / 60;
 }
 
 function meltdown() {

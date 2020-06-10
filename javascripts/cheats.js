@@ -19,6 +19,19 @@ function infiniteEnergy() {
 	player.energy = infinity;
 }
 
+function defaultCorium() {
+	player.meltdown.corium = new Decimal(100);
+}
+function doubleCorium() {
+	player.meltdown.corium = player.meltdown.corium.mul(2);
+}
+function squareCorium() {
+	player.meltdown.corium = player.meltdown.corium.pow(2);
+}
+function infiniteCorium() {
+	player.meltdown.corium = infinity;
+}
+
 function addNucleosynthesis() {
 	if (player.nucleosynthesis < 14) {
 		player.nucleosynthesis += 1;
@@ -34,10 +47,6 @@ function harderReset() {
 	player = getDefaultData();
 	player.navigation.naviTab = "cheats_tab";
 	saveGame();
-}
-
-function spin3d() {
-	document.getElementById("body").style.animation = document.getElementById("body").style.animation === "" ? "spin3d 2s infinite" : "";
 }
 
 document.getElementById("cheats_tabbtn").style.display = "none";

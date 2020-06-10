@@ -24,9 +24,23 @@ function getDefaultData() {
 				decayHasten: false
 		},
 		
-		achs: {
-			r11: false,
-			r12: false
+		achievements: {
+			11: false,
+			12: false,
+			13: false,
+			14: false,
+			15: false,
+			16: false,
+			17: false,
+			18: false,
+			21: false,
+			22: false,
+			23: false,
+			24: false,
+			25: false,
+			26: false,
+			27: false,
+			28: false
 		},
 		
 		energy: new Decimal(100),
@@ -35,8 +49,26 @@ function getDefaultData() {
 		moderator: 0,
 		
 		eff: new Efficiency(1e3, 1e1),
-		mines: [new Mine(0, 1e1, 1e3), new Mine(1, 1e2, 1e5), new Mine(2, 1e5, 1e7), new Mine(3, 1e8, 1e10), new Mine(4, 1e13, 1e13), new Mine(5, 1e18, 1e16), new Mine(6, 1e24, 1e20), new Mine(7, 1e30, 1e25)],
-		reactors: [new Reactor(0, 1e1, 1e3), new Reactor(1, 1e2, 1e5), new Reactor(2, 1e5, 1e7), new Reactor(3, 1e8, 1e10), new Reactor(4, 1e13, 1e13), new Reactor(5, 1e18, 1e16), new Reactor(6, 1e24, 1e20), new Reactor(7, 1e30, 1e25)],
+		mines: [
+			new Mine(0, 1e1, 1e3),
+			new Mine(1, 1e2, 1e5),
+			new Mine(2, 1e5, 1e7),
+			new Mine(3, 1e8, 1e10),
+			new Mine(4, 1e13, 1e13),
+			new Mine(5, 1e18, 1e16),
+			new Mine(6, 1e24, 1e20),
+			new Mine(7, 1e30, 1e24)
+		],
+		reactors: [
+			new Reactor(0, 1e1, 1e3),
+			new Reactor(1, 1e2, 1e4),
+			new Reactor(2, 1e5, 1e6),
+			new Reactor(3, 1e8, 1e8),
+			new Reactor(4, 1e13, 1e10),
+			new Reactor(5, 1e18, 1e12),
+			new Reactor(6, 1e24, 1e13),
+			new Reactor(7, 1e30, 1e14)
+		],
 		
 		nucleosynthesis: 0,
 		
@@ -101,7 +133,7 @@ const zero = new Decimal(0);
 
 var focused = true;
 window.onvisibilitychange = function() {
-  focused=!focused;  
+  focused = !focused;  
 }
 
 function updateUI() {
@@ -115,8 +147,8 @@ function updateUI() {
 	updateUINaniteResearch();
 	updateUIMeltdown();
 	updateUIMeltdownUps();
+	updateUIAchievements();
 	updateUIStats();
-	updateHotkeys();
 }
 function updateGame(tickInterval) {
 	if (leverMaxAll) {

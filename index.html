@@ -528,6 +528,27 @@
 					<td id="ach11" class="achlocked" align="center">
 						<image class="achpic" src="resources/images/null.png"/>
 					</td>
+					<td id="ach12" class="achlocked" align="center">
+						<image class="achpic" src="resources/images/null.png"/>
+					</td>
+					<td id="ach13" class="achlocked" align="center">
+						<image class="achpic" src="resources/images/null.png"/>
+					</td>
+					<td id="ach14" class="achlocked" align="center">
+						<image class="achpic" src="resources/images/null.png"/>
+					</td>
+					<td id="ach15" class="achlocked" align="center">
+						<image class="achpic" src="resources/images/null.png"/>
+					</td>
+					<td id="ach16" class="achlocked" align="center">
+						<image class="achpic" src="resources/images/null.png"/>
+					</td>
+					<td id="ach17" class="achlocked" align="center">
+						<image class="achpic" src="resources/images/null.png"/>
+					</td>
+					<td id="ach18" class="achlocked" align="center">
+						<image class="achpic" src="resources/images/null.png"/>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -580,17 +601,17 @@
 				<tr align="center">
 					<td align="right">
 						<button onclick="buyNaniteUp(11)" id="nanite_up11">
-							All reactors get a boost based on time played<br>
-							Formula: \(log_{10}(x)\)<br>
-							Currently: <span id="nanite_upmult11">1.00</span>× <br>
+							All reactors get a boost based on time played<br/>
+							Formula: \(log_{10}(x)\)<br/>
+							Currently: <span id="nanite_upmult11">1.00</span>× <br/>
 							Cost: 1 Nanite
 						</button>
 					</td>
 					<td align="left">
 						<button onclick="buyNaniteUp(12)" id="nanite_up12">
-							All reactors get a boost based on number of Nucleosyntheses<br>
-							Formula: <span id="nanite_upformula12v1">\(x^{log_{10}(x+1)}\)</span><span id="nanite_upformula12v2">\((x - 7) * log_{8}(x)^{0.5}\)</span><br>
-							Currently: <span id="nanite_upmult12">1.00</span>× <br>
+							All reactors get a boost based on number of Nucleosyntheses<br/>
+							Formula: <span id="nanite_upformula12v1">\(x^{log_{10}(x+1)}\)</span><span id="nanite_upformula12v2">\((x - 7) * log_{8}(x)^{0.5}\)</span><br/>
+							Currently: <span id="nanite_upmult12">1.00</span>× <br/>
 							Cost: 2 Nanites
 						</button>
 					</div></td>
@@ -598,17 +619,17 @@
 				<tr align="center">
 					<td align="right">
 						<button onclick="buyNaniteUp(21)" id="nanite_up21">
-							All reactors get a boost based on current energy<br>
-							Formula: \((\frac{log_{20}(x)}{20})^{2}\)<br>
-							Currently: <span id="nanite_upmult21">1.00</span>× <br>
+							All reactors get a boost based on current energy<br/>
+							Formula: \((\frac{log_{20}(x)}{20})^{2}\)<br/>
+							Currently: <span id="nanite_upmult21">1.00</span>× <br/>
 							Cost: 1 Nanite
 						</button>
 					</td>
 					<td align="left">
 						<button onclick="buyNaniteUp(22)" id="nanite_up22">
-							All reactors get a boost based on total energy<br>
-							Formula: \((\frac{log_{25}(x)}{40})^{2}\)<br>
-							Currently: <span id="nanite_upmult22">1.00</span>× <br>
+							All reactors get a boost based on total energy<br/>
+							Formula: \((\frac{log_{25}(x)}{40})^{2}\)<br/>
+							Currently: <span id="nanite_upmult22">1.00</span>× <br/>
 							Cost: 2 Nanites
 						</button>
 					</td>
@@ -616,15 +637,15 @@
 				<tr align="center">
 					<td align="right">
 						<button onclick="buyNaniteUp(31)" id="nanite_up31">
-							Increase multiplier from Nucleosyntheses from 2→2.2×<br>
+							Increase multiplier from Nucleosyntheses from 2→2.2×<br/>
 							Cost: 3 Nanites
 						</button>
 					</td>
 					<td align="left">
 						<button onclick="buyNaniteUp(32)" id="nanite_up32">
-							All reactors get a boost based on total nanites gained<br>
-							Formula: \(log_{1.2}(x)\)<br>
-							Currently: <span id="nanite_upmult32">1.00</span>× <br>
+							All reactors get a boost based on total nanites gained<br/>
+							Formula: \(log_{1.2}(x)\)<br/>
+							Currently: <span id="nanite_upmult32">1.00</span>× <br/>
 							Cost: 4 Nanites
 						</button>
 					</td>
@@ -637,33 +658,33 @@
 				<tr align="center">
 					<td align="right">
 						<button onclick="buyMeltdownUp(11)" id="meltdown_up11">
-							Mines and reactors get a multiplier based on meltdown stat<br>
-							Formula: \(1 + \frac{x}{2}\)<br>
-							Currently: <span id="meltdown_upmult11">1.00</span>× <br>
+							Mines and reactors get a multiplier based on meltdown stat<br/>
+							Formula: \(1 + \frac{x}{2}\)<br/>
+							Currently: <span id="meltdown_upmult11">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
 						<button onclick="buyMeltdownUp(12)" id="meltdown_up12">
-							Mines and reactors are significantly stronger in the first 100 seconds of resets<br>
-							Formula: \((\frac{x + 1}{2})^{\frac{25}{x + 1}+1}\)</sup><br>
-							Currently: <span id="meltdown_upmult12">1.00</span>× <br>
+							Mines and reactors are significantly stronger in the first 100 seconds of resets<br/>
+							Formula: \((\frac{x + 1}{2})^{\frac{25}{x + 1}+1}\)</sup><br/>
+							Currently: <span id="meltdown_upmult12">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
 						<button onclick="buyMeltdownUp(13)" id="meltdown_up13">
-							Mines and reactors get a multiplier based on time spent in this meltdown<br>
-							Formula: \(x^{0.2}\)<br>
-							Currently: <span id="meltdown_upmult13">1.00</span>× <br>
+							Mines and reactors get a multiplier based on time spent in this meltdown<br/>
+							Formula: \(x^{0.2}\)<br/>
+							Currently: <span id="meltdown_upmult13">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="left">
 						<button onclick="buyMeltdownUp(14)" id="meltdown_up14">
-							Mines and reactors get a multiplier based on total amount of Cf-251 reactors bought this meltdown<br>
-							Formula: \(x\)<br>
-							Currently: <span id="meltdown_upmult14">1.00</span>× <br>
+							Mines and reactors get a multiplier based on total amount of Cf-251 reactors bought this meltdown<br/>
+							Formula: \(x\)<br/>
+							Currently: <span id="meltdown_upmult14">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
 					</td>
@@ -671,33 +692,33 @@
 				<tr align="center">
 					<td align="right">
 						<button onclick="buyMeltdownUp(21)" id="meltdown_up21">
-							Mines and reactors get a multiplier based on total nanites<br>
-							Formula: \(x^{1.2}\)<br>
-							Currently: <span id="meltdown_upmult21">1.00</span>× <br>
+							Mines and reactors get a multiplier based on total nanites<br/>
+							Formula: \(x^{1.2}\)<br/>
+							Currently: <span id="meltdown_upmult21">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
 						<button onclick="buyMeltdownUp(22)" id="meltdown_up22">
-							Mines and reactors get a multiplier based on corium<br>
-							Formula: \(log_{2}(x+2)^{0.9}\)<br>
-							Currently: <span id="meltdown_upmult22">1.00</span>× <br>
+							Mines and reactors get a multiplier based on corium<br/>
+							Formula: \(log_{2}(x+2)^{0.9}\)<br/>
+							Currently: <span id="meltdown_upmult22">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
 						<button onclick="buyMeltdownUp(23)" id="meltdown_up23">
-							<br>
-							Formula: \(\)<br>
-							Currently: <span id="meltdown_upmult23">1.00</span>× <br>
+							<br/>
+							Formula: \(\)<br/>
+							Currently: <span id="meltdown_upmult23">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="left">
 						<button onclick="buyMeltdownUp(24)" id="meltdown_up24">
-							<br>
-							Formula: \(\)<br>
-							Currently: <span id="meltdown_upmult24">1.00</span>× <br>
+							<br/>
+							Formula: \(\)<br/>
+							Currently: <span id="meltdown_upmult24">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
 					</td>
@@ -705,25 +726,25 @@
 				<tr align="center">
 					<td align="right">
 						<button onclick="buyMeltdownUp(31)" id="meltdown_up31">
-							The multiplier per bought mine and reactor is increased to 3×<br>
+							The multiplier per bought mine and reactor is increased to 3×<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
 						<button onclick="buyMeltdownUp(32)" id="meltdown_up32">
-							Non-Rebuyable nanite upgrades are more powerful<br>
+							Non-Rebuyable nanite upgrades are more powerful<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
 						<button onclick="buyMeltdownUp(33)" id="meltdown_up33">
-							The fuel usage of reactors is reduced by 10%<br>
+							The fuel usage of reactors is reduced by 10%<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="left">
 						<button onclick="buyMeltdownUp(34)" id="meltdown_up34">
-							<br>
+							<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
@@ -731,25 +752,29 @@
 				<tr align="center">
 					<td align="right">
 						<button onclick="buyMeltdownUp(41)" id="meltdown_up41">
-							Reactors and Mines boost each other<br>
+							Reactors and Mines boost each other<br/>
+							<p id="meltdown_up41_text></p><br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
 						<button onclick="buyMeltdownUp(42)" id="meltdown_up42">
-							You passively gain Corium and Meltdown stat<br>
+							You passively gain Corium and Meltdown stat<br/>
+							<p id="meltdown_up42_text></p><br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
 						<button onclick="buyMeltdownUp(43)" id="meltdown_up43">
-							You start with Nucleosynthesises<br>
+							You start with Nucleosynthesises<br/>
+							<p id="meltdown_up43_text></p><br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="left">
 						<button onclick="buyMeltdownUp(44)" id="meltdown_up44">
-							You start with nanites<br>
+							You start with nanites<br/>
+							<p id="meltdown_up44_text></p><br/>
 							Cost: 1 Corium
 						</button>
 					</td>
@@ -783,6 +808,28 @@
 				</tr>
 				<tr style="width:420px" align="center">
 					<td style="width:105px">
+						<button class="storebtn buy" onclick="defaultCorium()" style="width: 200px; height: 40px">
+							Default Corium
+						</button>
+					</td>
+					<td style="width:105px">
+						<button class="storebtn buy" onclick="infiniteCorium()"style="width: 200px; height: 40px">
+							Infinite Corium
+						</button>
+					</td>
+					<td style="width:105px">
+						<button class="storebtn buy" onclick="doubleCorium()" style="width: 200px; height: 40px">
+							Double Corium
+						</button>
+					</td>
+					<td style="width:105px">
+						<button class="storebtn buy" onclick="squareCorium()" style="width: 200px; height: 40px">
+							Square Corium
+						</button>
+					</td>
+				</tr>
+				<tr style="width:420px" align="center">
+					<td style="width:105px">
 						<button class="storebtn buy" onclick="addNucleosynthesis()" style="width: 200px; height: 40px">
 							Forced Nucleosynthesis w/o reset
 						</button>
@@ -801,13 +848,6 @@
 					<td style="width:105px">
 						<button class="storebtn buy" onclick="harderReset()" style="width: 200px; height: 40px">
 							Hard Reset w/o confirmation
-						</button>
-					</td>
-				</tr>
-				<tr style="width:420px" align="center">
-					<td style="width:105px">
-						<button class="storebtn buy" onclick="spin3d()" style="width: 200px; height: 40px">
-							Spin 3D
 						</button>
 					</td>
 				</tr>
