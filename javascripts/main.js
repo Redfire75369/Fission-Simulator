@@ -216,7 +216,7 @@ setInterval(function() {
 		player.lastUpdate = Date.now();
 	}
 	if (Date.now() > player.lastUpdate && focused) {
-		//simulateTime((Date.now() - player.lastUpdate) / 1000);
+		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
 }, 25);
 
