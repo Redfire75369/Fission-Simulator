@@ -1,59 +1,15 @@
 const mineCostVar = {
 	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e5"), new Decimal("1e8"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e24"), new Decimal("1e30")],
 	costMult: [new Decimal("1e3"), new Decimal("1e5"), new Decimal("1e7"), new Decimal("1e10"), new Decimal("1e13"), new Decimal("1e16"), new Decimal("1e20"), new Decimal("1e25")],
-	pre308: [102, 76, 60, 50, 37, 29, 24, 20]
 }
 const reactorCostVar = {
 	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e5"), new Decimal("1e8"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e25"), new Decimal("1e32")],
-	costMult: [new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e9"), new Decimal("1e12"), new Decimal("1e14"), new Decimal("1e15")],
-	pre308: [76, 61, 50, 37, 33, 24, 20, 18]
+	costMult: [new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e9"), new Decimal("1e12"), new Decimal("1e14"), new Decimal("1e15")]
 }
 
-class Mine {
-	constructor(tier, costStart, costMult) {
-		this.tier = tier;
-		this.costStart = new Decimal(costStart);
-		this.costMult = new Decimal(costMult);
-		this.amount = new Decimal(0);
-		this.bought = 0;
-	}
-	
-	get preInf() {
-		return floor(infinity.div(this.costStart).log10() / this.costMult.log10());
-	}
-	get cost() {
-		return this.costStart.mul(this.costMult.pow(this.bought)).mul(Decimal.pow(10 - 0.5 * player.meltdown.breakUps[0], Decimal.max(0, this.bought - this.preInf - 1).mul(this.bought - this.preInf).div(2)));
-	}
-	
-	get buyable() {
-		return player.energy.gte(this.cost) && this.cost.lt(getLimit());
-	}
-	
-	reset() {
-		this.amount = new Decimal(0);
-		this.bought = 0;
-	}
-	
-	buy() {
-		if (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-			this.amount = this.amount.add(1);
-		}
-	}
-	buyBulk(num) {
-		for (let i = 0; i < bulk + 1 && this.buyable; i++) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-			this.amount = this.amount.add(1);
-		}
-	}
-	buyMax() {
-		while (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-			this.amount = this.amount.add(1);
-		}
+class Mine extends GenericEnergyProducer {
+	constructor(start, scale) {
+		super(start, scale, 10, 308);
 	}
 	
 	get totalMult() {
@@ -69,51 +25,9 @@ class Mine {
 	}
 }
 
-class Reactor {
-	constructor(tier, costStart, costMult) {
-		this.tier = tier;
-		this.costStart = new Decimal(costStart);
-		this.costMult = new Decimal(costMult);
-		this.amount = new Decimal(0);
-		this.bought = 0;
-	}
-	
-	get preInf() {
-		return floor(infinity.div(this.costStart).log10() / this.costMult.log10());
-	}
-	get cost() {
-		return this.costStart.mul(this.costMult.pow(this.bought)).mul(Decimal.pow(10 - 0.5 * player.meltdown.breakUps[0], Decimal.max(0, this.bought - this.preInf - 1).mul(this.bought - this.preInf).div(2)));
-	}
-	
-	get buyable() {
-		return player.energy.gte(this.cost) && this.cost.lt(getLimit());
-	}
-	
-	reset() {
-		this.amount = new Decimal(0);
-		this.bought = 0;
-	}
-	
-	buy() {
-		if (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-			this.amount = this.amount.add(1);
-		}
-	}
-	buyBulk(num) {
-		for (let i = 0; i < bulk + 1 && this.buyable; i++) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-			this.amount = this.amount.add(1);
-		}
-	}
-	buyMax() {
-		while (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-			this.amount = this.amount.add(1);
-		}
+class Reactor extends GenericEnergyProducer {
+	constructor(start, scale) {
+		super(start, scale, 10, 308);
 	}
 	
 	get totalMult() {

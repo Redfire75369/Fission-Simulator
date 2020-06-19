@@ -1,77 +1,82 @@
-const naniteUpCost = {
-	11: new Decimal(1),
-	12: new Decimal(2),
-	21: new Decimal(1),
-	22: new Decimal(2),
-	31: new Decimal(3),
-	32: new Decimal(4)
-};
-const naniteUpList = [11, 12, 21, 22, 31, 32];
+class NaniteUpgrade extends GenericUpgrade {
+	constructor(id, cost, tiers = 1, scale = 1) {
+		super(new Decimal(cost), tiers, new Decimal(scale));
+		this.id = id;
+	}
 
-function resetNaniteUps() {
-	if (player.meltdown.ups[44] < 4) {
-		player.nanites.ups = getDefaultData().nanites.ups;
-		player.nanites.effUpCost = getDefaultData().nanites.effUpCost;
+	get buyable() {
+		return player.nanites.nanites.gte(this.cost) && this.bought < this.tiers;
+	}
+
+	buy() {
+		if (this.buyable) {
+			player.nanites.nanites = player.nanites.nanites.sub(this.cost);
+			this.bought++;
+		}
+	}
+
+	get mult() {
+		switch(this.id) {
+			case 11:
+				return [8, new Decimal(max(1, log(player.time / 1000, 16) - 1))];
+			case 12:
+				return (player.nucleosynthesis <= 10) ? [8, Decimal.max(1, (player.nucleosynthesis ** log(player.nucleosynthesis + 1, 10)) / 3)] : [8, Decimal.max(1, (player.nucleosynthesis - 7) * (log(player.nucleosynthesis, 8) ** 0.5))];
+			case 21:
+				return [8, Decimal.max(1, new Decimal(player.energy.log(20)).div(20).pow(2))];
+			case 22:
+				return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(25)).div(40).pow(2))];
+			case 32:
+				return [8, Decimal.max(1, player.nanites.total.log(1.2))];
+			default:
+				return [9, new Decimal(1)];
+		}
 	}
 }
 
-function canBuyNaniteUp(id) {
-	if (id == 0) {
+class EfficiencyNaniteUpgrade extends NaniteUpgrade {
+	constructor() {
+		super(0, 1, 1, 1);
+	}
+	
+	get cost() {
+		if (this.bought < 2) {
+			return new Decimal(1);
+		} else {
+			return new Decimal(1).add(this.bought - 2);
+		}
+	}
+
+	get buyable() {
 		let boughtAll = true;
-		for (let up = 1; up < naniteUpList.length; up++) {
-			if (player.nanites.ups[naniteUpList[up]] != 1) {
+		for (let up = 1; up < player.nanites.ups.length; up++) {
+			if (player.nanites.ups[up].bought <= player.nanites.ups[up].tiers) {
 				boughtAll=false;
 			}
 		}
 		if (boughtAll || player.nanites.ups[0] < 2) {
-			return player.nanites.nanites.gte(player.nanites.effUpCost);
+			return player.nanites.nanites.gte(this.cost);
 		} else {
 			return false;
 		}
-	} 
-	if (player.nanites.ups[id] == 0) {
-		return (player.nanites.nanites.gte(naniteUpCost[id]));
 	}
-	return false;
-}
-
-function buyNaniteUp(id) {
-	if (canBuyNaniteUp(id)) {
-		if (id == 0) {
-			player.nanites.nanites = player.nanites.nanites.sub(player.nanites.effUpCost);
-			player.nanites.ups[id] += 1;
-			if (player.nanites.ups[0] >= 2) {
-				player.nanites.effUpCost = player.nanites.effUpCost.add(1);
-			}
-			return;
-		}
-		player.nanites.nanites = player.nanites.nanites.sub(naniteUpCost[id]);
-		player.nanites.ups[id] += 1;
+	
+	buy() {
+		player.nanites.nanites = player.nanites.nanites.sub(this.cost);
+		this.bought++;
 	}
 }
 
-function getNaniteUpMult(id) {
-	switch(id) {
-		case 11:
-			return [8, new Decimal(max(1, log(player.time / 1000, 16) - 1))];
-		case 12:
-			return (player.nucleosynthesis <= 10) ? [8, Decimal.max(1, (player.nucleosynthesis ** log(player.nucleosynthesis + 1, 10)) / 3)] : [8, Decimal.max(1, (player.nucleosynthesis - 7) * (log(player.nucleosynthesis, 8) ** 0.5))];
-		case 21:
-			return [8, Decimal.max(1, new Decimal(player.energy.log(20)).div(20).pow(2))];
-		case 22:
-			return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(25)).div(40).pow(2))];
-		case 32:
-			return [8, Decimal.max(1, player.nanites.total.log(1.2))];
-		default:
-			return [9, new Decimal(1)];
+function resetNaniteUps() {
+	if (player.meltdown.ups[44] < 4) {
+		player.nanites.ups = getDefaultData().nanites.ups;
 	}
 }
 
 function getTotalNaniteUpMult(tier) {
 	let mult = new Decimal(1);
-	for (let id = 0; id < naniteUpList.length; id++) {
-		if (player.nanites.ups[naniteUpList[id]] == 1 && (getNaniteUpMult(naniteUpList[id])[0] == tier || getNaniteUpMult(naniteUpList[id])[0] == 8)) {
-			mult = mult.mul(getNaniteUpMult(naniteUpList[id])[1]);
+	for (let id = 0; id < player.nanites.ups.length; id++) {
+		if (player.nanites.ups[id].bought >= 1 && (player.nanites.ups[id].mult[0] == tier || player.nanites.ups[id].mult[0] == 8)) {
+			mult = mult.mul(player.nanites.ups[id].mult[1]);
 		}
 	}
 	return mult;
@@ -82,16 +87,16 @@ function updateUINaniteUps() {
 	
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
 	
-	document.getElementById("nanite_upcost0").innerText = player.nanites.effUpCost.neq(1) ? (player.nanites.effUpCost + " Nanites") : "1 Nanite";
-	document.getElementById("nanite_up0").className = canBuyNaniteUp(0) ? "naniteup buy" : "naniteup locked";
+	document.getElementById("nanite_upcost0").innerText = player.nanites.ups[0].cost.neq(1) ? (player.nanites.up[0].cost + " Nanites") : "1 Nanite";
+	document.getElementById("nanite_up0").className = player.nanites.ups[0].buyable ? "naniteup buy" : "naniteup locked";
 	
 	document.getElementById("nanite_upformula12v1").style.display =  player.nucleosynthesis <= 13 ? "inline-block" : "none";
 	document.getElementById("nanite_upformula12v2").style.display =  player.nucleosynthesis > 13 ? "inline-block" : "none";
 
-	for (let i = 0; i < naniteUpList.length; i++) {
-		if (naniteUpList[i] != 0 && naniteUpList[i] != 31) {
-			document.getElementById("nanite_upmult" + naniteUpList[i]).innerText = notation(getNaniteUpMult(naniteUpList[i])[1]);
+	for (let i = 1; i < player.nanites.ups.length; i++) {
+		if (player.nanites.ups[i].id != 31) {
+			document.getElementById("nanite_upmult" + player.nanites.ups[i].id).innerText = notation(player.nanites.ups[i].mult[1]);
 		}
-		document.getElementById("nanite_up" + naniteUpList[i]).className = player.nanites.ups[naniteUpList[i]] == 1 ? "naniteup bought" : canBuyNaniteUp(naniteUpList[i]) ? "naniteup buy" : "naniteup locked";
+		document.getElementById("nanite_up" + player.nanites.ups[i].id).className = player.nanites.ups[i].bought == 1 ? "naniteup bought" : player.nanites.ups[i].buyable ? "naniteup buy" : "naniteup locked";
 	}
 }

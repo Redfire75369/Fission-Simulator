@@ -1,46 +1,10 @@
-class Efficiency {
-	constructor(costStart, costMult) {
-		this.costStart = new Decimal(costStart);
-		this.costMult = new Decimal(costMult);
-		this.bought = 0;
-	}
-	
-	get preInf() {
-		return floor(infinity.div(this.costStart).log10() / this.costMult.log10());
-	}
-	get cost() {
-		return this.costStart.mul(this.costMult.pow(this.bought)).mul(Decimal.pow(10 - 0.5 * player.meltdown.breakUps[0],Decimal.max(0, this.bought - this.preInf - 1).mul(this.bought - this.preInf).div(2)));
-	}
-	
-	get buyable() {
-		return player.energy.gte(this.cost) && this.cost.lt(getLimit());
-	}
-	
-	reset() {
-		this.bought = 0;
-	}
-	
-	buy() {
-		if (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-		}
-	}
-	buyBulk(num) {
-		for (let i = 0; i < bulk + 1 && this.buyable; i++) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-		}
-	}
-	buyMax() {
-		while (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-		}
+class Efficiency extends GenericEnergyProducer {
+	constructor() {
+		super(3, 1, 10, 308);
 	}
 	
 	get increment() {
-		let effUpg = player.nanites.ups[0];
+		let effUpg = player.nanites.ups[0].bought;
 		if (effUpg <= 2) {
 				return new Decimal(1.1 + 0.02 * effUpg);
 		} else {

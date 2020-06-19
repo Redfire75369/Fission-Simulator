@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 4,
-			alpha: 9
+			alpha: 10
 		},
 		
 		options: {
@@ -50,24 +50,24 @@ function getDefaultData() {
 		
 		eff: new Efficiency(1e3, 1e1),
 		mines: [
-			new Mine(0, 1e1, 1e3),
-			new Mine(1, 1e2, 1e5),
-			new Mine(2, 1e5, 1e7),
-			new Mine(3, 1e8, 1e10),
-			new Mine(4, 1e13, 1e13),
-			new Mine(5, 1e18, 1e16),
-			new Mine(6, 1e24, 1e20),
-			new Mine(7, 1e30, 1e24)
+			new Mine(1, 3),
+			new Mine(2, 5),
+			new Mine(5, 7),
+			new Mine(8, 10),
+			new Mine(13, 13),
+			new Mine(18, 16),
+			new Mine(24, 20),
+			new Mine(30, 24)
 		],
 		reactors: [
-			new Reactor(0, 1e1, 1e3),
-			new Reactor(1, 1e2, 1e4),
-			new Reactor(2, 1e5, 1e6),
-			new Reactor(3, 1e8, 1e8),
-			new Reactor(4, 1e13, 1e10),
-			new Reactor(5, 1e18, 1e12),
-			new Reactor(6, 1e24, 1e13),
-			new Reactor(7, 1e30, 1e14)
+			new Reactor(1, 3,),
+			new Reactor(2, 4),
+			new Reactor(5, 6),
+			new Reactor(8, 8),
+			new Reactor(13, 10),
+			new Reactor(18, 12),
+			new Reactor(24, 13),
+			new Reactor(30, 14)
 		],
 		
 		nucleosynthesis: 0,
@@ -75,16 +75,15 @@ function getDefaultData() {
 		nanites: {
 			nanites: new Decimal(0),
 			total: new Decimal(0),
-			effUpCost: new Decimal(1),
-			ups: {
-				0: 0,
-				11: 0,
-				12: 0,
-				21: 0,
-				22: 0,
-				31: 0,
-				32: 0
-			}
+			ups: [
+				new EfficiencyNaniteUpgrade(),
+				new NaniteUpgrade(11, 1),
+				new NaniteUpgrade(12, 2),
+				new NaniteUpgrade(21, 1),
+				new NaniteUpgrade(22, 2),
+				new NaniteUpgrade(31, 3),
+				new NaniteUpgrade(32, 4),
+			]
 		},
 		
 		meltdown: {
