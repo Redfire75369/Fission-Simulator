@@ -5,7 +5,7 @@
 	    <title>Fission Simulator</title>
 	    <link id="style" rel="stylesheet" href="stylesheets/light.css" />
 		<link rel="stylesheet" href="stylesheets/katex.css" />
-	    
+
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/auto-render.js" charset="utf-8" type="text/javascript" onload="renderMathInElement(document.body)"></script>
@@ -38,25 +38,25 @@
 		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript" onload="init_game()"></script>
-		
+
 	</head>
 	<body align="center">
-		
+
 	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px;">
 			<div id="offline_progress" style="height:175px; display:flex; align-items:center"></div>
 			<button  onclick="closeOfflineProgress()" align="center" class="storebtn buy" style="font-size:15px; margin:auto;">Close</button>
 		</div>
-		
+
 		<div align="center">
 			<p id="corium_amt" class="text" style="color: #88ee44">You have <span id="corium">0.00</span> Corium.</p> </br>
 			<button onclick="meltdown()" id="meltdown">Meltdown for <span id="corium_gain">1</span> Corium</button>
 		</div>
-		
+
 		<div align="center">
 			<p class="text">You have <span id="energy">80.00</span> Energy.</p>
 	    	<p class="text">You are gaining <span id="energy_gain">0.00</span> Energy per second.</p>
 		</div>
-		
+
 	    <tr>
 			<div align="center">
 				<p class="text">Increase efficiency of all mines by <span id="eff_increment">10.00</span>%</p>
@@ -65,13 +65,13 @@
 				<p class="text">Efficiency: <span id="eff_mult">1.00</span></p>
 			</div>
 		</tr>
-		
+
 		<div id="newsbar" align="center">
 			<div id="news" align="center">
-				
+
 			</div>
 		</div>
-		 
+
 		<div id="navibtn" align="center">
 			<table>
 				<tr align="center">
@@ -87,7 +87,7 @@
 				</tr>
 			</table>
 		</div>
-		
+
 	    <div id="production_tab">
 			<table>
 				<tr align="center">
@@ -98,11 +98,11 @@
 					</td>
 				</tr>
 			</table>
-			
+
 			<div align="center">
 				<button onclick="buyMaxAll()" id="max_all" align="center" class="storebtn buy" style="width: 120px; height: 25px">Max All (M)</button>
 			</div>
-			
+
 			<div id="fuel_subtab">
 				<table>
 					<tr>
@@ -350,7 +350,7 @@
 					</tr>
 				</table>
 			</div>
-			
+
 			<div id="reactors_subtab">
 			    <table>
 			    	<tr id="reactor_row1">
@@ -466,7 +466,7 @@
 						</td>
 					</tr>
 				</table>
-				
+
 				<table>
 					<tr>
 						<td class="text" align="left" style="width:50vw">
@@ -487,7 +487,7 @@
 				</table>
 			</div>
 		</div>
-		
+
 		<div id="statistics_tab">
 			<table>
 				<tr align="center">
@@ -524,7 +524,7 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<div id="achievements_tab">
 			<table>
 				<tr>
@@ -581,7 +581,7 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<div id="options_tab">
 			<table>
 				<tr>
@@ -618,18 +618,18 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<div id="nanites_tab">
 			<div class="text" align="center">
 				You have <span id="nanites">0</span> Nanites.
 			</div>
 			<div align="center">
-				<button onclick="buyNaniteUp(0)" id="nanite_up0" style="font-size:15px" align="center">Spend <span id="nanite_upcost0">1 Nanite</span> to improve Efficiency Multiplier.</button></br>
+				<button onclick="player.nanites.ups[0].buy()" id="nanite_up0" style="font-size:15px" align="center">Spend <span id="nanite_upcost0">1 Nanite</span> to improve Efficiency Multiplier.</button></br>
 			</div>
 			<table>
 				<tr align="center">
 					<td align="right">
-						<button onclick="buyNaniteUp(11)" id="nanite_up11">
+						<button onclick="player.nanites.ups[1].buy()" id="nanite_up11">
 							All reactors get a boost based on time played<br/>
 							Formula: \(log_{10}(x)\)<br/>
 							Currently: <span id="nanite_upmult11">1.00</span>× <br/>
@@ -637,7 +637,7 @@
 						</button>
 					</td>
 					<td align="left">
-						<button onclick="buyNaniteUp(12)" id="nanite_up12">
+						<button onclick="player.nanites.ups[2].buy()" id="nanite_up12">
 							All reactors get a boost based on number of Nucleosyntheses<br/>
 							Formula: <span id="nanite_upformula12v1">\(x^{log_{10}(x+1)}\)</span><span id="nanite_upformula12v2">\((x - 7) * log_{8}(x)^{0.5}\)</span><br/>
 							Currently: <span id="nanite_upmult12">1.00</span>× <br/>
@@ -647,7 +647,7 @@
 				</tr>
 				<tr align="center">
 					<td align="right">
-						<button onclick="buyNaniteUp(21)" id="nanite_up21">
+						<button onclick="player.nanites.ups[3].buy()" id="nanite_up21">
 							All reactors get a boost based on current energy<br/>
 							Formula: \((\frac{log_{20}(x)}{20})^{2}\)<br/>
 							Currently: <span id="nanite_upmult21">1.00</span>× <br/>
@@ -655,7 +655,7 @@
 						</button>
 					</td>
 					<td align="left">
-						<button onclick="buyNaniteUp(22)" id="nanite_up22">
+						<button onclick="player.nanites.ups[4].buy()" id="nanite_up22">
 							All reactors get a boost based on total energy<br/>
 							Formula: \((\frac{log_{25}(x)}{40})^{2}\)<br/>
 							Currently: <span id="nanite_upmult22">1.00</span>× <br/>
@@ -665,13 +665,13 @@
 				</tr>
 				<tr align="center">
 					<td align="right">
-						<button onclick="buyNaniteUp(31)" id="nanite_up31">
+						<button onclick="player.nanites.ups[5].buy()" id="nanite_up31">
 							Increase multiplier from Nucleosyntheses from 2→2.2×<br/>
 							Cost: 3 Nanites
 						</button>
 					</td>
 					<td align="left">
-						<button onclick="buyNaniteUp(32)" id="nanite_up32">
+						<button onclick="player.nanites.ups[6].buy()" id="nanite_up32">
 							All reactors get a boost based on total nanites gained<br/>
 							Formula: \(log_{1.2}(x)\)<br/>
 							Currently: <span id="nanite_upmult32">1.00</span>× <br/>
@@ -681,12 +681,12 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<div id="meltdown_tab">
 			<table>
 				<tr align="center">
 					<td align="right">
-						<button onclick="buyMeltdownUp(11)" id="meltdown_up11">
+						<button onclick="player.meltdown.ups[0].buy()" id="meltdown_up11">
 							Mines and reactors get a multiplier based on meltdown stat<br/>
 							Formula: \(1 + \frac{x}{2}\)<br/>
 							Currently: <span id="meltdown_upmult11">1.00</span>× <br/>
@@ -694,7 +694,7 @@
 						</button>
 					</td>
 					<td align="center">
-						<button onclick="buyMeltdownUp(12)" id="meltdown_up12">
+						<button onclick="player.meltdown.ups[1].buy()" id="meltdown_up12">
 							Mines and reactors are significantly stronger in the first 100 seconds of resets<br/>
 							Formula: \((\frac{x + 1}{2})^{\frac{25}{x + 1}+1}\)</sup><br/>
 							Currently: <span id="meltdown_upmult12">1.00</span>× <br/>
@@ -702,7 +702,7 @@
 						</button>
 					</td>
 					<td align="center">
-						<button onclick="buyMeltdownUp(13)" id="meltdown_up13">
+						<button onclick="player.meltdown.ups[2].buy()" id="meltdown_up13">
 							Mines and reactors get a multiplier based on time spent in this meltdown<br/>
 							Formula: \(x^{0.2}\)<br/>
 							Currently: <span id="meltdown_upmult13">1.00</span>× <br/>
@@ -710,7 +710,7 @@
 						</button>
 					</td>
 					<td align="left">
-						<button onclick="buyMeltdownUp(14)" id="meltdown_up14">
+						<button onclick="player.meltdown.ups[3].buy()" id="meltdown_up14">
 							Mines and reactors get a multiplier based on total amount of Cf-251 reactors bought this meltdown<br/>
 							Formula: \(x\)<br/>
 							Currently: <span id="meltdown_upmult14">1.00</span>× <br/>
@@ -720,7 +720,7 @@
 				</tr>
 				<tr align="center">
 					<td align="right">
-						<button onclick="buyMeltdownUp(21)" id="meltdown_up21">
+						<button onclick="player.meltdown.ups[4].buy()" id="meltdown_up21">
 							Mines and reactors get a multiplier based on total nanites<br/>
 							Formula: \(x^{1.2}\)<br/>
 							Currently: <span id="meltdown_upmult21">1.00</span>× <br/>
@@ -728,7 +728,7 @@
 						</button>
 					</td>
 					<td align="center">
-						<button onclick="buyMeltdownUp(22)" id="meltdown_up22">
+						<button onclick="player.meltdown.ups[5].buy()" id="meltdown_up22">
 							Mines and reactors get a multiplier based on corium<br/>
 							Formula: \(log_{2}(x+2)^{0.9}\)<br/>
 							Currently: <span id="meltdown_upmult22">1.00</span>× <br/>
@@ -736,7 +736,7 @@
 						</button>
 					</td>
 					<td align="center">
-						<button onclick="buyMeltdownUp(23)" id="meltdown_up23">
+						<button onclick="player.meltdown.ups[6].buy()" id="meltdown_up23">
 							<br/>
 							Formula: \(\)<br/>
 							Currently: <span id="meltdown_upmult23">1.00</span>× <br/>
@@ -744,7 +744,7 @@
 						</button>
 					</td>
 					<td align="left">
-						<button onclick="buyMeltdownUp(24)" id="meltdown_up24">
+						<button onclick="player.meltdown.ups[7].buy()" id="meltdown_up24">
 							<br/>
 							Formula: \(\)<br/>
 							Currently: <span id="meltdown_upmult24">1.00</span>× <br/>
@@ -754,25 +754,25 @@
 				</tr>
 				<tr align="center">
 					<td align="right">
-						<button onclick="buyMeltdownUp(31)" id="meltdown_up31">
+						<button onclick="player.meltdown.ups[8].buy()" id="meltdown_up31">
 							The multiplier per bought mine and reactor is increased to 3×<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
-						<button onclick="buyMeltdownUp(32)" id="meltdown_up32">
+						<button onclick="player.meltdown.ups[9].buy()" id="meltdown_up32">
 							Non-Rebuyable nanite upgrades are more powerful<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
-						<button onclick="buyMeltdownUp(33)" id="meltdown_up33">
+						<button onclick="player.meltdown.ups[10].buy()" id="meltdown_up33">
 							The fuel usage of reactors is reduced by 10%<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="left">
-						<button onclick="buyMeltdownUp(34)" id="meltdown_up34">
+						<button onclick="player.meltdown.ups[11].buy()" id="meltdown_up34">
 							<br/>
 							Cost: 1 Corium
 						</button>
@@ -780,28 +780,28 @@
 				</tr>
 				<tr align="center">
 					<td align="right">
-						<button onclick="buyMeltdownUp(41)" id="meltdown_up41">
+						<button onclick="player.meltdown.ups[12].buy()" id="meltdown_up41">
 							Reactors and Mines boost each other<br/>
 							<p id="meltdown_up41_text"></p><br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
-						<button onclick="buyMeltdownUp(42)" id="meltdown_up42">
+						<button onclick="player.meltdown.ups[13].buy()" id="meltdown_up42">
 							You passively gain Corium and Meltdown stat<br/>
 							<p id="meltdown_up42_text"></p><br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="center">
-						<button onclick="buyMeltdownUp(43)" id="meltdown_up43">
+						<button onclick="player.meltdown.ups[14].buy()" id="meltdown_up43">
 							You start with Nucleosynthesises<br/>
 							<p id="meltdown_up43_text"></p><br/>
 							Cost: 1 Corium
 						</button>
 					</td>
 					<td align="left">
-						<button onclick="buyMeltdownUp(44)" id="meltdown_up44">
+						<button onclick="player.meltdown.ups[15].buy()" id="meltdown_up44">
 							You start with nanites<br/>
 							<p id="meltdown_up44_text"></p><br/>
 							Cost: 1 Corium
@@ -810,7 +810,7 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<div id="cheats_tab">
 			<table>
 				<tr style="width:420px" align="center">
@@ -882,7 +882,7 @@
 				</tr>
 			</table>
 		</div>
-		
+
 		<div align="center">
 			<a href="https://discord.gg/RyQwwzW" target="_blank" align="center">
 				Discord Server

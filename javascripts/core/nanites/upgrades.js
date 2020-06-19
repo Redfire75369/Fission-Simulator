@@ -37,7 +37,7 @@ class EfficiencyNaniteUpgrade extends NaniteUpgrade {
 	constructor() {
 		super(0, 1, 1, 1);
 	}
-	
+
 	get cost() {
 		if (this.bought < 2) {
 			return new Decimal(1);
@@ -49,20 +49,22 @@ class EfficiencyNaniteUpgrade extends NaniteUpgrade {
 	get buyable() {
 		let boughtAll = true;
 		for (let up = 1; up < player.nanites.ups.length; up++) {
-			if (player.nanites.ups[up].bought <= player.nanites.ups[up].tiers) {
+			if (player.nanites.ups[up].bought < player.nanites.ups[up].tiers) {
 				boughtAll=false;
 			}
 		}
-		if (boughtAll || player.nanites.ups[0] < 2) {
+		if (boughtAll || player.nanites.ups[0].bought < 2) {
 			return player.nanites.nanites.gte(this.cost);
 		} else {
 			return false;
 		}
 	}
-	
+
 	buy() {
-		player.nanites.nanites = player.nanites.nanites.sub(this.cost);
-		this.bought++;
+		if (this.buyable) {
+			player.nanites.nanites = player.nanites.nanites.sub(this.cost);
+			this.bought++;
+		}
 	}
 }
 
@@ -84,12 +86,12 @@ function getTotalNaniteUpMult(tier) {
 
 function updateUINaniteUps() {
 	document.getElementById("nanites_tabbtn").style.display = player.unlocked.naniteUps || player.unlocked.meltdown ? "inline-block" : "none";
-	
+
 	document.getElementById("nanites").innerText = notation(player.nanites.nanites);
-	
-	document.getElementById("nanite_upcost0").innerText = player.nanites.ups[0].cost.neq(1) ? (player.nanites.up[0].cost + " Nanites") : "1 Nanite";
+
+	document.getElementById("nanite_upcost0").innerText = player.nanites.ups[0].cost.neq(1) ? (player.nanites.ups[0].cost + " Nanites") : "1 Nanite";
 	document.getElementById("nanite_up0").className = player.nanites.ups[0].buyable ? "naniteup buy" : "naniteup locked";
-	
+
 	document.getElementById("nanite_upformula12v1").style.display =  player.nucleosynthesis <= 13 ? "inline-block" : "none";
 	document.getElementById("nanite_upformula12v2").style.display =  player.nucleosynthesis > 13 ? "inline-block" : "none";
 

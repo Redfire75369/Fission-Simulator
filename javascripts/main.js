@@ -5,25 +5,25 @@ function getDefaultData() {
 			beta: 4,
 			alpha: 10
 		},
-		
+
 		options: {
 			notation: "Scientific",
 			notationNo: 0,
 			theme: "Light",
 			themeNo: 0
 		},
-		
+
 		navigation: {
 			naviTab: "production_tab",
 			production: "mines_subtab"
 		},
-		
+
 		unlocked: {
 				naniteUps: false,
 				meltdown: false,
 				decayHasten: false
 		},
-		
+
 		achievements: {
 			11: false,
 			12: false,
@@ -42,12 +42,12 @@ function getDefaultData() {
 			27: false,
 			28: false
 		},
-		
+
 		energy: new Decimal(100),
 		totalEnergy: new Decimal(100),
-		
+
 		moderator: 0,
-		
+
 		eff: new Efficiency(1e3, 1e1),
 		mines: [
 			new Mine(1, 3),
@@ -69,9 +69,9 @@ function getDefaultData() {
 			new Reactor(24, 13),
 			new Reactor(30, 14)
 		],
-		
+
 		nucleosynthesis: 0,
-		
+
 		nanites: {
 			nanites: new Decimal(0),
 			total: new Decimal(0),
@@ -85,40 +85,40 @@ function getDefaultData() {
 				new NaniteUpgrade(32, 4),
 			]
 		},
-		
+
 		meltdown: {
 			totalNanites: new Decimal(0),
-			
+
 			amount: 0,
 			corium: new Decimal(0),
 			total: new Decimal(0),
-			
+
 			energyGoal: Decimal.pow(2, 1024),
 			time: 0,
 			bestTime: 756864000000,
-			ups: {
-				11: 0,
-				12: 0,
-				13: 0,
-				14: 0,
-				21: 0,
-				22: 0,
-				23: 0,
-				24: 0,
-				31: 0,
-				32: 0,
-				33: 0,
-				34: 0,
-				41: 0,
-				42: 0,
-				43: 0,
-				44: 0,
-			},
+			ups: [
+				new MeltdownUpgrade(11, 1, 1, 1),
+				new MeltdownUpgrade(12, 1, 1, 1),
+				new MeltdownUpgrade(13, 1, 1, 1),
+				new MeltdownUpgrade(14, 1, 1, 1),
+				new MeltdownUpgrade(21, 1, 1, 1),
+				new MeltdownUpgrade(22, 1, 1, 1),
+				new MeltdownUpgrade(23, 1, 1, 1),
+				new MeltdownUpgrade(24, 1, 1, 1),
+				new MeltdownUpgrade(31, 1, 1, 1),
+				new MeltdownUpgrade(32, 1, 1, 1),
+				new MeltdownUpgrade(33, 1, 1, 1),
+				new MeltdownUpgrade(34, 1, 1, 1),
+				new MeltdownUpgrade(41, 1, 4, 2),
+				new MeltdownUpgrade(42, 1, 4, 2),
+				new MeltdownUpgrade(43, 1, 4, 2),
+				new MeltdownUpgrade(44, 1, 4, 2),
+			],
 			breakUps: {0: 0}
 		},
-		
+
 		imported42: false,
-		
+
 		time: 0,
 		timeOnline: 0,
 		lastUpdate: Date.now()
@@ -132,7 +132,7 @@ const zero = new Decimal(0);
 
 var focused = true;
 window.onvisibilitychange = function() {
-  focused = !focused;  
+  focused = !focused;
 }
 
 function updateUI() {
@@ -179,10 +179,10 @@ function simulateTime(seconds, actual, testing) {
 		updateGame(tickInterval);
 		player.lastUpdate = Date.now();
 	}
-	
+
 	player.time += seconds * 1000;
 	player.meltdown.time += seconds * 1000;
-	
+
 	let offlinePopup = "While you were away, "
 	if (player.energy.gt(start.energy)) {
 		offlinePopup += "your energy increased by " + notation(player.energy.log10() - start.energy.log10()) + " Orders of Magnitude.";

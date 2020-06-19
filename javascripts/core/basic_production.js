@@ -11,7 +11,7 @@ class Mine extends GenericEnergyProducer {
 	constructor(start, scale) {
 		super(start, scale, 10, 308);
 	}
-	
+
 	get totalMult() {
 		let mult = new Decimal(1);
 		let perBuyMult = player.meltdown.ups[31] == 1 ? new Decimal(3) : new Decimal(2);
@@ -29,7 +29,7 @@ class Reactor extends GenericEnergyProducer {
 	constructor(start, scale) {
 		super(start, scale, 10, 308);
 	}
-	
+
 	get totalMult() {
 		let mult = new Decimal(1);
 		let perBuyMult = player.meltdown.ups[31] == 1 ? new Decimal(3) : new Decimal(2);

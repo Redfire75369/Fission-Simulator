@@ -30,25 +30,25 @@ function loadSave(save, imported = false) {
 		} else {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
-		
+
 		if (save.version.alpha < 4 || (save.version.alpha == 4 && save.version.beta < 4)) {
 			alert("Your save is from a much older version and is thus, incompatible with the current version. Your save has been reset.");
             localStorage.removeItem("fissionSimSave1")
             save = JSON.parse(LZString.decompressFromBase64(LZString.compressToBase64(JSON.stringify(getDefaultData()))));
         }
-        
+
 		if (save !== undefined) {
 			for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
 				let key = keys[i];
-				
+
 				if (typeof getDefaultData()[key] == "object" && checkObj(getDefaultData()[key])) {
 					for (let j = 0, keys2 = Object.keys(getDefaultData()[key]), jj = keys2.length; j < jj; j++) {
 						let key2= keys2[j];
-						
+
 						if (typeof getDefaultData()[key][key2] == "object" && checkObj(getDefaultData()[key][key2])) {
-							for (let k = 0, keys3 = Object.keys(getDefaultData()[key][key2]), kk = keys3.length; k < kk; k++) {							
+							for (let k = 0, keys3 = Object.keys(getDefaultData()[key][key2]), kk = keys3.length; k < kk; k++) {
 								let key3 = keys3[k];
-								
+
 								checkAssign(getDefaultData()[key][key2][key3], save[key][key2][key3], key, key2, key3);
 							}
 						} else {
@@ -66,7 +66,7 @@ function loadSave(save, imported = false) {
 			if (!player.navigation.production.includes("_subtab")) {
 				player.navigation.production = player.navigation.production + "_subtab";
 			}
-			
+
 			if (!player.navigation.production.includes("resources")) {
 				player.navigation.production = "fuel_subtab";
 			}
@@ -148,20 +148,32 @@ function objectify(x, type) {
 	if (type instanceof Decimal) {
 		return new Decimal(x);
 	} else if (type instanceof Mine) {
-		let ret = new Mine(type.tier, type.costStart, type.costMult);
+		let ret = new Mine(type.startCost.log10(), type.scaleCost.log10());
 		ret.amount = new Decimal(x.amount);
 		ret.bought = x.bought;
 		return ret;
 	} else if (type instanceof Reactor) {
-		let ret = new Reactor(type.tier, type.costStart, type.costMult);
+		let ret = new Reactor(type.startCost.log10(), type.scaleCost.log10());
 		ret.amount = new Decimal(x.amount);
 		ret.bought = x.bought;
 		return ret;
 	} else if (type instanceof Efficiency) {
-		let ret = new Efficiency(type.costStart, type.costMult);
+		let ret = new Efficiency(type.startCost, type.scaleCost);
 		ret.bought = x.bought;
 		return ret;
-	} else {
+  } else if (type instanceof EfficiencyNaniteUpgrade) {
+    let ret = new EfficiencyNaniteUpgrade();
+    ret.bought = x.bought;
+    return ret;
+  } else if (type instanceof NaniteUpgrade) {
+    let ret = new NaniteUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
+    ret.bought = x.bought;
+    return ret;
+  } else if (type instanceof MeltdownUpgrade) {
+      let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
+      ret.bought = x.bought;
+      return ret;
+  } else {
 		return x;
 	}
 }
