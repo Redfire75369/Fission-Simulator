@@ -6,10 +6,14 @@ const reactorCostVar = {
 	cost: [new Decimal("1e1"), new Decimal("1e2"), new Decimal("1e5"), new Decimal("1e8"), new Decimal("1e13"), new Decimal("1e18"), new Decimal("1e25"), new Decimal("1e32")],
 	costMult: [new Decimal("1e4"), new Decimal("1e5"), new Decimal("1e6"), new Decimal("1e8"), new Decimal("1e9"), new Decimal("1e12"), new Decimal("1e14"), new Decimal("1e15")]
 }
+var mineTier = 0;
+var reactorTier = 0;
 
 class Mine extends GenericEnergyProducer {
 	constructor(start, scale) {
 		super(start, scale, 10, 308);
+		this.tier = mineTier;
+		mineTier++;
 	}
 
 	get totalMult() {
@@ -28,6 +32,8 @@ class Mine extends GenericEnergyProducer {
 class Reactor extends GenericEnergyProducer {
 	constructor(start, scale) {
 		super(start, scale, 10, 308);
+		this.tier = reactorTier;
+		reactorTier++;
 	}
 
 	get totalMult() {

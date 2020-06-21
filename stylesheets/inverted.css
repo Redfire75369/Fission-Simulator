@@ -25,7 +25,7 @@ button:hover {
 	border: 2px solid white;
 	border-radius: 4px;
 }
-.navitabbtn:hover {	
+.navitabbtn:hover {
 }
 
 .subtabbtn {
@@ -37,7 +37,7 @@ button:hover {
 	border: 2px solid #efefef;
 	border-radius: 4px;
 }
-.subtabbtn:hover {	
+.subtabbtn:hover {
 }
 
 .achpic {
@@ -72,10 +72,10 @@ button:hover {
 	text-align:center;
 	padding: 10px;
 	padding-bottom: 15px;
-	z-index: 2;
+	z-index: 3;
 	transform: translateX(-50%) translateY(-50%);
 }
-#newsb {
+#newsbar {
 	width: 80%;
 	height: 20px;
 	border: 3px solid #ffffff;

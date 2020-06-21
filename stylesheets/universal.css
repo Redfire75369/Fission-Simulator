@@ -102,20 +102,3 @@
     filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=70);
     opacity: 1;
 }
-
-.popup {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	color: #202020;
-	background-color: #ffffff;
-	border: 3px solid #000000;
-	border-radius: 6px;
-	display: flex;
-	align-items: center;
-	text-align:center;
-	padding: 10px;
-	padding-bottom: 15px;
-	transform: translateX(-50%) translateY(-50%);
-	z-index: 2;
-}

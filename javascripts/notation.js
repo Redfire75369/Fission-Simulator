@@ -40,6 +40,9 @@ function notation(x, dp = 2, dpUnder1e5 = 2, showAboveInfinite = false) {
 }
 
 function formatTime(time) {
+	if (player.options.notation == "Blind") {
+		return "";
+	}
 	if (time >= 31536000000) {
 		return floor(time / 31536000000) + " years, " + floor((time % 31536000000) / 86400000) + " days, " + floor((time % 86400000) / 3600000) + " hours, " + floor((time % 3600000) / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
 	} else if (time >= 86400000) {
@@ -50,5 +53,5 @@ function formatTime(time) {
 		return floor(time / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds"
 	} else {
 		return round(time / 1000, 3) + " seconds"
-	} 
+	}
 }

@@ -2,7 +2,7 @@ const achs = [11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 28];
 
 const achTexts = [
 	"Is this 2D Minecraft? Buy an Iron-Tipped Drill Mine.",
-	"I have the power inside. Obtain 1000J of Energy.",
+	"I have the power inside. Obtain 1000 Energy.",
 	"<Suggest Ideas in the Discord Server>",
 	"WIP. Nucleosynthesise for the first time.",
 	"<Suggest Ideas in the Discord Server>",
