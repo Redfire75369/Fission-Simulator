@@ -1,7 +1,7 @@
 body {
 	color: #202020;
 	background-color:#ffffff;
-	font-size: 15px;	
+	font-size: 15px;
 	overflow-x: hidden;
 }
 table {
@@ -106,23 +106,6 @@ button:hover {
 	background-color: #808080;
 	border: 1px solid red;
 	margin: 100px;
-}
-
-.popup {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	color: #202020;
-	background-color: #ffffff;
-	border: 3px solid #000000;
-	border-radius: 6px;
-	display: flex;
-	align-items: center;
-	text-align:center;
-	padding: 10px;
-	padding-bottom: 15px;
-	transform: translateX(-50%) translateY(-50%);
-	z-index: 2;
 }
 
 #newsbar {
