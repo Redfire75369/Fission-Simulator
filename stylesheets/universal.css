@@ -15,9 +15,9 @@
     bottom: 100%;
     left: 50%;
     margin-bottom: 5px;
-    margin-left: -80px;
-    padding: 7px;
-    width: 160px;
+    margin-left: -6.25vw;
+    padding: 3px;
+    width: 12.5vw;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -33,7 +33,7 @@
     position: absolute;
     bottom: 100%;
     left: 45%;
-    margin-left: -5px;
+    margin-left: 0px;
     width: 0;
     border-top: 5px solid #000000;
     border-right: 5px solid transparent;
@@ -67,9 +67,9 @@
     bottom: 100%;
     left: 50%;
     margin-bottom: 5px;
-    margin-left: -80px;
-    padding: 7px;
-    width: 160px;
+    margin-left: -6.25vw;
+    padding: 3px;
+    width: 12.5vw;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -85,7 +85,7 @@
     position: absolute;
     bottom: 100%;
     left: 45%;
-    margin-left: -5px;
+    margin-left: 0px;
     width: 0;
     border-top: 5px solid #000000;
     border-right: 5px solid transparent;

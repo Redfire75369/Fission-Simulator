@@ -46,14 +46,14 @@ button:hover {
 	opacity: 0.7;
 }
 .achcomplete {
-	width: 100px;
+	width: 12.5vw;
 	height: 100px;
 	background-color: #ff7fff;
 	border: 1px solid #ffbbff;
 	margin: 100px;
 }
 .achlocked {
-	width: 100px;
+	width: 12.5vw;
 	height: 100px;
 	background-color: #7f7f7f;
 	border: 1px solid #00ffff;

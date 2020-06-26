@@ -110,3 +110,12 @@ function updateUIReactors() {
 		document.getElementById("reactor_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.reactors[tier - 1].bought > 0 ? "table-row" : "none";
 	}
 }
+
+function updateUIMaxAll() {
+	let usable = false;
+	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4) && (!usable); tier ++) {
+		usable = player.mines[tier].buyable;
+		usable |= player.reactors[tier].buyable;
+	}
+	document.getElementById("max_all").className = usable ? "storebtn buy" : "storebtn locked";
+}

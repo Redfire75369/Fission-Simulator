@@ -270,7 +270,7 @@
         return "ω(" + omegaAmount.toFixed(0) + ")^" + lastLetter;
       } else if (omegaOrder < 3) {
         return "ω(" + this.formatDecimal(omegaAmount) + ")^" + lastLetter;
-      } else if (omegaOrder < 6) {
+      } else if (omegaOrder < 5) {
         return "ω(" + this.formatDecimal(omegaAmount) + ")";
       } else {
         var val = Decimal.pow(8000, omegaOrder % 1);

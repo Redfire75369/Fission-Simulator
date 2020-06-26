@@ -1,23 +1,3 @@
-const meltdownUpCost = {
-	11: new Decimal(1),
-	12: new Decimal(1),
-	13: new Decimal(1),
-	14: new Decimal(1),
-	21: new Decimal(1),
-	22: new Decimal(1),
-	23: new Decimal(1),
-	24: new Decimal(1),
-	31: new Decimal(1),
-	32: new Decimal(1),
-	33: new Decimal(1),
-	34: new Decimal(1),
-	41: new Decimal(1),
-	42: new Decimal(1),
-	43: new Decimal(1),
-	44: new Decimal(1),
-}
-const meltdownUpList = [11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34, 41, 42, 43, 44];
-
 class MeltdownUpgrade extends GenericUpgrade {
 	constructor(id, cost, tiers = 1, scale = 1) {
 		super(new Decimal(cost), tiers, new Decimal(scale));
@@ -96,7 +76,7 @@ function getMeltdownUp41Mult(tier) {
 
 function getTotalMeltdownUpMult(tier) {
 	let ret = new Decimal(1);
-	for (let id = 0; id < meltdownUpList.length; id++) {
+	for (let id = 0; id < player.meltdown.ups.length; id++) {
 		if (player.meltdown.ups[id] == 1 && (player.meltdown.ups[id].mult[0] == tier || player.meltdown.ups[id].mult[0] == 8)) {
 			ret = ret.mul(player.meltdown.ups[id].mult[1]);
 		}
@@ -113,6 +93,8 @@ function updateUIMeltdownUps() {
 			if (i <= 7) {
 				document.getElementById("meltdown_upmult" + player.meltdown.ups[i].id).innerText = notation(player.meltdown.ups[i].mult[1]);
 			}
+		} else {
+			document.getElementById("meltdown_upcost" + player.meltdown.ups[i].id).innerText = notation(player.meltdown.ups[i].cost);
 		}
 		document.getElementById("meltdown_up" + player.meltdown.ups[i].id).className = player.meltdown.ups[i].bought == player.meltdown.ups[i].tiers ? "meltdownup bought" : player.meltdown.ups[i].buyable ? "meltdownup buy" : "meltdownup locked";
 	}

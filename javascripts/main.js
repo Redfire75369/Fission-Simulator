@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 4,
-			alpha: 10
+			alpha: 13
 		},
 
 		options: {
@@ -137,6 +137,7 @@ window.onvisibilitychange = function() {
 
 function updateUI() {
 	updateUIEnergy();
+	updateUIMaxAll();
 	updateUIFuel();
 	updateUIMines();
 	updateUIReactors();

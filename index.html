@@ -7,6 +7,11 @@
 	  <link rel="stylesheet" href="stylesheets/light.css" id="style"/>
 		<link rel="stylesheet" href="stylesheets/katex.css"/>
 
+		<meta property="og:type" content="game"/>
+		<meta property="og:title" content="Fission Simulator"/>
+		<meta property="og:description" content="An Incremental Game about Reactors"/>
+		<meta property="og:url" content="file:///C:/Users/Afzal/Desktop/Fission-Simulator/index.html"/>
+
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/auto-render.js" charset="utf-8" type="text/javascript" onload="renderMathInElement(document.body)"></script>
@@ -99,7 +104,7 @@
 			</table>
 
 			<div align="center">
-				<button onclick="buyMaxAll()" id="max_all" align="center" class="storebtn buy" style="width: 120px; height: 25px">Max All (M)</button>
+				<button onclick="buyMaxAll()" id="max_all" align="center" class="storebtn buy">Max All (M)</button>
 			</div>
 
 			<div id="fuel_subtab">
@@ -239,112 +244,112 @@
 						<td class="text" style="width:40vw" align="left">
 							Iron-Tipped Drill Mine ×<span id="mine_mult1">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="mine_amt1">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.mines[0].buy()" id="mine_buysingle1" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost1">10.00</span></button>
+						<td align="right">
+							<button onclick="player.mines[0].buy()" id="mine_buysingle1" align="right">Cost: <span id="mine_cost1">10.00</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.mines[0].buyMax()" id="mine_buymax1" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.mines[0].buyMax()" id="mine_buymax1" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row2">
 						<td class="text" style="width:40vw" align="left">
 							Steel-Tipped Drill Mine ×<span id="mine_mult2">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="mine_amt2">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.mines[1].buy()" id="mine_buysingle2" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost2">100.00</span></button>
+						<td align="right">
+							<button onclick="player.mines[1].buy()" id="mine_buysingle2" align="right">Cost: <span id="mine_cost2">100.00</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.mines[1].buyMax()" id="mine_buymax2" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.mines[1].buyMax()" id="mine_buymax2" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row3">
 						<td class="text" style="width:40vw" align="left">
 							Titanium-Tipped Drill Mine ×<span id="mine_mult3">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="mine_amt3">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.mines[2].buy()" id="mine_buysingle3" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost3">1.00e4 </span></button>
+						<td align="right">
+							<button onclick="player.mines[2].buy()" id="mine_buysingle3" align="right">Cost: <span id="mine_cost3">1.00e4 </span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.mines[2].buyMax()" id="mine_buymax3" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.mines[2].buyMax()" id="mine_buymax3" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row4">
 						<td class="text" style="width:40vw" align="left">
 							Iridium-Tipped Drill Mine ×<span id="mine_mult4">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="mine_amt4">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.mines[3].buy()" id="mine_buysingle4" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost4">1.00e6</span></button>
+						<td align="right">
+							<button onclick="player.mines[3].buy()" id="mine_buysingle4" align="right">Cost: <span id="mine_cost4">1.00e6</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.mines[3].buyMax()" id="mine_buymax4" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.mines[3].buyMax()" id="mine_buymax4" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row5">
 						<td class="text" style="width:40vw" align="left">
 							Tungstensteel-Tipped Drill Mine ×<span id="mine_mult5">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="mine_amt5">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.mines[4].buy()" id="mine_buysingle5" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost5">1.00e9</span></button>
+						<td align="right">
+							<button onclick="player.mines[4].buy()" id="mine_buysingle5" align="right">Cost: <span id="mine_cost5">1.00e9</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.mines[4].buyMax()" id="mine_buymax5" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.mines[4].buyMax()" id="mine_buymax5" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row6">
 						<td class="text" style="width:40vw" align="left">
 							Osmium-Tipped Drill Mine ×<span id="mine_mult6">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="mine_amt6">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.mines[5].buy()" id="mine_buysingle6" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost6">1.00e13</span></button>
+						<td align="right">
+							<button onclick="player.mines[5].buy()" id="mine_buysingle6" align="right">Cost: <span id="mine_cost6">1.00e13</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.mines[5].buyMax()" id="mine_buymax6" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.mines[5].buyMax()" id="mine_buymax6" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row7">
 						<td class="text" style="width:40vw" align="left">
 							Diamond-Tipped Drill Mine ×<span id="mine_mult7">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="mine_amt7">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.mines[6].buy()" id="mine_buysingle7" style="width: 120px; height: 25px">Cost: <span id="mine_cost7">1.00e18</span></button>
+						<td align="right">
+							<button onclick="player.mines[6].buy()" id="mine_buysingle7">Cost: <span id="mine_cost7">1.00e18</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.mines[6].buyMax()" id="mine_buymax7" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.mines[6].buyMax()" id="mine_buymax7">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="mine_row8">
 						<td class="text" style="width:40vw" align="left">
 							 Laser Drill Mine ×<span id="mine_mult8">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="mine_amt8">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.mines[7].buy()" id="mine_buysingle8" align="right" style="width: 120px; height: 25px">Cost: <span id="mine_cost8">1.00e24</span></button>
+						<td align="right">
+							<button onclick="player.mines[7].buy()" id="mine_buysingle8" align="right">Cost: <span id="mine_cost8">1.00e24</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.mines[7].buyMax()" id="mine_buymax8" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.mines[7].buyMax()" id="mine_buymax8" align="right">Buy Max</button>
 						</td>
 					</tr>
 				</table>
@@ -356,112 +361,112 @@
 						<td class="text" style="width:40vw" align="left">
 							Thorium-227 Reactor ×<span id="reactor_mult1">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="reactor_amt1">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.reactors[0].buy()" id="reactor_buysingle1" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost1">10.00</span></button>
+						<td align="right">
+							<button onclick="player.reactors[0].buy()" id="reactor_buysingle1" align="right">Cost: <span id="reactor_cost1">10.00</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.reactors[0].buyMax()" id="reactor_buymax1" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.reactors[0].buyMax()" id="reactor_buymax1" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row2">
 						<td class="text" style="width:40vw" align="left">
 							Uranium-235 Reactor ×<span id="reactor_mult2">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="reactor_amt2">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.reactors[1].buy()" id="reactor_buysingle2" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost2">100.00</span></button>
+						<td align="right">
+							<button onclick="player.reactors[1].buy()" id="reactor_buysingle2" align="right">Cost: <span id="reactor_cost2">100.00</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.reactors[1].buyMax()" id="reactor_buymax2" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.reactors[1].buyMax()" id="reactor_buymax2" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row3">
 						<td class="text" style="width:40vw" align="left">
 							Neptunium-234 Reactor ×<span id="reactor_mult3">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="reactor_amt3">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.reactors[2].buy()" id="reactor_buysingle3" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost3">1.00e4 </span></button>
+						<td align="right">
+							<button onclick="player.reactors[2].buy()" id="reactor_buysingle3" align="right">Cost: <span id="reactor_cost3">1.00e4 </span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.reactors[2].buyMax()" id="reactor_buymax3" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.reactors[2].buyMax()" id="reactor_buymax3" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row4">
 						<td class="text" style="width:40vw" align="left">
 							Plutonium-237 Reactor ×<span id="reactor_mult4">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="reactor_amt4">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.reactors[3].buy()" id="reactor_buysingle4" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost4">1.00e6</span></button>
+						<td align="right">
+							<button onclick="player.reactors[3].buy()" id="reactor_buysingle4" align="right">Cost: <span id="reactor_cost4">1.00e6</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.reactors[3].buyMax()" id="reactor_buymax4" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.reactors[3].buyMax()" id="reactor_buymax4" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row5">
 						<td class="text" style="width:40vw" align="left">
 							Americium-242m Reactor ×<span id="reactor_mult5">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="reactor_amt5">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.reactors[4].buy()" id="reactor_buysingle5" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost5">1.00e9</span></button>
+						<td align="right">
+							<button onclick="player.reactors[4].buy()" id="reactor_buysingle5" align="right">Cost: <span id="reactor_cost5">1.00e9</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.reactors[4].buyMax()" id="reactor_buymax5" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.reactors[4].buyMax()" id="reactor_buymax5" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row6">
 						<td class="text" style="width:40vw" align="left">
 							Curium-245 Reactor ×<span id="reactor_mult6">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="reactor_amt6">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.reactors[5].buy()" id="reactor_buysingle6" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost6">1.00e13</span></button>
+						<td align="right">
+							<button onclick="player.reactors[5].buy()" id="reactor_buysingle6" align="right">Cost: <span id="reactor_cost6">1.00e13</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.reactors[5].buyMax()" id="reactor_buymax6" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.reactors[5].buyMax()" id="reactor_buymax6" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row7">
 						<td class="text" style="width:40vw" align="left">
 							Berkelium-248 Reactor ×<span id="reactor_mult7">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="reactor_amt7">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.reactors[6].buy()" id="reactor_buysingle7" style="width: 120px; height: 25px">Cost: <span id="reactor_cost7">1.00e18</span></button>
+						<td align="right">
+							<button onclick="player.reactors[6].buy()" id="reactor_buysingle7" align="right">Cost: <span id="reactor_cost7">1.00e18</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.reactors[6].buyMax()" id="reactor_buymax7" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.reactors[6].buyMax()" id="reactor_buymax7" align="right">Buy Max</button>
 						</td>
 					</tr>
 					<tr id="reactor_row8">
 						<td class="text" style="width:40vw" align="left">
 							Californium-251 Reactor ×<span id="reactor_mult8">1</span>
 						</td>
-						<td class="text" style="width:40vw">
+						<td class="text" style="width:20vw">
 							<span id="reactor_amt8">0.00 (0)</span>
 						</td>
-						<td style="width:10vw">
-							<button onclick="player.reactors[7].buy()" id="reactor_buysingle8" align="right" style="width: 120px; height: 25px">Cost: <span id="reactor_cost8">1.00e24</span></button>
+						<td align="right">
+							<button onclick="player.reactors[7].buy()" id="reactor_buysingle8" align="right">Cost: <span id="reactor_cost8">1.00e24</span></button>
 						</td>
-						<td align="right" style="width:10vw">
-							<button onclick="player.reactors[7].buyMax()" id="reactor_buymax8" align="right" style="width: 120px; height: 25px">Buy Max</button>
+						<td align="left" style="width:10vw">
+							<button onclick="player.reactors[7].buyMax()" id="reactor_buymax8" align="right">Buy Max</button>
 						</td>
 					</tr>
 				</table>
@@ -684,7 +689,7 @@
 		<div id="meltdown_tab">
 			<table>
 				<tr align="center">
-					<td align="right">
+					<td align="right" style="width:24vw">
 						<button onclick="player.meltdown.ups[0].buy()" id="meltdown_up11">
 							Mines and reactors get a multiplier based on meltdown stat<br/>
 							Formula: \(1 + \frac{x}{2}\)<br/>
@@ -692,7 +697,7 @@
 							Cost: 1 Corium
 						</button>
 					</td>
-					<td align="center">
+					<td align="center" style="width:24vw">
 						<button onclick="player.meltdown.ups[1].buy()" id="meltdown_up12">
 							Mines and reactors are significantly stronger in the first 100 seconds of resets<br/>
 							Formula: \((\frac{x + 1}{2})^{\frac{25}{x + 1}+1}\)</sup><br/>
@@ -700,7 +705,7 @@
 							Cost: 1 Corium
 						</button>
 					</td>
-					<td align="center">
+					<td align="center" style="width:24vw">
 						<button onclick="player.meltdown.ups[2].buy()" id="meltdown_up13">
 							Mines and reactors get a multiplier based on time spent in this meltdown<br/>
 							Formula: \(x^{0.2}\)<br/>
@@ -708,7 +713,7 @@
 							Cost: 1 Corium
 						</button>
 					</td>
-					<td align="left">
+					<td align="left" style="width:24vw">
 						<button onclick="player.meltdown.ups[3].buy()" id="meltdown_up14">
 							Mines and reactors get a multiplier based on total amount of Cf-251 reactors bought this meltdown<br/>
 							Formula: \(x\)<br/>
@@ -718,7 +723,7 @@
 					</td>
 				</tr>
 				<tr align="center">
-					<td align="right">
+					<td align="right" style="width:24vw">
 						<button onclick="player.meltdown.ups[4].buy()" id="meltdown_up21">
 							Mines and reactors get a multiplier based on total nanites<br/>
 							Formula: \(x^{1.2}\)<br/>
@@ -726,7 +731,7 @@
 							Cost: 1 Corium
 						</button>
 					</td>
-					<td align="center">
+					<td align="center" style="width:24vw">
 						<button onclick="player.meltdown.ups[5].buy()" id="meltdown_up22">
 							Mines and reactors get a multiplier based on corium<br/>
 							Formula: \(log_{2}(x+2)^{0.9}\)<br/>
@@ -734,7 +739,7 @@
 							Cost: 1 Corium
 						</button>
 					</td>
-					<td align="center">
+					<td align="center" style="width:24vw">
 						<button onclick="player.meltdown.ups[6].buy()" id="meltdown_up23">
 							<br/>
 							Formula: \(\)<br/>
@@ -742,7 +747,7 @@
 							Cost: 1 Corium
 						</button>
 					</td>
-					<td align="left">
+					<td align="left" style="width:24vw">
 						<button onclick="player.meltdown.ups[7].buy()" id="meltdown_up24">
 							<br/>
 							Formula: \(\)<br/>
@@ -752,25 +757,25 @@
 					</td>
 				</tr>
 				<tr align="center">
-					<td align="right">
+					<td align="right" style="width:24vw">
 						<button onclick="player.meltdown.ups[8].buy()" id="meltdown_up31">
 							The multiplier per bought mine and reactor is increased to 3×<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
-					<td align="center">
+					<td align="center" style="width:24vw">
 						<button onclick="player.meltdown.ups[9].buy()" id="meltdown_up32">
 							Non-Rebuyable nanite upgrades are more powerful<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
-					<td align="center">
+					<td align="center" style="width:24vw">
 						<button onclick="player.meltdown.ups[10].buy()" id="meltdown_up33">
 							The fuel usage of reactors is reduced by 10%<br/>
 							Cost: 1 Corium
 						</button>
 					</td>
-					<td align="left">
+					<td align="left" style="width:24vw">
 						<button onclick="player.meltdown.ups[11].buy()" id="meltdown_up34">
 							<br/>
 							Cost: 1 Corium
@@ -778,32 +783,32 @@
 					</td>
 				</tr>
 				<tr align="center">
-					<td align="right">
+					<td align="right" style="width:24vw">
 						<button onclick="player.meltdown.ups[12].buy()" id="meltdown_up41">
 							Reactors and Mines boost each other<br/>
 							<p id="meltdown_up41_text"></p><br/>
-							Cost: 1 Corium
+							Cost: <span id="meltdown_upcost41"></span> Corium
 						</button>
 					</td>
-					<td align="center">
+					<td align="right" style="width:24vw">
 						<button onclick="player.meltdown.ups[13].buy()" id="meltdown_up42">
 							You passively gain Corium and Meltdown stat<br/>
 							<p id="meltdown_up42_text"></p><br/>
-							Cost: 1 Corium
+							Cost: <span id="meltdown_upcost42"></span> Corium
 						</button>
 					</td>
-					<td align="center">
+					<td align="right" style="width:24vw">
 						<button onclick="player.meltdown.ups[14].buy()" id="meltdown_up43">
 							You start with Nucleosynthesises<br/>
 							<p id="meltdown_up43_text"></p><br/>
-							Cost: 1 Corium
+							Cost: <span id="meltdown_upcost43"></span> Corium
 						</button>
 					</td>
-					<td align="left">
+					<td align="right" style="width:24vw">
 						<button onclick="player.meltdown.ups[15].buy()" id="meltdown_up44">
 							You start with nanites<br/>
 							<p id="meltdown_up44_text"></p><br/>
-							Cost: 1 Corium
+							Cost: <span id="meltdown_upcost44"></span> Corium
 						</button>
 					</td>
 				</tr>

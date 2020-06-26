@@ -94,14 +94,14 @@ button:hover {
 	opacity: 0.7;
 }
 .achcomplete {
-	width: 100px;
+	width: 12.5vw;
 	height: 100px;
 	background-color: #008000;
 	border: 1px solid #004400;
 	margin: 100px;
 }
 .achlocked {
-	width: 100px;
+	width: 12.5vw;
 	height: 100px;
 	background-color: #808080;
 	border: 1px solid red;
