@@ -13,8 +13,28 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Code Optimisations
 -->
 
+## [v0.4.14] - 28/6/20 **PR**
 
-## [v0.4.8] - 14/5/20 **PR**
+### Added
+- Balancing Tab
+
+### Modified
+
+### Removed
+
+## [v0.4.13] - ??/??/?? **PR**
+- Changes were not tracked for this version
+
+## [v0.4.12] - ??/??/?? **PR**
+- Changes were not tracked for this version
+
+## [v0.4.11] - ??/??/?? **PR**
+- Changes were not tracked for this version
+
+## [v0.4.10] - ??/??/?? **PR**
+- Changes were not tracked for this version
+
+## [v0.4.9] - 14/5/20 **PR**
 
 ### Added
 
@@ -90,7 +110,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Code Optimisations
 - Standardised HTML Elements (Removed some unnecessary consts)
-- Added CSS subclasses and hover styles 
+- Added CSS subclasses and hover styles
 
 ## [v0.4.2] - 12/4/20 **PR**
 
