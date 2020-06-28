@@ -95,7 +95,8 @@ function updateUIMines() {
 		document.getElementById("mine_mult" + (tier + 1)).innerText = notation( player.mines[tier].totalMult);
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById("mine_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.mines[tier - 1].bought > 0 ? "table-row" : "none";
+		// CodedSakura was here Jun 2020
+		document.getElementById("mine_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.mines[tier - 1].bought > 0 ? "" : "none";
 	}
 }
 function updateUIReactors() {
@@ -107,7 +108,8 @@ function updateUIReactors() {
 		document.getElementById("reactor_mult" + (tier + 1)).innerText = notation(player.reactors[tier].totalMult);
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById("reactor_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.reactors[tier - 1].bought > 0 ? "table-row" : "none";
+		// CodedSakura was here Jun 2020
+		document.getElementById("reactor_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.reactors[tier - 1].bought > 0 ? "" : "none";
 	}
 }
 

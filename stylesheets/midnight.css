@@ -1,90 +1,58 @@
+/* CodedSakura was here Jun 2020 */
+
 body {
 	color: #ffffff;
 	background-color:#000000;
-	font-size: 15px;
-	overflow-x: hidden;
-}
-table {
-	width: 100vw;
-	margin: 0;
-	padding: 0;
 }
 
-.navitabbtn {
-	width: 180px;
-	height: 40px;
+.navigation > button {
 	color: #ffffff;
 	background-color: #000000;
-	font-size: 20px;
 	border: none;
 }
-.navitabbtn:hover {
-}
+.navigation > button:hover {}
+.navigation > button:active {}
+.navigation > button.navigation--nanite {}
+.navigation > button.navigation--nanite:hover {}
+.navigation > button.navigation--active {}
 
-.subtabbtn {
-	width: 150px;
-	height: 30px;
+button:hover {}
+
+.subtab > button {
 	color: #ffffff;
 	background-color: #000000;
-	font-size: 16px;
 	border: none;
 }
-.subtabbtn:hover {
-}
+.subtab > button:hover {}
+.subtab > button:active {}
+.subtab > button.navigation--active {}
 
-.achpic {
-	width: 100px;
-	height: 100px;
-	opacity: 0.7;
-}
-.achcomplete {
-	width: 12.5vw;
-	height: 100px;
-}
-.achlocked {
-	width: 12.5vw;
-	height: 100px;
-}
+.achcomplete {}
+.achlocked {}
 
 .popup {
-	position: fixed;
-	top: 50%;
-	left: 50%;
 	color: #ffffff;
 	background-color: #000000;
 	border: none;
 	display: none;
-	text-align:center;
-	padding: 10px;
-	padding-bottom: 15px;
-	z-index: 3;
-	transform: translateX(-50%) translateY(-50%);
+	padding: 10px 10px 15px;
 }
-#newsbar {
-	width: 80%;
-	height: 20px;
+
+.newsbar {
 	border: 3px solid #ffffff;
 	border-radius: 4px;
-	padding: 2px;
-	overflow: hidden;
-	margin: auto;
-	text-align: left;
 }
-#news {
+.newsbar > div {
 	color: #ffffff;
-	position: relative;
-	display: inline-block;
-	white-space: nowrap;
 }
 
 .optionsbtn {
-	width: 200px;
-	height: 55px;
-	font-size: 20px;
 	border: none;
 	color: #ffffff;
 	background-color: #000000;
 }
+.optionsbtn:hover {}
+
 .energy {
 	color: #ffffff;
 	font-size: 25px;
@@ -101,35 +69,27 @@ table {
 	color: #ffffff;
 	background-color: #000000;
 }
-.storebtn.buy:hover {
-}
+.storebtn.buy:hover {}
 .storebtn.locked {
 	color: #ffffff;
 	background-color: #000000;
 }
-.storebtn.locked:hover {
-}
+.storebtn.locked:hover {}
 
-.storebtn.buy.mines {
-}
-.storebtn.locked.mines {
-}
+.storebtn.buy.mines {}
+.storebtn.locked.mines {}
 
-.storebtn.buy.reactors {
-}
-.storebtn.locked.reactors {
-}
+.storebtn.buy.reactors {}
+.storebtn.locked.reactors {}
 
 .naniteup {
-	width: 300px;
-	height: 150px;
-	font-size: 15px;
 	border: none;
 }
 .naniteup.buy {
 	color: #ffffff;
 	background-color: #000000;
 }
+.naniteup.buy:hover {}
 .naniteup.locked {
 	width: 300px;
 	height: 150px;
@@ -144,33 +104,25 @@ table {
 }
 
 #meltdown {
-	width: 210px;
-	height: 70px;
 	color: #ffffff;
 	background-color: #000000;
-	font-size: 10px;
 	border: none;
-
 }
-#meltdown:hover {
-}
+#meltdown:hover {}
 
 .meltdownup {
-	width: 100%;
-	height: 150px;
 	border: none;
 }
 .meltdownup.buy {
 	color: #ffffff;
 	background-color: #000000;
 }
-.meltdownupbuy:hover {
-}
-.meltdownuplocked {
+.meltdownupbuy:hover {}
+.meltdownup.locked {
 	color: #ffffff;
 	background-color: #000000;
 }
-.meltdownupbought {
+.meltdownup.bought {
 	color: #ffffff;
 	background-color: #000000;
 }

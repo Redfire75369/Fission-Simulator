@@ -1,0 +1,181 @@
+/* CodedSakura was here Jun 2020 */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
+    overflow-x: hidden;
+}
+
+table {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    transition: all 0.5s;
+}
+button:hover {
+    cursor: pointer;
+}
+
+
+.flex__col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.flex__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex__col > *, .flex__row > * {
+    flex: 1 0;
+    margin: 1px;
+}
+
+.flex--center {
+    align-items: center;
+}
+
+
+.info {
+    text-align: center;
+}
+
+.newsbar {
+    width: 80%;
+    height: 20px;
+    text-align: left;
+    margin: auto;
+    padding: 2px;
+    overflow: hidden;
+}
+.newsbar > div {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.navigation > button {
+    width: 180px;
+    height: 40px;
+    font-size: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+#production_tab, #production_tab .flex__row,
+#statistics_tab, #statistics_tab .flex__row {
+    width: 100%;
+}
+
+.subtab > button {
+	width: 150px;
+	height: 30px;
+	font-size: 16px;
+    border-width: 2px;
+    border-style: solid;
+	border-radius: 4px;
+}
+
+#fuel_subtab > .flex__row > div:not(:first-child) {
+    text-align: center;
+}
+#reactors_subtab > .flex__col > .flex__row {
+    width: 100%;
+}
+#mines_subtab > .flex__row > div:nth-child(1), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(1) {
+    flex: 0 1 40%;
+}
+#mines_subtab > .flex__row > div:nth-child(2), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(2) {
+    text-align: center;
+}
+#mines_subtab > .flex__row > div:nth-child(3), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(3) {
+    text-align: right;
+    flex: 0 1 30%;
+}
+#mines_subtab > .flex__row > div:nth-child(4), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(4) {
+    flex: 0 1 10%;
+}
+#reactors_subtab > .flex__col:last-child > .flex__row > div:last-child {
+    text-align: right;
+}
+
+#statistics_tab > .flex__row > div:nth-child(1) {
+    text-align: right;
+    padding-right: 2px;
+}
+
+#achievements_tab {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+#achievements_tab > div {
+    flex: 0 0;
+}
+
+.achpic {
+    width: 100px;
+    height: 100px;
+    opacity: 0.7;
+}
+.achcomplete, .achlocked {
+    width: 12.5vw;
+    height: 100px;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    text-align: center;
+    z-index: 3;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.optionsbtn {
+	width: 200px;
+	height: 55px;
+	font-size: 20px;
+}
+
+.naniteup {
+	width: 300px;
+	height: 150px;
+	font-size: 15px;
+}
+
+#meltdown {
+	width: 210px;
+	height: 70px;
+	font-size: 10px;
+}
+.meltdownup {
+    width: 100%;
+    height: 150px;
+}
+
+#cheats_tab > .flex__row {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+#cheats_tab > .flex__row > button {
+    flex: 0 0 200px;
+    height: 40px;
+    margin: 2px;
+}

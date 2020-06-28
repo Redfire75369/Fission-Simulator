@@ -68,6 +68,7 @@ function updateUIFuel() {
 		document.getElementById("fuel_decaygain" + (tier + 1)).innerText = notation(getFuelDecayGain(tier));
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById("fuel_row" + (tier + 1)).style.display= player.nucleosynthesis + 4 > tier && player.mines[tier - 1].bought > 0 ? "table-row" : "none";
+		// CodedSakura was here Jun 2020
+		document.getElementById("fuel_row" + (tier + 1)).style.display= player.nucleosynthesis + 4 > tier && player.mines[tier - 1].bought > 0 ? "" : "none";
 	}
 }
