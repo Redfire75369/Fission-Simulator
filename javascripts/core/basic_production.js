@@ -33,9 +33,14 @@ class Reactor extends GenericEnergyProducer {
 	constructor(start, scale) {
 		super(start, scale, 10, 308);
 		this.tier = reactorTier;
+		this.enabled = true;
 		reactorTier++;
 	}
 
+	toggle() {
+		this.enabled = !this.enabled;
+	}
+	
 	get totalMult() {
 		let mult = new Decimal(1);
 		let perBuyMult = player.meltdown.ups[31] == 1 ? new Decimal(3) : new Decimal(2);
@@ -72,7 +77,11 @@ function getMineGain(tier) {
 	return tier < 7 ? player.mines[tier + 1].amount.mul(player.mines[tier + 1].totalMult).mul(player.eff.eff) : zero;
 }
 function getReactorGain(tier) {
-	return tier < 7 ? getMineGain(tier).add(player.reactors[tier + 1].amount.mul(player.reactors[tier + 1].totalMult)).sqrt().mul(player.eff.eff) : zero ;
+	if (player.reactors[tier + 1].enabled) {
+		return tier < 7 ? getMineGain(tier).add(player.reactors[tier + 1].amount.mul(player.reactors[tier + 1].totalMult)).sqrt().mul(player.eff.eff) : zero;
+	} else {
+		return tier < 7 ? getMineGain(tier) : zero;
+	}
 }
 
 function simulateMines(tickInterval = 50) {
@@ -95,7 +104,7 @@ function updateUIMines() {
 		document.getElementById("mine_mult" + (tier + 1)).innerText = notation( player.mines[tier].totalMult);
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById("mine_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.mines[tier - 1].bought > 0 ? "table-row" : "none";
+		document.getElementById("mine_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.mines[tier - 1].bought > 0 ? "" : "none";
 	}
 }
 function updateUIReactors() {
@@ -107,7 +116,7 @@ function updateUIReactors() {
 		document.getElementById("reactor_mult" + (tier + 1)).innerText = notation(player.reactors[tier].totalMult);
 	}
 	for (let tier = 1; tier < 8; tier++) {
-		document.getElementById("reactor_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.reactors[tier - 1].bought > 0 ? "table-row" : "none";
+		document.getElementById("reactor_row" + (tier + 1)).style.display = player.nucleosynthesis + 4 > tier && player.reactors[tier - 1].bought > 0 ? "" : "none";
 	}
 }
 

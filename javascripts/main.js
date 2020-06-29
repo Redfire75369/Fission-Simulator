@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 4,
-			alpha: 13
+			alpha: 14
 		},
 
 		options: {
@@ -15,7 +15,8 @@ function getDefaultData() {
 
 		navigation: {
 			naviTab: "production_tab",
-			production: "mines_subtab"
+			production: "mines_subtab",
+			meltdown: "ups_subtab"
 		},
 
 		unlocked: {
@@ -116,6 +117,18 @@ function getDefaultData() {
 			],
 			breakUps: {0: 0}
 		},
+		
+		alpha: new Decimal(0),
+		isotopes: {
+			"th227": new Decimal(0),
+			"ra223": new Decimal(0),
+			"rn219": new Decimal(0),
+			"po215": new Decimal(0),
+			"pb211": new Decimal(0),
+			"bi211": new Decimal(0),
+			"tl207": new Decimal(0),
+			"pb207": new Decimal(0)
+		},
 
 		imported42: false,
 
@@ -133,6 +146,14 @@ const zero = new Decimal(0);
 var focused = true;
 window.onvisibilitychange = function() {
   focused = !focused;
+}
+
+function toggleVisibility(element) {
+	if (element.style.display == "none") {
+		element.style.display = "inline-block";
+	} else {
+		element.style.display = "none";
+	}
 }
 
 function updateUI() {

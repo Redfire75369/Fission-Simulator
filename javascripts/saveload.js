@@ -156,6 +156,7 @@ function objectify(x, type) {
 		let ret = new Reactor(type.startCost.log10(), type.scaleCost.log10());
 		ret.amount = new Decimal(x.amount);
 		ret.bought = x.bought;
+		ret.enabled = x.enabled;
 		return ret;
 	} else if (type instanceof Efficiency) {
 		let ret = new Efficiency(type.startCost, type.scaleCost);

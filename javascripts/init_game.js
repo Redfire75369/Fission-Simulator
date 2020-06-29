@@ -9,13 +9,14 @@ function init_game() {
 	document.getElementById("options_tab").style.display = "none";
 	document.getElementById("nanites_tab").style.display = "none";
 	document.getElementById("meltdown_tab").style.display = "none";
-	
+	document.getElementById("navigation").style.display = "none";
+
 	loadSave();
-	
+
 	showNaviTab(player.navigation.naviTab);
 	targetedNotationChange(player.options.notation);
 	targetedThemeChange(player.options.theme);
-	
+
 	if (Date.now() > player.lastUpdate + 1000) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}

@@ -4,94 +4,47 @@ body {
 	font-size: 15px;
 	overflow-x: hidden;
 }
-table {
-	width: 100vw;
-	margin: 0;
-	padding: 0;
-}
 
 .navitabbtn {
-	width: 180px;
-	height: 40px;
 	color: #ffffff;
 	background-color: #000000;
-	font-size: 20px;
 	border: none;
 }
 .navitabbtn:hover {
 }
 
 .subtabbtn {
-	width: 150px;
-	height: 30px;
 	color: #ffffff;
 	background-color: #000000;
-	font-size: 16px;
 	border: none;
 }
 .subtabbtn:hover {
 }
 
-.achpic {
-	width: 100px;
-	height: 100px;
-	opacity: 0.7;
-}
-.achcomplete {
-	width: 12.5vw;
-	height: 100px;
-}
-.achlocked {
-	width: 12.5vw;
-	height: 100px;
-}
-
 .popup {
-	position: fixed;
-	top: 50%;
-	left: 50%;
 	color: #ffffff;
 	background-color: #000000;
 	border: none;
-	display: none;
-	text-align:center;
-	padding: 10px;
-	padding-bottom: 15px;
-	z-index: 3;
-	transform: translateX(-50%) translateY(-50%);
 }
+
 #newsbar {
-	width: 80%;
-	height: 20px;
 	border: 3px solid #ffffff;
 	border-radius: 4px;
-	padding: 2px;
-	overflow: hidden;
-	margin: auto;
-	text-align: left;
 }
 #news {
 	color: #ffffff;
-	position: relative;
-	display: inline-block;
-	white-space: nowrap;
 }
 
 .optionsbtn {
-	width: 200px;
-	height: 55px;
-	font-size: 20px;
-	border: none;
 	color: #ffffff;
 	background-color: #000000;
+	border: none;
 }
 .energy {
 	color: #ffffff;
-	font-size: 25px;
 }
 .energypersecond {
 	color: #ffffff;
-	font-size:20px;
 }
 
 .storebtn {
@@ -121,9 +74,6 @@ table {
 }
 
 .naniteup {
-	width: 300px;
-	height: 150px;
-	font-size: 15px;
 	border: none;
 }
 .naniteup.buy {
@@ -144,20 +94,14 @@ table {
 }
 
 #meltdown {
-	width: 210px;
-	height: 70px;
 	color: #ffffff;
 	background-color: #000000;
-	font-size: 10px;
 	border: none;
-
 }
 #meltdown:hover {
 }
 
 .meltdownup {
-	width: 100%;
-	height: 150px;
 	border: none;
 }
 .meltdownup.buy {

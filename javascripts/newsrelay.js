@@ -15,7 +15,9 @@ const newsArray = [
 	["Sir... Sir.... SIR!!!! WHAT!!!! Ummm, there's an old man with a shotgun pointing at me wanting to know why we're burying those barrels in his backyard...", true],
 	["“To reactor or not to reactor... to mine or not to mine... THAT is the true Quarry!”  -- Mine Reactor General Digger", true],
 	["e is an interesting letter when pressed it seems to make things run just a bit better in the ole reactor and mine areas.... go figure!", true],
-	["It's over Anakin, I have the radioactive ground!", true]
+	["It's over Anakin, I have the radioactive ground!", true],
+	["To show you the power of flex tape, I cut this atom in half.", true],
+	["18 metre long mosquitoes with 63 legs have been found in the streets of Otarensin. In unrelated news, all nuclear reactors in the country of Gargrihskhurth have been found to be problematic.", true]
 ];
 
 document.addEventListener("visibilitychange", function() {
@@ -23,6 +25,7 @@ document.addEventListener("visibilitychange", function() {
 		nextNews();
 	}
 }, false);
+
 var scroll = [];
 var nextNewsIndex;
 
