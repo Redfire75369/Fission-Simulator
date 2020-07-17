@@ -63,6 +63,8 @@ class EfficiencyNaniteUpgrade extends NaniteUpgrade {
 	buy() {
 		if (this.buyable) {
 			player.nanites.nanites = player.nanites.nanites.sub(this.cost);
+			player.turbine.dimensions += 2;
+			newTurbine();
 			this.bought++;
 		}
 	}

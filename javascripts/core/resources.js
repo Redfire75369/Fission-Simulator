@@ -17,18 +17,16 @@ function getFuelReactorIncrement(tier) {
 	return Decimal.max(1, getTotalFuelGain(tier).sub(getMinFuel(tier)).log(1.1));
 }
 
-function getMaxEnergyGain(tier) {
+function getMaxSteamGain(tier) {
 	return player.reactors[0].amount.mul(player.reactors[0].totalMult).mul(player.eff.eff).mul(3 ** tier);
 }
-function getEnergyGain(tier) {
-	return getTotalFuelGain(tier).gt(getMinFuel(tier)) ? getMaxEnergyGain(tier).mul(getFuelReactorIncrement(tier)) : getTotalFuelGain(tier).mul(getFuelReactorIncrement(tier));
+function getSteamGain(tier) {
+	return getTotalFuelGain(tier).gt(getMinFuel(tier)) ? getMaxSteamGain(tier).mul(getFuelReactorIncrement(tier)) : getTotalFuelGain(tier).mul(getFuelReactorIncrement(tier));
 }
-function getTotalEnergyGain() {
+function getTotalSteamGain(tier) {
 	let ret = zero;
-	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
-		if (player.reactors[tier].enabled) {
-			ret = ret.add(getEnergyGain(tier));
-		}
+	for (let i = 0; i < 8; i++) {
+		ret = ret.add(getSteamGain(i));
 	}
 	return ret;
 }
@@ -42,7 +40,6 @@ function getFuelMineGain(tier) {
 	}
 	return player.mines[tier].amount.mul(player.mines[tier].totalMult).mul(((3 ** x) - 1)/2).div(tier + 1);
 }
-
 function getFuelDecayGain(tier) {
 	if (tier == 7) {
 		return zero;
@@ -53,15 +50,8 @@ function getTotalFuelGain(tier) {
 	return getFuelMineGain(tier).add(getFuelDecayGain(tier));
 }
 
-
-function simulateEnergy(tickInterval = 50) {
-	player.energy = player.energy.add(getTotalEnergyGain().mul(tickInterval / 1000));
-	player.totalEnergy = player.totalEnergy.plus(getTotalEnergyGain().mul(tickInterval / 1000));
-}
-
 function updateUIEnergy() {
 	document.getElementById("energy").innerText = notation(player.energy);
-	document.getElementById("energy_gain").innerText = notation(getTotalEnergyGain());
 }
 function updateUIFuel() {
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {

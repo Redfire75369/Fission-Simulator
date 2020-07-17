@@ -57,6 +57,7 @@ function meltdown() {
 		resetEff();
 		resetMines();
 		resetReactors();
+		resetTurbineRotors();
 		resetNucleosynthesis();
 		resetNaniteResearch();
 		resetNaniteUps();

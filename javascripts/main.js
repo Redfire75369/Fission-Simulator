@@ -2,8 +2,8 @@ function getDefaultData() {
 	return {
 		version: {
 			release: 0,
-			beta: 4,
-			alpha: 14
+			beta: 5,
+			alpha: 0
 		},
 
 		options: {
@@ -51,25 +51,52 @@ function getDefaultData() {
 
 		eff: new Efficiency(1e3, 1e1),
 		mines: [
-			new Mine(1, 3),
-			new Mine(2, 5),
-			new Mine(5, 7),
-			new Mine(8, 10),
-			new Mine(13, 13),
-			new Mine(18, 16),
-			new Mine(24, 20),
-			new Mine(30, 24)
+			new Mine(1, 2),
+			new Mine(2, 4),
+			new Mine(5, 6),
+			new Mine(7, 9),
+			new Mine(12, 12),
+			new Mine(16, 15),
+			new Mine(21, 19),
+			new Mine(27, 23)
 		],
 		reactors: [
-			new Reactor(1, 3,),
-			new Reactor(2, 4),
-			new Reactor(5, 6),
-			new Reactor(8, 8),
-			new Reactor(13, 10),
-			new Reactor(18, 12),
-			new Reactor(24, 13),
-			new Reactor(30, 14)
+			new Reactor(1, 2),
+			new Reactor(2, 3),
+			new Reactor(5, 5),
+			new Reactor(7, 7),
+			new Reactor(12, 9),
+			new Reactor(16, 11),
+			new Reactor(21, 12),
+			new Reactor(27, 13)
 		],
+		
+		turbine: {
+			rotors: [
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none
+			],
+			coils: [
+				["none", "none", "none"],
+				["none", "bearing", "none"],
+				["none", "none", "none"]
+			],
+			totalRotors: {
+				steel: 4,
+				tungstencarbide: 0
+			},
+			activeRotor: "none",
+			activeCoil: "none",
+			dimensions: 3,
+			bearingDimensions: 1
+		},
 
 		nucleosynthesis: 0,
 
@@ -162,6 +189,8 @@ function updateUI() {
 	updateUIFuel();
 	updateUIMines();
 	updateUIReactors();
+	updateUITurbineRotors();
+	updateUIDynamoCoils();
 	updateUIEff();
 	updateUINucleosynthesis();
 	updateUINaniteUps();
@@ -171,17 +200,17 @@ function updateUI() {
 	updateUIAchievements();
 	updateUIStats();
 }
-function updateGame(tickInterval) {
+function updateGame(tickInterval = 50) {
 	if (leverMaxAll) {
 		buyMaxAll();
 	}
 	simulateMines(tickInterval);
 	simulateReactors(tickInterval);
-	simulateEnergy(tickInterval);
+	simulateTurbine(tickInterval);
 	checkAchievementCompletion();
 }
 
-/*Offline Progress*/
+/* Offline Progress */
 function simulateTime(seconds, actual, testing) {
 	if (seconds > 10) {
 		document.getElementById("offline_popup").style.display = "block";

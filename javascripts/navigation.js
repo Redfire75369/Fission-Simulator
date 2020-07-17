@@ -1,5 +1,5 @@
 function toggleNavigation() {
-	document.getElementById("navigation").style.display = "inline-block";
+	document.getElementById("navigation").style.display = "block";
 	document.getElementById("navi_open").style.display = "none";
 }
 
@@ -11,7 +11,7 @@ function showNaviTab(tab) {
 	player.navigation.naviTab = tab;
 	showSubTab();
 	document.getElementById("navigation").style.display = "none";
-	document.getElementById("navi_open").style.display = "inline-block";
+	document.getElementById("navi_open").style.display = "block";
 }
  function showSubTab() {
 	switch (player.navigation.naviTab) {

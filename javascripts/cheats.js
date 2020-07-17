@@ -35,6 +35,7 @@ function infiniteCorium() {
 function addNucleosynthesis() {
 	if (player.nucleosynthesis < 14) {
 		player.nucleosynthesis += 1;
+		player.unlocked.coils=true;
 	}
 }
 
@@ -43,9 +44,9 @@ function toggleLeverMaxAll() {
 }
 
 function harderReset() {
-	showNaviTab("cheats_tab");
+	preLoad();
 	player = getDefaultData();
-	player.navigation.naviTab = "cheats_tab";
+	postLoad();
 	testBalancing();
 	saveGame();
 }

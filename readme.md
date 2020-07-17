@@ -1,8 +1,7 @@
+[![Discord Server Invite](https://img.shields.io/badge/Discord-Redfire's%20Stuff-7289DA)](https://discord.gg/RyQwwzW)
+
 # Fission Simulator
-This is an incremental game created by Redfire. The beginning is based on Antimatter Dimensions, a great game by Hevipelle that everyone should check out [here]("https://IvarK.github.io").
-
-This is a Work In Progress and is constantly being worked on by me.
-
+This is an incremental game that is supposed to emulate real life nuclear physics.
 
 ## Credits
 | File Path | Creator | Website |

@@ -30,6 +30,8 @@
 		<script defer src="javascripts/generics/GenericUpgrade.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/resources.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/basic_production.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/turbine/drawing.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/turbine/turbine.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nucleosynthesis.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
@@ -44,10 +46,9 @@
 		<script defer src="javascripts/cheats.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript" onload="init_game()"></script>
+		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 	</head>
 	<body align="center">
-
 	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px;">
 			<div id="offline_progress" style="height:175px; display:flex; align-items:center"></div>
 			<button  onclick="closeOfflineProgress()" align="center" class="storebtn buy" style="font-size:15px; margin:auto;">Close</button>
@@ -92,7 +93,7 @@
 
 	    <tr>
 			<div align="center">
-				<p class="text">Increase efficiency of all mines by <span id="eff_increment">10.00</span>%</p>
+				<p class="text">Increase efficiency of all mines and reactors by <span id="eff_increment">10.00</span>%</p>
 				<button onclick="player.eff.buy()" id="eff_buysingle">Cost: <span id="eff_cost">1.00e3</span></button>
 				<button onclick="player.eff.buyMax()" id="eff_buymax">Buy Max</button>
 				<p class="text">Efficiency: <span id="eff_mult">1.00</span></p>
@@ -110,6 +111,7 @@
 						<button onclick="showProdTab('fuel_subtab')" id="production_fuel_subtabbtn" class="subtabbtn">Fuel</button>
 						<button onclick="showProdTab('mines_subtab')" id="production_mines_subtabbtn" class="subtabbtn">Mines</button>
 						<button onclick="showProdTab('reactors_subtab')" id="production_reactors_subtabbtn" class="subtabbtn">Reactors</button>
+						<button onclick="showProdTab('turbine_subtab')" id="production_turbine_subtabbtn" class="subtabbtn">Turbine</button>
 					</td>
 				</tr>
 			</table>
@@ -501,6 +503,72 @@
 					</tr>
 				</table>
 			</div>
+			<div id="turbine_subtab">
+				<div class="flex__row">
+					<div class="flex__col">
+						<p> Processing <span id="steam"></span> L/s of Steam</p>
+						<div id="turbine_rotors" class="flex__row"></div>
+						<div id="turbine_rotors_length" class="flex__row"></div>
+						<div class="flex__row">
+							<div onclick="selectRotor('none')" class="turbinebox"><div onclick="selectRotor('none')" id="rotor_none" class="turbinerotor selection none"></div></div>
+							<div onclick="selectRotor('steel')" class="turbinebox"><div onclick="selectRotor('steel')" id="rotor_steel" class="turbinerotor selection steel"></div></div>
+						</div>
+						<div class="flex__row">
+							<div id="turbine_rotors_count">You have <span id="turbine_rotors_total"></span> Rotors.</div>
+						</div>
+						<div class="flex__row">
+							<button onclick="buyRotor()" id="buy_rotor">Buy a <span id="rotor_type"></span> Rotor</button>
+							<button onclick="showCoils()" id="show_coils">Configure Dynamo Coils</button>
+						</div>
+					</div>
+				</div>
+				<div id="turbine_coils_popup" class="popup flex--center" style="width: 720px; height: 400px; display: none;">
+					<div class="flex__row">
+						<div class="flex__col flex--center">
+							<div id="turbine_coils" class="flex__row"></div>
+							<div class="flex__row">
+								<div onclick="selectCoil('none')" id="turbine_coil_none" class="flex__col turbinebox turbinecoil none"></div>
+								<div onclick="selectCoil('magnesium')" id="turbine_coil_magnesium" class="flex__col turbinebox turbinecoil magnesium"></div>
+								<div onclick="selectCoil('beryllium')" id="turbine_coil_beryllium" class="flex__col turbinebox turbinecoil beryllium"></div>
+								<div onclick="selectCoil('lithium')" id="turbine_coil_lithium" class="flex__col turbinebox turbinecoil lithium"></div>
+								<div onclick="selectCoil('aluminium')" id="turbine_coil_aluminium" class="flex__col turbinebox turbinecoil aluminium"></div>
+							</div>
+							<div class="flex__row">
+								<button onclick="hideCoils()">Close Dynamo Coil Configuration</butron>
+							</div>
+						</div>
+						<div class="flex__col">
+							<div id="turbine_coil_desc">
+								<div id="turbine_coil_desc_none" class="turbinecoildesc">
+									<b style="font-size: 20px">No Dynamo Coil:</b><br>
+									<p>Efficiency Multiplier: 100%</p>
+									<p>Can be placed anywhere<p>
+								</div>
+								<div id="turbine_coil_desc_magnesium" class="turbinecoildesc">
+									<b style="font-size: 20px">Magnesium Dynamo Coil:</b><br>
+									<p>Efficiency Multiplier: 140%</p>
+									<p>Must be adjacent to at least one Rotor Bearing</p>
+								</div>
+								<div id="turbine_coil_desc_beryllium" class="turbinecoildesc">
+									<b style="font-size: 20px">Beryllium Dynamo Coil:</b><br>
+									<p>Efficiency Multiplier: 210%</p>
+									<p>Must be adjacent to at least one Magnesium Dynamo Coil</p>
+								</div>
+								<div id="turbine_coil_desc_lithium" class="turbinecoildesc">
+									<b style="font-size: 20px">Lithium Dynamo Coil:</b><br>
+									<p>Efficiency Multiplier: 300%</p>
+									<p>Must be adjacent to at least one Beryllium Dynamo Coil and one Rotor Bearing</p>
+								</div>
+								<div id="turbine_coil_desc_aluminium" class="turbinecoildesc">
+									<b style="font-size: 20px">Aluminium Dynamo Coil:</b><br>
+									<p>Efficiency Multiplier: 320%</p>
+									<p>Must be adjacent to at least two Beryllium Dynamo Coils</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div id="statistics_tab">
@@ -639,7 +707,7 @@
 				You have <span id="nanites">0</span> Nanites.
 			</div>
 			<div align="center">
-				<button onclick="player.nanites.ups[0].buy()" id="nanite_up0" style="font-size:15px" align="center">Spend <span id="nanite_upcost0">1 Nanite</span> to improve Efficiency Multiplier.</button></br>
+				<button onclick="player.nanites.ups[0].buy()" id="nanite_up0" style="font-size:15px" align="center">Spend <span id="nanite_upcost0">1 Nanite</span> to increase the diameter and length of the turbine by 2.</button></br>
 			</div>
 			<table>
 				<tr align="center">
@@ -1054,6 +1122,7 @@
 		</div>
 
 		<div align="center">
+			<p id="testing"></p>
 			<a href="https://discord.gg/RyQwwzW" target="_blank" align="center">
 				Discord Server
 			</a>

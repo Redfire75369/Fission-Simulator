@@ -1,7 +1,7 @@
 function rot(s, i) {
-    return s.replace(/[a-zA-Z]/g, function (c) {
-        return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + i) ? c : c - 26);
-    });
+	return s.replace(/[a-zA-Z]/g, function (c) {
+		return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + i) ? c : c - 26);
+	});
 }
 
 function getSaveString() {
@@ -31,11 +31,11 @@ function loadSave(save, imported = false) {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
 
-		if (save.version.alpha < 4 || (save.version.alpha == 4 && save.version.beta < 4)) {
+		if (save.version.beta < 4 || (save.version.beta == 4 && save.version.alpha < 4)) {
 			alert("Your save is from a much older version and is thus, incompatible with the current version. Your save has been reset.");
-            localStorage.removeItem("fissionSimSave1")
-            save = JSON.parse(LZString.decompressFromBase64(LZString.compressToBase64(JSON.stringify(getDefaultData()))));
-        }
+			localStorage.removeItem("fissionSimSave1");
+			save = JSON.parse(LZString.decompressFromBase64(LZString.compressToBase64(JSON.stringify(getDefaultData()))));
+		}
 
 		if (save !== undefined) {
 			for (let i = 0, keys = Object.keys(getDefaultData()), ii = keys.length; i < ii; i++) {
@@ -70,6 +70,9 @@ function loadSave(save, imported = false) {
 			if (!player.navigation.production.includes("resources")) {
 				player.navigation.production = "fuel_subtab";
 			}
+
+			player.version = getDefaultData().version;
+
 		} else {
 			console.log("No existing save found");
 		}
@@ -89,15 +92,13 @@ function loadSave(save, imported = false) {
 function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3, assignToKey4, assignToKey5) {
 	if (assignFrom !== undefined) {
 		if (assignToKey5 !== undefined) {
-			if (check instanceof Decimal) {
-				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4][assignToKey5] = objectify(assignFrom, getDefaultData()[assignToKey1][assignToKey2][assignToKey3][assignToKey4][assignToKey5]);
-			}
+			player[assignToKey1][assignToKey2][assignToKey3][assignToKey4][assignToKey5] = objectify(assignFrom, getDefaultData()[assignToKey1][assignToKey2][assignToKey3][assignToKey4][assignToKey5]);
 		} else if (assignToKey4 !== undefined) {
 			if (check instanceof Array) {
 				for (let x = 0; x < check.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, assignToKey3, assignToKey4, x);
 				}
-			} else if (check instanceof Decimal) {
+			} else {
 				player[assignToKey1][assignToKey2][assignToKey3][assignToKey4] = objectify(assignFrom, getDefaultData()[assignToKey1][assignToKey2][assignToKey3][assignToKey4]);
 			}
 		} else if (assignToKey3 !== undefined) {
@@ -158,23 +159,30 @@ function objectify(x, type) {
 		ret.bought = x.bought;
 		ret.enabled = x.enabled;
 		return ret;
+	} else if (type instanceof TurbineBlade) {
+		let ret = new TurbineBlade(x.name, x.efficiency, x.expansion, x.speed);
+		ret.length = x.length;
+		return ret;
+	} else if (type instanceof DynamoCoil) {
+		let ret = coils[x.name];
+		return ret;
 	} else if (type instanceof Efficiency) {
 		let ret = new Efficiency(type.startCost, type.scaleCost);
 		ret.bought = x.bought;
 		return ret;
-  } else if (type instanceof EfficiencyNaniteUpgrade) {
-    let ret = new EfficiencyNaniteUpgrade();
-    ret.bought = x.bought;
-    return ret;
-  } else if (type instanceof NaniteUpgrade) {
-    let ret = new NaniteUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
-    ret.bought = x.bought;
-    return ret;
-  } else if (type instanceof MeltdownUpgrade) {
-      let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
-      ret.bought = x.bought;
-      return ret;
-  } else {
+	} else if (type instanceof EfficiencyNaniteUpgrade) {
+		let ret = new EfficiencyNaniteUpgrade();
+		ret.bought = x.bought;
+		return ret;
+	} else if (type instanceof NaniteUpgrade) {
+		let ret = new NaniteUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
+		ret.bought = x.bought;
+		return ret;
+	} else if (type instanceof MeltdownUpgrade) {
+			let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
+			ret.bought = x.bought;
+			return ret;
+	} else {
 		return x;
 	}
 }

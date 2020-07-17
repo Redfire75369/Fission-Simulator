@@ -121,9 +121,9 @@ function updateUIReactors() {
 }
 
 function updateUIMaxAll() {
-	let usable = false;
+	let usable = player.eff.buyable;
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4) && (!usable); tier ++) {
-		usable = player.mines[tier].buyable;
+		usable |= player.mines[tier].buyable;
 		usable |= player.reactors[tier].buyable;
 	}
 	document.getElementById("max_all").className = usable ? "storebtn buy" : "storebtn locked";

@@ -36,20 +36,21 @@ function save() {
 	saveGame();
 }
 function load() {
+	preLoad();
 	loadSave(getSave());
+	postLoad();
 }
 
 /*Import/Export*/
 function importSave() {
 	let save = prompt("Input your save. WARNING: Your current save file will be overwritten.");
-	player.import42 = save == "42" ? true : player.import42;
+	player.import42 |= save == "42";
 	if (save === null || save == "42") {
 		return;
 	}
+	preLoad();
 	loadSave(save, true);
-	showNaviTab(player.navigation.naviTab);
-	targetedNotationChange(player.options.notation);
-	targetedThemeChange(player.options.theme);
+	postLoad();
 	saveGame();
 }
 function exportSave() {
@@ -62,8 +63,9 @@ function exportSave() {
 function hardReset() {
 	let confirmation = prompt("This will completely reset your game. If you are sure, type in “Hitchhiker's Guide to the Fusion-Driven Galaxy”");
 	if (confirmation == "Hitchhiker's Guide to the Fusion-Driven Galaxy") {
-		showNaviTab("production_tab");
+		preLoad();
 		player = getDefaultData();
+		postLoad();
 		saveGame();
 	}
 }

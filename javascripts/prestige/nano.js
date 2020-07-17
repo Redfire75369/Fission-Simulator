@@ -41,6 +41,7 @@ function buyNaniteResearch() {
 		resetFuel();
 		resetMines();
 		resetReactors();
+		resetTurbineRotors();
 		resetEff();
 		resetNucleosynthesis();
 	}
