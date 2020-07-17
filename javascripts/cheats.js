@@ -46,6 +46,7 @@ function toggleLeverMaxAll() {
 function harderReset() {
 	preLoad();
 	player = getDefaultData();
+	player.navigation.naviTab = "cheats_tab";
 	postLoad();
 	testBalancing();
 	saveGame();
