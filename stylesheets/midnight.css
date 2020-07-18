@@ -1,120 +1,16 @@
-body {
-	color: #ffffff;
-	background-color:#000000;
-	font-size: 15px;
-	overflow-x: hidden;
-}
-
-.navitabbtn {
+* {
 	color: #ffffff;
 	background-color: #000000;
-	border: none;
 }
-.navitabbtn:hover {
+button {
+	border: 2px solid #ffffff;
 }
-
-.subtabbtn {
-	color: #ffffff;
-	background-color: #000000;
-	border: none;
-}
-.subtabbtn:hover {
-}
-
 .popup {
-	color: #ffffff;
-	background-color: #000000;
-	border: none;
-}
-
-#newsbar {
 	border: 3px solid #ffffff;
-	border-radius: 4px;
 }
-#news {
-	color: #ffffff;
+.turbinerotor {
+	background-color: #00000000;
 }
-
-.optionsbtn {
-	color: #ffffff;
-	background-color: #000000;
-	border: none;
-}
-.energy {
-	color: #ffffff;
-}
-.energypersecond {
-	color: #ffffff;
-}
-
-.storebtn {
-	border: none;
-}
-.storebtn.buy {
-	color: #ffffff;
-	background-color: #000000;
-}
-.storebtn.buy:hover {
-}
-.storebtn.locked {
-	color: #ffffff;
-	background-color: #000000;
-}
-.storebtn.locked:hover {
-}
-
-.storebtn.buy.mines {
-}
-.storebtn.locked.mines {
-}
-
-.storebtn.buy.reactors {
-}
-.storebtn.locked.reactors {
-}
-
-.naniteup {
-	border: none;
-}
-.naniteup.buy {
-	color: #ffffff;
-	background-color: #000000;
-}
-.naniteup.locked {
-	width: 300px;
-	height: 150px;
-	color: #ffffff;
-	background-color: #000000;
-}
-.naniteup.bought {
-	width: 300px;
-	height: 150px;
-	color: #ffffff;
-	background-color: #000000;
-}
-
-#meltdown {
-	color: #ffffff;
-	background-color: #000000;
-	border: none;
-}
-#meltdown:hover {
-}
-
-.meltdownup {
-	border: none;
-}
-.meltdownup.buy {
-	color: #ffffff;
-	background-color: #000000;
-}
-.meltdownupbuy:hover {
-}
-.meltdownuplocked {
-	color: #ffffff;
-	background-color: #000000;
-}
-.meltdownupbought {
-	color: #ffffff;
-	background-color: #000000;
+.turbinebox {
+	border-color: #ffffff;
 }
