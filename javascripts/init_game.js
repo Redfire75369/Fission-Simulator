@@ -26,6 +26,7 @@ function preLoad() {
 	document.getElementById("meltdown_ups_subtab").style.display = "none";
 	document.getElementById("meltdown_decay_hastening_subtab").style.display = "none";
 	document.getElementById("navigation").style.display = "none";
+	document.getElementById("offline_popup").style.display = "none";
 
 	document.getElementById(player.navigation.naviTab + "btn").className = "navitabbtn";
 	document.getElementById(player.navigation.naviTab).style.display = "none";

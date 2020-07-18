@@ -13,6 +13,21 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.5.3] - 18/7/20 **PR**
+
+### Added
+- Indicator of Total Coil Efficiency
+- Rotor Cost Indicator
+
+### Modified
+- Fixed bug where bearings would appear deactivated
+- Fixed bug where aluminium dynamo coils did not work
+- Fixed bug where empty offline progress popup shows up
+- Fixed bug where navigation rendered below achievements
+- Changed Nanite Formula to start at 3 Cf-251 Reactors
+
+### Removed
+
 ## [v0.5.2] - 18/7/20 **PR**
 
 ### Added
@@ -24,7 +39,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Removed
 
-## [v0.5.0] - 18/7/20 **PR**
+## [v0.5.0] - 17/7/20 **PR**
 
 ### Added
 - Added Turbines

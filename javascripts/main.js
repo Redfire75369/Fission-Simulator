@@ -20,9 +20,10 @@ function getDefaultData() {
 		},
 
 		unlocked: {
-				naniteUps: false,
-				meltdown: false,
-				decayHasten: false
+			coils: false,
+			naniteUps: false,
+			meltdown: false,
+			decayHasten: false
 		},
 
 		achievements: {
@@ -70,7 +71,7 @@ function getDefaultData() {
 			new Reactor(21, 12),
 			new Reactor(27, 13)
 		],
-		
+
 		turbine: {
 			rotors: [
 				rotors.none,
@@ -144,7 +145,7 @@ function getDefaultData() {
 			],
 			breakUps: {0: 0}
 		},
-		
+
 		alpha: new Decimal(0),
 		isotopes: {
 			"th227": new Decimal(0),
@@ -173,14 +174,6 @@ const zero = new Decimal(0);
 var focused = true;
 window.onvisibilitychange = function() {
 	focused = !focused;
-}
-
-function toggleVisibility(element) {
-	if (element.style.display == "none") {
-		element.style.display = "inline-block";
-	} else {
-		element.style.display = "none";
-	}
 }
 
 function updateUI() {

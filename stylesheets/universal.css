@@ -30,7 +30,7 @@ table {
 	position: absolute;
 	top: 16px;
 	left: 16px;
-	z-index: 3;
+	z-index: 5;
 }
 
 #navigation {
@@ -40,7 +40,7 @@ table {
 	top: 0px;
 	left: 0px;
 	background-color: rgba(0, 0, 0, 0.7);
-	z-index: 2;
+	z-index: 4;
 }
 
 .navitabbtn {
@@ -192,7 +192,7 @@ table {
 	padding: 10px;
 	padding-bottom: 15px;
 	transform: translateX(-50%) translateY(-50%);
-	z-index: 3;
+	z-index: 10;
 }
 
 #newsbar {

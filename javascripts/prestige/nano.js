@@ -4,7 +4,7 @@ function resetNaniteResearch() {
 }
 
 function canBuyNaniteResearch() {
-	if (player.reactors[7].bought  < 5) {
+	if (player.reactors[7].bought  < 3) {
 		return false;
 	} else {
 		return nanitesGain().gt(0);
@@ -13,10 +13,10 @@ function canBuyNaniteResearch() {
 
 function nanitesGain() {
 	let ret = new Decimal(0);
-	if (player.reactors[7].amount.lte(19)) {
-		ret = player.reactors[7].amount.sub(4);
+	if (player.reactors[7].amount.lte(15)) {
+		ret = player.reactors[7].amount.sub(2);
 	} else if (player.reactors[7].amount.lte(5050)) {
-		ret = player.reactors[7].amount.pow(2).div(32).sub(player.reactors[7].amount.mul(7 / 8)).add(20);
+		ret = player.reactors[7].amount.pow(2).div(32).sub(player.reactors[7].amount.mul(7 / 8)).add(16);
 	} else {
 		ret = zero;
 	}
@@ -48,7 +48,7 @@ function buyNaniteResearch() {
 }
 
 function updateUINaniteResearch() {
-	document.getElementById("naniteresearch_cost").innerText = (player.nanites.total.eq(0)) ? "5" : (player.nanites.total.lt(15)) ? (player.nanites.total.add(5)) : (player.nanites.total.lte(792544.375)) ? Decimal.add(14, player.nanites.total.add(1).mul(32).sub(444).sqrt().ceil()) : infinity;
+	document.getElementById("naniteresearch_cost").innerText = (player.nanites.total.eq(0)) ? "3" : (player.nanites.total.lt(15)) ? (player.nanites.total.add(3)) : (player.nanites.total.lte(792544.375)) ? Decimal.add(14, player.nanites.total.add(1).mul(32).sub(444).sqrt().ceil()) : infinity;
 	document.getElementById("nanites_gain").innerText = notation(nanitesGain());
 	document.getElementById("naniteresearch_btn").className = canBuyNaniteResearch() ? "storebtn buy" : "storebtn locked";
 }

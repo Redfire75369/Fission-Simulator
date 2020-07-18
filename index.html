@@ -517,7 +517,7 @@
 							<div id="turbine_rotors_count">You have <span id="turbine_rotors_total"></span> Rotors.</div>
 						</div>
 						<div class="flex__row">
-							<button onclick="buyRotor()" id="buy_rotor">Buy a <span id="rotor_type"></span> Rotor</button>
+							<button onclick="buyRotor()" id="buy_rotor">Buy a <span id="rotor_type"></span> Rotor for <span id="rotor_cost"></span> Energy</button>
 							<button onclick="showCoils()" id="show_coils">Configure Dynamo Coils</button>
 						</div>
 					</div>
@@ -532,6 +532,9 @@
 								<div onclick="selectCoil('beryllium')" id="turbine_coil_beryllium" class="flex__col turbinebox turbinecoil beryllium"></div>
 								<div onclick="selectCoil('lithium')" id="turbine_coil_lithium" class="flex__col turbinebox turbinecoil lithium"></div>
 								<div onclick="selectCoil('aluminium')" id="turbine_coil_aluminium" class="flex__col turbinebox turbinecoil aluminium"></div>
+							</div>
+							<div class="flex__row">
+								<div>Overall Dynamo Coil Efficiency: <span id="turbine_coil_efficiency"></span></div>
 							</div>
 							<div class="flex__row">
 								<button onclick="hideCoils()">Close Dynamo Coil Configuration</butron>
@@ -916,7 +919,7 @@
 							<p>Uranium-235: <span id="stored_u235"></span></p>
 						</div>
 					</div>
-					
+
 					<div id="select_isotope">
 						<button onclick="showSelectIsotope()">Select Radioactive Isotope</button>
 						<div id="isotope_dropdown" class="dropdown flex__column">
@@ -930,7 +933,7 @@
 							<p onclick="selectIsotope('pb207')" class="dropdownisotope">Lead-207</p>
 						</div>
 					</div>
-					
+
 					<div id="isotope_decay">
 						<button onclick="startDecayIsotope('th227')">Start Decay of Thorium-227</button>
 					</div>

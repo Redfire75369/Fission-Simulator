@@ -4,10 +4,9 @@ function drawTurbineRotors(needRefresh) {
 		return;
 	}
 
-	let start = player.turbine.dimensions % 2 == 0 ? player.turbine.dimensions / 2 - (player.turbine.bearingDimensions / 2) + 1 : (player.turbine.dimensions + 1) / 2 - (player.turbine.bearingDimensions + 1) / 2 + 1;
-
 	document.getElementById("turbine_rotors").innerHTML = "";
 	document.getElementById("turbine_rotors_length").innerHTML = "";
+
 	if (needRefresh) {
 		player.turbine.rotors = [];
 	}
