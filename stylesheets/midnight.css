@@ -1,16 +1,16 @@
 * {
-	color: #fff;
-	background-color: #000;
+	color: #ffffff;
+	background-color: #000000;
 }
 button {
-	border: 2px solid #fff;
+	border: 2px solid #ffffff;
 }
 .popup {
-	border: 3px solid #fff;
+	border: 3px solid #ffffff;
 }
 .turbinerotor {
-	background-color: #0000;
+	background-color: #00000000;
 }
 .turbinebox {
-	border-color: #fff;
+	border-color: #ffffff;
 }
