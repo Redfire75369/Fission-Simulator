@@ -136,3 +136,7 @@ button:hover {
 	background-color: #44CC66;
 	border: 3px solid #daa520;
 }
+
+#turbine_coil_desc_none {
+	color: #000;
+}
