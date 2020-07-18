@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 5,
-			alpha: 1
+			alpha: 2
 		},
 
 		options: {
@@ -172,7 +172,7 @@ const zero = new Decimal(0);
 
 var focused = true;
 window.onvisibilitychange = function() {
-  focused = !focused;
+	focused = !focused;
 }
 
 function toggleVisibility(element) {

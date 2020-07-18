@@ -55,33 +55,27 @@ const coils = {
 };
 
 var activeCoils = [
-	[false, false, false, false, false, false, false, false, false],
-	[false, false, false, false, false, false, false, false, false],
-	[false, false, false, false, false, false, false, false, false],
-	[false, false, false, false, false, false, false, false, false],
-	[false, false, false, false, true, false, false, false, false],
-	[false, false, false, false, false, false, false, false, false],
-	[false, false, false, false, false, false, false, false, false],
-	[false, false, false, false, false, false, false, false, false],
-	[false, false, false, false, false, false, false, false, false]
+	[false, false, false],
+	[false, true, false],
+	[false, false, false]
 ];
 
 function getHorizontalCoils(x, y) {
 	if (x == 0 && y == 0) {
 		return [player.turbine.coils[x][y + 1], player.turbine.coils[x + 1][y]];
-	} else if (x == 0 && y == player.turbine.dimensions) {
+	} else if (x == 0 && y == player.turbine.dimensions - 1) {
 		return [player.turbine.coils[x][y - 1], player.turbine.coils[x + 1][y]];
-	} else if (x == player.turbine.dimensions && y == 0) {
+	} else if (x == player.turbine.dimensions - 1 && y == 0) {
 		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y + 1]];
-	} else if (x == player.turbine.dimensions && y == player.turbine.dimensions) {
+	} else if (x == player.turbine.dimensions - 1 && y == player.turbine.dimensions - 1) {
 		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y - 1]]; 
 	} else if (x == 0) {
 		return [player.turbine.coils[x][y - 1], player.turbine.coils[x][y + 1], player.turbine.coils[x + 1][y]];
 	} else if (y == 0) {
 		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y + 1], player.turbine.coils[x + 1][y]];
-	} else if (x == player.turbine.dimensions) {
+	} else if (x == player.turbine.dimensions - 1) {
 		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y - 1], player.turbine.coils[x][y + 1]];
-	} else if (y == player.turbine.dimensions) {
+	} else if (y == player.turbine.dimensions - 1) {
 		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y - 1], player.turbine.coils[x + 1][y]];
 	} else {
 		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y - 1], player.turbine.coils[x][y + 1], player.turbine.coils[x + 1][y]];
@@ -103,7 +97,7 @@ function setRotor(shaftPos) {
 	}
 	if (this.length < (player.turbine.dimensions - player.turbine.bearingDimensions) / 2 && player.turbine.totalRotors[player.turbine.activeRotor] >= current + 4 * player.turbine.bearingDimensions) {
 		player.turbine.rotors[shaftPos] = rotors[player.turbine.activeRotor];
-		player.turbine.rotors[shaftPos].lengthen();
+		player.turbine.rotors[shaftPos].length++;
 	}
 }
 
@@ -265,14 +259,12 @@ function updateUITurbineRotors() {
 function updateUIDynamoCoils() {
 	if (player.unlocked.coils || player.unlocked.naniteUps || player.unlocked.meltdown) {
 		document.getElementById("show_coils").style.display = "block";
-		//document.getElementById("turbine_coils_popup").style.display = "block";
 	} else {
 		document.getElementById("show_coils").style.display = "none";
-		//document.getElementById("turbine_coils_popup").style.display = "none";
 	}
 
-	document.getElementById("turbine_coil_magnesium").style.display = player.nucleosynthesis > 0 ? "block" : "none";
-	document.getElementById("turbine_coil_magnesium").style.display = player.nucleosynthesis > 1 ? "block" : "none";
+	document.getElementById("turbine_coil_magnesium").style.display = player.unlocked.coils || player.unlocked.naniteUps || player.unlocked.meltdown ? "block" : "none";
+	document.getElementById("turbine_coil_beryllium").style.display = player.nucleosynthesis > 1 ? "block" : "none";
 	document.getElementById("turbine_coil_lithium").style.display = player.nucleosynthesis > 2 ? "block" : "none";
 	document.getElementById("turbine_coil_aluminium").style.display = player.nucleosynthesis > 3 ? "block" : "none";
 
@@ -293,6 +285,5 @@ function updateUIDynamoCoils() {
 
 function newTurbine() {
 	drawTurbineRotors(true);
-	drawBearing(player.turbine.dimensions % 2 + 5 % 3 + 1);
 	drawDynamoCoils(true);
 }

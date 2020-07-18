@@ -10,8 +10,30 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ## [v0.0.0] - 30/2/20 **PR**
 ### Added
 ### Modified
-### Code Optimisations
+### Removed
 -->
+
+## [v0.5.2] - 18/7/20 **PR**
+
+### Added
+
+### Modified
+- Fixed bug when you are at >= 4 Nucleosynthesis
+- Fixed bug with balancing tab
+- Fixed bug with dynamo coil activation
+
+### Removed
+
+## [v0.5.0] - 18/7/20 **PR**
+
+### Added
+- Added Turbines
+- Framework for Decay Hastening
+
+### Modified
+- Changed Costs and Cost Multipliers for all Mines and Reactors
+
+### Removed
 
 ## [v0.4.14] - 28/6/20 **PR**
 

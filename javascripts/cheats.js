@@ -35,7 +35,7 @@ function infiniteCorium() {
 function addNucleosynthesis() {
 	if (player.nucleosynthesis < 14) {
 		player.nucleosynthesis += 1;
-		player.unlocked.coils=true;
+		player.unlocked.coils = true;
 	}
 }
 

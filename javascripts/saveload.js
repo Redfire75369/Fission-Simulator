@@ -163,9 +163,6 @@ function objectify(x, type) {
 		let ret = new TurbineBlade(x.name, x.efficiency, x.expansion, x.speed);
 		ret.length = x.length;
 		return ret;
-	} else if (type instanceof DynamoCoil) {
-		let ret = coils[x.name];
-		return ret;
 	} else if (type instanceof Efficiency) {
 		let ret = new Efficiency(type.startCost, type.scaleCost);
 		ret.bought = x.bought;
@@ -179,9 +176,9 @@ function objectify(x, type) {
 		ret.bought = x.bought;
 		return ret;
 	} else if (type instanceof MeltdownUpgrade) {
-			let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
-			ret.bought = x.bought;
-			return ret;
+		let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
+		ret.bought = x.bought;
+		return ret;
 	} else {
 		return x;
 	}

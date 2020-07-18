@@ -77,11 +77,10 @@ function getMineGain(tier) {
 	return tier < 7 ? player.mines[tier + 1].amount.mul(player.mines[tier + 1].totalMult).mul(player.eff.eff) : zero;
 }
 function getReactorGain(tier) {
-	if (player.reactors[tier + 1].enabled) {
-		return tier < 7 ? getMineGain(tier).add(player.reactors[tier + 1].amount.mul(player.reactors[tier + 1].totalMult)).sqrt().mul(player.eff.eff) : zero;
-	} else {
-		return tier < 7 ? getMineGain(tier) : zero;
+	if (tier >= 7) {
+		return zero;
 	}
+	return player.reactors[tier + 1].enabled ? getMineGain(tier).add(player.reactors[tier + 1].amount.mul(player.reactors[tier + 1].totalMult)).sqrt().mul(player.eff.eff) : getMineGain(tier).sqrt().mul(player.eff.eff);
 }
 
 function simulateMines(tickInterval = 50) {

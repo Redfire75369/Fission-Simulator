@@ -38,7 +38,7 @@ function getFuelMineGain(tier) {
 			x++;
 		}
 	}
-	return player.mines[tier].amount.mul(player.mines[tier].totalMult).mul(((3 ** x) - 1)/2).div(tier + 1);
+	return player.mines[tier].amount.mul(player.mines[tier].totalMult).mul(((3 ** x) - 1)/2);
 }
 function getFuelDecayGain(tier) {
 	if (tier == 7) {
