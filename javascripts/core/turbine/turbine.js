@@ -37,13 +37,14 @@ class DynamoCoil {
 }
 
 const rotorCosts = {
-	none: [0, 0],
-	steel: [4, 2]
+	steel: [4, 2],
+	extreme: [8, 4]
 }
 const rotors = {
 	none: new TurbineBlade("none", 0, 1, 1),
 	stator: new TurbineBlade("stator", 0, 0.6, 2.4),
-	steel: new TurbineBlade("steel", 1, 1.1, 0.8)
+	steel: new TurbineBlade("steel", 1, 1.4, 0.8),
+	extreme: new TurbineBlade("extreme", 1.2, 1.6, 0.7)
 };
 const coils = {
 	none: new DynamoCoil("none", 1),
@@ -51,7 +52,7 @@ const coils = {
 	magnesium: new DynamoCoil("magnesium", 1.4),
 	beryllium: new DynamoCoil("beryllium", 2.1),
 	lithium: new DynamoCoil("lithium", 3),
-	aluminium: new DynamoCoil("aluminium", 3.2)
+	aluminium: new DynamoCoil("aluminium", 3.3)
 };
 
 var activeCoils = [
@@ -60,34 +61,11 @@ var activeCoils = [
 	[false, false, false]
 ];
 
-function getHorizontalCoils(x, y) {
-	if (x == 0 && y == 0) {
-		return [player.turbine.coils[x][y + 1], player.turbine.coils[x + 1][y]];
-	} else if (x == 0 && y == player.turbine.dimensions - 1) {
-		return [player.turbine.coils[x][y - 1], player.turbine.coils[x + 1][y]];
-	} else if (x == player.turbine.dimensions - 1 && y == 0) {
-		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y + 1]];
-	} else if (x == player.turbine.dimensions - 1 && y == player.turbine.dimensions - 1) {
-		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y - 1]];
-	} else if (x == 0) {
-		return [player.turbine.coils[x][y - 1], player.turbine.coils[x][y + 1], player.turbine.coils[x + 1][y]];
-	} else if (y == 0) {
-		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y + 1], player.turbine.coils[x + 1][y]];
-	} else if (x == player.turbine.dimensions - 1) {
-		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y - 1], player.turbine.coils[x][y + 1]];
-	} else if (y == player.turbine.dimensions - 1) {
-		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y - 1], player.turbine.coils[x + 1][y]];
-	} else {
-		return [player.turbine.coils[x - 1][y], player.turbine.coils[x][y - 1], player.turbine.coils[x][y + 1], player.turbine.coils[x + 1][y]];
-	}
-}
-
 function selectRotor(rotor) {
-	document.getElementById("rotor_" + player.turbine.activeRotor).parentElement.className = "turbinebox";
-	document.getElementById("rotor_" + rotor).parentElement.className = "turbinebox selected";
+	document.getElementById("turbine_rotor_" + player.turbine.activeRotor).parentElement.className = "tooltip turbinebox";
+	document.getElementById("turbine_rotor_" + rotor).parentElement.className = "tooltip turbinebox selected";
 	player.turbine.activeRotor = rotor;
 }
-
 function setRotor(shaftPos) {
 	let current = 0;
 	console.log([player.turbine.rotors[0].length, player.turbine.rotors[1].length, player.turbine.rotors[2].length]);
@@ -104,7 +82,7 @@ function setRotor(shaftPos) {
 }
 
 function getRotorCost() {
-	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][0] * (player.turbine.totalRotors[player.turbine.activeRotor] - 4));
+	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - 4));
 }
 function canBuyRotor() {
 	return player.energy.gte(getRotorCost());
@@ -113,6 +91,19 @@ function buyRotor() {
 	if (canBuyRotor()) {
 		player.energy = player.energy.sub(getRotorCost());
 		player.turbine.totalRotors[player.turbine.activeRotor]++;
+	}
+}
+
+function getFourRotorsCost() {
+	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * player.turbine.totalRotors[player.turbine.activeRotor]);
+}
+function canBuyFourRotors() {
+	return player.energy.gte(getFourRotorsCost());
+}
+function buyFourRotors() {
+	if (getFourRotorsCost()) {
+		player.energy = player.energy.sub(getFourRotorCost());
+		player.turbine.totalRotors[player.turbine.activeRotor] += 4;
 	}
 }
 
@@ -131,23 +122,25 @@ function hideCoils() {
 function selectCoil(coil) {
 	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col turbinebox turbinecoil " + player.turbine.activeCoil;
 	document.getElementById("turbine_coil_" + coil).className = "flex__col turbinebox turbinecoil selected " + coil;
-	document.getElementById("turbine_coil_desc_" + player.turbine.activeCoil).style.display = "none";
-	document.getElementById("turbine_coil_desc_" + coil).style.display = "block";
 	player.turbine.activeCoil = coil;
 }
-
 function setCoil(x, y) {
-	if (player.turbine.coils[x][y] != "bearing") {
-		player.turbine.coils[x][y] = player.turbine.activeCoil;
+	if (player.turbine.coils[y][x] != "bearing") {
+		player.turbine.coils[y][x] = player.turbine.activeCoil;
 		activeDynamoCoils();
 	}
+}
+
+function resetDynamoCoils() {
+	drawBearing(player.turbine.bearingDimensions);
+	drawDynamoCoils(true);
 }
 
 function getTotalCoilEff() {
 	let ret = new Decimal(1);
 	for (let x = 0; x < player.turbine.coils.length; x++) {
 		for (let y = 0; y < player.turbine.coils[x].length; y++) {
-			if (activeCoils[x][y]) {
+			if (activeCoils[y][x]) {
 				ret = ret.mul(coils[player.turbine.coils[x][y]].efficiency);
 			}
 		}
@@ -156,59 +149,139 @@ function getTotalCoilEff() {
 }
 
 function activeDynamoCoils() {
-	let start = player.turbine.dimensions % 2 == 0 ? player.turbine.dimensions / 2 - (player.turbine.bearingDimensions / 2) + 1 : (player.turbine.dimensions + 1) / 2 - (player.turbine.bearingDimensions + 1) / 2 + 1;
-	for (let x = 0; x < player.turbine.coils.length; x++) {
-		for (let y = 0; y < player.turbine.coils[x].length; y++) {
-			var adjacentCoils = getHorizontalCoils(x, y);
-			switch (player.turbine.coils[x][y]) {
+	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
+		for (let j = 1; j < player.turbine.dimensions + 1; j++) {
+			switch (player.turbine.coils[j - 1][i - 1]) {
 				case "bearing":
-					if (y - 1 < start || y - 1>= start + player.turbine.bearingDimensions || x - 1 < start || x - 1 >= start + player.turbine.bearingDimensions) {
-						activeCoils[x][y] = true;
-					} else {
-						activeCoils[x][y] = false;
-					}
+					activeCoils[j - 1][i - 1] = true;
+					break;
+				case "connector":
+					activeCoils[j - 1][i - 1] = atLeast(1, "magnesium", i - 1, j - 1) || atLeast(1, "beryllium", i - 1, j - 1) || atLeast(1, "aluminium", i - 1, j - 1) || atLeast(1, "copper", i - 1, j - 1) || atLeast(1, "gold", i - 1, j - 1) || atLeast(1, "silver", i - 1, j - 1);
 					break;
 				case "magnesium":
-					if (adjacentCoils.includes("bearing")) {
-						activeCoils[x][y] = true;
-					} else {
-						activeCoils[x][y] = false;
-					}
+					activeCoils[j - 1][i - 1] = atLeast(1, "bearing", i - 1, j - 1) || atLeast(1, "connector", i - 1, j - 1);
 					break;
 				case "beryllium":
-					if (adjacentCoils.includes("magnesium")) {
-						activeCoils[x][y] = true;
-					} else {
-						activeCoils[x][y] = false;
-					}
+					activeCoils[j - 1][i - 1] = atLeast(1, "magnesium", i - 1, j - 1);
 					break;
 				case "lithium":
-					if (adjacentCoils.includes("beryllium") && adjacentCoils.includes("bearing")) {
-						activeCoils[x][y] = true;
-					} else {
-						activeCoils[x][y] = false;
-					}
+					activeCoils[j - 1][i - 1] = atLeast(1, "beryllium", i - 1, j - 1) && (atLeast(1, "bearing", i - 1, j - 1));
 					break;
 				case "aluminium":
-					if (adjacentCoils.includes("beryllium")) {
-						adjacentCoils.splice(adjacentCoils.findIndex((p) => p == "beryllium"), 1);
-						if (adjacentCoils.includes("beryllium")) {
-							activeCoils[x][y] = true;
-						} else {
-							activeCoils[x][y] = false;
-						}
-					} else {
-						activeCoils[x][y] = false;
-					}
+					activeCoils[j - 1][i - 1] = atLeast(2, "beryllium", i - 1, j - 1);
+					break;
+				case "gold":
+					activeCoils[j - 1][i - 1] = atLeast(1, "aluminium", i - 1, j - 1);
+					break;
+				case "copper":
+					activeCoils[j - 1][i - 1] = atLeast(1, "beryllium", i - 1, j - 1);
+					break;
+				case "silver":
+					activeCoils[j - 1][i - 1] = atLeast(1, "copper", i - 1, j - 1) && atLeast(1, "gold", i - 1, j - 1);
 					break;
 				default:
-					activeCoils[x][y] = false;
+					activeCoils[j - 1][i - 1] = false;
 			}
 		}
 	}
 }
 
+function getHorizontalCoils(x, y) {
+	if (x == 0 && y == 0) {
+		return {
+			2: player.turbine.coils[y][x + 1],
+			3: player.turbine.coils[y + 1][x]
+		};
+	} else if (x == 0 && y == player.turbine.dimensions - 1) {
+		return {
+			1: player.turbine.coils[y - 1][x],
+			2: player.turbine.coils[y][x + 1]
+		};
+	} else if (x == player.turbine.dimensions - 1 && y == 0) {
+		return {
+			0: player.turbine.coils[y][x - 1],
+			3: player.turbine.coils[y + 1][x]
+		}
+	} else if (x == player.turbine.dimensions - 1 && y == player.turbine.dimensions - 1) {
+		return {
+			0: player.turbine.coils[y][x - 1],
+			1: player.turbine.coils[y - 1][x]
+		}
+	} else if (x == 0) {
+		return {
+			1: player.turbine.coils[y - 1][x],
+			2: player.turbine.coils[y][x + 1],
+			3: player.turbine.coils[y + 1][x]
+		}
+	} else if (y == 0) {
+		return {
+			0: player.turbine.coils[y][x - 1],
+			2: player.turbine.coils[y][x + 1],
+			3: player.turbine.coils[y + 1][x]
+		}
+	} else if (x == player.turbine.dimensions - 1) {
+		return {
+			0: player.turbine.coils[y][x - 1],
+			1: player.turbine.coils[y - 1][x],
+			3: player.turbine.coils[y + 1][x]
+		}
+	} else if (y == player.turbine.dimensions - 1) {
+		return {
+			0: player.turbine.coils[y][x - 1],
+			1: player.turbine.coils[y - 1][x],
+			2: player.turbine.coils[y][x + 1]
+		};
+	} else {
+		return {
+			0: player.turbine.coils[y][x - 1],
+			1: player.turbine.coils[y - 1][x],
+			2: player.turbine.coils[y][x + 1],
+			3: player.turbine.coils[y + 1][x]
+		}
+	}
+}
+
+function keyIntoActivation(key, x, y) {
+	if (key === undefined) {
+		return false;
+	}
+	switch (key.toString()) {
+		case "0":
+			return activeCoils[y][x - 1];
+		case "1":
+			return activeCoils[y - 1][x];
+		case "2":
+			return activeCoils[y][x + 1];
+		case "3":
+			return activeCoils[y + 1][x];
+		default:
+			return false;
+	}
+}
+
+function atLeast(amount, type, x, y) {
+	let adjacent = getHorizontalCoils(x, y);
+	let keys = Object.keys(adjacent);
+	let bool = true;
+	let activated = true;
+	let key = 4;
+	for (let i = 0; i < max(4, amount); i++) {
+		key = Object.keys(adjacent).filter(key => adjacent[key] == type)[0];
+		bool &= adjacent[key] == type;
+		activated &= keyIntoActivation(key, x, y);
+		for (let j = 0; j < 4 && !keyIntoActivation(key, x, y); j++) {
+			adjacent[key] = undefined;
+			key = Object.keys(adjacent).filter(key => adjacent[key] == type)[0];
+			bool &= adjacent[key] == type;
+			activated = keyIntoActivation(key, x, y);
+		}
+		adjacent[key] = undefined;
+	}
+	return bool && activated;
+}
+
 function simulateTurbine(tickInterval = 50) {
+	activeDynamoCoils();
 	let speed = new Decimal(1);
 	let vol = getTotalSteamGain();
 	let exp = new Decimal(1);
@@ -230,10 +303,18 @@ function simulateTurbine(tickInterval = 50) {
 function updateUITurbineRotors() {
 	document.getElementById("turbine_rotors_count").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
 	document.getElementById("turbine_rotors_total").innerText = player.turbine.totalRotors[player.turbine.activeRotor] + " " + player.turbine.activeRotor.charAt(0).toUpperCase() + player.turbine.activeRotor.substring(1).toLowerCase();
+
 	document.getElementById("buy_rotor").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
 	document.getElementById("buy_rotor").className = canBuyRotor() ? "storebtn buy" : "storebtn locked";
 	document.getElementById("rotor_type").innerText = player.turbine.activeRotor.charAt(0).toUpperCase() + player.turbine.activeRotor.substring(1).toLowerCase();
 	document.getElementById("rotor_cost").innerText = notation(getRotorCost());
+	
+	document.getElementById("buy_four_rotor").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
+	document.getElementById("buy_four_rotor").className = canBuyFourRotors() ? "storebtn buy" : "storebtn locked";
+	document.getElementById("rotor_four_type").innerText = player.turbine.activeRotor.charAt(0).toUpperCase() + player.turbine.activeRotor.substring(1).toLowerCase();
+	document.getElementById("rotor_four_cost").innerText = notation(getFourRotorsCost());
+
+	document.getElementById("turbine_rotor_extreme").parentElement.style.display = player.nucleosynthesis > 2 ? "block" : "none";
 
 	let start = player.turbine.dimensions % 2 == 0 ? player.turbine.dimensions / 2 - (player.turbine.bearingDimensions / 2) + 1 : (player.turbine.dimensions + 1) / 2 - (player.turbine.bearingDimensions + 1) / 2 + 1;
 	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
@@ -282,14 +363,14 @@ function updateUIDynamoCoils() {
 
 	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
 		for (let j = 1; j < player.turbine.dimensions + 1; j++) {
-			if (coils[player.turbine.coils[i - 1][j - 1]].efficiency > 0) {
-				if (activeCoils[i - 1][j - 1]) {
-					document.getElementById("turbine_coils_row_" + j +"_" + i).setAttribute("class", "flex__row turbinebox turbinecoil active " + player.turbine.coils[i - 1][j - 1]);
+			if (player.turbine.coils[j - 1][i - 1] != "none" && player.turbine.coils[j - 1][i - 1] != "bearing") {
+				if (activeCoils[j - 1][i - 1]) {
+					document.getElementById("turbine_coils_row_" + j +"_" + i).setAttribute("class", "flex__row tooltip turbinebox turbinecoil active " + player.turbine.coils[j - 1][i - 1]);
 				} else  {
-					document.getElementById("turbine_coils_row_" + j +"_" + i).setAttribute("class", "flex__row turbinebox turbinecoil inactive " + player.turbine.coils[i - 1][j - 1]);
+					document.getElementById("turbine_coils_row_" + j +"_" + i).setAttribute("class", "flex__row tooltip turbinebox turbinecoil inactive " + player.turbine.coils[j - 1][i - 1]);
 				}
 			} else {
-				document.getElementById("turbine_coils_row_" + j +"_" + i).setAttribute("class", "flex__row turbinebox turbinecoil " + player.turbine.coils[i - 1][j - 1]);
+				document.getElementById("turbine_coils_row_" + j +"_" + i).setAttribute("class", "flex__row tooltip turbinebox turbinecoil " + player.turbine.coils[j - 1][i - 1]);
 			}
 		}
 	}

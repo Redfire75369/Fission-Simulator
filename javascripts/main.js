@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 5,
-			alpha: 2
+			alpha: 4
 		},
 
 		options: {
@@ -76,12 +76,6 @@ function getDefaultData() {
 			rotors: [
 				rotors.none,
 				rotors.none,
-				rotors.none,
-				rotors.none,
-				rotors.none,
-				rotors.none,
-				rotors.none,
-				rotors.none,
 				rotors.none
 			],
 			coils: [
@@ -91,9 +85,9 @@ function getDefaultData() {
 			],
 			totalRotors: {
 				steel: 4,
-				tungstencarbide: 0
+				extreme: 0
 			},
-			activeRotor: "none",
+			activeRotor: "steel",
 			activeCoil: "none",
 			dimensions: 3,
 			bearingDimensions: 1

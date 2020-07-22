@@ -12,6 +12,19 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Modified
 ### Removed
 -->
+## [v0.5.3] - 22/7/20 **PR**
+
+### Added
+- Tooltips for Rotors and Dynamo Coils
+- Extreme Rotor
+- Buy 4 Rotors
+
+### Modified
+- Refactored Achievement Tooltips
+- Refactored Dynamo Coil Activation
+
+### Removed
+- Dynamo Coil Descriptions
 
 ## [v0.5.3] - 18/7/20 **PR**
 

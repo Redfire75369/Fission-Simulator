@@ -1,22 +1,22 @@
 const achs = [11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 28];
 
 const achTexts = [
-	"Is this 2D Minecraft? Buy an Iron-Tipped Drill Mine.",
-	"I have the power inside. Obtain 1000 Energy.",
+	"Is this 2D Minecraft?<br/>Buy an Iron-Tipped Drill Mine.",
+	"I have the power inside<br/>Obtain 1000 Energy.",
 	"<Suggest Ideas in the Discord Server>",
-	"WIP. Nucleosynthesise for the first time.",
+	"WIP<br/>Nucleosynthesise for the first time.",
 	"<Suggest Ideas in the Discord Server>",
-	"All the Elements. Unlock all 8 Reactors.",
+	"All the Elements<br/>Unlock all 8 Reactors.",
 	"<Suggest Ideas in the Discord Server>",
-	"Nanomachines, Son. Obtain 1 Nanite.",
+	"Nanomachines, Son<br/>Obtain 1 Nanite.",
 	"<Suggest Ideas in the Discord Server>",
-	"The Power of a Dying Star. Nucleosynthesise 8 Times.",
+	"The Power of a Dying Star<br/>Nucleosynthesise 8 Times.",
 	"<Suggest Ideas in the Discord Server>",
-	"WIP. Obtain 1.00e12 Energy.",
-	"They harden in response to physical trauma! Obtain 8 Nanites.",
+	"WIP.<br/>Obtain 1.00e12 Energy.",
+	"They harden in response to physical trauma!<br/>Obtain 8 Nanites.",
 	"<Suggest Ideas in the Discord Server>",
-	"WIP. Buy all Nanite Upgrades",
-	"To Infinity and Beyond! Meltdown for the first time."
+	"WIP<br/> Buy all Nanite Upgrades",
+	"To Infinity and Beyond!<br/>Meltdown for the first time."
 ];
 
 function checkAchievementCompletion() {
@@ -41,12 +41,7 @@ function checkAchievementCompletion() {
 function updateUIAchievements() {
 	for (let i = 0; i < achs.length; i++) {
 		document.getElementById("ach" + achs[i]).className = player.achievements[achs[i]] ? "achcomplete" : "achlocked";
-		if (!player.achievements[achs[i]]) {
-			document.getElementById("ach" + achs[i]).removeAttribute("achpopupcomplete");
-			document.getElementById("ach" + achs[i]).setAttribute("achpopuplocked", achTexts[i]);
-		} else {
-			document.getElementById("ach" + achs[i]).removeAttribute("achpopuplocked");
-			document.getElementById("ach" + achs[i]).setAttribute("achpopupcomplete", achTexts[i]);
-		}
+		document.getElementById("ach" + achs[i]).children[0].children[1].className = player.achievements[achs[i]] ? "tooltiptext achcomplete" : "tooltiptext achlocked";
+		document.getElementById("ach" + achs[i]).children[0].children[1].innerHTML = achTexts[i];
 	}
 }

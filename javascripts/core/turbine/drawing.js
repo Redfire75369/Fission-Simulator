@@ -57,6 +57,17 @@ function drawBearing(bearingDiameter) {
 		return;
 	}
 	player.turbine.bearingDimensions = bearingDiameter;
+	let start = player.turbine.dimensions % 2 == 0 ? player.turbine.dimensions / 2 - (bearingDiameter / 2) + 1 : (player.turbine.dimensions + 1) / 2 - (bearingDiameter + 1) / 2 + 1;
+	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
+		for (let j = 1; j < player.turbine.dimensions + 1; j++) {
+			if (j >= start && j < start + bearingDiameter && i >= start && i < start + bearingDiameter) {
+				player.turbine.coils[i - 1][j - 1] = "bearing";
+			} else {
+				player.turbine.coils[i - 1][j - 1] = "none";
+			}
+		}
+	}
+	activeDynamoCoils();
 }
 
 function drawDynamoCoils(needRefresh) {
@@ -93,8 +104,6 @@ function drawDynamoCoils(needRefresh) {
 			if (!(j == 0 || j == player.turbine.dimensions + 1 || i == 0 || i == player.turbine.dimensions + 1)) {
 				if (j < start || j >= start + player.turbine.bearingDimensions || i < start || i >= start + player.turbine.bearingDimensions) {
 					coil.setAttribute("onclick", "setCoil(" + (i - 1) + ", " + (j - 1) + ")");
-				} else {
-					player.turbine.coils[i - 1][j - 1] = "bearing";
 				}
 			} else {
 				coil.setAttribute("class", "flex__row turbinebox turbinecasing");

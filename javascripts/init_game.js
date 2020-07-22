@@ -35,24 +35,15 @@ function preLoad() {
 	document.getElementById("meltdown_" + player.navigation.meltdown + "btn").className = "subtabbtn";
 	document.getElementById("meltdown_" + player.navigation.meltdown).style.display = "none";
 
-	document.getElementById("turbine_coil_desc_none").style.display = "none";
-	document.getElementById("turbine_coil_desc_magnesium").style.display = "none";
-	document.getElementById("turbine_coil_desc_beryllium").style.display = "none";
-	document.getElementById("turbine_coil_desc_lithium").style.display = "none";
-	document.getElementById("turbine_coil_desc_aluminium").style.display = "none";
-
-	document.getElementById("rotor_" + player.turbine.activeRotor).parentElement.className = "turbinebox";
 	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col turbinebox turbinecoil " + player.turbine.activeCoil;
-	document.getElementById("turbine_coil_desc_" + player.turbine.activeCoil).style.display = "none";
 }
 
 function postLoad() {
 	drawTurbineRotors(false);
 	drawBearing(player.turbine.bearingDimensions);
 	drawDynamoCoils(false);
-	document.getElementById("rotor_" + player.turbine.activeRotor).parentElement.className = "turbinebox selected";
+	document.getElementById("turbine_rotor_" + player.turbine.activeRotor).parentElement.className = "tooltip turbinebox selected";
 	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col turbinebox turbinecoil selected " + player.turbine.activeCoil;
-	document.getElementById("turbine_coil_desc_" + player.turbine.activeCoil).style.display = "block";
 	activeDynamoCoils();
 
 	showNaviTab(player.navigation.naviTab);

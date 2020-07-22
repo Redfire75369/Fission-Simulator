@@ -4,13 +4,13 @@
 	  <meta charset="utf-8">
 		<title>Fission Simulator</title>
 		<link rel="stylesheet" href="stylesheets/universal.css"/>
-	  <link rel="stylesheet" href="stylesheets/light.css" id="style"/>
+		<link rel="stylesheet" href="stylesheets/light.css" id="style"/>
 		<link rel="stylesheet" href="stylesheets/katex.css"/>
 
 		<meta property="og:type" content="game"/>
 		<meta property="og:title" content="Fission Simulator"/>
 		<meta property="og:description" content="An Incremental Game about Reactors"/>
-		<meta property="og:url" content="https://redfire75369.github.io/Fission-Simulator/">
+		<meta property="og:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/Alpha/index.html">
 
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
@@ -501,14 +501,17 @@
 						<div id="turbine_rotors" class="flex__row"></div>
 						<div id="turbine_rotors_length" class="flex__row"></div>
 						<div class="flex__row">
-							<div onclick="selectRotor('none')" class="turbinebox"><div onclick="selectRotor('none')" id="rotor_none" class="turbinerotor selection none"></div></div>
-							<div onclick="selectRotor('steel')" class="turbinebox"><div onclick="selectRotor('steel')" id="rotor_steel" class="turbinerotor selection steel"></div></div>
+							<div onclick="selectRotor('steel')" class="tooltip turbinebox"><div id="turbine_rotor_steel" class="turbinerotor selection steel"></div><span class="tooltiptext turbine">Steel Rotor<br/>Efficiency: 100%<br/>Expansion: 140%<br/>Velocity:80%</span></div>
+							<div onclick="selectRotor('extreme')" class="tooltip turbinebox"><div id="turbine_rotor_extreme" class="turbinerotor selection extreme"></div><span class="tooltiptext turbine">Extreme Rotor<br/>Efficiency: 120%<br/>Expansion: 160%<br/>Velocity:70%</span></div>
 						</div>
 						<div class="flex__row">
 							<div id="turbine_rotors_count">You have <span id="turbine_rotors_total"></span> Rotors.</div>
 						</div>
 						<div class="flex__row">
 							<button onclick="buyRotor()" id="buy_rotor">Buy a <span id="rotor_type"></span> Rotor for <span id="rotor_cost"></span> Energy</button>
+							<button onclick="buyFourRotors()" id="buy_four_rotor">Buy 4 <span id="rotor_four_type"></span> Rotors for <span id="rotor_four_cost"></span> Energy</button>
+						</div>
+						<div class="flex__row">
 							<button onclick="showCoils()" id="show_coils">Configure Dynamo Coils</button>
 						</div>
 					</div>
@@ -518,46 +521,17 @@
 						<div class="flex__col flex--center">
 							<div id="turbine_coils" class="flex__row"></div>
 							<div class="flex__row">
-								<div onclick="selectCoil('none')" id="turbine_coil_none" class="flex__col turbinebox turbinecoil none"></div>
-								<div onclick="selectCoil('magnesium')" id="turbine_coil_magnesium" class="flex__col turbinebox turbinecoil magnesium"></div>
-								<div onclick="selectCoil('beryllium')" id="turbine_coil_beryllium" class="flex__col turbinebox turbinecoil beryllium"></div>
-								<div onclick="selectCoil('lithium')" id="turbine_coil_lithium" class="flex__col turbinebox turbinecoil lithium"></div>
-								<div onclick="selectCoil('aluminium')" id="turbine_coil_aluminium" class="flex__col turbinebox turbinecoil aluminium"></div>
+								<div onclick="selectCoil('none')" id="turbine_coil_none" class="flex__col tooltip turbinebox turbinecoil none"><span class="tooltiptext turbine">Turbine Casing</span></div>
+								<div onclick="selectCoil('magnesium')" id="turbine_coil_magnesium" class="flex__col tooltip turbinebox turbinecoil magnesium"><span class="tooltiptext turbine">Magnesium Dynamo Coil<br/>Efficiency: 140%<br/>Adjacent to at least 1 Rotor Bearing</span></div>
+								<div onclick="selectCoil('beryllium')" id="turbine_coil_beryllium" class="flex__col tooltip turbinebox turbinecoil beryllium"><span class="tooltiptext turbine">Beryllium Dynamo Coil<br/>Efficiency: 210%<br/>Adjacent to at least 1 Magnesium Dynamo Coils</span></div>
+								<div onclick="selectCoil('lithium')" id="turbine_coil_lithium" class="flex__col tooltip turbinebox turbinecoil lithium"><span class="tooltiptext turbine">Lithium Dynamo Coil<br/>Efficiency: 300%<br/>Adjacent to at least 1 Beryllium Dynamo Coil and 1 Rotor Bearing</span></div>
+								<div onclick="selectCoil('aluminium')" id="turbine_coil_aluminium" class="flex__col tooltip turbinebox turbinecoil aluminium"><span class="tooltiptext turbine">Aluminium Dynamo Coil<br/>Efficiency: 330%<br/>Adjacent to at least 2 Beryllium Dynamo Coils</span></div>
 							</div>
 							<div class="flex__row">
 								<div>Overall Dynamo Coil Efficiency: <span id="turbine_coil_efficiency"></span></div>
 							</div>
 							<div class="flex__row">
 								<button onclick="hideCoils()">Close Dynamo Coil Configuration</butron>
-							</div>
-						</div>
-						<div class="flex__col">
-							<div id="turbine_coil_desc">
-								<div id="turbine_coil_desc_none" class="turbinecoildesc">
-									<b style="font-size: 20px">No Dynamo Coil:</b><br>
-									<p>Efficiency Multiplier: 100%</p>
-									<p>Can be placed anywhere<p>
-								</div>
-								<div id="turbine_coil_desc_magnesium" class="turbinecoildesc">
-									<b style="font-size: 20px">Magnesium Dynamo Coil:</b><br>
-									<p>Efficiency Multiplier: 140%</p>
-									<p>Must be adjacent to at least one Rotor Bearing</p>
-								</div>
-								<div id="turbine_coil_desc_beryllium" class="turbinecoildesc">
-									<b style="font-size: 20px">Beryllium Dynamo Coil:</b><br>
-									<p>Efficiency Multiplier: 210%</p>
-									<p>Must be adjacent to at least one Magnesium Dynamo Coil</p>
-								</div>
-								<div id="turbine_coil_desc_lithium" class="turbinecoildesc">
-									<b style="font-size: 20px">Lithium Dynamo Coil:</b><br>
-									<p>Efficiency Multiplier: 300%</p>
-									<p>Must be adjacent to at least one Beryllium Dynamo Coil and one Rotor Bearing</p>
-								</div>
-								<div id="turbine_coil_desc_aluminium" class="turbinecoildesc">
-									<b style="font-size: 20px">Aluminium Dynamo Coil:</b><br>
-									<p>Efficiency Multiplier: 320%</p>
-									<p>Must be adjacent to at least two Beryllium Dynamo Coils</p>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -606,54 +580,102 @@
 			<table>
 				<tr>
 					<td id="ach11" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach12" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach13" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach14" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach15" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach16" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach17" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach18" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 				</tr>
 				<tr>
 					<td id="ach21" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach22" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach23" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach24" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach25" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach26" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach27" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext"></span>
+						</div>
 					</td>
 					<td id="ach28" class="achlocked" align="center">
-						<image class="achpic" src="resources/images/null.png"/>
+						<div class="tooltip achpic">
+							<image src="resources/images/null.png"/>
+							<span class="tooltiptext">To Infinity and Beyond!<br/>Meltdown for the first time.</span>
+						</div>
 					</td>
 				</tr>
 			</table>

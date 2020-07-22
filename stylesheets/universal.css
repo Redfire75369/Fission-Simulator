@@ -24,6 +24,62 @@ table {
 	padding: 0;
 }
 
+.popup {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	display: flex;
+	align-items: center;
+	text-align:center;
+	padding: 10px;
+	padding-bottom: 15px;
+	transform: translateX(-50%) translateY(-50%);
+	z-index: 10;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border: 1px solid #000000;
+}
+
+.tooltip .tooltiptext {
+	position: absolute;
+	background-color: #000000;
+	color: #FFFFFF;
+	visibility: hidden;
+	data-html: true;
+	z-index: 2;
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+.tooltiptext.achcomplete {
+	width: 12.5vw;
+	bottom: 105%;
+	left: 50%;
+	margin-left: -6.25vw;
+	padding-top: 5px;
+	color: #88EE44;
+}
+.tooltiptext.achlocked {
+	width: 12.5vw;
+	bottom: 5%;
+	left: 50%;
+	margin-left: -6.25vw;
+	padding-top: 5px;
+	color: #DE564D;
+}
+.tooltiptext.turbine {
+	width: 120px;
+	bottom: 105%;
+	left: 50%;
+	margin-left: -60px;
+	padding: 5px;
+	color: #FFFFFF;
+}
+
 #navi_open {
 	width: 48px;
 	height: 48px;
@@ -75,124 +131,6 @@ table {
 	background-color: #808080;
 	border: 1px solid red;
 	margin: 100px;
-}
-
-[achpopupcomplete] {
-	position: relative;
-	z-index: 2;
-}
-[achpopupcomplete]:before,
-[achpopupcomplete]:after {
-	visibility: hidden;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-	opacity: 0;
-	pointer-events: none;
-}
-[achpopupcomplete]:before {
-	position: absolute;
-	bottom: 100%;
-	left: 50%;
-	margin-bottom: 5px;
-	margin-left: -6.25vw;
-	padding: 3px;
-	width: 12.5vw;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	background-color: #000000;
-	color: #88EE44;
-	content: attr(achpopupcomplete);
-	text-align: center;
-	font-size: 14px;
-	line-height: 1.2;
-	transition-duration: .5s;
-}
-[achpopupcomplete]:after {
-	position: absolute;
-	bottom: 100%;
-	left: 45%;
-	margin-left: 0px;
-	width: 0;
-	border-top: 5px solid #000000;
-	border-right: 5px solid transparent;
-	border-left: 5px solid transparent;
-	content: " ";
-	font-size: 0;
-	line-height: 0;
-	transition-duration: .5s;
-}
-[achpopupcomplete]:hover:before,
-[achpopupcomplete]:hover:after {
-	visibility: visible;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-	filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=70);
-	opacity: 1;
-}
-[achpopuplocked] {
-	position: relative;
-	z-index: 2;
-}
-[achpopuplocked]:before,
-[achpopuplocked]:after {
-	visibility: hidden;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-	filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-	opacity: 0;
-	pointer-events: none;
-}
-[achpopuplocked]:before {
-	position: absolute;
-	bottom: 100%;
-	left: 50%;
-	margin-bottom: 5px;
-	margin-left: -6.25vw;
-	padding: 3px;
-	width: 12.5vw;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	background-color: #000000;
-	color: #DE564D;
-	content: attr(achpopuplocked);
-	text-align: center;
-	font-size: 14px;
-	line-height: 1.2;
-	transition-duration: .5s;
-}
-[achpopuplocked]:after {
-	position: absolute;
-	bottom: 100%;
-	left: 45%;
-	margin-left: 0px;
-	width: 0;
-	border-top: 5px solid #000000;
-	border-right: 5px solid transparent;
-	border-left: 5px solid transparent;
-	content: " ";
-	font-size: 0;
-	line-height: 0;
-	transition-duration: .5s;
-}
-[achpopuplocked]:hover:before,
-[achpopuplocked]:hover:after {
-	visibility: visible;
-	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-	filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=70);
-	opacity: 1;
-}
-
-.popup {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	display: flex;
-	align-items: center;
-	text-align:center;
-	padding: 10px;
-	padding-bottom: 15px;
-	transform: translateX(-50%) translateY(-50%);
-	z-index: 10;
 }
 
 #newsbar {
@@ -261,7 +199,7 @@ table {
 	margin-bottom: 6px;
 }
 turbinerotor.selection {
-	margin: auto;
+	margin-left: 9px;
 	margin-top: 2px;
 }
 
@@ -303,7 +241,7 @@ turbinerotor.selection {
 	background-colour: #ADAFAB;
 }
 .turbinecoil.aluminium {
-	background-color: #848789;
+	background-color: #96999B;
 }
 
 #turbine_coil_desc {
