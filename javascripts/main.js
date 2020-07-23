@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 5,
-			alpha: 4
+			alpha: 5
 		},
 
 		options: {
@@ -53,23 +53,23 @@ function getDefaultData() {
 		eff: new Efficiency(1e3, 1e1),
 		mines: [
 			new Mine(1, 2),
-			new Mine(2, 4),
-			new Mine(5, 6),
-			new Mine(7, 9),
-			new Mine(12, 12),
-			new Mine(16, 15),
-			new Mine(21, 19),
-			new Mine(27, 23)
+			new Mine(2, 3),
+			new Mine(5, 4),
+			new Mine(7, 6),
+			new Mine(10, 8),
+			new Mine(12, 11),
+			new Mine(15, 14),
+			new Mine(18, 17)
 		],
 		reactors: [
 			new Reactor(1, 2),
 			new Reactor(2, 3),
-			new Reactor(5, 5),
-			new Reactor(7, 7),
+			new Reactor(5, 4),
+			new Reactor(7, 5),
+			new Reactor(10, 7),
 			new Reactor(12, 9),
-			new Reactor(16, 11),
-			new Reactor(21, 12),
-			new Reactor(27, 13)
+			new Reactor(15, 11),
+			new Reactor(18, 12)
 		],
 
 		turbine: {
@@ -85,7 +85,10 @@ function getDefaultData() {
 			],
 			totalRotors: {
 				steel: 4,
-				extreme: 0
+				titanium: 0,
+				osmiridium: 0,
+				extreme: 0,
+				sicsiccmc: 0
 			},
 			activeRotor: "steel",
 			activeCoil: "none",

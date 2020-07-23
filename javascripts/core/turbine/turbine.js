@@ -38,13 +38,26 @@ class DynamoCoil {
 
 const rotorCosts = {
 	steel: [4, 2],
-	extreme: [8, 4]
+	titanium: [6, 4],
+	osmiridium: [8, 6],
+	extreme: [12, 8],
+	sicsiccmc: [16, 12]
 }
+const rotorLevels = {
+	steel: 1,
+	titanium: 2,
+	osmiridium: 3,
+	extreme: 4,
+	sicsiccmc: 5
+};
 const rotors = {
 	none: new TurbineBlade("none", 0, 1, 1),
 	stator: new TurbineBlade("stator", 0, 0.6, 2.4),
 	steel: new TurbineBlade("steel", 1, 1.4, 0.8),
-	extreme: new TurbineBlade("extreme", 1.2, 1.6, 0.7)
+	titanium: new TurbineBlade("titanium", 1.8, 1.65, 0.7),
+	osmiridium: new TurbineBlade("osmiridium", 2.4, 2, 0.6),
+	extreme: new TurbineBlade("extreme", 3, 2.5, 0.5),
+	sicsiccmc: new TurbineBlade("sicsiccmc", 3.9, 3.2, 0.35)
 };
 const coils = {
 	none: new DynamoCoil("none", 1),
@@ -52,7 +65,10 @@ const coils = {
 	magnesium: new DynamoCoil("magnesium", 1.4),
 	beryllium: new DynamoCoil("beryllium", 2.1),
 	lithium: new DynamoCoil("lithium", 3),
-	aluminium: new DynamoCoil("aluminium", 3.3)
+	aluminium: new DynamoCoil("aluminium", 3.3),
+	gold: new DynamoCoil("gold", 4),
+	copper: new DynamoCoil("copper", 4.8),
+	silver: new DynamoCoil("silver", 6)
 };
 
 var activeCoils = [
@@ -68,7 +84,6 @@ function selectRotor(rotor) {
 }
 function setRotor(shaftPos) {
 	let current = 0;
-	console.log([player.turbine.rotors[0].length, player.turbine.rotors[1].length, player.turbine.rotors[2].length]);
 	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
 		if (player.turbine.rotors[i - 1].name == player.turbine.activeRotor) {
 			current += 4 * player.turbine.rotors[i - 1].length * player.turbine.bearingDimensions;
@@ -82,7 +97,7 @@ function setRotor(shaftPos) {
 }
 
 function getRotorCost() {
-	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - 4));
+	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (4 + 2 * max(0, player.nucleosynthesis - (1 + 2 * rotorLevels[player.turbine.activeRotor])))));
 }
 function canBuyRotor() {
 	return player.energy.gte(getRotorCost());
@@ -95,7 +110,7 @@ function buyRotor() {
 }
 
 function getFourRotorsCost() {
-	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * player.turbine.totalRotors[player.turbine.activeRotor]);
+	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (1 + 2 * max(0, player.nucleosynthesis - (1 + 2 * rotorLevels[player.turbine.activeRotor])))));
 }
 function canBuyFourRotors() {
 	return player.energy.gte(getFourRotorsCost());
@@ -110,6 +125,11 @@ function buyFourRotors() {
 function resetTurbineRotors() {
 	drawTurbineRotors(true);
 	player.turbine.totalRotors = getDefaultData().turbine.totalRotors;
+	player.turbine.totalRotors.steel += 2 * max(0, player.nucleosynthesis - 1);
+	player.turbine.totalRotors.titanium += 2 * max(0, player.nucleosynthesis - 3);
+	player.turbine.totalRotors.osmiridium += 2 * max(0, player.nucleosynthesis - 5);
+	player.turbine.totalRotors.extreme += 2 * max(0, player.nucleosynthesis - 7);
+	player.turbine.totalRotors.sicsiccmc += 2 * max(0, player.nucleosynthesis - 9);
 }
 
 function showCoils() {
@@ -120,8 +140,8 @@ function hideCoils() {
 }
 
 function selectCoil(coil) {
-	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col turbinebox turbinecoil " + player.turbine.activeCoil;
-	document.getElementById("turbine_coil_" + coil).className = "flex__col turbinebox turbinecoil selected " + coil;
+	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col tooltip turbinebox turbinecoil " + player.turbine.activeCoil;
+	document.getElementById("turbine_coil_" + coil).className = "flex__col tooltip turbinebox turbinecoil selected " + coil;
 	player.turbine.activeCoil = coil;
 }
 function setCoil(x, y) {
@@ -156,7 +176,7 @@ function activeDynamoCoils() {
 					activeCoils[j - 1][i - 1] = true;
 					break;
 				case "connector":
-					activeCoils[j - 1][i - 1] = atLeast(1, "magnesium", i - 1, j - 1) || atLeast(1, "beryllium", i - 1, j - 1) || atLeast(1, "aluminium", i - 1, j - 1) || atLeast(1, "copper", i - 1, j - 1) || atLeast(1, "gold", i - 1, j - 1) || atLeast(1, "silver", i - 1, j - 1);
+					activeCoils[j - 1][i - 1] = atLeast(1, "magnesium", i - 1, j - 1) || atLeast(1, "beryllium", i - 1, j - 1) || atLeast(1, "lithium", i - 1, j - 1) || atLeast(1, "aluminium", i - 1, j - 1) || atLeast(1, "gold", i - 1, j - 1) || atLeast(1, "copper", i - 1, j - 1) || atLeast(1, "silver", i - 1, j - 1);
 					break;
 				case "magnesium":
 					activeCoils[j - 1][i - 1] = atLeast(1, "bearing", i - 1, j - 1) || atLeast(1, "connector", i - 1, j - 1);
@@ -165,7 +185,7 @@ function activeDynamoCoils() {
 					activeCoils[j - 1][i - 1] = atLeast(1, "magnesium", i - 1, j - 1);
 					break;
 				case "lithium":
-					activeCoils[j - 1][i - 1] = atLeast(1, "beryllium", i - 1, j - 1) && (atLeast(1, "bearing", i - 1, j - 1));
+					activeCoils[j - 1][i - 1] = atLeast(1, "beryllium", i - 1, j - 1) && (atLeast(1, "bearing", i - 1, j - 1) || atLeast(1, "connector", i - 1, j - 1));
 					break;
 				case "aluminium":
 					activeCoils[j - 1][i - 1] = atLeast(2, "beryllium", i - 1, j - 1);
@@ -174,7 +194,7 @@ function activeDynamoCoils() {
 					activeCoils[j - 1][i - 1] = atLeast(1, "aluminium", i - 1, j - 1);
 					break;
 				case "copper":
-					activeCoils[j - 1][i - 1] = atLeast(1, "beryllium", i - 1, j - 1);
+					activeCoils[j - 1][i - 1] = atLeast(1, "lithium", i - 1, j - 1);
 					break;
 				case "silver":
 					activeCoils[j - 1][i - 1] = atLeast(1, "copper", i - 1, j - 1) && atLeast(1, "gold", i - 1, j - 1);
@@ -265,7 +285,7 @@ function atLeast(amount, type, x, y) {
 	let bool = true;
 	let activated = true;
 	let key = 4;
-	for (let i = 0; i < max(4, amount); i++) {
+	for (let i = 0; i < min(4, amount); i++) {
 		key = Object.keys(adjacent).filter(key => adjacent[key] == type)[0];
 		bool &= adjacent[key] == type;
 		activated &= keyIntoActivation(key, x, y);
@@ -282,6 +302,7 @@ function atLeast(amount, type, x, y) {
 
 function simulateTurbine(tickInterval = 50) {
 	activeDynamoCoils();
+
 	let speed = new Decimal(1);
 	let vol = getTotalSteamGain();
 	let exp = new Decimal(1);
@@ -314,7 +335,10 @@ function updateUITurbineRotors() {
 	document.getElementById("rotor_four_type").innerText = player.turbine.activeRotor.charAt(0).toUpperCase() + player.turbine.activeRotor.substring(1).toLowerCase();
 	document.getElementById("rotor_four_cost").innerText = notation(getFourRotorsCost());
 
-	document.getElementById("turbine_rotor_extreme").parentElement.style.display = player.nucleosynthesis > 2 ? "block" : "none";
+	document.getElementById("turbine_rotor_titanium").parentElement.style.display = player.nucleosynthesis > 1 ? "block" : "none";
+	document.getElementById("turbine_rotor_osmiridium").parentElement.style.display = player.nucleosynthesis > 3 ? "block" : "none";
+	document.getElementById("turbine_rotor_extreme").parentElement.style.display = player.nucleosynthesis > 5 ? "block" : "none";
+	document.getElementById("turbine_rotor_sicsiccmc").parentElement.style.display = player.nucleosynthesis > 7 ? "block" : "none";
 
 	let start = player.turbine.dimensions % 2 == 0 ? player.turbine.dimensions / 2 - (player.turbine.bearingDimensions / 2) + 1 : (player.turbine.dimensions + 1) / 2 - (player.turbine.bearingDimensions + 1) / 2 + 1;
 	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
@@ -360,6 +384,10 @@ function updateUIDynamoCoils() {
 	document.getElementById("turbine_coil_beryllium").style.display = player.nucleosynthesis > 1 ? "block" : "none";
 	document.getElementById("turbine_coil_lithium").style.display = player.nucleosynthesis > 2 ? "block" : "none";
 	document.getElementById("turbine_coil_aluminium").style.display = player.nucleosynthesis > 3 ? "block" : "none";
+	document.getElementById("turbine_coil_gold").style.display = player.nucleosynthesis > 4 ? "block" : "none";
+	document.getElementById("turbine_coil_copper").style.display = player.nucleosynthesis > 5 ? "block" : "none";
+	document.getElementById("turbine_coil_connector").style.display = player.nucleosynthesis > 6 ? "block" : "none";
+	document.getElementById("turbine_coil_silver").style.display = player.nucleosynthesis > 7 ? "block" : "none";
 
 	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
 		for (let j = 1; j < player.turbine.dimensions + 1; j++) {

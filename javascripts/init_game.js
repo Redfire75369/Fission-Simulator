@@ -36,6 +36,9 @@ function preLoad() {
 	document.getElementById("meltdown_" + player.navigation.meltdown).style.display = "none";
 
 	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col turbinebox turbinecoil " + player.turbine.activeCoil;
+	
+	drawTurbineRotors(true);
+	drawDynamoCoils(true);
 }
 
 function postLoad() {
@@ -43,7 +46,7 @@ function postLoad() {
 	drawBearing(player.turbine.bearingDimensions);
 	drawDynamoCoils(false);
 	document.getElementById("turbine_rotor_" + player.turbine.activeRotor).parentElement.className = "tooltip turbinebox selected";
-	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col turbinebox turbinecoil selected " + player.turbine.activeCoil;
+	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col tooltip turbinebox turbinecoil selected " + player.turbine.activeCoil;
 	activeDynamoCoils();
 
 	showNaviTab(player.navigation.naviTab);
