@@ -12,6 +12,17 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Modified
 ### Removed
 -->
+## [v0.5.4] - 25/7/20 **PR**
+### Added
+- 4 New Rotors
+- 4 New Dynamo Coils
+
+### Modified
+- Overhauled Turbine Calculations
+- Merged PR #39
+
+### Removed
+
 ## [v0.5.3] - 22/7/20 **PR**
 
 ### Added

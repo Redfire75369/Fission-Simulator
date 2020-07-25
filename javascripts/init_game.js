@@ -45,9 +45,10 @@ function postLoad() {
 	drawTurbineRotors(false);
 	drawBearing(player.turbine.bearingDimensions);
 	drawDynamoCoils(false);
-	document.getElementById("turbine_rotor_" + player.turbine.activeRotor).parentElement.className = "tooltip turbinebox selected";
-	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col tooltip turbinebox turbinecoil selected " + player.turbine.activeCoil;
 	activeDynamoCoils();
+
+	selectRotor(player.turbine.activeRotor);
+	selectCoil(player.turbine.activeCoil);
 
 	showNaviTab(player.navigation.naviTab);
 	targetedNotationChange(player.options.notation);

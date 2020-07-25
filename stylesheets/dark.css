@@ -13,35 +13,46 @@ button:hover {
 	box-shadow: 0px 0px 8px 1px #f4d258;
 }
 
-.navitabbtn {
+.navigation > button {
 	color: #d0d0d0;
 	background-color: #1c1c1c;
-	border: 2px solid #2828bf;
-	border-radius: 4px;
+	border-color: #2828bf;
 }
-.navitabbtn:hover {
+.navigation > button:hover {}
+.navigation > button:active {}
+.navigation > button.navigation--nanite {}
+.navigation > button.navigation--nanite:hover {}
+.navigation > button.navigation--active {}
+
+button:hover {
+	border-color: #f4d258;
+	box-shadow: 0 0 8px 1px #f4d258;
 }
 
-.subtabbtn {
+
+.subtab > button {
 	color: #d0d0d0;
 	background-color: #101010;
-	border: 2px solid #dfdfdf;
-	border-radius: 4px;
+	border-color: #dfdfdf;
 }
-.subtabbtn:hover {
-}
+.subtab > button:hover {}
+.subtab > button:active {}
+.subtab > button.navigation--active {}
 
 .popup {
 	color: #d0d0d0;
 	background-color: #455a64;
 	border: 3px solid #ffffff;
 	border-radius: 6px;
+	display: none;
+	padding: 10px 10px 15px;
 }
-#newsbar {
+
+.newsbar {
 	border: 3px solid #d0d0d0;
 	border-radius: 4px;
 }
-#news {
+.newsbar > div {
 	color: #d0d0d0;
 }
 
@@ -51,6 +62,7 @@ button:hover {
 	border: 2px solid #e8e8e8;
 	border-radius: 2px;
 }
+.optionsbtn:hover {}
 
 .energy {
 	color: #d0d0d0;
@@ -67,28 +79,21 @@ button:hover {
 	background-color: #1c1c1c;
 	border: 2px solid #127A20;
 }
-.storebtn.buy:hover {
-}
+.storebtn.buy:hover {}
 .storebtn.locked {
 	color: #d0d0d0;
 	background-color: #37474f;
 	border: 2px solid #e53935;
 }
-.storebtn.locked:hover {
-}
+.storebtn.locked:hover {}
 
-.storebtn.mines {
-}
-.storebtn.mines {
-}
+.storebtn.mines {}
+.storebtn.mines {}
 
-.storebtn.reactors {
-}
-.storebtn.reactors {
-}
+.storebtn.reactors {}
+.storebtn.reactors {}
 
 .naniteup {
-	font-size: 15px;
 	border-radius: 4px;
 }
 .naniteup.buy {
@@ -96,6 +101,7 @@ button:hover {
 	background-color: #000000;
 	border: 1px solid #DAA520;
 }
+.naniteup.buy:hover {}
 .naniteup.locked {
 	color: #d0d0d0;
 	background-color: #505050;
@@ -113,8 +119,7 @@ button:hover {
 	border: 2px solid green;
 	border-radius: 6px;
 }
-#meltdown:hover {
-}
+#meltdown:hover {}
 
 .meltdownup {
 	border-radius: 3px;
@@ -124,19 +129,14 @@ button:hover {
 	background-color: #000000;
 	border: 3px solid #daa520;
 }
-.meltdownup.buy:hover {
-}
+.meltdownup.buy:hover {}
 .meltdownup.locked {
 	color: #000000;
 	background-color: #555555;
 	border: 3px solid #ff0000;
 }
-.meltdownupbought {
+.meltdownup.bought {
 	color: #000000;
 	background-color: #44CC66;
 	border: 3px solid #daa520;
-}
-
-#turbine_coil_desc_none {
-	color: #000000;
 }

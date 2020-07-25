@@ -1,12 +1,39 @@
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 15px;
+	overflow-x: hidden;
+}
+
+table {
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	transition: all 0.5s;
+}
+button:hover {
+	cursor: pointer;
+}
+
 .flex__col {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+}
+.flex__col.turbine {
+	min-width: 24px;
+	max-width: 24px;
 }
 .flex__row {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: center;
 }
 
 .flex__col > *, .flex__row > * {
@@ -18,23 +45,14 @@
 	align-items: center;
 }
 
-table {
-	width: 100vw;
-	margin: 0;
-	padding: 0;
-}
-
 .popup {
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	display: flex;
-	align-items: center;
-	text-align:center;
-	padding: 10px;
-	padding-bottom: 15px;
+	text-align: center;
+	z-index: 8;
 	transform: translateX(-50%) translateY(-50%);
-	z-index: 10;
 }
 
 .tooltip {
@@ -55,19 +73,19 @@ table {
 	visibility: visible;
 }
 
-.tooltiptext.achcomplete {
-	width: 12.5vw;
+.tooltiptext.achtooltipcomplete {
+	width: 25vw;
 	bottom: 105%;
 	left: 50%;
-	margin-left: -6.25vw;
+	margin-left: -12.5vw;
 	padding-top: 5px;
 	color: #88EE44;
 }
-.tooltiptext.achlocked {
-	width: 12.5vw;
-	bottom: 5%;
+.tooltiptext.achtooltiplocked {
+	width: 25vw;
+	bottom: 105%;
 	left: 50%;
-	margin-left: -6.25vw;
+	margin-left: -12.5vw;
 	padding-top: 5px;
 	color: #DE564D;
 }
@@ -80,71 +98,114 @@ table {
 	color: #FFFFFF;
 }
 
-#navi_open {
-	width: 48px;
-	height: 48px;
-	position: absolute;
-	top: 16px;
-	left: 16px;
-	z-index: 5;
+.info {
+	text-align: center;
 }
 
-#navigation {
-	width: 200px;
-	height: 100vh;
+.newsbar {
+	width: 80%;
+	height: 20px;
+	text-align: left;
+	margin: auto;
+	padding: 2px;
+	overflow: hidden;
+}
+.newsbar > div {
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.navigationtoggle {
+	position: absolute;
+	top: 24px;
+	left: 24px;
+}
+
+.navigation {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.navigation > button {
+	width: 180px;
+	height: 40px;
+	font-size: 20px;
+	border: 2px solid #FFFFFF;
+	border-radius: 4px;
+	margin: 2px;
+}
+.navigation.main {
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	background-color: rgba(0, 0, 0, 0.7);
+	width: 200px;
+	height: 720px;
+	padding: 10px;
+	background-color: rgba(0, 0, 0, 0.6);
 	z-index: 4;
 }
 
-.navitabbtn {
-	width: 180px;
-	height: 40px;
-	margin: 5px;
-	font-size: 20px;
-	z-index: 3;
+#production_tab, #production_tab .flex__row,
+#statistics_tab, #statistics_tab .flex__row {
+	width: 100%;
 }
 
-.subtabbtn {
+.subtab > button {
 	width: 150px;
 	height: 30px;
 	font-size: 16px;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 4px;
+}
+
+#fuel_subtab > .flex__row > div:not(:first-child) {
+	text-align: center;
+}
+#reactors_subtab > .flex__col > .flex__row {
+	width: 100%;
+}
+#mines_subtab > .flex__row > div:nth-child(1), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(1) {
+	flex: 0 1 40%;
+}
+#mines_subtab > .flex__row > div:nth-child(2), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(2) {
+	text-align: center;
+}
+#mines_subtab > .flex__row > div:nth-child(3), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(3) {
+	text-align: right;
+	flex: 0 1 30%;
+}
+#mines_subtab > .flex__row > div:nth-child(4), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(4) {
+	flex: 0 1 10%;
+}
+#reactors_subtab > .flex__col:last-child > .flex__row > div:last-child {
+	text-align: right;
+}
+
+#statistics_tab > .flex__row > div:nth-child(1) {
+	text-align: right;
+	padding-right: 2px;
+}
+
+#achievements_tab {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+#achievements_tab > div {
+	flex: 0 0;
 }
 
 .achpic {
 	width: 100px;
 	height: 100px;
 	opacity: 0.7;
+	z-index: 1;
 }
-.achcomplete {
-	width: 12.5vw;
+.achcomplete, .achlocked {
+	width: 12vw;
 	height: 100px;
-	background-color: #008000;
-	border: 1px solid #004400;
-	margin: 100px;
-}
-.achlocked {
-	width: 12.5vw;
-	height: 100px;
-	background-color: #808080;
-	border: 1px solid red;
-	margin: 100px;
-}
-
-#newsbar {
-	width: 75%;
-	height: 20px;
-	padding: 2px;
-	overflow: hidden;
-	margin: auto;
-	text-align: left;
-}
-#news {
-	position: relative;
-	display: inline-block;
-	white-space: nowrap;
 }
 
 .optionsbtn {
@@ -176,6 +237,12 @@ table {
 .turbinecasing {
 	background-color: #184236;
 }
+.turbinecasing.coil {
+	min-width: 20px;
+	min-height: 20px;
+	max-width: 20px;
+	max-height: 20px;
+}
 
 .turbineshaft {
 	background-color: #A8B1DD;
@@ -198,7 +265,7 @@ table {
 	height: 18px;
 	margin-bottom: 6px;
 }
-turbinerotor.selection {
+.turbinerotor.selection {
 	margin-left: 9px;
 	margin-top: 2px;
 }
@@ -209,11 +276,24 @@ turbinerotor.selection {
 .turbinerotor.steel {
 	background-color: #7A7F80;
 }
-.turbinerotor.tungstencarbide {
-	background-color: #111111;
+.turbinerotor.titanium {
+	background-color: #775D88;
+}
+.turbinerotor.osmiridium {
+	background-color: #8877AA;
+}
+.turbinerotor.extreme {
+	background-color: #993344;
+}
+.turbinerotor.sicsiccmc {
+	background-color: #884433;
 }
 
 .turbinecoil {
+	min-width: 20px;
+	min-height: 20px;
+	max-width: 20px;
+	max-height: 20px;
 	border: 2px solid #A8A8A8;
 }
 .turbinecoil.active {
@@ -231,6 +311,9 @@ turbinerotor.selection {
 .turbinecoil.bearing {
 	background-color: #A8B1DD;
 }
+.turbinecoil.connector {
+	background-color: #555753;
+}
 .turbinecoil.magnesium {
 	background-color: #B893D5;
 }
@@ -238,25 +321,19 @@ turbinerotor.selection {
 	background-color: #8B8187;
 }
 .turbinecoil.lithium {
-	background-colour: #ADAFAB;
+	background-colour: #AAAAAA;
 }
 .turbinecoil.aluminium {
-	background-color: #96999B;
+	background-color: #333333;
 }
-
-#turbine_coil_desc {
-	display: flex;
-	min-width: 320px;
-	max-width: 320px;
-	min-height: 380px;
-	max-height: 380px;
-	background-color: #B6B6B6;
-	border-radius: 8px;
-	justify-content: center;
+.turbinecoil.gold {
+	background-color: #DDC066;
 }
-.turbinecoildesc {
-	display: flex;
-	position: relative;
+.turbinecoil.copper {
+	background-colour: #B87333;
+}
+.turbinecoil.silver {
+	background-color: #C0C0C0;
 }
 
 .storebtn {
@@ -274,10 +351,6 @@ turbinerotor.selection {
 	height: 70px;
 	font-size: 10px;
 }
-#meltdown:hover {
-	transition-duration: 0.2s;
-}
-
 .meltdownup {
 	width: 100%;
 	height: 150px;
@@ -295,10 +368,18 @@ turbinerotor.selection {
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
 }
+
 .dropdownisotopebtn {
 	
 }
-body {
-	font-size: 15px;
-	overflow-x: hidden;
+
+#cheats_tab > .flex__row {
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+#cheats_tab > .flex__row > button {
+	flex: 0 0 200px;
+	height: 40px;
+	margin: 2px;
 }

@@ -8,7 +8,7 @@ class TurbineBlade {
 	}
 
 	get totalEff() {
-		return pow(4 * this.efficiency, 2);
+		return pow(4 * this.length, 2) * this.efficiency;
 	}
 
 	lengthen() {
@@ -97,7 +97,7 @@ function setRotor(shaftPos) {
 }
 
 function getRotorCost() {
-	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (4 + 2 * max(0, player.nucleosynthesis - (1 + 2 * rotorLevels[player.turbine.activeRotor])))));
+	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (getDefaultData().turbine.totalRotors[player.turbine.activeRotor] + 2 * max(0, player.nucleosynthesis - (1 + 2 * rotorLevels[player.turbine.activeRotor])))));
 }
 function canBuyRotor() {
 	return player.energy.gte(getRotorCost());
@@ -110,14 +110,14 @@ function buyRotor() {
 }
 
 function getFourRotorsCost() {
-	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (1 + 2 * max(0, player.nucleosynthesis - (1 + 2 * rotorLevels[player.turbine.activeRotor])))));
+	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (getDefaultData().turbine.totalRotors[player.turbine.activeRotor] - 3 + 2 * max(0, player.nucleosynthesis - (1 + 2 * rotorLevels[player.turbine.activeRotor])))));
 }
 function canBuyFourRotors() {
 	return player.energy.gte(getFourRotorsCost());
 }
 function buyFourRotors() {
-	if (getFourRotorsCost()) {
-		player.energy = player.energy.sub(getFourRotorCost());
+	if (canBuyFourRotors()) {
+		player.energy = player.energy.sub(getFourRotorsCost());
 		player.turbine.totalRotors[player.turbine.activeRotor] += 4;
 	}
 }
@@ -300,21 +300,48 @@ function atLeast(amount, type, x, y) {
 	return bool && activated;
 }
 
+function idealExpansion(depth) {
+	return Decimal.pow(8, (depth + 0.5) / player.turbine.dimensions);
+}
+function expansion(depth) {
+	let totalExpansion = 1;
+	for (let i = 0; i < depth; i++) {
+		totalExpansion *= player.turbine.rotors[i].expansion;
+	}
+	return totalExpansion * Math.sqrt(player.turbine.rotors[depth].expansion);
+}
+
+function expansionIdeality(ideal, actual) {
+	if (ideal <= 0 || actual <= 0) {
+		return 0;
+	}
+	return ideal < actual ? ideal / actual : actual / ideal;
+}
+
+function rotorEfficiency() {
+	let rotorEff = 0;
+	let rotorCount = 0
+	for (let i = 0; i < player.turbine.dimensions; i++) {
+		if (player.turbine.rotors[i].totalEff > 0) {
+			rotorEff += player.turbine.rotors[i].totalEff * expansionIdeality(idealExpansion(i), expansion(i));
+			rotorCount++;
+		}
+	}
+	return rotorCount == 0 ? 0 : rotorEff / rotorCount;
+}
+
 function simulateTurbine(tickInterval = 50) {
 	activeDynamoCoils();
 
-	let speed = new Decimal(1);
-	let vol = getTotalSteamGain();
-	let exp = new Decimal(1);
+	let speed = getTotalSteamGain();
 	let energy = zero;
 	for (let i = 0; i < player.turbine.rotors.length; i++) {
-		let rotor = player.turbine.rotors[i];
-		speed = speed.mul(rotor.speed);
-		vol = vol.mul(rotor.expansion);
-		exp = exp.mul(rotor.expansion);
-		energy = energy.add(speed.pow(1.5).mul(vol).mul(rotor.totalEff).mul(0.1));
+		if (player.turbine.rotors[i].totalEff > 0) {
+			speed = speed.mul(player.turbine.rotors[i].speed);
+			energy = energy.add(speed.pow(1.5));
+		}
 	}
-	let gain = energy.mul(exp.max(1)).mul(getTotalCoilEff());
+	let gain = energy.mul(getTotalCoilEff()).mul(rotorEfficiency()).mul(expansionIdeality(idealExpansion(player.turbine.dimensions - 1), expansion(player.turbine.dimensions - 1)));
 	document.getElementById("steam").innerText = gain == 0 ? 0 : notation(getTotalSteamGain());
 	document.getElementById("energy_gain").innerText = notation(gain);
 	player.energy = player.energy.add(gain.mul(tickInterval / 1000));
@@ -380,7 +407,6 @@ function updateUIDynamoCoils() {
 
 	document.getElementById("turbine_coil_efficiency").innerText = notation(getTotalCoilEff());
 
-	document.getElementById("turbine_coil_magnesium").style.display = player.unlocked.coils || player.unlocked.naniteUps || player.unlocked.meltdown ? "block" : "none";
 	document.getElementById("turbine_coil_beryllium").style.display = player.nucleosynthesis > 1 ? "block" : "none";
 	document.getElementById("turbine_coil_lithium").style.display = player.nucleosynthesis > 2 ? "block" : "none";
 	document.getElementById("turbine_coil_aluminium").style.display = player.nucleosynthesis > 3 ? "block" : "none";

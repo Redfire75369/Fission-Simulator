@@ -23,7 +23,7 @@ function drawTurbineRotors(needRefresh) {
 			}
 			let length = document.createElement("DIV");
 			length.setAttribute("id", "turbine_rotor_length_" + (i - 1));
-			length.setAttribute("class", "flex__col");
+			length.setAttribute("class", "flex__col turbine");
 			let increase = document.createElement("BUTTON");
 			increase.setAttribute("class", "flex__row turbinerotorlengthbtn");
 			increase.setAttribute("onclick", "player.turbine.rotors[" + (i - 1) + "].lengthen()");
@@ -106,7 +106,7 @@ function drawDynamoCoils(needRefresh) {
 					coil.setAttribute("onclick", "setCoil(" + (i - 1) + ", " + (j - 1) + ")");
 				}
 			} else {
-				coil.setAttribute("class", "flex__row turbinebox turbinecasing");
+				coil.setAttribute("class", "flex__row turbinebox turbinecasing coil");
 			}
 			document.getElementById("turbine_coils_col_" + i).append(coil);
 		}
