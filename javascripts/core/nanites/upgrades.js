@@ -72,7 +72,8 @@ class EfficiencyNaniteUpgrade extends NaniteUpgrade {
 }
 
 function resetNaniteUps() {
-	if (player.meltdown.ups[44] < 4) {
+	if (player.meltdown.ups[15].bought < 4) {
+		console.log("nan");
 		player.nanites.ups = getDefaultData().nanites.ups;
 	}
 }

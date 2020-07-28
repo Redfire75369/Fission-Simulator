@@ -40,7 +40,7 @@ function resetMeltdownUps() {
 }
 
 function getMeltdownUp41Mult(tier) {
-	switch(player.meltdown.ups[41]) {
+	switch(player.meltdown.ups[12].bought) {
 		case 4:
 			if (tier == 0) {
 				return Decimal.max(1, player.mines[7].amount.add(player.reactors[7].amount).log10() * 7);

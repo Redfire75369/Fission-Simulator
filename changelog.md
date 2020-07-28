@@ -12,6 +12,14 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Modified
 ### Removed
 -->
+## [v0.5.5] - 28/7/20 **PR**
+### Added
+
+### Modified
+- Fixed bug where nanite upgrades did not reset on meltdown
+
+### Removed
+
 ## [v0.5.4] - 25/7/20 **PR**
 ### Added
 - 4 New Rotors
