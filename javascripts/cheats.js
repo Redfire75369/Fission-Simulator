@@ -2,8 +2,10 @@ var leverMaxAll = false;
 
 function enableCheatsTab() {
 	document.getElementById("cheats_tabbtn").style.display = "inline-block";
-	//localStorage.setItem("fissionSimSave1", null)
-	//clearInterval(saveGameLoop);
+	/*clearInterval(saveGameLoop);
+	setInterval(function() {
+		localStorage.removeItem("fissionSimSave1");
+	}, 1000);*/
 }
 
 function defaultEnergy() {

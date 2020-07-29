@@ -97,7 +97,7 @@ function setRotor(shaftPos) {
 }
 
 function getRotorCost() {
-	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (getDefaultData().turbine.totalRotors[player.turbine.activeRotor] + 2 * max(0, player.nucleosynthesis - (1 + 2 * rotorLevels[player.turbine.activeRotor])))));
+	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - getDefaultRotors()[player.turbine.activeRotor]));
 }
 function canBuyRotor() {
 	return player.energy.gte(getRotorCost());
@@ -110,7 +110,7 @@ function buyRotor() {
 }
 
 function getFourRotorsCost() {
-	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (getDefaultData().turbine.totalRotors[player.turbine.activeRotor] - 3 + 2 * max(0, player.nucleosynthesis - (1 + 2 * rotorLevels[player.turbine.activeRotor])))));
+	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (getDefaultRotors()[player.turbine.activeRotor] - 3)));
 }
 function canBuyFourRotors() {
 	return player.energy.gte(getFourRotorsCost());
@@ -122,14 +122,19 @@ function buyFourRotors() {
 	}
 }
 
+function getDefaultRotors() {
+	return {
+		steel: 4 + 2 * max(0, player.nucleosynthesis),
+		titanium: 2 * max(0, player.nucleosynthesis - 2),
+		osmiridium: 2 * max(0, player.nucleosynthesis - 4),
+		extreme: 2 * max(0, player.nucleosynthesis - 6),
+		sicsiccmc: 2 * max(0, player.nucleosynthesis - 8)
+	}
+}
+
 function resetTurbineRotors() {
 	drawTurbineRotors(true);
-	player.turbine.totalRotors = getDefaultData().turbine.totalRotors;
-	player.turbine.totalRotors.steel += 2 * max(0, player.nucleosynthesis - 1);
-	player.turbine.totalRotors.titanium += 2 * max(0, player.nucleosynthesis - 3);
-	player.turbine.totalRotors.osmiridium += 2 * max(0, player.nucleosynthesis - 5);
-	player.turbine.totalRotors.extreme += 2 * max(0, player.nucleosynthesis - 7);
-	player.turbine.totalRotors.sicsiccmc += 2 * max(0, player.nucleosynthesis - 9);
+	player.turbine.totalRotors = getDefaultRotors();
 }
 
 function showCoils() {

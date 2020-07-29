@@ -51,7 +51,7 @@
 	<body align="center">
 		<img id="navi_open" class="navigationtoggle" onclick="toggleNavigation()" src="resources/images/navi.png"/>
 		
-	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px;">
+	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px; style: none;">
 			<div id="offline_progress" style="height:175px; display:flex; align-items:center"></div>
 			<button  onclick="closeOfflineProgress()" align="center" class="storebtn buy" style="font-size:15px; margin:auto;">Close</button>
 		</div>
@@ -428,14 +428,10 @@
 		</div>
 
 		<div id="meltdown_tab">
-			<table>
-				<tr align="center">
-					<td>
-						<button onclick="showMeltdownTab('ups_subtab')" id="meltdown_ups_subtabbtn" class="subtabbtn">Upgrades</button>
-						<button onclick="showMeltdownTab('decay_hastening_subtab')" id="meltdown_decay_hastening_subtabbtn" class="subtabbtn">Decay Hastening</button>
-					</td>
-				</tr>
-			</table>
+			<div class="navigation subtab">
+				<button onclick="showMeltdownTab('ups_subtab')" id="meltdown_ups_subtabbtn">Upgrades</button>
+				<button onclick="showMeltdownTab('decay_hastening_subtab')" id="meltdown_decay_hastening_subtabbtn">Decay Hastening</button>
+			</div>
 
 			<div id="meltdown_ups_subtab">
 					<div class="flex__row">
@@ -532,34 +528,75 @@
 					</div>
 				</div>
 				<div id="meltdown_decay_hastening_subtab">
+					<div id="toggle_reactors_popup" class="popup flex--center" style="width: 720px; height: 400px; display: none;">
+						<div class="flex__col">
+							<button onclick="player.reactors[0].toggle()" class="storebtn" id="reactor_togge0">Toggle Thorium-227 Reactor</button>
+							<button onclick="player.reactors[1].toggle()" class="storebtn" id="reactor_toggle1">Toggle Uranium-235 Reactor</button>
+						</div>
+					</div>
+					<div class="flex__col flex--center" style="height: 40px;">
+						<div class="flex__row">You have <span id="alpha_particles"></span> Alpha Particles.</div>
+						<div class="flex__row">You have <span id="beta_particles"></span> Beta Particles.</div>
+					</div>
 					<div class="flex__row">
-						<div id="disable_reactors">
-							<div class="flex__column">
-								<button onclick="player.reactors[0].toggle()" class="storebtn" id="reactor_disable0">Disable Thorium-227 Reactor</button>
-								<button onclick="player.reactors[1].toggle()" class="storebtn" id="reactor_disable1">Disable Uranium-235 Reactor</button>
-							</div>
-							<div class="flex__column">
-								<p>Thorium-227: <span id="stored_th227"></span></p>
-								<p>Uranium-235: <span id="stored_u235"></span></p>
-							</div>
+						<div class="flex__col" style="min-width: 50vw; max-width: 50vw">
+							<table id="decay_chain_th227" class="decaychain">
+								<tr>
+									<td align="right">Thorium-227:</td>
+									<td><span id="stored_isotope_th227"></span> kg</td>
+								</tr>
+								<tr>
+									<td align="right">Radium-223:</td>
+									<td><span id="stored_isotope_ra223"></span> kg</td>
+								</tr>
+								<tr>
+									<td align="right">Radon-219:</td>
+									<td><span id="stored_isotope_rn219"></span> kg</td>
+								</tr>
+								<tr>
+									<td align="right">Polonium-215:</td>
+									<td><span id="stored_isotope_po215"></span> kg</td>
+								</tr>
+								<tr>
+									<td align="right">Lead-211:</td>
+									<td><span id="stored_isotope_pb211"></span> kg</td>
+								</tr>
+								<tr>
+									<td align="right">Bismuth-211:</td>
+									<td><span id="stored_isotope_bi211"></span> kg</td>
+								</tr>
+								<tr>
+									<td align="right">Thallium-207:</td>
+									<td><span id="stored_isotope_tl207"></span> kg</td>
+								</tr>
+								<tr>
+									<td align="right">Lead-207:</td>
+									<td><span id="stored_isotope_pb207"></span> kg</td>
+								</tr>
+							</table>
 						</div>
 	
-						<div id="select_isotope">
-							<button onclick="showSelectIsotope()">Select Radioactive Isotope</button>
-							<div id="isotope_dropdown" class="dropdown flex__column">
-								<p onclick="selectIsotope('th227')" class="dropdownisotope">Thorium-227</p>
-								<p onclick="selectIsotope('ra223')" class="dropdownisotope">Radium-223</p>
-								<p onclick="selectIsotope('rn219')" class="dropdownisotope">Radon-219</p>
-								<p onclick="selectIsotope('po215')" class="dropdownisotope">Polonium-215</p>
-								<p onclick="selectIsotope('pb211')" class="dropdownisotope">Lead-211</p>
-								<p onclick="selectIsotope('bi211')" class="dropdownisotope">Bismuth-211</p>
-								<p onclick="selectIsotope('tl207')" class="dropdownisotope">Thallium-207</p>
-								<p onclick="selectIsotope('pb207')" class="dropdownisotope">Lead-207</p>
+						<div id="select_isotope" class="flex__col" style="min-width: 50vw; max-width: 50vw">
+							<button onclick="showSelectIsotope()" class="dropdownshowdecayisotopebtn">Select Radioactive Isotope</button>
+							<div id="isotope_dropdown" class="flex__col dropdowndecayisotope">
+								<p onclick="selectIsotope('th227')" class="dropdowndecayisotopebtn">Thorium-227</p>
+								<p onclick="selectIsotope('ra223')" class="dropdowndecayisotopebtn">Radium-223</p>
+								<p onclick="selectIsotope('rn219')" class="dropdowndecayisotopebtn">Radon-219</p>
+								<p onclick="selectIsotope('po215')" class="dropdowndecayisotopebtn">Polonium-215</p>
+								<p onclick="selectIsotope('pb211')" class="dropdowndecayisotopebtn">Lead-211</p>
+								<p onclick="selectIsotope('bi211')" class="dropdowndecayisotopebtn">Bismuth-211</p>
+								<p onclick="selectIsotope('tl207')" class="dropdowndecayisotopebtn">Thallium-207</p>
 							</div>
-						</div>
-	
-						<div id="isotope_decay">
-							<button onclick="startDecayIsotope('th227')">Start Decay of Thorium-227</button>
+							
+							<div id="isotope_decay">
+								<button onclick="startDecayIsotope('th227')" id="isotope_decay_th227">Start Decay of Thorium-227</button>
+								<button onclick="startDecayIsotope('ra223')" id="isotope_decay_ra223">Start Decay of Radium-223</button>
+								<button onclick="startDecayIsotope('rn219')" id="isotope_decay_rn219">Start Decay of Radon-219</button>
+								<button onclick="startDecayIsotope('po215')" id="isotope_decay_po215">Start Decay of Polonium-215</button>
+								<button onclick="startDecayIsotope('pb211')" id="isotope_decay_pb211">Start Decay of Lead-211</button>
+								<button onclick="startDecayIsotope('bi211')" id="isotope_decay_bi211">Start Decay of Bismuth-211</button>
+								<button onclick="startDecayIsotope('tl207')" id="isotope_decay_tl207">Start Decay of Thallium-207</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -580,6 +617,8 @@
 				<button class="storebtn buy" onclick="squareEnergy()" style="width: 200px; height: 40px">
 					Square Energy
 				</button>
+			</div>
+			<div class="flex__row">
 				<button class="storebtn buy" onclick="defaultCorium()" style="width: 200px; height: 40px">
 					Default Corium
 				</button>
@@ -592,6 +631,8 @@
 				<button class="storebtn buy" onclick="squareCorium()" style="width: 200px; height: 40px">
 					Square Corium
 				</button>
+			</div>
+			<div class="flex__row">
 				<button class="storebtn buy" onclick="addNucleosynthesis()" style="width: 200px; height: 40px">
 					Forced Nucleosynthesis w/o reset
 				</button>
@@ -604,6 +645,8 @@
 				<button class="storebtn buy" onclick="harderReset()" style="width: 200px; height: 40px">
 					Hard Reset w/o confirmation
 				</button>
+			</div>
+			<div class="flex__row">
 				<button class="storebtn buy" onclick="showNaviTab('balance_tab')" style="width: 200px; height: 40px">
 					Open Balancing Tab
 				</button>
@@ -616,33 +659,34 @@
 				<table>
 					<tr>
 						<td>
-							<label>Mine Costs/Cost Scaling:</label><br>
-							<label>Iron-Tipped Drill Mine:</label> <input type="text" id="mine0" value="1"> <input type="text" id="mines0" value="3"><br>
-							<label>Steel-Tipped Drill Mine:</label> <input type="text" id="mine1" value="2"> <input type="text" id="mines1" value="5"><br>
-							<label>Titanium-Tipped Drill Mine:</label> <input type="text" id="mine2" value="5"> <input type="text" id="mines2" value="7"><br>
-							<label>Iridium-Tipped Drill Mine:</label> <input type="text" id="mine3" value="8"> <input type="text" id="mines3" value="10"><br>
-							<label>Tungstensteel-Tipped Drill Mine:</label> <input type="text" id="mine4" value="13"> <input type="text" id="mines4" value="13"><br>
-							<label>Osmium-Tipped Drill Mine:</label> <input type="text" id="mine5" value="18"> <input type="text" id="mines5" value="16"><br>
-							<label>Diamond-Tipped Drill Mine:</label> <input type="text" id="mine6" value="24"> <input type="text" id="mines6" value="20"><br>
-							<label>Laser Drill Mine:</label> <input type="text" id="mine7" value="30"> <input type="text" id="mines7" value="24"><br>
+							<label>Mine Costs/Cost Scaling:</label><br/>
+							<label>Iron-Tipped Drill Mine:</label> <input type="text" id="mine0" value="1"> <input type="text" id="mines0" value="3"><br/>
+							<label>Steel-Tipped Drill Mine:</label> <input type="text" id="mine1" value="2"> <input type="text" id="mines1" value="5"><br/>
+							<label>Titanium-Tipped Drill Mine:</label> <input type="text" id="mine2" value="5"> <input type="text" id="mines2" value="7"><br/>
+							<label>Iridium-Tipped Drill Mine:</label> <input type="text" id="mine3" value="8"> <input type="text" id="mines3" value="10"><br/>
+							<label>Tungstensteel-Tipped Drill Mine:</label> <input type="text" id="mine4" value="13"> <input type="text" id="mines4" value="13"><br/>
+							<label>Osmium-Tipped Drill Mine:</label> <input type="text" id="mine5" value="18"> <input type="text" id="mines5" value="16"><br/>
+							<label>Diamond-Tipped Drill Mine:</label> <input type="text" id="mine6" value="24"> <input type="text" id="mines6" value="20"><br/>
+							<label>Laser Drill Mine:</label> <input type="text" id="mine7" value="30"> <input type="text" id="mines7" value="24"><br/>
 						</td>
 						<td>
-							<label>Reactor Costs/Cost Scaling:</label><br>
-							<label>Th-227 Reactors:</label> <input type="text" id="reactor0" value="1"> <input type="text" id="reactors0" value="3"><br>
-							<label>U-235 Reactors:</label> <input type="text" id="reactor1" value="2"> <input type="text" id="reactors1" value="4"><br>
-							<label>Np-234 Reactors:</label> <input type="text" id="reactor2" value="5"> <input type="text" id="reactors2" value="6"><br>
-							<label>Pu-237 Reactors:</label> <input type="text" id="reactor3" value="8"> <input type="text" id="reactors3" value="8"><br>
-							<label>Am-242m Reactors:</label> <input type="text" id="reactor4" value="13"> <input type="text" id="reactors4" value="10"><br>
-							<label>Cu-245 Reactors:</label> <input type="text" id="reactor5" value="18"> <input type="text" id="reactors5" value="12"><br>
-							<label>Bk-248 Reactors:</label> <input type="text" id="reactor6" value="24"> <input type="text" id="reactors6" value="13"><br>
-							<label>Cf-251 Reactors:</label> <input type="text" id="reactor7" value="30"> <input type="text" id="reactors7" value="14"><br>
+							<label>Reactor Costs/Cost Scaling:</label><br/>
+							<label>Th-227 Reactors:</label> <input type="text" id="reactor0" value="1"> <input type="text" id="reactors0" value="3"><br/>
+							<label>U-235 Reactors:</label> <input type="text" id="reactor1" value="2"> <input type="text" id="reactors1" value="4"><br/>
+							<label>Np-234 Reactors:</label> <input type="text" id="reactor2" value="5"> <input type="text" id="reactors2" value="6"><br/>
+							<label>Pu-237 Reactors:</label> <input type="text" id="reactor3" value="8"> <input type="text" id="reactors3" value="8"><br/>
+							<label>Am-242m Reactors:</label> <input type="text" id="reactor4" value="13"> <input type="text" id="reactors4" value="10"><br/>
+							<label>Cu-245 Reactors:</label> <input type="text" id="reactor5" value="18"> <input type="text" id="reactors5" value="12"><br/>
+							<label>Bk-248 Reactors:</label> <input type="text" id="reactor6" value="24"> <input type="text" id="reactors6" value="13"><br/>
+							<label>Cf-251 Reactors:</label> <input type="text" id="reactor7" value="30"> <input type="text" id="reactors7" value="14"><br/>
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
 
-		<div class="flex__row flex--center">
+		<div style="min-height: 64px; max-height: 64px;"></div>
+		<div class="flex--center discord">
 			<a href="https://discord.gg/RyQwwzW" target="_blank">Discord Server</a>
 		</div>
 	</body>

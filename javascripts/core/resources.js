@@ -26,7 +26,9 @@ function getSteamGain(tier) {
 function getTotalSteamGain(tier) {
 	let ret = zero;
 	for (let i = 0; i < 8; i++) {
-		ret = ret.add(getSteamGain(i));
+		if (player.reactors[i].enabled) {
+			ret = ret.add(getSteamGain(i));
+		}
 	}
 	return ret;
 }

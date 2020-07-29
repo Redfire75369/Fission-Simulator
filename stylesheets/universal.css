@@ -7,7 +7,7 @@ body {
 }
 
 table {
-	width: 100vw;
+	width: 100%;
 	margin: 0;
 	padding: 0;
 }
@@ -43,6 +43,7 @@ button:hover {
 
 .flex--center {
 	align-items: center;
+	justify-content: center;
 }
 
 .popup {
@@ -356,21 +357,53 @@ button:hover {
 	height: 150px;
 }
 
-.dropdown {
-	position: relative;
-	display: none;
-}
-
-.dropdownisotope {
+.decaychain {
 	position: absolute;
-	background-color: #f1f1f1;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
+	top: 360px;
+	left: 1%;
+	min-width: 48vw;
+	max-width: 48vw;
 }
 
-.dropdownisotopebtn {
-	
+
+.dropdownshowdecayisotopebtn {
+	position: absolute;
+	top: 360px;
+	left: 55%;
+	min-width: 40vw;
+	max-width: 40vw;
+	min-height: 40px;
+	max-height: 40px;
+}
+
+.dropdowndecayisotope {
+	position: relative;
+	min-width: 40vw;
+	max-width: 40vw;
+	margin-top: 50px;
+}
+
+.dropdowndecayisotopebtn {
+	position: relative;
+	min-width: 40vw;
+	max-width: 40vw;
+	background-color: #00AF00;
+	z-index: 2;
+}
+
+#isotope_decay {
+	position: absolute;
+	top: 420px;
+	left: 55%;
+	min-width: 40vw;
+	max-width: 40vw;
+	min-height: 40px;
+	max-height: 40px;
+}
+
+.discord {
+	position: fixed;
+	bottom: 24px;
 }
 
 #cheats_tab > .flex__row {
@@ -383,3 +416,4 @@ button:hover {
 	height: 40px;
 	margin: 2px;
 }
+

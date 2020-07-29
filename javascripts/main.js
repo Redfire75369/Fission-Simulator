@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 5,
-			alpha: 4
+			alpha: 6
 		},
 
 		options: {
@@ -22,8 +22,8 @@ function getDefaultData() {
 		unlocked: {
 			coils: false,
 			naniteUps: false,
-			meltdown: false,
-			decayHasten: false
+			meltdown: true,
+			decayHasten: true
 		},
 
 		achievements: {
@@ -139,8 +139,7 @@ function getDefaultData() {
 				new MeltdownUpgrade(42, 1, 4, 2),
 				new MeltdownUpgrade(43, 1, 4, 2),
 				new MeltdownUpgrade(44, 1, 4, 2),
-			],
-			breakUps: {0: 0}
+			]
 		},
 
 		alpha: new Decimal(0),
@@ -162,6 +161,7 @@ function getDefaultData() {
 		lastUpdate: Date.now()
 	}
 }
+
 const mining = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium", "Diamond", "Laser"];
 const isotopes = ["Thorium-227", "Uranium-235", "Neptunium-234", "Plutonium-237", "Americium-242m", "Curium-245", "Berkelium-248", "Californium-251"];
 const diminishFactor = [100, 200, 350, 488, 600, 733, 850, 1000];
@@ -187,6 +187,7 @@ function updateUI() {
 	updateUINaniteResearch();
 	updateUIMeltdown();
 	updateUIMeltdownUps();
+	updateUIDecayHastening();
 	updateUIAchievements();
 	updateUIStats();
 }
@@ -197,6 +198,8 @@ function updateGame(tickInterval = 50) {
 	simulateMines(tickInterval);
 	simulateReactors(tickInterval);
 	simulateTurbine(tickInterval);
+	simulateFuelStorage(tickInterval);
+	simulateDecayIsotope("th227", tickInterval);
 	checkAchievementCompletion();
 }
 
