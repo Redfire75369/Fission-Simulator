@@ -89,7 +89,7 @@ function drawDynamoCoils(needRefresh) {
 		}
 		for (let j = 0; j < player.turbine.dimensions + 2; j++) {
 			if (needRefresh) {
-				if (j > 0 && j < player.turbine.dimensions + 2 && i > 0 && i < player.turbine.dimensions + 2) {
+				if (j > 0 && j < player.turbine.dimensions + 1 && i > 0 && i < player.turbine.dimensions + 1) {
 					player.turbine.coils[i - 1][j - 1] = "none";
 					activeCoils[i - 1][j - 1] = false;
 				}

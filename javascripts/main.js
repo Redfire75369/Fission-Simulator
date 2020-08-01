@@ -16,7 +16,8 @@ function getDefaultData() {
 		navigation: {
 			naviTab: "production_tab",
 			production: "mines_subtab",
-			meltdown: "ups_subtab"
+			meltdown: "ups_subtab",
+			decay: "decay_subsubtab"
 		},
 
 		unlocked: {
@@ -142,16 +143,36 @@ function getDefaultData() {
 			]
 		},
 
-		alpha: new Decimal(0),
-		isotopes: {
-			"th227": new Decimal(0),
-			"ra223": new Decimal(0),
-			"rn219": new Decimal(0),
-			"po215": new Decimal(0),
-			"pb211": new Decimal(0),
-			"bi211": new Decimal(0),
-			"tl207": new Decimal(0),
-			"pb207": new Decimal(0)
+		decay: {
+			alpha: new Decimal(0),
+			beta: new Decimal(0),
+	
+			isotopes: {
+				"th227": new Decimal(0),
+				"ra223": new Decimal(0),
+				"rn219": new Decimal(0),
+				"po215": new Decimal(0),
+				"pb211": new Decimal(0),
+				"bi211": new Decimal(0),
+				"tl207": new Decimal(0),
+				"pb207": new Decimal(0)
+			},
+			temperatures: {
+				"th227": new Decimal(295),
+				"ra223": new Decimal(295),
+				"rn219": new Decimal(295),
+				"po215": new Decimal(295),
+				"pb211": new Decimal(295),
+				"bi211": new Decimal(295),
+				"tl207": new Decimal(295),
+				"pb207": new Decimal(295)
+			},
+			decaying: [],
+			
+			speed: new Decimal(1),
+			alphaOutput: new Decimal(1),
+			betaOutput: new Decimal(1),
+			coriumUse: new Decimal(1)
 		},
 
 		imported42: false,
@@ -171,6 +192,9 @@ const zero = new Decimal(0);
 var focused = true;
 window.onvisibilitychange = function() {
 	focused = !focused;
+	if (focused) {
+		nextNews();
+	}
 }
 
 function updateUI() {

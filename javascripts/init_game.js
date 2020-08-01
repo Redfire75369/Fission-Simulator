@@ -35,8 +35,6 @@ function preLoad() {
 	document.getElementById("meltdown_" + player.navigation.meltdown + "btn").className = "subtabbtn";
 	document.getElementById("meltdown_" + player.navigation.meltdown).style.display = "none";
 
-	document.getElementById("isotope_dropdown").style.display = "none";
-	
 	drawTurbineRotors(true);
 	drawDynamoCoils(true);
 }
@@ -49,8 +47,6 @@ function postLoad() {
 
 	selectRotor(player.turbine.activeRotor);
 	selectCoil(player.turbine.activeCoil);
-
-	selectIsotope("th227");
 
 	showNaviTab(player.navigation.naviTab);
 	targetedNotationChange(player.options.notation);

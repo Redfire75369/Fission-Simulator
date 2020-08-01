@@ -183,3 +183,10 @@ button:hover {
 	background-color: #44CC66;
 	border: 3px solid #DAA520;
 }
+
+.isotopedecay {
+	color: #000000;
+	background-color: #44AA66;
+	border: 4px solid #000000;
+	border-radius: 8px;
+}

@@ -313,14 +313,14 @@ function expansion(depth) {
 	for (let i = 0; i < depth; i++) {
 		totalExpansion *= player.turbine.rotors[i].expansion;
 	}
-	return totalExpansion * Math.sqrt(player.turbine.rotors[depth].expansion);
+	return Decimal.sqrt(player.turbine.rotors[depth].expansion).mul(totalExpansion);
 }
 
 function expansionIdeality(ideal, actual) {
-	if (ideal <= 0 || actual <= 0) {
+	if (ideal.lte(0) || actual.lte(0)) {
 		return 0;
 	}
-	return ideal < actual ? ideal / actual : actual / ideal;
+	return ideal.lt(actual) ? ideal.div(actual) : actual.div(ideal);
 }
 
 function rotorEfficiency() {

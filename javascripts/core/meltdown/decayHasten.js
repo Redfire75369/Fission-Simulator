@@ -1,6 +1,6 @@
 const decay = Decimal.pow(2, 0.05);
 
-const halflife = {
+const halflives = {
 	"th227": 2000
 }
 
@@ -18,12 +18,23 @@ const stable = [
 
 const decayProducts = {
 	th227: "ra223",
-	ra233: "rn219",
+	ra223: "rn219",
 	rn219: "po215",
 	po215: "pb211",
 	pb211: "bi211",
 	bi211: "tl207",
 	tl207: "pb207"
+};
+
+const isotopeDisplayNames = {
+	th227: "Thorium-227",
+	ra223: "Radium-223",
+	rn219: "Radon-219",
+	po215: "Polonium-215",
+	pb211: "Lead-211",
+	bi211: "Bismuth-211",
+	tl207: "Thallium-207",
+	pb207: "Lead-207"
 };
 
 const tieredFuels = [
@@ -52,26 +63,20 @@ function showSelectIsotope() {
 	}
 }
 
-function selectIsotope(isotope) {
-	document.getElementById("isotope_dropdown").style.display = "none";
-	for (let i = 0, ii = Object.keys(player.isotopes); i < ii.length; i++) {
-		if (!stable.includes(ii[i])) {
-			document.getElementById("isotope_decay_" + ii[i]).style.display = "none";
-		}
-	}
-	document.getElementById("isotope_decay_" + isotope).style.display = "";
-}
-
 function startDecayIsotope(isotope) {
-	player.decaying = isotope;
+	if (player.decay.decaying.includes(isotope)) {
+		player.decay.decaying.splice(player.decay.decaying.indexOf(isotope), 1);
+	} else {
+		player.decay.decaying.push(isotope);
+	}
 }
 
 function simulateFuelStorage(tickInterval = 50) {
 	for (let i = 0; i < 1; i++) {
 		if (!player.reactors[i].enabled) {
-			player.isotopes[tieredFuels[i]] = player.isotopes[tieredFuels[i]].add(getTotalFuelGain(i).mul(tickInterval / 1000));
+			player.decay.isotopes[tieredFuels[i]] = player.decay.isotopes[tieredFuels[i]].add(getTotalFuelGain(i).mul(tickInterval / 1000));
 		}
-		if (player.isotopes[tieredFuels[i]].gte(Decimal.pow(2, 64 * (9 - (i + 1))))) {
+		if (player.decay.isotopes[tieredFuels[i]].gte(Decimal.pow(2, 64 * (9 - (i + 1))))) {
 			player.meltdown.time = 0;
 			player.meltdown.amount += meltdownGain();
 
@@ -89,25 +94,43 @@ function simulateFuelStorage(tickInterval = 50) {
 }
 
 function simulateDecayIsotope(isotope, tickInterval = 50) {
-	if (player.meltdown.corium.gte(tickInterval / 1000)) {
-		player.meltdown.corium = player.meltdown.corium.sub(tickInterval / 1000);
-		let output = decayProducts[isotope];
-		let decay = Decimal.pow(2, - tickInterval / halflifes[isotope]);
-		let decayAbsolute = player.isotopes[isotope].sub(player.isotopes[isotope].div(decay));
+	if (player.decay.decaying.includes(isotope)) {
+		if (player.meltdown.corium.gte(player.decay.coriumUse.mul(tickInterval).div(1000))) {
+			player.meltdown.corium = player.meltdown.corium.sub(player.decay.coriumUse.mul(tickInterval).div(1000));
 
-		player.alpha = player.alpha.add(decayAbsolute.mul(alphaDecays[isotope]));
-
-		player.isotopes[output]= player.isotopes[output].add(decayAbsolute);
-		player.isotopes[isotope] = player.isotopes[isotope].div(decay);
+			let output = decayProducts[isotope];
+			let decay = Decimal.pow(2, player.decay.speed.mul(- tickInterval).div(halflives[isotope])).div(player.decay.temperatures[isotope].div(5900).add(1));
+			let decayAbsolute = player.decay.isotopes[isotope].sub(player.decay.isotopes[isotope].mul(decay));
+	
+			player.decay.alpha = player.decay.alpha.add(decayAbsolute.mul(alpha[isotope]).mul(player.decay.alphaOutput));
+			player.decay.temperatures[isotope] = player.decay.temperatures[isotope].add(halflives[isotope] * tickInterval / 1000);
+	
+			player.decay.isotopes[output] = player.decay.isotopes[output].add(decayAbsolute);
+			player.decay.isotopes[isotope] = player.decay.isotopes[isotope].mul(decay);
+		} else {
+			player.decay.decaying.splice(player.decay.decaying.indexOf(isotope), 1);
+		}
 	} else {
-		//player.decaying.remove(isotope);
+		player.decay.temperatures[isotope] = player.decay.temperatures[isotope].sub(halflives[isotope] * tickInterval / 125).max(295);
 	}
 }
 
 function updateUIDecayHastening() {
-	document.getElementById("alpha_particles").innerText = notation(player.alpha);
-
-	for (let i = 0, ii = Object.keys(player.isotopes); i < ii.length; i++) {
-		document.getElementById("stored_isotope_" + ii[i]).innerText = notation(player.isotopes[ii[i]]);
+	document.getElementById("alpha_particles").innerText = notation(player.decay.alpha);
+	
+	let str = "";
+	for (let i = 0; i < player.decay.decaying.length; i++) {
+		if (i == 0 || i == player.decay.decaying.length - 2) {
+			str += isotopeDisplayNames[player.decay.decaying[i]] + " ";
+		} else if (i == player.decay.decaying.length - 1) {
+			str += "and " + isotopeDisplayName[player.decay.decaying[i]];
+		} else {
+			str += isotopeDisplayNames[player.decay.decaying[i]] + ", ";
+		}
 	}
+	/*document.getElementById("decaying_isotopes").innerText = str;
+
+	for (let i = 0, ii = Object.keys(player.decay.isotopes); i < ii.length; i++) {
+		document.getElementById("stored_isotope_" + ii[i]).innerText = notation(player.decay.isotopes[ii[i]]);
+	}*/
 }

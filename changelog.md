@@ -12,6 +12,17 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Modified
 ### Removed
 -->
+## [v0.5.6] - 1/8/20 **PR**
+### Added
+- Functional Decay Hastening
+
+### Modified
+- Fixed game breaking bug with turbine coils
+- Improved UI for Decay Hastening
+- News Relay Messages do not repeat if they have been shown in the last 5 messages
+
+### Removed
+
 ## [v0.5.5] - 28/7/20 **PR**
 ### Added
 

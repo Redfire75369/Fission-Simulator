@@ -1,6 +1,6 @@
-const notations = {
+const notationFunctions = {
 	"Scientific": new ADNotations.ScientificNotation(),
-	"Logarithmic": new ADNotations.LogarithmicNotation(),
+	"Logarithmic": new ADNotations.LogarithmNotation(),
 	"Brackets": new ADNotations.BracketsNotation(),
 	"Omega": new ADCommunityNotations.OmegaNotation(),
 	"Imperial": new ADNotations.ImperialNotation(),
@@ -14,8 +14,8 @@ function notation(x, dp = 2, dpUnder1e5 = 2, showAboveInfinite = false) {
 	if (Decimal.gte(x, getLimit()) && !showAboveInfinite) {
 		return "Infinite";
 	}
-	if (Object.keys(notations).includes(player.options.notation)) {
-		return notations[player.options.notation].format(x, dp, dpUnder1e5);
+	if (Object.keys(notationFunctions).includes(player.options.notation)) {
+		return notationFunctions[player.options.notation].format(x, dp, dpUnder1e5);
 	} else {
 		return "NaN";
 	}

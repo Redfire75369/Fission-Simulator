@@ -353,57 +353,26 @@ button:hover {
 	font-size: 10px;
 }
 .meltdownup {
-	width: 100%;
+	width: 25%;
 	height: 150px;
 }
 
-.decaychain {
+.isotopedecay {
 	position: absolute;
-	top: 360px;
-	left: 1%;
-	min-width: 48vw;
-	max-width: 48vw;
-}
-
-
-.dropdownshowdecayisotopebtn {
-	position: absolute;
-	top: 360px;
-	left: 55%;
-	min-width: 40vw;
-	max-width: 40vw;
-	min-height: 40px;
-	max-height: 40px;
-}
-
-.dropdowndecayisotope {
-	position: relative;
-	min-width: 40vw;
-	max-width: 40vw;
-	margin-top: 50px;
-}
-
-.dropdowndecayisotopebtn {
-	position: relative;
-	min-width: 40vw;
-	max-width: 40vw;
-	background-color: #00AF00;
-	z-index: 2;
-}
-
-#isotope_decay {
-	position: absolute;
-	top: 420px;
-	left: 55%;
-	min-width: 40vw;
-	max-width: 40vw;
-	min-height: 40px;
-	max-height: 40px;
+	width: 240px;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: translateX(-50%);
 }
 
 .discord {
 	position: fixed;
-	bottom: 24px;
+	bottom: 0;
+}
+.discordlink {
+	position: relative;
 }
 
 #cheats_tab > .flex__row {

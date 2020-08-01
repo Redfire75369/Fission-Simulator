@@ -304,7 +304,7 @@
 									<div onclick="selectCoil('aluminium')" id="turbine_coil_aluminium" class="flex__col tooltip turbinebox turbinecoil aluminium"><span class="tooltiptext turbine">Aluminium Dynamo Coil<br/>Efficiency: 330%<br/>Adjacent to at least 2 Beryllium Dynamo Coils</span></div>
 									<div onclick="selectCoil('gold')" id="turbine_coil_gold" class="flex__col tooltip turbinebox turbinecoil gold"><span class="tooltiptext turbine">Gold Dynamo Coil<br/>Efficiency: 400%<br/>Adjacent to at least 1 Aluminium Dynamo Coil</span></div>
 									<div onclick="selectCoil('copper')" id="turbine_coil_copper" class="flex__col tooltip turbinebox turbinecoil copper"><span class="tooltiptext turbine">Copper Dynamo Coil<br/>Efficiency: 480%<br/>Adjacent to at least 1 Lithium Dynamo Coil</span></div>
-									<div onclick="selectCoil('silver')" id="turbine_coil_silver" class="flex__col tooltip turbinebox turbinecoil silver"><span class="tooltiptext turbine">Silver Dynamo Coil<br/>Efficiency: 600%<br/>Adjacent to at least 1 Gold and 1 Silver Dynamo Coil</span></div>
+									<div onclick="selectCoil('silver')" id="turbine_coil_silver" class="flex__col tooltip turbinebox turbinecoil silver"><span class="tooltiptext turbine">Silver Dynamo Coil<br/>Efficiency: 600%<br/>Adjacent to at least 1 Gold and 1 Copper Dynamo Coil</span></div>
 								</div>
 								<div class="flex__row">
 									<div>Overall Dynamo Coil Efficiency: <span id="turbine_coil_efficiency"></span></div>
@@ -528,76 +528,118 @@
 					</div>
 				</div>
 				<div id="meltdown_decay_hastening_subtab">
+					<div class="navigation subtab">
+						<button onclick="showDecaySubTab('decay_subsubtab')" id="decay_decay_subsubtabbtn">Isotope Decay</button>
+						<button onclick="showDecaySubTab('boosts_subsubtab')" id="decay_boosts_subsubtabbtn">Isotope Boosts</button>
+					</div>
+			
 					<div id="toggle_reactors_popup" class="popup flex--center" style="width: 720px; height: 400px; display: none;">
 						<div class="flex__col">
 							<button onclick="player.reactors[0].toggle()" class="storebtn" id="reactor_togge0">Toggle Thorium-227 Reactor</button>
-							<button onclick="player.reactors[1].toggle()" class="storebtn" id="reactor_toggle1">Toggle Uranium-235 Reactor</button>
+							<!--<button onclick="player.reactors[1].toggle()" class="storebtn" id="reactor_toggle1">Toggle Uranium-235 Reactor</button>!-->
 						</div>
 					</div>
-					<div class="flex__col flex--center" style="height: 40px;">
-						<div class="flex__row">You have <span id="alpha_particles"></span> Alpha Particles.</div>
-						<div class="flex__row">You have <span id="beta_particles"></span> Beta Particles.</div>
+					 
+					<div class="flex__col flex--center" style="height: 50px;">
+						<p>You have <span id="alpha_particles">0.00</span> Alpha Particles.</p>
+						<p>You have <span id="beta_particles">0.00</span> Beta Particles.</p>
 					</div>
-					<div class="flex__row">
-						<div class="flex__col" style="min-width: 50vw; max-width: 50vw">
-							<table id="decay_chain_th227" class="decaychain">
-								<tr>
-									<td align="right">Thorium-227:</td>
-									<td><span id="stored_isotope_th227"></span> kg</td>
-								</tr>
-								<tr>
-									<td align="right">Radium-223:</td>
-									<td><span id="stored_isotope_ra223"></span> kg</td>
-								</tr>
-								<tr>
-									<td align="right">Radon-219:</td>
-									<td><span id="stored_isotope_rn219"></span> kg</td>
-								</tr>
-								<tr>
-									<td align="right">Polonium-215:</td>
-									<td><span id="stored_isotope_po215"></span> kg</td>
-								</tr>
-								<tr>
-									<td align="right">Lead-211:</td>
-									<td><span id="stored_isotope_pb211"></span> kg</td>
-								</tr>
-								<tr>
-									<td align="right">Bismuth-211:</td>
-									<td><span id="stored_isotope_bi211"></span> kg</td>
-								</tr>
-								<tr>
-									<td align="right">Thallium-207:</td>
-									<td><span id="stored_isotope_tl207"></span> kg</td>
-								</tr>
-								<tr>
-									<td align="right">Lead-207:</td>
-									<td><span id="stored_isotope_pb207"></span> kg</td>
-								</tr>
-							</table>
-						</div>
-	
-						<div id="select_isotope" class="flex__col" style="min-width: 50vw; max-width: 50vw">
-							<button onclick="showSelectIsotope()" class="dropdownshowdecayisotopebtn">Select Radioactive Isotope</button>
-							<div id="isotope_dropdown" class="flex__col dropdowndecayisotope">
-								<p onclick="selectIsotope('th227')" class="dropdowndecayisotopebtn">Thorium-227</p>
-								<p onclick="selectIsotope('ra223')" class="dropdowndecayisotopebtn">Radium-223</p>
-								<p onclick="selectIsotope('rn219')" class="dropdowndecayisotopebtn">Radon-219</p>
-								<p onclick="selectIsotope('po215')" class="dropdowndecayisotopebtn">Polonium-215</p>
-								<p onclick="selectIsotope('pb211')" class="dropdowndecayisotopebtn">Lead-211</p>
-								<p onclick="selectIsotope('bi211')" class="dropdowndecayisotopebtn">Bismuth-211</p>
-								<p onclick="selectIsotope('tl207')" class="dropdowndecayisotopebtn">Thallium-207</p>
+					
+					<div id="decay_decay_subsubtab">
+						<div>
+							<div id="decay_chain_th227">
+								<svg width="60" height="1050" xmlns="http://www.w3.org/2000/svg" version="1.1">
+									<defs>
+										<marker id="arrowhead" markerWidth="10" markerHeight="16" markerUnits="userSpaceOnUse" refX="0" refY="8" orient="auto">
+											<polygon points="0,0 10,8 0,16" stroke-width="1"/>
+										</marker>
+									</defs>
+
+									<line stroke="#000000" stroke-width="8" x1="30" y1="109" x2="30" y2="142" marker-end="url(#arrowhead)"/>
+									<line stroke="#000000" stroke-width="8" x1="30" y1="259" x2="30" y2="292" marker-end="url(#arrowhead)"/>
+									<line stroke="#000000" stroke-width="8" x1="30" y1="409" x2="30" y2="442" marker-end="url(#arrowhead)"/>
+									<line stroke="#000000" stroke-width="8" x1="30" y1="559" x2="30" y2="592" marker-end="url(#arrowhead)"/>
+									<line stroke="#000000" stroke-width="8" x1="30" y1="709" x2="30" y2="742" marker-end="url(#arrowhead)"/>
+									<line stroke="#000000" stroke-width="8" x1="30" y1="859" x2="30" y2="892" marker-end="url(#arrowhead)"/>
+									<line stroke="#000000" stroke-width="8" x1="30" y1="1009" x2="30" y2="1042" marker-end="url(#arrowhead)"/>
+									
+									<text x="40" y="131" font-size="140%" font-weight="bold">α</text>
+									<text x="40" y="281" font-size="140%" font-weight="bold">α</text>
+									<text x="40" y="431" font-size="140%" font-weight="bold">α</text>
+									<text x="40" y="581" font-size="140%" font-weight="bold">α</text>
+									<text x="40" y="731" font-size="140%" font-weight="bold">β</text>
+									<text x="40" y="881" font-size="140%" font-weight="bold">α</text>
+									<text x="40" y="1031" font-size="140%" font-weight="bold">β</text>
+								</svg>
+								
+								<div onclick="selectIsotope('th227')" id="isotope_decay_th227" class="isotopedecay th227" style="top: 400px; left: 50vw;">
+									<div>
+										Thorium-227<br/>
+										Stored: <span id="isotope_storage_th227">0.00</span> kg<br/>
+										Halflife: <span id="isotope_halflife_th227">2000</span> ms<br/>
+										Temperature: <span id="Isotope_temperature_th227">295</span> K<br/>
+									</div>
+								</div>
+								<div onclick="selectIsotope('ra223')" id="isotope_decay_ra223" class="isotopedecay ra223" style="top: 550px; left: 50vw;">
+									<div>
+										Radium-223<br/>
+										Stored: <span id="isotope_storage_ra223">0.00</span> kg<br/>
+										Halflife: <span id="isotope_halflife_ra223">2000</span> ms<br/>
+										Temperature: <span id="Isotope_temperature_ra223">295</span> K<br/>
+									</div>
+								</div>
+								<div onclick="selectIsotope('rn219')" id="isotope_decay_rn219" class="isotopedecay rn219" style="top: 700px; left: 50vw;">
+									<div>
+										Radon-219<br/>
+										Stored: <span id="isotope_storage_rn219">0.00</span> kg<br/>
+										Halflife: <span id="isotope_halflife_rn219">2000</span> ms<br/>
+										Temperature: <span id="Isotope_temperature_rn219">295</span> K<br/>
+									</div>
+								</div>
+								<div onclick="selectIsotope('po215)" id="isotope_decay_po215" class="isotopedecay po215" style="top: 850px; left: 50vw;">
+									<div>
+										Polonium-215<br/>
+										Stored: <span id="isotope_storage_po215">0.00</span> kg<br/>
+										Halflife: <span id="isotope_halflife_po215">2000</span> ms<br/>
+										Temperature: <span id="Isotope_temperature_po215">295</span> K<br/>
+									</div>
+								</div>
+								<div onclick="selectIsotope('pb211')" id="isotope_decay_pb211" class="isotopedecay pb211" style="top: 1000px; left: 50vw;">
+									<div>
+										Lead-211<br/>
+										Stored: <span id="isotope_storage_pb211">0.00</span> kg<br/>
+										Halflife: <span id="isotope_halflife_pb211">2000</span> ms<br/>
+										Temperature: <span id="Isotope_temperature_pb211">295</span> K<br/>
+									</div>
+								</div>
+								<div onclick="selectIsotope('bi211')" id="isotope_decay_bi211" class="isotopedecay bi211" style="top: 1150px; left: 50vw;">
+									<div>
+										Bismuth-211<br/>
+										Stored: <span id="isotope_storage_bi211">0.00</span> kg<br/>
+										Halflife: <span id="isotope_halflife_bi211">2000</span> ms<br/>
+										Temperature: <span id="Isotope_temperature_bi211">295</span> K<br/>
+									</div>
+								</div>
+								<div onclick="selectIsotope('tl207')" id="isotope_decay_tl207" class="isotopedecay tl207" style="top: 1300px; left: 50vw;">
+									<div>
+										Thallium-207<br/>
+										Stored: <span id="isotope_storage_tl207">0.00</span> kg<br/>
+										Halflife: <span id="isotope_halflife_tl207">2000</span> ms<br/>
+										Temperature: <span id="Isotope_temperature_tl207">295</span> K<br/>
+									</div>
+								</div>
+								<div id="isotope_decay_pb207" class="isotopedecay pb207" style="top: 1450px; left: 50vw;">
+									<div>
+										Lead-207<br/>
+										Stored: <span id="isotope_storage_pb207">0.00</span> kg<br/>
+									</div>
+								</div>
 							</div>
-							
-							<div id="isotope_decay">
-								<button onclick="startDecayIsotope('th227')" id="isotope_decay_th227">Start Decay of Thorium-227</button>
-								<button onclick="startDecayIsotope('ra223')" id="isotope_decay_ra223">Start Decay of Radium-223</button>
-								<button onclick="startDecayIsotope('rn219')" id="isotope_decay_rn219">Start Decay of Radon-219</button>
-								<button onclick="startDecayIsotope('po215')" id="isotope_decay_po215">Start Decay of Polonium-215</button>
-								<button onclick="startDecayIsotope('pb211')" id="isotope_decay_pb211">Start Decay of Lead-211</button>
-								<button onclick="startDecayIsotope('bi211')" id="isotope_decay_bi211">Start Decay of Bismuth-211</button>
-								<button onclick="startDecayIsotope('tl207')" id="isotope_decay_tl207">Start Decay of Thallium-207</button>
-							</div>
 						</div>
+					</div>
+
+					<div id="decay_boosts_subsubtab">
+						
 					</div>
 				</div>
 			</div>
@@ -653,7 +695,7 @@
 			</div>
 		</div>
 
-		<button onclick="showNaviTab('balance_tab')" id="balance_tabbtn" class="navitabbtn" style="color:#ffa500">Balancing</button>
+		<button onclick="showNaviTab('balance_tab')" id="balance_tabbtn" class="navitabbtn">Balancing</button>
 		<div id="balance_tab">
 			<form>
 				<table>
@@ -685,9 +727,9 @@
 			</form>
 		</div>
 
-		<div style="min-height: 64px; max-height: 64px;"></div>
+		<div style="bottom: 0; min-width: 100vw; min-height: 48px; max-height: 48px;"></div>
 		<div class="flex--center discord">
-			<a href="https://discord.gg/RyQwwzW" target="_blank">Discord Server</a>
+			<a href="https://discord.gg/RyQwwzW" target="_blank" class="discordlink">Discord Server</a>
 		</div>
 	</body>
 </html>
