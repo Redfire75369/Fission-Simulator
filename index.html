@@ -387,34 +387,34 @@
 				<div class="flex__row flex--center">
 					<button onclick="player.nanites.ups[1].buy()" id="nanite_up11">
 						All reactors get a boost based on time played<br/>
-						Formula: \(log_{10}(x)\)<br/>
+						Formula: \(log_{3.2}(x)\)<br/>
 						Currently: <span id="nanite_upmult11">1.00</span>× <br/>
 						Cost: 1 Nanite
 					</button>
 					<button onclick="player.nanites.ups[2].buy()" id="nanite_up12">
-						All reactors get a boost based on number of Nucleosyntheses<br/>
-						Formula: <span id="nanite_upformula12v1">\(x^{log_{10}(x+1)}\)</span><span id="nanite_upformula12v2">\((x - 7) * log_{8}(x)^{0.5}\)</span><br/>
+						All reactors get a boost based on current energy<br/>
+						Formula: \((\frac{log_{30}(x)}{20})^{2}\)<br/>
 						Currently: <span id="nanite_upmult12">1.00</span>× <br/>
-						Cost: 2 Nanites
+						Cost: 1 Nanite
 					</button>
 				</div>
 				<div class="flex__row flex--center">
 					<button onclick="player.nanites.ups[3].buy()" id="nanite_up21">
-						All reactors get a boost based on current energy<br/>
-						Formula: \((\frac{log_{20}(x)}{20})^{2}\)<br/>
+						All reactors get a boost based on number of Nucleosyntheses<br/>
+						Formula: \(x^{log_{5}(x + 1)}\)<br/>
 						Currently: <span id="nanite_upmult21">1.00</span>× <br/>
-						Cost: 1 Nanite
+						Cost: 2 Nanites
 					</button>
 					<button onclick="player.nanites.ups[4].buy()" id="nanite_up22">
 						All reactors get a boost based on total energy<br/>
-						Formula: \((\frac{log_{25}(x)}{40})^{2}\)<br/>
+						Formula: \((\frac{log_{15}(x)}{30})^{2.4}\)<br/>
 						Currently: <span id="nanite_upmult22">1.00</span>× <br/>
 						Cost: 2 Nanites
 					</button>
 				</div>
 				<div class="flex__row flex--center">
 					<button onclick="player.nanites.ups[5].buy()" id="nanite_up31">
-						Increase multiplier from Nucleosyntheses from 2→2.2×<br/>
+						Increase multiplier from Nucleosyntheses from 2.0→2.8×<br/>
 						Cost: 3 Nanites
 					</button>
 					<button onclick="player.nanites.ups[6].buy()" id="nanite_up32">

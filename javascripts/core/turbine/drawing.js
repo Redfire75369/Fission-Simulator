@@ -1,4 +1,4 @@
-function drawTurbineRotors(needRefresh) {
+function drawTurbineRotors(needRefresh = false) {
 	if (player.turbine.dimensions < 3) {
 		alert("Invalid Turbine Dimensions");
 		return;
@@ -51,30 +51,31 @@ function drawTurbineRotors(needRefresh) {
 	updateUITurbineRotors();
 }
 
-function drawBearing(bearingDiameter) {
-	if (player.turbine.dimensions % 2 != bearingDiameter % 2 || bearingDiameter + 2 > player.turbine.dimensions) {
-		alert("Invalid Bearing Diameter");
-		return;
-	}
+function drawBearing(bearingDiameter = 1) {
 	player.turbine.bearingDimensions = bearingDiameter;
 	let start = player.turbine.dimensions % 2 == 0 ? player.turbine.dimensions / 2 - (bearingDiameter / 2) + 1 : (player.turbine.dimensions + 1) / 2 - (bearingDiameter + 1) / 2 + 1;
 	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
 		for (let j = 1; j < player.turbine.dimensions + 1; j++) {
 			if (j >= start && j < start + bearingDiameter && i >= start && i < start + bearingDiameter) {
 				player.turbine.coils[i - 1][j - 1] = "bearing";
+				activeCoils[i - 1][j - 1] = true;
 			} else {
 				player.turbine.coils[i - 1][j - 1] = "none";
+				activeCoils[i - 1][j - 1] = false;
 			}
 		}
 	}
 	activeDynamoCoils();
 }
 
-function drawDynamoCoils(needRefresh) {
+function drawDynamoCoils(coilRefresh = false, activeCoilRefresh = true) {
 	let start = player.turbine.dimensions % 2 == 0 ? player.turbine.dimensions / 2 - (player.turbine.bearingDimensions / 2) + 1 : (player.turbine.dimensions + 1) / 2 - (player.turbine.bearingDimensions + 1) / 2 + 1;
 	document.getElementById("turbine_coils").innerHTML = "";
-	if (needRefresh) {
+	if (coilRefresh) {
 		player.turbine.coils = [];
+	}
+	if (activeCoilRefresh) {
+		activeCoils = [];
 	}
 
 	for (let i = 0; i < player.turbine.dimensions + 2; i++) {
@@ -83,18 +84,29 @@ function drawDynamoCoils(needRefresh) {
 		column.setAttribute("class", "flex__col turbine");
 		document.getElementById("turbine_coils").append(column);
 
-		if (i > 0 && i < player.turbine.dimensions + 2 && needRefresh) {
-			player.turbine.coils[i - 1] = [];
-			activeCoils[i - 1] = [];
+		if (i > 0 && i < player.turbine.dimensions + 1) {
+			if (coilRefresh) {
+				player.turbine.coils[i - 1] = [];
+			}
+			if (activeCoilRefresh) {
+				activeCoils[i - 1] = [];
+			}
 		}
 		for (let j = 0; j < player.turbine.dimensions + 2; j++) {
-			if (needRefresh) {
+			if (coilRefresh) {
 				if (j > 0 && j < player.turbine.dimensions + 1 && i > 0 && i < player.turbine.dimensions + 1) {
 					player.turbine.coils[i - 1][j - 1] = "none";
-					activeCoils[i - 1][j - 1] = false;
 				}
 				if ((player.turbine.dimensions % 2 == 0 && ((j == player.turbine.dimensions / 2 || j == (player.turbine.dimensions + 2) / 2)) && ((i == player.turbine.dimensions / 2 || i == (player.turbine.dimensions + 2) / 2))) || (player.turbine.dimensions % 2 == 1 && j == (player.turbine.dimensions + 1) / 2 && i == (player.turbine.dimensions + 1) /2)) {
 					player.turbine.coils[i - 1][j - 1] = "bearing";
+				}
+			}
+			if (activeCoilRefresh) {
+				if (j > 0 && j < player.turbine.dimensions + 1 && i > 0 && i < player.turbine.dimensions + 1) {
+					activeCoils[i - 1][j - 1] = false;
+				}
+				if ((player.turbine.dimensions % 2 == 0 && ((j == player.turbine.dimensions / 2 || j == (player.turbine.dimensions + 2) / 2)) && ((i == player.turbine.dimensions / 2 || i == (player.turbine.dimensions + 2) / 2))) || (player.turbine.dimensions % 2 == 1 && j == (player.turbine.dimensions + 1) / 2 && i == (player.turbine.dimensions + 1) /2)) {
+					activeCoils[i - 1][j - 1] = true;
 				}
 			}
 

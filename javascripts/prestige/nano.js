@@ -10,7 +10,7 @@ function canBuyNaniteResearch() {
 function nanitesGain() {
 	let ret = new Decimal(0);
 	if (player.reactors[7].amount.lte(25)) {
-		ret = player.reactors[7].amount.sub(2).div(1.3);
+		ret = player.reactors[7].amount.sub(2);
 	} else {
 		ret = zero;
 	}
@@ -39,7 +39,7 @@ function buyNaniteResearch() {
 }
 
 function updateUINaniteResearch() {
-	document.getElementById("naniteresearch_cost").innerText = player.nanites.total.eq(0) ? "3" : player.nanites.total.lt(17) ? player.nanites.total.mul(1.3).add(2).ceil() : infinity;
+	document.getElementById("naniteresearch_cost").innerText = player.nanites.total.lte(0) ? "3" : player.nanites.total.lt(17) ? player.nanites.total.add(3).ceil() : infinity;
 	document.getElementById("nanites_gain").innerText = notation(nanitesGain());
 	document.getElementById("naniteresearch_btn").className = canBuyNaniteResearch() ? "storebtn buy" : "storebtn locked";
 }

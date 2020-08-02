@@ -12,6 +12,18 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Modified
 ### Removed
 -->
+
+## [v0.5.7] - 2/8/20 **PR**
+### Added
+
+### Modified
+- Fixed another game breaking bug with turbine coils
+- Fixed issue with dynamic array length save loading
+- Updated Costs and Cost Scalings
+- Updated Nanite Upgrade Formulas
+
+### Removed
+
 ## [v0.5.6] - 1/8/20 **PR**
 ### Added
 - Functional Decay Hastening

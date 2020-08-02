@@ -23,8 +23,8 @@ function getDefaultData() {
 		unlocked: {
 			coils: false,
 			naniteUps: false,
-			meltdown: true,
-			decayHasten: true
+			meltdown: false,
+			decayHasten: false
 		},
 
 		achievements: {
@@ -54,23 +54,23 @@ function getDefaultData() {
 		eff: new Efficiency(1e3, 1e1),
 		mines: [
 			new Mine(1, 2),
-			new Mine(2, 3),
-			new Mine(5, 4),
-			new Mine(7, 6),
-			new Mine(10, 8),
-			new Mine(12, 11),
-			new Mine(15, 14),
-			new Mine(18, 17)
+			new Mine(2, 5),
+			new Mine(5, 7),
+			new Mine(8, 10),
+			new Mine(13, 13),
+			new Mine(18, 16),
+			new Mine(24, 20),
+			new Mine(30, 25)
 		],
 		reactors: [
-			new Reactor(1, 2),
-			new Reactor(2, 3),
-			new Reactor(5, 4),
-			new Reactor(7, 5),
-			new Reactor(10, 7),
-			new Reactor(12, 9),
-			new Reactor(15, 11),
-			new Reactor(18, 12)
+			new Reactor(1, 3),
+			new Reactor(2, 5),
+			new Reactor(5, 6),
+			new Reactor(8, 8),
+			new Reactor(13, 9),
+			new Reactor(18, 12),
+			new Reactor(25, 14),
+			new Reactor(31, 15)
 		],
 
 		turbine: {

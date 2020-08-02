@@ -62,6 +62,7 @@ const rotors = {
 const coils = {
 	none: new DynamoCoil("none", 1),
 	bearing: new DynamoCoil("bearing", 1),
+	connector: new DynamoCoil("connector", 1),
 	magnesium: new DynamoCoil("magnesium", 1.4),
 	beryllium: new DynamoCoil("beryllium", 2.1),
 	lithium: new DynamoCoil("lithium", 3),
@@ -335,6 +336,12 @@ function rotorEfficiency() {
 	return rotorCount == 0 ? 0 : rotorEff / rotorCount;
 }
 
+function resetTurbine() {
+	player.turbine = getDefaultData().turbine;
+	resetTurbineRotors();
+	resetDynamoCoils();
+}
+
 function simulateTurbine(tickInterval = 50) {
 	activeDynamoCoils();
 
@@ -436,6 +443,7 @@ function updateUIDynamoCoils() {
 }
 
 function newTurbine() {
-	drawTurbineRotors(true);
-	drawDynamoCoils(true);
+	drawTurbineRotors(true, true);
+	drawDynamoCoils(true, true);
+	drawBearing(player.turbine.bearingDimensions);
 }

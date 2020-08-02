@@ -18,13 +18,13 @@ class NaniteUpgrade extends GenericUpgrade {
 	get mult() {
 		switch(this.id) {
 			case 11:
-				return [8, new Decimal(max(1, log(player.time / 1000, 16) - 1))];
+				return [8, Decimal.max(1, log(player.time / 1000, 3.2))];
 			case 12:
-				return (player.nucleosynthesis <= 10) ? [8, Decimal.max(1, (player.nucleosynthesis ** log(player.nucleosynthesis + 1, 10)) / 3)] : [8, Decimal.max(1, (player.nucleosynthesis - 7) * (log(player.nucleosynthesis, 8) ** 0.5))];
+				return [8, Decimal.max(1, new Decimal(player.energy.log(30)).div(20).pow(2))];
 			case 21:
-				return [8, Decimal.max(1, new Decimal(player.energy.log(20)).div(20).pow(2))];
+				return [8, Decimal.max(1, pow(player.nucleosynthesis, log(player.nucleosynthesis + 1, 5)))];
 			case 22:
-				return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(25)).div(40).pow(2))];
+				return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(15)).div(30).pow(2.4))];
 			case 32:
 				return [8, Decimal.max(1, player.nanites.total.log(1.2))];
 			default:
@@ -73,7 +73,6 @@ class EfficiencyNaniteUpgrade extends NaniteUpgrade {
 
 function resetNaniteUps() {
 	if (player.meltdown.ups[15].bought < 4) {
-		console.log("nan");
 		player.nanites.ups = getDefaultData().nanites.ups;
 	}
 }
@@ -95,9 +94,6 @@ function updateUINaniteUps() {
 
 	document.getElementById("nanite_upcost0").innerText = player.nanites.ups[0].cost.neq(1) ? (player.nanites.ups[0].cost + " Nanites") : "1 Nanite";
 	document.getElementById("nanite_up0").className = player.nanites.ups[0].buyable ? "naniteup buy" : "naniteup locked";
-
-	document.getElementById("nanite_upformula12v1").style.display =  player.nucleosynthesis <= 13 ? "inline-block" : "none";
-	document.getElementById("nanite_upformula12v2").style.display =  player.nucleosynthesis > 13 ? "inline-block" : "none";
 
 	for (let i = 1; i < player.nanites.ups.length; i++) {
 		if (player.nanites.ups[i].id != 31) {

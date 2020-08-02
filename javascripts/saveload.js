@@ -95,7 +95,7 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 			player[assignToKey1][assignToKey2][assignToKey3][assignToKey4][assignToKey5] = objectify(assignFrom, getDefaultData()[assignToKey1][assignToKey2][assignToKey3][assignToKey4][assignToKey5]);
 		} else if (assignToKey4 !== undefined) {
 			if (check instanceof Array) {
-				for (let x = 0; x < check.length; x++){
+				for (let x = 0; x < assignFrom.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, assignToKey3, assignToKey4, x);
 				}
 			} else {
@@ -103,7 +103,7 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 			}
 		} else if (assignToKey3 !== undefined) {
 			if (check instanceof Array) {
-				for (let x = 0; x < check.length; x++){
+				for (let x = 0; x < assignFrom.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, assignToKey3, x);
 				}
 			} else {
@@ -111,7 +111,7 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 			}
 		} else if (assignToKey2 !== undefined) {
 			if (check instanceof Array) {
-				for (let x = 0; x < check.length; x++){
+				for (let x = 0; x < assignFrom.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, assignToKey2, x);
 				}
 			} else {
@@ -119,7 +119,7 @@ function checkAssign(check, assignFrom, assignToKey1, assignToKey2, assignToKey3
 			}
 		} else if (assignToKey1 !== undefined) {
 			if (check instanceof Array) {
-				for (let x = 0; x < check.length; x++){
+				for (let x = 0; x < assignFrom.length; x++){
 					checkAssign(check[x], assignFrom[x], assignToKey1, x);
 				}
 			} else {

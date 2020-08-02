@@ -37,12 +37,13 @@ function preLoad() {
 
 	drawTurbineRotors(true);
 	drawDynamoCoils(true);
+	drawBearing(player.turbine.bearingDimensions);
 }
 
 function postLoad() {
-	drawTurbineRotors(false);
-	drawBearing(player.turbine.bearingDimensions);
-	drawDynamoCoils(false);
+	drawTurbineRotors();
+	drawDynamoCoils();
+	drawBearing(1);
 	activeDynamoCoils();
 
 	selectRotor(player.turbine.activeRotor);
