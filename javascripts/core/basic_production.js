@@ -19,7 +19,7 @@ class Mine extends GenericEnergyProducer {
 	get totalMult() {
 		let mult = new Decimal(1);
 		let perBuyMult = player.meltdown.ups[8].bought ? new Decimal(3) : new Decimal(2);
-		let nucleoMult = player.nanites.ups[5].bought ? new Decimal(2.8) : new Decimal(2);
+		let nucleoMult = player.nanites.ups[5].bought ? new Decimal(2.4) : new Decimal(2);
 
 		mult = mult.mul(perBuyMult.pow(this.bought)).mul(nucleoMult.pow(max(0, player.nucleosynthesis - this.tier)));
 		mult = mult.mul(getTotalNaniteUpMult(this.tier));
@@ -43,8 +43,8 @@ class Reactor extends GenericEnergyProducer {
 	
 	get totalMult() {
 		let mult = new Decimal(1);
-		let perBuyMult = player.meltdown.ups[31] == 1 ? new Decimal(3) : new Decimal(2);
-		let nucleoMult = player.nanites.ups[31] == 1 ? new Decimal(2.2) : new Decimal(2);
+		let perBuyMult = player.meltdown.ups[8].bought ? new Decimal(3) : new Decimal(2);
+		let nucleoMult = player.nanites.ups[5].bought ? new Decimal(2.4) : new Decimal(2);
 
 		mult = mult.mul(perBuyMult.pow(this.bought)).mul(nucleoMult.pow(max(0, player.nucleosynthesis - this.tier)));
 		mult = mult.mul(getTotalNaniteUpMult(this.tier));

@@ -31,8 +31,8 @@ function loadSave(save, imported = false) {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
 
-		if (save.version.beta < 4 || (save.version.beta == 4 && save.version.alpha < 4)) {
-			alert("Your save is from a much older version and is thus, incompatible with the current version. Your save has been reset.");
+		if (save.version.beta < 5 || (save.version.beta == 5 && save.version.alpha < 8)) {
+			alert("Your save is from a much older version and is thus, incompatible with the current version. Your save has been cleared.");
 			localStorage.removeItem("fissionSimSave1");
 			save = JSON.parse(LZString.decompressFromBase64(LZString.compressToBase64(JSON.stringify(getDefaultData()))));
 		}

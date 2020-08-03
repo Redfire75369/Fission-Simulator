@@ -13,6 +13,15 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.5.8] - 3/8/20 **PR**
+### Added
+- Forceful save reset of anyone from v0.5.7 or earlier
+
+### Modified
+- Rebalanced game till meltdown
+
+### Removed
+
 ## [v0.5.7] - 2/8/20 **PR**
 ### Added
 

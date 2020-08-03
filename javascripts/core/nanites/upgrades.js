@@ -26,7 +26,7 @@ class NaniteUpgrade extends GenericUpgrade {
 			case 22:
 				return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(15)).div(30).pow(2.4))];
 			case 32:
-				return [8, Decimal.max(1, player.nanites.total.log(1.2))];
+				return [8, Decimal.max(1, new Decimal(player.nanites.total.log(1.2)).pow(2.1))];
 			default:
 				return [9, new Decimal(1)];
 		}
@@ -39,11 +39,7 @@ class EfficiencyNaniteUpgrade extends NaniteUpgrade {
 	}
 
 	get cost() {
-		if (this.bought < 2) {
-			return new Decimal(1);
-		} else {
-			return new Decimal(1).add(this.bought - 2);
-		}
+		return new Decimal(1).add(max(0, this.bought - 2));
 	}
 
 	get buyable() {
@@ -80,7 +76,7 @@ function resetNaniteUps() {
 function getTotalNaniteUpMult(tier) {
 	let mult = new Decimal(1);
 	for (let id = 0; id < player.nanites.ups.length; id++) {
-		if (player.nanites.ups[id].bought >= 1 && (player.nanites.ups[id].mult[0] == tier || player.nanites.ups[id].mult[0] == 8)) {
+		if (player.nanites.ups[id].bought && (player.nanites.ups[id].mult[0] == tier || player.nanites.ups[id].mult[0] == 8)) {
 			mult = mult.mul(player.nanites.ups[id].mult[1]);
 		}
 	}
