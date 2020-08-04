@@ -18,22 +18,22 @@ class NaniteUpgrade extends GenericUpgrade {
 	get mult() {
 		switch(this.id) {
 			case 11:
-				return [8, Decimal.max(1, log(player.time / 1000, 3.2))];
+				return [[8], Decimal.max(1, log(player.time / 1000, 3.2))];
 			case 12:
-				return [8, Decimal.max(1, new Decimal(player.energy.log(30)).div(20).pow(2))];
+				return [[8], Decimal.max(1, new Decimal(player.energy.log(30)).div(20).pow(2))];
 			case 21:
-				return [8, Decimal.max(1, pow(player.nucleosynthesis, log(player.nucleosynthesis + 1, 5)))];
+				return [[8], Decimal.max(1, pow(player.nucleosynthesis, log(player.nucleosynthesis + 1, 5)))];
 			case 22:
-				return [8, Decimal.max(1, new Decimal(player.totalEnergy.log(15)).div(30).pow(2.4))];
+				return [[8], Decimal.max(1, new Decimal(player.totalEnergy.log(15)).div(30).pow(2.4))];
 			case 32:
-				return [8, Decimal.max(1, new Decimal(player.nanites.total.log(1.2)).pow(2.1))];
+				return [[8], Decimal.max(1, new Decimal(player.nanites.total.log(1.2)).pow(2.1))];
 			default:
-				return [9, new Decimal(1)];
+				return [[9], new Decimal(1)];
 		}
 	}
 }
 
-class EfficiencyNaniteUpgrade extends NaniteUpgrade {
+class TurbineNaniteUpgrade extends NaniteUpgrade {
 	constructor() {
 		super(0, 1, 1, 1);
 	}
@@ -76,7 +76,7 @@ function resetNaniteUps() {
 function getTotalNaniteUpMult(tier) {
 	let mult = new Decimal(1);
 	for (let id = 0; id < player.nanites.ups.length; id++) {
-		if (player.nanites.ups[id].bought && (player.nanites.ups[id].mult[0] == tier || player.nanites.ups[id].mult[0] == 8)) {
+		if (player.nanites.ups[id].bought && (player.nanites.ups[id].mult[0].includes(tier) || player.nanites.ups[id].mult[0].includes(8))) {
 			mult = mult.mul(player.nanites.ups[id].mult[1]);
 		}
 	}

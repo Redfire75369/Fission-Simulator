@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 5,
-			alpha: 8
+			alpha: 9
 		},
 
 		options: {
@@ -103,10 +103,10 @@ function getDefaultData() {
 			nanites: new Decimal(0),
 			total: new Decimal(0),
 			ups: [
-				new EfficiencyNaniteUpgrade(),
+				new TurbineNaniteUpgrade(),
 				new NaniteUpgrade(11, 1),
-				new NaniteUpgrade(12, 2),
-				new NaniteUpgrade(21, 1),
+				new NaniteUpgrade(12, 1),
+				new NaniteUpgrade(21, 2),
 				new NaniteUpgrade(22, 2),
 				new NaniteUpgrade(31, 3),
 				new NaniteUpgrade(32, 4),
@@ -146,7 +146,7 @@ function getDefaultData() {
 		decay: {
 			alpha: new Decimal(0),
 			beta: new Decimal(0),
-	
+
 			isotopes: {
 				"th227": new Decimal(0),
 				"ra223": new Decimal(0),
@@ -168,7 +168,7 @@ function getDefaultData() {
 				"pb207": new Decimal(295)
 			},
 			decaying: [],
-			
+
 			speed: new Decimal(1),
 			alphaOutput: new Decimal(1),
 			betaOutput: new Decimal(1),

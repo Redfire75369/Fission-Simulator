@@ -50,7 +50,7 @@
 	</head>
 	<body align="center">
 		<img id="navi_open" class="navigationtoggle" onclick="toggleNavigation()" src="resources/images/navi.png"/>
-		
+
 	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px; style: none;">
 			<div id="offline_progress" style="height:175px; display:flex; align-items:center"></div>
 			<button  onclick="closeOfflineProgress()" align="center" class="storebtn buy" style="font-size:15px; margin:auto;">Close</button>
@@ -67,14 +67,14 @@
 		<div class="info">
 			<p>Increase efficiency of all mines by <span id="eff_increment">10.00</span>%</p>
 			<button onclick="player.eff.buy()" id="eff_buysingle">Cost: <span id="eff_cost">1.00e3</span></button>
-			<button onclick="player.eff.buyMax()" id="eff_buymax">Buy Max</button>
+			<button onclick="player.eff.buyMax()" id="eff_buymax">Buy Max (E)</button>
 			<p>Efficiency: <span id="eff_mult">1.00</span></p>
 		</div>
 
 		<div class="newsbar">
 			<div id="news"></div>
 		</div>
-		
+
 		<div id="navigation" class="navigation main">
 			<button onclick="showNaviTab('production_tab')" id="production_tabbtn">Production</button>
 			<button onclick="showNaviTab('statistics_tab')" id="statistics_tabbtn">Statistics</button>
@@ -92,11 +92,11 @@
 				<button onclick="showProdTab('reactors_subtab')" id="production_reactors_subtabbtn">Reactors</button>
 				<button onclick="showProdTab('turbine_subtab')" id="production_turbine_subtabbtn">Turbines</button>
 			</div>
-		
+
 			<div class="flex__col flex--center">
 				<button onclick="buyMaxAll()" id="max_all" class="storebtn buy">Max All (M)</button>
 			</div>
-		
+
 			<div id="fuel_subtab" class="flex__col">
 				<div class="flex__row">
 					<div>Fuel Type</div>
@@ -153,7 +153,7 @@
 					<div><span id="fuel_decaygain8">0.00</span> kg/s</div>
 				</div>
 			</div>
-		
+
 			<div id="mines_subtab" class="flex__col">
 				<div class="flex__row" id="mine_row1">
 					<div>Iron-Tipped Drill Mine ×<span id="mine_mult1">1</span></div>
@@ -210,66 +210,70 @@
 						<div>Thorium-227 Reactor ×<span id="reactor_mult1">1</span></div>
 						<div><span id="reactor_amt1">0.00 (0)</span></div>
 						<div><button onclick="player.reactors[0].buy()" id="reactor_buysingle1">Cost: <span id="reactor_cost1">10.00</span></button></div>
-						<div><button onclick="player.reactors[0].buyMax()" id="reactor_buymax1">Buy Max</button></div>
+						<div><button onclick="player.reactors[0].buyMax()" id="reactor_buymax1">Buy Max (1)</button></div>
 					</div>
 					<div class="flex__row" id="reactor_row2">
 						<div>Uranium-235 Reactor ×<span id="reactor_mult2">1</span></div>
 						<div><span id="reactor_amt2">0.00 (0)</span></div>
 						<div><button onclick="player.reactors[1].buy()" id="reactor_buysingle2">Cost: <span id="reactor_cost2">100.00</span></button></div>
-						<div><button onclick="player.reactors[1].buyMax()" id="reactor_buymax2">Buy Max</button></div>
+						<div><button onclick="player.reactors[1].buyMax()" id="reactor_buymax2">Buy Max (2)</button></div>
 					</div>
 					<div class="flex__row" id="reactor_row3">
 						<div>Neptunium-234 Reactor ×<span id="reactor_mult3">1</span></div>
 						<div><span id="reactor_amt3">0.00 (0)</span></div>
 						<div><button onclick="player.reactors[2].buy()" id="reactor_buysingle3">Cost: <span id="reactor_cost3">1.00e4 </span></button></div>
-						<div><button onclick="player.reactors[2].buyMax()" id="reactor_buymax3">Buy Max</button></div>
+						<div><button onclick="player.reactors[2].buyMax()" id="reactor_buymax3">Buy Max (3)</button></div>
 					</div>
 					<div class="flex__row" id="reactor_row4">
 						<div>Plutonium-237 Reactor ×<span id="reactor_mult4">1</span></div>
 						<div><span id="reactor_amt4">0.00 (0)</span></div>
 						<div><button onclick="player.reactors[3].buy()" id="reactor_buysingle4">Cost: <span id="reactor_cost4">1.00e6</span></button></div>
-						<div><button onclick="player.reactors[3].buyMax()" id="reactor_buymax4">Buy Max</button></div>
+						<div><button onclick="player.reactors[3].buyMax()" id="reactor_buymax4">Buy Max (4)</button></div>
 					</div>
 					<div class="flex__row" id="reactor_row5">
 						<div>Americium-242m Reactor ×<span id="reactor_mult5">1</span></div>
 						<div><span id="reactor_amt5">0.00 (0)</span></div>
 						<div><button onclick="player.reactors[4].buy()" id="reactor_buysingle5">Cost: <span id="reactor_cost5">1.00e9</span></button></div>
-						<div><button onclick="player.reactors[4].buyMax()" id="reactor_buymax5">Buy Max</button></div>
+						<div><button onclick="player.reactors[4].buyMax()" id="reactor_buymax5">Buy Max (5)</button></div>
 					</div>
 					<div class="flex__row" id="reactor_row6">
 						<div>Curium-245 Reactor ×<span id="reactor_mult6">1</span></div>
 						<div><span id="reactor_amt6">0.00 (0)</span></div>
 						<div><button onclick="player.reactors[5].buy()" id="reactor_buysingle6">Cost: <span id="reactor_cost6">1.00e13</span></button></div>
-						<div><button onclick="player.reactors[5].buyMax()" id="reactor_buymax6">Buy Max</button></div>
+						<div><button onclick="player.reactors[5].buyMax()" id="reactor_buymax6">Buy Max (6)</button></div>
 					</div>
 					<div class="flex__row" id="reactor_row7">
 						<div>Berkelium-248 Reactor ×<span id="reactor_mult7">1</span></div>
 						<div><span id="reactor_amt7">0.00 (0)</span></div>
 						<div><button onclick="player.reactors[6].buy()" id="reactor_buysingle7">Cost: <span id="reactor_cost7">1.00e18</span></button></div>
-						<div><button onclick="player.reactors[6].buyMax()" id="reactor_buymax7">Buy Max</button></div>
+						<div><button onclick="player.reactors[6].buyMax()" id="reactor_buymax7">Buy Max (7)</button></div>
 					</div>
 					<div class="flex__row" id="reactor_row8">
 						<div>Californium-251 Reactor ×<span id="reactor_mult8">1</span></div>
 						<div><span id="reactor_amt8">0.00 (0)</span></div>
 						<div><button onclick="player.reactors[7].buy()" id="reactor_buysingle8">Cost: <span id="reactor_cost8">1.00e24</span></button></div>
-						<div><button onclick="player.reactors[7].buyMax()" id="reactor_buymax8">Buy Max</button></div>
+						<div><button onclick="player.reactors[7].buyMax()" id="reactor_buymax8">Buy Max (8)</button></div>
 					</div>
 				</div>
 				<div class="flex__col">
-					<div class="flex__row">
-						<div><span id="nucleosynthesis_scaling">Stellar Nucleosynthesis</span> (<span id="nucleosynthesis_amt">0</span>): Requires <span id="nucleosynthesis_cost">2 Plutonium-238</span> Reactors</div>
-						<div><button onclick="buyMaxNucleosynthesis()" id="nucleosynthesis_btn" style="width: 300px; height: 30px">Reset the game for a new Mine</button></div>
-					</div>
-					<div class="flex__row">
-						<div>Nanite Research: Requires <span id="naniteresearch_cost">5</span> Californium-251 Reactors</div>
-						<div><button onclick="buyNaniteResearch()" id="naniteresearch_btn" style="width: 300px; height: 40px">Reset the game for <span id="nanites_gain">1</span> Nanites </button></div>
-					</div>
+					<table>
+						<tr>
+							<td><div><span id="nucleosynthesis_scaling">Stellar Nucleosynthesis</span> (<span id="nucleosynthesis_amt">0</span>): Requires <span id="nucleosynthesis_cost">2 Plutonium-238</span> Reactors</div></td>
+							<td><div><button onclick="buyMaxNucleosynthesis()" id="nucleosynthesis_btn" style="width: 300px; height: 30px">Reset the game for a new mine and reactor (N)</button></div></td>
+						</tr>
+						<tr>
+							<td><div>Nanite Research: Requires <span id="naniteresearch_cost">5</span> Californium-251 Reactors</div></td>
+							<td><div><button onclick="buyNaniteResearch()" id="naniteresearch_btn" style="width: 300px; height: 40px">Reset the game for <span id="nanites_gain">1</span> Nanites (R)</button></div></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<div id="turbine_subtab">
 					<div class="flex__row">
 						<div class="flex__col">
-							<p> Processing <span id="steam"></span> L/s of Steam</p>
+							<p>Processing <span id="turbine_steam"></span> L/s of Steam</p>
+							<p>Rotor Efficiency: <span id="turbine_rotoreff"></span> %</p>
+							<p>Overall Expansion: <span id="turbine_totalexp"></span> × (Ideal: 8×)</p>
 							<div id="turbine_rotors" class="flex__row"></div>
 							<div id="turbine_rotors_length" class="flex__row"></div>
 							<div class="flex__row">
@@ -297,11 +301,11 @@
 								<div id="turbine_coils" class="flex__row"></div>
 								<div class="flex__row">
 									<div onclick="selectCoil('none')" id="turbine_coil_none" class="flex__col tooltip turbinebox turbinecoil none"><span class="tooltiptext turbine">Turbine Casing</span></div>
-									<div onclick="selectCoil('connector')" id="turbine_coil_connector" class="flex__col tooltip turbinebox turbinecoil connector"><span class="tooltiptext turbine">Dynamo Coil Connector</span></div>
+									<div onclick="selectCoil('connector')" id="turbine_coil_connector" class="flex__col tooltip turbinebox turbinecoil connector"><span class="tooltiptext turbine">Dynamo Coil Connector<br/>Adjacent to at least one Active Coil<br/>Acts as a Rotor Bearing for the purpose of other coils' rules</span></div>
 									<div onclick="selectCoil('magnesium')" id="turbine_coil_magnesium" class="flex__col tooltip turbinebox turbinecoil magnesium"><span class="tooltiptext turbine">Magnesium Dynamo Coil<br/>Efficiency: 140%<br/>Adjacent to at least 1 Rotor Bearing</span></div>
 									<div onclick="selectCoil('beryllium')" id="turbine_coil_beryllium" class="flex__col tooltip turbinebox turbinecoil beryllium"><span class="tooltiptext turbine">Beryllium Dynamo Coil<br/>Efficiency: 210%<br/>Adjacent to at least 1 Magnesium Dynamo Coils</span></div>
-									<div onclick="selectCoil('lithium')" id="turbine_coil_lithium" class="flex__col tooltip turbinebox turbinecoil lithium"><span class="tooltiptext turbine">Lithium Dynamo Coil<br/>Efficiency: 300%<br/>Adjacent to at least 1 Beryllium Dynamo Coil and 1 Rotor Bearing</span></div>
-									<div onclick="selectCoil('aluminium')" id="turbine_coil_aluminium" class="flex__col tooltip turbinebox turbinecoil aluminium"><span class="tooltiptext turbine">Aluminium Dynamo Coil<br/>Efficiency: 330%<br/>Adjacent to at least 2 Beryllium Dynamo Coils</span></div>
+									<div onclick="selectCoil('lithium')" id="turbine_coil_lithium" class="flex__col tooltip turbinebox turbinecoil lithium"><span class="tooltiptext turbine">Lithium Dynamo Coil<br/>Efficiency: 360%<br/>Adjacent to at least 1 Beryllium Dynamo Coil and 1 Rotor Bearing</span></div>
+									<div onclick="selectCoil('aluminium')" id="turbine_coil_aluminium" class="flex__col tooltip turbinebox turbinecoil aluminium"><span class="tooltiptext turbine">Aluminium Dynamo Coil<br/>Efficiency: 290%<br/>Adjacent to at least 2 Beryllium Dynamo Coils</span></div>
 									<div onclick="selectCoil('gold')" id="turbine_coil_gold" class="flex__col tooltip turbinebox turbinecoil gold"><span class="tooltiptext turbine">Gold Dynamo Coil<br/>Efficiency: 400%<br/>Adjacent to at least 1 Aluminium Dynamo Coil</span></div>
 									<div onclick="selectCoil('copper')" id="turbine_coil_copper" class="flex__col tooltip turbinebox turbinecoil copper"><span class="tooltiptext turbine">Copper Dynamo Coil<br/>Efficiency: 480%<br/>Adjacent to at least 1 Lithium Dynamo Coil</span></div>
 									<div onclick="selectCoil('silver')" id="turbine_coil_silver" class="flex__col tooltip turbinebox turbinecoil silver"><span class="tooltiptext turbine">Silver Dynamo Coil<br/>Efficiency: 600%<br/>Adjacent to at least 1 Gold and 1 Copper Dynamo Coil</span></div>
@@ -338,23 +342,27 @@
 			</div>
 		</div>
 
-		<div id="achievements_tab" class="flex__row">
-			<div id="ach11" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach12" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach13" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach14" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach15" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach16" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach17" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach18" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach21" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach22" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach23" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach24" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach25" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach26" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach27" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			<div id="ach28" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+		<div id="achievements_tab" class="flex__col">
+			<div class="flex__row">
+				<div id="ach11" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach12" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach13" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach14" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach15" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach16" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach17" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach18" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+			</div>
+			<div class="flex__row">
+				<div id="ach21" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach22" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach23" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach24" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach25" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach26" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach27" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+				<div id="ach28" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
+			</div>
 		</div>
 
 		<div id="options_tab" class="flex__col">
@@ -532,19 +540,19 @@
 						<button onclick="showDecaySubTab('decay_subsubtab')" id="decay_decay_subsubtabbtn">Isotope Decay</button>
 						<button onclick="showDecaySubTab('boosts_subsubtab')" id="decay_boosts_subsubtabbtn">Isotope Boosts</button>
 					</div>
-			
+
 					<div id="toggle_reactors_popup" class="popup flex--center" style="width: 720px; height: 400px; display: none;">
 						<div class="flex__col">
 							<button onclick="player.reactors[0].toggle()" class="storebtn" id="reactor_togge0">Toggle Thorium-227 Reactor</button>
 							<!--<button onclick="player.reactors[1].toggle()" class="storebtn" id="reactor_toggle1">Toggle Uranium-235 Reactor</button>!-->
 						</div>
 					</div>
-					 
+
 					<div class="flex__col flex--center" style="height: 50px;">
 						<p>You have <span id="alpha_particles">0.00</span> Alpha Particles.</p>
 						<p>You have <span id="beta_particles">0.00</span> Beta Particles.</p>
 					</div>
-					
+
 					<div id="decay_decay_subsubtab">
 						<div>
 							<div id="decay_chain_th227">
@@ -562,7 +570,7 @@
 									<line stroke="#000000" stroke-width="8" x1="30" y1="709" x2="30" y2="742" marker-end="url(#arrowhead)"/>
 									<line stroke="#000000" stroke-width="8" x1="30" y1="859" x2="30" y2="892" marker-end="url(#arrowhead)"/>
 									<line stroke="#000000" stroke-width="8" x1="30" y1="1009" x2="30" y2="1042" marker-end="url(#arrowhead)"/>
-									
+
 									<text x="40" y="131" font-size="140%" font-weight="bold">α</text>
 									<text x="40" y="281" font-size="140%" font-weight="bold">α</text>
 									<text x="40" y="431" font-size="140%" font-weight="bold">α</text>
@@ -571,7 +579,7 @@
 									<text x="40" y="881" font-size="140%" font-weight="bold">α</text>
 									<text x="40" y="1031" font-size="140%" font-weight="bold">β</text>
 								</svg>
-								
+
 								<div onclick="selectIsotope('th227')" id="isotope_decay_th227" class="isotopedecay th227" style="top: 400px; left: 50vw;">
 									<div>
 										Thorium-227<br/>
@@ -639,7 +647,7 @@
 					</div>
 
 					<div id="decay_boosts_subsubtab">
-						
+
 					</div>
 				</div>
 			</div>

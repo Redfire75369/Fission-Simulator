@@ -141,7 +141,7 @@ button:hover {
 	top: 0px;
 	left: 0px;
 	width: 200px;
-	height: 720px;
+	height: 100vh;
 	padding: 10px;
 	background-color: rgba(0, 0, 0, 0.6);
 	z-index: 4;
@@ -353,6 +353,7 @@ button:hover {
 	font-size: 10px;
 }
 .meltdownup {
+	min-width: 120px;
 	width: 25%;
 	height: 150px;
 }

@@ -116,6 +116,11 @@ function drawDynamoCoils(coilRefresh = false, activeCoilRefresh = true) {
 			if (!(j == 0 || j == player.turbine.dimensions + 1 || i == 0 || i == player.turbine.dimensions + 1)) {
 				if (j < start || j >= start + player.turbine.bearingDimensions || i < start || i >= start + player.turbine.bearingDimensions) {
 					coil.setAttribute("onclick", "setCoil(" + (i - 1) + ", " + (j - 1) + ")");
+					coil.addEventListener("contextmenu", function(ev) {
+						ev.preventDefault();
+						removeCoil(i - 1, j - 1);
+						return false;
+					}, false);
 				}
 			} else {
 				coil.setAttribute("class", "flex__row turbinebox turbinecasing coil");

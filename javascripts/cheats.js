@@ -42,7 +42,7 @@ function addNucleosynthesis() {
 }
 
 function toggleLeverMaxAll() {
-	leverMaxAll = !leverMaxAll;
+	leverMaxAll != leverMaxAll;
 }
 
 function harderReset() {

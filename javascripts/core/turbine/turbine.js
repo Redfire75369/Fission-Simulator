@@ -65,11 +65,21 @@ const coils = {
 	connector: new DynamoCoil("connector", 1),
 	magnesium: new DynamoCoil("magnesium", 1.4),
 	beryllium: new DynamoCoil("beryllium", 2.1),
-	lithium: new DynamoCoil("lithium", 3),
-	aluminium: new DynamoCoil("aluminium", 3.3),
+	lithium: new DynamoCoil("lithium", 3.6),
+	aluminium: new DynamoCoil("aluminium", 2.9),
 	gold: new DynamoCoil("gold", 4),
 	copper: new DynamoCoil("copper", 4.8),
 	silver: new DynamoCoil("silver", 6)
+};
+
+const rotorDisplayNames = {
+	none: "No Rotor",
+	stator: "Stator",
+	steel: "Steel Rotor",
+	titanium: "Titanium Rotor",
+	osmiridium: "Osmiridium Rotor",
+	extreme: "Extreme Rotor",
+	sicsiccmc: "SiC SiC CMC Rotor"
 };
 
 var activeCoils = [
@@ -136,6 +146,7 @@ function getDefaultRotors() {
 function resetTurbineRotors() {
 	drawTurbineRotors(true);
 	player.turbine.totalRotors = getDefaultRotors();
+	selectRotor(getDefaultData().turbine.activeRotor);
 }
 
 function showCoils() {
@@ -156,10 +167,17 @@ function setCoil(x, y) {
 		activeDynamoCoils();
 	}
 }
+function removeCoil(x, y) {
+	if (player.turbine.coils[y][x] != "bearing") {
+		player.turbine.coils[y][x] = "none";
+		activeDynamoCoils();
+	}
+}
 
 function resetDynamoCoils() {
 	drawBearing(player.turbine.bearingDimensions);
 	drawDynamoCoils(true);
+	selectCoil(getDefaultData().turbine.activeCoil);
 }
 
 function getTotalCoilEff() {
@@ -167,7 +185,7 @@ function getTotalCoilEff() {
 	for (let x = 0; x < player.turbine.coils.length; x++) {
 		for (let y = 0; y < player.turbine.coils[x].length; y++) {
 			if (activeCoils[y][x]) {
-				ret = ret.mul(coils[player.turbine.coils[x][y]].efficiency);
+				ret = ret.mul(coils[player.turbine.coils[y][x]].efficiency);
 			}
 		}
 	}
@@ -312,11 +330,22 @@ function idealExpansion(depth) {
 function expansion(depth) {
 	let totalExpansion = 1;
 	for (let i = 0; i < depth; i++) {
-		totalExpansion *= player.turbine.rotors[i].expansion;
+		if (player.turbine.rotors[i].length > 0) {
+			totalExpansion *= player.turbine.rotors[i].expansion;
+		}
 	}
 	return Decimal.sqrt(player.turbine.rotors[depth].expansion).mul(totalExpansion);
 }
 
+function totalExpansion() {
+	let totalExp = 1;
+	for (let i = 0; i < player.turbine.dimensions; i++) {
+		if (player.turbine.rotors[i].length > 0) {
+			totalExp *= player.turbine.rotors[i].expansion;
+		}
+	}
+	return new Decimal(totalExp);
+}
 function expansionIdeality(ideal, actual) {
 	if (ideal.lte(0) || actual.lte(0)) {
 		return 0;
@@ -328,12 +357,12 @@ function rotorEfficiency() {
 	let rotorEff = 0;
 	let rotorCount = 0
 	for (let i = 0; i < player.turbine.dimensions; i++) {
-		if (player.turbine.rotors[i].totalEff > 0) {
+		if (player.turbine.rotors[i].length > 0) {
 			rotorEff += player.turbine.rotors[i].totalEff * expansionIdeality(idealExpansion(i), expansion(i));
 			rotorCount++;
 		}
 	}
-	return rotorCount == 0 ? 0 : rotorEff / rotorCount;
+	return rotorCount == 0 ? zero : new Decimal(rotorEff).div(rotorCount);
 }
 
 function resetTurbine() {
@@ -353,25 +382,28 @@ function simulateTurbine(tickInterval = 50) {
 			energy = energy.add(speed.pow(1.5));
 		}
 	}
-	let gain = energy.mul(getTotalCoilEff()).mul(rotorEfficiency()).mul(expansionIdeality(idealExpansion(player.turbine.dimensions - 1), expansion(player.turbine.dimensions - 1)));
-	document.getElementById("steam").innerText = gain == 0 ? 0 : notation(getTotalSteamGain());
+	let gain = energy.mul(getTotalCoilEff()).mul(rotorEfficiency()).mul(expansionIdeality(idealExpansion(player.turbine.dimensions), totalExpansion()));
+	document.getElementById("turbine_steam").innerText = gain == 0 ? 0 : notation(getTotalSteamGain());
 	document.getElementById("energy_gain").innerText = notation(gain);
 	player.energy = player.energy.add(gain.mul(tickInterval / 1000));
 	player.totalEnergy = player.totalEnergy.add(gain.mul(tickInterval / 1000));
 }
 
 function updateUITurbineRotors() {
+	document.getElementById("turbine_rotoreff").innerText = notation(rotorEfficiency().mul(100));
+	document.getElementById("turbine_totalexp").innerText = notation(totalExpansion());
+
 	document.getElementById("turbine_rotors_count").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
 	document.getElementById("turbine_rotors_total").innerText = player.turbine.totalRotors[player.turbine.activeRotor] + " " + player.turbine.activeRotor.charAt(0).toUpperCase() + player.turbine.activeRotor.substring(1).toLowerCase();
 
 	document.getElementById("buy_rotor").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
 	document.getElementById("buy_rotor").className = canBuyRotor() ? "storebtn buy" : "storebtn locked";
-	document.getElementById("rotor_type").innerText = player.turbine.activeRotor.charAt(0).toUpperCase() + player.turbine.activeRotor.substring(1).toLowerCase();
+	document.getElementById("rotor_type").innerText = rotorDisplayNames[player.turbine.activeRotor];
 	document.getElementById("rotor_cost").innerText = notation(getRotorCost());
-	
+
 	document.getElementById("buy_four_rotor").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
 	document.getElementById("buy_four_rotor").className = canBuyFourRotors() ? "storebtn buy" : "storebtn locked";
-	document.getElementById("rotor_four_type").innerText = player.turbine.activeRotor.charAt(0).toUpperCase() + player.turbine.activeRotor.substring(1).toLowerCase();
+	document.getElementById("rotor_four_type").innerText = rotorDisplayNames[player.turbine.activeRotor];
 	document.getElementById("rotor_four_cost").innerText = notation(getFourRotorsCost());
 
 	document.getElementById("turbine_rotor_titanium").parentElement.style.display = player.nucleosynthesis > 1 ? "block" : "none";

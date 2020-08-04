@@ -18,19 +18,19 @@ class MeltdownUpgrade extends GenericUpgrade {
 	get mult() {
 		switch(this.id) {
 			case 11:
-				return [8, Decimal.max(1, 1 + player.meltdown.amount / 2)];
+				return [[8], Decimal.max(1, 1 + player.meltdown.amount / 2)];
 			case 12:
-				return [8, Decimal.max(1, Math.pow((player.meltdown.time / 1000 + 1) / 2, 25 / (player.meltdown.time / 1000 +1)))];
+				return [[8], Decimal.max(1, Math.pow((player.meltdown.time / 1000 + 1) / 2, 25 / (player.meltdown.time / 1000 +1)))];
 			case 13:
-				return [8, Decimal.max(1, Math.pow(player.meltdown.time / 1000, 0.2))];
+				return [[8], Decimal.max(1, Math.pow(player.meltdown.time / 1000, 0.2))];
 			case 14:
-				return [8, player.reactors[7].amount.max(1)];
+				return [[8], player.reactors[7].amount.max(1)];
 			case 21:
-				return [8, player.meltdown.totalNanites.pow(1.2).max(1)];
+				return [[8], player.meltdown.totalNanites.pow(1.2).max(1)];
 			case 22:
-				return [8, Decimal.pow(player.meltdown.corium.add(2).log2(), 0.9).max(1)];
+				return [[8], Decimal.pow(player.meltdown.corium.add(2).log2(), 0.9).max(1)];
 			default:
-				return [9, new Decimal(1)];
+				return [[9], new Decimal(1)];
 		}
 	}
 }
@@ -40,44 +40,19 @@ function resetMeltdownUps() {
 }
 
 function getMeltdownUp41Mult(tier) {
-	switch(player.meltdown.ups[12].bought) {
-		case 4:
-			if (tier == 0) {
-				return Decimal.max(1, player.mines[7].amount.add(player.reactors[7].amount).log10() * 7);
-			}
-			if (tier == 7) {
-				return Decimal.max(1, player.mines[0].amount.add(player.reactors[0].amount).log10() * 1);
-			}
-		case 3:
-			if (tier == 1) {
-				return Decimal.max(1, player.mines[6].amount.add(player.reactors[6].amount).log10() * 6);
-			}
-			if (tier == 6) {
-				return Decimal.max(1, player.mines[1].amount.add(player.reactors[1].amount).log10() * 1);
-			}
-		case 2:
-			if (tier == 2) {
-				return Decimal.max(1, player.mines[5].amount.add(player.reactors[5].amount).log10() * 5);
-			}
-			if (tier == 5) {
-				return Decimal.max(1, player.mines[2].amount.add(player.reactors[2].amount).log10() * 2);
-			}
-		case 1:
-			if (tier == 3) {
-				return Decimal.max(1, player.mines[4].amount.add(player.reactors[4].amount).log10() * 4);
-			}
-			if (tier == 4) {
-				return Decimal.max(1, player.mines[3].amount.add(player.reactors[3].amount).log10() * 3);
-			}
-		default:
-			return new Decimal(1);
+	let start = 4 - player.meltdown.ups[12].bought;
+	let end = 2 * player.meltdown.ups[12].bought - 1;
+	if ((tier >= start && tier <= 3) || (tier <= end && tier >= 4)) {
+		return Decimal.max(1, player.mines[tier].amount.add(player.reactors[tier].amount).log10() * tier);
+	} else {
+		return new Decimal(1);
 	}
 }
 
 function getTotalMeltdownUpMult(tier) {
 	let ret = new Decimal(1);
 	for (let id = 0; id < player.meltdown.ups.length; id++) {
-		if (player.meltdown.ups[id] == 1 && (player.meltdown.ups[id].mult[0] == tier || player.meltdown.ups[id].mult[0] == 8)) {
+		if (player.meltdown.ups[id].bought >= 1 && (player.meltdown.ups[id].mult[0].includes(tier) || player.meltdown.ups[id].mult[0].includes(8))) {
 			ret = ret.mul(player.meltdown.ups[id].mult[1]);
 		}
 	}

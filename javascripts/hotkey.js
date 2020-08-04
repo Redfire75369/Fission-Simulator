@@ -1,19 +1,22 @@
-const key = Mousetrap;
-
-key.bind("m", buyMaxAll);
-key.bind("e", function() {
+Mousetrap.bind("m", function() {
+	buyMaxAll();
+});
+Mousetrap.bind("e", function() {
 	player.eff.buyMax();
 });
 for (let tier = 0; tier < 8; tier++) {
-	key.bind((tier+1).toString(), function() {
+	Mousetrap.bind((tier+1).toString(), function() {
 		player.reactors[tier].buyMax()
+	});
+	Mousetrap.bind("ctrl+" + (tier+1).toString(), function() {
+		player.mines[tier].buyMax()
 	});
 }
 
-key.bind("n", function(){
+Mousetrap.bind("n", function(){
 	buyMaxNucleosynthesis();
 });
 
-key.bind("r", function(){
+Mousetrap.bind("r", function(){
 	buyNaniteResearch();
 });

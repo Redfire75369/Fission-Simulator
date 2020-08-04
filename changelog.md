@@ -13,7 +13,28 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
-## [v0.5.8] - 3/8/20 **PR**
+## [v0.5.9] - 3/8/20
+### Added
+- Achievement Image for Achievement 11
+- Coils can now also be removed by right-clicking on them
+- ESLint to Dev Environment
+- Failsafe for an imported save which is too old
+- Indicators for total steam expansion and overall rotor efficiency
+- Ctrl + Tier Hotkey for buying max mines
+- Indicators on the reactor buy max, efficiency buy max, nucleosynthesis and nanite research that show their respective hotkeys
+
+### Modified
+- Buffed lithium coils and nerfed aluminum coils
+- Refactored save loading to allow for 255 layers of nesting
+- Fixed bug where inactive coils sometimes increased coil efficiency
+- Fixed bug where nanite upgrades 12 and 21 had swapped prices
+- Fixed display of SiC SiC CMC rotors on the buying rotor buttons
+- Fixed bug where active rotor and coil persisted across nucleosynthesis, nanite research and meltdown
+- Fixed bug where meltdown upgrade did not affect multipliers
+
+### Removed
+
+## [v0.5.8] - 3/8/20
 ### Added
 - Forceful save reset of anyone from v0.5.7 or earlier
 
@@ -22,7 +43,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Removed
 
-## [v0.5.7] - 2/8/20 **PR**
+## [v0.5.7] - 2/8/20
 ### Added
 
 ### Modified
@@ -33,7 +54,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Removed
 
-## [v0.5.6] - 1/8/20 **PR**
+## [v0.5.6] - 1/8/20
 ### Added
 - Functional Decay Hastening
 
@@ -44,7 +65,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Removed
 
-## [v0.5.5] - 28/7/20 **PR**
+## [v0.5.5] - 28/7/20
 ### Added
 
 ### Modified
