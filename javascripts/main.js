@@ -46,31 +46,46 @@ function getDefaultData() {
 			28: false
 		},
 
+		automation: {
+			mines: [
+				new MineAutomation(0, 1000),
+				new MineAutomation(1, 1000),
+				new MineAutomation(2, 1000),
+				new MineAutomation(3, 1000),
+				new MineAutomation(4, 1000),
+				new MineAutomation(5, 1000),
+				new MineAutomation(6, 1000),
+				new MineAutomation(7, 1000)
+			],
+			reactors: [
+				new ReactorAutomation(0, 1000),
+				new ReactorAutomation(1, 1000),
+				new ReactorAutomation(2, 1000),
+				new ReactorAutomation(3, 1000),
+				new ReactorAutomation(4, 1000),
+				new ReactorAutomation(5, 1000),
+				new ReactorAutomation(6, 1000),
+				new ReactorAutomation(7, 1000)
+			],
+			efficiency: new EfficiencyAutomation(1000)
+		},
+
 		energy: new Decimal(100),
 		totalEnergy: new Decimal(100),
 
 		moderator: 0,
 
 		eff: new Efficiency(1e3, 1e1),
-		mines: [
-			new Mine(1, 2),
-			new Mine(2, 5),
-			new Mine(5, 7),
-			new Mine(8, 10),
-			new Mine(13, 13),
-			new Mine(18, 16),
-			new Mine(24, 20),
-			new Mine(30, 25)
-		],
+		mines: new ImprovedMines(),
 		reactors: [
-			new Reactor(1, 3),
-			new Reactor(2, 5),
-			new Reactor(5, 6),
-			new Reactor(8, 8),
-			new Reactor(13, 9),
-			new Reactor(18, 12),
-			new Reactor(25, 14),
-			new Reactor(31, 15)
+			new Reactor(1, 3, 1),
+			new Reactor(2, 5, 3),
+			new Reactor(5, 6, 6),
+			new Reactor(8, 8, 9),
+			new Reactor(13, 9, 12),
+			new Reactor(18, 12, 16),
+			new Reactor(25, 14, 21),
+			new Reactor(31, 15, 27)
 		],
 
 		turbine: {
@@ -127,8 +142,8 @@ function getDefaultData() {
 				new MeltdownUpgrade(11, 1, 1, 1),
 				new MeltdownUpgrade(12, 1, 1, 1),
 				new MeltdownUpgrade(13, 1, 1, 1),
-				new MeltdownUpgrade(14, 1, 1, 1),
-				new MeltdownUpgrade(21, 1, 1, 1),
+				new MeltdownUpgrade(14, 2, 1, 1),
+				new MeltdownUpgrade(21, 2, 1, 1),
 				new MeltdownUpgrade(22, 1, 1, 1),
 				new MeltdownUpgrade(23, 1, 1, 1),
 				new MeltdownUpgrade(24, 1, 1, 1),
@@ -220,7 +235,6 @@ function updateGame(tickInterval = 50) {
 		buyMaxAll();
 	}
 	simulateMines(tickInterval);
-	simulateReactors(tickInterval);
 	simulateTurbine(tickInterval);
 	simulateFuelStorage(tickInterval);
 	simulateDecayIsotope("th227", tickInterval);

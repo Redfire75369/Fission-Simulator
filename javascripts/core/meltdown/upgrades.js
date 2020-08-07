@@ -20,15 +20,15 @@ class MeltdownUpgrade extends GenericUpgrade {
 			case 11:
 				return [[8], Decimal.max(1, 1 + player.meltdown.amount / 2)];
 			case 12:
-				return [[8], Decimal.max(1, Math.pow((player.meltdown.time / 1000 + 1) / 2, 25 / (player.meltdown.time / 1000 +1)))];
-			case 13:
-				return [[8], Decimal.max(1, Math.pow(player.meltdown.time / 1000, 0.2))];
-			case 14:
 				return [[8], player.reactors[7].amount.max(1)];
+			case 13:
+				return [[8], Decimal.max(1, Math.pow(player.meltdown.time / 1000, 0.3))];
+			case 14:
+				return [[8], Decimal.max(1, Math.pow((player.meltdown.time / 1000 + 1) / 1.8, 40 / (player.meltdown.time / 1000 +1)))];
 			case 21:
-				return [[8], player.meltdown.totalNanites.pow(1.2).max(1)];
+				return [[8], player.meltdown.totalNanites.pow(1.3).max(1)];
 			case 22:
-				return [[8], Decimal.pow(player.meltdown.corium.add(2).log2(), 0.9).max(1)];
+				return [[8], Decimal.pow(player.meltdown.corium.add(3).log(3), 1.1).max(1)];
 			default:
 				return [[9], new Decimal(1)];
 		}
