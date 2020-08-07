@@ -4,6 +4,7 @@ class Efficiency extends GenericEnergyProducer {
 	}
 	
 	get increment() {
+		return new Decimal(1);
 		return new Decimal(1.1);
 		let effUpg = player.nanites.ups[0].bought;
 		if (effUpg <= 2) {

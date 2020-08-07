@@ -20,12 +20,12 @@ const achTexts = [
 ];
 
 function checkAchievementCompletion() {
-	player.achievements[11] |= player.mines[0].amount.gte(1);
+	//player.achievements[11] |= player.mines[0].amount.gte(1);
 	player.achievements[12] |= player.energy.gte(1e3);
 	player.achievements[13] |= false;
 	player.achievements[14] |= player.nucleosynthesis >=1;
 	player.achievements[15] |= false;
-	player.achievements[16] |= player.mines[7].amount.gte(1);
+	//player.achievements[16] |= player.mines[7].amount.gte(1);
 	player.achievements[17] |= false;
 	player.achievements[18] |= player.nanites.total.gte(1);
 	player.achievements[21] |= false;

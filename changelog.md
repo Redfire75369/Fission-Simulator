@@ -13,7 +13,15 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
-## [v0.5.9] - 3/8/20
+## [v0.5.10] - 5/8/20 **PR**
+### Added
+
+### Modified
+- Fixed display of rotors in buy one/four rotors
+
+### Removed
+
+## [v0.5.9] - 4/8/20
 ### Added
 - Achievement Image for Achievement 11
 - Coils can now also be removed by right-clicking on them
@@ -21,7 +29,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 - Failsafe for an imported save which is too old
 - Indicators for total steam expansion and overall rotor efficiency
 - Ctrl + Tier Hotkey for buying max mines
-- Indicators on the reactor buy max, efficiency buy max, nucleosynthesis and nanite research that show their respective hotkeys
+- Indicators on the reactor buy max, efficiency buy max, nucleosynthesis and nanite research buttons that show their respective hotkeys
 
 ### Modified
 - Buffed lithium coils and nerfed aluminum coils
