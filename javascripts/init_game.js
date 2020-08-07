@@ -1,8 +1,8 @@
 function preLoad() {
 	updateUIEnergy();
-	//updateUIMaxAll();
-	//updateUIFuel();
-	//updateUIMines();
+	updateUIMaxAll();
+	updateUIFuel();
+	updateUIMines();
 	updateUIReactors();
 	updateUIEff();
 	updateUINucleosynthesis();

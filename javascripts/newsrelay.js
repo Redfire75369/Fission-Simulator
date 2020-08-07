@@ -17,13 +17,7 @@ const newsArray = [
 	["e is an interesting letter when pressed it seems to make things run just a bit better in the ole reactor and mine areas.... go figure!", true],
 	["It's over Anakin, I have the radioactive ground!", true],
 	["To show you the power of flex tape, I cut this atom in half.", true],
-	["18 metre long mosquitoes with 63 legs have been found in the streets of Otarensin. In unrelated news, all nuclear reactors in the country of Gargrihskhurth have been found to be problematic.", true],
-	["and the inside is completely dry- wait no FUCK NO WE'RE IN A REA-", true],
-	["instructions unclear - got my hand stuck in a rotor", true],
-	["This game was sponsored by: Antima- Breaking News: A man was found dead in front of his desk. There were no clues as to who the assailant was and the only thing that they found at the crime scene was stuff relating to something with the acronym “AD.” Further investigation on the matter only just led researchers to a game named “Raid: Shadow Legends.” More on that after the weather.", true],
-	["Redfire corp. is in no way affiliated with, or has interacted with, Hevipelle inc. Despite how similar our products may be, we only give you the highest quality nuclear related products.", true],
-	["“Apes together strong, apes together means mutate together, apes together also means apes die together from radiation” ~ Carlsson the mentally insane", true],
-	["Ð̸̫͆Ů̵̂̕Ę̷̛͌ ̶̍͠Ț̷̀͒Ø̶̰̒ ̵̀͘Ë̷̾̏¥̸̊̕Č̴̕͝É̶̔͐Ş̶̼͘ꜱ̴͒͂ꜱ̶̛͜Ï̶͒́>̵͂͌Ę̷̩̂ ̴̎̍Ă̶̓̆ᴍ̵̧̊Õ̸̱͆Ű̵̃̈́Ñ̵̺͐Ť̶͋̒Ș̴̘̄ ̵̊̃Ö̸̱̚Þ̵̒͆ ̶͒̑Ñ̵̩̇Û̵̢̊Ç̴͗̋Ľ̵͑̆Ê̷̐̑Ă̵̍̚Ř̸͗̈́ ̷̈́̒Ř̴̑͠@̸͛̍Ð̵̎́Î̷̦̿Ą̸̡̊Ť̷̆̕ɪ̶̒́Ø̵̥͑Ń̷̘̓,̷̹̃ ̸͚̽Ť̸̃̕+̴̈́Ė ÑĘ^Ș ÞĂꜱꜱ /<Þ@[#Èꜱꜱ", true]
+	["18 metre long mosquitoes with 63 legs have been found in the streets of Otarensin. In unrelated news, all nuclear reactors in the country of Gargrihskhurth have been found to be problematic.", true]
 ];
 
 var scroll = [];

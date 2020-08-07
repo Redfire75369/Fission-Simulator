@@ -43,7 +43,7 @@ function drawTurbineRotors(needRefresh = false) {
 			if (!(j == 0 || j == player.turbine.dimensions + 1 || i == 0 || i == player.turbine.dimensions + 1)) {
 				row.append(document.createElement("DIV"));
 			} else {
-				row.setAttribute("class", "flex__row turbine turbinebox rotorbox turbinecasing");
+				row.setAttribute("class", "flex__row turbinebox turbinecasing");
 			}
 			document.getElementById("turbine_rotors_col_" + i).append(row);
 		}

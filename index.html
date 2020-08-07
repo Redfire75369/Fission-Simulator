@@ -3,16 +3,14 @@
 	<head>
 	  <meta charset="utf-8">
 		<title>Fission Simulator</title>
-		
+		<link rel="stylesheet" href="stylesheets/universal.css"/>
+		<link rel="stylesheet" href="stylesheets/light.css" id="style"/>
+		<link rel="stylesheet" href="stylesheets/katex.css"/>
 
 		<meta property="og:type" content="game"/>
 		<meta property="og:title" content="Fission Simulator"/>
 		<meta property="og:description" content="An Incremental Game about Reactors"/>
 		<meta property="og:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/Alpha/index.html">
-
-		<link rel="stylesheet" href="stylesheets/universal.css"/>
-		<link rel="stylesheet" href="stylesheets/light.css" id="style"/>
-		<link rel="stylesheet" href="stylesheets/katex.css"/>
 
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
@@ -22,7 +20,7 @@
 		<script defer src="javascripts/libs/lz-string.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/mousetrap.min.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/save_load.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/saveload.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/navigation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
@@ -30,10 +28,7 @@
 		<script defer src="javascripts/generics/GenericProducer.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/generics/GenericEnergyProducer.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/generics/GenericUpgrade.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/generics/GenericAutomation.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/generics/GenericIntervalAutomation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/resources.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/mine/mines.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/basic_production.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/drawing.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/turbine.js" charset ="utf-8" type="text/javascript"></script>
@@ -45,7 +40,6 @@
 		<script defer src="javascripts/core/meltdown/upgrades.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/meltdown/decayHasten.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/meltdown/moderator.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/automation/basic_automation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/achievements.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
@@ -107,56 +101,108 @@
 				<div class="flex__row">
 					<div>Fuel Type</div>
 					<div>Fuel Gain</div>
+					<div>Fuel Gain from Mines</div>
+					<div>Fuel Gain from Decay</div>
 				</div>
 				<div class="flex__row">
 					<div>LET-232 Fuel</div>
-					<div><span id="fuel_gain1">0.00</span> kg/s</div>
+					<div><span id="fuel_totalgain1">0.00</span> kg/s</div>
+					<div><span id="fuel_minegain1">0.00</span> kg/s</div>
+					<div><span id="fuel_decaygain1">0.00</span> kg/s</div>
 				</div>
 				<div id="fuel_row2" class="flex__row">
 					<div>LEU-235 Fuel</div>
-					<div><span id="fuel_gain2">0.00</span> kg/s</div>
+					<div><span id="fuel_totalgain2">0.00</span> kg/s</div>
+					<div><span id="fuel_minegain2">0.00</span> kg/s</div>
+					<div><span id="fuel_decaygain2">0.00</span> kg/s</div>
 				</div>
 				<div id="fuel_row3" class="flex__row">
 					<div>LENp-234 Fuel</div>
-					<div><span id="fuel_gain3">0.00</span> kg/s</div>
+					<div><span id="fuel_totalgain3">0.00</span> kg/s</div>
+					<div><span id="fuel_minegain3">0.00</span> kg/s</div>
+					<div><span id="fuel_decaygain3">0.00</span> kg/s</div>
 				</div>
 				<div id="fuel_row4" class="flex__row">
 					<div>LEPu-237 Fuel</div>
-					<div><span id="fuel_gain4">0.00</span> kg/s</div>
+					<div><span id="fuel_totalgain4">0.00</span> kg/s</div>
+					<div><span id="fuel_minegain4">0.00</span> kg/s</div>
+					<div><span id="fuel_decaygain4">0.00</span> kg/s</div>
 				</div>
 				<div id="fuel_row5" class="flex__row">
 					<div>LEAm-243 Fuel</div>
-					<div><span id="fuel_gain5">0.00</span> kg/s</div>
+					<div><span id="fuel_totalgain5">0.00</span> kg/s</div>
+					<div><span id="fuel_minegain5">0.00</span> kg/s</div>
+					<div><span id="fuel_decaygain5">0.00</span> kg/s</div>
 				</div>
 				<div id="fuel_row6" class="flex__row">
 					<div>LECm-245 Fuel</div>
-					<div><span id="fuel_gain6">0.00</span> kg/s</div>
+					<div><span id="fuel_totalgain6">0.00</span> kg/s</div>
+					<div><span id="fuel_minegain6">0.00</span> kg/s</div>
+					<div><span id="fuel_decaygain6">0.00</span> kg/s</div>
 				</div>
 				<div id="fuel_row7" class="flex__row">
 					<div>LEBk-248 Fuel</div>
-					<div><span id="fuel_gain7">0.00</span> kg/s</div>
+					<div><span id="fuel_totalgain7">0.00</span> kg/s</div>
+					<div><span id="fuel_minegain7">0.00</span> kg/s</div>
+					<div><span id="fuel_decaygain7">0.00</span> kg/s</div>
 				</div>
 				<div id="fuel_row8" class="flex__row">
 					<div>LECf-251 Fuel</div>
-					<div><span id="fuel_gain8">0.00</span> kg/s</div>
+					<div><span id="fuel_totalgain8">0.00</span> kg/s</div>
+					<div><span id="fuel_minegain8">0.00</span> kg/s</div>
+					<div><span id="fuel_decaygain8">0.00</span> kg/s</div>
 				</div>
 			</div>
 
 			<div id="mines_subtab" class="flex__col">
-				<div>
-					<p>Active Mines: <span id="mines_active"></span></p>
-					<p>Depleted Mines: <span id="mines_depleted"></span></p>
-					<p>Ore Extraction Rate: <span id="ore_extraction"></span> kg/s</p>
-					<p>Total Ore: <span id="ore_total"></span> kg</p>
-					<p>Construction Cost: <span id="construction_cost"></span></p>
-					<p>Construction Rate: <span id="construction_rate"></span> /s</p>
-					<input type="text" id="construction_ratio" value="50%"/>
-
-					<button onclick="player.mines.upgrade()" id="mines_upgrade">
-						Upgrade mines to <span id="mines_uptype"></span> drills<br/>
-						Cost: <span id="mines_upcost"></span>
-					</button>
-				 </div>
+				<div class="flex__row" id="mine_row1">
+					<div>Iron-Tipped Drill Mine ×<span id="mine_mult1">1</span></div>
+					<div><span id="mine_amt1">0.00 (0)</span></div>
+					<div><button onclick="player.mines[0].buy()" id="mine_buysingle1">Cost: <span id="mine_cost1">10.00</span></button></div>
+					<div><button onclick="player.mines[0].buyMax()" id="mine_buymax1">Buy Max</button></div>
+				</div>
+				<div class="flex__row" id="mine_row2">
+					<div>Steel-Tipped Drill Mine ×<span id="mine_mult2">1</span></div>
+					<div><span id="mine_amt2">0.00 (0)</span></div>
+					<div><button onclick="player.mines[1].buy()" id="mine_buysingle2">Cost: <span id="mine_cost2">100.00</span></button></div>
+					<div><button onclick="player.mines[1].buyMax()" id="mine_buymax2">Buy Max</button></div>
+				</div>
+				<div class="flex__row" id="mine_row3">
+					<div>Titanium-Tipped Drill Mine ×<span id="mine_mult3">1</span></div>
+					<div><span id="mine_amt3">0.00 (0)</span></div>
+					<div><button onclick="player.mines[2].buy()" id="mine_buysingle3">Cost: <span id="mine_cost3">1.00e4</span></button></div>
+					<div><button onclick="player.mines[2].buyMax()" id="mine_buymax3">Buy Max</button></div>
+				</div>
+				<div class="flex__row" id="mine_row4">
+					<div>Iridium-Tipped Drill Mine ×<span id="mine_mult4">1</span></div>
+					<div><span id="mine_amt4">0.00 (0)</span></div>
+					<div><button onclick="player.mines[3].buy()" id="mine_buysingle4">Cost: <span id="mine_cost4">1.00e6</span></button></div>
+					<div><button onclick="player.mines[3].buyMax()" id="mine_buymax4">Buy Max</button></div>
+				</div>
+				<div class="flex__row" id="mine_row5">
+					<div>Tungstensteel-Tipped Drill Mine ×<span id="mine_mult5">1</span></div>
+					<div><span id="mine_amt5">0.00 (0)</span></div>
+					<div><button onclick="player.mines[4].buy()" id="mine_buysingle5">Cost: <span id="mine_cost5">1.00e9</span></button></div>
+					<div><button onclick="player.mines[4].buyMax()" id="mine_buymax5">Buy Max</button></div>
+				</div>
+				<div class="flex__row" id="mine_row6">
+					<div>Osmium-Tipped Drill Mine ×<span id="mine_mult6">1</span></div>
+					<div><span id="mine_amt6">0.00 (0)</span></div>
+					<div><button onclick="player.mines[5].buy()" id="mine_buysingle6">Cost: <span id="mine_cost6">1.00e13</span></button></div>
+					<div><button onclick="player.mines[5].buyMax()" id="mine_buymax6">Buy Max</button></div>
+				</div>
+				<div class="flex__row" id="mine_row7">
+					<div>Diamond-Tipped Drill Mine ×<span id="mine_mult7">1</span></div>
+					<div><span id="mine_amt7">0.00 (0)</span></div>
+					<div><button onclick="player.mines[6].buy()" id="mine_buysingle7">Cost: <span id="mine_cost7">1.00e18</span></button></div>
+					<div><button onclick="player.mines[6].buyMax()" id="mine_buymax7">Buy Max</button></div>
+				</div>
+				<div class="flex__row" id="mine_row8">
+					<div>Laser Drill Mine ×<span id="mine_mult8">1</span></div>
+					<div><span id="mine_amt8">0.00 (0)</span></div>
+					<div><button onclick="player.mines[7].buy()" id="mine_buysingle8">Cost: <span id="mine_cost8">1.00e24</span></button></div>
+					<div><button onclick="player.mines[7].buyMax()" id="mine_buymax8">Buy Max</button></div>
+				</div>
 			</div>
 			<div id="reactors_subtab">
 				<div class="flex__col">
@@ -225,9 +271,9 @@
 			<div id="turbine_subtab">
 					<div class="flex__row">
 						<div class="flex__col">
-							<p><span id="turbine_steam">Processing L/s of Steam</span></p>
-							<p>Total Steam Expansion: <span id="turbine_totalexp"></span> × (Ideal: 8.00 ×)</p>
+							<p>Processing <span id="turbine_steam"></span> L/s of Steam</p>
 							<p>Rotor Efficiency: <span id="turbine_rotoreff"></span> %</p>
+							<p>Overall Expansion: <span id="turbine_totalexp"></span> × (Ideal: 8×)</p>
 							<div id="turbine_rotors" class="flex__row"></div>
 							<div id="turbine_rotors_length" class="flex__row"></div>
 							<div class="flex__row">
@@ -238,12 +284,11 @@
 								<div onclick="selectRotor('sicsiccmc')" class="tooltip turbinebox"><div id="turbine_rotor_sicsiccmc" class="turbinerotor selection sicsiccmc"></div><span class="tooltiptext turbine">SiC SiC CMC Rotor<br/>Efficiency: 390%<br/>Expansion: 320%<br/>Velocity: 35%</span></div>
 							</div>
 							<div class="flex__row">
-								<div id="turbine_rotors_count">You have <span id="turbine_rotors_total"></span>. Currently Using: <span id="turbine_rotors_current"></span></div>
-								
+								<div id="turbine_rotors_count">You have <span id="turbine_rotors_total"></span> Rotors.</div>
 							</div>
 							<div class="flex__row">
-								<button onclick="buyRotor()" id="buy_rotor">Buy a <span id="rotor_type"></span> for <span id="rotor_cost"></span> Energy</button>
-								<button onclick="buyFourRotors()" id="buy_four_rotor">Buy 4 <span id="rotor_four_type"></span> for <span id="rotor_four_cost"></span> Energy</button>
+								<button onclick="buyRotor()" id="buy_rotor">Buy a <span id="rotor_type"></span> Rotor for <span id="rotor_cost"></span> Energy</button>
+								<button onclick="buyFourRotors()" id="buy_four_rotor">Buy 4 <span id="rotor_four_type"></span> Rotors for <span id="rotor_four_cost"></span> Energy</button>
 							</div>
 							<div class="flex__row">
 								<button onclick="showCoils()" id="show_coils">Configure Dynamo Coils</button>
@@ -334,8 +379,8 @@
 				<div><button onclick="exportSave()" class="optionsbtn"> Export Save </button></div>
 			</div>
 			<div class="flex__row">
-				<div><button onclick="hardReset()" id="reset" class="optionsbtn"> Hard Reset the Game </button></div>
-				<div><button onclick="enableCheatsTab()" id="stuff" class="optionsbtn"> Stuff </button></div>
+				<div><button onclick="hardReset()" class="optionsbtn"> Hard Reset the Game </button></div>
+				<div><button onclick="enableCheatsTab()" class="optionsbtn"> Stuff </button></div>
 			</div>
 		</div>
 
@@ -405,34 +450,34 @@
 							Cost: 1 Corium
 						</button>
 						<button onclick="player.meltdown.ups[1].buy()" id="meltdown_up12">
-							Mines and reactors get a multiplier based on total amount of Cf-251 reactors bought this meltdown<br/>
-							Formula: \(x\)<br/>
+							Mines and reactors are significantly stronger in the first 100 seconds of resets<br/>
+							Formula: \((\frac{x + 1}{2})^{\frac{25}{x + 1}+1}\)<br/>
 							Currently: <span id="meltdown_upmult12">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
 						<button onclick="player.meltdown.ups[2].buy()" id="meltdown_up13">
 							Mines and reactors get a multiplier based on time spent in this meltdown<br/>
-							Formula: \(x^{0.3}\)<br/>
+							Formula: \(x^{0.2}\)<br/>
 							Currently: <span id="meltdown_upmult13">1.00</span>× <br/>
-							Cost: 2 Corium
+							Cost: 1 Corium
 						</button>
 						<button onclick="player.meltdown.ups[3].buy()" id="meltdown_up14">
-							Mines and reactors are significantly stronger in the first 100 seconds of meltdowns<br/>
-							Formula: \((\frac{x + 1}{1.8})^{\frac{40}{x + 1}}\)<br/>
+							Mines and reactors get a multiplier based on total amount of Cf-251 reactors bought this meltdown<br/>
+							Formula: \(x\)<br/>
 							Currently: <span id="meltdown_upmult14">1.00</span>× <br/>
-							Cost: 2 Corium
+							Cost: 1 Corium
 						</button>
 					</div>
 					<div class="flex__row">
 						<button onclick="player.meltdown.ups[4].buy()" id="meltdown_up21">
 							Mines and reactors get a multiplier based on total nanites<br/>
-							Formula: \(x^{1.3}\)<br/>
+							Formula: \(x^{1.2}\)<br/>
 							Currently: <span id="meltdown_upmult21">1.00</span>× <br/>
-							Cost: 2 Corium
+							Cost: 1 Corium
 						</button>
 						<button onclick="player.meltdown.ups[5].buy()" id="meltdown_up22">
 							Mines and reactors get a multiplier based on corium<br/>
-							Formula: \(log_{3}(x+3.6)^{1.1}\)<br/>
+							Formula: \(log_{2}(x+2)^{0.9}\)<br/>
 							Currently: <span id="meltdown_upmult22">1.00</span>× <br/>
 							Cost: 1 Corium
 						</button>
@@ -641,20 +686,17 @@
 				<button class="storebtn buy" onclick="addNucleosynthesis()" style="width: 200px; height: 40px">
 					Forced Nucleosynthesis w/o reset
 				</button>
-				<button class="storebtn buy" onclick="addNanite()" style="width: 200px; height: 40px">
-					Gain 1 Nanite
-				</button>
 				<button class="storebtn buy" onclick="toggleLeverMaxAll()" style="width: 200px; height: 40px">
 					Toggle Lever Max All
 				</button>
 				<button class="storebtn buy" onclick="simulateTime(100, true, true)" style="width: 200px; height: 40px">
 					Simulate 100 seconds
 				</button>
-			</div>
-			<div class="flex__row">
 				<button class="storebtn buy" onclick="harderReset()" style="width: 200px; height: 40px">
 					Hard Reset w/o confirmation
 				</button>
+			</div>
+			<div class="flex__row">
 				<button class="storebtn buy" onclick="showNaviTab('balance_tab')" style="width: 200px; height: 40px">
 					Open Balancing Tab
 				</button>

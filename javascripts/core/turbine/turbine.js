@@ -12,7 +12,13 @@ class TurbineBlade {
 	}
 
 	lengthen() {
-		if (this.length < (player.turbine.dimensions - player.turbine.bearingDimensions) / 2 && player.turbine.totalRotors[player.turbine.activeRotor] >= usedRotors() + 4 * player.turbine.bearingDimensions) {
+		let current = 0;
+		for (let i = 1; i < player.turbine.dimensions + 1; i++) {
+			if (player.turbine.rotors[i - 1].name == player.turbine.activeRotor) {
+				current += 4 * player.turbine.rotors[i - 1].length * player.turbine.bearingDimensions;
+			}
+		}
+		if (this.length < (player.turbine.dimensions - player.turbine.bearingDimensions) / 2 && player.turbine.totalRotors[player.turbine.activeRotor] >= current + 4 * player.turbine.bearingDimensions) {
 			this.length++;
 		}
 	}
@@ -88,21 +94,17 @@ function selectRotor(rotor) {
 	player.turbine.activeRotor = rotor;
 }
 function setRotor(shaftPos) {
-	if (player.turbine.totalRotors[player.turbine.activeRotor] >= usedRotors() + 4 * player.turbine.bearingDimensions) {
-		let rotor = rotors[player.turbine.activeRotor];
-		player.turbine.rotors[shaftPos] = new TurbineBlade(rotor.name, rotor.efficiency, rotor.expansion, rotor.speed);
-		player.turbine.rotors[shaftPos].length++;
-	}
-}
-
-function usedRotors() {
 	let current = 0;
 	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
 		if (player.turbine.rotors[i - 1].name == player.turbine.activeRotor) {
 			current += 4 * player.turbine.rotors[i - 1].length * player.turbine.bearingDimensions;
 		}
 	}
-	return current;
+	if (player.turbine.totalRotors[player.turbine.activeRotor] >= current + 4 * player.turbine.bearingDimensions) {
+		let rotor = rotors[player.turbine.activeRotor];
+		player.turbine.rotors[shaftPos] = new TurbineBlade(rotor.name, rotor.efficiency, rotor.expansion, rotor.speed);
+		player.turbine.rotors[shaftPos].length++;
+	}
 }
 
 function getRotorCost() {
@@ -322,26 +324,6 @@ function atLeast(amount, type, x, y) {
 	return bool && activated;
 }
 
-function velocity(depth) {
-	let totalVel = 1;
-	for (let i = 0; i < depth; i++) {
-		if (player.turbine.rotors[i].length > 0) {
-			totalVel *= player.turbine.rotors[i].velocity;
-		}
-	}
-	return totalVel;
-}
-
-function totalVelocity() {
-	let totalVel = 1;
-	for (let i = 0; i < player.turbine.dimensions; i++) {
-		if (player.turbine.rotors[i].length > 0) {
-			totalVel *= player.turbine.rotors[i].velocity;
-		}
-	}
-	return totalVel;
-}
-
 function idealExpansion(depth) {
 	return Decimal.pow(8, (depth + 0.5) / player.turbine.dimensions);
 }
@@ -401,10 +383,8 @@ function simulateTurbine(tickInterval = 50) {
 		}
 	}
 	let gain = energy.mul(getTotalCoilEff()).mul(rotorEfficiency()).mul(expansionIdeality(idealExpansion(player.turbine.dimensions), totalExpansion()));
-
-	document.getElementById("turbine_steam").innerText = gain == 0 ? "Generating no energy as the turbine contains no rotors" : "Processing " + notation(getTotalSteamGain()) + " L/s of Steam";
+	document.getElementById("turbine_steam").innerText = gain == 0 ? 0 : notation(getTotalSteamGain());
 	document.getElementById("energy_gain").innerText = notation(gain);
-
 	player.energy = player.energy.add(gain.mul(tickInterval / 1000));
 	player.totalEnergy = player.totalEnergy.add(gain.mul(tickInterval / 1000));
 }
@@ -414,8 +394,7 @@ function updateUITurbineRotors() {
 	document.getElementById("turbine_totalexp").innerText = notation(totalExpansion());
 
 	document.getElementById("turbine_rotors_count").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
-	document.getElementById("turbine_rotors_total").innerText = player.turbine.totalRotors[player.turbine.activeRotor] + " " + rotorDisplayNames[player.turbine.activeRotor] + "s";
-	document.getElementById("turbine_rotors_current").innerText = usedRotors();
+	document.getElementById("turbine_rotors_total").innerText = player.turbine.totalRotors[player.turbine.activeRotor] + " " + player.turbine.activeRotor.charAt(0).toUpperCase() + player.turbine.activeRotor.substring(1).toLowerCase();
 
 	document.getElementById("buy_rotor").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
 	document.getElementById("buy_rotor").className = canBuyRotor() ? "storebtn buy" : "storebtn locked";
@@ -424,7 +403,7 @@ function updateUITurbineRotors() {
 
 	document.getElementById("buy_four_rotor").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
 	document.getElementById("buy_four_rotor").className = canBuyFourRotors() ? "storebtn buy" : "storebtn locked";
-	document.getElementById("rotor_four_type").innerText = rotorDisplayNames[player.turbine.activeRotor] + "s";
+	document.getElementById("rotor_four_type").innerText = rotorDisplayNames[player.turbine.activeRotor];
 	document.getElementById("rotor_four_cost").innerText = notation(getFourRotorsCost());
 
 	document.getElementById("turbine_rotor_titanium").parentElement.style.display = player.nucleosynthesis > 1 ? "block" : "none";
@@ -438,7 +417,7 @@ function updateUITurbineRotors() {
 
 		for (let j = 1; j < player.turbine.dimensions + 1; j++) {
 			if (j >= start && j < start + player.turbine.bearingDimensions) {
-				document.getElementById("turbine_rotors_row_" + j + "_" + i).setAttribute("class", "flex__row turbine turbinebox rotorbox turbineshaft");
+				document.getElementById("turbine_rotors_row_" + j + "_" + i).setAttribute("class", "flex__row turbinebox turbineshaft");
 				if (player.turbine.rotors[i - 1].length >= 1) {
 					document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor " + player.turbine.rotors[i - 1].name);
 				} else {
@@ -446,14 +425,14 @@ function updateUITurbineRotors() {
 				}
 				document.getElementById("turbine_rotors_row_" + j + "_" + i).setAttribute("onclick", "setRotor(" + (i - 1)+ ")");
 			} else {
-				document.getElementById("turbine_rotors_row_" + j + "_" + i).setAttribute("class", "flex__row turbinebox rotorbox");
+				document.getElementById("turbine_rotors_row_" + j + "_" + i).setAttribute("class", "flex__row turbinebox");
 				if (j >= rotorStart && j < start + player.turbine.bearingDimensions + player.turbine.rotors[i - 1].length) {
 					if (j == rotorStart) {
-						document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal top " + player.turbine.rotors[i - 1].name);
+					document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal top " + player.turbine.rotors[i - 1].name);
 					} else if (j == start + player.turbine.bearingDimensions + player.turbine.rotors[i - 1].length - 1) {
-						document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal bottom " + player.turbine.rotors[i - 1].name);
+					document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal bottom " + player.turbine.rotors[i - 1].name);
 					} else {
-						document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal " + player.turbine.rotors[i - 1].name);
+					document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal " + player.turbine.rotors[i - 1].name);
 					}
 				} else {
 					document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal");

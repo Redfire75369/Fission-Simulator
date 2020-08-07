@@ -5,7 +5,7 @@ function enableCheatsTab() {
 	/*clearInterval(saveGameLoop);
 	setInterval(function() {
 		localStorage.removeItem("fissionSimSave1");
-	}, 200);*/
+	}, 1000);*/
 }
 
 function defaultEnergy() {
@@ -41,16 +41,8 @@ function addNucleosynthesis() {
 	}
 }
 
-function addNanite() {
-	if (player.nanites.nanites.lt(17)) {
-		player.nanites.nanites = player.nanites.nanites.add(1);
-		player.nanites.total = player.nanites.total.add(1);
-		player.unlocked.naniteUps = true;
-	}
-}
-
 function toggleLeverMaxAll() {
-	leverMaxAll = !leverMaxAll;
+	leverMaxAll != leverMaxAll;
 }
 
 function harderReset() {
@@ -75,6 +67,4 @@ document.getElementById("cheats_tabbtn").style.display = "none";
 document.getElementById("cheats_tab").style.display = "none";
 document.getElementById("balance_tabbtn").style.display = "none";
 document.getElementById("balance_tab").style.display = "none";
-document.getElementById("stuff").style.display = "enableCheatsTab()";
-// document.getElementById("cheats_tab").innerHTML = "";
-// document.getElementById("balance_tab").innerHTML = "";
+//Remove onclick in release version from index.html document.getElementById("stuff").onclick = "enableCheatsTab()";
