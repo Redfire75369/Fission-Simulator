@@ -75,6 +75,6 @@ document.getElementById("cheats_tabbtn").style.display = "none";
 document.getElementById("cheats_tab").style.display = "none";
 document.getElementById("balance_tabbtn").style.display = "none";
 document.getElementById("balance_tab").style.display = "none";
-document.getElementById("stuff").style.display = "enableCheatsTab()";
+document.getElementById("stuff").onclick = "enableCheatsTab()";
 // document.getElementById("cheats_tab").innerHTML = "";
 // document.getElementById("balance_tab").innerHTML = "";
