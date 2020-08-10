@@ -64,7 +64,6 @@ function getDefaultData() {
 
 		moderator: 0,
 
-		eff: new Efficiency(1e3, 1e1),
 		mines: new ImprovedMines(),
 		reactors: [
 			new Reactor(1, 3, 1),
@@ -209,7 +208,6 @@ function updateUI() {
 	updateUIReactors();
 	updateUITurbineRotors();
 	updateUIDynamoCoils();
-	updateUIEff();
 	updateUINucleosynthesis();
 	updateUINaniteUps();
 	updateUINaniteResearch();

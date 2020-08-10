@@ -26,11 +26,6 @@ class Reactor extends GenericEnergyProducer {
 	}
 }
 
-/*function resetMines() {
-	for (let i = 0; i < 8; i++) {
-		player.mines[i].reset();
-	}
-}*/
 function resetReactors() {
 	for (let i = 0; i < 8; i++) {
 		player.reactors[i].reset();
@@ -41,20 +36,7 @@ function buyMaxAll() {
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
 		player.reactors[tier].buyMax();
 	}
-	player.eff.buyMax();
 }
-
-/*function getMineGain(tier) {
-	return zero;
-	return tier < 7 ? player.mines[tier + 1].amount.mul(player.mines[tier + 1].totalMult).mul(player.eff.eff) : zero;
-}
-function getReactorGain(tier) {
-	if (tier >= 7) {
-		return zero;
-	}
-	return player.reactors[tier + 1].enabled ? getMineGain(tier).add(player.reactors[tier + 1].amount.mul(player.reactors[tier + 1].totalMult)).sqrt().mul(player.eff.eff) : getMineGain(tier).sqrt().mul(player.eff.eff);
-}*/
-
 
 function updateUIReactors() {
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
@@ -70,7 +52,7 @@ function updateUIReactors() {
 }
 
 function updateUIMaxAll() {
-	let usable = player.eff.buyable;
+	let usable = false;
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4) && (!usable); tier ++) {
 		usable |= player.reactors[tier].buyable;
 	}

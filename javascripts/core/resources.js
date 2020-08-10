@@ -18,7 +18,7 @@ function getFuelReactorIncrement(tier) {
 }
 
 function getMaxSteamGain(tier) {
-	return player.reactors[0].amount.mul(player.reactors[0].totalMult).mul(player.eff.eff).mul(3 ** tier);
+	return player.reactors[0].amount.mul(player.reactors[0].totalMult).mul(3 ** tier);
 }
 function getSteamGain(tier) {
 	return getFuelGain(tier).gt(getMinFuel(tier)) ? getMaxSteamGain(tier).mul(getFuelReactorIncrement(tier)) : getFuelGain(tier).mul(getFuelReactorIncrement(tier));
