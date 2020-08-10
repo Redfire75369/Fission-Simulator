@@ -47,7 +47,7 @@ function getDefaultData() {
 		},
 
 		automation: {
-			mines: [
+			/*mines: [
 				new MineAutomation(0, 1000),
 				new MineAutomation(1, 1000),
 				new MineAutomation(2, 1000),
@@ -56,7 +56,7 @@ function getDefaultData() {
 				new MineAutomation(5, 1000),
 				new MineAutomation(6, 1000),
 				new MineAutomation(7, 1000)
-			],
+			],*/
 			reactors: [
 				new ReactorAutomation(0, 1000),
 				new ReactorAutomation(1, 1000),
