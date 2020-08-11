@@ -35,7 +35,6 @@
 		<script defer src="javascripts/core/mine/mines.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/drawing.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/turbine.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/efficiency.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nucleosynthesis.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/meltdown.js" charset ="utf-8" type="text/javascript"></script>
@@ -178,6 +177,10 @@
 			</div>
 
 			<div id="reactors_subtab">
+				<div>
+					Your reactors are producing <span id="steam_gain"></span> L/s of steam.
+				</div>
+
 				<div class="flex__col">
 					<div class="flex__row" id="reactor_row1">
 						<div>Thorium-227 Reactor ×<span id="reactor_mult1">1</span></div>
@@ -259,9 +262,8 @@
 							<div class="flex__row">
 								<div id="turbine_rotors_count">You have <span id="turbine_rotors_total"></span>. Currently Using: <span id="turbine_rotors_current"></span></div>
 							</div>
-							<div class="flex__row">
-								<button onclick="buyRotor()" id="buy_rotor">Buy a <span id="rotor_type"></span> Rotor for <span id="rotor_cost"></span> Energy</button>
-								<button onclick="buyFourRotors()" id="buy_four_rotor">Buy 4 <span id="rotor_four_type"></span> Rotors for <span id="rotor_four_cost"></span> Energy</button>
+							<div class="flex__row" style="width: 20vw;">
+								<button onclick="buyFourRotors()" id="buy_rotor">Buy a set of <span id="rotor_type"></span> Rotors for <span id="rotor_cost"></span> Energy</button>
 							</div>
 							<div class="flex__row">
 								<button onclick="showCoils()" id="show_coils">Configure Dynamo Coils</button>

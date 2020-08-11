@@ -106,11 +106,6 @@ function checkObj(obj) {
 function objectify(x, type) {
 	if (type instanceof Decimal) {
 		return new Decimal(x);
-	} else if (type instanceof Mine) {
-		let ret = new Mine(type.startCost.log10(), type.scaleCost.log10());
-		ret.amount = new Decimal(x.amount);
-		ret.bought = x.bought;
-		return ret;
 	} else if (type instanceof Reactor) {
 		let ret = new Reactor(type.startCost.log10(), type.scaleCost.log10());
 		ret.amount = new Decimal(x.amount);

@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 5,
-			alpha: 11
+			alpha: 12
 		},
 
 		options: {
@@ -88,7 +88,7 @@ function getDefaultData() {
 				["none", "none", "none"]
 			],
 			totalRotors: {
-				steel: 4,
+				steel: 1,
 				titanium: 0,
 				osmiridium: 0,
 				extreme: 0,

@@ -64,8 +64,6 @@ function harderReset() {
 
 function testBalancing() {
 	for (let i = 0; i < 8; i++) {
-		player.mines[i].startCost = Decimal.pow(10, document.getElementById("mine" + i).value);
-		player.mines[i].scaleCost = Decimal.pow(10, document.getElementById("mines" + i).value);
 		player.reactors[i].startCost = Decimal.pow(10, document.getElementById("reactor" + i).value);
 		player.reactors[i].scaleCost = Decimal.pow(10, document.getElementById("reactors" + i).value);
 	}

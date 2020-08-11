@@ -12,7 +12,7 @@ class TurbineBlade {
 	}
 
 	lengthen() {
-		if (this.length < (player.turbine.dimensions - player.turbine.bearingDimensions) / 2 && player.turbine.totalRotors[player.turbine.activeRotor] >= usedRotors() + 4 * player.turbine.bearingDimensions) {
+		if (this.length < (player.turbine.dimensions - player.turbine.bearingDimensions) / 2 && player.turbine.totalRotors[player.turbine.activeRotor] >= usedRotors() + player.turbine.bearingDimensions) {
 			this.length++;
 		}
 	}
@@ -88,7 +88,7 @@ function selectRotor(rotor) {
 	player.turbine.activeRotor = rotor;
 }
 function setRotor(shaftPos) {
-	if (player.turbine.totalRotors[player.turbine.activeRotor] >= usedRotors() + 4 * player.turbine.bearingDimensions) {
+	if (player.turbine.totalRotors[player.turbine.activeRotor] >= usedRotors() + player.turbine.bearingDimensions) {
 		let rotor = rotors[player.turbine.activeRotor];
 		player.turbine.rotors[shaftPos] = new TurbineBlade(rotor.name, rotor.efficiency, rotor.expansion, rotor.speed);
 		player.turbine.rotors[shaftPos].length++;
@@ -99,27 +99,14 @@ function usedRotors() {
 	let current = 0;
 	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
 		if (player.turbine.rotors[i - 1].name == player.turbine.activeRotor) {
-			current += 4 * player.turbine.rotors[i - 1].length * player.turbine.bearingDimensions;
+			current += player.turbine.rotors[i - 1].length * player.turbine.bearingDimensions;
 		}
 	}
 	return current;
 }
 
-function getRotorCost() {
-	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - getDefaultRotors()[player.turbine.activeRotor]));
-}
-function canBuyRotor() {
-	return player.energy.gte(getRotorCost());
-}
-function buyRotor() {
-	if (canBuyRotor()) {
-		player.energy = player.energy.sub(getRotorCost());
-		player.turbine.totalRotors[player.turbine.activeRotor]++;
-	}
-}
-
 function getFourRotorsCost() {
-	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (player.turbine.totalRotors[player.turbine.activeRotor] - (getDefaultRotors()[player.turbine.activeRotor] - 3)));
+	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (4 * player.turbine.totalRotors[player.turbine.activeRotor] - (4 * getDefaultRotors()[player.turbine.activeRotor] - 3)));
 }
 function canBuyFourRotors() {
 	return player.energy.gte(getFourRotorsCost());
@@ -127,17 +114,17 @@ function canBuyFourRotors() {
 function buyFourRotors() {
 	if (canBuyFourRotors()) {
 		player.energy = player.energy.sub(getFourRotorsCost());
-		player.turbine.totalRotors[player.turbine.activeRotor] += 4;
+		player.turbine.totalRotors[player.turbine.activeRotor]++;
 	}
 }
 
 function getDefaultRotors() {
 	return {
-		steel: 4 + 2 * max(0, player.nucleosynthesis),
-		titanium: 2 * max(0, player.nucleosynthesis - 2),
-		osmiridium: 2 * max(0, player.nucleosynthesis - 4),
-		extreme: 2 * max(0, player.nucleosynthesis - 6),
-		sicsiccmc: 2 * max(0, player.nucleosynthesis - 8)
+		steel: 1 + floor(0.5 * max(0, player.nucleosynthesis)),
+		titanium: floor(0.5 * max(0, player.nucleosynthesis - 2)),
+		osmiridium: floor(0.5 * max(0, player.nucleosynthesis - 4)),
+		extreme: floor(0.5 * max(0, player.nucleosynthesis - 6)),
+		sicsiccmc: floor(0.5 * max(0, player.nucleosynthesis - 8))
 	}
 }
 
@@ -414,18 +401,13 @@ function updateUITurbineRotors() {
 	document.getElementById("turbine_totalexp").innerText = notation(totalExpansion());
 
 	document.getElementById("turbine_rotors_count").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
-	document.getElementById("turbine_rotors_total").innerText = player.turbine.totalRotors[player.turbine.activeRotor] + " " + rotorDisplayNames[player.turbine.activeRotor] + "s";
+	document.getElementById("turbine_rotors_total").innerText = player.turbine.totalRotors[player.turbine.activeRotor] + " sets of " + rotorDisplayNames[player.turbine.activeRotor] + "s";
 	document.getElementById("turbine_rotors_current").innerText = usedRotors();
 
 	document.getElementById("buy_rotor").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
-	document.getElementById("buy_rotor").className = canBuyRotor() ? "storebtn buy" : "storebtn locked";
-	document.getElementById("rotor_type").innerText = rotorDisplayNames[player.turbine.activeRotor];
-	document.getElementById("rotor_cost").innerText = notation(getRotorCost());
-
-	document.getElementById("buy_four_rotor").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
-	document.getElementById("buy_four_rotor").className = canBuyFourRotors() ? "storebtn buy" : "storebtn locked";
-	document.getElementById("rotor_four_type").innerText = rotorDisplayNames[player.turbine.activeRotor] + "s";
-	document.getElementById("rotor_four_cost").innerText = notation(getFourRotorsCost());
+	document.getElementById("buy_rotor").className = canBuyFourRotors() ? "storebtn buy" : "storebtn locked";
+	document.getElementById("rotor_type").innerText = rotorDisplayNames[player.turbine.activeRotor] + "s";
+	document.getElementById("rotor_cost").innerText = notation(getFourRotorsCost());
 
 	document.getElementById("turbine_rotor_titanium").parentElement.style.display = player.nucleosynthesis > 1 ? "block" : "none";
 	document.getElementById("turbine_rotor_osmiridium").parentElement.style.display = player.nucleosynthesis > 3 ? "block" : "none";

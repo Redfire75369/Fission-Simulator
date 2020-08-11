@@ -12,7 +12,7 @@ class Reactor extends GenericEnergyProducer {
 	toggle() {
 		this.enabled = !this.enabled;
 	}
-	
+
 	get totalMult() {
 		let mult = new Decimal(1);
 		let perBuyMult = player.meltdown.ups[8].bought ? new Decimal(3) : new Decimal(2);
@@ -47,6 +47,7 @@ function buyMaxAll() {
 }
 
 function updateUIReactors() {
+	document.getElementById("steam_gain").innerText = notation(getTotalSteamGain());
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
 		document.getElementById("reactor_amt" + (tier + 1)).innerText = notation(player.reactors[tier].amount) + " (" + player.reactors[tier].bought + ")";
 		document.getElementById("reactor_cost" + (tier + 1)).innerText = notation(player.reactors[tier].cost);
