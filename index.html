@@ -136,16 +136,42 @@
 
 			<div id="mines_subtab" class="flex__col">
 				<div>
-					<p>Active Mines: <span id="mines_active"></span></p>
-					<p>Depleted Mines: <span id="mines_depleted"></span></p>
-					<p>Ore Extraction Rate: <span id="ore_extraction"></span> kg/s</p>
-					<p>Total Ore: <span id="ore_total"></span> kg</p>
-					<p>Construction Cost: <span id="construction_cost"></span></p>
-					<p>Construction Rate: <span id="construction_rate"></span> /s</p>
-					<input type="text" id="construction_ratio" value="50%"/>
+					<table>
+						<tr>
+							<td><b>Mines</b></td>
+							<td><b>Active</b></td>
+							<td><b>Depleted</b></td>
+							<td><b>Total</b></td>
+						</tr>
+						<tr>
+							<td>Amount</td>
+							<td><span id="mines_active"></span></td>
+							<td><span id="mines_depleted"></span></td>
+							<td><span id="mines_total"></span></td>
+						</tr>
+					</table><br/>
+					<div>
+						You are extracting <span id="ore_extraction"></span> kg of metal ore per second.<br/>
+						You have <span id="ore_total"></span> kg of metal ore that is currently extractable.<br/><br/>
+						Your mines use <span id="mine_tier"></span> Drills.<br/>
+						<span id="construction_cost"></span> kg of metal ore are needed to make a new mine.<br/>
+						You are constructing <span id="construction_rate"></span> new mines per second.<br/><br/>
+					</div>
+					<div class="flex__col">
+						<div>Distribution of metal ore used for construction of mines and reactors</div>
+						<div class="flex__row" style="width: 60vw;">
+							<button onclick="changeConstructionRatio(-10)" class="allocationbtn"><<</button>
+							<button onclick="changeConstructionRatio(-1)" class="allocationbtn"><</button>
+							<div id="metal_allocation" class="allocationbar">
+								<div class="allocationbarcontents"></div>
+							</div>
+							<button onclick="changeConstructionRatio(1)" class="allocationbtn">></button>
+							<button onclick="changeConstructionRatio(10)" class="allocationbtn">>></button>
+						</div>
+					</div>
 
 					<button onclick="player.mines.upgrade()" id="mines_upgrade">
-						Upgrade mines to <span id="mines_uptype"></span> drills<br/>
+						Upgrade mines to <span id="mines_uptype"></span> Drills<br/>
 						Cost: <span id="mines_upcost"></span>
 					</button>
 				 </div>

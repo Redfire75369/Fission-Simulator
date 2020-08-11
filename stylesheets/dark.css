@@ -93,6 +93,12 @@ button:hover {
 .storebtn.reactors {}
 .storebtn.reactors {}
 
+.allocationbtn {
+	color: #FFFFFF;
+	background-color: #344445;
+	border: 2px solid #FFFFFF; 
+}
+
 .naniteup {
 	border-radius: 4px;
 }

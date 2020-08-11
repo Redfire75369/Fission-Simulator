@@ -120,8 +120,20 @@ button:hover {
 }
 .storebtn.locked:hover {}
 
-.storebtn.mines {}
 .storebtn.reactors {}
+
+.allocationbtn {
+	border: 2px solid #000000;
+	background: #FFFFFF;
+}
+.allocationbar {
+	background-color: #34D846;
+	border: 4px solid #000000;
+	border-radius: 8px;
+}
+.allocationbarcontents {
+	background-color: #B2C376;
+}
 
 .naniteup {
 	border-radius: 4px;

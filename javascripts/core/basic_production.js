@@ -32,6 +32,14 @@ function resetReactors() {
 	}
 }
 
+function boughtReactors() {
+	let ret = 0;
+	for (let i = 0; i < min(8, player.nucleosynthesis + 4); i++) {
+		ret += player.reactors[i].bought > 0;
+	}
+	return ret;
+}
+
 function buyMaxAll() {
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
 		player.reactors[tier].buyMax();

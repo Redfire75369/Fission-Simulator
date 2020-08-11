@@ -195,7 +195,6 @@ button:hover {
 
 #achievements_tab {
 	display: flex;
-	flex-wrap: wrap;
 	align-items: center;
 }
 #achievements_tab > div {
@@ -224,6 +223,18 @@ button:hover {
 }
 .energypersecond {
 	font-size: 20px;
+}
+
+.allocationbtn {
+	max-width: 48px;
+	min-height: 48px;
+}
+.allocationbar {
+	width: 40vw;
+	height: 48px;
+}
+.allocationbarcontents {
+	height: 100%;
 }
 
 .turbinebox {

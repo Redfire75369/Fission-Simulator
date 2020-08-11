@@ -9,6 +9,15 @@ module.exports = {
 		"ecmaVersion": 11,
 		"sourceType": "module"
 	},
+	"globals": {
+		"player": true,
+		"getDefaultData": true,
+		"Decimal": true,
+		"LZString": true,
+		"Mousetrap": true,
+		"ADNotations": true,
+		"ADCommunityNotations": true
+	},
 	"rules": {
 		"indent": [
 			"error",

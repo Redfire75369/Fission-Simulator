@@ -54,7 +54,6 @@ function meltdown() {
 		player.meltdown.time = 0;
 		player.meltdown.amount += meltdownGain();
 		resetEnergy();
-		resetEff();
 		resetMines();
 		resetReactors();
 		resetTurbine();

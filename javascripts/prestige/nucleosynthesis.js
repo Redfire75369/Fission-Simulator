@@ -23,7 +23,6 @@ function buyNucleosynthesis() {
 		resetMines();
 		resetReactors();
 		resetTurbineRotors();
-		resetEff();
 	}
 }
 

@@ -100,8 +100,7 @@ function checkObj(obj) {
 		|| obj instanceof Array
 		|| obj instanceof GenericEnergyProducer
 		|| obj instanceof GenericUpgrade
-		|| obj instanceof TurbineBlade
-		|| obj instanceof Efficiency;
+		|| obj instanceof TurbineBlade;
 }
 
 function objectify(x, type) {
@@ -121,10 +120,6 @@ function objectify(x, type) {
 	} else if (type instanceof TurbineBlade) {
 		let ret = new TurbineBlade(x.name, x.efficiency, x.expansion, x.speed);
 		ret.length = x.length;
-		return ret;
-	} else if (type instanceof Efficiency) {
-		let ret = new Efficiency(type.startCost, type.scaleCost);
-		ret.bought = x.bought;
 		return ret;
 	} else if (type instanceof TurbineNaniteUpgrade) {
 		let ret = new TurbineNaniteUpgrade();

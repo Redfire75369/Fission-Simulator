@@ -1,4 +1,5 @@
-const mineUpgradeCosts = [new Decimal("0"), new Decimal("1e3"), new Decimal("1e6"), new Decimal("1e10"), new Decimal("1e15"), new Decimal("1e20"), new Decimal("1e24"), new Decimal("1e30")];
+const mineUpgradeCosts = [new Decimal("0"), new Decimal("1e3"), new Decimal("1e8"), new Decimal("1e14"), new Decimal("1e21"), new Decimal("1e30"), new Decimal("1e39"), new Decimal("1e50")];
+const mineSoftCaps = [new Decimal("1e2"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
 
 class ImprovedMines {
 	constructor() {
@@ -10,17 +11,23 @@ class ImprovedMines {
 	}
 
 	get constructionCost() {
-		return Decimal.pow(20, 2 * this.tier + 1);
+		return Decimal.pow(20, this.tier + 1);
 	}
 	get metalExtraction() {
-		return this.amount.sub(this.depleted).mul(5);
+		return this.totalOre.div(Decimal.pow(2.5, this.tier + 1));
 	}
 
 	get ore() {
-		return Decimal.pow(50, 2 * this.tier + 1);
+		return Decimal.pow(50, this.tier + 1);
 	}
 	get totalOre() {
-		return this.ore.mul(this.amount);
+		if (this.amount.sub(this.depleted).gte(mineSoftCaps[this.tier])) {
+			let extraMines = this.amount.sub(this.depleted).sub(mineSoftCaps[this.tier]);
+			let effectiveMines = mineSoftCaps[this.tier].add(extraMines.div(Decimal.pow((this.tier + 4) * 12, 5)));
+			return this.ore.mul(effectiveMines);
+		} else {
+			return this.ore.mul(this.amount.sub(this.depleted));
+		}
 	}
 
 	get upCost() {
@@ -32,7 +39,7 @@ class ImprovedMines {
 	upgrade() {
 		if (this.upgradable) {
 			player.energy = player.energy.sub(this.upCost);
-			this.tier++; 
+			this.tier++;
 		}
 	}
 }
@@ -41,18 +48,17 @@ function resetMines() {
 	player.mines = getDefaultData().mines;
 }
 
+function changeConstructionRatio(x) {
+	player.mines.ratio += x / 100;
+	player.mines.ratio = max(0, min(1, player.mines.ratio));
+}
+
 function getMineGain() {
 	return player.mines.metalExtraction.mul(player.mines.ratio).div(player.mines.constructionCost);
 }
 function getReactorGain(tier) {
-	let c = 0;
-	for (let x = 0; x < min(8, player.nucleosynthesis + 4); x++) {
-		if (player.reactors[x].amount.gt(0)) {
-			c++;
-		}
-	}
-	if (c >= tier ) {
-		return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(c).div(player.reactors[tier].constructionCost);
+	if (boughtReactors() > tier) {
+		return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(boughtReactors()).div(player.reactors[tier].constructionCost);
 	} else {
 		return zero;
 	}
@@ -66,8 +72,6 @@ function getFuelGain(tier) {
 }
 
 function simulateMines(tickInterval = 50) {
-	player.mines.ratio = min(1, max(0, parseFloat(document.getElementById("construction_ratio").value) / 100));
-
 	player.mines.amount = player.mines.amount.add(getMineGain().mul(tickInterval / 1000));
 	player.mines.depleted = player.mines.depleted.add(player.mines.metalExtraction.div(player.mines.ore).mul(player.mines.ratio).mul(tickInterval / 1000));
 	player.mines.depletion = player.mines.depletion.add(player.mines.metalExtraction.mul(player.mines.ratio).mul(tickInterval / 1000));
@@ -80,13 +84,17 @@ function simulateMines(tickInterval = 50) {
 function updateUIMines() {
 	document.getElementById("mines_active").innerText = notation(player.mines.amount.sub(player.mines.depleted));
 	document.getElementById("mines_depleted").innerText = notation(player.mines.depleted);
+	document.getElementById("mines_total").innerText = notation(player.mines.amount);
 
 	document.getElementById("ore_extraction").innerText = notation(player.mines.metalExtraction);
 	document.getElementById("ore_total").innerText = notation(player.mines.totalOre);
 
+	document.getElementById("mine_tier").innerText = mining[player.mines.tier];
+
 	document.getElementById("construction_cost").innerText = notation(player.mines.constructionCost);
 	document.getElementById("construction_rate").innerText = notation(getMineGain());
-	
+
+	document.getElementById("metal_allocation").children[0].style.width = player.mines.ratio * 100 + "%";
 	document.getElementById("mines_upgrade").className = player.mines.upgradable ? "storebtn buy" : "storebtn locked";
 	document.getElementById("mines_upgrade").style.display = player.mines.tier < 7 ? "" : "none";
 	if (player.mines.tier < 7) {

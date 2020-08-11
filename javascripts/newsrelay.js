@@ -57,15 +57,15 @@ function nextNews() {
 	let cwidth = document.getElementById("news").clientWidth;
 
 	document.getElementById("news").style.transition = "";
-	document.getElementById("news").style.transform = 'translateX('+pwidth+'px)';
+	document.getElementById("news").style.transform = "translateX("+pwidth+"px)";
 
 	scroll.push(setTimeout(function() {
 		let dist = pwidth + cwidth + 20;
 		let rate = 100;
 		let transformDuration = dist / rate;
 
-		document.getElementById("news").style.transition = 'transform '+transformDuration+'s linear';
-		document.getElementById("news").style.transform = 'translateX(-'+(cwidth+5)+'px)';
+		document.getElementById("news").style.transition = "transform " + transformDuration + "s linear";
+		document.getElementById("news").style.transform = "translateX(-" + (cwidth + 5) + "px)";
 		scroll.push(setTimeout(nextNews, Math.ceil(transformDuration * 1000)));
 	}, 100));
 }

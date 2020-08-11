@@ -51,10 +51,10 @@ function importSave() {
 	preLoad();
 	loadSave(save, true);
 	postLoad();
-	saveGame();
+	save();
 }
 function exportSave() {
-	saveGame();
+	save();
 	copyStringToClipboard(getSaveString());
 	alert("Save copied to clipboard");
 }
@@ -66,6 +66,6 @@ function hardReset() {
 		preLoad();
 		player = getDefaultData();
 		postLoad();
-		saveGame();
+		save();
 	}
 }

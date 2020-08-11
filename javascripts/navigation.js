@@ -16,13 +16,13 @@ function showNaviTab(tab) {
 
 function showSubTab() {
 	switch (player.navigation.naviTab) {
-		case "production_tab":
-			showProdTab(player.navigation.production);
-			break;
-		case "meltdown_tab":
-			showMeltdownTab(player.navigation.meltdown);
-			break;
-		default:
+	case "production_tab":
+		showProdTab(player.navigation.production);
+		break;
+	case "meltdown_tab":
+		showMeltdownTab(player.navigation.meltdown);
+		break;
+	default:
 	}
 }
 

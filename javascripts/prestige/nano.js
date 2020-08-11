@@ -33,7 +33,6 @@ function buyNaniteResearch() {
 		resetReactors();
 		resetTurbineRotors();
 		resetDynamoCoils();
-		resetEff();
 		resetNucleosynthesis();
 	}
 }
