@@ -428,11 +428,11 @@ function updateUITurbineRotors() {
 				document.getElementById("turbine_rotors_row_" + j + "_" + i).setAttribute("class", "flex__row turbinebox");
 				if (j >= rotorStart && j < start + player.turbine.bearingDimensions + player.turbine.rotors[i - 1].length) {
 					if (j == rotorStart) {
-					document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal top " + player.turbine.rotors[i - 1].name);
+						document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal top " + player.turbine.rotors[i - 1].name);
 					} else if (j == start + player.turbine.bearingDimensions + player.turbine.rotors[i - 1].length - 1) {
-					document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal bottom " + player.turbine.rotors[i - 1].name);
+						document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal bottom " + player.turbine.rotors[i - 1].name);
 					} else {
-					document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal " + player.turbine.rotors[i - 1].name);
+						document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal " + player.turbine.rotors[i - 1].name);
 					}
 				} else {
 					document.getElementById("turbine_rotors_row_" + j + "_" + i).children[0].setAttribute("class", "turbinerotor horizontal");

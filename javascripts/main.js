@@ -77,6 +77,18 @@ function getDefaultData() {
 			rotors: [
 				rotors.none,
 				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
+				rotors.none,
 				rotors.none
 			],
 			coils: [

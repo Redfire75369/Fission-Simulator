@@ -91,7 +91,7 @@ function checkAssign(check, assignFrom, assignTo = []) {
 			output = output[assignTo[i]];
 			def = def[assignTo[i]];
 		}
-		output[assignTo[assignTo.length - 1]] = def;
+		output[assignTo[assignTo.length - 1]] = def[assignTo[assignTo.length - 1]];
 	}
 }
 
