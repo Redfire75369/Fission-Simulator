@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 5,
-			alpha: 12
+			alpha: 13
 		},
 
 		options: {
@@ -66,14 +66,14 @@ function getDefaultData() {
 
 		mines: new ImprovedMines(),
 		reactors: [
-			new Reactor(1, 3, 1),
-			new Reactor(2, 5, 3),
-			new Reactor(5, 6, 6),
-			new Reactor(8, 8, 9),
-			new Reactor(13, 9, 12),
-			new Reactor(18, 12, 16),
-			new Reactor(25, 14, 21),
-			new Reactor(31, 15, 27)
+			new Reactor(1, 3, 2),
+			new Reactor(2, 5, 5),
+			new Reactor(5, 6, 9),
+			new Reactor(8, 8, 14),
+			new Reactor(13, 9, 20),
+			new Reactor(18, 12, 25),
+			new Reactor(25, 14, 31),
+			new Reactor(31, 15, 37)
 		],
 
 		turbine: {

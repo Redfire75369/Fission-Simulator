@@ -32,7 +32,7 @@
 		<script defer src="javascripts/generics/GenericIntervalAutomation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/resources.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/basic_production.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/mine/mines.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/mines.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/drawing.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/turbine.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nucleosynthesis.js" charset ="utf-8" type="text/javascript"></script>
@@ -98,38 +98,47 @@
 				<div class="flex__row">
 					<div>Fuel Type</div>
 					<div>Fuel Gain</div>
+					<div>Reactor Efficiency Multiplier</div>
 				</div>
 				<div class="flex__row">
 					<div>LET-232 Fuel</div>
 					<div><span id="fuel_gain1">0.00</span> kg/s</div>
+					<div><span id="fuel_increment1">0.00</span> ×</div>
 				</div>
 				<div id="fuel_row2" class="flex__row">
 					<div>LEU-235 Fuel</div>
 					<div><span id="fuel_gain2">0.00</span> kg/s</div>
+					<div><span id="fuel_increment2">0.00</span> ×</div>
 				</div>
 				<div id="fuel_row3" class="flex__row">
 					<div>LENp-234 Fuel</div>
 					<div><span id="fuel_gain3">0.00</span> kg/s</div>
+					<div><span id="fuel_increment3">0.00</span> ×</div>
 				</div>
 				<div id="fuel_row4" class="flex__row">
 					<div>LEPu-237 Fuel</div>
 					<div><span id="fuel_gain4">0.00</span> kg/s</div>
+					<div><span id="fuel_increment4">0.00</span> ×</div>
 				</div>
 				<div id="fuel_row5" class="flex__row">
 					<div>LEAm-243 Fuel</div>
 					<div><span id="fuel_gain5">0.00</span> kg/s</div>
+					<div><span id="fuel_increment5">0.00</span> ×</div>
 				</div>
 				<div id="fuel_row6" class="flex__row">
 					<div>LECm-245 Fuel</div>
 					<div><span id="fuel_gain6">0.00</span> kg/s</div>
+					<div><span id="fuel_increment6">0.00</span> ×</div>
 				</div>
 				<div id="fuel_row7" class="flex__row">
 					<div>LEBk-248 Fuel</div>
 					<div><span id="fuel_gain7">0.00</span> kg/s</div>
+					<div><span id="fuel_increment7">0.00</span> ×</div>
 				</div>
 				<div id="fuel_row8" class="flex__row">
 					<div>LECf-251 Fuel</div>
 					<div><span id="fuel_gain8">0.00</span> kg/s</div>
+					<div><span id="fuel_increment8">0.00</span> ×</div>
 				</div>
 			</div>
 
@@ -153,7 +162,7 @@
 						You are extracting <span id="ore_extraction"></span> kg of metal ore per second.<br/>
 						You have <span id="ore_total"></span> kg of metal ore that is currently extractable.<br/><br/>
 						Your mines use <span id="mine_tier"></span> Drills.<br/>
-						<span id="construction_cost"></span> kg of metal ore are needed to make a new mine.<br/>
+						<span id="construction_cost"></span> kg of metal ore are needed to construct a new mine.<br/>
 						You are constructing <span id="construction_rate"></span> new mines per second.<br/><br/>
 					</div>
 					<div class="flex__col">
@@ -250,6 +259,7 @@
 							<p>Processing <span id="turbine_steam"></span> L/s of Steam</p>
 							<p>Rotor Efficiency: <span id="turbine_rotoreff"></span> %</p>
 							<p>Overall Expansion: <span id="turbine_totalexp"></span> × (Ideal: 8×)</p>
+							<p>Expansion Ideality Multiplier: <span id="turbine_exp_ideality"></span> ×</p>
 							<div id="turbine_rotors" class="flex__row"></div>
 							<div id="turbine_rotors_length" class="flex__row"></div>
 							<div class="flex__row">
@@ -684,15 +694,15 @@
 				<table>
 					<tr>
 						<td>
-							<label>Mine Costs/Cost Scaling:</label><br/>
-							<label>Iron-Tipped Drill Mine:</label> <input type="text" id="mine0" value="1"> <input type="text" id="mines0" value="2"><br/>
-							<label>Steel-Tipped Drill Mine:</label> <input type="text" id="mine1" value="2"> <input type="text" id="mines1" value="5"><br/>
-							<label>Titanium-Tipped Drill Mine:</label> <input type="text" id="mine2" value="5"> <input type="text" id="mines2" value="7"><br/>
-							<label>Iridium-Tipped Drill Mine:</label> <input type="text" id="mine3" value="8"> <input type="text" id="mines3" value="10"><br/>
-							<label>Tungstensteel-Tipped Drill Mine:</label> <input type="text" id="mine4" value="13"> <input type="text" id="mines4" value="13"><br/>
-							<label>Osmium-Tipped Drill Mine:</label> <input type="text" id="mine5" value="18"> <input type="text" id="mines5" value="16"><br/>
-							<label>Diamond-Tipped Drill Mine:</label> <input type="text" id="mine6" value="24"> <input type="text" id="mines6" value="20"><br/>
-							<label>Laser Drill Mine:</label> <input type="text" id="mine7" value="30"> <input type="text" id="mines7" value="25"><br/>
+							<label>Mine Costs/Softcaps:</label><br/>
+							<label>Iron Drills:</label> <input type="text" id="mine0" value="0.01"> <input type="text" id="mines0" value="1"><br/>
+							<label>Steel Drills:</label> <input type="text" id="mine1" value="3"> <input type="text" id="mines1" value="5"><br/>
+							<label>Titanium Drills:</label> <input type="text" id="mine2" value="17"> <input type="text" id="mines2" value="12"><br/>
+							<label>Iridium Drills:</label> <input type="text" id="mine3" value="26"> <input type="text" id="mines3" value="20"><br/>
+							<label>Tungstensteel Drills:</label> <input type="text" id="mine4" value="38"> <input type="text" id="mines4" value="31"><br/>
+							<label>Osmium Drills:</label> <input type="text" id="mine5" value="51"> <input type="text" id="mines5" value="42"><br/>
+							<label>Diamond Drills:</label> <input type="text" id="mine6" value="64"> <input type="text" id="mines6" value="54"><br/>
+							<label>Laser Drills:</label> <input type="text" id="mine7" value="80"> <input type="text" id="mines7" value="72"><br/>
 						</td>
 						<td>
 							<label>Reactor Costs/Cost Scaling:</label><br/>
@@ -713,6 +723,7 @@
 		<div style="bottom: 0; min-width: 100vw; min-height: 48px; max-height: 48px;"></div>
 		<div class="flex--center discord">
 			<a href="https://discord.gg/RyQwwzW" target="_blank" class="discordlink">Discord Server</a>
+			<a href="https://github.com/Redfire75369/Fission-Simulator/blob/mine-overhaul/guide.md" target="_blank" class="discordlink">Discord Server</a>
 		</div>
 	</body>
 </html>

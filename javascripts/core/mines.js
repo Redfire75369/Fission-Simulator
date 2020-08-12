@@ -1,5 +1,5 @@
-const mineUpgradeCosts = [new Decimal("0"), new Decimal("1e3"), new Decimal("1e8"), new Decimal("1e14"), new Decimal("1e21"), new Decimal("1e30"), new Decimal("1e39"), new Decimal("1e50")];
-const mineSoftCaps = [new Decimal("1e2"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
+const mineUpgradeCosts = [new Decimal("0"), new Decimal("1e3"), new Decimal("1e17"), new Decimal("1e26"), new Decimal("1e38"), new Decimal("1e51"), new Decimal("1e64"), new Decimal("1e80")];
+const mineSoftCaps = [new Decimal("1e1"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
 
 class ImprovedMines {
 	constructor() {
@@ -8,6 +8,14 @@ class ImprovedMines {
 		this.depleted = new Decimal(0);
 		this.depletion = new Decimal(0);
 		this.ratio = 0.5;
+	}
+
+	get effective() {
+		if (this.amount.sub(this.depleted).gte(mineSoftCaps[this.tier])) {
+			return mineSoftCaps[this.tier].add(this.amount.sub(this.depleted).sub(mineSoftCaps[this.tier]).div(Decimal.pow((this.tier + 1) * 3, 3)));
+		} else {
+			return this.amount.sub(this.depleted);
+		}
 	}
 
 	get constructionCost() {
@@ -21,13 +29,7 @@ class ImprovedMines {
 		return Decimal.pow(50, this.tier + 1);
 	}
 	get totalOre() {
-		if (this.amount.sub(this.depleted).gte(mineSoftCaps[this.tier])) {
-			let extraMines = this.amount.sub(this.depleted).sub(mineSoftCaps[this.tier]);
-			let effectiveMines = mineSoftCaps[this.tier].add(extraMines.div(Decimal.pow((this.tier + 4) * 12, 5)));
-			return this.ore.mul(effectiveMines);
-		} else {
-			return this.ore.mul(this.amount.sub(this.depleted));
-		}
+		return this.ore.mul(this.effective);
 	}
 
 	get upCost() {
@@ -65,7 +67,7 @@ function getReactorGain(tier) {
 }
 function getFuelGain(tier) {
 	if (player.mines.tier >= tier) {
-		return player.mines.amount.sub(player.mines.depleted).mul(2).pow(player.mines.tier - tier + 1);
+		return player.mines.effective.pow(player.mines.tier - tier + 1).div(2);
 	} else {
 		return zero;
 	}

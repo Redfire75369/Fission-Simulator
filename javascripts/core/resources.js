@@ -39,6 +39,7 @@ function updateUIEnergy() {
 function updateUIFuel() {
 	for (let tier = 0; tier < min(8, player.nucleosynthesis + 4); tier++) {
 		document.getElementById("fuel_gain" + (tier + 1)).innerText = notation(getFuelGain(tier));
+		document.getElementById("fuel_increment" + (tier + 1)).innerText = notation(getFuelReactorIncrement(tier));
 	}
 	for (let tier = 1; tier < 8; tier++) {
 		document.getElementById("fuel_row" + (tier + 1)).style.display= player.nucleosynthesis + 4 > tier ? "" : "none";

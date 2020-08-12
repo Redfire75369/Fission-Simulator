@@ -83,6 +83,9 @@ function checkAssign(check, assignFrom, assignTo = []) {
 				type = type[assignTo[i]];
 			}
 			output[assignTo[assignTo.length - 1]] = objectify(assignFrom, type[assignTo[assignTo.length - 1]]);
+			if (assignTo.includes("turbine") && assignTo.includes("rotors")) {
+				output[assignTo[assignTo.length - 1]] = objectify(assignFrom, rotors.none);
+			}
 		}
 	} else {
 		let output = player;
@@ -91,7 +94,7 @@ function checkAssign(check, assignFrom, assignTo = []) {
 			output = output[assignTo[i]];
 			def = def[assignTo[i]];
 		}
-		output[assignTo[assignTo.length - 1]] = def;
+		output[assignTo[assignTo.length - 1]] = def[assignTo[assignTo.length - 1]];
 	}
 }
 
@@ -106,6 +109,14 @@ function checkObj(obj) {
 function objectify(x, type) {
 	if (type instanceof Decimal) {
 		return new Decimal(x);
+	} else if (type instanceof ImprovedMines) {
+		let ret = new ImprovedMines();
+		ret.tier = x.tier;
+		ret.amount = x.amount;
+		ret.depleted = x.depleted;
+		ret.depletion = x.depletion;
+		ret.ratio = x.ratio;
+		return ret;
 	} else if (type instanceof Reactor) {
 		let ret = new Reactor(type.startCost.log10(), type.scaleCost.log10());
 		ret.amount = new Decimal(x.amount);

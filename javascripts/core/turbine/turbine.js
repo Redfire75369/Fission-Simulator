@@ -105,15 +105,15 @@ function usedRotors() {
 	return current;
 }
 
-function getFourRotorsCost() {
+function getRotorCost() {
 	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (4 * player.turbine.totalRotors[player.turbine.activeRotor] - (4 * getDefaultRotors()[player.turbine.activeRotor] - 3)));
 }
-function canBuyFourRotors() {
+function canBuyRotor() {
 	return player.energy.gte(getFourRotorsCost());
 }
-function buyFourRotors() {
-	if (canBuyFourRotors()) {
-		player.energy = player.energy.sub(getFourRotorsCost());
+function buyRotor() {
+	if (canBuyRotor()) {
+		player.energy = player.energy.sub(getRotorCost());
 		player.turbine.totalRotors[player.turbine.activeRotor]++;
 	}
 }
@@ -141,24 +141,6 @@ function hideCoils() {
 	document.getElementById("turbine_coils_popup").style.display = "none";
 }
 
-function selectCoil(coil) {
-	document.getElementById("turbine_coil_" + player.turbine.activeCoil).className = "flex__col tooltip turbinebox turbinecoil " + player.turbine.activeCoil;
-	document.getElementById("turbine_coil_" + coil).className = "flex__col tooltip turbinebox turbinecoil selected " + coil;
-	player.turbine.activeCoil = coil;
-}
-function setCoil(x, y) {
-	if (player.turbine.coils[y][x] != "bearing") {
-		player.turbine.coils[y][x] = player.turbine.activeCoil;
-		activeDynamoCoils();
-	}
-}
-function removeCoil(x, y) {
-	if (player.turbine.coils[y][x] != "bearing") {
-		player.turbine.coils[y][x] = "none";
-		activeDynamoCoils();
-	}
-}
-
 function resetDynamoCoils() {
 	drawBearing(player.turbine.bearingDimensions);
 	drawDynamoCoils(true);
@@ -177,228 +159,40 @@ function getTotalCoilEff() {
 	return ret.max(1);
 }
 
-function activeDynamoCoils() {
-	for (let i = 1; i < player.turbine.dimensions + 1; i++) {
-		for (let j = 1; j < player.turbine.dimensions + 1; j++) {
-			switch (player.turbine.coils[j - 1][i - 1]) {
-				case "bearing":
-					activeCoils[j - 1][i - 1] = true;
-					break;
-				case "connector":
-					activeCoils[j - 1][i - 1] = atLeast(1, "magnesium", i - 1, j - 1) || atLeast(1, "beryllium", i - 1, j - 1) || atLeast(1, "lithium", i - 1, j - 1) || atLeast(1, "aluminium", i - 1, j - 1) || atLeast(1, "gold", i - 1, j - 1) || atLeast(1, "copper", i - 1, j - 1) || atLeast(1, "silver", i - 1, j - 1);
-					break;
-				case "magnesium":
-					activeCoils[j - 1][i - 1] = atLeast(1, "bearing", i - 1, j - 1) || atLeast(1, "connector", i - 1, j - 1);
-					break;
-				case "beryllium":
-					activeCoils[j - 1][i - 1] = atLeast(1, "magnesium", i - 1, j - 1);
-					break;
-				case "lithium":
-					activeCoils[j - 1][i - 1] = atLeast(1, "beryllium", i - 1, j - 1) && (atLeast(1, "bearing", i - 1, j - 1) || atLeast(1, "connector", i - 1, j - 1));
-					break;
-				case "aluminium":
-					activeCoils[j - 1][i - 1] = atLeast(2, "beryllium", i - 1, j - 1);
-					break;
-				case "gold":
-					activeCoils[j - 1][i - 1] = atLeast(1, "aluminium", i - 1, j - 1);
-					break;
-				case "copper":
-					activeCoils[j - 1][i - 1] = atLeast(1, "lithium", i - 1, j - 1);
-					break;
-				case "silver":
-					activeCoils[j - 1][i - 1] = atLeast(1, "copper", i - 1, j - 1) && atLeast(1, "gold", i - 1, j - 1);
-					break;
-				default:
-					activeCoils[j - 1][i - 1] = false;
-			}
-		}
-	}
-}
-
-function getHorizontalCoils(x, y) {
-	if (x == 0 && y == 0) {
-		return {
-			2: player.turbine.coils[y][x + 1],
-			3: player.turbine.coils[y + 1][x]
-		};
-	} else if (x == 0 && y == player.turbine.dimensions - 1) {
-		return {
-			1: player.turbine.coils[y - 1][x],
-			2: player.turbine.coils[y][x + 1]
-		};
-	} else if (x == player.turbine.dimensions - 1 && y == 0) {
-		return {
-			0: player.turbine.coils[y][x - 1],
-			3: player.turbine.coils[y + 1][x]
-		}
-	} else if (x == player.turbine.dimensions - 1 && y == player.turbine.dimensions - 1) {
-		return {
-			0: player.turbine.coils[y][x - 1],
-			1: player.turbine.coils[y - 1][x]
-		}
-	} else if (x == 0) {
-		return {
-			1: player.turbine.coils[y - 1][x],
-			2: player.turbine.coils[y][x + 1],
-			3: player.turbine.coils[y + 1][x]
-		}
-	} else if (y == 0) {
-		return {
-			0: player.turbine.coils[y][x - 1],
-			2: player.turbine.coils[y][x + 1],
-			3: player.turbine.coils[y + 1][x]
-		}
-	} else if (x == player.turbine.dimensions - 1) {
-		return {
-			0: player.turbine.coils[y][x - 1],
-			1: player.turbine.coils[y - 1][x],
-			3: player.turbine.coils[y + 1][x]
-		}
-	} else if (y == player.turbine.dimensions - 1) {
-		return {
-			0: player.turbine.coils[y][x - 1],
-			1: player.turbine.coils[y - 1][x],
-			2: player.turbine.coils[y][x + 1]
-		};
-	} else {
-		return {
-			0: player.turbine.coils[y][x - 1],
-			1: player.turbine.coils[y - 1][x],
-			2: player.turbine.coils[y][x + 1],
-			3: player.turbine.coils[y + 1][x]
-		}
-	}
-}
-
-function keyIntoActivation(key, x, y) {
-	if (key === undefined) {
-		return false;
-	}
-	switch (key.toString()) {
-		case "0":
-			return activeCoils[y][x - 1];
-		case "1":
-			return activeCoils[y - 1][x];
-		case "2":
-			return activeCoils[y][x + 1];
-		case "3":
-			return activeCoils[y + 1][x];
-		default:
-			return false;
-	}
-}
-
-function atLeast(amount, type, x, y) {
-	let adjacent = getHorizontalCoils(x, y);
-	let keys = Object.keys(adjacent);
-	let bool = true;
-	let activated = true;
-	let key = 4;
-	for (let i = 0; i < min(4, amount); i++) {
-		key = Object.keys(adjacent).filter(key => adjacent[key] == type)[0];
-		bool &= adjacent[key] == type;
-		activated &= keyIntoActivation(key, x, y);
-		for (let j = 0; j < 4 && !keyIntoActivation(key, x, y); j++) {
-			adjacent[key] = undefined;
-			key = Object.keys(adjacent).filter(key => adjacent[key] == type)[0];
-			bool &= adjacent[key] == type;
-			activated = keyIntoActivation(key, x, y);
-		}
-		adjacent[key] = undefined;
-	}
-	return bool && activated;
-}
-
-function velocity(depth) {
-	let totalVel = 1;
-	for (let i = 0; i < depth; i++) {
-		if (player.turbine.rotors[i].length > 0) {
-			totalVel *= player.turbine.rotors[i].velocity;
-		}
-	}
-	return totalVel;
-}
-
-function totalVelocity() {
-	let totalVel = 1;
-	for (let i = 0; i < player.turbine.dimensions; i++) {
-		if (player.turbine.rotors[i].length > 0) {
-			totalVel *= player.turbine.rotors[i].velocity;
-		}
-	}
-	return totalVel;
-}
-
-function idealExpansion(depth) {
-	return Decimal.pow(8, (depth + 0.5) / player.turbine.dimensions);
-}
-function expansion(depth) {
-	let totalExpansion = 1;
-	for (let i = 0; i < depth; i++) {
-		if (player.turbine.rotors[i].length > 0) {
-			totalExpansion *= player.turbine.rotors[i].expansion;
-		}
-	}
-	return Decimal.sqrt(player.turbine.rotors[depth].expansion).mul(totalExpansion);
-}
-
-function totalExpansion() {
-	let totalExp = 1;
-	for (let i = 0; i < player.turbine.dimensions; i++) {
-		if (player.turbine.rotors[i].length > 0) {
-			totalExp *= player.turbine.rotors[i].expansion;
-		}
-	}
-	return new Decimal(totalExp);
-}
-function expansionIdeality(ideal, actual) {
-	if (ideal.lte(0) || actual.lte(0)) {
-		return 0;
-	}
-	return ideal.lt(actual) ? ideal.div(actual) : actual.div(ideal);
-}
-
-function rotorEfficiency() {
-	let rotorEff = 0;
-	let rotorCount = 0
-	for (let i = 0; i < player.turbine.dimensions; i++) {
-		if (player.turbine.rotors[i].length > 0) {
-			rotorEff += player.turbine.rotors[i].totalEff * expansionIdeality(idealExpansion(i), expansion(i));
-			rotorCount++;
-		}
-	}
-	return rotorCount == 0 ? zero : new Decimal(rotorEff).div(rotorCount);
-}
-
 function resetTurbine() {
 	player.turbine = getDefaultData().turbine;
 	resetTurbineRotors();
 	resetDynamoCoils();
 }
 
-function simulateTurbine(tickInterval = 50) {
-	activeDynamoCoils();
-
-	let speed = getTotalSteamGain();
-	let energy = zero;
+function getEnergyGain() {
+	let vol = getTotalSteamGain();
+	let speed = 1;
+	let energy = 0;
 	for (let i = 0; i < player.turbine.rotors.length; i++) {
-		if (player.turbine.rotors[i].totalEff > 0) {
+		if (player.turbine.rotors[i].length > 0) {
 			speed = speed.mul(player.turbine.rotors[i].speed);
 			energy = energy.add(speed.pow(1.5));
 		}
 	}
-	let gain = energy.mul(getTotalCoilEff()).mul(rotorEfficiency()).mul(expansionIdeality(idealExpansion(player.turbine.dimensions), totalExpansion()));
 
-	document.getElementById("turbine_steam").innerText = gain == 0 ? "Generating no energy as the turbine contains no rotors" : "Processing " + notation(getTotalSteamGain()) + " L/s of Steam";
-	document.getElementById("energy_gain").innerText = notation(gain);
+	return energy.mul(getTotalCoilEff()).mul(rotorEfficiency()).mul(expansionIdeality(idealExpansion(player.turbine.dimensions), totalExpansion()));
+}
 
-	player.energy = player.energy.add(gain.mul(tickInterval / 1000));
-	player.totalEnergy = player.totalEnergy.add(gain.mul(tickInterval / 1000));
+function simulateTurbine(tickInterval = 50) {
+	activeDynamoCoils();
+
+	player.energy = player.energy.add(getEnergyGain().mul(tickInterval / 1000));
+	player.totalEnergy = player.totalEnergy.add(getEnergyGain().mul(tickInterval / 1000));
 }
 
 function updateUITurbineRotors() {
+	document.getElementById("turbine_steam").innerText = getTotalSteamGain().lte(0) ? "No steam is currently being produced" : getEnergyGain().eq(0) ? "The turbine contains no rotor blades" : "Processing " + notation(getTotalSteamGain()) + " L/s of Steam";
+	document.getElementById("energy_gain").innerText = notation(getEnergyGain());
+
 	document.getElementById("turbine_rotoreff").innerText = notation(rotorEfficiency().mul(100));
 	document.getElementById("turbine_totalexp").innerText = notation(totalExpansion());
+	document.getElementById("turbine_exp_ideality").innerText = notation(expansionIdeality(idealExpansion(player.turbine.dimensions), totalExpansion()));
 
 	document.getElementById("turbine_rotors_count").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
 	document.getElementById("turbine_rotors_total").innerText = player.turbine.totalRotors[player.turbine.activeRotor] + " sets of " + rotorDisplayNames[player.turbine.activeRotor] + "s";
@@ -475,10 +269,4 @@ function updateUIDynamoCoils() {
 			}
 		}
 	}
-}
-
-function newTurbine() {
-	drawTurbineRotors(true, true);
-	drawDynamoCoils(true, true);
-	drawBearing(player.turbine.bearingDimensions);
 }

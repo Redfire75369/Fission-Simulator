@@ -5,7 +5,14 @@ function enableCheatsTab() {
 	/*clearInterval(saveGameLoop);
 	setInterval(function() {
 		localStorage.removeItem("fissionSimSave1");
-	}, 200);*/
+	}, 200);
+	saveGame = function() {
+		console.log("Cheater, no saving for you");
+	};
+	getSaveString = function() {
+		console.log("Cheater, no exports for you");
+	};
+	*/
 }
 
 function defaultEnergy() {
@@ -64,6 +71,8 @@ function harderReset() {
 
 function testBalancing() {
 	for (let i = 0; i < 8; i++) {
+		mineUpgradeCosts[i] = Decimal.pow(10, document.getElementById("mine" + i).value);
+		mineSoftCaps[i] = Decimal.pow(10, document.getElementById("mines" + i).value);
 		player.reactors[i].startCost = Decimal.pow(10, document.getElementById("reactor" + i).value);
 		player.reactors[i].scaleCost = Decimal.pow(10, document.getElementById("reactors" + i).value);
 	}

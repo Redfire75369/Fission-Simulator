@@ -129,3 +129,9 @@ function drawDynamoCoils(coilRefresh = false, activeCoilRefresh = true) {
 		}
 	}
 }
+
+function newTurbine() {
+	drawTurbineRotors(true, true);
+	drawDynamoCoils(true, true);
+	drawBearing(player.turbine.bearingDimensions);
+}
