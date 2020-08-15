@@ -120,8 +120,10 @@ button:hover {
 }
 .storebtn.locked:hover {}
 
-.storebtn.reactors {}
 
+.reprocessbar {
+	background-color: #00FF00;
+}
 .allocationbtn {
 	border: 2px solid #000000;
 	background: #FFFFFF;

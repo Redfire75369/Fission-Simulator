@@ -110,6 +110,11 @@ function checkObj(obj) {
 function objectify(x, type) {
 	if (type instanceof Decimal) {
 		return new Decimal(x);
+	} else if (type instanceof TRISOFuel) {
+		let ret = new TRISOFuel(type.tier);
+		ret.enriched = x.enriched;
+		ret.depleted = x.depleted;
+		return ret;
 	} else if (type instanceof ImprovedMines) {
 		let ret = new ImprovedMines();
 		ret.tier = x.tier;
@@ -118,16 +123,17 @@ function objectify(x, type) {
 		ret.depletion = x.depletion;
 		ret.ratio = x.ratio;
 		return ret;
-	} else if (type instanceof SolidFuelFissionReactor) {
-		let ret = new SolidFuelFissionReactor(type.startCost.log10(), type.scaleCost.log10());
+	} else if (type instanceof PebblebedFissionReactor) {
+		let ret = new PebblebedFissionReactor(type.tier, type.startCost.log10(), type.scaleCost.log10());
 		ret.amount = new Decimal(x.amount);
 		ret.bought = x.bought;
-		ret.enabled = x.enabled;
+		ret.fuel = x.fuel;
+		ret.spent = x.spent;
 		return ret;
-	} else if (type instanceof TurbineBlade) {
+	/*} else if (type instanceof TurbineBlade) {
 		let ret = new TurbineBlade(x.name, x.efficiency, x.expansion, x.speed);
 		ret.length = x.length;
-		return ret;
+		return ret;*/
 	} else if (type instanceof TurbineNaniteUpgrade) {
 		let ret = new TurbineNaniteUpgrade();
 		ret.bought = x.bought;

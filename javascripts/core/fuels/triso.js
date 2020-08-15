@@ -28,13 +28,17 @@ class TRISOFuel {
 
 	reprocessSpent() {
 		if (this.canReprocessSpent) {
-			document.getElementById("fuel_triso_reprocess" + (this.tier + 1)).style.transition = this.reprocessingTime / 1000 + " all linear";
+			document.getElementById("fuel_triso_reprocess" + (this.tier + 1)).children[0].style.width = "100%";
+			document.getElementById("fuel_triso_reprocess" + (this.tier + 1)).children[0].style.transition = this.reprocessingTime / 1000 + "s all linear";
 
 			player.energy = player.energy.sub(this.reprocessEnergyCost);
 			let spent = this.spent;
 			let tier = this.tier;
 			this.spent = zero;
 			setTimeout(function() {
+				document.getElementById("fuel_triso_reprocess" + (tier + 1)).children[0].style.width = "0";
+				document.getElementById("fuel_triso_reprocess" + (tier + 1)).children[0].style.transition = "";
+
 				player.fuels.triso[tier + 1].enriched = player.fuels.triso[tier + 1].enriched.add(spent.mul(0.01));
 			}, this.reprocessingTime);
 		}
@@ -53,9 +57,9 @@ function getTRISOFuelGain(tier) {
 	}
 }
 
-function getTRISOFuelPebblebedReactorIncrement(tier) {
+/*function getTRISOFuelPebblebedReactorIncrement(tier) {
 	return Decimal.max(player.reactors.pebblebeds[tier].fuel.log(1.1));
-}
+}*/
 
 function simulateTRISOFuel(tickInterval = 50) {
 	for (let tier = 0; tier < 3; tier++) {

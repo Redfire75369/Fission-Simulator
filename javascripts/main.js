@@ -74,7 +74,7 @@ function getDefaultData() {
 			]
 		},
 
-		mines: new ImprovedMines(),
+		mines: new Mines(),
 		reactors: {
 			pebblebeds: [
 				new PebblebedFissionReactor(0, 1, 3, 10),
@@ -193,9 +193,8 @@ function getDefaultData() {
 	}
 }
 
-const mining = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium", "Diamond", "Laser"];
 const isotopes = ["Thorium-227", "Uranium-235", "Neptunium-234", "Plutonium-237", "Americium-242m", "Curium-245", "Berkelium-248", "Californium-251"];
-const diminishFactor = [100, 200, 350, 488, 600, 733, 850, 1000];
+//const diminishFactor = [100, 200, 350, 488, 600, 733, 850, 1000];
 const infinity = Decimal.pow(2, 1024);
 const zero = new Decimal(0);
 

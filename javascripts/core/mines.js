@@ -1,7 +1,8 @@
+const mineTypes = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium", "Diamond", "Laser"];
 const mineUpgradeCosts = [new Decimal("0"), new Decimal("1e3"), new Decimal("1e17"), new Decimal("1e26"), new Decimal("1e38"), new Decimal("1e51"), new Decimal("1e64"), new Decimal("1e80")];
 const mineSoftCaps = [new Decimal("1e1"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
 
-class ImprovedMines {
+class Mines {
 	constructor() {
 		this.tier = 0;
 		this.amount = new Decimal(1);
@@ -71,8 +72,8 @@ function simulateMines(tickInterval = 50) {
 	player.mines.depleted = player.mines.depleted.add(player.mines.metalExtraction.div(player.mines.ore).mul(player.mines.ratio).mul(tickInterval / 1000));
 	player.mines.depletion = player.mines.depletion.add(player.mines.metalExtraction.mul(player.mines.ratio).mul(tickInterval / 1000));
 
-	for (let tier = min(7, player.nucleosynthesis + 3); tier >= 0; tier--) {
-	}
+	/*for (let tier = min(7, player.nucleosynthesis + 3); tier >= 0; tier--) {
+	}*/
 }
 
 function updateUIMines() {
@@ -83,7 +84,7 @@ function updateUIMines() {
 	document.getElementById("ore_extraction").innerText = notation(player.mines.metalExtraction);
 	document.getElementById("ore_total").innerText = notation(player.mines.totalOre);
 
-	document.getElementById("mine_tier").innerText = mining[player.mines.tier];
+	document.getElementById("mine_tier").innerText = mineTypes[player.mines.tier];
 
 	document.getElementById("construction_cost").innerText = notation(player.mines.constructionCost);
 	document.getElementById("construction_rate").innerText = notation(getMineGain());
@@ -92,7 +93,7 @@ function updateUIMines() {
 	document.getElementById("mines_upgrade").className = player.mines.upgradable ? "storebtn buy" : "storebtn locked";
 	document.getElementById("mines_upgrade").style.display = player.mines.tier < 7 ? "" : "none";
 	if (player.mines.tier < 7) {
-		document.getElementById("mines_uptype").innerText = mining[player.mines.tier + 1];
+		document.getElementById("mines_uptype").innerText = mineTypes[player.mines.tier + 1];
 		document.getElementById("mines_upcost").innerText = notation(player.mines.upCost);
 	}
 }

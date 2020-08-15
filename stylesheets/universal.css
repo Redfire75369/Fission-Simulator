@@ -44,15 +44,20 @@ button:hover {
 	min-width: 25vw;
 	max-width: 25vw;
 }
+.flex__row.reactors {
+	height: 120%;
+}
 .flex__row.reactors > div {
-	min-width: 16vw;
-	max-width: 16vw;
+	min-width: 12.4vw;
+	max-width: 12.4vw;
+	min-height: 100%;
+	max-height: 100%;
 }
 .flex__row.reactors > div > button {
-	min-width: 100%;
-	max-width: 100%;
-	min-height: 50%;
-	max-height: 50%;
+	min-width: 80%;
+	max-width: 80%;
+	min-height: 40%;
+	max-height: 40%;
 }
 .flex__row.turbine {
 	min-height: 24px;
@@ -216,6 +221,11 @@ button:hover {
 	font-size: 20px;
 }
 
+
+.reprocessbar {
+	width: 0;
+	height: 100%;
+}
 .allocationbtn {
 	max-width: 48px;
 	min-height: 48px;
@@ -263,7 +273,7 @@ button:hover {
 .turbineshaft:hover {
 	border-color: #FFBB77;
 	box-shadow: 0 0 5px 1px #FFBB77;
-} 
+}
 
 .turbinerotor {
 	max-width: 6px;
@@ -354,7 +364,7 @@ button:hover {
 .turbinecoil:hover {
 	border-color: #FFBB77;
 	box-shadow: 0 0 5px 1px #FFBB77;
-} 
+}
 
 .storebtn {
 	font-size: 12px;
@@ -405,4 +415,3 @@ button:hover {
 	height: 40px;
 	margin: 2px;
 }
-

@@ -1,13 +1,13 @@
 const gasCoolants = ["Nitrogen", "Carbon Dioxide", "Helium"];
 
 class PebblebedFissionReactor extends GenericEnergyProducer {
-	constructor(tier, start, scale, secScale) {
-		super(start, scale, secScale, 308);
+	constructor(tier, start, scale) {
+		super(start, scale, 10, 308);
 		this.tier = tier;
 		this.fuel = zero;
 		this.spent = zero;
 	}
-	
+
 	loadFuel() {
 		if (player.reactors.pebblebeds[this.tier].bought > 0) {
 			let addedFuel = player.fuels.triso[this.tier].enriched.min(this.totalCapacity.sub(this.fuel));
