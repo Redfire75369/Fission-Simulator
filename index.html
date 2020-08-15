@@ -30,9 +30,12 @@
 		<script defer src="javascripts/generics/GenericUpgrade.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/generics/GenericAutomation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/generics/GenericIntervalAutomation.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/resources.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/basic_production.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/energy.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/fuels/triso.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/reactors/pebblebed_fission.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/mines.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/turbine/calculations.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/turbine/coilplacement.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/drawing.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/turbine.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nucleosynthesis.js" charset ="utf-8" type="text/javascript"></script>
@@ -84,163 +87,161 @@
 
 		<div id="production_tab">
 			<div class="navigation subtab">
-				<button onclick="showProdTab('fuel_subtab')" id="production_fuel_subtabbtn">Fuel</button>
-				<button onclick="showProdTab('mines_subtab')" id="production_mines_subtabbtn">Mines</button>
-				<button onclick="showProdTab('reactors_subtab')" id="production_reactors_subtabbtn">Reactors</button>
-				<button onclick="showProdTab('turbine_subtab')" id="production_turbine_subtabbtn">Turbines</button>
+				<button onclick="showProductionTab('fuel_subtab')" id="production_fuel_subtabbtn">Fuel</button>
+				<button onclick="showProductionTab('mines_subtab')" id="production_mines_subtabbtn">Mines</button>
+				<button onclick="showProductionTab('reactors_subtab')" id="production_reactors_subtabbtn"> Fission Reactors</button>
 			</div>
 
-			<div class="flex__col flex--center">
-				<button onclick="buyMaxAll()" id="max_all" class="storebtn buy">Max All (M)</button>
-			</div>
+			<div id="production_fuel_subtab" class="flex__col">
+				<div class="navigation subtab">
+					<button onclick="showFuelSubTab('triso_subsubtab')" id="production_fuel_triso_subsubtabbtn">TRISO</button>
+				</div>
 
-			<div id="fuel_subtab" class="flex__col">
-				<div class="flex__row">
-					<div>Fuel Type</div>
-					<div>Fuel Gain</div>
-					<div>Reactor Efficiency Multiplier</div>
-				</div>
-				<div class="flex__row">
-					<div>LET-232 Fuel</div>
-					<div><span id="fuel_gain1">0.00</span> kg/s</div>
-					<div><span id="fuel_increment1">0.00</span> ×</div>
-				</div>
-				<div id="fuel_row2" class="flex__row">
-					<div>LEU-235 Fuel</div>
-					<div><span id="fuel_gain2">0.00</span> kg/s</div>
-					<div><span id="fuel_increment2">0.00</span> ×</div>
-				</div>
-				<div id="fuel_row3" class="flex__row">
-					<div>LENp-234 Fuel</div>
-					<div><span id="fuel_gain3">0.00</span> kg/s</div>
-					<div><span id="fuel_increment3">0.00</span> ×</div>
-				</div>
-				<div id="fuel_row4" class="flex__row">
-					<div>LEPu-237 Fuel</div>
-					<div><span id="fuel_gain4">0.00</span> kg/s</div>
-					<div><span id="fuel_increment4">0.00</span> ×</div>
-				</div>
-				<div id="fuel_row5" class="flex__row">
-					<div>LEAm-243 Fuel</div>
-					<div><span id="fuel_gain5">0.00</span> kg/s</div>
-					<div><span id="fuel_increment5">0.00</span> ×</div>
-				</div>
-				<div id="fuel_row6" class="flex__row">
-					<div>LECm-245 Fuel</div>
-					<div><span id="fuel_gain6">0.00</span> kg/s</div>
-					<div><span id="fuel_increment6">0.00</span> ×</div>
-				</div>
-				<div id="fuel_row7" class="flex__row">
-					<div>LEBk-248 Fuel</div>
-					<div><span id="fuel_gain7">0.00</span> kg/s</div>
-					<div><span id="fuel_increment7">0.00</span> ×</div>
-				</div>
-				<div id="fuel_row8" class="flex__row">
-					<div>LECf-251 Fuel</div>
-					<div><span id="fuel_gain8">0.00</span> kg/s</div>
-					<div><span id="fuel_increment8">0.00</span> ×</div>
-				</div>
-			</div>
-
-			<div id="mines_subtab" class="flex__col">
-				<div>
-					<table>
-						<tr>
-							<td><b>Mines</b></td>
-							<td><b>Active</b></td>
-							<td><b>Depleted</b></td>
-							<td><b>Total</b></td>
-						</tr>
-						<tr>
-							<td>Amount</td>
-							<td><span id="mines_active"></span></td>
-							<td><span id="mines_depleted"></span></td>
-							<td><span id="mines_total"></span></td>
-						</tr>
-					</table><br/>
-					<div>
-						You are extracting <span id="ore_extraction"></span> kg of metal ore per second.<br/>
-						You have <span id="ore_total"></span> kg of metal ore that is currently extractable.<br/><br/>
-						Your mines use <span id="mine_tier"></span> Drills.<br/>
-						<span id="construction_cost"></span> kg of metal ore are needed to construct a new mine.<br/>
-						You are constructing <span id="construction_rate"></span> new mines per second.<br/><br/>
+				<div id="production_fuel_triso_subsubtab">
+					<div class="flex__row fuel">
+						<div><b>Type</b></div>
+						<div><b>Enriched Pebbles</b></div>
+						<div><b>Depleted Pebbles</b></div>
+						<div><b>Lifetime</b></div>
+						<div><b>Reprocessing</b></div>
 					</div>
-					<div class="flex__col">
-						<div>Distribution of metal ore used for construction of mines and reactors</div>
-						<div class="flex__row" style="width: 60vw;">
-							<button onclick="changeConstructionRatio(-10)" class="allocationbtn"><<</button>
-							<button onclick="changeConstructionRatio(-1)" class="allocationbtn"><</button>
-							<div id="metal_allocation" class="allocationbar">
-								<div class="allocationbarcontents"></div>
-							</div>
-							<button onclick="changeConstructionRatio(1)" class="allocationbtn">></button>
-							<button onclick="changeConstructionRatio(10)" class="allocationbtn">>></button>
+					<div class="flex__row fuel">
+						<div>TBU TRISO</div>
+						<div><span id="fuel_triso_enriched1"></span></div>
+						<div><span id="fuel_triso_depleted1"></span></div>
+						<div><span id="fuel_triso_lifetime1"></span> ms</div>
+						<div><button onclick="player.fuels.triso[0].reprocessSpent()" id="fuel_triso_reprocess1">Reprocess for <span id="fuel_triso_reprocesscost1"></span></button></div>
+					</div>
+					<div class="flex__row fuel">
+						<div>LEU-235 TRISO</div>
+						<div><span id="fuel_triso_enriched2"></span></div>
+						<div><span id="fuel_triso_depleted2"></span></div>
+						<div><span id="fuel_triso_lifetime2"></span> ms</div>
+						<div><button onclick="player.fuels.triso[1].reprocessSpent()" id="fuel_triso_reprocess2">Reprocess for <span id="fuel_triso_reprocesscost2"></span></button></div>
+					</div>
+					<div class="flex__row">
+						<div>LEP-239 TRISO</div>
+						<div><span id="fuel_triso_enriched3"></span></div>
+						<div><span id="fuel_triso_depleted3"></span></div>
+						<div><span id="fuel_triso_lifetime3"></span> ms</div>
+						<div><button onclick="player.fuels.triso[2].reprocessSpent()" id="fuel_triso_reprocess3">Reprocess for <span id="fuel_triso_reprocesscost3"></span></button></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="production_mines_subtab">
+				<div>
+					<div class="flex__row mines">
+						<div><b>Mines</b></div>
+						<div><b>Active</b></div>
+						<div><b>Depleted</b></div>
+						<div><b>Total</b></div>
+					</div>
+					<div class="flex__row mines">
+						<div>Amount</div>
+						<div><span id="mines_active"></span></div>
+						<div><span id="mines_depleted"></span></div>
+						<div><span id="mines_total"></span></div>
+					</div>
+				</div><br/>
+
+				<div>
+					You are extracting <span id="ore_extraction"></span> kg of metal ore per second.<br/>
+					You have <span id="ore_total"></span> kg of metal ore that is currently extractable.<br/><br/>
+					Your mines use <span id="mine_tier"></span> Drills.<br/>
+					<span id="construction_cost"></span> kg of metal ore are needed to construct a new mine.<br/>
+					You are constructing <span id="construction_rate"></span> new mines per second.<br/><br/>
+				</div>
+
+				<div class="flex__col">
+					<div>Distribution of metal ore used for construction of mines and reactors</div>
+					<div class="flex__row" style="width: 60vw;">
+						<button onclick="changeConstructionRatio(-10)" class="allocationbtn"><<</button>
+						<button onclick="changeConstructionRatio(-1)" class="allocationbtn"><</button>
+						<div id="metal_allocation" class="allocationbar">
+							<div class="allocationbarcontents"></div>
+						</div>
+						<button onclick="changeConstructionRatio(1)" class="allocationbtn">></button>
+						<button onclick="changeConstructionRatio(10)" class="allocationbtn">>></button>
+					</div>
+				</div>
+
+				<button onclick="player.mines.upgrade()" id="mines_upgrade">
+					Upgrade mines to <span id="mines_uptype"></span> Drills<br/>
+					Cost: <span id="mines_upcost"></span>
+				</button>
+			</div>
+
+			<div id="production_reactors_subtab">
+				<div class="navigation subtab">
+					<button onclick="showReactorSubTab('pebblebed_subsubtab')" id="production_reactor_pebblebed_subsubtabbtn">Pebblebed</button>
+				</div>
+
+				<div id="production_reactor_pebblebed_subsubtab">
+					<div class="flex__row reactors">
+						<div><b>Type</b></div>
+						<div><b>Amount</b></div>
+						<div><b>Efficiency</b></div>
+						<div><b>Enriched Fuel</b></div>
+						<div><b>Spent Fuel</b></div>
+						<div><b>Fuel Capacity</b></div>
+						<div><b>Fuel Handling</b></div>
+						<div><b>Construction</b></div>
+					</div>
+					<div class="flex__row reactors">
+						<div>TBU Pebblebed Reactor</div>
+						<div><span id="reactor_pebblebed_amount1"></span></div>
+						<div><span id="reactor_pebblebed_efficiency1"></span></div>
+						<div><span id="reactor_pebblebed_fuel1"></span></div>
+						<div><span id="reactor_pebblebed_spent1"></span></div>
+						<div><span id="reactor_pebblebed_capacity1"></span></div>
+						<div>
+							<button onclick="player.reactors.pebblebeds[0].loadFuel()" id="reactor_pebblebed_load1">Load with Fuel Pebbles</button>
+							<button onclick="player.reactors.pebblebeds[0].ejectWaste()" id="reactor_pebblebed_eject1">Eject Spent Fuel Pebbles</button>
+						</div>
+						<div>
+							<button onclick="player.reactors.pebblebeds[0].buy()" id="reactor_pebblebed_buy1">Buy for <span id = "reactor_pebblebed_cost1"></span></button>
+							<button onclick="player.reactors.pebblebeds[0].buyMax()" id="reactor_pebblebed_buymax1">Buy Max</button>
 						</div>
 					</div>
-
-					<button onclick="player.mines.upgrade()" id="mines_upgrade">
-						Upgrade mines to <span id="mines_uptype"></span> Drills<br/>
-						Cost: <span id="mines_upcost"></span>
-					</button>
-				 </div>
-			</div>
-
-			<div id="reactors_subtab">
-				<div>
-					Your reactors are producing <span id="steam_gain"></span> L/s of steam.
+					<div class="flex__row reactors">
+						<div>LEU-235 Pebblebed Reactor</div>
+						<div><span id="reactor_pebblebed_amount2"></span></div>
+						<div><span id="reactor_pebblebed_efficiency2"></span></div>
+						<div><span id="reactor_pebblebed_fuel2"></span></div>
+						<div><span id="reactor_pebblebed_spent2"></span></div>
+						<div><span id="reactor_pebblebed_capacity2"></span></div>
+						<div>
+							<button onclick="player.reactors.pebblebeds[1].loadFuel()" id="reactor_pebblebed_load2">Load with Fuel Pebbles</button>
+							<button onclick="player.reactors.pebblebeds[1].ejectWaste()" id="reactor_pebblebed_eject2">Eject Spent Fuel Pebbles</button>
+						</div>
+						<div>
+							<button onclick="player.reactors.pebblebeds[1].buy()" id="reactor_pebblebed_buy2">Buy for <span id = "reactor_pebblebed_cost2"></span></button>
+							<button onclick="player.reactors.pebblebeds[1].buyMax()" id="reactor_pebblebed_buymax2">Buy Max</button>
+						</div>
+					</div>
+					<div class="flex__row reactors">
+						<div>LEP-239 Pebblebed Reactor</div>
+						<div><span id="reactor_pebblebed_amount3"></span></div>
+						<div><span id="reactor_pebblebed_efficiency3"></span></div>
+						<div><span id="reactor_pebblebed_fuel3"></span></div>
+						<div><span id="reactor_pebblebed_spent3"></span></div>
+						<div><span id="reactor_pebblebed_capacity3"></span></div>
+						<div>
+							<button onclick="player.reactors.pebblebeds[2].loadFuel()" id="reactor_pebblebed_load3">Load with Fuel Pebbles</button>
+							<button onclick="player.reactors.pebblebeds[2].ejectWaste()" id="reactor_pebblebed_eject3">Eject Spent Fuel Pebbles</button>
+						</div>
+						<div>
+							<button onclick="player.reactors.pebblebeds[2].buy()" id="reactor_pebblebed_buy3">Buy for <span id = "reactor_pebblebed_cost3"></span></button>
+							<button onclick="player.reactors.pebblebeds[2].buyMax()" id="reactor_pebblebed_buymax3">Buy Max</button>
+						</div>
+					</div>
+					<!--<div class="flex__col">
+						Inert Gases:
+						
+					</div>-->
 				</div>
-
-				<div class="flex__col">
-					<div class="flex__row" id="reactor_row1">
-						<div>Thorium-227 Reactor ×<span id="reactor_mult1">1</span></div>
-						<div><span id="reactor_amt1">0.00 (0)</span></div>
-						<div><button onclick="player.reactors[0].buy()" id="reactor_buysingle1">Cost: <span id="reactor_cost1">10.00</span></button></div>
-						<div><button onclick="player.reactors[0].buyMax()" id="reactor_buymax1">Buy Max (1)</button></div>
-					</div>
-					<div class="flex__row" id="reactor_row2">
-						<div>Uranium-235 Reactor ×<span id="reactor_mult2">1</span></div>
-						<div><span id="reactor_amt2">0.00 (0)</span></div>
-						<div><button onclick="player.reactors[1].buy()" id="reactor_buysingle2">Cost: <span id="reactor_cost2">100.00</span></button></div>
-						<div><button onclick="player.reactors[1].buyMax()" id="reactor_buymax2">Buy Max (2)</button></div>
-					</div>
-					<div class="flex__row" id="reactor_row3">
-						<div>Neptunium-234 Reactor ×<span id="reactor_mult3">1</span></div>
-						<div><span id="reactor_amt3">0.00 (0)</span></div>
-						<div><button onclick="player.reactors[2].buy()" id="reactor_buysingle3">Cost: <span id="reactor_cost3">1.00e4 </span></button></div>
-						<div><button onclick="player.reactors[2].buyMax()" id="reactor_buymax3">Buy Max (3)</button></div>
-					</div>
-					<div class="flex__row" id="reactor_row4">
-						<div>Plutonium-237 Reactor ×<span id="reactor_mult4">1</span></div>
-						<div><span id="reactor_amt4">0.00 (0)</span></div>
-						<div><button onclick="player.reactors[3].buy()" id="reactor_buysingle4">Cost: <span id="reactor_cost4">1.00e6</span></button></div>
-						<div><button onclick="player.reactors[3].buyMax()" id="reactor_buymax4">Buy Max (4)</button></div>
-					</div>
-					<div class="flex__row" id="reactor_row5">
-						<div>Americium-242m Reactor ×<span id="reactor_mult5">1</span></div>
-						<div><span id="reactor_amt5">0.00 (0)</span></div>
-						<div><button onclick="player.reactors[4].buy()" id="reactor_buysingle5">Cost: <span id="reactor_cost5">1.00e9</span></button></div>
-						<div><button onclick="player.reactors[4].buyMax()" id="reactor_buymax5">Buy Max (5)</button></div>
-					</div>
-					<div class="flex__row" id="reactor_row6">
-						<div>Curium-245 Reactor ×<span id="reactor_mult6">1</span></div>
-						<div><span id="reactor_amt6">0.00 (0)</span></div>
-						<div><button onclick="player.reactors[5].buy()" id="reactor_buysingle6">Cost: <span id="reactor_cost6">1.00e13</span></button></div>
-						<div><button onclick="player.reactors[5].buyMax()" id="reactor_buymax6">Buy Max (6)</button></div>
-					</div>
-					<div class="flex__row" id="reactor_row7">
-						<div>Berkelium-248 Reactor ×<span id="reactor_mult7">1</span></div>
-						<div><span id="reactor_amt7">0.00 (0)</span></div>
-						<div><button onclick="player.reactors[6].buy()" id="reactor_buysingle7">Cost: <span id="reactor_cost7">1.00e18</span></button></div>
-						<div><button onclick="player.reactors[6].buyMax()" id="reactor_buymax7">Buy Max (7)</button></div>
-					</div>
-					<div class="flex__row" id="reactor_row8">
-						<div>Californium-251 Reactor ×<span id="reactor_mult8">1</span></div>
-						<div><span id="reactor_amt8">0.00 (0)</span></div>
-						<div><button onclick="player.reactors[7].buy()" id="reactor_buysingle8">Cost: <span id="reactor_cost8">1.00e24</span></button></div>
-						<div><button onclick="player.reactors[7].buyMax()" id="reactor_buymax8">Buy Max (8)</button></div>
-					</div>
-				</div>
-				<div class="flex__col">
+				<!--<div class="flex__col">
 					<table>
 						<tr>
 							<td><div><span id="nucleosynthesis_scaling">Stellar Nucleosynthesis</span> (<span id="nucleosynthesis_amt">0</span>): Requires <span id="nucleosynthesis_cost">2 Plutonium-238</span> Reactors</div></td>
@@ -251,60 +252,7 @@
 							<td><div><button onclick="buyNaniteResearch()" id="naniteresearch_btn" style="width: 300px; height: 40px">Reset the game for <span id="nanites_gain">1</span> Nanites (R)</button></div></td>
 						</tr>
 					</table>
-				</div>
-			</div>
-			<div id="turbine_subtab">
-					<div class="flex__row">
-						<div class="flex__col">
-							<p>Processing <span id="turbine_steam"></span> L/s of Steam</p>
-							<p>Rotor Efficiency: <span id="turbine_rotoreff"></span> %</p>
-							<p>Overall Expansion: <span id="turbine_totalexp"></span> × (Ideal: 8×)</p>
-							<p>Expansion Ideality Multiplier: <span id="turbine_exp_ideality"></span> ×</p>
-							<div id="turbine_rotors" class="flex__row"></div>
-							<div id="turbine_rotors_length" class="flex__row"></div>
-							<div class="flex__row">
-								<div onclick="selectRotor('steel')" class="tooltip turbinebox"><div id="turbine_rotor_steel" class="turbinerotor selection steel"></div><span class="tooltiptext turbine">Steel Rotor<br/>Efficiency: 100%<br/>Expansion: 140%<br/>Velocity: 80%</span></div>
-								<div onclick="selectRotor('titanium')" class="tooltip turbinebox"><div id="turbine_rotor_titanium" class="turbinerotor selection titanium"></div><span class="tooltiptext turbine">Titanium Rotor<br/>Efficiency: 180%<br/>Expansion: 165%<br/>Velocity: 70%</span></div>
-								<div onclick="selectRotor('osmiridium')" class="tooltip turbinebox"><div id="turbine_rotor_osmiridium" class="turbinerotor selection osmiridium"></div><span class="tooltiptext turbine">Osmiridium Rotor<br/>Efficiency: 240%<br/>Expansion: 200%<br/>Velocity: 60%</span></div>
-								<div onclick="selectRotor('extreme')" class="tooltip turbinebox"><div id="turbine_rotor_extreme" class="turbinerotor selection extreme"></div><span class="tooltiptext turbine">Extreme Rotor<br/>Efficiency: 300%<br/>Expansion: 250%<br/>Velocity: 50%</span></div>
-								<div onclick="selectRotor('sicsiccmc')" class="tooltip turbinebox"><div id="turbine_rotor_sicsiccmc" class="turbinerotor selection sicsiccmc"></div><span class="tooltiptext turbine">SiC SiC CMC Rotor<br/>Efficiency: 390%<br/>Expansion: 320%<br/>Velocity: 35%</span></div>
-							</div>
-							<div class="flex__row">
-								<div id="turbine_rotors_count">You have <span id="turbine_rotors_total"></span>. Currently Using: <span id="turbine_rotors_current"></span></div>
-							</div>
-							<div class="flex__row" style="width: 20vw;">
-								<button onclick="buyFourRotors()" id="buy_rotor">Buy a set of <span id="rotor_type"></span> Rotors for <span id="rotor_cost"></span> Energy</button>
-							</div>
-							<div class="flex__row">
-								<button onclick="showCoils()" id="show_coils">Configure Dynamo Coils</button>
-							</div>
-						</div>
-					</div>
-					<div id="turbine_coils_popup" class="popup flex--center" style="width: 720px; height: 400px; display: none;">
-						<div class="flex__row">
-							<div class="flex__col flex--center">
-								<div id="turbine_coils" class="flex__row"></div>
-								<div class="flex__row">
-									<div onclick="selectCoil('none')" id="turbine_coil_none" class="flex__col tooltip turbinebox turbinecoil none"><span class="tooltiptext turbine">Turbine Casing</span></div>
-									<div onclick="selectCoil('connector')" id="turbine_coil_connector" class="flex__col tooltip turbinebox turbinecoil connector"><span class="tooltiptext turbine">Dynamo Coil Connector<br/>Adjacent to at least one Active Coil<br/>Acts as a Rotor Bearing for the purpose of other coils' rules</span></div>
-									<div onclick="selectCoil('magnesium')" id="turbine_coil_magnesium" class="flex__col tooltip turbinebox turbinecoil magnesium"><span class="tooltiptext turbine">Magnesium Dynamo Coil<br/>Efficiency: 140%<br/>Adjacent to at least 1 Rotor Bearing</span></div>
-									<div onclick="selectCoil('beryllium')" id="turbine_coil_beryllium" class="flex__col tooltip turbinebox turbinecoil beryllium"><span class="tooltiptext turbine">Beryllium Dynamo Coil<br/>Efficiency: 210%<br/>Adjacent to at least 1 Magnesium Dynamo Coils</span></div>
-									<div onclick="selectCoil('lithium')" id="turbine_coil_lithium" class="flex__col tooltip turbinebox turbinecoil lithium"><span class="tooltiptext turbine">Lithium Dynamo Coil<br/>Efficiency: 360%<br/>Adjacent to at least 1 Beryllium Dynamo Coil and 1 Rotor Bearing</span></div>
-									<div onclick="selectCoil('aluminium')" id="turbine_coil_aluminium" class="flex__col tooltip turbinebox turbinecoil aluminium"><span class="tooltiptext turbine">Aluminium Dynamo Coil<br/>Efficiency: 290%<br/>Adjacent to at least 2 Beryllium Dynamo Coils</span></div>
-									<div onclick="selectCoil('gold')" id="turbine_coil_gold" class="flex__col tooltip turbinebox turbinecoil gold"><span class="tooltiptext turbine">Gold Dynamo Coil<br/>Efficiency: 400%<br/>Adjacent to at least 1 Aluminium Dynamo Coil</span></div>
-									<div onclick="selectCoil('copper')" id="turbine_coil_copper" class="flex__col tooltip turbinebox turbinecoil copper"><span class="tooltiptext turbine">Copper Dynamo Coil<br/>Efficiency: 480%<br/>Adjacent to at least 1 Lithium Dynamo Coil</span></div>
-									<div onclick="selectCoil('silver')" id="turbine_coil_silver" class="flex__col tooltip turbinebox turbinecoil silver"><span class="tooltiptext turbine">Silver Dynamo Coil<br/>Efficiency: 600%<br/>Adjacent to at least 1 Gold and 1 Copper Dynamo Coil</span></div>
-								</div>
-								<div class="flex__row">
-									<div>Overall Dynamo Coil Efficiency: <span id="turbine_coil_efficiency"></span></div>
-								</div>
-								<div class="flex__row">
-									<button onclick="hideCoils()">Close Dynamo Coil Configuration</butron>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 

@@ -1,22 +1,19 @@
 function preLoad() {
 	updateUIEnergy();
-	updateUIMaxAll();
-	updateUIFuel();
+	updateUITRISOFuel();
 	updateUIMines();
-	updateUIReactors();
-	updateUINucleosynthesis();
-	updateUINaniteUps();
-	updateUINaniteResearch();
+	//updateUINucleosynthesis();
+	//updateUINaniteUps();
+	//updateUINaniteResearch();
 	updateUIMeltdown();
-	updateUIMeltdownUps();
+	//updateUIMeltdownUps();
 	updateUIAchievements();
 	updateUIStats();
 
 	document.getElementById("production_tab").style.display = "none";
-	document.getElementById("fuel_subtab").style.display = "none";
-	document.getElementById("mines_subtab").style.display = "none";
-	document.getElementById("reactors_subtab").style.display = "none";
-	document.getElementById("turbine_subtab").style.display = "none";
+	document.getElementById("production_fuel_subtab").style.display = "none";
+	document.getElementById("production_mines_subtab").style.display = "none";
+	document.getElementById("production_reactors_subtab").style.display = "none";
 	document.getElementById("statistics_tab").style.display = "none";
 	document.getElementById("achievements_tab").style.display = "none";
 	document.getElementById("options_tab").style.display = "none";
@@ -30,23 +27,23 @@ function preLoad() {
 	document.getElementById(player.navigation.naviTab + "btn").className = "navitabbtn";
 	document.getElementById(player.navigation.naviTab).style.display = "none";
 	document.getElementById("production_" + player.navigation.production + "btn").className = "subtabbtn";
-	document.getElementById(player.navigation.production).style.display = "none";
+	document.getElementById("production_" + player.navigation.production).style.display = "none";
 	document.getElementById("meltdown_" + player.navigation.meltdown + "btn").className = "subtabbtn";
 	document.getElementById("meltdown_" + player.navigation.meltdown).style.display = "none";
 
-	drawTurbineRotors(true);
+	/*drawTurbineRotors(true);
 	drawDynamoCoils(true);
-	drawBearing(player.turbine.bearingDimensions);
+	drawBearing(player.turbine.bearingDimensions);*/
 }
 
 function postLoad() {
-	drawTurbineRotors();
+	/*drawTurbineRotors();
 	drawDynamoCoils();
 	drawBearing(1);
 	activeDynamoCoils();
 
 	selectRotor(player.turbine.activeRotor);
-	selectCoil(player.turbine.activeCoil);
+	selectCoil(player.turbine.activeCoil);*/
 
 	showNaviTab(player.navigation.naviTab);
 	targetedNotationChange(player.options.notation);

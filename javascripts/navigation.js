@@ -17,7 +17,7 @@ function showNaviTab(tab) {
 function showSubTab() {
 	switch (player.navigation.naviTab) {
 	case "production_tab":
-		showProdTab(player.navigation.production);
+		showProductionTab(player.navigation.production);
 		break;
 	case "meltdown_tab":
 		showMeltdownTab(player.navigation.meltdown);
@@ -26,12 +26,38 @@ function showSubTab() {
 	}
 }
 
-function showProdTab(tab) {
-	document.getElementById(player.navigation.production).style.display = "none";
-	document.getElementById(tab).style.display = "";
-	document.getElementById(`production_${player.navigation.production}btn`).classList.remove("navigation--active");
-	document.getElementById(`production_${tab}btn`).classList.add("navigation--active");
+function showProductionTab(tab) {
+	document.getElementById("production_" + player.navigation.production).style.display = "none";
+	document.getElementById("production_" + tab).style.display = "";
+	document.getElementById("production_" + player.navigation.production + "btn").classList.remove("navigation--active");
+	document.getElementById("production_" + tab + "btn").classList.add("navigation--active");
 	player.navigation.production = tab;
+	showProductionSubTab();
+}
+function showProductionSubTab() {
+	switch (player.navigation.production) {
+		case "fuel_subtab":
+			showFuelSubTab(player.navigation.fuel);
+			break;
+		case "reactors_subtab":
+			showReactorSubTab(player.navigation.reactor);
+			break;
+		default:
+	}
+}
+function showFuelSubTab(subtab) {
+	document.getElementById("production_fuel_" + player.navigation.fuel).style.display = "none";
+	document.getElementById("production_fuel_" + subtab).style.display = "";
+	document.getElementById("production_fuel_" + player.navigation.fuel + "btn").classList.remove("navigation--active");
+	document.getElementById("production_fuel_" + subtab + "btn").classList.add("navigation--active");
+	player.navigation.fuel = subtab;
+}
+function showReactorSubTab(subtab) {
+	document.getElementById("production_reactor_" + player.navigation.reactor).style.display = "none";
+	document.getElementById("production_reactor_" + subtab).style.display = "";
+	document.getElementById("production_reactor_" + player.navigation.reactor + "btn").classList.remove("navigation--active");
+	document.getElementById("production_reactor_" + subtab + "btn").classList.add("navigation--active");
+	player.navigation.reactor = subtab;
 }
 
 function showMeltdownTab(tab) {

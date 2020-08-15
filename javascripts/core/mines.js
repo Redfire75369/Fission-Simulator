@@ -59,15 +59,8 @@ function getMineGain() {
 	return player.mines.metalExtraction.mul(player.mines.ratio).div(player.mines.constructionCost);
 }
 function getReactorGain(tier) {
-	if (boughtReactors() > tier) {
+	if (player.reactors[tier].bought > 0) {
 		return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(boughtReactors()).div(player.reactors[tier].constructionCost);
-	} else {
-		return zero;
-	}
-}
-function getFuelGain(tier) {
-	if (player.mines.tier >= tier) {
-		return player.mines.effective.pow(player.mines.tier - tier + 1).div(2);
 	} else {
 		return zero;
 	}
@@ -79,7 +72,6 @@ function simulateMines(tickInterval = 50) {
 	player.mines.depletion = player.mines.depletion.add(player.mines.metalExtraction.mul(player.mines.ratio).mul(tickInterval / 1000));
 
 	for (let tier = min(7, player.nucleosynthesis + 3); tier >= 0; tier--) {
-		player.reactors[tier].amount = player.reactors[tier].amount.add(getReactorGain(tier).mul(tickInterval / 1000));
 	}
 }
 

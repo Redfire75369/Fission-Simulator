@@ -3,11 +3,14 @@
 *.js text
 *.json text
 *.md text
+*.html text
+*.css text
 
 *.sln text eol=crlf
 
 *.png binary
 *.jpg binary
+*.svg binary
 
 *.ttf binary
 *.woff binary

@@ -29,11 +29,30 @@ button:hover {
 	min-width: 24px;
 	max-width: 24px;
 }
+
 .flex__row {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+}
+.flex__row.fuel > div {
+	min-width: 20vw;
+	max-width: 20vw;
+}
+.flex__row.mines > div {
+	min-width: 25vw;
+	max-width: 25vw;
+}
+.flex__row.reactors > div {
+	min-width: 16vw;
+	max-width: 16vw;
+}
+.flex__row.reactors > div > button {
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 50%;
+	max-height: 50%;
 }
 .flex__row.turbine {
 	min-height: 24px;
@@ -151,11 +170,6 @@ button:hover {
 	z-index: 4;
 }
 
-#production_tab, #production_tab .flex__row,
-#statistics_tab, #statistics_tab .flex__row {
-	width: 100%;
-}
-
 .subtab > button {
 	width: 150px;
 	height: 30px;
@@ -163,29 +177,6 @@ button:hover {
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 4px;
-}
-
-#fuel_subtab > .flex__row > div:not(:first-child) {
-	text-align: center;
-}
-#reactors_subtab > .flex__col > .flex__row {
-	width: 100%;
-}
-#mines_subtab > .flex__row > div:nth-child(1), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(1) {
-	flex: 0 1 40%;
-}
-#mines_subtab > .flex__row > div:nth-child(2), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(2) {
-	text-align: center;
-}
-#mines_subtab > .flex__row > div:nth-child(3), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(3) {
-	text-align: right;
-	flex: 0 1 30%;
-}
-#mines_subtab > .flex__row > div:nth-child(4), #reactors_subtab > .flex__col:first-child > .flex__row > div:nth-child(4) {
-	flex: 0 1 10%;
-}
-#reactors_subtab > .flex__col:last-child > .flex__row > div:last-child {
-	text-align: right;
 }
 
 #statistics_tab > .flex__row > div:nth-child(1) {

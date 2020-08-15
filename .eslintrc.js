@@ -34,7 +34,6 @@ module.exports = {
 		"semi": [
 			"error",
 			"always"
-		],
-		"no-implicit-globals": "off"
+		]
 	}
 };

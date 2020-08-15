@@ -2,8 +2,8 @@ function getDefaultData() {
 	return {
 		version: {
 			release: 0,
-			beta: 5,
-			alpha: 13
+			beta: 6,
+			alpha: 0
 		},
 
 		options: {
@@ -16,12 +16,14 @@ function getDefaultData() {
 		navigation: {
 			naviTab: "production_tab",
 			production: "mines_subtab",
+			fuel: "triso_subsubtab",
+			reactor: "pebblebed_subsubtab",
 			meltdown: "ups_subtab",
 			decay: "decay_subsubtab"
 		},
 
 		unlocked: {
-			coils: false,
+			//coils: false,
 			naniteUps: false,
 			meltdown: false,
 			decayHasten: false
@@ -64,19 +66,24 @@ function getDefaultData() {
 
 		moderator: 0,
 
-		mines: new ImprovedMines(),
-		reactors: [
-			new Reactor(1, 3, 2),
-			new Reactor(2, 5, 5),
-			new Reactor(5, 6, 9),
-			new Reactor(8, 8, 14),
-			new Reactor(13, 9, 20),
-			new Reactor(18, 12, 25),
-			new Reactor(25, 14, 31),
-			new Reactor(31, 15, 37)
-		],
+		fuels: {
+			triso: [
+				new TRISOFuel(0),
+				new TRISOFuel(1),
+				new TRISOFuel(2)
+			]
+		},
 
-		turbine: {
+		mines: new ImprovedMines(),
+		reactors: {
+			pebblebeds: [
+				new PebblebedFissionReactor(0, 1, 3, 10),
+				new PebblebedFissionReactor(1, 3, 5, 10),
+				new PebblebedFissionReactor(2, 10, 8, 10)
+			]
+		},
+
+		/*turbine: {
 			rotors: [
 				rotors.none,
 				rotors.none,
@@ -98,7 +105,7 @@ function getDefaultData() {
 			activeCoil: "none",
 			dimensions: 3,
 			bearingDimensions: 1
-		},
+		},*/
 
 		nucleosynthesis: 0,
 
@@ -202,17 +209,14 @@ window.onvisibilitychange = function() {
 
 function updateUI() {
 	updateUIEnergy();
-	updateUIMaxAll();
-	updateUIFuel();
+	updateUITRISOFuel();
 	updateUIMines();
-	updateUIReactors();
-	updateUITurbineRotors();
-	updateUIDynamoCoils();
-	updateUINucleosynthesis();
-	updateUINaniteUps();
-	updateUINaniteResearch();
+	updateUIPebblebedReactors();
+	//updateUINucleosynthesis();
+	//updateUINaniteUps();
+	//updateUINaniteResearch();
 	updateUIMeltdown();
-	updateUIMeltdownUps();
+	//updateUIMeltdownUps();
 	updateUIDecayHastening();
 	updateUIAchievements();
 	updateUIStats();
@@ -221,10 +225,11 @@ function updateGame(tickInterval = 50) {
 	if (leverMaxAll) {
 		buyMaxAll();
 	}
+	simulateTRISOFuel(tickInterval);
 	simulateMines(tickInterval);
-	simulateTurbine(tickInterval);
-	simulateFuelStorage(tickInterval);
-	simulateDecayIsotope("th227", tickInterval);
+	simulatePebblebedReactors(tickInterval);
+	//simulateFuelStorage(tickInterval);
+	//simulateDecayIsotope("th227", tickInterval);
 	checkAchievementCompletion();
 }
 
@@ -273,6 +278,7 @@ function closeOfflineProgress() {
 }
 
 var player = getDefaultData();
+var errored = false;
 
 /*Game Loops*/
 var saveGameLoop = setInterval(function() {
@@ -280,12 +286,20 @@ var saveGameLoop = setInterval(function() {
 }, 15000);
 
 setInterval(function() {
-	if (player.lastUpdate === undefined) {
-		player.lastUpdate = Date.now();
-	}
-	if (Date.now() > player.lastUpdate && focused) {
-		simulateTime((Date.now() - player.lastUpdate) / 1000);
-	}
+	//try {
+		if (player.lastUpdate === undefined) {
+			player.lastUpdate = Date.now();
+		}
+		if (Date.now() > player.lastUpdate && focused) {
+			simulateTime((Date.now() - player.lastUpdate) / 1000);
+		}
+	/*} catch(e) {
+		if (!errored) {
+			alert("The game has encountered a fatal error. Please check the console and report this bug with a screenshot of what is currently being shown in console.");
+			console.error(e);
+			errored = true;
+		}
+	}*/
 }, 25);
 
 setInterval(function() {

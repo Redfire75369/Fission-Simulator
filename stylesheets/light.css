@@ -133,6 +133,7 @@ button:hover {
 }
 .allocationbarcontents {
 	background-color: #B2C376;
+	border-radius: 4px;
 }
 
 .naniteup {

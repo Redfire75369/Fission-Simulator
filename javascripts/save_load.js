@@ -103,6 +103,7 @@ function checkObj(obj) {
 		|| obj instanceof Array
 		|| obj instanceof GenericEnergyProducer
 		|| obj instanceof GenericUpgrade
+		|| obj instanceof ImprovedMines
 		|| obj instanceof TurbineBlade;
 }
 
@@ -117,8 +118,8 @@ function objectify(x, type) {
 		ret.depletion = x.depletion;
 		ret.ratio = x.ratio;
 		return ret;
-	} else if (type instanceof Reactor) {
-		let ret = new Reactor(type.startCost.log10(), type.scaleCost.log10());
+	} else if (type instanceof SolidFuelFissionReactor) {
+		let ret = new SolidFuelFissionReactor(type.startCost.log10(), type.scaleCost.log10());
 		ret.amount = new Decimal(x.amount);
 		ret.bought = x.bought;
 		ret.enabled = x.enabled;

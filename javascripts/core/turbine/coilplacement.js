@@ -129,7 +129,7 @@ function keyIntoActivation(key, x, y) {
 	}
 }
 
-function atLeast(amount, type, x, y) {
+function atLeast(amount, requirement, x, y) {
 	let activated = true;
 	let count = 0;
 	let adjacent = getHorizontalCoils(x, y);

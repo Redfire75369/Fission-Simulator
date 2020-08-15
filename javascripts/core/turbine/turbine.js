@@ -105,15 +105,15 @@ function usedRotors() {
 	return current;
 }
 
-function getRotorCost() {
+function getRotorsCost() {
 	return Decimal.pow(10, rotorCosts[player.turbine.activeRotor][0] + rotorCosts[player.turbine.activeRotor][1] * (4 * player.turbine.totalRotors[player.turbine.activeRotor] - (4 * getDefaultRotors()[player.turbine.activeRotor] - 3)));
 }
-function canBuyRotor() {
-	return player.energy.gte(getFourRotorsCost());
+function canBuyRotors() {
+	return player.energy.gte(getRotorsCost());
 }
-function buyRotor() {
-	if (canBuyRotor()) {
-		player.energy = player.energy.sub(getRotorCost());
+function buyRotors() {
+	if (canBuyRotors()) {
+		player.energy = player.energy.sub(getRotorsCost());
 		player.turbine.totalRotors[player.turbine.activeRotor]++;
 	}
 }
@@ -167,12 +167,12 @@ function resetTurbine() {
 
 function getEnergyGain() {
 	let vol = getTotalSteamGain();
-	let speed = 1;
-	let energy = 0;
+	let speed = new Decimal(1);
+	let energy = zero;
 	for (let i = 0; i < player.turbine.rotors.length; i++) {
 		if (player.turbine.rotors[i].length > 0) {
 			speed = speed.mul(player.turbine.rotors[i].speed);
-			energy = energy.add(speed.pow(1.5));
+			energy = energy.add(vol.mul(speed.pow(1.5)));
 		}
 	}
 
@@ -198,10 +198,10 @@ function updateUITurbineRotors() {
 	document.getElementById("turbine_rotors_total").innerText = player.turbine.totalRotors[player.turbine.activeRotor] + " sets of " + rotorDisplayNames[player.turbine.activeRotor] + "s";
 	document.getElementById("turbine_rotors_current").innerText = usedRotors();
 
-	document.getElementById("buy_rotor").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
-	document.getElementById("buy_rotor").className = canBuyFourRotors() ? "storebtn buy" : "storebtn locked";
-	document.getElementById("rotor_type").innerText = rotorDisplayNames[player.turbine.activeRotor] + "s";
-	document.getElementById("rotor_cost").innerText = notation(getFourRotorsCost());
+	document.getElementById("buy_rotors").style.display = player.turbine.activeRotor == "none" ? "none" : "block";
+	document.getElementById("buy_rotors").className = canBuyRotors() ? "storebtn buy" : "storebtn locked";
+	document.getElementById("rotors_type").innerText = rotorDisplayNames[player.turbine.activeRotor] + "s";
+	document.getElementById("rotors_cost").innerText = notation(getRotorsCost());
 
 	document.getElementById("turbine_rotor_titanium").parentElement.style.display = player.nucleosynthesis > 1 ? "block" : "none";
 	document.getElementById("turbine_rotor_osmiridium").parentElement.style.display = player.nucleosynthesis > 3 ? "block" : "none";
