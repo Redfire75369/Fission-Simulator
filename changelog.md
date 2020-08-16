@@ -18,12 +18,13 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 - Mines now produce reactors
 - Legend for colours in metal ore allocation
 - Currency labels to costs
+- Higher tier fuels and reactors are only visible when they are obtainable
 - CSSLint to Dev Environment
 
 ### Modified
 - Fixed save loading
 - Fixed bug where you could load reactors even if they are full of spent fuel
-- Fixed issue where fuel produced ten times less energy than it should have
+- Fixed issue where fuel produced ten times less energy than intended
 - Made mine softcap harsher
 - Improved ESLint Configuration
 
