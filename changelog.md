@@ -13,6 +13,17 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.3] - 16/8/20
+### Added
+- Achievement 11
+- Unlock conditions for mines and fuel reprocessing
+- Progress Bar on fuel reprocessing
+
+### Modified
+- Made it so that you cannot reprocess fuel while fuel of the same type is already being reprocessed
+
+### Removed
+
 ## [v0.6.2] - 16/8/20
 ### Added
 - Mines now produce reactors

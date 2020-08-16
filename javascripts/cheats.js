@@ -11,8 +11,7 @@ function enableCheatsTab() {
 	};
 	getSaveString = function() {
 		console.log("Cheater, no exports for you");
-	};
-	*/
+	};*/
 }
 
 function defaultEnergy() {
@@ -65,7 +64,7 @@ function harderReset() {
 	player = getDefaultData();
 	player.navigation.naviTab = "cheats_tab";
 	postLoad();
-	testBalancing();
+	//testBalancing();
 	saveGame();
 }
 

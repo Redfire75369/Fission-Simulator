@@ -1,10 +1,10 @@
-const gasCoolants = ["Nitrogen", "Carbon Dioxide", "Helium"];
+//const gasCoolants = ["Nitrogen", "Carbon Dioxide", "Helium"];
 
 class PebblebedFissionReactor extends GenericEnergyProducer {
 	constructor(tier, start, scale) {
 		super(start, scale, 10, 308);
 		this.tier = tier;
-		this.fuel = zero;
+		this.fuel = tier == 0 ? new Decimal(10) : zero;
 		this.spent = zero;
 	}
 
@@ -21,7 +21,7 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 	}
 
 	get totalCapacity() {
-		return this.amount.mul(10);
+		return this.amount.mul(25);
 	}
 	get constructionCost() {
 		return Decimal.pow(25, 4 * this.tier + 1);
@@ -29,7 +29,7 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 
 	get efficiency() {
 		let eff = Decimal.pow(2, this.bought);
-		eff = eff.mul(this.fuel.log(1.1));
+		eff = eff.mul(this.fuel.sub(10).max(1.1).log(1.1));
 		return eff.max(1);
 	}
 }
@@ -55,6 +55,9 @@ function simulatePebblebedReactors(tickInterval = 50) {
 }
 
 function updateUIPebblebedReactors() {
+	player.unlocked.mines |= player.energy.gte("2.4e3");
+	document.getElementById("reactor_pebblebed_label_fuel_handling").style.display = player.unlocked.mines ? "" : "none";
+
 	for (let tier = 0; tier < 3; tier++) {
 		document.getElementById("reactor_pebblebed_amount" + (tier + 1)).innerText = notation(player.reactors.pebblebeds[tier].amount);
 		document.getElementById("reactor_pebblebed_efficiency" + (tier + 1)).innerText = notation(player.reactors.pebblebeds[tier].efficiency);
@@ -62,6 +65,7 @@ function updateUIPebblebedReactors() {
 		document.getElementById("reactor_pebblebed_spent" + (tier + 1)).innerText = notation(player.reactors.pebblebeds[tier].spent);
 		document.getElementById("reactor_pebblebed_capacity" + (tier + 1)).innerText = notation(player.reactors.pebblebeds[tier].totalCapacity);
 
+		document.getElementById("reactor_pebblebed_load" + (tier + 1)).parentElement.style.display = player.unlocked.mines ? "" : "none";
 		document.getElementById("reactor_pebblebed_load" + (tier + 1)).className = player.fuels.triso[tier].enriched.gt(0) && player.reactors.pebblebeds[tier].fuel.add(player.reactors.pebblebeds[tier].spent).lt(player.reactors.pebblebeds[tier].totalCapacity) ? "storebtn buy" : "storebtn locked";
 		document.getElementById("reactor_pebblebed_eject" + (tier + 1)).className = player.reactors.pebblebeds[tier].spent.gt(0) ? "storebtn buy" : "storebtn locked";
 

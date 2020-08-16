@@ -94,7 +94,7 @@ button:hover {
 .storebtn.reactors {}
 
 .reprocessbar {
-	background-color: #00FF00;
+	background-color: rgba(0, 255, 0, 0.3);
 }
 .allocationbtn {
 	border: 2px solid #000000;
@@ -117,7 +117,7 @@ button:hover {
 .allocationbtn {
 	color: #FFFFFF;
 	background-color: #344445;
-	border: 2px solid #FFFFFF; 
+	border: 2px solid #FFFFFF;
 }
 
 .naniteup {

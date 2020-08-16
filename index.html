@@ -12,6 +12,10 @@
 		<meta property="og:description" content="An incremental game about nuclear fission, reactors and nuclear physics."/>
 		<meta property="og:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul/index.html">
 
+		<meta property="twitter:title" content="Fission Simulator"/>
+		<meta property="twitter:description" content="An incremental game about nuclear fission, reactors and nuclear physics."/>
+		<meta property="twitter:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul/index.html">
+
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/auto-render.js" charset="utf-8" type="text/javascript" onload="renderMathInElement(document.body)"></script>
@@ -98,83 +102,89 @@
 				</div>
 
 				<div id="production_fuel_triso_subsubtab">
-					<div class="flex__row fuel">
-						<div><b>Type</b></div>
-						<div><b>Enriched Pebbles</b></div>
-						<div><b>Depleted Pebbles</b></div>
-						<div><b>Lifetime</b></div>
-						<div><b>Reprocessing</b></div>
-					</div>
-					<div class="flex__row fuel">
-						<div>TBU TRISO</div>
-						<div><span id="fuel_triso_enriched1"></span></div>
-						<div><span id="fuel_triso_depleted1"></span></div>
-						<div><span id="fuel_triso_lifetime1"></span> ms</div>
-						<div><button onclick="player.fuels.triso[0].reprocessDepleted()" id="fuel_triso_reprocess1" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess1" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost1"></span> Energy</div></button></div>
-					</div>
-					<div class="flex__row fuel">
-						<div>LEU-235 TRISO</div>
-						<div><span id="fuel_triso_enriched2"></span></div>
-						<div><span id="fuel_triso_depleted2"></span></div>
-						<div><span id="fuel_triso_lifetime2"></span> ms</div>
-						<div><button onclick="player.fuels.triso[1].reprocessDepleted()" id="fuel_triso_reprocess2" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess2" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost2"></span> Energy</div></button></div>
-					</div>
-					<div class="flex__row">
-						<div>LEP-239 TRISO</div>
-						<div><span id="fuel_triso_enriched3"></span></div>
-						<div><span id="fuel_triso_depleted3"></span></div>
-						<div><span id="fuel_triso_lifetime3"></span> ms</div>
-						<div><button onclick="player.fuels.triso[2].reprocessDepleted()" id="fuel_triso_reprocess3" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess3" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost3"></span> Energy</div></button></div>
+					<div style="font-size: 40px;">Obtain 2400 Energy to unlock</div>
+					<div>
+						<div class="flex__row fuel">
+							<div><b>Type</b></div>
+							<div><b>Enriched Pebbles</b></div>
+							<div><b>Depleted Pebbles</b></div>
+							<div><b>Lifetime</b></div>
+							<div id="fuel_triso_label_reprocessing"><b>Reprocessing</b></div>
+						</div>
+						<div class="flex__row fuel">
+							<div>TBU TRISO</div>
+							<div><span id="fuel_triso_enriched1"></span></div>
+							<div><span id="fuel_triso_depleted1"></span></div>
+							<div><span id="fuel_triso_lifetime1"></span> ms</div>
+							<div><button onclick="player.fuels.triso[0].reprocessDepleted()" id="fuel_triso_reprocess1" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess1" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost1"></span> Energy</div></button></div>
+						</div>
+						<div class="flex__row fuel">
+							<div>LEU-235 TRISO</div>
+							<div><span id="fuel_triso_enriched2"></span></div>
+							<div><span id="fuel_triso_depleted2"></span></div>
+							<div><span id="fuel_triso_lifetime2"></span> ms</div>
+							<div><button onclick="player.fuels.triso[1].reprocessDepleted()" id="fuel_triso_reprocess2" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess2" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost2"></span> Energy</div></button></div>
+						</div>
+						<div class="flex__row fuel">
+							<div>LEP-239 TRISO</div>
+							<div><span id="fuel_triso_enriched3"></span></div>
+							<div><span id="fuel_triso_depleted3"></span></div>
+							<div><span id="fuel_triso_lifetime3"></span> ms</div>
+							<div><button onclick="player.fuels.triso[2].reprocessDepleted()" id="fuel_triso_reprocess3" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess3" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost3"></span> Energy</div></button></div>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<div id="production_mines_subtab">
+				<div style="font-size: 40px;">Obtain 2400 Energy to unlock</div>
 				<div>
-					<div class="flex__row mines">
-						<div><b>Mines</b></div>
-						<div><b>Active</b></div>
-						<div><b>Depleted</b></div>
-						<div><b>Total</b></div>
-					</div>
-					<div class="flex__row mines">
-						<div>Amount</div>
-						<div><span id="mines_active"></span></div>
-						<div><span id="mines_depleted"></span></div>
-						<div><span id="mines_total"></span></div>
-					</div>
-				</div><br/>
-
-				<div>
-					You are extracting <span id="ore_extraction"></span> kg of metal ore per second.<br/>
-					You have <span id="ore_total"></span> kg of metal ore that is currently extractable.<br/><br/>
-					Your mines use <span id="mine_tier"></span> Drills.<br/>
-					<span id="construction_cost"></span> kg of metal ore are needed to construct a new mine.<br/>
-					You are constructing <span id="construction_rate"></span> new mines per second.<br/><br/>
-				</div>
-
-				<div class="flex__col">
-					<div>Distribution of metal ore used for construction of mines and reactors</div>
-					<div class="flex__row" style="width: 60vw;">
-						<button onclick="changeConstructionRatio(-10)" class="allocationbtn"><<</button>
-						<button onclick="changeConstructionRatio(-1)" class="allocationbtn"><</button>
-						<div id="metal_allocation" class="allocationbar">
-							<div class="allocationbarcontents"></div>
+					<div>
+						<div class="flex__row mines">
+							<div><b>Mines</b></div>
+							<div><b>Active</b></div>
+							<div><b>Depleted</b></div>
+							<div><b>Total</b></div>
 						</div>
-						<button onclick="changeConstructionRatio(1)" class="allocationbtn">></button>
-						<button onclick="changeConstructionRatio(10)" class="allocationbtn">>></button>
-					</div><br/><br/>
-					<div class="flex__row" style="width: 45vw;">
-						<div class="allocationbarcontents legend">Mines</div>
-						<div></div>
-						<div class="allocationbar legend">Pebbeled reactors</div>
-					</div>
-				</div>
+						<div class="flex__row mines">
+							<div>Amount</div>
+							<div><span id="mines_active"></span></div>
+							<div><span id="mines_depleted"></span></div>
+							<div><span id="mines_total"></span></div>
+						</div>
+					</div><br/>
 
-				<button onclick="player.mines.upgrade()" id="mines_upgrade">
-					Upgrade mines to <span id="mines_uptype"></span> Drills<br/>
-					Cost: <span id="mines_upcost"> Energy</span>
-				</button>
+					<div>
+						You are extracting <span id="ore_extraction"></span> kg of metal ore per second.<br/>
+						You have <span id="ore_total"></span> kg of metal ore that is currently extractable.<br/><br/>
+						Your mines use <span id="mine_tier"></span> Drills.<br/>
+						<span id="construction_cost"></span> kg of metal ore are needed to construct a new mine.<br/>
+						You are constructing <span id="construction_rate"></span> new mines per second.<br/><br/>
+					</div>
+
+					<div class="flex__col">
+						<div>Distribution of metal ore used for construction of mines and reactors</div>
+						<div class="flex__row" style="width: 60vw;">
+							<button onclick="changeConstructionRatio(-10)" class="allocationbtn"><<</button>
+							<button onclick="changeConstructionRatio(-1)" class="allocationbtn"><</button>
+							<div id="metal_allocation" class="allocationbar">
+								<div class="allocationbarcontents"></div>
+							</div>
+							<button onclick="changeConstructionRatio(1)" class="allocationbtn">></button>
+							<button onclick="changeConstructionRatio(10)" class="allocationbtn">>></button>
+						</div><br/><br/>
+						<div class="flex__row" style="width: 45vw;">
+							<div class="allocationbarcontents legend">Mines</div>
+							<div></div>
+							<div class="allocationbar legend">Pebbeled reactors</div>
+						</div>
+					</div>
+
+					<button onclick="player.mines.upgrade()" id="mines_upgrade">
+						<span id="mines_upgrade_text"></span><br/>
+						Cost: <span id="mines_upcost"> Energy</span>
+					</button>
+				</div>
 			</div>
 
 			<div id="production_reactors_subtab">
@@ -190,7 +200,7 @@
 						<div><b>Enriched Fuel</b></div>
 						<div><b>Spent Fuel</b></div>
 						<div><b>Fuel Capacity</b></div>
-						<div><b>Fuel Handling</b></div>
+						<div id="reactor_pebblebed_label_fuel_handling"><b>Fuel Handling</b></div>
 						<div><b>Construction</b></div>
 					</div>
 					<div class="flex__row reactors">
@@ -676,7 +686,7 @@
 		<div style="bottom: 0; min-width: 100vw; min-height: 48px; max-height: 48px;"></div>
 		<div class="flex--center discord">
 			<a href="https://discord.gg/RyQwwzW" target="_blank" class="discordlink">Discord Server</a>
-			<a href="https://github.com/Redfire75369/Fission-Simulator/blob/mine-overhaul/guide.md" target="_blank" class="discordlink">Discord Server</a>
+			<a href="https://github.com/Redfire75369/Fission-Simulator/blob/mine-overhaul/guide.md" target="_blank" class="discordlink">Guide</a>
 		</div>
 	</body>
 </html>

@@ -225,6 +225,7 @@ button:hover {
 .reprocessbar {
 	width: 0;
 	height: 100%;
+	border-radius: 1px;
 }
 .allocationbtn {
 	max-width: 48px;

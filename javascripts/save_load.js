@@ -33,15 +33,14 @@ function loadSave(save, imported = false) {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
 
-		if (save.version.beta < 6) {
+		if (save.version.beta < 6 || (save.version.beta == 6 && save.version.alpha < 3)) {
 			if (imported) {
 				alert("The imported save is from a much older version and is thus, incompatible with the current version. The save has not been imported.");
 				return;
-			} else {
-				alert("Your save is from a much older version and is thus, incompatible with the current version. Your save has been cleared.");
-				localStorage.removeItem("fissionSimSave1");
-				save = JSON.parse(LZString.decompressFromBase64(LZString.compressToBase64(JSON.stringify(getDefaultData()))));
 			}
+			alert("Your save is from a much older version and is thus, incompatible with the current version. Your save has been cleared.");
+			localStorage.removeItem("fissionSimSave1");
+			save = JSON.parse(LZString.decompressFromBase64(LZString.compressToBase64(JSON.stringify(getDefaultData()))));
 		}
 
 		if (save !== undefined) {
@@ -82,9 +81,9 @@ function checkAssign(check, assignFrom, assignTo = []) {
 				type = type[assignTo[i]];
 			}
 			output[assignTo[assignTo.length - 1]] = objectify(assignFrom, type[assignTo[assignTo.length - 1]]);
-			if (assignTo.includes("turbine") && assignTo.includes("rotors")) {
+			/*if (assignTo.includes("turbine") && assignTo.includes("rotors")) {
 				output[assignTo[assignTo.length - 1]] = objectify(assignFrom, rotors.none);
-			}
+			}*/
 		}
 	} else {
 		let output = player;

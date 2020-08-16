@@ -1,7 +1,7 @@
 const achs = [11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 28];
 
 const achTexts = [
-	"Is this 2D Minecraft?<br/>Buy an Iron-Tipped Drill Mine.",
+	"The fertility of Thorium<br/>Buy one TBU Pebblebed Reactor.",
 	"I have the power inside<br/>Obtain 1000 Energy.",
 	"Suggest Ideas in the Discord Server",
 	"WIP<br/>Nucleosynthesise for the first time.",
@@ -20,7 +20,7 @@ const achTexts = [
 ];
 
 function checkAchievementCompletion() {
-	//player.achievements[11] |= player.mines[0].amount.gte(1);
+	player.achievements[11] |= player.reactors.pebblebeds[0].amount.gte(1);
 	player.achievements[12] |= player.energy.gte(1e3);
 	player.achievements[13] |= false;
 	player.achievements[14] |= player.nucleosynthesis >=1;
@@ -38,10 +38,16 @@ function checkAchievementCompletion() {
 	player.achievements[28] |= player.unlocked.meltdown;
 }
 
+function initAchievments() {
+	for (let i = 0; i < achs.length; i++) {
+		document.getElementById("ach" + achs[i]).children[1].innerHTML = achTexts[i];
+	}
+}
+initAchievments();
+
 function updateUIAchievements() {
 	for (let i = 0; i < achs.length; i++) {
 		document.getElementById("ach" + achs[i]).className = player.achievements[achs[i]] ? "tooltip achcomplete" : "tooltip achlocked";
 		document.getElementById("ach" + achs[i]).children[1].className = player.achievements[achs[i]] ? "tooltiptext achtooltipcomplete" : "tooltiptext achtooltiplocked";
-		document.getElementById("ach" + achs[i]).children[1].innerHTML = achTexts[i];
 	}
 }

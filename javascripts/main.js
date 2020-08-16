@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 6,
-			alpha: 2
+			alpha: 3
 		},
 
 		options: {
@@ -15,7 +15,7 @@ function getDefaultData() {
 
 		navigation: {
 			naviTab: "production_tab",
-			production: "mines_subtab",
+			production: "reactors_subtab",
 			fuel: "triso_subsubtab",
 			reactor: "pebblebed_subsubtab",
 			meltdown: "ups_subtab",
@@ -23,7 +23,8 @@ function getDefaultData() {
 		},
 
 		unlocked: {
-			//coils: false,
+			mines: false,
+			fuelReprocessing: false,
 			naniteUps: false,
 			meltdown: false,
 			decayHasten: false
@@ -48,21 +49,10 @@ function getDefaultData() {
 			28: false
 		},
 
-		automation: {
-			reactors: [
-				new ReactorAutomation(0, 1000),
-				new ReactorAutomation(1, 1000),
-				new ReactorAutomation(2, 1000),
-				new ReactorAutomation(3, 1000),
-				new ReactorAutomation(4, 1000),
-				new ReactorAutomation(5, 1000),
-				new ReactorAutomation(6, 1000),
-				new ReactorAutomation(7, 1000)
-			]
-		},
+		automation: {},
 
-		energy: new Decimal(100),
-		totalEnergy: new Decimal(100),
+		energy: new Decimal(10),
+		totalEnergy: new Decimal(10),
 
 		moderator: 0,
 
@@ -78,7 +68,7 @@ function getDefaultData() {
 		reactors: {
 			pebblebeds: [
 				new PebblebedFissionReactor(0, 1, 3, 10),
-				new PebblebedFissionReactor(1, 3, 5, 10),
+				new PebblebedFissionReactor(1, 4, 5, 10),
 				new PebblebedFissionReactor(2, 10, 8, 10)
 			]
 		},

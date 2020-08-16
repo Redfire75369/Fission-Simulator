@@ -1,6 +1,7 @@
 module.exports = {
 	"env": {
 		"browser": true,
+		"node": true,
 		"es2020": true,
 		"es6": true
 	},
@@ -14,6 +15,7 @@ module.exports = {
 		"getDefaultData": true,
 		"zero": true,
 		"infinity": true,
+		"notation": true,
 		"Decimal": true,
 		"LZString": true,
 		"Mousetrap": true,
@@ -48,7 +50,7 @@ module.exports = {
 		],
 		"default-case": "error",
 		"array-bracket-newline": [
-			"warning",
+			"warn",
 			"consistent"
 		],
 		"eol-last": [
