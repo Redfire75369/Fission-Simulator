@@ -234,8 +234,16 @@ button:hover {
 	width: 40vw;
 	height: 48px;
 }
+.allocationbar.legend {
+	width: 20vw;
+	height: 20px;
+}
 .allocationbarcontents {
 	height: 100%;
+}
+.allocationbarcontents.legend {
+	width: 20vw;
+	height: 20px;
 }
 
 .turbinebox {

@@ -1,7 +1,5 @@
 function preLoad() {
 	updateUIEnergy();
-	updateUITRISOFuel();
-	updateUIMines();
 	//updateUINucleosynthesis();
 	//updateUINaniteUps();
 	//updateUINaniteResearch();

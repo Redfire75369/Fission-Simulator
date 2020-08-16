@@ -12,6 +12,8 @@ module.exports = {
 	"globals": {
 		"player": true,
 		"getDefaultData": true,
+		"zero": true,
+		"infinity": true,
 		"Decimal": true,
 		"LZString": true,
 		"Mousetrap": true,
@@ -21,7 +23,10 @@ module.exports = {
 	"rules": {
 		"indent": [
 			"error",
-			"tab"
+			"tab",
+			{
+				"SwitchCase": 1
+			}
 		],
 		"linebreak-style": [
 			"error",
@@ -32,6 +37,21 @@ module.exports = {
 			"double"
 		],
 		"semi": [
+			"error",
+			"always"
+		],
+		"no-else-return": [
+			"error",
+			{
+				"allowElseIf": true
+			}
+		],
+		"default-case": "error",
+		"array-bracket-newline": [
+			"warning",
+			"consistent"
+		],
+		"eol-last": [
 			"error",
 			"always"
 		]

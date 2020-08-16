@@ -1,22 +1,22 @@
 {
   "name": "fission-simulator",
-  "version": "0.5.4",
+  "version": "0.6.2",
   "description": "Fission Simulator is an incremental game about nuclear fission, reactors and nuclear physics.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "main.js",
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Redfire75369/Fission-Simulator.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Redfire",
+  "license": "ARR",
   "bugs": {
-    "url": "https://github.com/Redfire75369/Fission-Simulator.git/issues"
+    "url": "https://github.com/Redfire75369/Fission-Simulator/issues"
   },
-  "homepage": "https://github.com/Redfire75369/Fission-Simulator.git#readme",
+  "homepage": "https://github.com/Redfire75369/Fission-Simulator#readme",
   "devDependencies": {
-    "eslint": "^7.5.0"
-  }
+    "csslint": "^1.0.5",
+    "eslint": "^7.7.0"
+  },
+  "dependencies": {}
 }

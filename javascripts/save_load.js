@@ -25,7 +25,6 @@ function loadSave(save, imported = false) {
 		if (save === undefined) {
 			save = getSave();
 		}
-
 		save.trim();
 
 		if (save.startsWith("ey")) {
@@ -34,7 +33,7 @@ function loadSave(save, imported = false) {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
 
-		if (save.version.beta < 5 || (save.version.beta == 5 && save.version.alpha < 11)) {
+		if (save.version.beta < 6) {
 			if (imported) {
 				alert("The imported save is from a much older version and is thus, incompatible with the current version. The save has not been imported.");
 				return;
@@ -103,8 +102,8 @@ function checkObj(obj) {
 		|| obj instanceof Array
 		|| obj instanceof GenericEnergyProducer
 		|| obj instanceof GenericUpgrade
-		|| obj instanceof ImprovedMines
-		|| obj instanceof TurbineBlade;
+		|| obj instanceof TRISOFuel
+		|| obj instanceof Mines;
 }
 
 function objectify(x, type) {
@@ -112,23 +111,23 @@ function objectify(x, type) {
 		return new Decimal(x);
 	} else if (type instanceof TRISOFuel) {
 		let ret = new TRISOFuel(type.tier);
-		ret.enriched = x.enriched;
-		ret.depleted = x.depleted;
+		ret.enriched = new Decimal(x.enriched);
+		ret.depleted = new Decimal(x.depleted);
 		return ret;
-	} else if (type instanceof ImprovedMines) {
-		let ret = new ImprovedMines();
+	} else if (type instanceof Mines) {
+		let ret = new Mines();
 		ret.tier = x.tier;
-		ret.amount = x.amount;
-		ret.depleted = x.depleted;
-		ret.depletion = x.depletion;
+		ret.amount = new Decimal(x.amount);
+		ret.depleted = new Decimal(x.depleted);
+		ret.depletion = new Decimal(x.depletion);
 		ret.ratio = x.ratio;
 		return ret;
 	} else if (type instanceof PebblebedFissionReactor) {
 		let ret = new PebblebedFissionReactor(type.tier, type.startCost.log10(), type.scaleCost.log10());
 		ret.amount = new Decimal(x.amount);
 		ret.bought = x.bought;
-		ret.fuel = x.fuel;
-		ret.spent = x.spent;
+		ret.fuel = new Decimal(x.fuel);
+		ret.spent = new Decimal(x.spent);
 		return ret;
 	/*} else if (type instanceof TurbineBlade) {
 		let ret = new TurbineBlade(x.name, x.efficiency, x.expansion, x.speed);

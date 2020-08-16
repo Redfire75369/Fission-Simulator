@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 6,
-			alpha: 0
+			alpha: 2
 		},
 
 		options: {
@@ -221,9 +221,9 @@ function updateUI() {
 	updateUIStats();
 }
 function updateGame(tickInterval = 50) {
-	if (leverMaxAll) {
+	/*if (leverMaxAll) {
 		buyMaxAll();
-	}
+	}*/
 	simulateTRISOFuel(tickInterval);
 	simulateMines(tickInterval);
 	simulatePebblebedReactors(tickInterval);
@@ -246,9 +246,9 @@ function simulateTime(seconds, actual, testing) {
 	}
 	let start = Object.assign({}, player);
 	for (let complete = 0; complete < ticks; complete++) {
-		if (testing) {
+		/*if (testing) {
 			buyMaxAll();
-		}
+		}*/
 		updateGame(tickInterval);
 		player.lastUpdate = Date.now();
 	}
@@ -285,20 +285,21 @@ var saveGameLoop = setInterval(function() {
 }, 15000);
 
 setInterval(function() {
-	//try {
+	try {
 		if (player.lastUpdate === undefined) {
 			player.lastUpdate = Date.now();
 		}
 		if (Date.now() > player.lastUpdate && focused) {
 			simulateTime((Date.now() - player.lastUpdate) / 1000);
 		}
-	/*} catch(e) {
+	} catch(e) {
 		if (!errored) {
-			alert("The game has encountered a fatal error. Please check the console and report this bug with a screenshot of what is currently being shown in console.");
+			alert("The game has encountered a fatal error. Please report this bug in the discord as soon as possible. The next prompt will contain debug information regarding this. Please include that in the bug report.");
+			alert("--DEBUG Information--\n" + e.stack);
 			console.error(e);
 			errored = true;
 		}
-	}*/
+	}
 }, 25);
 
 setInterval(function() {

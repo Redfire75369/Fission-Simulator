@@ -13,7 +13,7 @@ class Mines {
 
 	get effective() {
 		if (this.amount.sub(this.depleted).gte(mineSoftCaps[this.tier])) {
-			return mineSoftCaps[this.tier].add(this.amount.sub(this.depleted).sub(mineSoftCaps[this.tier]).div(Decimal.pow((this.tier + 1) * 3, 3)));
+			return mineSoftCaps[this.tier].add(this.amount.sub(this.depleted).sub(mineSoftCaps[this.tier]).div(Decimal.pow((this.tier + 1) * 8, 4)));
 		} else {
 			return this.amount.sub(this.depleted);
 		}
@@ -60,11 +60,17 @@ function getMineGain() {
 	return player.mines.metalExtraction.mul(player.mines.ratio).div(player.mines.constructionCost);
 }
 function getReactorGain(tier) {
-	if (player.reactors[tier].bought > 0) {
-		return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(boughtReactors()).div(player.reactors[tier].constructionCost);
-	} else {
+	if (tier < 2) {
+		if (player.reactors.pebblebeds[tier + 1].bought > 0) {
+			let bought = 0;
+			for (let tier = 0; tier < 3; tier++) {
+				bought += player.reactors.pebblebeds[tier].bought > 0;
+			}
+			return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost);
+		}
 		return zero;
 	}
+	return zero;
 }
 
 function simulateMines(tickInterval = 50) {
@@ -72,8 +78,9 @@ function simulateMines(tickInterval = 50) {
 	player.mines.depleted = player.mines.depleted.add(player.mines.metalExtraction.div(player.mines.ore).mul(player.mines.ratio).mul(tickInterval / 1000));
 	player.mines.depletion = player.mines.depletion.add(player.mines.metalExtraction.mul(player.mines.ratio).mul(tickInterval / 1000));
 
-	/*for (let tier = min(7, player.nucleosynthesis + 3); tier >= 0; tier--) {
-	}*/
+	for (let tier = 2; tier >= 0; tier--) {
+		player.reactors.pebblebeds[tier].amount = player.reactors.pebblebeds[tier].amount.add(getReactorGain(tier));
+	}
 }
 
 function updateUIMines() {

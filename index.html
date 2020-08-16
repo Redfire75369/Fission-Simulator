@@ -9,8 +9,8 @@
 
 		<meta property="og:type" content="game"/>
 		<meta property="og:title" content="Fission Simulator"/>
-		<meta property="og:description" content="An Incremental Game about Reactors"/>
-		<meta property="og:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/Alpha/index.html">
+		<meta property="og:description" content="An incremental game about nuclear fission, reactors and nuclear physics."/>
+		<meta property="og:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul/index.html">
 
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
@@ -34,10 +34,10 @@
 		<script defer src="javascripts/core/fuels/triso.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/reactors/pebblebed_fission.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/mines.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/turbine/calculations.js" charset ="utf-8" type="text/javascript"></script>
+		<!--<script defer src="javascripts/core/turbine/calculations.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/coilplacement.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/drawing.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/turbine/turbine.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/core/turbine/turbine.js" charset ="utf-8" type="text/javascript"></script>-->
 		<script defer src="javascripts/prestige/nucleosynthesis.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/prestige/meltdown.js" charset ="utf-8" type="text/javascript"></script>
@@ -81,8 +81,8 @@
 			<button onclick="showNaviTab('achievements_tab')" id="achievements_tabbtn">Achievements</button>
 			<button onclick="showNaviTab('options_tab')" id="options_tabbtn">Options</button>
 			<button onclick="showNaviTab('nanites_tab')" id="nanites_tabbtn" class="navigation--nanite">Nanites</button>
-			<button onclick="showNaviTab('meltdown_tab')" id="meltdown_tabbtn" style="color:#88ee44">Meltdown</button>
-			<button onclick="showNaviTab('cheats_tab')" id="cheats_tabbtn" style="color:#ffa500">Cheats</button>
+			<button onclick="showNaviTab('meltdown_tab')" id="meltdown_tabbtn" style="color: #88ee44;">Meltdown</button>
+			<button onclick="showNaviTab('cheats_tab')" id="cheats_tabbtn" style="color: #ffa500;">Cheats</button>
 		</div>
 
 		<div id="production_tab">
@@ -110,21 +110,21 @@
 						<div><span id="fuel_triso_enriched1"></span></div>
 						<div><span id="fuel_triso_depleted1"></span></div>
 						<div><span id="fuel_triso_lifetime1"></span> ms</div>
-						<div><button onclick="player.fuels.triso[0].reprocessSpent()" id="fuel_triso_reprocess1"><div class="reprocessbar"></div>Reprocess for <span id="fuel_triso_reprocesscost1"></span></button></div>
+						<div><button onclick="player.fuels.triso[0].reprocessDepleted()" id="fuel_triso_reprocess1"><div class="reprocessbar"></div>Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost1"></span> Energy</button></div>
 					</div>
 					<div class="flex__row fuel">
 						<div>LEU-235 TRISO</div>
 						<div><span id="fuel_triso_enriched2"></span></div>
 						<div><span id="fuel_triso_depleted2"></span></div>
 						<div><span id="fuel_triso_lifetime2"></span> ms</div>
-						<div><button onclick="player.fuels.triso[1].reprocessSpent()" id="fuel_triso_reprocess2"><div class="reprocessbar"></div>Reprocess for <span id="fuel_triso_reprocesscost2"></span></button></div>
+						<div><button onclick="player.fuels.triso[1].reprocessDepleted()" id="fuel_triso_reprocess2"><div class="reprocessbar"></div>Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost2"></span> Energy</button></div>
 					</div>
 					<div class="flex__row">
 						<div>LEP-239 TRISO</div>
 						<div><span id="fuel_triso_enriched3"></span></div>
 						<div><span id="fuel_triso_depleted3"></span></div>
 						<div><span id="fuel_triso_lifetime3"></span> ms</div>
-						<div><button onclick="player.fuels.triso[2].reprocessSpent()" id="fuel_triso_reprocess3"><div class="reprocessbar"></div>Reprocess for <span id="fuel_triso_reprocesscost3"></span></button></div>
+						<div><button onclick="player.fuels.triso[2].reprocessDepleted()" id="fuel_triso_reprocess3"><div class="reprocessbar"></div>Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost3"></span> Energy</button></div>
 					</div>
 				</div>
 			</div>
@@ -163,12 +163,17 @@
 						</div>
 						<button onclick="changeConstructionRatio(1)" class="allocationbtn">></button>
 						<button onclick="changeConstructionRatio(10)" class="allocationbtn">>></button>
+					</div><br/><br/>
+					<div class="flex__row" style="width: 45vw;">
+						<div class="allocationbar legend">Mines</div>
+						<div></div>
+						<div class="allocationbarcontents legend">Pebblebed Reactors</div>
 					</div>
 				</div>
 
 				<button onclick="player.mines.upgrade()" id="mines_upgrade">
 					Upgrade mines to <span id="mines_uptype"></span> Drills<br/>
-					Cost: <span id="mines_upcost"></span>
+					Cost: <span id="mines_upcost"> Energy</span>
 				</button>
 			</div>
 
@@ -200,7 +205,7 @@
 							<button onclick="player.reactors.pebblebeds[0].ejectWaste()" id="reactor_pebblebed_eject1">Eject Spent Fuel Pebbles</button>
 						</div>
 						<div>
-							<button onclick="player.reactors.pebblebeds[0].buy()" id="reactor_pebblebed_buy1">Buy for <span id = "reactor_pebblebed_cost1"></span></button>
+							<button onclick="player.reactors.pebblebeds[0].buy()" id="reactor_pebblebed_buy1">Buy for <span id = "reactor_pebblebed_cost1"></span> Energy</button>
 							<button onclick="player.reactors.pebblebeds[0].buyMax()" id="reactor_pebblebed_buymax1">Buy Max</button>
 						</div>
 					</div>
@@ -216,7 +221,7 @@
 							<button onclick="player.reactors.pebblebeds[1].ejectWaste()" id="reactor_pebblebed_eject2">Eject Spent Fuel Pebbles</button>
 						</div>
 						<div>
-							<button onclick="player.reactors.pebblebeds[1].buy()" id="reactor_pebblebed_buy2">Buy for <span id = "reactor_pebblebed_cost2"></span></button>
+							<button onclick="player.reactors.pebblebeds[1].buy()" id="reactor_pebblebed_buy2">Buy for <span id = "reactor_pebblebed_cost2"></span> Energy</button>
 							<button onclick="player.reactors.pebblebeds[1].buyMax()" id="reactor_pebblebed_buymax2">Buy Max</button>
 						</div>
 					</div>
@@ -232,7 +237,7 @@
 							<button onclick="player.reactors.pebblebeds[2].ejectWaste()" id="reactor_pebblebed_eject3">Eject Spent Fuel Pebbles</button>
 						</div>
 						<div>
-							<button onclick="player.reactors.pebblebeds[2].buy()" id="reactor_pebblebed_buy3">Buy for <span id = "reactor_pebblebed_cost3"></span></button>
+							<button onclick="player.reactors.pebblebeds[2].buy()" id="reactor_pebblebed_buy3">Buy for <span id = "reactor_pebblebed_cost3"></span> Energy</button>
 							<button onclick="player.reactors.pebblebeds[2].buyMax()" id="reactor_pebblebed_buymax3">Buy Max</button>
 						</div>
 					</div>

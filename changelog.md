@@ -13,9 +13,97 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.2] - 16/8/20
+### Added
+- Mines now produce reactors
+- Legend for colours in metal ore allocation
+- Currency labels to costs
+- CSSLint to Dev Environment
+
+### Modified
+- Fixed save loading
+- Fixed bug where you could load reactors even if they are full of spent fuel
+- Fixed issue where fuel produced ten times less energy than it should have
+- Made mine softcap harsher
+- Improved ESLint Configuration
+
+### Removed
+
+## [v0.6.1] - 15/8/20
+### Added
+
+### Modified
+- Partially fixed save loading
+- Failed attempt at adding transitions as a progress bar for fuel reprocessing
+- Attempted to improve reactor styles
+
+### Removed
+
+## [v0.6.0] - 15/8/20
+### Added
+- TRISO Fuel
+- Pebblebed Fission Reactors
+
+### Modified
+- Reduced amount of shortforms in function and method names
+
+### Removed
+- Regular Reactors
+- Turbines
+- Nucleosynthesis
+- Nanite Research
+- Meltdown
+
+## [v0.5.13] - 13/8/20 **PR**
+### Added
+- Fuel Increment Indicator
+
+### Modified
+- Split turbine scripts into smaller scripts
+- Reduced harshness of mine softcap
+
+### Removed
+
+## [v0.5.12] - 11/8/20 **PR**
+### Added
+- Allocation Bar for Metal Ore Distribution
+- Steam production indicator on reactors tab
+- Achievement Image for Achievement 11
+- .gitattributes to automatically normalise line endings
+
+### Modified
+- Buy rotors in sets now
+- Fixed stuff button
+- Improved Mine UI greatly
+
+### Removed
+- Efficiency
+- Individual Rotors
+
+## [v0.5.11] - 10/8/20 **PR**
+### Added
+
+### Modified
+- Fixed bugs regarding automation
+- Fixed bugs regarding missing/incorrect elements
+
+### Removed
+
+## [v0.5.10] - 7/8/20 **PR**
+### Added
+- Completely overhauled mines
+- Framework for automation
+- Added 6 new news messages
+
+### Modified
+- Removed functionality of efficiency
+- Shuffled meltdown upgrades
+- Made turbine boxes closer to one another
+
+### Removed
+
 ## [v0.5.9] - 3/8/20
 ### Added
-- Achievement Image for Achievement 11
 - Coils can now also be removed by right-clicking on them
 - ESLint to Dev Environment
 - Failsafe for an imported save which is too old
