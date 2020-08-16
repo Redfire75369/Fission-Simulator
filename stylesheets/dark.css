@@ -93,6 +93,27 @@ button:hover {
 .storebtn.reactors {}
 .storebtn.reactors {}
 
+.reprocessbar {
+	background-color: #00FF00;
+}
+.allocationbtn {
+	border: 2px solid #000000;
+	background: #FFFFFF;
+}
+.allocationbar {
+	background-color: #34D846;
+	border: 4px solid #000000;
+	border-radius: 8px;
+}
+.allocationbarcontents {
+	background-color: #B2C376;
+	border-radius: 4px;
+}
+.allocationbarcontents.legend {
+	border: 4px solid #000000;
+	border-radius: 8px;
+}
+
 .allocationbtn {
 	color: #FFFFFF;
 	background-color: #344445;

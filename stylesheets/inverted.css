@@ -119,6 +119,26 @@ button:hover {
 	background-color: #3f3f3f;
 	border: 1px solid #ff7fff;
 }
+.reprocessbar {
+	background-color: #ff00ff;
+}
+.allocationbtn {
+	border: 2px solid #ffffff;
+	background: #000000;
+}
+.allocationbar {
+	background-color: #34D846;
+	border: 4px solid #ffffff;
+	border-radius: 8px;
+}
+.allocationbarcontents {
+	background-color: #4d3c89;
+	border-radius: 4px;
+}
+.allocationbarcontents.legend {
+	border: 4px solid #ffffff;
+	border-radius: 8px;
+}
 
 #meltdown {
 	color: #ffffff;
