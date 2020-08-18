@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 6,
-			alpha: 3
+			alpha: 4
 		},
 
 		options: {
@@ -191,9 +191,9 @@ const zero = new Decimal(0);
 var focused = true;
 window.onvisibilitychange = function() {
 	focused = !focused;
-	if (focused) {
+	/*if (focused) {
 		nextNews();
-	}
+	}*/
 }
 
 function updateUI() {
@@ -209,6 +209,7 @@ function updateUI() {
 	updateUIDecayHastening();
 	updateUIAchievements();
 	updateUIStats();
+	updateUIHowToPlay();
 }
 function updateGame(tickInterval = 50) {
 	/*if (leverMaxAll) {

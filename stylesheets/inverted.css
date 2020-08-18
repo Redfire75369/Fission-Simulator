@@ -48,21 +48,21 @@ button:hover {
 .popup {
 	color: #202020;
 	background-color: #000000;
-	border: 3px solid #ffffff;
+	border: 3px solid #FFFFFF;
 	border-radius: 6px;
 	padding: 10px 10px 15px;
 }
 
 .newsbar {
-	border: 3px solid #ffffff;
+	border: 3px solid #FFFFFF;
 	border-radius: 4px;
 }
 .newsbar > div {
-	color: #ffffff;
+	color: #FFFFFF;
 }
 
 .optionsbtn {
-	color: #ffffff;
+	color: #FFFFFF;
 	background-color: #010101;
 	border: 2px solid #e7e7e7;
 	border-radius: 2px;
@@ -72,7 +72,7 @@ button:hover {
 }
 
 .energy {
-	color: #ffffff;
+	color: #FFFFFF;
 }
 .energypersecond {
 	color: #cfcfcf;
@@ -115,7 +115,7 @@ button:hover {
 	border: 1px solid;
 }
 .naniteup.bought {
-	color: #ffffff;
+	color: #FFFFFF;
 	background-color: #3f3f3f;
 	border: 1px solid #ff7fff;
 }
@@ -123,25 +123,29 @@ button:hover {
 	background-color: rgba(255, 0, 255, 0.3);
 }
 .allocationbtn {
-	border: 2px solid #ffffff;
+	border: 2px solid #FFFFFF;
 	background: #000000;
 }
 .allocationbar {
 	background-color: #34D846;
-	border: 4px solid #ffffff;
+	border: 4px solid #FFFFFF;
 	border-radius: 8px;
+}
+.allocationbar.legend {
+	font-color: #FFFFFF;
 }
 .allocationbarcontents {
 	background-color: #4d3c89;
 	border-radius: 4px;
 }
 .allocationbarcontents.legend {
-	border: 4px solid #ffffff;
+	border: 4px solid #FFFFFF;
 	border-radius: 8px;
+	font-color: #FFFFFF;
 }
 
 #meltdown {
-	color: #ffffff;
+	color: #FFFFFF;
 	background-color: #000000;
 	border: 2px solid #ff7fff;
 	border-radius: 6px;
@@ -153,17 +157,17 @@ button:hover {
 }
 .meltdownup.buy {
 	color: #000000;
-	background-color: #ffffff;
+	background-color: #FFFFFF;
 	border: 3px solid #255adf;
 }
 .meltdownup.buy:hover {}
 .meltdownup.locked {
-	color: #ffffff;
+	color: #FFFFFF;
 	background-color: #aaaaaa;
 	border: 3px solid #00ffff;
 }
 .meltdownup.bought {
-	color: #ffffff;
+	color: #FFFFFF;
 	background-color: #bb3399;
 	border: 3px solid #255adf;
 }

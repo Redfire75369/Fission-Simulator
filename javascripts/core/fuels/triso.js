@@ -8,10 +8,12 @@ class TRISOFuel {
 	}
 
 	get lifetime() {
-		return 8000 * Decimal.pow(4, this.tier);
+		let mul = Decimal.pow(1.4, player.reactors.pebblebeds[this.tier].bought);
+		mul = mul.mul(player.reactors.pebblebeds[this.tier].amount);
+		return Decimal.pow(4, this.tier).mul(8000).div(mul);;
 	}
 	get reprocessingTime() {
-		return 1000 * Decimal.pow(3, this.tier + 1);
+		return 1000 * pow(3, this.tier + 1);
 	}
 	get reprocessEnergyCost() {
 		return this.depleted.mul(Decimal.pow(80, this.tier + 1));
@@ -55,7 +57,7 @@ function resetTRISOFuel() {
 
 function getTRISOFuelGain(tier) {
 	if (player.mines.tier >= tier) {
-		return player.mines.effective.mul(player.mines.tier - tier + 1).div(60);
+		return player.mines.effective.mul(player.mines.tier - tier + 1).div(20);
 	}
 	return zero;
 }
@@ -77,7 +79,7 @@ function updateUITRISOFuel() {
 	for (let tier = 0; tier < 3; tier++) {
 		document.getElementById("fuel_triso_enriched" + (tier + 1)).innerText = notation(player.fuels.triso[tier].enriched);
 		document.getElementById("fuel_triso_depleted" + (tier + 1)).innerText = notation(player.fuels.triso[tier].depleted);
-		document.getElementById("fuel_triso_lifetime" + (tier + 1)).innerText = notation(player.fuels.triso[tier].lifetime / 1000);
+		document.getElementById("fuel_triso_lifetime" + (tier + 1)).innerText = notation(player.fuels.triso[tier].lifetime.div(1000));
 
 		document.getElementById("fuel_triso_reprocess" + (tier + 1)).parentElement.style.display = player.unlocked.fuelReprocessing ? "" : "none";
 		document.getElementById("fuel_triso_reprocess" + (tier + 1)).className = player.fuels.triso[tier].canReprocessDepleted ? "storebtn buy" : "storebtn locked";

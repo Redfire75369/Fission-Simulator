@@ -1,5 +1,5 @@
 const mineTypes = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium", "Diamond", "Laser"];
-const mineUpgradeCosts = [new Decimal("2e3"), new Decimal("1e6"), new Decimal("1e17"), new Decimal("1e26"), new Decimal("1e38"), new Decimal("1e51"), new Decimal("1e64"), new Decimal("1e80")];
+const mineUpgradeCosts = [new Decimal("7.5e2"), new Decimal("1e5"), new Decimal("1e17"), new Decimal("1e26"), new Decimal("1e38"), new Decimal("1e51"), new Decimal("1e64"), new Decimal("1e80")];
 const mineSoftCaps = [new Decimal("1e1"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
 
 class Mines {
@@ -47,6 +47,13 @@ class Mines {
 			}
 		}
 	}
+
+	salvage() {
+		if (this.depleted.gt(0)) {
+			this.amount = this.amount.add(this.depleted.mul(0.8));
+			this.depleted = zero;
+		}
+	}
 }
 
 function resetMines() {
@@ -68,7 +75,7 @@ function getReactorGain(tier) {
 			for (let tier = 0; tier < 3; tier++) {
 				bought += player.reactors.pebblebeds[tier].bought > 0;
 			}
-			return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost);
+			return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost).sqrt();
 		}
 		return zero;
 	}
@@ -88,11 +95,13 @@ function simulateMines(tickInterval = 50) {
 }
 
 function updateUIMines() {
-	document.getElementById("production_mines_subtabbtn").style.display = player.unlocked.mines || player.energy.gt(500) ? "" : "none";
-	document.getElementById("production_mines_subtab").children[0].style.display = player.energy.gt(500) && !player.unlocked.mines ? "" : "none";
+	document.getElementById("production_mines_subtabbtn").style.display = player.unlocked.mines || player.energy.gt(250) ? "" : "none";
+	document.getElementById("production_mines_subtab").children[0].style.display = player.energy.gt(250) && !player.unlocked.mines ? "" : "none";
 	document.getElementById("production_mines_subtab").children[1].style.display = player.unlocked.mines ? "" : "none";
 
 	if (player.mines.tier >= 0) {
+		document.getElementById("production_mines_softcap").style.display = player.mines.amount.gt(mineSoftCaps[player.mines.tier]) ? "" : "none";
+
 		document.getElementById("mines_active").parentElement.parentElement.parentElement.style.display = "";
 		document.getElementById("mines_active").innerText = notation(player.mines.amount.sub(player.mines.depleted));
 		document.getElementById("mines_depleted").innerText = notation(player.mines.depleted);
@@ -111,9 +120,11 @@ function updateUIMines() {
 		document.getElementById("construction_cost").innerText = notation(player.mines.constructionCost);
 		document.getElementById("construction_rate").innerText = notation(getMineGain());
 
-		document.getElementById("metal_allocation").parentElement.parentElement.style.display = "";
-		document.getElementById("metal_allocation").children[0].style.width = player.mines.ratio * 100 + "%";
+		//document.getElementById("metal_allocation").parentElement.parentElement.style.display = "";
+		//document.getElementById("metal_allocation").children[0].style.width = player.mines.ratio * 100 + "%";
 	} else {
+		document.getElementById("production_mines_softcap").style.display = "none";
+
 		document.getElementById("mines_active").parentElement.parentElement.parentElement.style.display = "none";
 
 		document.getElementById("ore_extraction").parentElement.style.display = "none";
@@ -124,7 +135,7 @@ function updateUIMines() {
 		document.getElementById("construction_cost").parentElement.style.display = "none";
 		document.getElementById("construction_rate").parentElement.style.display = "none";
 
-		document.getElementById("metal_allocation").parentElement.parentElement.style.display = "none";
+		//document.getElementById("metal_allocation").parentElement.parentElement.style.display = "none";
 	}
 
 
@@ -134,4 +145,7 @@ function updateUIMines() {
 		document.getElementById("mines_upgrade_text").innerText = player.mines.tier == -1 ? "Buy a mine" : "Upgrade mines to " + mineTypes[player.mines.tier + 1] + " Drills";
 		document.getElementById("mines_upcost").innerText = notation(player.mines.upCost);
 	}
+
+	document.getElementById("mines_salvage").className = player.mines.amount.gt(0) ? "storebtn buy" : "storebtn locked";
+	document.getElementById("mines_salvage").style.display = player.mines.tier >= 0 ? "" : "none";
 }

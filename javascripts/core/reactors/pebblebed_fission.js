@@ -43,7 +43,7 @@ function simulatePebblebedReactors(tickInterval = 50) {
 
 	for (let tier = 0; tier < 3; tier++) {
 		if (player.reactors.pebblebeds[tier].fuel.gt(0) && player.reactors.pebblebeds[tier].bought > 0) {
-			let fuelUsage = player.reactors.pebblebeds[tier].fuel.min(tickInterval / player.fuels.triso[tier].lifetime);
+			let fuelUsage = player.reactors.pebblebeds[tier].fuel.min(Decimal.div(tickInterval, player.fuels.triso[tier].lifetime));
 			player.reactors.pebblebeds[tier].fuel = player.reactors.pebblebeds[tier].fuel.sub(fuelUsage);
 			player.reactors.pebblebeds[tier].spent = player.reactors.pebblebeds[tier].spent.add(fuelUsage);
 
@@ -55,7 +55,7 @@ function simulatePebblebedReactors(tickInterval = 50) {
 }
 
 function updateUIPebblebedReactors() {
-	player.unlocked.mines |= player.energy.gte("2.4e3");
+	player.unlocked.mines |= player.energy.gte("5e2");
 	document.getElementById("reactor_pebblebed_label_fuel_handling").style.display = player.unlocked.mines ? "" : "none";
 
 	for (let tier = 0; tier < 3; tier++) {

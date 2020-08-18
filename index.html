@@ -55,6 +55,7 @@
 		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/cheats.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/howtoplay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 	</head>
@@ -75,18 +76,19 @@
 			<p>You are gaining <span id="energy_gain">0.00</span> Energy per second.</p>
 		</div>
 
-		<div class="newsbar">
+		<!--<div class="newsbar">
 			<div id="news"></div>
-		</div>
+		</div>-->
 
 		<div id="navigation" class="navigation main">
 			<button onclick="showNaviTab('production_tab')" id="production_tabbtn">Production</button>
 			<button onclick="showNaviTab('statistics_tab')" id="statistics_tabbtn">Statistics</button>
 			<button onclick="showNaviTab('achievements_tab')" id="achievements_tabbtn">Achievements</button>
 			<button onclick="showNaviTab('options_tab')" id="options_tabbtn">Options</button>
-			<button onclick="showNaviTab('nanites_tab')" id="nanites_tabbtn" class="navigation--nanite">Nanites</button>
-			<button onclick="showNaviTab('meltdown_tab')" id="meltdown_tabbtn" style="color: #88ee44;">Meltdown</button>
+			<button onclick="showNaviTab('nanites_tab')" id="nanites_tabbtn" class="navigation--nanite" style="display: none;">Nanites</button>
+			<button onclick="showNaviTab('meltdown_tab')" id="meltdown_tabbtn" style="color: #88ee44; display: none;">Meltdown</button>
 			<button onclick="showNaviTab('cheats_tab')" id="cheats_tabbtn" style="color: #ffa500;">Cheats</button>
+			<button onclick="showNaviTab('how_to_play_tab')" id="how_to_play_tabbtn">How to Play</button>
 		</div>
 
 		<div id="production_tab">
@@ -102,7 +104,7 @@
 				</div>
 
 				<div id="production_fuel_triso_subsubtab">
-					<div style="font-size: 40px;">Obtain 2400 Energy to unlock</div>
+					<div style="font-size: 40px;">Obtain 500 Energy to unlock</div>
 					<div>
 						<div class="flex__row fuel">
 							<div><b>Type</b></div>
@@ -112,21 +114,21 @@
 							<div id="fuel_triso_label_reprocessing"><b>Reprocessing</b></div>
 						</div>
 						<div class="flex__row fuel">
-							<div>TBU TRISO</div>
+							<div>TBU</div>
 							<div><span id="fuel_triso_enriched1"></span></div>
 							<div><span id="fuel_triso_depleted1"></span></div>
 							<div><span id="fuel_triso_lifetime1"></span> ms</div>
 							<div><button onclick="player.fuels.triso[0].reprocessDepleted()" id="fuel_triso_reprocess1" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess1" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost1"></span> Energy</div></button></div>
 						</div>
 						<div class="flex__row fuel">
-							<div>LEU-235 TRISO</div>
+							<div>LEU-235</div>
 							<div><span id="fuel_triso_enriched2"></span></div>
 							<div><span id="fuel_triso_depleted2"></span></div>
 							<div><span id="fuel_triso_lifetime2"></span> ms</div>
 							<div><button onclick="player.fuels.triso[1].reprocessDepleted()" id="fuel_triso_reprocess2" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess2" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost2"></span> Energy</div></button></div>
 						</div>
 						<div class="flex__row fuel">
-							<div>LEP-239 TRISO</div>
+							<div>LEP-239</div>
 							<div><span id="fuel_triso_enriched3"></span></div>
 							<div><span id="fuel_triso_depleted3"></span></div>
 							<div><span id="fuel_triso_lifetime3"></span> ms</div>
@@ -137,7 +139,7 @@
 			</div>
 
 			<div id="production_mines_subtab">
-				<div style="font-size: 40px;">Obtain 2400 Energy to unlock</div>
+				<div style="font-size: 40px;">Obtain 500 Energy to unlock</div>
 				<div>
 					<div>
 						<div class="flex__row mines">
@@ -155,6 +157,8 @@
 					</div><br/>
 
 					<div>
+						<b id="production_mines_softcap">Your minefields have become oversaturated, leading to reduced ore output per mine.</b>
+	
 						You are extracting <span id="ore_extraction"></span> kg of metal ore per second.<br/>
 						You have <span id="ore_total"></span> kg of metal ore that is currently extractable.<br/><br/>
 						Your mines use <span id="mine_tier"></span> Drills.<br/>
@@ -162,7 +166,7 @@
 						You are constructing <span id="construction_rate"></span> new mines per second.<br/><br/>
 					</div>
 
-					<div class="flex__col">
+					<!--<div class="flex__col">
 						<div>Distribution of metal ore used for construction of mines and reactors</div>
 						<div class="flex__row" style="width: 60vw;">
 							<button onclick="changeConstructionRatio(-10)" class="allocationbtn"><<</button>
@@ -178,18 +182,21 @@
 							<div></div>
 							<div class="allocationbar legend">Pebbeled reactors</div>
 						</div>
-					</div>
+					</div>-->
 
 					<button onclick="player.mines.upgrade()" id="mines_upgrade">
 						<span id="mines_upgrade_text"></span><br/>
-						Cost: <span id="mines_upcost"> Energy</span>
+						Cost: <span id="mines_upcost"></span> Energy
+					</button>
+					<button onclick="player.mines.salvage()" id="mines_salvage">
+						Salvage depleted mines into new mines
 					</button>
 				</div>
 			</div>
 
 			<div id="production_reactors_subtab">
 				<div class="navigation subtab">
-					<button onclick="showReactorSubTab('pebblebed_subsubtab')" id="production_reactor_pebblebed_subsubtabbtn">Pebblebed</button>
+					<button onclick="showReactorSubTab('pebblebed_subsubtab')" id="production_reactor_pebblebed_subsubtabbtn">Pebblebeds</button>
 				</div>
 
 				<div id="production_reactor_pebblebed_subsubtab">
@@ -204,15 +211,15 @@
 						<div><b>Construction</b></div>
 					</div>
 					<div class="flex__row reactors">
-						<div>TBU Pebblebed Reactor</div>
+						<div>TBU</div>
 						<div><span id="reactor_pebblebed_amount1"></span></div>
 						<div><span id="reactor_pebblebed_efficiency1"></span></div>
 						<div><span id="reactor_pebblebed_fuel1"></span></div>
 						<div><span id="reactor_pebblebed_spent1"></span></div>
 						<div><span id="reactor_pebblebed_capacity1"></span></div>
 						<div>
-							<button onclick="player.reactors.pebblebeds[0].loadFuel()" id="reactor_pebblebed_load1">Load with Fuel Pebbles</button>
-							<button onclick="player.reactors.pebblebeds[0].ejectWaste()" id="reactor_pebblebed_eject1">Eject Spent Fuel Pebbles</button>
+							<button onclick="player.reactors.pebblebeds[0].loadFuel()" id="reactor_pebblebed_load1">Load Enriched TBU Fuel</button>
+							<button onclick="player.reactors.pebblebeds[0].ejectWaste()" id="reactor_pebblebed_eject1">Eject Spent TBU Fuel</button>
 						</div>
 						<div>
 							<button onclick="player.reactors.pebblebeds[0].buy()" id="reactor_pebblebed_buy1">Buy for <span id = "reactor_pebblebed_cost1"></span> Energy</button>
@@ -220,15 +227,15 @@
 						</div>
 					</div>
 					<div class="flex__row reactors">
-						<div>LEU-235 Pebblebed Reactor</div>
+						<div>LEU-235</div>
 						<div><span id="reactor_pebblebed_amount2"></span></div>
 						<div><span id="reactor_pebblebed_efficiency2"></span></div>
 						<div><span id="reactor_pebblebed_fuel2"></span></div>
 						<div><span id="reactor_pebblebed_spent2"></span></div>
 						<div><span id="reactor_pebblebed_capacity2"></span></div>
 						<div>
-							<button onclick="player.reactors.pebblebeds[1].loadFuel()" id="reactor_pebblebed_load2">Load with Fuel Pebbles</button>
-							<button onclick="player.reactors.pebblebeds[1].ejectWaste()" id="reactor_pebblebed_eject2">Eject Spent Fuel Pebbles</button>
+							<button onclick="player.reactors.pebblebeds[1].loadFuel()" id="reactor_pebblebed_load2">Load Enriched LEU-235 Fuel</button>
+							<button onclick="player.reactors.pebblebeds[1].ejectWaste()" id="reactor_pebblebed_eject2">Eject Spent LEU-235 Fuel</button>
 						</div>
 						<div>
 							<button onclick="player.reactors.pebblebeds[1].buy()" id="reactor_pebblebed_buy2">Buy for <span id = "reactor_pebblebed_cost2"></span> Energy</button>
@@ -236,15 +243,15 @@
 						</div>
 					</div>
 					<div class="flex__row reactors">
-						<div>LEP-239 Pebblebed Reactor</div>
+						<div>LEP-239</div>
 						<div><span id="reactor_pebblebed_amount3"></span></div>
 						<div><span id="reactor_pebblebed_efficiency3"></span></div>
 						<div><span id="reactor_pebblebed_fuel3"></span></div>
 						<div><span id="reactor_pebblebed_spent3"></span></div>
 						<div><span id="reactor_pebblebed_capacity3"></span></div>
 						<div>
-							<button onclick="player.reactors.pebblebeds[2].loadFuel()" id="reactor_pebblebed_load3">Load with Fuel Pebbles</button>
-							<button onclick="player.reactors.pebblebeds[2].ejectWaste()" id="reactor_pebblebed_eject3">Eject Spent Fuel Pebbles</button>
+							<button onclick="player.reactors.pebblebeds[2].loadFuel()" id="reactor_pebblebed_load3">Load Enriched LEP-239 Fuel</button>
+							<button onclick="player.reactors.pebblebeds[2].ejectWaste()" id="reactor_pebblebed_eject3">Eject Spent LEP-239 Fuel</button>
 						</div>
 						<div>
 							<button onclick="player.reactors.pebblebeds[2].buy()" id="reactor_pebblebed_buy3">Buy for <span id = "reactor_pebblebed_cost3"></span> Energy</button>
@@ -600,6 +607,24 @@
 				</div>
 			</div>
 		</div>
+		<button onclick="showNaviTab('balance_tab')" id="balance_tabbtn" class="navitabbtn">Balancing</button>
+		<div id="how_to_play_tab">
+			<div id="how_to_play_fuel_triso">
+				<u>TRISO Fuel</u><br/>
+				Enriched TRISO fuel is used in pebblebed reactors to produce energy. This is produced by mines. When fuel becomes spent in a pebblebed reactor, it can be ejected. <span id="how_to_play_fuel_triso_span1">This depleted fuel can be reprocessed over some time with energy to produce higher tier fuels.</span>
+			</div><br/><br/>
+
+			<div id="how_to_play_mines">
+				<u>Mines</u><br/>
+				Mines produce metal ore based on the amount of extractible ore. The metal ore is used for the construction of even more mines and pebblebed reactors. Once a mine is depleted, it is no longer active and cam be salvaged for metal ore to be used for other mines. Mines also produce enriched fuel which is used for pebblebed reactors.
+			</div><br/><br/>
+			
+			<div id="how_to_play_reactor_pebblebed">
+				<u>Pebblebed Reactors</u><br/>
+				Pebblebed reactors are simple fission reactors that produce energy with enriched fuel. <span id="how_to_play_reactor_pebblebed_span1">You can load the fuel using the "Load with Enriched Fuel" buttons. Each reactor has a maximum capacity that both enriched and spent fuel contribute towards.</span> The amount of enriched fuel in a reactor increases the efficiency of reactor logarithmically. Energy can be spent on them to increase the amount of reactors, increasing capacity, and the efficiency of the reactors.
+			</div>
+		</div>
+		
 
 		<div id="cheats_tab">
 			<div class="flex__row">
@@ -651,7 +676,7 @@
 			</div>
 		</div>
 
-		<button onclick="showNaviTab('balance_tab')" id="balance_tabbtn" class="navitabbtn">Balancing</button>
+		<button onclick="showNaviTab('balance_tab')" id="balance_tabbtn" class="navitabbtn" style="display: none">Balancing</button>
 		<div id="balance_tab">
 			<form>
 				<table>

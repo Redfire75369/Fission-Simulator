@@ -19,6 +19,7 @@ function preLoad() {
 	document.getElementById("meltdown_tab").style.display = "none";
 	document.getElementById("meltdown_ups_subtab").style.display = "none";
 	document.getElementById("meltdown_decay_hastening_subtab").style.display = "none";
+	document.getElementById("how_to_play_tab").style.display = "none";
 	document.getElementById("navigation").style.display = "none";
 	document.getElementById("offline_popup").style.display = "none";
 
@@ -56,7 +57,7 @@ function init_game() {
 	if (Date.now() > player.lastUpdate + 1000) {
 		simulateTime((Date.now() - player.lastUpdate) / 1000);
 	}
-	nextNews();
+	//nextNews();
 }
 
 init_game();

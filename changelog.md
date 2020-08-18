@@ -13,6 +13,23 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.4] - 18/8/20
+### Added
+- How to Play Tab
+- Notice for when mine amount is above softcap
+- Salvage of depleted mines to build new mines
+
+### Modified
+- Reduced unlock requirement for mines
+- Rewording of some text to make it more intuitive
+- Fuel lifetime is reduced based on bought reactors and amount of reactors
+- Buffed mines' fuel production
+- Reduced mines' reactor construction
+
+### Removed
+- Disabled news ticker
+- Mine and reactor construction ratio distribution (Player-facing only)
+
 ## [v0.6.3] - 16/8/20
 ### Added
 - Achievement 11
