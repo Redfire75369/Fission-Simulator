@@ -1,15 +1,15 @@
 body {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	font-size: 15px;
 	overflow-x: hidden;
 }
 
 table {
-	width: 100%;
 	margin: 0;
 	padding: 0;
+	width: 100%;
 }
 
 button {
@@ -20,48 +20,53 @@ button:hover {
 }
 
 .flex__col {
+	align-items: center;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: center;
 }
+.flex__col.pebblebed {
+	max-width: 75%;
+	min-width: 75%;
+}
 .flex__col.turbine {
-	min-width: 24px;
 	max-width: 24px;
+	min-width: 24px;
 }
 
 .flex__row {
+	align-items: center;
 	display: flex;
 	flex-direction: row;
-	align-items: center;
 	justify-content: center;
 }
 .flex__row.fuel > div {
-	min-width: 20vw;
 	max-width: 20vw;
+	min-width: 20vw;
 }
 .flex__row.mines > div {
-	min-width: 25vw;
 	max-width: 25vw;
+	min-width: 25vw;
 }
-.flex__row.reactors {
-	height: 120%;
+.flex__row.pebblebed {
+	max-width: 100%;
+	min-width: 100%;
 }
-.flex__row.reactors > div {
-	min-width: 12.4vw;
-	max-width: 12.4vw;
-	min-height: 100%;
+.flex__row.pebblebed > div {
 	max-height: 100%;
+	max-width: 50%;
+	min-height: 100%;
+	min-width: 50%;
 }
 .flex__row.reactors > div > button {
-	min-width: 80%;
+	max-height: 40%;
 	max-width: 80%;
 	min-height: 40%;
-	max-height: 40%;
+	min-width: 80%;
 }
 .flex__row.turbine {
-	min-height: 24px;
 	max-height: 24px;
+	min-height: 24px;
 }
 
 .flex__col > *, .flex__row > * {
@@ -75,27 +80,27 @@ button:hover {
 }
 
 .popup {
-	position: fixed;
-	top: 50%;
-	left: 50%;
 	display: flex;
+	left: 50%;
+	position: fixed;
 	text-align: center;
-	z-index: 8;
+	top: 50%;
 	transform: translateX(-50%) translateY(-50%);
+	z-index: 8;
 }
 
 .tooltip {
-	position: relative;
-	display: inline-block;
 	border: 1px solid #000000;
+	display: inline-block;
+	position: relative;
 }
 
 .tooltip .tooltiptext {
-	position: absolute;
 	background-color: #000000;
 	color: #FFFFFF;
-	visibility: hidden;
 	data-html: true;
+	position: absolute;
+	visibility: hidden;
 	z-index: 2;
 }
 .tooltip:hover .tooltiptext {
@@ -103,28 +108,28 @@ button:hover {
 }
 
 .tooltiptext.achtooltipcomplete {
-	width: 25vw;
 	bottom: 105%;
+	color: #88EE44;
 	left: 50%;
 	margin-left: -12.5vw;
 	padding-top: 5px;
-	color: #88EE44;
+	width: 25vw;
 }
 .tooltiptext.achtooltiplocked {
-	width: 25vw;
 	bottom: 105%;
+	color: #DE564D;
 	left: 50%;
 	margin-left: -12.5vw;
 	padding-top: 5px;
-	color: #DE564D;
+	width: 25vw;
 }
 .tooltiptext.turbine {
-	width: 120px;
 	bottom: 105%;
+	color: #FFFFFF;
 	left: 50%;
 	margin-left: -60px;
 	padding: 5px;
-	color: #FFFFFF;
+	width: 120px;
 }
 
 .info {
@@ -132,23 +137,23 @@ button:hover {
 }
 
 .newsbar {
-	width: 80%;
 	height: 20px;
-	text-align: left;
 	margin: auto;
-	padding: 2px;
 	overflow: hidden;
+	padding: 2px;
+	text-align: left;
+	width: 80%;
 }
 .newsbar > div {
-	position: relative;
 	display: inline-block;
+	position: relative;
 	white-space: nowrap;
 }
 
 .navigationtoggle {
+	left: 24px;
 	position: absolute;
 	top: 24px;
-	left: 24px;
 }
 
 .navigation {
@@ -157,61 +162,60 @@ button:hover {
 	justify-content: center;
 }
 .navigation > button {
-	width: 180px;
-	height: 40px;
-	font-size: 20px;
 	border: 2px solid #FFFFFF;
 	border-radius: 4px;
+	font-size: 20px;
+	height: 40px;
 	margin: 2px;
+	width: 180px;
 }
 .navigation.main {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 200px;
-	height: 100vh;
-	padding: 10px;
 	background-color: rgba(0, 0, 0, 0.6);
+	height: 100vh;
+	left: 0;
+	padding: 10px;
+	position: absolute;
+	top: 0;
+	width: 200px;
 	z-index: 4;
 }
 
 .subtab > button {
-	width: 150px;
-	height: 30px;
-	font-size: 16px;
-	border-width: 2px;
-	border-style: solid;
+	border: 2px solid #000000;
 	border-radius: 4px;
+	font-size: 16px;
+	height: 30px;
+	width: 150px;
 }
 
 #statistics_tab > .flex__row > div:nth-child(1) {
-	text-align: right;
 	padding-right: 2px;
+	text-align: right;
 }
 
 #achievements_tab {
-	display: flex;
 	align-items: center;
+	display: flex;
 }
 #achievements_tab > div {
 	flex: 0 0;
 }
 
 .achpic {
-	width: 100px;
 	height: 100px;
 	opacity: 0.7;
+	width: 100px;
 	z-index: 1;
 }
 .achcomplete, .achlocked {
-	width: 12vw;
 	height: 100px;
+	width: 12vw;
 }
 
 .optionsbtn {
-	width: 200px;
-	height: 55px;
 	font-size: 20px;
+	height: 55px;
+	width: 200px;
 }
 
 .energy {
@@ -223,57 +227,110 @@ button:hover {
 
 
 .reprocessbar {
-	width: 0;
-	height: 100%;
 	border-radius: 1px;
+	height: 100%;
+	width: 0;
 }
 .allocationbtn {
 	max-width: 48px;
 	min-height: 48px;
 }
 .allocationbar {
-	width: 40vw;
 	height: 48px;
+	width: 40vw;
 }
 .allocationbar.legend {
-	width: 20vw;
 	height: 20px;
+	width: 20vw;
 }
 .allocationbarcontents {
 	height: 100%;
 }
 .allocationbarcontents.legend {
-	width: 20vw;
 	height: 20px;
+	width: 20vw;
+}
+
+.reactorbox.pebblebed {
+	background-color: #E5E5E5;
+	border: 2px solid #000000;
+	max-height: 240px;
+	max-width: 30vw;
+	min-height: 240px;
+	min-width: 30vw;
+}
+
+.pebblebedbtn {
+	font-size: 10px;
+	max-width: 90%;
+	min-width: 90%;
+}
+.pebblebedbtn.buy {
+	background-color: #B5B5B5;
+	border: 2px solid #8BC152;
+	color: #000000;
+}
+.pebblebedbtn.locked {
+	background-color: #515151;
+	border: 2px solid #BB210D;
+	color: #000000;
+}
+
+.fuelbarcontainer {
+	align-items: center;
+	background-color: black;
+	justify-content: center;
+	max-height: 36px;
+	max-width: 100%;
+	min-height: 36px;
+	min-width: 100%;
+}
+.fuelbarcontainer > div {
+	background-color: #A5A5A5;
+	border: 2px solid yellow;
+	margin: 4px;
+	max-height: 24px;
+	max-width: calc(100% - 12px);
+	min-width: calc(100% - 12px);
+}
+.fuelbarcontainer > div > div {
+	background-color: #BB210D;
+	height: 24px;
+	max-width: 0;
+}
+.fuelbarcontainer > div > div > div {
+	background-color: #8BC152;
+	height: 24px;
+	max-width: 0;
 }
 
 .turbinebox {
-	min-width: 20px;
-	min-height: 20px;
-	max-width: 20px;
-	max-height: 20px;
 	border: 2px solid #050505;
 	justify-content: center;
+	max-height: 20px;
+	max-width: 20px;
+	min-height: 20px;
+	min-width: 20px;
 }
 .turbinebox.selected {
 	border: 2px solid #3347EF;
 }
 .turbinebox.rotorbox {
-	min-width: 24px;
-	min-height: 24px;
-	max-width: 24px;
-	max-height: 24px;
 	border: none;
+	max-height: 24px;
+	max-width: 24px;
+	min-height: 24px;
+	min-width: 24px;
 }
 
 .turbinecasing {
 	background-color: #184236;
 }
 .turbinecasing.coil {
-	min-width: 20px;
-	min-height: 20px;
-	max-width: 20px;
 	max-height: 20px;
+	max-width: 20px;
+	min-height: 20px;
+	min-width: 20px;
 }
 
 .turbineshaft {
@@ -285,13 +342,13 @@ button:hover {
 }
 
 .turbinerotor {
-	max-width: 6px;
 	height: 20px;
+	max-width: 6px;
 	z-index: 1;
 }
 .turbinerotor.horizontal {
-	max-width: 9px;
 	height: 24px;
+	max-width: 9px;
 }
 .turbinerotor.top {
 	height: 18px;
@@ -307,7 +364,6 @@ button:hover {
 	margin-top: 2px;
 }
 
-.turbinerotor.none {}
 .turbinerotor.steel {
 	background-color: #7A7F80;
 }
@@ -325,11 +381,11 @@ button:hover {
 }
 
 .turbinecoil {
-	min-width: 20px;
-	min-height: 20px;
-	max-width: 20px;
-	max-height: 20px;
 	border: 2px solid #A8A8A8;
+	max-height: 20px;
+	max-width: 20px;
+	min-height: 20px;
+	min-width: 20px;
 }
 .turbinecoil.active {
 	border: 2px solid #51B863;
@@ -378,45 +434,62 @@ button:hover {
 .storebtn {
 	font-size: 12px;
 }
+.storebtn.pebblebed {
+	max-width: 80%;
+	min-width: 80%;
+}
+.storebtn.pebblebed.buysingle {
+	max-height: 40px;
+	max-width: 60%;
+	min-height: 40px;
+
+	min-width: 60%;
+}
+.storebtn.pebblebed.buymax {
+	max-height: 40px;
+	max-width: 30%;
+	min-height: 40px;
+	min-width: 30%;
+}
 
 .naniteup {
-	width: 300px;
-	height: 150px;
 	font-size: 15px;
+	height: 150px;
+	width: 300px;
 }
 
 #meltdown {
-	width: 210px;
-	height: 70px;
 	font-size: 10px;
+	height: 70px;
+	width: 210px;
 }
 .meltdownup {
+	height: 150px;
 	min-width: 120px;
 	width: 25%;
-	height: 150px;
 }
 
 .isotopedecay {
-	position: absolute;
-	width: 240px;
-	height: 100px;
-	display: flex;
 	align-items: center;
+	display: flex;
+	height: 100px;
 	justify-content: center;
+	position: absolute;
 	transform: translateX(-50%);
+	width: 240px;
 }
 
 .discord {
-	position: fixed;
 	bottom: 0;
+	position: fixed;
 }
 .discordlink {
 	position: relative;
 }
 
 #cheats_tab > .flex__row {
-	flex-wrap: wrap;
 	align-items: center;
+	flex-wrap: wrap;
 	justify-content: center;
 }
 #cheats_tab > .flex__row > button {

@@ -13,6 +13,16 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.5] - 20/8/20
+### Added
+
+### Modified
+- Completely overhauled Reactor UI
+- Improved navigation bar toggle image
+- Improved CSS of universal.css to mostly follow CSSLint rules
+
+### Removed
+
 ## [v0.6.4] - 18/8/20
 ### Added
 - How to Play Tab

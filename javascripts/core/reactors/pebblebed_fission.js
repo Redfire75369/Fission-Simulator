@@ -56,7 +56,6 @@ function simulatePebblebedReactors(tickInterval = 50) {
 
 function updateUIPebblebedReactors() {
 	player.unlocked.mines |= player.energy.gte("5e2");
-	document.getElementById("reactor_pebblebed_label_fuel_handling").style.display = player.unlocked.mines ? "" : "none";
 
 	for (let tier = 0; tier < 3; tier++) {
 		document.getElementById("reactor_pebblebed_amount" + (tier + 1)).innerText = notation(player.reactors.pebblebeds[tier].amount);
@@ -66,14 +65,18 @@ function updateUIPebblebedReactors() {
 		document.getElementById("reactor_pebblebed_capacity" + (tier + 1)).innerText = notation(player.reactors.pebblebeds[tier].totalCapacity);
 
 		document.getElementById("reactor_pebblebed_load" + (tier + 1)).parentElement.style.display = player.unlocked.mines ? "" : "none";
-		document.getElementById("reactor_pebblebed_load" + (tier + 1)).className = player.fuels.triso[tier].enriched.gt(0) && player.reactors.pebblebeds[tier].fuel.add(player.reactors.pebblebeds[tier].spent).lt(player.reactors.pebblebeds[tier].totalCapacity) ? "storebtn buy" : "storebtn locked";
-		document.getElementById("reactor_pebblebed_eject" + (tier + 1)).className = player.reactors.pebblebeds[tier].spent.gt(0) ? "storebtn buy" : "storebtn locked";
+		document.getElementById("reactor_pebblebed_load" + (tier + 1)).className = player.fuels.triso[tier].enriched.gt(0) && player.reactors.pebblebeds[tier].fuel.add(player.reactors.pebblebeds[tier].spent).lt(player.reactors.pebblebeds[tier].totalCapacity) ? "storebtn pebblebed buy" : "storebtn pebblebed locked";
+		document.getElementById("reactor_pebblebed_eject" + (tier + 1)).className = player.reactors.pebblebeds[tier].spent.gt(0) ? "storebtn pebblebed buy" : "storebtn pebblebed locked";
 
-		document.getElementById("reactor_pebblebed_buy" + (tier + 1)).className = player.reactors.pebblebeds[tier].buyable ? "storebtn buy" : "storebtn locked";
-		document.getElementById("reactor_pebblebed_buymax" + (tier + 1)).className = player.reactors.pebblebeds[tier].buyable ? "storebtn buy" : "storebtn locked";
+		document.getElementById("reactor_pebblebed_buy" + (tier + 1)).className = player.reactors.pebblebeds[tier].buyable ? "storebtn pebblebed buysingle buy" : "storebtn pebblebed buysingle locked";
+		document.getElementById("reactor_pebblebed_buymax" + (tier + 1)).className = player.reactors.pebblebeds[tier].buyable ? "storebtn pebblebed buymax buy" : "storebtn pebblebed buymax locked";
 		document.getElementById("reactor_pebblebed_cost" + (tier + 1)).innerText = notation(player.reactors.pebblebeds[tier].cost);
+
+		let totalPercentage = player.reactors.pebblebeds[tier].fuel.add(player.reactors.pebblebeds[tier].spent).div(player.reactors.pebblebeds[tier].totalCapacity).toNumber();
+		document.getElementById("reactor_pebblebed_fuelbar_spent" + (tier + 1)).style.maxWidth = totalPercentage * 100 + "%";
+		document.getElementById("reactor_pebblebed_fuelbar_enriched" + (tier + 1)).style.maxWidth = player.reactors.pebblebeds[tier].fuel.div(player.reactors.pebblebeds[tier].totalCapacity).div(totalPercentage).toNumber() * 100 + "%";
 	}
-	for (let tier = 1; tier < 3; tier++) {
-		document.getElementById("reactor_pebblebed_amount" + (tier + 1)).parentElement.parentElement.style.display = player.reactors.pebblebeds[tier - 1].bought >  0 ? "" : "none";
+	for (let tier = 1; tier < 1; tier++) {
+		document.getElementById("reactor_pebblebed_amount" + (tier + 1)).parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.display = player.reactors.pebblebeds[tier - 1].bought >  0 ? "" : "none";
 	}
 }
