@@ -1,12 +1,12 @@
 body {
-	color: #FFFFFF;
 	background-color: #000000;
+	color: #FFFFFF;
 }
 
 .navigation > button {
-	color: #FFFFFF;
 	background-color: #000000;
 	border: none;
+	color: #FFFFFF;
 }
 .navigation > button:hover {}
 .navigation > button:active {}
@@ -17,9 +17,9 @@ body {
 button:hover {}
 
 .subtab > button {
-	color: #FFFFFF;
 	background-color: #000000;
 	border: none;
+	color: #FFFFFF;
 }
 .subtab > button:hover {}
 .subtab > button:active {}
@@ -29,9 +29,9 @@ button:hover {}
 .achlocked {}
 
 .popup {
-	color: #FFFFFF;
 	background-color: #000000;
 	border: none;
+	color: #FFFFFF;
 	display: none;
 	padding: 10px 10px 15px;
 }
@@ -45,9 +45,9 @@ button:hover {}
 }
 
 .optionsbtn {
+	background-color: #000000;
 	border: none;
 	color: #FFFFFF;
-	background-color: #000000;
 }
 .optionsbtn:hover {}
 
@@ -64,13 +64,13 @@ button:hover {}
 	border: none;
 }
 .storebtn.buy {
-	color: #FFFFFF;
 	background-color: #000000;
+	color: #FFFFFF;
 }
 .storebtn.buy:hover {}
 .storebtn.locked {
-	color: #FFFFFF;
 	background-color: #000000;
+	color: #FFFFFF;
 }
 .storebtn.locked:hover {}
 
@@ -84,27 +84,27 @@ button:hover {}
 	border: none;
 }
 .naniteup.buy {
-	color: #FFFFFF;
 	background-color: #000000;
+	color: #FFFFFF;
 }
 .naniteup.buy:hover {}
 .naniteup.locked {
-	width: 300px;
-	height: 150px;
-	color: #FFFFFF;
 	background-color: #000000;
+	color: #FFFFFF;
+	height: 150px;
+	width: 300px;
 }
 .naniteup.bought {
-	width: 300px;
-	height: 150px;
-	color: #FFFFFF;
 	background-color: #000000;
+	color: #FFFFFF;
+	height: 150px;
+	width: 300px;
 }
 
 #meltdown {
-	color: #FFFFFF;
 	background-color: #000000;
 	border: none;
+	color: #FFFFFF;
 }
 #meltdown:hover {}
 
@@ -112,17 +112,17 @@ button:hover {}
 	border: none;
 }
 .meltdownup.buy {
-	color: #FFFFFF;
 	background-color: #000000;
+	color: #FFFFFF;
 }
 .meltdownupbuy:hover {}
 .meltdownup.locked {
-	color: #FFFFFF;
 	background-color: #000000;
+	color: #FFFFFF;
 }
 .meltdownup.bought {
-	color: #FFFFFF;
 	background-color: #000000;
+	color: #FFFFFF;
 }
 .turbinebox {
 	border-color: #FFFFFF;

@@ -1,22 +1,20 @@
 body {
-	color: #d0d0d0;
-	background-color:#1c1c1c;
-	font-size: 15px;
-	overflow-x: hidden;
+	background-color:#1C1C1C;
+	color: #D0D0D0;
 }
 
 button {
 	transition: all 0.5s;
 }
 button:hover {
-	border-color: #f4d258;
-	box-shadow: 0px 0px 8px 1px #f4d258;
+	border-color: #F4D258;
+	box-shadow: 0 0 8px 1px #F4D258;
 }
 
 .navigation > button {
-	color: #d0d0d0;
-	background-color: #1c1c1c;
-	border-color: #2828bf;
+	background-color: #1C1C1C;
+	border-color: #2828BF;
+	color: #D0D0D0;
 }
 .navigation > button:hover {}
 .navigation > button:active {}
@@ -24,66 +22,61 @@ button:hover {
 .navigation > button.navigation--nanite:hover {}
 .navigation > button.navigation--active {}
 
-button:hover {
-	border-color: #f4d258;
-	box-shadow: 0 0 8px 1px #f4d258;
-}
-
 
 .subtab > button {
-	color: #d0d0d0;
 	background-color: #101010;
-	border-color: #dfdfdf;
+	border-color: #DFDFDF;
+	color: #D0D0D0;
 }
 .subtab > button:hover {}
 .subtab > button:active {}
 .subtab > button.navigation--active {}
 
 .popup {
-	color: #d0d0d0;
 	background-color: #455a64;
 	border: 3px solid #ffffff;
 	border-radius: 6px;
+	color: #D0D0D0;
 	display: none;
 	padding: 10px 10px 15px;
 }
 
 .newsbar {
-	border: 3px solid #d0d0d0;
+	border: 3px solid #D0D0D0;
 	border-radius: 4px;
 }
 .newsbar > div {
-	color: #d0d0d0;
+	color: #D0D0D0;
 }
 
 .optionsbtn {
-	color: #d0d0d0;
-	background-color: #455a64;
-	border: 2px solid #e8e8e8;
+	background-color: #455A64;
+	border: 2px solid #E8E8E8;
 	border-radius: 2px;
+	color: #D0D0D0;
 }
 .optionsbtn:hover {}
 
 .energy {
-	color: #d0d0d0;
+	color: #D0D0D0;
 }
 .energypersecond {
-	color: #d0d0d0;
+	color: #D0D0D0;
 }
 
 .storebtn {
 	border-radius: 2px;
 }
 .storebtn.buy {
-	color: #d0d0d0;
-	background-color: #1c1c1c;
+	background-color: #1C1C1C;
 	border: 2px solid #127A20;
+	color: #D0D0D0;
 }
 .storebtn.buy:hover {}
 .storebtn.locked {
-	color: #d0d0d0;
 	background-color: #37474f;
 	border: 2px solid #e53935;
+	color: #D0D0D0;
 }
 .storebtn.locked:hover {}
 
@@ -97,8 +90,8 @@ button:hover {
 	background-color: rgba(0, 255, 0, 0.3);
 }
 .allocationbtn {
-	border: 2px solid #000000;
 	background: #FFFFFF;
+	border: 2px solid #000000;
 }
 .allocationbar {
 	background-color: #34D846;
@@ -106,7 +99,7 @@ button:hover {
 	border-radius: 8px;
 }
 .allocationbar.legend {
-	font-color: #FFFFFF;
+	color: #FFFFFF;
 }
 .allocationbarcontents {
 	background-color: #B2C376;
@@ -115,40 +108,40 @@ button:hover {
 .allocationbarcontents.legend {
 	border: 4px solid #000000;
 	border-radius: 8px;
-	font-color: #FFFFFF;
+	color: #FFFFFF;
 }
 
 .allocationbtn {
-	color: #FFFFFF;
 	background-color: #344445;
 	border: 2px solid #FFFFFF;
+	color: #FFFFFF;
 }
 
 .naniteup {
 	border-radius: 4px;
 }
 .naniteup.buy {
-	color: #81a6ff;
 	background-color: #000000;
 	border: 1px solid #DAA520;
+	color: #81a6ff;
 }
 .naniteup.buy:hover {}
 .naniteup.locked {
-	color: #d0d0d0;
 	background-color: #505050;
-	border: 1px solid white;
+	border: 1px solid #FFFFFF;
+	color: #D0D0D0;
 }
 .naniteup.bought {
-	color: #000000;
-	background-color: #81a6ff;
+	background-color: #81A6FF;
 	border: 1px solid green;
+	color: #000000;
 }
 
 #meltdown {
-	color: #d0d0d0;
-	background-color: #1c1c1c;
+	background-color: #1C1C1C;
 	border: 2px solid green;
 	border-radius: 6px;
+	color: #D0D0D0;
 }
 #meltdown:hover {}
 
@@ -156,18 +149,18 @@ button:hover {
 	border-radius: 3px;
 }
 .meltdownup.buy {
-	color: #ffffff;
 	background-color: #000000;
-	border: 3px solid #daa520;
+	border: 3px solid #DAA520;
+	color: #FFFFFF;
 }
 .meltdownup.buy:hover {}
 .meltdownup.locked {
-	color: #000000;
 	background-color: #555555;
-	border: 3px solid #ff0000;
+	border: 3px solid #FF0000;
+	color: #000000;
 }
 .meltdownup.bought {
-	color: #000000;
 	background-color: #44CC66;
-	border: 3px solid #daa520;
+	border: 3px solid #DAA520;
+	color: #000000;
 }
