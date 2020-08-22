@@ -89,7 +89,6 @@ button:hover {
 	border-radius: 2px;
 	color: #000000;
 }
-.optionsbtn:hover {}
 
 .energy {
 	color: #000000;
@@ -117,8 +116,6 @@ button:hover {
 	color: #202020;
 	font-size: 12px;
 }
-.storebtn.locked:hover {}
-
 
 .reprocessbar {
 	background-color: rgba(0, 255, 0, 0.3);

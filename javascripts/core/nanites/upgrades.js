@@ -51,9 +51,8 @@ class TurbineNaniteUpgrade extends NaniteUpgrade {
 		}
 		if (boughtAll || player.nanites.ups[0].bought < 2) {
 			return player.nanites.nanites.gte(this.cost);
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	buy() {

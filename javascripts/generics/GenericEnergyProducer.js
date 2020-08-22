@@ -2,11 +2,11 @@ class GenericEnergyProducer extends GenericProducer {
 	constructor(start, scale, secScale = 10, scalePrice = 308) {
 		super(start, scale, secScale, scalePrice);
 	}
-	
+
 	get buyable() {
 		return player.energy.gte(this.cost) && this.cost.lt(getLimit());
 	}
-	
+
 	buy() {
 		if (this.buyable) {
 			player.energy = player.energy.sub(this.cost);

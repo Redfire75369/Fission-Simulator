@@ -13,6 +13,9 @@ function round(x, dp) {
 function floor(x) {
 	return Math.floor(x);
 }
+function ceil(x) {
+	return Math.ceil(x);
+}
 function min(x, y) {
 	return Math.min(x, y);
 }

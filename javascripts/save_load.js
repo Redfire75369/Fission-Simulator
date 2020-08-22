@@ -144,7 +144,6 @@ function objectify(x, type) {
 		let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
 		ret.bought = x.bought;
 		return ret;
-	} else {
-		return x;
 	}
+	return x;
 }

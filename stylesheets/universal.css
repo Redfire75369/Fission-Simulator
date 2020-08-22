@@ -254,14 +254,11 @@ button:hover {
 .reactorbox.pebblebed {
 	background-color: #E5E5E5;
 	border: 2px solid #000000;
-	max-height: 240px;
 	max-width: 30vw;
-	min-height: 240px;
 	min-width: 30vw;
 }
 
 .pebblebedbtn {
-	font-size: 10px;
 	max-width: 90%;
 	min-width: 90%;
 }

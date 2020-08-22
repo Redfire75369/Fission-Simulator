@@ -125,7 +125,7 @@ function getDefaultRotors() {
 		osmiridium: floor(0.5 * max(0, player.nucleosynthesis - 4)),
 		extreme: floor(0.5 * max(0, player.nucleosynthesis - 6)),
 		sicsiccmc: floor(0.5 * max(0, player.nucleosynthesis - 8))
-	}
+	};
 }
 
 function resetTurbineRotors() {

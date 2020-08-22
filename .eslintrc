@@ -8,19 +8,100 @@
 	"extends": "eslint:recommended",
 	"parserOptions": {
 		"ecmaVersion": 11,
-		"sourceType": "module"
+		"sourceType": "module",
+		"ecmaFeatures": {
+            "jsx": true
+        }
 	},
 	"globals": {
 		"player": true,
 		"getDefaultData": true,
+		"getLimit": true,
 		"zero": true,
 		"infinity": true,
+
 		"notation": true,
+		"formatTime": true,
+		"simulateTime": true,
+		"showNaviTab": true,
+
+		"preLoad": true,
+		"loadSave": true,
+		"postLoad": true,
+		"saveGame": true,
+		"getSaveString": true,
+		"getSave": true,
+
+		"activeCoils": true,
+		"rotors": true,
+		"coils": true,
+
+		"pow": true,
+		"sqrt": true,
+		"log": true,
+		"round": true,
+		"floor": true,
+		"ceil": true,
+		"min": true,
+		"max": true,
+
+		"React": true,
+		"ReactDOM": true,
+        "ReactStateComponent": true,
 		"Decimal": true,
 		"LZString": true,
 		"Mousetrap": true,
 		"ADNotations": true,
-		"ADCommunityNotations": true
+		"ADCommunityNotations": true,
+		"copyToClipboard": true,
+		"copyStringToClipboard": true,
+
+		"GenericProducer": true,
+		"GenericEnergyProducer": true,
+		"GenericAutomation": true,
+		"GenericIntervalAutomation": true,
+		"GenericActionAutomation": true,
+		"GenericIntervalActionAutomation": true,
+		"GenericUpgrade": true,
+
+		"TRISOFuel": true,
+		"Mines": true,
+		"PebblebedFissionReactor": true,
+		"NaniteUpgrade": true,
+		"TurbineNaniteUpgrade": true,
+		"MeltdownUpgrade": true,
+
+		"getTotalNaniteUpMult": true,
+		"getTotalMeltdownUpMult": true,
+		"checkAchievementCompletion": true,
+
+		"resetEnergy": true,
+		"resetTRISOFuel": true,
+		"resetMines": true,
+		"resetPebblebedReactors": true,
+		"resetNucleosynthesis": true,
+		"resetNaniteResearch": true,
+		"resetNaniteUps": true,
+		"resetMeltdown": true,
+		"resetMeltdownUps": true,
+
+		"simulateTRISOFuel": true,
+		"simulateMines": true,
+		"simulatePebblebedReactors": true,
+		"simulateMeltdown": true,
+
+		"updateUIEnergy": true,
+		"updateUITRISOFuel": true,
+		"updateUIMines": true,
+		"updateUINucleosynthesis": true,
+		"updateUINaniteResearch": true,
+		"updateUINaniteUps": true,
+		"updateUIMeltdown": true,
+		"updateUIMeltdownUps": true,
+		"updateUIDecayHastening": true,
+		"updateUIAchievements": true,
+		"updateUIStats": true,
+		"updateUIHowToPlay": true
 	},
 	"rules": {
 		"indent": [

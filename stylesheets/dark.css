@@ -16,21 +16,12 @@ button:hover {
 	border-color: #2828BF;
 	color: #D0D0D0;
 }
-.navigation > button:hover {}
-.navigation > button:active {}
-.navigation > button.navigation--nanite {}
-.navigation > button.navigation--nanite:hover {}
-.navigation > button.navigation--active {}
-
 
 .subtab > button {
 	background-color: #101010;
 	border-color: #DFDFDF;
 	color: #D0D0D0;
 }
-.subtab > button:hover {}
-.subtab > button:active {}
-.subtab > button.navigation--active {}
 
 .popup {
 	background-color: #455a64;
@@ -55,7 +46,6 @@ button:hover {
 	border-radius: 2px;
 	color: #D0D0D0;
 }
-.optionsbtn:hover {}
 
 .energy {
 	color: #D0D0D0;
@@ -72,19 +62,11 @@ button:hover {
 	border: 2px solid #127A20;
 	color: #D0D0D0;
 }
-.storebtn.buy:hover {}
 .storebtn.locked {
 	background-color: #37474f;
 	border: 2px solid #e53935;
 	color: #D0D0D0;
 }
-.storebtn.locked:hover {}
-
-.storebtn.mines {}
-.storebtn.mines {}
-
-.storebtn.reactors {}
-.storebtn.reactors {}
 
 .reprocessbar {
 	background-color: rgba(0, 255, 0, 0.3);
@@ -125,7 +107,6 @@ button:hover {
 	border: 1px solid #DAA520;
 	color: #81a6ff;
 }
-.naniteup.buy:hover {}
 .naniteup.locked {
 	background-color: #505050;
 	border: 1px solid #FFFFFF;
@@ -143,7 +124,6 @@ button:hover {
 	border-radius: 6px;
 	color: #D0D0D0;
 }
-#meltdown:hover {}
 
 .meltdownup {
 	border-radius: 3px;
@@ -153,7 +133,6 @@ button:hover {
 	border: 3px solid #DAA520;
 	color: #FFFFFF;
 }
-.meltdownup.buy:hover {}
 .meltdownup.locked {
 	background-color: #555555;
 	border: 3px solid #FF0000;

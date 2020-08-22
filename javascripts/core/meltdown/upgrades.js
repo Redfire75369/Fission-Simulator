@@ -44,9 +44,8 @@ function getMeltdownUp41Mult(tier) {
 	let end = 2 * player.meltdown.ups[12].bought - 1;
 	if ((tier >= start && tier <= 3) || (tier <= end && tier >= 4)) {
 		return Decimal.max(1, player.mines[tier].amount.add(player.reactors[tier].amount).log10() * tier);
-	} else {
-		return new Decimal(1);
 	}
+	return new Decimal(1);
 }
 
 function getTotalMeltdownUpMult(tier) {

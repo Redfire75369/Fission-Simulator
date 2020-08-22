@@ -16,20 +16,12 @@ button:hover {
 	border-color: #FFFFFF;
 	color: #DFDFDF;
 }
-.navigation > button:hover {}
-.navigation > button:active {}
-.navigation > button.navigation--nanite {}
-.navigation > button.navigation--nanite:hover {}
-.navigation > button.navigation--active {}
 
 .subtab > button {
 	background-color: #101010;
 	border-color:#efefef;
 	color: #efefef;
 }
-.subtab > button:hover {}
-.subtab > button:active {}
-.subtab > button.navigation--active {}
 
 .achcomplete {
 	background-color: #FF7FFF;
@@ -81,19 +73,11 @@ button:hover {
 	border: 2px solid #ED85DF;
 	color: #DFDFDF;
 }
-.storebtn.buy:hover {}
 .storebtn.locked {
 	background-color: #5C5C5C;
 	border: 2px solid #1AC6CA;
 	color: #DFDFDF;
 }
-.storebtn.locked:hover {}
-
-.storebtn.mines {}
-.storebtn.mines {}
-
-.storebtn.reactors {}
-.storebtn.reactors {}
 
 .naniteup {
 	border-radius: 4px;
@@ -103,7 +87,6 @@ button:hover {
 	border: 1px solid #255ADF;
 	color: #CFCFCF;
 }
-.naniteup.buy:hover {}
 .naniteup.locked {
 	background-color: #5C5C5C;
 	border: 1px solid;
@@ -145,8 +128,7 @@ button:hover {
 	border-radius: 6px;
 	color: #FFFFFF;
 }
-#meltdown:hover {}
-
+	
 .meltdownup {
 	border-radius: 3px;
 }
@@ -155,7 +137,6 @@ button:hover {
 	border: 3px solid #255ADF;
 	color: #000000;
 }
-.meltdownup.buy:hover {}
 .meltdownup.locked {
 	background-color: #AAAAAA;
 	border: 3px solid #00FFFF;
