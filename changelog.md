@@ -13,11 +13,25 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.6] - 22/8/20
+### Added
+- React-based UI
+
+### Modified
+- Removed yellow border on the fuel bar for reactors
+- Converted Reactor and Fuel UI into React
+- Redesigned Fuel UI and moved it to Reactors Subtab
+- Greatly improved code quality
+	- ESLint: 1048 Errors -> 270 Errors
+	- CSSLint: 148 Warnings -> 29 Warnings
+
+### Removed
+
 ## [v0.6.5] - 20/8/20
 ### Added
 
 ### Modified
-- Completely overhauled Reactor UI
+- Completely redesigned Reactor UI
 - Improved navigation bar toggle image
 - Improved CSS of universal.css to mostly follow CSSLint rules
 

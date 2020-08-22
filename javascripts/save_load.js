@@ -46,6 +46,9 @@ function loadSave(save, imported = false) {
 		if (save !== undefined) {
 			checkAssign(getDefaultData(), save, []);
 
+			if (player.navigation.production === "fuel_subtab") {
+				player.navigation.production = "reactors_subtab";
+			}
 			player.version = getDefaultData().version;
 		} else {
 			console.log("No existing save found");

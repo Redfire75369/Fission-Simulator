@@ -251,7 +251,57 @@ button:hover {
 	width: 20vw;
 }
 
-.reactorbox.pebblebed {
+.trisodiv {
+	background-color: #E5E5E5;
+	border: 2px solid #000000;
+	max-width: 30vw;
+	min-width: 30vw;
+}
+
+.trisobtn {
+	max-width: 90%;
+	min-width: 90%;
+}
+.trisobtn.buy {
+	background-color: #B5B5B5;
+	border: 2px solid #8BC152;
+	color: #000000;
+}
+.trisobtn.locked {
+	background-color: #515151;
+	border: 2px solid #BB210D;
+	color: #000000;
+}
+
+.trisofuelbarcontainer {
+	align-items: center;
+	background-color: black;
+	justify-content: center;
+	max-height: 36px;
+	max-width: 100%;
+	min-height: 36px;
+	min-width: 100%;
+}
+.trisofuelbarcontainer > div {
+	background-color: #A5A5A5;
+	margin: 4px;
+	max-height: 28px;
+	max-width: calc(100% - 8px);
+	min-height: 28px;
+	min-width: calc(100% - 8px);
+}
+.trisofuelbarcontainer > div > div {
+	background-color: #BB210D;
+	height: 28px;
+	max-width: 0;
+}
+.trisofuelbarcontainer > div > div > div {
+	background-color: #8BC152;
+	height: 28px;
+	max-width: 0;
+}
+
+.pebblebeddiv {
 	background-color: #E5E5E5;
 	border: 2px solid #000000;
 	max-width: 30vw;
@@ -273,7 +323,7 @@ button:hover {
 	color: #000000;
 }
 
-.fuelbarcontainer {
+.pebblebedfuelbarcontainer {
 	align-items: center;
 	background-color: black;
 	justify-content: center;
@@ -282,22 +332,22 @@ button:hover {
 	min-height: 36px;
 	min-width: 100%;
 }
-.fuelbarcontainer > div {
+.pebblebedfuelbarcontainer > div {
 	background-color: #A5A5A5;
-	border: 2px solid yellow;
 	margin: 4px;
-	max-height: 24px;
-	max-width: calc(100% - 12px);
-	min-width: calc(100% - 12px);
+	max-height: 28px;
+	max-width: calc(100% - 8px);
+	min-height: 28px;
+	min-width: calc(100% - 8px);
 }
-.fuelbarcontainer > div > div {
+.pebblebedfuelbarcontainer > div > div {
 	background-color: #BB210D;
-	height: 24px;
+	height: 28px;
 	max-width: 0;
 }
-.fuelbarcontainer > div > div > div {
+.pebblebedfuelbarcontainer > div > div > div {
 	background-color: #8BC152;
-	height: 24px;
+	height: 28px;
 	max-width: 0;
 }
 

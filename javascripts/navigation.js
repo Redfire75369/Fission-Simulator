@@ -36,21 +36,11 @@ function showProductionTab(tab) {
 }
 function showProductionSubTab() {
 	switch (player.navigation.production) {
-		case "fuel_subtab":
-			showFuelSubTab(player.navigation.fuel);
-			break;
 		case "reactors_subtab":
 			showReactorSubTab(player.navigation.reactor);
 			break;
 		default:
 	}
-}
-function showFuelSubTab(subtab) {
-	document.getElementById("production_fuel_" + player.navigation.fuel).style.display = "none";
-	document.getElementById("production_fuel_" + subtab).style.display = "";
-	document.getElementById("production_fuel_" + player.navigation.fuel + "btn").classList.remove("navigation--active");
-	document.getElementById("production_fuel_" + subtab + "btn").classList.add("navigation--active");
-	player.navigation.fuel = subtab;
 }
 function showReactorSubTab(subtab) {
 	document.getElementById("production_reactor_" + player.navigation.reactor).style.display = "none";

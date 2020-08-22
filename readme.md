@@ -1,4 +1,4 @@
-[![Discord Server Invite](https://img.shields.io/badge/Discord-Redfire's%20Stuff-7289DA)](https://discord.gg/RyQwwzW)
+[![Discord Server Invite](https://img.shields.io/badge/Discord-Redfire's%20Stuff-7289DA)](https://discord.gg/RyQwwzW)  [![CodeFactor](https://www.codefactor.io/repository/github/redfire75369/fission-simulator/badge/overhaul)](https://www.codefactor.io/repository/github/redfire75369/fission-simulator/overview/overhaul)
 
 # Fission Simulator
 This is an incremental game that is supposed to emulate real life nuclear physics.

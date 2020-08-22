@@ -9,7 +9,6 @@ function preLoad() {
 	updateUIStats();
 
 	document.getElementById("production_tab").style.display = "none";
-	document.getElementById("production_fuel_subtab").style.display = "none";
 	document.getElementById("production_mines_subtab").style.display = "none";
 	document.getElementById("production_reactors_subtab").style.display = "none";
 	document.getElementById("statistics_tab").style.display = "none";

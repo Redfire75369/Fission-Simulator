@@ -1,11 +1,11 @@
-const reactorTypes = ["TBU", "LEU-235", "LEP-239"];
+const pebblebedReactorTypes = ["TBU", "LEU-235", "LEP-239"];
 
 class PebblebedReactorComponent extends ReactStateComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
 			tier: this.props.tier,
-			type: reactorTypes[this.props.tier]
+			type: pebblebedReactorTypes[this.props.tier]
 		};
 
 		this.loadFuel = this.loadFuel.bind(this);
@@ -47,13 +47,13 @@ class PebblebedReactorComponent extends ReactStateComponent {
 
 	render() {
 		return (
-			<div className="reactorbox pebblebed" style={{display: this.state.unlocked ? "" : "none"}}>
+			<div className="pebblebeddiv" style={{display: this.state.unlocked ? "" : "none"}}>
 				<div className="flex__row" style={{backgroundColor: "#14213D", fontSize:"120%", textAlign: "center"}}>
 					<div style={{color: "#C5861E", maxWidth: "90%"}}><b>{this.state.type} Pebblebed Reactor</b></div>
 					<div style={{backgroundColor: "#C5861E", color: "#14213D", maxWidth: "10%"}}>i</div>
 				</div>
 
-				<div className="flex__row" style={{marginLeft: "8px", marginRight: "8px"}}>
+				<div className="flex__row" style={{marginLeft: "12px", marginRight: "12px"}}>
 					<div className="flex__col" style={{alignItems: "flex-start", fontSize: "120%", maxWidth: "50%", minWidth: "50%", textAlign: "left"}}>
 						<div><b>Reactor Information</b></div>
 						<div>Amount: {notation(this.state.amount)}</div>
@@ -73,7 +73,7 @@ class PebblebedReactorComponent extends ReactStateComponent {
 
 				<div className="flex__row" style={{height: "20%", marginLeft: "12px", marginRight: "12px"}}>
 					<div className="flex__col">
-						<div className="fuelbarcontainer">
+						<div className="pebblebedfuelbarcontainer">
 							<div>
 								<div style={{maxWidth: this.state.spentPercentage * 100 + "%"}}>
 									<div style={{maxWidth: this.state.fuelPercentage / this.state.spentPercentage + "%"}}></div>
@@ -105,4 +105,16 @@ class PebblebedReactorsComponent extends React.Component {
 	}
 }
 
-ReactDOM.render(<PebblebedReactorsComponent/>, document.getElementById("production_reactor_pebblebed_subsubtab"));
+
+class PebblebedReactorsSubSubTabComponent extends React.Component {
+	render() {
+		return (
+			<div>
+				<TRISOFuelsComponent/>
+				<div className="flex__row" style={{minHeight: "2vh"}}></div>
+				<PebblebedReactorsComponent/>
+			</div>
+		);
+	}
+}
+ReactDOM.render(<PebblebedReactorsSubSubTabComponent/>, document.getElementById("production_reactor_pebblebed_subsubtab"));

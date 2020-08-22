@@ -52,4 +52,6 @@ function simulatePebblebedReactors(tickInterval = 50) {
 	}
 
 	document.getElementById("energy_gain").innerText = notation(player.energy.sub(startEnergy).mul(1000 / tickInterval));
+
+	player.unlocked.mines |= player.energy.gte("5e2");
 }

@@ -91,7 +91,6 @@
 		"simulateMeltdown": true,
 
 		"updateUIEnergy": true,
-		"updateUITRISOFuel": true,
 		"updateUIMines": true,
 		"updateUINucleosynthesis": true,
 		"updateUINaniteResearch": true,

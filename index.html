@@ -61,6 +61,7 @@
 		<script defer src="javascripts/howtoplay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/react/production/react-utils.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/fuels/triso.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/react/production/reactors/pebblebed_fission.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 	</head>
@@ -98,50 +99,10 @@
 
 		<div id="production_tab">
 			<div class="navigation subtab">
-				<button onclick="showProductionTab('fuel_subtab')" id="production_fuel_subtabbtn">Fuel</button>
 				<button onclick="showProductionTab('mines_subtab')" id="production_mines_subtabbtn">Mines</button>
 				<button onclick="showProductionTab('reactors_subtab')" id="production_reactors_subtabbtn"> Fission Reactors</button>
 			</div>
 
-			<div id="production_fuel_subtab" class="flex__col">
-				<div class="navigation subtab">
-					<button onclick="showFuelSubTab('triso_subsubtab')" id="production_fuel_triso_subsubtabbtn">TRISO</button>
-				</div>
-
-				<div id="production_fuel_triso_subsubtab">
-					<div style="font-size: 40px;">Obtain 500 Energy to unlock</div>
-					<div>
-						<div class="flex__row fuel">
-							<div><b>Type</b></div>
-							<div><b>Enriched Pebbles</b></div>
-							<div><b>Depleted Pebbles</b></div>
-							<div><b>Lifetime</b></div>
-							<div id="fuel_triso_label_reprocessing"><b>Reprocessing</b></div>
-						</div>
-						<div class="flex__row fuel">
-							<div>TBU</div>
-							<div><span id="fuel_triso_enriched1"></span></div>
-							<div><span id="fuel_triso_depleted1"></span></div>
-							<div><span id="fuel_triso_lifetime1"></span> ms</div>
-							<div><button onclick="player.fuels.triso[0].reprocessDepleted()" id="fuel_triso_reprocess1" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess1" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost1"></span> Energy</div></button></div>
-						</div>
-						<div class="flex__row fuel">
-							<div>LEU-235</div>
-							<div><span id="fuel_triso_enriched2"></span></div>
-							<div><span id="fuel_triso_depleted2"></span></div>
-							<div><span id="fuel_triso_lifetime2"></span> ms</div>
-							<div><button onclick="player.fuels.triso[1].reprocessDepleted()" id="fuel_triso_reprocess2" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess2" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost2"></span> Energy</div></button></div>
-						</div>
-						<div class="flex__row fuel">
-							<div>LEP-239</div>
-							<div><span id="fuel_triso_enriched3"></span></div>
-							<div><span id="fuel_triso_depleted3"></span></div>
-							<div><span id="fuel_triso_lifetime3"></span> ms</div>
-							<div><button onclick="player.fuels.triso[2].reprocessDepleted()" id="fuel_triso_reprocess3" style="position: relative; padding: 0;"><div class="reprocessbar" id="reprocess3" style="position: absolute;"></div><div style="margin: 3px;">Reprocess Spent Fuel for <span id="fuel_triso_reprocesscost3"></span> Energy</div></button></div>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<div id="production_mines_subtab">
 				<div style="font-size: 40px;">Obtain 500 Energy to unlock</div>
