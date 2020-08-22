@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 6,
-			alpha: 5
+			alpha: 6
 		},
 
 		options: {
@@ -180,7 +180,7 @@ function getDefaultData() {
 		time: 0,
 		timeOnline: 0,
 		lastUpdate: Date.now()
-	}
+	};
 }
 
 const isotopes = ["Thorium-227", "Uranium-235", "Neptunium-234", "Plutonium-237", "Americium-242m", "Curium-245", "Berkelium-248", "Californium-251"];
@@ -194,13 +194,12 @@ window.onvisibilitychange = function() {
 	/*if (focused) {
 		nextNews();
 	}*/
-}
+};
 
 function updateUI() {
 	updateUIEnergy();
 	updateUITRISOFuel();
 	updateUIMines();
-	updateUIPebblebedReactors();
 	//updateUINucleosynthesis();
 	//updateUINaniteUps();
 	//updateUINaniteResearch();
@@ -247,7 +246,7 @@ function simulateTime(seconds, actual, testing) {
 	player.time += seconds * 1000;
 	player.meltdown.time += seconds * 1000;
 
-	let offlinePopup = "While you were away, "
+	let offlinePopup = "While you were away, ";
 	if (player.energy.gt(start.energy)) {
 		offlinePopup += "your energy increased by " + notation(player.energy.log10() - start.energy.log10()) + " Orders of Magnitude.";
 	}
@@ -268,31 +267,3 @@ function closeOfflineProgress() {
 }
 
 var player = getDefaultData();
-var errored = false;
-
-/*Game Loops*/
-var saveGameLoop = setInterval(function() {
-	saveGame();
-}, 15000);
-
-setInterval(function() {
-	try {
-		if (player.lastUpdate === undefined) {
-			player.lastUpdate = Date.now();
-		}
-		if (Date.now() > player.lastUpdate && focused) {
-			simulateTime((Date.now() - player.lastUpdate) / 1000);
-		}
-	} catch(e) {
-		if (!errored) {
-			alert("The game has encountered a fatal error. Please report this bug in the discord as soon as possible. The next prompt will contain debug information regarding this. Please include that in the bug report.");
-			alert("--DEBUG Information--\n" + e.stack);
-			console.error(e);
-			errored = true;
-		}
-	}
-}, 25);
-
-setInterval(function() {
-	updateUI();
-}, 50);

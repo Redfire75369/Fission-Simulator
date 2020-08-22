@@ -36,13 +36,13 @@ function nextNews() {
 		do {
 			nextNewsIndex = Math.floor(Math.random() * newsArray.length);
 			newNews = !buffer.includes(nextNewsIndex);
-		} while (!eval(newsArray[nextNewsIndex][1]) && newNews)
+		} while (!eval(newsArray[nextNewsIndex][1]) && newNews);
 		buffer.push(nextNewsIndex);
 		if (buffer.length > 5) {
 			buffer.shift();
 		}
 	} catch(e) {
-			console.log("Newsarray doesn't work at id: " + nextNewsIndex);
+		console.log("Newsarray doesn't work at id: " + nextNewsIndex);
 	}
 
 	scroll.forEach(function(v) {
@@ -66,6 +66,8 @@ function nextNews() {
 
 		document.getElementById("news").style.transition = "transform " + transformDuration + "s linear";
 		document.getElementById("news").style.transform = "translateX(-" + (cwidth + 5) + "px)";
-		scroll.push(setTimeout(nextNews, Math.ceil(transformDuration * 1000)));
+		scroll.push(setTimeout(function() {
+			nextNews();
+		}, Math.ceil(transformDuration * 1000)));
 	}, 100));
 }

@@ -1,16 +1,14 @@
-const decay = Decimal.pow(2, 0.05);
-
 const halflives = {
 	"th227": 2000
-}
+};
 
 const alpha = {
 	"th227": 1
-}
+};
 
 const beta = {
 	"th227": 0
-}
+};
 
 const stable = [
 	"pb207"
@@ -83,7 +81,6 @@ function simulateFuelStorage(tickInterval = 50) {
 			resetEnergy();
 			resetEff();
 			resetMines();
-			resetReactors();
 			resetTurbineRotors();
 			resetDynamoCoils();
 			resetNucleosynthesis();
@@ -101,10 +98,10 @@ function simulateDecayIsotope(isotope, tickInterval = 50) {
 			let output = decayProducts[isotope];
 			let decay = Decimal.pow(2, player.decay.speed.mul(- tickInterval).div(halflives[isotope])).div(player.decay.temperatures[isotope].div(5900).add(1));
 			let decayAbsolute = player.decay.isotopes[isotope].sub(player.decay.isotopes[isotope].mul(decay));
-	
+
 			player.decay.alpha = player.decay.alpha.add(decayAbsolute.mul(alpha[isotope]).mul(player.decay.alphaOutput));
 			player.decay.temperatures[isotope] = player.decay.temperatures[isotope].add(halflives[isotope] * tickInterval / 1000);
-	
+
 			player.decay.isotopes[output] = player.decay.isotopes[output].add(decayAbsolute);
 			player.decay.isotopes[isotope] = player.decay.isotopes[isotope].mul(decay);
 		} else {
@@ -117,13 +114,13 @@ function simulateDecayIsotope(isotope, tickInterval = 50) {
 
 function updateUIDecayHastening() {
 	document.getElementById("alpha_particles").innerText = notation(player.decay.alpha);
-	
+
 	let str = "";
 	for (let i = 0; i < player.decay.decaying.length; i++) {
 		if (i == 0 || i == player.decay.decaying.length - 2) {
 			str += isotopeDisplayNames[player.decay.decaying[i]] + " ";
 		} else if (i == player.decay.decaying.length - 1) {
-			str += "and " + isotopeDisplayName[player.decay.decaying[i]];
+			str += "and " + isotopeDisplayNames[player.decay.decaying[i]];
 		} else {
 			str += isotopeDisplayNames[player.decay.decaying[i]] + ", ";
 		}

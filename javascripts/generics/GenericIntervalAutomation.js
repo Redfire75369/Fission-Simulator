@@ -4,7 +4,7 @@ class GenericIntervalAutomation extends GenericAutomation {
 		this.interval = interval;
 		this.cooldown = 0;
 	}
-	
+
 	automate(tickInterval = 50) {
 		if (this.active) {
 			if (this.cooldown >= this.interval) {
@@ -23,7 +23,7 @@ class GenericIntervalActionAutomation extends GenericActionAutomation {
 		this.interval = interval;
 		this.cooldown = 0;
 	}
-	
+
 	automate(tickInterval = 50) {
 		if (this.active) {
 			if (this.cooldown >= this.interval) {

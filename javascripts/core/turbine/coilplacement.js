@@ -71,44 +71,43 @@ function getHorizontalCoils(x, y) {
 		return {
 			0: player.turbine.coils[y][x - 1],
 			3: player.turbine.coils[y + 1][x]
-		}
+		};
 	} else if (x == player.turbine.dimensions - 1 && y == player.turbine.dimensions - 1) {
 		return {
 			0: player.turbine.coils[y][x - 1],
 			1: player.turbine.coils[y - 1][x]
-		}
+		};
 	} else if (x == 0) {
 		return {
 			1: player.turbine.coils[y - 1][x],
 			2: player.turbine.coils[y][x + 1],
 			3: player.turbine.coils[y + 1][x]
-		}
+		};
 	} else if (y == 0) {
 		return {
 			0: player.turbine.coils[y][x - 1],
 			2: player.turbine.coils[y][x + 1],
 			3: player.turbine.coils[y + 1][x]
-		}
+		};
 	} else if (x == player.turbine.dimensions - 1) {
 		return {
 			0: player.turbine.coils[y][x - 1],
 			1: player.turbine.coils[y - 1][x],
 			3: player.turbine.coils[y + 1][x]
-		}
+		};
 	} else if (y == player.turbine.dimensions - 1) {
 		return {
 			0: player.turbine.coils[y][x - 1],
 			1: player.turbine.coils[y - 1][x],
 			2: player.turbine.coils[y][x + 1]
 		};
-	} else {
-		return {
-			0: player.turbine.coils[y][x - 1],
-			1: player.turbine.coils[y - 1][x],
-			2: player.turbine.coils[y][x + 1],
-			3: player.turbine.coils[y + 1][x]
-		}
 	}
+	return {
+		0: player.turbine.coils[y][x - 1],
+		1: player.turbine.coils[y - 1][x],
+		2: player.turbine.coils[y][x + 1],
+		3: player.turbine.coils[y + 1][x]
+	};
 }
 
 function keyIntoActivation(key, x, y) {

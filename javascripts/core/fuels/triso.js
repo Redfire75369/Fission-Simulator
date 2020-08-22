@@ -1,5 +1,3 @@
-const trisoFuels = ["Thorium-229", "Uranium-235", "Plutonium-239"];
-
 class TRISOFuel {
 	constructor(tier) {
 		this.tier = tier;
@@ -10,7 +8,7 @@ class TRISOFuel {
 	get lifetime() {
 		let mul = Decimal.pow(1.4, player.reactors.pebblebeds[this.tier].bought);
 		mul = mul.mul(player.reactors.pebblebeds[this.tier].amount);
-		return Decimal.pow(4, this.tier).mul(8000).div(mul);;
+		return Decimal.pow(4, this.tier).mul(8000).div(mul);
 	}
 	get reprocessingTime() {
 		return 1000 * pow(3, this.tier + 1);

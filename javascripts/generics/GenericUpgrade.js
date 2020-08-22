@@ -5,7 +5,7 @@ class GenericUpgrade {
 		this.scaleCost = scale;
 		this.bought = 0;
 	}
-	
+
 	get cost() {
 		return this.startCost.mul(this.scaleCost.pow(this.bought));
 	}

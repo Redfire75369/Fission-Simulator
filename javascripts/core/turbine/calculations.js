@@ -49,7 +49,7 @@ function expansionIdeality(ideal, actual) {
 
 function rotorEfficiency() {
 	let rotorEff = 0;
-	let rotorCount = 0
+	let rotorCount = 0;
 	for (let i = 0; i < player.turbine.dimensions; i++) {
 		if (player.turbine.rotors[i].length > 0) {
 			rotorEff += player.turbine.rotors[i].totalEff * expansionIdeality(idealExpansion(i), expansion(i));

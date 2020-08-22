@@ -19,6 +19,9 @@
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/auto-render.js" charset="utf-8" type="text/javascript" onload="renderMathInElement(document.body)"></script>
+		<script defer src="javascripts/libs/babel.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/react.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/libs/react-dom.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/ad-notations.umd.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/ad-notations.community.umd.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/lz-string.js" charset="utf-8" type="text/javascript"></script>
@@ -57,6 +60,8 @@
 		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/howtoplay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/react-utils.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/reactors/pebblebed_fission.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 	</head>
 	<body align="center">
@@ -199,132 +204,7 @@
 					<button onclick="showReactorSubTab('pebblebed_subsubtab')" id="production_reactor_pebblebed_subsubtabbtn">Pebblebeds</button>
 				</div>
 
-				<div id="production_reactor_pebblebed_subsubtab">
-					<div class="flex__row">
-						<div class="reactorbox pebblebed">
-							<div class="flex__row" style="background-color: #14213D; text-align: center;">
-								<div style="color: #C5861E; max-width: 90%;">TBU Pebblebed Reactor</div>
-								<div style="background-color: #C5861E; color: #14213D; max-width: 10%;">i</div>
-							</div><br/>
-
-							<div class="flex__row" style="margin-left: 8px; margin-right: 8px;">
-								<div class="flex__col" style="align-items: flex-start; font-size: 10px; max-width: 64%; min-width: 64%; text-align: left;">
-									<div><b>Reactor Information</b></div>
-									<div>Amount: <span id="reactor_pebblebed_amount1">0.00</span></div>
-									<div>Efficiency: <span id="reactor_pebblebed_efficiency1">0.00</span></div><br/>
-									<div><b>Fuel Information (Capacity: <span id="reactor_pebblebed_capacity1">0.00</span>)</b></div>
-									<div>Enriched: <span id="reactor_pebblebed_fuel1">0.00</span></div>
-									<div>Spent: <span id="reactor_pebblebed_spent1">0.00</span></div>
-								</div>
-								<div class="flex__col pebblebed" style="font-size: 10px; justify-content: flex-start; max-height: 100%; max-width: 32%; min-height: 100%; min-width: 32%;">
-									<div>Fuel Handling:</div>
-									<button onclick="player.reactors.pebblebeds[0].loadFuel()" id="reactor_pebblebed_load1" class="pebblebedbtn buy">Load Enriched TBU Pellets</button>
-									<button onclick="player.reactors.pebblebeds[0].ejectWaste()" id="reactor_pebblebed_eject1" class="pebblebedbtn locked">Eject Spent TBU Pellets</button>
-								</div>
-							</div>
-
-							<div class="flex__row" style="margin-left: 12px; margin-right: 12px;">
-								<div class="flex__col">
-									<div class="fuelbarcontainer">
-										<div id="reactor_pebblebed_fuelbar_empty1">
-											<div id="reactor_pebblebed_fuelbar_spent1">
-												<div id="reactor_pebblebed_fuelbar_enriched1"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div><br/>
-
-							<div class="flex__row" style="margin-left: 12px; margin-right: 12px;">
-								<button onclick="player.reactors.pebblebeds[0].buy()" id="reactor_pebblebed_buy1" class="pebblebedbtn buy" style="min-width: 60%; max-width: 60%;">Buy for <span id="reactor_pebblebed_cost1">0.00</span> Energy</button>
-								<div style="min-width: 5%; max-width: 5%;"></div>
-								<button onclick="player.reactors.pebblebeds[0].buyMax()" id="reactor_pebblebed_buymax1" class="pebblebedbtn locked" style="min-width: 30%; max-width: 30%;">Buy Max</button>
-							</div>
-						</div>
-
-						<div class="reactorbox pebblebed">
-							<div class="flex__row" style="background-color: #14213D; text-align: center;">
-								<div style="color: #C5861E; max-width: 90%;">LEU-235 Pebblebed Reactor</div>
-								<div style="background-color: #C5861E; color: #14213D; max-width: 10%;">i</div>
-							</div><br/>
-
-							<div class="flex__row" style="margin-left: 8px; margin-right: 8px;">
-								<div class="flex__col" style="align-items: flex-start; font-size: 10px; max-width: 64%; min-width: 64%; text-align: left;">
-									<div><b>Reactor Information</b></div>
-									<div>Amount: <span id="reactor_pebblebed_amount2">0.00</span></div>
-									<div>Efficiency: <span id="reactor_pebblebed_efficiency2">0.00</span></div><br/>
-									<div><b>Fuel Information (Capacity: <span id="reactor_pebblebed_capacity2">0.00</span>)</b></div>
-									<div>Enriched: <span id="reactor_pebblebed_fuel2">0.00</span></div>
-									<div>Spent: <span id="reactor_pebblebed_spent2">0.00</span></div>
-								</div>
-								<div class="flex__col pebblebed" style="font-size: 10px; justify-content: flex-start; max-height: 100%; max-width: 32%; min-height: 100%; min-width: 32%;">
-									<div>Fuel Handling:</div>
-									<button onclick="player.reactors.pebblebeds[1].loadFuel()" id="reactor_pebblebed_load2" class="pebblebedbtn buy">Load Enriched TBU Pellets</button>
-									<button onclick="player.reactors.pebblebeds[1].ejectWaste()" id="reactor_pebblebed_eject2" class="pebblebedbtn locked">Eject Spent TBU Pellets</button>
-								</div>
-							</div>
-
-							<div class="flex__row" style="margin-left: 12px; margin-right: 12px;">
-								<div class="flex__col">
-									<div class="fuelbarcontainer">
-										<div id="reactor_pebblebed_fuelbar_empty2">
-											<div id="reactor_pebblebed_fuelbar_spent2">
-												<div id="reactor_pebblebed_fuelbar_enriched2"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div><br/>
-
-							<div class="flex__row" style="margin-left: 12px; margin-right: 12px;">
-								<button onclick="player.reactors.pebblebeds[1].buy()" id="reactor_pebblebed_buy2" class="pebblebedbtn buy" style="min-width: 60%; max-width: 60%;">Buy for <span id="reactor_pebblebed_cost2">0.00</span> Energy</button>
-								<div style="min-width: 5%; max-width: 5%;"></div>
-								<button onclick="player.reactors.pebblebeds[1].buyMax()" id="reactor_pebblebed_buymax2" class="pebblebedbtn locked" style="min-width: 30%; max-width: 30%;">Buy Max</button>
-							</div>
-						</div>
-
-						<div class="reactorbox pebblebed">
-							<div class="flex__row" style="background-color: #14213D; text-align: center;">
-								<div style="color: #C5861E; max-width: 90%;">TBU Pebblebed Reactor</div>
-								<div style="background-color: #C5861E; color: #14213D; max-width: 10%;">i</div>
-							</div><br/>
-
-							<div class="flex__row" style="justify-content: flex-start; margin-left: 8px; margin-right: 8px;">
-								<div class="flex__col" style="align-items: flex-start; font-size: 10px; max-width: 64%; min-width: 64%; text-align: left;">
-									<div><b>Reactor Information</b></div>
-									<div>Amount: <span id="reactor_pebblebed_amount3">0.00</span></div>
-									<div>Efficiency: <span id="reactor_pebblebed_efficiency3">0.00</span></div><br/>
-									<div><b>Fuel Information (Capacity: <span id="reactor_pebblebed_capacity3">0.00</span>)</b></div>
-									<div>Enriched: <span id="reactor_pebblebed_fuel3">0.00</span></div>
-									<div>Spent: <span id="reactor_pebblebed_spent3">0.00</span></div>
-								</div>
-								<div class="flex__col pebblebed" style="font-size: 10px; justify-content: flex-start; max-height: 100%; max-width: 32%; min-height: 100%; min-width: 32%;">
-									<div>Fuel Handling:</div>
-									<button onclick="player.reactors.pebblebeds[2].loadFuel()" id="reactor_pebblebed_load3" class="pebblebedbtn buy">Load Enriched TBU Pellets</button>
-									<button onclick="player.reactors.pebblebeds[2].ejectWaste()" id="reactor_pebblebed_eject3" class="pebblebedbtn locked">Eject Spent TBU Pellets</button>
-								</div>
-							</div>
-
-							<div class="flex__row" style="margin-left: 12px; margin-right: 12px;">
-								<div class="flex__col">
-									<div class="fuelbarcontainer">
-										<div id="reactor_pebblebed_fuelbar_empty3">
-											<div id="reactor_pebblebed_fuelbar_spent3">
-												<div id="reactor_pebblebed_fuelbar_enriched3"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div><br/>
-
-							<div class="flex__row" style="margin-left: 12px; margin-right: 12px;">
-								<button onclick="player.reactors.pebblebeds[2].buy()" id="reactor_pebblebed_buy3" class="pebblebedbtn buy" style="min-width: 60%; max-width: 60%;">Buy for <span id="reactor_pebblebed_cost3">0.00</span> Energy</button>
-								<div style="min-width: 5%; max-width: 5%;"></div>
-								<button onclick="player.reactors.pebblebeds[2].buyMax()" id="reactor_pebblebed_buymax3" class="pebblebedbtn locked" style="min-width: 30%; max-width: 30%;">Buy Max</button>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div id="production_reactor_pebblebed_subsubtab"></div>
 			</div>
 		</div>
 		<!--<div class="flex__col">
