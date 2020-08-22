@@ -225,12 +225,6 @@ button:hover {
 	font-size: 20px;
 }
 
-
-.reprocessbar {
-	border-radius: 1px;
-	height: 100%;
-	width: 0;
-}
 .allocationbtn {
 	max-width: 48px;
 	min-height: 48px;
@@ -271,6 +265,12 @@ button:hover {
 	background-color: #515151;
 	border: 2px solid #BB210D;
 	color: #000000;
+}
+
+.trisofuelreprocessbar {
+	border-radius: 1px;
+	height: 100%;
+	width: 0;
 }
 
 .trisofuelbarcontainer {

@@ -1,7 +1,7 @@
 Mousetrap.bind("m", function() {});
 for (let tier = 0; tier < 8; tier++) {
 	Mousetrap.bind((tier+1).toString(), function() {
-		player.reactors[tier].buyMax()
+		player.reactors[tier].buyMax();
 	});
 }
 

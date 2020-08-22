@@ -19,11 +19,14 @@
 		"getLimit": true,
 		"zero": true,
 		"infinity": true,
+		"isotopes": true,
 
 		"notation": true,
 		"formatTime": true,
 		"simulateTime": true,
 		"showNaviTab": true,
+		"targetedNotationChange": true,
+		"targetedThemeChange": true,
 
 		"preLoad": true,
 		"loadSave": true,
@@ -48,6 +51,7 @@
 		"React": true,
 		"ReactDOM": true,
         "ReactStateComponent": true,
+
 		"Decimal": true,
 		"LZString": true,
 		"Mousetrap": true,

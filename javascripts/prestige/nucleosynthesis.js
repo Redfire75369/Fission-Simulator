@@ -17,10 +17,7 @@ function buyNucleosynthesis() {
 	if (canBuyNucleosynthesis()) {
 		player.nucleosynthesis += 1;
 		resetEnergy();
-		resetFuel();
 		resetMines();
-		resetReactors();
-		resetTurbineRotors();
 	}
 }
 
@@ -30,11 +27,7 @@ function buyMaxNucleosynthesis() {
 	} else if (canBuyNucleosynthesis()) {
 		player.nucleosynthesis = floor(((player.reactors[7].bought - 2) / 2) + 5);
 		resetEnergy();
-		resetFuel();
 		resetMines();
-		resetReactors();
-		resetTurbineRotors();
-		resetEff();
 	}
 }
 

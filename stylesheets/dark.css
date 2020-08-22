@@ -68,12 +68,10 @@ button:hover {
 	color: #D0D0D0;
 }
 
-.reprocessbar {
-	background-color: rgba(0, 255, 0, 0.3);
-}
 .allocationbtn {
-	background: #FFFFFF;
-	border: 2px solid #000000;
+	background-color: #344445;
+	border: 2px solid #FFFFFF;
+	color: #FFFFFF;
 }
 .allocationbar {
 	background-color: #34D846;
@@ -93,10 +91,8 @@ button:hover {
 	color: #FFFFFF;
 }
 
-.allocationbtn {
-	background-color: #344445;
-	border: 2px solid #FFFFFF;
-	color: #FFFFFF;
+.trisofuelreprocessbar {
+	background-color: rgba(0, 255, 0, 0.3);
 }
 
 .naniteup {

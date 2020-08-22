@@ -55,7 +55,6 @@ function meltdown() {
 		player.meltdown.amount += meltdownGain();
 		resetEnergy();
 		resetMines();
-		resetReactors();
 		resetNucleosynthesis();
 		resetNaniteResearch();
 		resetNaniteUps();

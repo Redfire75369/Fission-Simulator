@@ -1,3 +1,5 @@
+var reprocessing = [false, false, false];
+
 class TRISOFuel {
 	constructor(tier) {
 		this.tier = tier;
@@ -29,20 +31,20 @@ class TRISOFuel {
 	reprocessDepleted() {
 		if (this.canReprocessDepleted) {
 			var reprocesselement = document.getElementById("fuel_triso_reprocess" + (this.tier + 1));
-			reprocesselement.children[0].style.transition = this.reprocessingTime / 1000 + "s width linear";
+			reprocessing[this.tier] = true;
+			/*reprocesselement.children[0].style.transition = this.reprocessingTime / 1000 + "s width linear";
 			reprocesselement.children[0].style.width = "100%";
-			reprocesselement.children[0].height = reprocesselement.height;
+			reprocesselement.children[0].height = reprocesselement.height;*/
 			reprocesselement.disabled = true;
-			console.log(reprocesselement.children[0].style.width);
 
 			player.energy = player.energy.sub(this.reprocessEnergyCost);
 			let depleted = this.depleted;
 			let tier = this.tier;
+
 			this.depleted = zero;
 			setTimeout(function() {
-				reprocesselement.children[0].style.transition = "";
-				reprocesselement.children[0].style.width = "0";
 				reprocesselement.disabled = false;
+				reprocessing[tier] = !reprocessing[tier];
 
 				player.fuels.triso[tier + 1].enriched = player.fuels.triso[tier + 1].enriched.add(depleted.mul(0.01));
 			}, this.reprocessingTime);

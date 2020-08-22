@@ -28,9 +28,7 @@ function buyNaniteResearch() {
 		player.meltdown.totalNanites = player.meltdown.totalNanites.add(nanitesGain());
 		player.unlocked.naniteUps = true;
 		resetEnergy();
-		resetFuel();
 		resetMines();
-		resetReactors();
 		resetNucleosynthesis();
 	}
 }
