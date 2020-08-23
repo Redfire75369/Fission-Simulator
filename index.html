@@ -61,8 +61,11 @@
 		<script defer src="javascripts/howtoplay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/react/production/react-utils.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/fuels/triso.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/reactors/pebblebed_fission.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/navibtn.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/mines.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/fuels/triso.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/reactors/pebblebed_fission.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/tab.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 	</head>
 	<body align="center">
@@ -97,77 +100,24 @@
 			<button onclick="showNaviTab('how_to_play_tab')" id="how_to_play_tabbtn">How to Play</button>
 		</div>
 
-		<div id="production_tab">
-			<div class="navigation subtab">
-				<button onclick="showProductionTab('mines_subtab')" id="production_mines_subtabbtn">Mines</button>
-				<button onclick="showProductionTab('reactors_subtab')" id="production_reactors_subtabbtn"> Fission Reactors</button>
-			</div>
-
-
-			<div id="production_mines_subtab">
-				<div style="font-size: 40px;">Obtain 500 Energy to unlock</div>
-				<div>
-					<div>
-						<div class="flex__row mines">
-							<div><b>Mines</b></div>
-							<div><b>Active</b></div>
-							<div><b>Depleted</b></div>
-							<div><b>Total</b></div>
-						</div>
-						<div class="flex__row mines">
-							<div>Amount</div>
-							<div><span id="mines_active"></span></div>
-							<div><span id="mines_depleted"></span></div>
-							<div><span id="mines_total"></span></div>
-						</div>
-					</div><br/>
-
-					<div>
-						<b id="production_mines_softcap">Your minefields have become oversaturated, leading to reduced ore output per mine.</b>
-
-						You are extracting <span id="ore_extraction"></span> kg of metal ore per second.<br/>
-						You have <span id="ore_total"></span> kg of metal ore that is currently extractable.<br/><br/>
-						Your mines use <span id="mine_tier"></span> Drills.<br/>
-						<span id="construction_cost"></span> kg of metal ore are needed to construct a new mine.<br/>
-						You are constructing <span id="construction_rate"></span> new mines per second.<br/><br/>
-					</div>
-
-					<!--<div class="flex__col">
-						<div>Distribution of metal ore used for construction of mines and reactors</div>
-						<div class="flex__row" style="width: 60vw;">
-							<button onclick="changeConstructionRatio(-10)" class="allocationbtn"><<</button>
-							<button onclick="changeConstructionRatio(-1)" class="allocationbtn"><</button>
-							<div id="metal_allocation" class="allocationbar">
-								<div class="allocationbarcontents"></div>
-							</div>
-							<button onclick="changeConstructionRatio(1)" class="allocationbtn">></button>
-							<button onclick="changeConstructionRatio(10)" class="allocationbtn">>></button>
-						</div><br/><br/>
-						<div class="flex__row" style="width: 45vw;">
-							<div class="allocationbarcontents legend">Mines</div>
-							<div></div>
-							<div class="allocationbar legend">Pebbeled reactors</div>
-						</div>
-					</div>-->
-
-					<button onclick="player.mines.upgrade()" id="mines_upgrade">
-						<span id="mines_upgrade_text"></span><br/>
-						Cost: <span id="mines_upcost"></span> Energy
-					</button>
-					<button onclick="player.mines.salvage()" id="mines_salvage">
-						Salvage depleted mines into new mines
-					</button>
+		<div id="production_tab"></div>
+		<!--<div class="flex__col">
+			<div>Distribution of metal ore used for construction of mines and reactors</div>
+			<div class="flex__row" style="width: 60vw;">
+				<button onclick="changeConstructionRatio(-10)" class="allocationbtn"><<</button>
+				<button onclick="changeConstructionRatio(-1)" class="allocationbtn"><</button>
+				<div id="metal_allocation" class="allocationbar">
+					<div class="allocationbarcontents"></div>
 				</div>
+				<button onclick="changeConstructionRatio(1)" class="allocationbtn">></button>
+				<button onclick="changeConstructionRatio(10)" class="allocationbtn">>></button>
+			</div><br/><br/>
+			<div class="flex__row" style="width: 45vw;">
+				<div class="allocationbarcontents legend">Mines</div>
+				<div></div>
+				<div class="allocationbar legend">Pebbeled reactors</div>
 			</div>
-
-			<div id="production_reactors_subtab">
-				<div class="navigation subtab">
-					<button onclick="showReactorSubTab('pebblebed_subsubtab')" id="production_reactor_pebblebed_subsubtabbtn">Pebblebeds</button>
-				</div>
-
-				<div id="production_reactor_pebblebed_subsubtab"></div>
-			</div>
-		</div>
+		</div>-->
 		<!--<div class="flex__col">
 			<table>
 				<tr>

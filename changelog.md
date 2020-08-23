@@ -13,6 +13,8 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.7] - 23/8/20
+
 ## [v0.6.6] - 22/8/20
 ### Added
 - React-based UI

@@ -15,8 +15,7 @@ function getDefaultData() {
 
 		navigation: {
 			naviTab: "production_tab",
-			production: "reactors_subtab",
-			reactor: "pebblebed_subsubtab",
+			production: "reactors",
 			meltdown: "ups_subtab",
 			decay: "decay_subsubtab"
 		},
@@ -197,7 +196,6 @@ window.onvisibilitychange = function() {
 
 function updateUI() {
 	updateUIEnergy();
-	updateUIMines();
 	//updateUINucleosynthesis();
 	//updateUINaniteUps();
 	//updateUINaniteResearch();

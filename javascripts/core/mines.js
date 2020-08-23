@@ -5,13 +5,16 @@ const mineSoftCaps = [new Decimal("1e1"), new Decimal("1e5"), new Decimal("1e12"
 class Mines {
 	constructor() {
 		this.tier = -1;
-		this.amount = new Decimal(0);
-		this.depleted = new Decimal(0);
-		this.depletion = new Decimal(0);
+		this.amount = zero;
+		this.depleted = zero;
+		this.depletion = zero;
 		this.ratio = 0.5;
 	}
 
 	get effective() {
+		if (this.tier < 0) {
+			return zero;
+		}
 		if (this.amount.sub(this.depleted).gte(mineSoftCaps[this.tier])) {
 			return mineSoftCaps[this.tier].add(this.amount.sub(this.depleted).sub(mineSoftCaps[this.tier]).div(Decimal.pow((this.tier + 1) * 8, 4)));
 		}
@@ -92,60 +95,4 @@ function simulateMines(tickInterval = 50) {
 			player.reactors.pebblebeds[tier].amount = player.reactors.pebblebeds[tier].amount.add(getReactorGain(tier));
 		}
 	}
-}
-
-function updateUIMines() {
-	document.getElementById("production_mines_subtabbtn").style.display = player.unlocked.mines || player.energy.gt(250) ? "" : "none";
-	document.getElementById("production_mines_subtab").children[0].style.display = player.energy.gt(250) && !player.unlocked.mines ? "" : "none";
-	document.getElementById("production_mines_subtab").children[1].style.display = player.unlocked.mines ? "" : "none";
-
-	if (player.mines.tier >= 0) {
-		document.getElementById("production_mines_softcap").style.display = player.mines.amount.gt(mineSoftCaps[player.mines.tier]) ? "" : "none";
-
-		document.getElementById("mines_active").parentElement.parentElement.parentElement.style.display = "";
-		document.getElementById("mines_active").innerText = notation(player.mines.amount.sub(player.mines.depleted));
-		document.getElementById("mines_depleted").innerText = notation(player.mines.depleted);
-		document.getElementById("mines_total").innerText = notation(player.mines.amount);
-
-		document.getElementById("ore_extraction").parentElement.style.display = "";
-		document.getElementById("ore_total").parentElement.style.display = "";
-		document.getElementById("ore_extraction").innerText = notation(player.mines.metalExtraction);
-		document.getElementById("ore_total").innerText = notation(player.mines.totalOre);
-
-		document.getElementById("mine_tier").parentElement.style.display = "";
-		document.getElementById("mine_tier").innerText = mineTypes[player.mines.tier];
-
-		document.getElementById("construction_cost").parentElement.style.display = "";
-		document.getElementById("construction_rate").parentElement.style.display = "";
-		document.getElementById("construction_cost").innerText = notation(player.mines.constructionCost);
-		document.getElementById("construction_rate").innerText = notation(getMineGain());
-
-		//document.getElementById("metal_allocation").parentElement.parentElement.style.display = "";
-		//document.getElementById("metal_allocation").children[0].style.width = player.mines.ratio * 100 + "%";
-	} else {
-		document.getElementById("production_mines_softcap").style.display = "none";
-
-		document.getElementById("mines_active").parentElement.parentElement.parentElement.style.display = "none";
-
-		document.getElementById("ore_extraction").parentElement.style.display = "none";
-		document.getElementById("ore_total").parentElement.style.display = "none";
-
-		document.getElementById("mine_tier").parentElement.style.display = "none";
-
-		document.getElementById("construction_cost").parentElement.style.display = "none";
-		document.getElementById("construction_rate").parentElement.style.display = "none";
-
-		//document.getElementById("metal_allocation").parentElement.parentElement.style.display = "none";
-	}
-
-
-	document.getElementById("mines_upgrade").className = player.mines.upgradable ? "storebtn buy" : "storebtn locked";
-	document.getElementById("mines_upgrade").style.display = player.mines.tier < 7 ? "" : "none";
-	if (player.mines.tier < 7) {
-		document.getElementById("mines_upgrade_text").innerText = player.mines.tier == -1 ? "Buy a mine" : "Upgrade mines to " + mineTypes[player.mines.tier + 1] + " Drills";
-		document.getElementById("mines_upcost").innerText = notation(player.mines.upCost);
-	}
-
-	document.getElementById("mines_salvage").className = player.mines.amount.gt(0) ? "storebtn buy" : "storebtn locked";
-	document.getElementById("mines_salvage").style.display = player.mines.tier >= 0 ? "" : "none";
 }

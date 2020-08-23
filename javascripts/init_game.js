@@ -9,8 +9,6 @@ function preLoad() {
 	updateUIStats();
 
 	document.getElementById("production_tab").style.display = "none";
-	document.getElementById("production_mines_subtab").style.display = "none";
-	document.getElementById("production_reactors_subtab").style.display = "none";
 	document.getElementById("statistics_tab").style.display = "none";
 	document.getElementById("achievements_tab").style.display = "none";
 	document.getElementById("options_tab").style.display = "none";
@@ -24,8 +22,6 @@ function preLoad() {
 
 	document.getElementById(player.navigation.naviTab + "btn").className = "navitabbtn";
 	document.getElementById(player.navigation.naviTab).style.display = "none";
-	document.getElementById("production_" + player.navigation.production + "btn").className = "subtabbtn";
-	document.getElementById("production_" + player.navigation.production).style.display = "none";
 	document.getElementById("meltdown_" + player.navigation.meltdown + "btn").className = "subtabbtn";
 	document.getElementById("meltdown_" + player.navigation.meltdown).style.display = "none";
 

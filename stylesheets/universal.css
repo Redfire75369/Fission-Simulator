@@ -48,16 +48,6 @@ button:hover {
 	max-width: 25vw;
 	min-width: 25vw;
 }
-.flex__row.pebblebed {
-	max-width: 100%;
-	min-width: 100%;
-}
-.flex__row.pebblebed > div {
-	max-height: 100%;
-	max-width: 50%;
-	min-height: 100%;
-	min-width: 50%;
-}
 .flex__row.reactors > div > button {
 	max-height: 40%;
 	max-width: 80%;
@@ -245,110 +235,124 @@ button:hover {
 	width: 20vw;
 }
 
-.trisodiv {
-	background-color: #E5E5E5;
-	border: 2px solid #000000;
+.minesdiv {
+	max-width: 70vw;
+	min-width: 70px;
+}
+
+.minesdiv > div > .info {
+	font-size: 120%;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 12px;
+}
+.minesdiv > div > .body {
+	font-size: 120%;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.minesdiv > .actions {
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-bottom: 12px;
+}
+
+.trisodiv, .pebblebeddiv {
 	max-width: 30vw;
 	min-width: 30vw;
 }
 
-.trisobtn {
-	max-width: 90%;
-	min-width: 90%;
-}
-.trisobtn.buy {
-	background-color: #B5B5B5;
-	border: 2px solid #8BC152;
-	color: #000000;
-}
-.trisobtn.locked {
-	background-color: #515151;
-	border: 2px solid #BB210D;
-	color: #000000;
+.trisodiv > .title, .pebblebeddiv > .title {
+	font-size:120%;
+	text-align: center;
 }
 
-.trisofuelreprocessbar {
+.trisodiv > .title > .type, .pebblebeddiv > .title > .type {
+	max-width: 90%;
+}
+.trisodiv > .title > .info, .pebblebeddiv > .title > .info {
+	max-width: 10%;
+}
+
+.trisodiv > .body, .pebblebeddiv > .body {
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+.trisodiv > .body > .fuelinfo, .pebblebeddiv > .body > .info {
+	align-items: flex-start;
+	font-size: 120%;
+	max-width: 50%;
+	min-width: 50%;
+	text-align: left;
+}
+.trisodiv > .body > .reprocess, .pebblebeddiv > .body > .fuelhandling {
+	font-size: 120%;
+	justify-content: flex-start;
+	max-height: 80%;
+	max-width: 50%;
+	min-height: 80%;
+	min-width: 50%;
+}
+
+.trisodiv > .body > .reprocess > button {
+	padding: 0;
+	position: relative;
+}
+.trisodiv > .body > .reprocess > button > div {
 	border-radius: 1px;
 	height: 100%;
 	width: 0;
 }
 
-.trisofuelbarcontainer {
+.trisodiv > .fuelbar, .pebblebeddiv > .fuelbar {
+	height: 20%;
+	margin-left: 12%;
+	margin-right: 12%;
+}
+.trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
 	align-items: center;
-	background-color: black;
 	justify-content: center;
 	max-height: 36px;
 	max-width: 100%;
 	min-height: 36px;
 	min-width: 100%;
 }
-.trisofuelbarcontainer > div {
-	background-color: #A5A5A5;
+.trisodiv > .fuelbar > div > div > div, .pebblebeddiv > .fuelbar > div > div > div {
 	margin: 4px;
 	max-height: 28px;
 	max-width: calc(100% - 8px);
 	min-height: 28px;
 	min-width: calc(100% - 8px);
 }
-.trisofuelbarcontainer > div > div {
-	background-color: #BB210D;
+.trisodiv > .fuelbar > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div {
 	height: 28px;
 	max-width: 0;
 }
-.trisofuelbarcontainer > div > div > div {
-	background-color: #8BC152;
+.trisodiv > .fuelbar > div > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div > div {
 	height: 28px;
 	max-width: 0;
 }
 
-.pebblebeddiv {
-	background-color: #E5E5E5;
-	border: 2px solid #000000;
-	max-width: 30vw;
-	min-width: 30vw;
+.pebblebeddiv > .buying {
+	margin-bottom: 12px;
+	margin-left: 12px;
+	margin-right: 12px
 }
 
-.pebblebedbtn {
+.pebblebeddiv > .buying > .buysingle {
+	max-width: 60%;
+	min-width: 60%;
+}
+.pebblebeddiv > .buying > .buymax {
+	max-width: 30%;
+	min-width: 30%;
+}
+
+.trisobtn, .pebblebedbtn {
 	max-width: 90%;
 	min-width: 90%;
-}
-.pebblebedbtn.buy {
-	background-color: #B5B5B5;
-	border: 2px solid #8BC152;
-	color: #000000;
-}
-.pebblebedbtn.locked {
-	background-color: #515151;
-	border: 2px solid #BB210D;
-	color: #000000;
-}
-
-.pebblebedfuelbarcontainer {
-	align-items: center;
-	background-color: black;
-	justify-content: center;
-	max-height: 36px;
-	max-width: 100%;
-	min-height: 36px;
-	min-width: 100%;
-}
-.pebblebedfuelbarcontainer > div {
-	background-color: #A5A5A5;
-	margin: 4px;
-	max-height: 28px;
-	max-width: calc(100% - 8px);
-	min-height: 28px;
-	min-width: calc(100% - 8px);
-}
-.pebblebedfuelbarcontainer > div > div {
-	background-color: #BB210D;
-	height: 28px;
-	max-width: 0;
-}
-.pebblebedfuelbarcontainer > div > div > div {
-	background-color: #8BC152;
-	height: 28px;
-	max-width: 0;
 }
 
 .turbinebox {
@@ -484,19 +488,6 @@ button:hover {
 .storebtn.pebblebed {
 	max-width: 80%;
 	min-width: 80%;
-}
-.storebtn.pebblebed.buysingle {
-	max-height: 40px;
-	max-width: 60%;
-	min-height: 40px;
-
-	min-width: 60%;
-}
-.storebtn.pebblebed.buymax {
-	max-height: 40px;
-	max-width: 30%;
-	min-height: 40px;
-	min-width: 30%;
 }
 
 .naniteup {

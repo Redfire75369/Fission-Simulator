@@ -16,38 +16,11 @@ function showNaviTab(tab) {
 
 function showSubTab() {
 	switch (player.navigation.naviTab) {
-		case "production_tab":
-			showProductionTab(player.navigation.production);
-			break;
 		case "meltdown_tab":
 			showMeltdownTab(player.navigation.meltdown);
 			break;
 		default:
 	}
-}
-
-function showProductionTab(tab) {
-	document.getElementById("production_" + player.navigation.production).style.display = "none";
-	document.getElementById("production_" + tab).style.display = "";
-	document.getElementById("production_" + player.navigation.production + "btn").classList.remove("navigation--active");
-	document.getElementById("production_" + tab + "btn").classList.add("navigation--active");
-	player.navigation.production = tab;
-	showProductionSubTab();
-}
-function showProductionSubTab() {
-	switch (player.navigation.production) {
-		case "reactors_subtab":
-			showReactorSubTab(player.navigation.reactor);
-			break;
-		default:
-	}
-}
-function showReactorSubTab(subtab) {
-	document.getElementById("production_reactor_" + player.navigation.reactor).style.display = "none";
-	document.getElementById("production_reactor_" + subtab).style.display = "";
-	document.getElementById("production_reactor_" + player.navigation.reactor + "btn").classList.remove("navigation--active");
-	document.getElementById("production_reactor_" + subtab + "btn").classList.add("navigation--active");
-	player.navigation.reactor = subtab;
 }
 
 function showMeltdownTab(tab) {

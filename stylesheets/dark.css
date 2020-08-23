@@ -91,7 +91,7 @@ button:hover {
 	color: #FFFFFF;
 }
 
-.trisofuelreprocessbar {
+.trisodiv > .body > .reprocess > button > div {
 	background-color: rgba(0, 255, 0, 0.3);
 }
 

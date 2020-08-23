@@ -48,13 +48,13 @@ class PebblebedReactorComponent extends ReactStateComponent {
 	render() {
 		return (
 			<div className="pebblebeddiv" style={{display: this.state.unlocked ? "" : "none"}}>
-				<div className="flex__row" style={{backgroundColor: "#14213D", fontSize:"120%", textAlign: "center"}}>
-					<div style={{color: "#C5861E", maxWidth: "90%"}}><b>{this.state.type} Pebblebed Reactor</b></div>
-					<div style={{backgroundColor: "#C5861E", color: "#14213D", maxWidth: "10%"}}>i</div>
+				<div className="flex__row title">
+					<div className="type"><b>{this.state.type} Pebblebed Reactor</b></div>
+					<div className="info">i</div>
 				</div>
 
-				<div className="flex__row" style={{marginLeft: "12px", marginRight: "12px"}}>
-					<div className="flex__col" style={{alignItems: "flex-start", fontSize: "120%", maxWidth: "50%", minWidth: "50%", textAlign: "left"}}>
+				<div className="flex__row body">
+					<div className="flex__col info">
 						<div><b>Reactor Information</b></div>
 						<div>Amount: {notation(this.state.amount)}</div>
 						<div>Efficiency: {notation(this.state.efficiency)}</div>
@@ -64,16 +64,16 @@ class PebblebedReactorComponent extends ReactStateComponent {
 						<div>Spent: {notation(this.state.spent)}</div>
 					</div>
 
-					<div className="flex__col pebblebed" style={{fontSize: "120%", justifyContent: "flex-start", maxHeight: "80%", maxWidth: "50%", minHeight: "80%", minWidth: "50%"}}>
+					<div className="flex__col pebblebed fuelhandling">
 						<div>Fuel Handling:</div>
 						<button onClick={this.loadFuel} className={this.state.canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Load Enriched {this.state.type} Pellets</button>
 						<button onClick={this.ejectWaste} className={this.state.canEjectWaste ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Eject Spent {this.state.type} Pellets</button>
 					</div>
 				</div>
 
-				<div className="flex__row" style={{height: "20%", marginLeft: "12px", marginRight: "12px"}}>
+				<div className="flex__row fuelbar">
 					<div className="flex__col">
-						<div className="pebblebedfuelbarcontainer">
+						<div>
 							<div>
 								<div style={{maxWidth: this.state.spentPercentage * 100 + "%"}}>
 									<div style={{maxWidth: this.state.fuelPercentage / this.state.spentPercentage + "%"}}></div>
@@ -83,38 +83,12 @@ class PebblebedReactorComponent extends ReactStateComponent {
 					</div>
 				</div><br/>
 
-				<div className="flex__row" style={{marginLeft: "12px", marginRight: "12px", marginBottom: "12px"}}>
-					<button onClick={this.buy} className={this.state.buyable ? "pebblebedbtn buy" : "pebblebedbtn locked"} style={{minWidth: "60%", maxWidth: "60%"}}>Buy for {notation(this.state.cost)} Energy</button>
+				<div className="flex__row buying">
+					<button onClick={this.buy} className={this.state.buyable ? "pebblebedbtn buy buysingle" : "pebblebedbtn locked buysingle"}>Buy for {notation(this.state.cost)} Energy</button>
 					<div style={{minWidth: "5%", maxWidth: "5%"}}></div>
-					<button onClick={this.buyMax} className={this.state.buyable ? "pebblebedbtn buy" : "pebblebedbtn locked"} style={{minWidth: "30%", maxWidth: "30%"}}>Buy Max</button>
+					<button onClick={this.buyMax} className={this.state.buyable ? "pebblebedbtn buy buymax" : "pebblebedbtn locked buymax"}>Buy Max</button>
 				</div>
 			</div>
 		);
 	}
 }
-
-class PebblebedReactorsComponent extends React.Component {
-	render() {
-		return (
-			<div className={"flex__row"}>
-				<PebblebedReactorComponent tier={0}/>
-				<PebblebedReactorComponent tier={1}/>
-				<PebblebedReactorComponent tier={2}/>
-			</div>
-		);
-	}
-}
-
-
-class PebblebedReactorsSubSubTabComponent extends React.Component {
-	render() {
-		return (
-			<div>
-				<TRISOFuelsComponent/>
-				<div className="flex__row" style={{minHeight: "2vh"}}></div>
-				<PebblebedReactorsComponent/>
-			</div>
-		);
-	}
-}
-ReactDOM.render(<PebblebedReactorsSubSubTabComponent/>, document.getElementById("production_reactor_pebblebed_subsubtab"));

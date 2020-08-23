@@ -14,7 +14,7 @@ class GenericProducer {
 	}
 
 	get preSecScale() {
-		return floor(this.scaleStartCost.div(this.startCtart).log10() / this.scaleCost.log10());
+		return floor(this.scaleStartCost.div(this.startCost).log10() / this.scaleCost.log10());
 	}
 	get cost() {
 		return this.startCost.mul(this.scaleCost.pow(this.bought)).mul(Decimal.pow(this.secScaleCost, Decimal.max(0, this.bought - this.preSecScale - 1).mul(this.bought - this.preSecScale).div(2)));

@@ -106,7 +106,7 @@ button:hover {
 	color: #202020;
 }
 .storebtn.buy:hover {
-	background-color: #10c921;
+	background-color: #10C921;
 	color: #FFFFFF;
 	transition-duration: 0.2s;
 }
@@ -135,8 +135,54 @@ button:hover {
 	border-radius: 8px;
 }
 
-.trisofuelreprocessbar {
+.minesdiv {
+	background-color: #C7C7C7;
+	border: 2px solid #000000;
+}
+
+.trisodiv, .pebblebeddiv {
+	background-color: #E5E5E5;
+	border: 2px solid #000000;
+}
+
+.trisodiv > .title, .pebblebeddiv > .title {
+	background-color: #14213D;
+}
+
+.trisodiv > .title > .type, .pebblebeddiv > .title > .type {
+	color: #C5861E;
+}
+.trisodiv > .title > .info, .pebblebeddiv > .title > .info {
+	background-color: #C5861E;
+	color: #14213D;
+}
+
+.trisodiv > .body > .reprocess > button > div {
 	background-color: rgba(0, 255, 0, 0.3);
+}
+
+.trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
+	background-color: #000000;
+}
+.trisodiv > .fuelbar > div > div > div, .pebblebeddiv > .fuelbar > div > div > div {
+	background-color: #A5A5A5;
+}
+.trisodiv > .fuelbar > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div {
+	background-color: #BB210D;
+}
+.trisodiv > .fuelbar > div > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div > div {
+	background-color: #8BC152;
+}
+
+.trisobtn.buy, .pebblebedbtn.buy {
+	background-color: #B5B5B5;
+	border: 2px solid #8BC152;
+	color: #000000;
+}
+.trisobtn.locked, .pebblebedbtn.locked {
+	background-color: #515151;
+	border: 2px solid #BB210D;
+	color: #000000;
 }
 
 .naniteup {
