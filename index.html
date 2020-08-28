@@ -18,7 +18,7 @@
 
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/auto-render.js" charset="utf-8" type="text/javascript" onload="renderMathInElement(document.body)"></script>
+		<!--<script defer src="javascripts/libs/auto-render.js" charset="utf-8" type="text/javascript" onload="renderMathInElement(document.body)"></script>-->
 		<script defer src="javascripts/libs/babel.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/react.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/react-dom.js" charset="utf-8" type="text/javascript"></script>
@@ -27,6 +27,7 @@
 		<script defer src="javascripts/libs/lz-string.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/mousetrap.min.js" charset="utf-8" type="text/javascript"></script>
+
 		<script defer src="javascripts/save_load.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/navigation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
@@ -55,20 +56,30 @@
 		<script defer src="javascripts/core/automation/basic_automation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/achievements.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/cheats.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/howtoplay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
+
 		<script defer src="javascripts/react/production/react-utils.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/navibtn.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/mines.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/fuels/triso.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/reactors/pebblebed_fission.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/tab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/Mines.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/reactors/TRISOFuel.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/reactors/PebblebedFissionReactor.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/reactors/FissionReactorsSubTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/ProductionSubTabButton.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/production/ProductionTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/statistics/StatisticsTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/achievements/Achievement.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/achievements/AchievementsTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/options/NotationOptionsButton.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/options/ThemeOptionsButton.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/production/options/OptionsTab.js" charset="utf-8" type="text/javascript"></script>
+
+		<script defer src="javascripts/react/production/rendering.js" charset="utf-8" type="text/javascript"></script>
+
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 	</head>
-	<body align="center">
+	<body>
 		<img id="navi_open" class="navigationtoggle" onclick="toggleNavigation()" src="resources/images/navi.png"/>
 
 	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px; style: none;">
@@ -100,7 +111,6 @@
 			<button onclick="showNaviTab('how_to_play_tab')" id="how_to_play_tabbtn">How to Play</button>
 		</div>
 
-		<div id="production_tab"></div>
 		<!--<div class="flex__col">
 			<div>Distribution of metal ore used for construction of mines and reactors</div>
 			<div class="flex__row" style="width: 60vw;">
@@ -131,66 +141,10 @@
 			</table>
 		</div>-->
 
-		<div id="statistics_tab" class="flex__col">
-			<div class="flex__row">
-				<div>Total time played:</div>
-				<div id="statistics_totaltime">0 seconds</div>
-			</div>
-			<div class="flex__row">
-				<div>Total energy generated:</div>
-				<div id="statistics_totalenergy">80</div>
-			</div>
-			<div class="flex__row">
-				<div>Total nanites researched:</div>
-				<div id="statistics_totalnanites">0.00</div>
-			</div>
-			<div class="flex__row" id="statistics_rowbestmeltdowntime">
-				<div>Fastest Meltdown Time:</div>
-				<div id="statistics_bestmeltdowntime">0.00</div>
-			</div>
-		</div>
-
-		<div id="achievements_tab" class="flex__col">
-			<div class="flex__row">
-				<div id="ach11" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach12" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach13" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach14" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach15" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach16" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach17" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach18" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			</div>
-			<div class="flex__row">
-				<div id="ach21" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach22" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach23" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach24" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach25" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach26" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach27" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach28" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			</div>
-		</div>
-
-		<div id="options_tab" class="flex__col">
-			<div class="flex__row">
-				<div><button onclick="notationChange()" id="notation" class="optionsbtn"> Notation: Scientific </button></div>
-				<div><button onclick="themeChange()" id="theme" class="optionsbtn"> Theme: Light </button></div>
-			</div>
-			<div class="flex__row">
-				<div><button onclick="save()" class="optionsbtn"> Save </button></div>
-				<div><button onclick="load()" class="optionsbtn"> Load </button></div>
-			</div>
-			<div class="flex__row">
-				<div><button onclick="importSave()" class="optionsbtn"> Import Save </button></div>
-				<div><button onclick="exportSave()" class="optionsbtn"> Export Save </button></div>
-			</div>
-			<div class="flex__row">
-				<div><button onclick="hardReset()" class="optionsbtn"> Hard Reset the Game </button></div>
-				<div><button id="stuff" class="optionsbtn"> Stuff </button></div>
-			</div>
-		</div>
+		<div id="production_tab"></div>
+		<div id="statistics_tab"></div>
+		<div id="achievements_tab"></div>
+		<div id="options_tab"></div>
 
 		<div id="nanites_tab">
 			<div class="flex__col flex--center">

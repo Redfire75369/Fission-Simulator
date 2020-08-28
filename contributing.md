@@ -1,23 +1,23 @@
 # Contributing
-This is a short guide on how you can contribute to Fission Simulator.
+This is a short writeup on contributing to Fission Simulator.
 
-## Forking the Repository
-1. Go to the [repository on github](https://github.com/Redfire75369/Fission-Simulator)
-2. Login to your github account
-3. Click the 'Fork' button on the top right corner of the page
+## Github Introduction
+In order to start, you need a free Account for [Github](https://github.com). <br/>
+Follow the registration steps if you have none already. <br/>
+Afterwards, follow [this guide](https://github.com/Redfire75369/Fission-Simulator/blob/overhaul/github.md) for more information.
+
+## Guidelines
+### Code Formatting
+Try to follow the specified ESLint Rules as far as possible, this includes the following:
+- Use tabs instead of spaces
+- Use double quotes, `"` instead of single quotes, `'`
+- Place semicolons at the end of statements
+
+### Licensing
+All contributions that you make will be subject to this repository's "All Rights Reserved" license
 
 ## Setting up your dev environment
 1. Run `setup.bat` or `setup.sh`
 
-## Contributing to React
-1. Make the changes that you want to the scripts in the javascripts/react/dev folder
-2. Run `compile.bat` or `compile.sh` in the javascripts/react folder
-3. Make sure there are no errors in compilation
-
-## Making a Pull Request
-1. Go to [Make a New Pull Rquest](https://github.com/Redfire75369/Fission-Simulator/compare)
-2. Click on `compare across forks`
-3. Select the branch that you are contributing to as the `base` branch and the branch you have edited as the `head` branch
-4. Click on `Create Pull Request`
-5. Write a short name and description for the pull Request
-6. Click on `Create Pull Request`
+## React Contributions
+See [React Contribution](https://github.com/Redfire75369/Fission-Simulator/blob/overhaul/javascripts/react/contributing.md).

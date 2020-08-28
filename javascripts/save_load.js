@@ -40,7 +40,8 @@ function loadSave(save, imported = false) {
 			}
 			alert("Your save is from a much older version and is thus, incompatible with the current version. Your save has been cleared.");
 			localStorage.removeItem("fissionSimSave1");
-			save = JSON.parse(LZString.decompressFromBase64(LZString.compressToBase64(JSON.stringify(getDefaultData()))));
+			player = getDefaultData();
+			return;
 		}
 
 		if (save !== undefined) {

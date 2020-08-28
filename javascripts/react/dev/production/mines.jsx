@@ -1,11 +1,4 @@
 class MinesComponent extends ReactStateComponent {
-	constructor(props) {
-		super(props);
-
-		this.upgrade = this.upgrade.bind(this);
-		this.salvage = this.salvage.bind(this);
-	}
-
 	tick() {
 		this.setState({
 			active: player.navigation.production === "mines",
@@ -25,13 +18,6 @@ class MinesComponent extends ReactStateComponent {
 			upgradable: player.mines.upgradable,
 			canSalvage: player.mines.depleted.gt(0)
 		});
-	}
-
-	upgrade() {
-		player.mines.upgrade();
-	}
-	salvage() {
-		player.mines.salvage();
 	}
 
 	render() {
@@ -59,11 +45,11 @@ class MinesComponent extends ReactStateComponent {
 					</div><br/><br/>
 
 					<div className="flex__col actions">
-						<button onClick={this.upgrade} className={this.state.upgradable ? "storebtn buy" : "storebtn locked"} style={{display: this.state.atMaxTier ? "none" : ""}}>
+						<button onClick={function() {player.mines.upgrade()}} className={this.state.upgradable ? "storebtn buy" : "storebtn locked"} style={{display: this.state.atMaxTier ? "none" : ""}}>
 							{this.state.upgradeText}<br/>
 							Cost: {notation(this.state.cost)} Energy
 						</button>
-						<button onClick={this.salvage} className={this.state.canSalvage ? "storebtn buy" : "storebtn locked"} style={{display: this.state.bought ? "" : "none"}}>
+						<button onClick={function() {player.mines.salvage()}} className={this.state.canSalvage ? "storebtn buy" : "storebtn locked"} style={{display: this.state.bought ? "" : "none"}}>
 							Salvage depleted mines into new mines
 						</button>
 					</div>

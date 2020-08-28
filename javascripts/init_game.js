@@ -3,10 +3,8 @@ function preLoad() {
 	//updateUINucleosynthesis();
 	//updateUINaniteUps();
 	//updateUINaniteResearch();
-	updateUIMeltdown();
+	//updateUIMeltdown();
 	//updateUIMeltdownUps();
-	updateUIAchievements();
-	updateUIStats();
 
 	document.getElementById("production_tab").style.display = "none";
 	document.getElementById("statistics_tab").style.display = "none";

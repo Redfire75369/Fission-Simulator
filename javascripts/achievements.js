@@ -1,24 +1,3 @@
-const achs = [11, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 28];
-
-const achTexts = [
-	"The fertility of Thorium<br/>Buy one TBU Pebblebed Reactor.",
-	"I have the power inside<br/>Obtain 1000 Energy.",
-	"Suggest Ideas in the Discord Server",
-	"WIP<br/>Nucleosynthesise for the first time.",
-	"Suggest Ideas in the Discord Server>",
-	"All the Elements<br/>Unlock all 8 Reactors.",
-	"Suggest Ideas in the Discord Server>",
-	"Nanomachines, Son<br/>Obtain 1 Nanite.",
-	"Suggest Ideas in the Discord Server",
-	"The Power of a Dying Star<br/>Nucleosynthesise 8 Times.",
-	"Suggest Ideas in the Discord Server",
-	"WIP<br/>Obtain 1.00e12 Energy.",
-	"They harden in response to physical trauma!<br/>Obtain 8 Nanites.",
-	"Suggest Ideas in the Discord Server",
-	"WIP<br/> Buy all Nanite Upgrades",
-	"To Infinity and Beyond!<br/>Meltdown for the first time."
-];
-
 function checkAchievementCompletion() {
 	player.achievements[11] |= player.reactors.pebblebeds[0].amount.gte(1);
 	player.achievements[12] |= player.energy.gte(1e3);
@@ -36,18 +15,4 @@ function checkAchievementCompletion() {
 	player.achievements[26] |= false;
 	player.achievements[27] |= false;
 	player.achievements[28] |= player.unlocked.meltdown;
-}
-
-function initAchievments() {
-	for (let i = 0; i < achs.length; i++) {
-		document.getElementById("ach" + achs[i]).children[1].innerHTML = achTexts[i];
-	}
-}
-initAchievments();
-
-function updateUIAchievements() {
-	for (let i = 0; i < achs.length; i++) {
-		document.getElementById("ach" + achs[i]).className = player.achievements[achs[i]] ? "tooltip achcomplete" : "tooltip achlocked";
-		document.getElementById("ach" + achs[i]).children[1].className = player.achievements[achs[i]] ? "tooltiptext achtooltipcomplete" : "tooltiptext achtooltiplocked";
-	}
 }

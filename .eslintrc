@@ -5,7 +5,6 @@
 		"es2020": true,
 		"es6": true
 	},
-	"extends": "eslint:recommended",
 	"parserOptions": {
 		"ecmaVersion": 11,
 		"sourceType": "module",
@@ -13,6 +12,9 @@
             "jsx": true
         }
 	},
+	"plugins": [
+		"react"
+	],
 	"globals": {
 		"player": true,
 		"getDefaultData": true,
@@ -95,18 +97,26 @@
 		"simulateMeltdown": true,
 
 		"updateUIEnergy": true,
-		"updateUIMines": true,
 		"updateUINucleosynthesis": true,
 		"updateUINaniteResearch": true,
 		"updateUINaniteUps": true,
 		"updateUIMeltdown": true,
 		"updateUIMeltdownUps": true,
 		"updateUIDecayHastening": true,
-		"updateUIAchievements": true,
-		"updateUIStats": true,
 		"updateUIHowToPlay": true
 	},
 	"rules": {
+		"array-bracket-newline": [
+			"warn",
+			"consistent"
+		],
+		"constructor-super": "error",
+		"default-case": "error",
+		"eol-last": [
+			"error",
+			"always"
+		],
+		"getter-return": "error",
 		"indent": [
 			"error",
 			"tab",
@@ -118,6 +128,36 @@
 			"error",
 			"unix"
 		],
+		"no-compare-neg-zero": "warn",
+		"no-else-return": [
+			"warn",
+			{
+				"allowElseIf": true
+			}
+		],
+		"no-dupe-args": "warn",
+        "no-dupe-class-members": "warn",
+        "no-dupe-else-if": "warn",
+        "no-dupe-keys": "warn",
+        "no-duplicate-case": "warn",
+		"no-empty": "warn",
+        "no-empty-character-class": "warn",
+        "no-empty-pattern": "warn",
+        "no-ex-assign": "warn",
+		"no-extra-boolean-cast": "warn",
+		"no-extra-semi": "warn",
+		"no-invalid-regexp": "error",
+        "no-irregular-whitespace": "warn",
+		"no-mixed-spaces-and-tabs": "warn",
+		"no-redeclare": "warn",
+		"no-regex-spaces": "warn",
+		"no-self-assign": "warn",
+        "no-setter-return": "warn",
+		"no-this-before-super": "warn",
+		"no-undef": "warn",
+		"no-unreachable": "warn",
+		"no-unused-vars": "warn",
+		"no-useless-catch": "warn",
 		"quotes": [
 			"error",
 			"double"
@@ -126,20 +166,30 @@
 			"error",
 			"always"
 		],
-		"no-else-return": [
-			"error",
+		"use-isnan": "error",
+		"valid-typeof": "error",
+		"react/jsx-curly-spacing": [
+			"warn",
 			{
-				"allowElseIf": true
+				"when": "never"
 			}
 		],
-		"default-case": "error",
-		"array-bracket-newline": [
-			"warn",
-			"consistent"
-		],
-		"eol-last": [
+		"react/jsx-filename-extension": [
 			"error",
+			{
+				"extensions": [".jsx"]
+			}
+		],
+		"react/jsx-uses-vars": "error",
+		"react/no-adjacent-inline-elements": "error",
+		"react/no-direct-mutation-state": "error",
+		"react/no-typos": "error",
+		"react/no-unescaped-entities": "error",
+		"react/no-unused-state": "warn",
+		"react/prefer-es6-class": [
+			"warn",
 			"always"
-		]
+		],
+		"react/prefer-read-only-props": "warn"
 	}
 }

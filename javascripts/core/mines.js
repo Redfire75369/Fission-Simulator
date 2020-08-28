@@ -44,10 +44,10 @@ class Mines {
 	upgrade() {
 		if (this.upgradable) {
 			player.energy = player.energy.sub(this.upCost);
+			let salvaged = this.amount.sub(this.depleted.mul(0.2)).mul(this.constructionCost)
 			this.tier++;
-			if (this.tier == 0) {
-				this.amount = new Decimal(1);
-			}
+			this.amount = Decimal.add(1, salvaged.div(this.constructionCost));
+			this.depleted = zero;
 		}
 	}
 

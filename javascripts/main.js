@@ -199,11 +199,9 @@ function updateUI() {
 	//updateUINucleosynthesis();
 	//updateUINaniteUps();
 	//updateUINaniteResearch();
-	updateUIMeltdown();
+	//updateUIMeltdown();
 	//updateUIMeltdownUps();
-	updateUIDecayHastening();
-	updateUIAchievements();
-	updateUIStats();
+	//updateUIDecayHastening();
 	updateUIHowToPlay();
 }
 function updateGame(tickInterval = 50) {

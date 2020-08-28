@@ -57,15 +57,6 @@ button:hover {
 	color: #EFEFEF;
 }
 
-.achcomplete {
-	background-color: #008000;
-	border: 1px solid #004400;
-}
-.achlocked {
-	background-color: #808080;
-	border: 1px solid #ff0000;
-}
-
 .popup {
 	align-items: center;
 	background-color: #ffffff;
@@ -80,13 +71,6 @@ button:hover {
 	border-radius: 4px;
 }
 .newsbar > div {
-	color: #000000;
-}
-
-.optionsbtn {
-	background-color: #fefefe;
-	border: 2px solid #181818;
-	border-radius: 2px;
 	color: #000000;
 }
 
@@ -184,6 +168,22 @@ button:hover {
 	border: 2px solid #BB210D;
 	color: #000000;
 }
+
+.achcomplete {
+	background-color: #008000;
+	border: 1px solid #004400;
+}
+.achlocked {
+	background-color: #808080;
+	border: 1px solid #ff0000;
+}
+
+.options > div > button {
+	background-color: #fefefe;
+	border: 2px solid #181818;
+	border-radius: 2px;
+	color: #000000;
+} 
 
 .naniteup {
 	border-radius: 4px;

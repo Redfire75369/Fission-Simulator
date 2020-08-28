@@ -23,15 +23,6 @@ button:hover {
 	color: #efefef;
 }
 
-.achcomplete {
-	background-color: #FF7FFF;
-	border: 1px solid #ffbbff;
-}
-.achlocked {
-	background-color: #7f7f7f;
-	border: 1px solid #00ffff;
-}
-
 .popup {
 	background-color: #000000;
 	border: 3px solid #FFFFFF;
@@ -46,16 +37,6 @@ button:hover {
 }
 .newsbar > div {
 	color: #FFFFFF;
-}
-
-.optionsbtn {
-	background-color: #010101;
-	border: 2px solid #E7E7E7;
-	border-radius: 2px;
-	color: #FFFFFF;
-}
-.optionsbtn:hover {
-	background-color: #0101FF;
 }
 
 .energy {
@@ -104,6 +85,26 @@ button:hover {
 .trisodiv > .body > .reprocess > button > div {
 	background-color: rgba(255, 0, 255, 0.3);
 }
+
+.achcomplete {
+	background-color: #FF7FFF;
+	border: 1px solid #FFBBFF;
+}
+.achlocked {
+	background-color: #7f7f7f;
+	border: 1px solid #00FFFF;
+}
+
+.options > div > button {
+	background-color: #010101;
+	border: 2px solid #E7E7E7;
+	border-radius: 2px;
+	color: #FFFFFF;
+}
+.options > div > button:hover {
+	background-color: #0101FF;
+}
+
 
 .naniteup {
 	border-radius: 4px;

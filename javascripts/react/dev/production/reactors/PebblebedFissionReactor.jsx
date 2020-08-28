@@ -1,35 +1,12 @@
 const pebblebedReactorTypes = ["TBU", "LEU-235", "LEP-239"];
 
-class PebblebedReactorComponent extends ReactStateComponent {
+class PebblebedFissionReactorComponent extends ReactStateComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
 			tier: this.props.tier,
 			type: pebblebedReactorTypes[this.props.tier]
 		};
-
-		this.loadFuel = this.loadFuel.bind(this);
-		this.ejectWaste = this.ejectWaste.bind(this);
-		this.buy = this.buy.bind(this);
-		this.buyMax = this.buyMax.bind(this);
-	}
-
-	tick() {
-		this.setState({
-			unlocked: this.state.tier == 0 || player.reactors.pebblebeds[this.state.tier - 1].bought >  0,
-			amount: player.reactors.pebblebeds[this.state.tier].amount,
-			bought: player.reactors.pebblebeds[this.state.tier].bought,
-			canLoadFuel: player.fuels.triso[this.state.tier].enriched.gt(0) && player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).lt(player.reactors.pebblebeds[this.state.tier].totalCapacity) * 100,
-			canEjectWaste: player.reactors.pebblebeds[this.state.tier].spent.gt(0),
-			fuel: player.reactors.pebblebeds[this.state.tier].fuel,
-			fuelPercentage: player.reactors.pebblebeds[this.state.tier].fuel.div(player.reactors.pebblebeds[this.state.tier].totalCapacity).toNumber() * 100,
-			spent: player.reactors.pebblebeds[this.state.tier].spent,
-			spentPercentage: player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).div(player.reactors.pebblebeds[this.state.tier].totalCapacity).toNumber(),
-			buyable: player.reactors.pebblebeds[this.state.tier].buyable,
-			cost: player.reactors.pebblebeds[this.state.tier].cost,
-			efficiency: player.reactors.pebblebeds[this.state.tier].efficiency,
-			totalCapacity: player.reactors.pebblebeds[this.state.tier].totalCapacity
-		});
 	}
 
 	loadFuel() {
@@ -43,6 +20,24 @@ class PebblebedReactorComponent extends ReactStateComponent {
 	}
 	buyMax() {
 		player.reactors.pebblebeds[this.state.tier].buyMax();
+	}
+
+	tick() {
+		this.setState({
+			unlocked: this.state.tier == 0 || player.reactors.pebblebeds[this.state.tier - 1].bought >  0,
+			amount: player.reactors.pebblebeds[this.state.tier].amount,
+			bought: player.reactors.pebblebeds[this.state.tier].bought,
+			canLoadFuel: player.fuels.triso[this.state.tier].enriched.gte(1) && player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).add(1).lt(player.reactors.pebblebeds[this.state.tier].totalCapacity),
+			canEjectWaste: player.reactors.pebblebeds[this.state.tier].spent.gte(1),
+			fuel: player.reactors.pebblebeds[this.state.tier].fuel,
+			fuelPercentage: player.reactors.pebblebeds[this.state.tier].fuel.div(player.reactors.pebblebeds[this.state.tier].totalCapacity).toNumber() * 100,
+			spent: player.reactors.pebblebeds[this.state.tier].spent,
+			spentPercentage: player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).div(player.reactors.pebblebeds[this.state.tier].totalCapacity).toNumber(),
+			buyable: player.reactors.pebblebeds[this.state.tier].buyable,
+			cost: player.reactors.pebblebeds[this.state.tier].cost,
+			efficiency: player.reactors.pebblebeds[this.state.tier].efficiency,
+			totalCapacity: player.reactors.pebblebeds[this.state.tier].totalCapacity
+		});
 	}
 
 	render() {
@@ -66,8 +61,8 @@ class PebblebedReactorComponent extends ReactStateComponent {
 
 					<div className="flex__col pebblebed fuelhandling">
 						<div>Fuel Handling:</div>
-						<button onClick={this.loadFuel} className={this.state.canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Load Enriched {this.state.type} Pellets</button>
-						<button onClick={this.ejectWaste} className={this.state.canEjectWaste ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Eject Spent {this.state.type} Pellets</button>
+						<button onClick={this.loadFuel.bind(this)} className={this.state.canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Load Enriched {this.state.type} Pellets</button>
+						<button onClick={this.ejectWaste.bind(this)} className={this.state.canEjectWaste ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Eject Spent {this.state.type} Pellets</button>
 					</div>
 				</div>
 
@@ -84,9 +79,9 @@ class PebblebedReactorComponent extends ReactStateComponent {
 				</div><br/>
 
 				<div className="flex__row buying">
-					<button onClick={this.buy} className={this.state.buyable ? "pebblebedbtn buy buysingle" : "pebblebedbtn locked buysingle"}>Buy for {notation(this.state.cost)} Energy</button>
+					<button onClick={this.buy.bind(this)} className={this.state.buyable ? "pebblebedbtn buy buysingle" : "pebblebedbtn locked buysingle"}>Buy for {notation(this.state.cost)} Energy</button>
 					<div style={{minWidth: "5%", maxWidth: "5%"}}></div>
-					<button onClick={this.buyMax} className={this.state.buyable ? "pebblebedbtn buy buymax" : "pebblebedbtn locked buymax"}>Buy Max</button>
+					<button onClick={this.buyMax.bind(this)} className={this.state.buyable ? "pebblebedbtn buy buymax" : "pebblebedbtn locked buymax"}>Buy Max</button>
 				</div>
 			</div>
 		);

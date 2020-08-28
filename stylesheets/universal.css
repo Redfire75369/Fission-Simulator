@@ -88,7 +88,6 @@ button:hover {
 .tooltip .tooltiptext {
 	background-color: #000000;
 	color: #FFFFFF;
-	data-html: true;
 	position: absolute;
 	visibility: hidden;
 	z-index: 2;
@@ -97,7 +96,7 @@ button:hover {
 	visibility: visible;
 }
 
-.tooltiptext.achtooltipcomplete {
+.achcomplete > .tooltiptext {
 	bottom: 105%;
 	color: #88EE44;
 	left: 50%;
@@ -105,7 +104,7 @@ button:hover {
 	padding-top: 5px;
 	width: 25vw;
 }
-.tooltiptext.achtooltiplocked {
+.achlocked > .tooltiptext {
 	bottom: 105%;
 	color: #DE564D;
 	left: 50%;
@@ -191,28 +190,15 @@ button:hover {
 	flex: 0 0;
 }
 
-.achpic {
-	height: 100px;
-	opacity: 0.7;
-	width: 100px;
-	z-index: 1;
-}
-.achcomplete, .achlocked {
-	height: 100px;
-	width: 12vw;
-}
-
-.optionsbtn {
-	font-size: 20px;
-	height: 55px;
-	width: 200px;
-}
-
 .energy {
 	font-size: 25px;
 }
 .energypersecond {
 	font-size: 20px;
+}
+
+.storebtn {
+	font-size: 12px;
 }
 
 .allocationbtn {
@@ -253,9 +239,9 @@ button:hover {
 }
 
 .minesdiv > .actions {
+	padding-bottom: 12px;
 	padding-left: 12px;
 	padding-right: 12px;
-	padding-bottom: 12px;
 }
 
 .trisodiv, .pebblebeddiv {
@@ -482,12 +468,21 @@ button:hover {
 	box-shadow: 0 0 5px 1px #FFBB77;
 }
 
-.storebtn {
-	font-size: 12px;
+.achpic {
+	height: 100px;
+	opacity: 0.7;
+	width: 100px;
+	z-index: 1;
 }
-.storebtn.pebblebed {
-	max-width: 80%;
-	min-width: 80%;
+.achcomplete, .achlocked {
+	height: 100px;
+	width: 12vw;
+}
+
+.options > div > button {
+	font-size: 20px;
+	height: 55px;
+	width: 200px;
 }
 
 .naniteup {
