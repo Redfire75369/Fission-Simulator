@@ -23,11 +23,11 @@ class MinesComponent extends ReactStateComponent {
 	render() {
 		return (
 			<div style={{display: this.state.active ? "" : "none"}}>
-				<div style={{display: this.state.requirementUnlocked ? "" : "none", fontSize: "40px"}}>Obtain 500 Energy to unlock</div>
+				<div style={{display: this.state.requirementUnlocked ? "" : "none", fontSize: "200%"}}>Obtain 500 Energy to unlock</div>
 				<div className="minesdiv" style={{display: this.state.unlocked ? "" : "none"}}>
 					<div style={{display: this.state.bought ? "" : "none"}}>
 						<div className="info">
-							<div className="flex__col">
+							<div className="flex-col horizontal-center">
 								<div><b>Information</b></div>
 								<div>Active: {notation(this.state.activeMines)}</div>
 								<div>Depleted: {notation(this.state.depleted)}</div>
@@ -36,7 +36,7 @@ class MinesComponent extends ReactStateComponent {
 						</div>
 
 						<div className="body">
-							<div className="flex__col">
+							<div className="flex-col horizontal-center">
 								<div>Metal Extraction: {notation(this.state.extraction)}/s ({notation(this.state.ore)} Total)</div>
 								<div>Mine Construction: {notation(this.state.construction)}/s ({notation(this.state.constructionCost)} per Mine)</div><br/>
 								<div>Drill Tier: {this.state.type}</div>
@@ -44,7 +44,7 @@ class MinesComponent extends ReactStateComponent {
 						</div>
 					</div><br/><br/>
 
-					<div className="flex__col actions">
+					<div className="flex-col actions">
 						<button onClick={function() {player.mines.upgrade()}} className={this.state.upgradable ? "storebtn buy" : "storebtn locked"} style={{display: this.state.atMaxTier ? "none" : ""}}>
 							{this.state.upgradeText}<br/>
 							Cost: {notation(this.state.cost)} Energy

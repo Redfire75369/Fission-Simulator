@@ -12,7 +12,7 @@ class StatisticsTabComponent extends ReactStateComponent {
 
   render() {
     return /*#__PURE__*/React.createElement("div", {
-      className: "flex__col statistics",
+      className: "flex-col statistics",
       style: {
         display: this.state.active ? "" : "none"
       }

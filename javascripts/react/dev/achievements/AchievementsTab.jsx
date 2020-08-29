@@ -7,8 +7,8 @@ class AchievementsTabComponent extends ReactStateComponent {
 
 	render() {
 		return (
-			<div className="flex__col" style={{display: this.state.active ? "" : "none"}}>
-				<div className="flex__row">
+			<div className="flex-col" style={{display: this.state.active ? "" : "none"}}>
+				<div className="flex-row">
 					<AchievementComponent id={11}/>
 					<AchievementComponent id={12}/>
 					<AchievementComponent id={13}/>
@@ -18,7 +18,7 @@ class AchievementsTabComponent extends ReactStateComponent {
 					<AchievementComponent id={17}/>
 					<AchievementComponent id={18}/>
 				</div>
-				<div className="flex__row">
+				<div className="flex-row">
 					<AchievementComponent id={21}/>
 					<AchievementComponent id={22}/>
 					<AchievementComponent id={23}/>

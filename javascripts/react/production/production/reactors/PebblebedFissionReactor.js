@@ -38,7 +38,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
       spentPercentage: player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).div(player.reactors.pebblebeds[this.state.tier].totalCapacity).toNumber(),
       buyable: player.reactors.pebblebeds[this.state.tier].buyable,
       cost: player.reactors.pebblebeds[this.state.tier].cost,
-      efficiency: player.reactors.pebblebeds[this.state.tier].efficiency,
+      burnRate: player.reactors.pebblebeds[this.state.tier].burnRate.div(player.fuels.triso[this.state.tier].lifetime),
       totalCapacity: player.reactors.pebblebeds[this.state.tier].totalCapacity
     });
   }
@@ -50,17 +50,17 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
         display: this.state.unlocked ? "" : "none"
       }
     }, /*#__PURE__*/React.createElement("div", {
-      className: "flex__row title"
+      className: "flex-row title"
     }, /*#__PURE__*/React.createElement("div", {
       className: "type"
     }, /*#__PURE__*/React.createElement("b", null, this.state.type, " Pebblebed Reactor")), /*#__PURE__*/React.createElement("div", {
       className: "info"
     }, "i")), /*#__PURE__*/React.createElement("div", {
-      className: "flex__row body"
+      className: "flex-row body"
     }, /*#__PURE__*/React.createElement("div", {
-      className: "flex__col info"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Reactor Information")), /*#__PURE__*/React.createElement("div", null, "Amount: ", notation(this.state.amount)), /*#__PURE__*/React.createElement("div", null, "Efficiency: ", notation(this.state.efficiency)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Information")), /*#__PURE__*/React.createElement("div", null, "Capacity: ", notation(this.state.totalCapacity)), /*#__PURE__*/React.createElement("div", null, "Enriched:", notation(this.state.fuel)), /*#__PURE__*/React.createElement("div", null, "Spent: ", notation(this.state.spent))), /*#__PURE__*/React.createElement("div", {
-      className: "flex__col pebblebed fuelhandling"
+      className: "flex-col vertical-top info"
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Reactor Information")), /*#__PURE__*/React.createElement("div", null, "Amount: ", notation(this.state.amount)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Information")), /*#__PURE__*/React.createElement("div", null, "Capacity: ", notation(this.state.totalCapacity)), /*#__PURE__*/React.createElement("div", null, "Fuel Usage: ", notation(this.state.burnRate), "/s"), /*#__PURE__*/React.createElement("div", null, "Enriched:", notation(this.state.fuel)), /*#__PURE__*/React.createElement("div", null, "Spent: ", notation(this.state.spent))), /*#__PURE__*/React.createElement("div", {
+      className: "flex-col vertical-top fuelhandling"
     }, /*#__PURE__*/React.createElement("div", null, "Fuel Handling:"), /*#__PURE__*/React.createElement("button", {
       onClick: this.loadFuel.bind(this),
       className: this.state.canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"
@@ -68,9 +68,9 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
       onClick: this.ejectWaste.bind(this),
       className: this.state.canEjectWaste ? "pebblebedbtn buy" : "pebblebedbtn locked"
     }, "Eject Spent ", this.state.type, " Pellets"))), /*#__PURE__*/React.createElement("div", {
-      className: "flex__row fuelbar"
+      className: "flex-row fuelbar"
     }, /*#__PURE__*/React.createElement("div", {
-      className: "flex__col"
+      className: "flex-col"
     }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       style: {
         maxWidth: this.state.spentPercentage * 100 + "%"
@@ -80,7 +80,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
         maxWidth: this.state.fuelPercentage / this.state.spentPercentage + "%"
       }
     })))))), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
-      className: "flex__row buying"
+      className: "flex-row buying"
     }, /*#__PURE__*/React.createElement("button", {
       onClick: this.buy.bind(this),
       className: this.state.buyable ? "pebblebedbtn buy buysingle" : "pebblebedbtn locked buysingle"

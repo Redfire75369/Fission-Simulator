@@ -1,51 +1,63 @@
 class GasCoolantComponent extends ReactStateComponent {
   render() {
     return /*#__PURE__*/React.createElement("div", {
-      className: "flex__col",
+      className: "flex-col",
       style: {
         height: "60vw",
         width: "60vw"
       }
     }, /*#__PURE__*/React.createElement("div", {
-      className: "flex__row",
+      className: "flex-row horizontal-center vertical-center",
       style: {
-        height: "40%"
+        height: "23vw",
+        width: "12vw"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#CA2B3C",
-        width: "20%"
+        height: "23vw",
+        width: "12vw"
       }
     })), /*#__PURE__*/React.createElement("div", {
-      className: "flex__row",
+      className: "flex-row horizontal-center vertical-center",
       style: {
-        height: "20%"
+        height: "14vw",
+        width: "60vw"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#00B2D3",
-        width: "40%"
+        maxHeight: "12vw",
+        minHeight: "12vw",
+        width: "24vw"
       }
     }), /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#000000",
-        borderRadius: "50%",
-        width: "20%"
+        borderRadius: "6vw",
+        margin: "1vw",
+        maxHeight: "12vw",
+        maxWidth: "12vw",
+        minHeight: "12vw"
       }
     }), /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#40CE39",
-        width: "40%"
+        maxHeight: "12vw",
+        minHeight: "12vw",
+        width: "24vw"
       }
     })), /*#__PURE__*/React.createElement("div", {
-      className: "flex__row",
+      className: "flex-row horizontal-center vertical-center",
       style: {
-        height: "40%"
+        height: "23vw",
+        width: "12vw"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#9037D6",
-        width: "20%"
+        height: "23vw",
+        width: "12vw"
       }
     })));
   }

@@ -8,34 +8,31 @@ class TRISOFuel {
 	}
 
 	get lifetime() {
-		let mul = Decimal.pow(1.4, player.reactors.pebblebeds[this.tier].bought);
-		mul = mul.mul(player.reactors.pebblebeds[this.tier].amount);
-		return Decimal.pow(4, this.tier).mul(8000).div(mul);
+		let mul = Decimal.pow(1.8, player.reactors.pebblebeds[this.tier].bought);
+		mul = mul.mul(player.reactors.pebblebeds[this.tier].amount.add(9));
+		return Decimal.pow(14.4, this.tier).mul(250).div(mul);
 	}
 	get reprocessingTime() {
 		return 1000 * pow(3, this.tier + 1);
 	}
 	get reprocessEnergyCost() {
-		return this.depleted.mul(Decimal.pow(80, this.tier + 1));
+		if (this.tier === 2) {
+			return this.depleted.pow(4.2).mul("1e20");
+		}
+		return this.depleted.mul(Decimal.pow(120, 3 * this.tier + 1));
 	}
 	get canReprocessDepleted() {
-		return this.depleted.gt(0) && this.tier < 2 && player.energy.gt(this.reprocessEnergyCost) && !document.getElementById("fuel_triso_reprocess" + (this.tier + 1)).disabled;
-	}
-	get efficiency() {
-		return new Decimal(1);
+		return this.depleted.gte(this.tier === 2 ? "2.5e2" : "1") && player.energy.gt(this.reprocessEnergyCost) && !document.getElementById("fuel_triso_reprocess" + (this.tier + 1)).disabled;
 	}
 	get energyPerPellet() {
-		return this.efficiency.mul(Decimal.pow(120, this.tier + 1));
+		return Decimal.pow(150, 3* this.tier + 1);
 	}
 
 	reprocessDepleted() {
 		if (this.canReprocessDepleted) {
-			var reprocesselement = document.getElementById("fuel_triso_reprocess" + (this.tier + 1));
+			let reprocessElement = document.getElementById("fuel_triso_reprocess" + (this.tier + 1));
 			reprocessing[this.tier] = true;
-			/*reprocesselement.children[0].style.transition = this.reprocessingTime / 1000 + "s width linear";
-			reprocesselement.children[0].style.width = "100%";
-			reprocesselement.children[0].height = reprocesselement.height;*/
-			reprocesselement.disabled = true;
+			reprocessElement.disabled = true;
 
 			player.energy = player.energy.sub(this.reprocessEnergyCost);
 			let depleted = this.depleted;
@@ -43,9 +40,13 @@ class TRISOFuel {
 
 			this.depleted = zero;
 			setTimeout(function() {
-				reprocesselement.disabled = false;
+				reprocessElement.disabled = false;
 				reprocessing[tier] = !reprocessing[tier];
 
+				if (this.tier === 2) {
+					player.prestige.americium = depleted.log(12) / 3;
+					return;
+				}
 				player.fuels.triso[tier + 1].enriched = player.fuels.triso[tier + 1].enriched.add(depleted.mul(0.01));
 			}, this.reprocessingTime);
 		}
@@ -58,7 +59,7 @@ function resetTRISOFuel() {
 
 function getTRISOFuelGain(tier) {
 	if (player.mines.tier >= tier) {
-		return player.mines.effective.mul(player.mines.tier - tier + 1).div(20);
+		return player.mines.effective.mul(player.mines.tier - tier + 1).div(0.08 * pow(250, tier + 1));
 	}
 	return zero;
 }

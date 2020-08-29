@@ -19,54 +19,40 @@ button:hover {
 	cursor: pointer;
 }
 
-.flex__col {
+.flex-col {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-}
-.flex__col.pebblebed {
-	max-width: 75%;
-	min-width: 75%;
-}
-.flex__col.turbine {
-	max-width: 24px;
-	min-width: 24px;
 }
 
-.flex__row {
+.flex-row {
 	align-items: center;
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
-}
-.flex__row.fuel > div {
-	max-width: 20vw;
-	min-width: 20vw;
-}
-.flex__row.mines > div {
-	max-width: 25vw;
-	min-width: 25vw;
-}
-.flex__row.reactors > div > button {
-	max-height: 40%;
-	max-width: 80%;
-	min-height: 40%;
-	min-width: 80%;
-}
-.flex__row.turbine {
-	max-height: 24px;
-	min-height: 24px;
 }
 
-.flex__col > *, .flex__row > * {
-	flex: 1 0;
-	margin: 1px;
-}
-
-.flex--center {
+.flex-col.horizontal-center, .flex-row.vertical-center {
 	align-items: center;
+}
+.flex-col.vertical-center, .flex-row.horizontal-center {
 	justify-content: center;
+}
+.flex-col.horizontal-left, .flex-row.vertical-top {
+	align-items: flex-start;
+}
+.flex-col.vertical-top, .flex-row.horizontal-left {
+	justify-content: flex-start;
+}
+.flex-col.horizontal-right, .flex-row.vertical-bottom {
+	align-items: flex-end;
+}
+.flex-col.vertical-bottom, .flex-row.horizontal-right {
+	justify-content: flex-end;
+}
+
+
+.flex-col > *, .flex-row > * {
+	flex: 1 0;
 }
 
 .popup {
@@ -88,6 +74,7 @@ button:hover {
 .tooltip .tooltiptext {
 	background-color: #000000;
 	color: #FFFFFF;
+	data-html: true;
 	position: absolute;
 	visibility: hidden;
 	z-index: 2;
@@ -177,7 +164,7 @@ button:hover {
 	width: 150px;
 }
 
-#statistics_tab > .flex__row > div:nth-child(1) {
+#statistics_tab > .flex-row > div:nth-child(1) {
 	padding-right: 2px;
 	text-align: right;
 }
@@ -292,10 +279,16 @@ button:hover {
 	width: 0;
 }
 
-.trisodiv > .fuelbar, .pebblebeddiv > .fuelbar {
+.trisodiv > .fuelbar {
 	height: 20%;
-	margin-left: 12%;
-	margin-right: 12%;
+	margin-bottom: 12px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.pebblebeddiv > .fuelbar {
+	height: 20%;
+	margin-left: 12px;
+	margin-right: 12px;
 }
 .trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
 	align-items: center;
@@ -520,12 +513,12 @@ button:hover {
 	position: relative;
 }
 
-#cheats_tab > .flex__row {
+#cheats_tab > .flex-row {
 	align-items: center;
 	flex-wrap: wrap;
 	justify-content: center;
 }
-#cheats_tab > .flex__row > button {
+#cheats_tab > .flex-row > button {
 	flex: 0 0 200px;
 	height: 40px;
 	margin: 2px;

@@ -9,7 +9,7 @@ class GenericEnergyProducer extends GenericProducer {
 
 	get maxBuyable() {
 		if (player.energy.lt(this.scaleStartCost)) {
-			return floor((player.energy.log10() - this.startCost.log10()) / this.scaleCost.log10());
+			return floor((player.energy.log10() - this.startCost.log10()) / this.scaleCost.log10()) - this.bought + 1;
 		}
 		let start = this.startCost.log10(); // a
 		let scale = this.scaleCost.log10(); // b
@@ -25,7 +25,7 @@ class GenericEnergyProducer extends GenericProducer {
 
 	bulkBuyable(bulk) {
 		if (player.energy.lt(this.scaleStartCost)) {
-			return min(this.bought + bulk, floor((player.energy.log10() - this.startCost.log10()) / this.scaleCost.log10()));
+			return min(this.bought + bulk, floor((player.energy.log10() - this.startCost.log10()) / this.scaleCost.log10())) - this.bought + 1;
 		}
 		let start = this.startCost.log10(); // a
 		let scale = this.scaleCost.log10(); // b

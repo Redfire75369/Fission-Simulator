@@ -64,7 +64,7 @@ function harderReset() {
 	player = getDefaultData();
 	player.navigation.naviTab = "cheats_tab";
 	postLoad();
-	//testBalancing();
+	testBalancing();
 	saveGame();
 }
 
@@ -72,8 +72,10 @@ function testBalancing() {
 	for (let i = 0; i < 8; i++) {
 		mineUpgradeCosts[i] = Decimal.pow(10, document.getElementById("mine" + i).value);
 		mineSoftCaps[i] = Decimal.pow(10, document.getElementById("mines" + i).value);
-		player.reactors[i].startCost = Decimal.pow(10, document.getElementById("reactor" + i).value);
-		player.reactors[i].scaleCost = Decimal.pow(10, document.getElementById("reactors" + i).value);
+	}
+	for (let i = 0; i < 3; i++) {
+		player.reactors.pebblebeds[i].startCost = Decimal.pow(10, document.getElementById("reactor" + i).value);
+		player.reactors.pebblebeds[i].scaleCost = Decimal.pow(10, document.getElementById("reactors" + i).value);
 	}
 }
 

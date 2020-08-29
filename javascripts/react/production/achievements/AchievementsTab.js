@@ -7,12 +7,12 @@ class AchievementsTabComponent extends ReactStateComponent {
 
   render() {
     return /*#__PURE__*/React.createElement("div", {
-      className: "flex__col",
+      className: "flex-col",
       style: {
         display: this.state.active ? "" : "none"
       }
     }, /*#__PURE__*/React.createElement("div", {
-      className: "flex__row"
+      className: "flex-row"
     }, /*#__PURE__*/React.createElement(AchievementComponent, {
       id: 11
     }), /*#__PURE__*/React.createElement(AchievementComponent, {
@@ -30,7 +30,7 @@ class AchievementsTabComponent extends ReactStateComponent {
     }), /*#__PURE__*/React.createElement(AchievementComponent, {
       id: 18
     })), /*#__PURE__*/React.createElement("div", {
-      className: "flex__row"
+      className: "flex-row"
     }, /*#__PURE__*/React.createElement(AchievementComponent, {
       id: 21
     }), /*#__PURE__*/React.createElement(AchievementComponent, {

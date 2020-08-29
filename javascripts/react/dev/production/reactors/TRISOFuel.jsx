@@ -30,30 +30,30 @@ class TRISOFuelComponent extends ReactStateComponent {
 	render() {
 		return (
 			<div className="trisodiv" style={{display: this.state.unlocked ? "" : "none"}}>
-				<div className="flex__row title">
+				<div className="flex-row title">
 					<div className="type"><b>{this.state.type} TRISO Fuel</b></div>
 					<div className="info">i</div>
 				</div>
 
-				<div className="flex__row body">
-					<div className="flex__col fuelinfo">
+				<div className="flex-row body">
+					<div className="flex-col vertical-top fuelinfo">
 						<div><b>Fuel Pebbles</b></div>
 						<div>Enriched: {notation(this.state.enriched)}</div>
 						<div>Depleted: {notation(this.state.depleted)}</div>
 						<div>Lifetime: {notation(this.state.lifetime)} ms</div>
 					</div>
 
-					<div className="flex__col reprocess">
+					<div className="flex-col vertical-top reprocess">
 						<div>Fuel Handling:</div>
 						<button onClick={this.reprocessDepleted.bind(this)} className={this.state.canReprocess ? "trisobtn buy" : "trisobtn locked"} id={"fuel_triso_reprocess" + this.state.tier}>
-							<div style={{position: "absolute", transition: this.state.reprocessing ? player.fuels.triso[this.state.tier].reprocessingTime / 1000 + "s width linear" : "", width: this.state.reprocessing ? "100%" : 0}}></div>
+							<div style={{position: "absolute", transition: this.state.reprocessing ? player.fuels.triso[this.state.tier].reprocessingTime / 1000 + "s width linear" : "", width: this.state.reprocessing ? "100%" : "0"}}></div>
 							Reprocess Spent {this.state.type} Fuel Pebbles for {notation(this.state.reprocessCost)} Energy
 						</button>
 					</div>
 				</div>
 
-				<div className="flex__row fuelbar">
-					<div className="flex__col">
+				<div className="flex-row horizontal-center fuelbar">
+					<div className="flex-col">
 						<div>
 							<div>
 								<div style={{maxWidth: this.state.hasFuel ? "100%" : "0"}}>
@@ -62,7 +62,7 @@ class TRISOFuelComponent extends ReactStateComponent {
 							</div>
 						</div>
 					</div>
-				</div><br/>
+				</div>
 			</div>
 		);
 	}

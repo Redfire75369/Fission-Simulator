@@ -7,20 +7,20 @@ class OptionsTabComponent extends ReactStateComponent {
 
 	render() {
 		return (
-			<div className="flex__col options">
-				<div className="flex__row">
+			<div className="flex-col options">
+				<div className="flex-row">
 					<NotationOptionsButtonComponent/>
 					<ThemeOptionsButtonComponent/>
 				</div>
-				<div className="flex__row">
+				<div className="flex-row">
 					<button onClick={save}>Save</button>
 					<button onClick={load}>Load</button>
 				</div>
-				<div className="flex__row">
+				<div className="flex-row">
 					<button onClick={importSave}>Import Save</button>
 					<button onClick={exportSave}>Export Save</button>
 				</div>
-				<div className="flex__row">
+				<div className="flex-row">
 					<button onClick={hardReset}>Hard Reset</button>
 					<button onClick={enableCheatsTab}>Stuff</button>
 				</div>

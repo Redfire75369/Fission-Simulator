@@ -10,11 +10,11 @@ function assignPercentageResearch(type, percentage) {
 }
 
 function toggleRespecResearch() {
-	player.respecOnPrestige = !player.respecOnPrestige;
+	player.prestige.respec = !player.prestige.respec;
 }
 
 function respecResearch() {
-	if (player.respecOnPrestige) {
+	if (player.prestige.respec) {
 		for (let i = 0; i < 4; i++) {
 			player.researchPoints = player.researchPoints.add(player.researches[i]);
 		}

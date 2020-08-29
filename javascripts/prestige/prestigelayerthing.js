@@ -6,7 +6,7 @@ function prestigeResets() {
 }
 
 function canPrestige() {
-	return player.americium.gtw(prestigeGoal());
+	return player.americium.gte(prestigeGoal());
 }
 
 function buyPrestige() {

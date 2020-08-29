@@ -65,9 +65,9 @@ function getDefaultData() {
 		mines: new Mines(),
 		reactors: {
 			pebblebeds: [
-				new PebblebedFissionReactor(0, 1, 3, 10),
-				new PebblebedFissionReactor(1, 4, 5, 10),
-				new PebblebedFissionReactor(2, 10, 8, 10)
+				new PebblebedFissionReactor(0, 1, 2, 10),
+				new PebblebedFissionReactor(1, 6, 8, 10),
+				new PebblebedFissionReactor(2, 15, 10, 10)
 			]
 		},
 
@@ -94,6 +94,10 @@ function getDefaultData() {
 			dimensions: 3,
 			bearingDimensions: 1
 		},*/
+
+		prestige: {
+			respec: true
+		},
 
 		nucleosynthesis: 0,
 

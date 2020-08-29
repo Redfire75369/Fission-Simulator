@@ -34,7 +34,7 @@ class AchievementComponent extends ReactStateComponent {
 
 	render() {
 		return (
-			<div className={this.state.completed ? "tooltip achcomplete" : "tooltip achlocked"}>
+			<div className={this.state.completed ? "flex-col align horizontal-center tooltip achcomplete" : "flex-col align horizontal-center tooltip achlocked"}>
 				<img className="achpic" src={"resources/images/achievements/" + this.state.id + ".png"}/>
 				<span className="tooltiptext">{achievementTexts[this.props.id]}</span>
 			</div>
