@@ -30,13 +30,13 @@ class TRISOFuelComponent extends ReactStateComponent {
 
 	render() {
 		return (
-			<div className="trisodiv fueldiv" style={{display: this.state.unlocked ? "" : "none"}}>
+			<div className="trisodiv" style={{display: this.state.unlocked ? "" : "none"}}>
 				<div className="flex__row" style={{backgroundColor: "#14213D", fontSize:"120%", textAlign: "center"}}>
 					<div style={{color: "#C5861E", maxWidth: "90%"}}><b>{this.state.type} TRISO Fuel</b></div>
 					<div style={{backgroundColor: "#C5861E", color: "#14213D", maxWidth: "10%"}}>i</div>
 				</div>
 
-				<div className="flex__row fueldiv" style={{marginLeft: "12px", marginRight: "12px"}}>
+				<div className="flex__row" style={{marginLeft: "12px", marginRight: "12px"}}>
 					<div className="flex__col" style={{alignItems: "flex-start", fontSize: "120%", maxWidth: "50%", minWidth: "50%", textAlign: "left"}}>
 						<div><b>Fuel Pebbles</b></div>
 						<div>Enriched: {notation(this.state.enriched)}</div>
@@ -53,12 +53,12 @@ class TRISOFuelComponent extends ReactStateComponent {
 					</div>
 				</div>
 
-				<div className="flex__row fueldiv" style={{height: "20%", marginLeft: "12px", marginRight: "12px"}}>
+				<div className="flex__row" style={{height: "20%", marginLeft: "12px", marginRight: "12px"}}>
 					<div className="flex__col">
 						<div className="trisofuelbarcontainer">
 							<div>
 								<div style={{maxWidth: this.state.hasFuel ? "100%" : "0"}}>
-									<div style={{maxWidth: this.state.enrichedPercentage * 100 + "%"}}></div>
+									<div style={{maxWidth: this.state.enrichedPercentage * 100 + "%"}}></div>\
 								</div>
 							</div>
 						</div>

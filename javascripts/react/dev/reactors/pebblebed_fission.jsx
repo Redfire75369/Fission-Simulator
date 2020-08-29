@@ -47,7 +47,7 @@ class PebblebedReactorComponent extends ReactStateComponent {
 
 	render() {
 		return (
-			<div className="pebblebeddiv fueldiv" style={{display: this.state.unlocked ? "" : "none"}}>
+			<div className="pebblebeddiv" style={{display: this.state.unlocked ? "" : "none"}}>
 				<div className="flex__row" style={{backgroundColor: "#14213D", fontSize:"120%", textAlign: "center"}}>
 					<div style={{color: "#C5861E", maxWidth: "90%"}}><b>{this.state.type} Pebblebed Reactor</b></div>
 					<div style={{backgroundColor: "#C5861E", color: "#14213D", maxWidth: "10%"}}>i</div>
