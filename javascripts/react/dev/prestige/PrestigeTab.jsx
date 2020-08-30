@@ -10,7 +10,7 @@ class PrestigeTabComponent extends ReactStateComponent {
 		return (
 			<div className="flex-col horizontal-center" style={{display: this.state.active ? "" : "none"}}>
 				<p>You have {this.state.researchPoints} Research Points</p>
-				<button onClick={toggleRespecResearch} className={player.prestige.respec ? "" : ""}>Respec Researches on Prestige</button>
+				<button onClick={toggleRespecResearch} className={this.state.respec ? "" : ""}>Respec Researches on Prestige</button>
 				<GasCoolantComponent/>
 			</div>
 		);

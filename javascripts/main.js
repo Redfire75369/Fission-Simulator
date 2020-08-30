@@ -22,7 +22,7 @@ function getDefaultData() {
 
 		unlocked: {
 			mines: false,
-			fuelReprocessing: false,
+			prestige: false,
 			naniteUps: false,
 			meltdown: false,
 			decayHasten: false
@@ -96,7 +96,16 @@ function getDefaultData() {
 		},*/
 
 		prestige: {
-			respec: true
+			americium: 0,
+			prestiges: 0,
+			researchPoints: 0,
+			respec: false,
+			researches: [
+				0,
+				0,
+				0,
+				0
+			]
 		},
 
 		nucleosynthesis: 0,

@@ -95,6 +95,12 @@ button:hover {
 	color: #D0D0D0;
 }
 
+.prestigebtn {
+	background-color: #202532;
+	border: 2px solid #88FF10;
+	color: #88FF10;
+}
+
 .naniteup {
 	border-radius: 4px;
 }

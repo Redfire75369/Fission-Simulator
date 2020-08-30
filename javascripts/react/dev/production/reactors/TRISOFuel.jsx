@@ -45,7 +45,7 @@ class TRISOFuelComponent extends ReactStateComponent {
 
 					<div className="flex-col vertical-top reprocess">
 						<div>Fuel Handling:</div>
-						<button onClick={this.reprocessDepleted.bind(this)} className={this.state.canReprocess ? "trisobtn buy" : "trisobtn locked"} id={"fuel_triso_reprocess" + this.state.tier}>
+						<button onClick={this.reprocessDepleted.bind(this)} className={this.state.canReprocess ? "trisobtn buy" : "trisobtn locked"} id={"fuel_triso_reprocess" + (this.state.tier + 1)}>
 							<div style={{position: "absolute", transition: this.state.reprocessing ? player.fuels.triso[this.state.tier].reprocessingTime / 1000 + "s width linear" : "", width: this.state.reprocessing ? "100%" : "0"}}></div>
 							Reprocess Spent {this.state.type} Fuel Pebbles for {notation(this.state.reprocessCost)} Energy
 						</button>

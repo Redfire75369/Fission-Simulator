@@ -42,18 +42,18 @@ class MinesComponent extends ReactStateComponent {
 								<div>Drill Tier: {this.state.type}</div>
 							</div>
 						</div>
-					</div><br/><br/>
+					</div>
 
 					<div className="flex-col actions">
-						<button onClick={function() {player.mines.upgrade()}} className={this.state.upgradable ? "storebtn buy" : "storebtn locked"} style={{display: this.state.atMaxTier ? "none" : ""}}>
+						<button onClick={function() {player.mines.upgrade();}} className={this.state.upgradable ? "storebtn buy" : "storebtn locked"} style={{display: this.state.atMaxTier ? "none" : ""}}>
 							{this.state.upgradeText}<br/>
 							Cost: {notation(this.state.cost)} Energy
 						</button>
-						<button onClick={function() {player.mines.salvage()}} className={this.state.canSalvage ? "storebtn buy" : "storebtn locked"} style={{display: this.state.bought ? "" : "none"}}>
+						<button onClick={function() {player.mines.salvage();}} className={this.state.canSalvage ? "storebtn buy" : "storebtn locked"} style={{display: this.state.bought ? "" : "none"}}>
 							Salvage depleted mines into new mines
 						</button>
 					</div>
-				</div><br/>
+				</div>
 			</div>
 		);
 	}

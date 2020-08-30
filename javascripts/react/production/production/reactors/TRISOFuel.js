@@ -48,7 +48,7 @@ class TRISOFuelComponent extends ReactStateComponent {
     }, /*#__PURE__*/React.createElement("div", null, "Fuel Handling:"), /*#__PURE__*/React.createElement("button", {
       onClick: this.reprocessDepleted.bind(this),
       className: this.state.canReprocess ? "trisobtn buy" : "trisobtn locked",
-      id: "fuel_triso_reprocess" + this.state.tier
+      id: "fuel_triso_reprocess" + (this.state.tier + 1)
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         position: "absolute",

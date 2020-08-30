@@ -4,9 +4,25 @@ class GasCoolantComponent extends ReactStateComponent {
       className: "flex-col",
       style: {
         height: "60vw",
+        marginTop: "2vw",
         width: "60vw"
       }
     }, /*#__PURE__*/React.createElement("div", {
+      className: "flex-row horizontal-center vertical-center",
+      style: {
+        minHeight: "6vw",
+        marginBottom: "1vw",
+        width: "6vw"
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function () {
+        assignResearch(0);
+      },
+      className: "",
+      style: {
+        minHeight: "6vw"
+      }
+    }, "\u25B2")), /*#__PURE__*/React.createElement("div", {
       className: "flex-row horizontal-center vertical-center",
       style: {
         height: "23vw",
@@ -22,9 +38,21 @@ class GasCoolantComponent extends ReactStateComponent {
       className: "flex-row horizontal-center vertical-center",
       style: {
         height: "14vw",
-        width: "60vw"
+        width: "74vw"
       }
-    }, /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function () {
+        assignResearch(1);
+      },
+      className: "",
+      style: {
+        marginRight: "1vw",
+        maxHeight: "6vw",
+        maxWidth: "6vw",
+        minHeight: "6vw",
+        minWidth: "6vw"
+      }
+    }, "\u25C0"), /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#00B2D3",
         maxHeight: "12vw",
@@ -47,7 +75,19 @@ class GasCoolantComponent extends ReactStateComponent {
         minHeight: "12vw",
         width: "24vw"
       }
-    })), /*#__PURE__*/React.createElement("div", {
+    }), /*#__PURE__*/React.createElement("button", {
+      onClick: function () {
+        assignResearch(2);
+      },
+      className: "",
+      style: {
+        marginLeft: "1vw",
+        maxHeight: "6vw",
+        maxWidth: "6vw",
+        minHeight: "6vw",
+        minWidth: "6vw"
+      }
+    }, "\u25B6")), /*#__PURE__*/React.createElement("div", {
       className: "flex-row horizontal-center vertical-center",
       style: {
         height: "23vw",
@@ -59,7 +99,22 @@ class GasCoolantComponent extends ReactStateComponent {
         height: "23vw",
         width: "12vw"
       }
-    })));
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "flex-row horizontal-center vertical-center",
+      style: {
+        minHeight: "6vw",
+        marginTop: "1vw",
+        width: "6vw"
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: function () {
+        assignResearch(3);
+      },
+      className: "",
+      style: {
+        minHeight: "6vw"
+      }
+    }, "\u25BC")));
   }
 
 }

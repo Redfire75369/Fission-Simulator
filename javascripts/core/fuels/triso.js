@@ -7,6 +7,12 @@ class TRISOFuel {
 		this.depleted = zero;
 	}
 
+	reset() {
+		this.enriched = zero;
+		this.depleted = zero;
+		reprocessing[this.tier] = false;
+	}
+
 	get lifetime() {
 		let mul = Decimal.pow(1.8, player.reactors.pebblebeds[this.tier].bought);
 		mul = mul.mul(player.reactors.pebblebeds[this.tier].amount.add(9));
@@ -43,8 +49,11 @@ class TRISOFuel {
 				reprocessElement.disabled = false;
 				reprocessing[tier] = !reprocessing[tier];
 
-				if (this.tier === 2) {
-					player.prestige.americium = depleted.log(12) / 3;
+				if (tier === 2) {
+					player.prestige.americium += depleted.log(12) / 2.22;
+					if (player.prestige.prestiges === 0) {
+						buyPrestige();
+					}
 					return;
 				}
 				player.fuels.triso[tier + 1].enriched = player.fuels.triso[tier + 1].enriched.add(depleted.mul(0.01));
@@ -53,8 +62,10 @@ class TRISOFuel {
 	}
 }
 
-function resetTRISOFuel() {
-	player.fuels.triso = getDefaultData().fuels.triso;
+function resetTRISOFuels() {
+	for (let tier = 0; tier < 3; tier++) {
+		player.fuels.triso[tier].reset();
+	}
 }
 
 function getTRISOFuelGain(tier) {

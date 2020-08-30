@@ -38,7 +38,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
       spentPercentage: player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).div(player.reactors.pebblebeds[this.state.tier].totalCapacity).toNumber(),
       buyable: player.reactors.pebblebeds[this.state.tier].buyable,
       cost: player.reactors.pebblebeds[this.state.tier].cost,
-      burnRate: player.reactors.pebblebeds[this.state.tier].burnRate.div(player.fuels.triso[this.state.tier].lifetime),
+      burnRate: player.reactors.pebblebeds[this.state.tier].burnRate,
       totalCapacity: player.reactors.pebblebeds[this.state.tier].totalCapacity
     });
   }

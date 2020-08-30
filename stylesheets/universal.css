@@ -23,12 +23,14 @@ button:hover {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
+	justify-content: center
 }
 
 .flex-row {
 	align-items: center;
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 }
 
 .flex-col.horizontal-center, .flex-row.vertical-center {
@@ -49,7 +51,6 @@ button:hover {
 .flex-col.vertical-bottom, .flex-row.horizontal-right {
 	justify-content: flex-end;
 }
-
 
 .flex-col > *, .flex-row > * {
 	flex: 1 0;
@@ -226,6 +227,8 @@ button:hover {
 }
 
 .minesdiv > .actions {
+	margin-bottom: 12px;
+	margin-top: 12px;
 	padding-bottom: 12px;
 	padding-left: 12px;
 	padding-right: 12px;
@@ -476,6 +479,11 @@ button:hover {
 	font-size: 20px;
 	height: 55px;
 	width: 200px;
+}
+
+.prestigebtn {
+	min-height: 80px;
+	width: 150px;
 }
 
 .naniteup {

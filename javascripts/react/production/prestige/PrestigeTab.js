@@ -14,7 +14,7 @@ class PrestigeTabComponent extends ReactStateComponent {
       }
     }, /*#__PURE__*/React.createElement("p", null, "You have ", this.state.researchPoints, " Research Points"), /*#__PURE__*/React.createElement("button", {
       onClick: toggleRespecResearch,
-      className: player.prestige.respec ? "" : ""
+      className: this.state.respec ? "" : ""
     }, "Respec Researches on Prestige"), /*#__PURE__*/React.createElement(GasCoolantComponent, null));
   }
 
