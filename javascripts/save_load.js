@@ -25,6 +25,10 @@ function loadSave(save, imported = false) {
 		if (save === undefined) {
 			save = getSave();
 		}
+		if (save === null) {
+			player = getDefaultData();
+			return;
+		}
 		save.trim();
 
 		if (save.startsWith("ey")) {
