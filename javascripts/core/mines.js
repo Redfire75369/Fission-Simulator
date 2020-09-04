@@ -44,7 +44,7 @@ class Mines {
 	upgrade() {
 		if (this.upgradable) {
 			player.energy = player.energy.sub(this.upCost);
-			let salvaged = this.amount.sub(this.depleted.mul(0.2)).mul(this.constructionCost)
+			const salvaged = this.amount.sub(this.depleted.mul(0.2)).mul(this.constructionCost);
 			this.tier++;
 			this.amount = Decimal.add(1, salvaged.div(this.constructionCost));
 			this.depleted = zero;
@@ -74,10 +74,9 @@ function getMineGain() {
 function getReactorGain(tier) {
 	if (tier < 2) {
 		if (player.reactors.pebblebeds[tier + 1].bought > 0) {
-			let bought = 0;
-			for (let tier = 0; tier < 3; tier++) {
-				bought += player.reactors.pebblebeds[tier].bought > 0;
-			}
+			const bought =  player.reactors.pebblebeds.reduce(function(accumulated, current) {
+				return accumulated + Math.sign(current.bought);
+			}, 0);
 			return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost).sqrt();
 		}
 		return zero;

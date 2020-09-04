@@ -14,8 +14,8 @@ class TRISOFuel {
 	}
 
 	get lifetime() {
-		let mul = Decimal.pow(1.8, player.reactors.pebblebeds[this.tier].bought);
-		mul = mul.mul(player.reactors.pebblebeds[this.tier].amount.add(9));
+		const mul = Decimal.pow(1.8, player.reactors.pebblebeds[this.tier].bought)
+			.mul(player.reactors.pebblebeds[this.tier].amount.add(9));
 		return Decimal.pow(14.4, this.tier).mul(250).div(mul);
 	}
 	get reprocessingTime() {

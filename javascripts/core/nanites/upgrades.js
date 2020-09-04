@@ -91,9 +91,9 @@ function updateUINaniteUps() {
 	document.getElementById("nanite_up0").className = player.nanites.ups[0].buyable ? "naniteup buy" : "naniteup locked";
 
 	for (let i = 1; i < player.nanites.ups.length; i++) {
-		if (player.nanites.ups[i].id != 31) {
+		if (player.nanites.ups[i].id !== 31) {
 			document.getElementById("nanite_upmult" + player.nanites.ups[i].id).innerText = notation(player.nanites.ups[i].mult[1]);
 		}
-		document.getElementById("nanite_up" + player.nanites.ups[i].id).className = player.nanites.ups[i].bought == 1 ? "naniteup bought" : player.nanites.ups[i].buyable ? "naniteup buy" : "naniteup locked";
+		document.getElementById("nanite_up" + player.nanites.ups[i].id).className = player.nanites.ups[i].bought === 1 ? "naniteup bought" : player.nanites.ups[i].buyable ? "naniteup buy" : "naniteup locked";
 	}
 }

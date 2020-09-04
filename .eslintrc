@@ -77,6 +77,7 @@
 		"TurbineNaniteUpgrade": true,
 		"MeltdownUpgrade": true,
 
+		"prestigeGoal": true,
 		"coolingEfficiency": true,
 
 		"getTotalNaniteUpMult": true,

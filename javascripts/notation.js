@@ -21,7 +21,7 @@ function notation(x, dp = 2, dpUnder1e5 = 2, showAboveInfinite = false) {
 }
 
 function formatTime(time) {
-	if (player.options.notation == "Blind") {
+	if (player.options.notation === "Blind") {
 		return "";
 	}
 	if (time >= 31536000000) {

@@ -3,7 +3,7 @@ const themes = ["Light", "Dark", "Inverted", "Midnight", "Void"];
 
 /*Notations Change*/
 function notationChange() {
-	player.options.notationNo = player.options.notationNo + 1 == notations.length ? 0 : player.options.notationNo + 1;
+	player.options.notationNo = player.options.notationNo + 1 === notations.length ? 0 : player.options.notationNo + 1;
 	player.options.notation = notations[player.options.notationNo];
 }
 
@@ -15,7 +15,7 @@ function targetedNotationChange(notation) {
 
 /*Theme Change*/
 function themeChange() {
-	player.options.themeNo = player.options.themeNo + 1 == themes.length ? 0 : player.options.themeNo + 1;
+	player.options.themeNo = player.options.themeNo + 1 === themes.length ? 0 : player.options.themeNo + 1;
 	player.options.theme = themes[player.options.themeNo];
 	document.getElementById("style").setAttribute("href", "stylesheets/" + player.options.theme.toLowerCase() + ".css");
 }

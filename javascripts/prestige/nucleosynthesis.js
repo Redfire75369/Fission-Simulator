@@ -1,5 +1,5 @@
 function resetNucleosynthesis() {
-	player.nucleosynthesis = player.meltdown.ups[14] == 1 ? 4 : player.meltdown.ups[13] == 1 ? 3 : player.meltdown.ups[14] == 1 ? 2 : player.meltdown.ups[14] == 1 ? 1 : 0;
+	player.nucleosynthesis = player.meltdown.ups[14] === 1 ? 4 : player.meltdown.ups[13] === 1 ? 3 : player.meltdown.ups[14] === 1 ? 2 : player.meltdown.ups[14] === 1 ? 1 : 0;
 }
 
 function getNucleosynthesisCost() {

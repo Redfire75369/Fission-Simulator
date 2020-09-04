@@ -79,10 +79,7 @@ function simulateFuelStorage(tickInterval = 50) {
 			player.meltdown.amount += meltdownGain();
 
 			resetEnergy();
-			resetEff();
 			resetMines();
-			resetTurbineRotors();
-			resetDynamoCoils();
 			resetNucleosynthesis();
 			resetNaniteResearch();
 			resetNaniteUps();
@@ -117,9 +114,9 @@ function updateUIDecayHastening() {
 
 	let str = "";
 	for (let i = 0; i < player.decay.decaying.length; i++) {
-		if (i == 0 || i == player.decay.decaying.length - 2) {
+		if (i === 0 || i === player.decay.decaying.length - 2) {
 			str += isotopeDisplayNames[player.decay.decaying[i]] + " ";
-		} else if (i == player.decay.decaying.length - 1) {
+		} else if (i === player.decay.decaying.length - 1) {
 			str += "and " + isotopeDisplayNames[player.decay.decaying[i]];
 		} else {
 			str += isotopeDisplayNames[player.decay.decaying[i]] + ", ";

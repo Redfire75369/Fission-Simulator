@@ -13,6 +13,15 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.9] - 4/9/20
+### Added
+
+### Modified
+- Replaced `let` with `const` in most places
+- Started using `.reduce` in some places
+
+### Removed
+
 ## [v0.6.8] - 4/9/20
 ### Added
 

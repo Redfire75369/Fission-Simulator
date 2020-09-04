@@ -38,11 +38,10 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 		if (player.reactors.pebblebeds[this.tier].bought < 1) {
 			return zero;
 		}
-		let rate = Decimal.pow(1.4, this.bought);
-		let factor = this.tier === 0 ? 2.1 : this.tier === 1 ? 1.005 : 1.001;
-		rate = rate.mul(this.fuel.max(factor).log(factor));
-		rate = rate.max(1).div(player.fuels.triso[this.tier].lifetime);
-		return rate;
+		const factor = this.tier === 0 ? 2.1 : this.tier === 1 ? 1.005 : 1.001;
+		return Decimal.pow(1.4, this.bought)
+			.mul(this.fuel.max(factor).log(factor))
+			.max(1).div(player.fuels.triso[this.tier].lifetime);
 	}
 
 	get heating() {
@@ -70,13 +69,9 @@ function pebblebedFissionEnergyGain(tier) {
 	return player.reactors.pebblebeds[tier].amount.mul(player.fuels.triso[tier].energyPerPellet).mul(pebblebedFissionFuelUsage(tier));
 }
 function pebblebedFissionTotalEnergyGain() {
-	let energy = zero;
-	for (let tier = 0; tier < 3; tier++) {
-		if (player.reactors.pebblebeds[tier].bought > 0) {
-			energy = energy.add(pebblebedFissionEnergyGain(tier));
-		}
-	}
-	return energy;
+	return player.reactors.pebblebeds.reduce(function(accumulated, current) {
+		return accumulated.add(current.bought > 0 ? pebblebedFissionEnergyGain(current.tier) : zero);
+	}, zero);
 }
 
 function simulatePebblebedReactors(tickInterval = 50) {

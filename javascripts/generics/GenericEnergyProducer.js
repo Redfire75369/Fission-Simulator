@@ -11,10 +11,10 @@ class GenericEnergyProducer extends GenericProducer {
 		if (player.energy.min(getLimit()).lt(this.scaleStartCost)) {
 			return floor((player.energy.min(getLimit()).log10() - this.startCost.log10()) / this.scaleCost.log10()) + 1 - this.bought;
 		}
-		let start = this.startCost.log10(); // a
-		let scale = this.scaleCost.log10(); // b
-		let secScale = log(this.secScaleCost, 10); // c
-		let preSecScale = this.preSecScale; // d
+		const start = this.startCost.log10(); // a
+		const scale = this.scaleCost.log10(); // b
+		const secScale = log(this.secScaleCost, 10); // c
+		const preSecScale = this.preSecScale; // d
 
 		// (c(2d + 1) - 2b + √(8cy + 4b^2 + c^2 - 8startc - 4bc(2d + 1))) / (2c)
 		return floor((secScale * (2 * preSecScale + 1) - (2 * scale) + sqrt(8 * secScale * player.energy.min(getLimit()).log10() + 4 * pow(scale, 2) + pow(secScale, 2) - 8 * start * secScale - 4 * scale * secScale * (2 * preSecScale + 1))) / (2 * secScale)) + 1 - this.bought;
