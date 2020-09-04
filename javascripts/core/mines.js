@@ -39,7 +39,7 @@ class Mines {
 		return mineUpgradeCosts[this.tier + 1];
 	}
 	get upgradable() {
-		return player.energy.gte(this.upCost);
+		return player.energy.gte(this.upCost) && this.tier < 7;
 	}
 	upgrade() {
 		if (this.upgradable) {

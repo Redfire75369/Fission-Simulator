@@ -13,6 +13,16 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.8] - 4/9/20
+### Added
+
+### Modified
+- Fixed Buy Max
+- Fixed issue with file capitalisation
+- Fixed issue where mine tier could go above 7
+
+### Removed
+
 ## [v0.6.7] - 4/9/20
 ### Added
 - Contributing guidelines and guide
