@@ -1,4 +1,4 @@
-class ProductionNavigationButton extends ReactStateComponent {
+class ProductionNavigationSubtabButton extends ReactStateComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +10,7 @@ class ProductionNavigationButton extends ReactStateComponent {
 
   tick() {
     this.setState({
-      active: player.navigation.production == this.state.text.toLowerCase()
+      active: player.navigation.production === this.state.text.toLowerCase()
     });
   }
 
@@ -26,16 +26,6 @@ class ProductionNavigationButton extends ReactStateComponent {
         display: this.state.unlocked ? "" : "none"
       }
     }, this.state.text);
-  }
-
-}
-
-class ProductionMinesNavigationButton extends ProductionNavigationButton {
-  tick() {
-    this.setState({
-      active: player.navigation.production == this.state.text.toLowerCase(),
-      unlocked: player.unlocked.mines || player.energy.gt(250)
-    });
   }
 
 }
