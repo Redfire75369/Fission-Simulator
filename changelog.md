@@ -14,10 +14,22 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 -->
 
 ## [v0.6.7] - 23/8/20
+### Added
+- Contributing guidelines and guide
+- Prestige Mechanic
+- Gas Coolants Mechanic
+
+### Modified
+- Converted more tabs into React Components
+- Improved Buy Bulk and Buy Max to O(c) from O(n)
+- Balanced game mostly till prestige
+- Fixed Balancing Testing
+
+### Removed
 
 ## [v0.6.6] - 22/8/20
 ### Added
-- React-based UI
+- React Component-based UI
 
 ### Modified
 - Removed yellow border on the fuel bar for reactors

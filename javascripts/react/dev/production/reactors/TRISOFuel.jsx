@@ -15,7 +15,7 @@ class TRISOFuelComponent extends ReactStateComponent {
 
 	tick() {
 		this.setState({
-			unlocked: this.state.tier == 0 || player.fuels.triso[this.state.tier - 1].enriched.add(player.fuels.triso[this.state.tier - 1].spent).gt(0) || player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].spent).gt(0),
+			unlocked: this.state.tier === 0 || player.fuels.triso[this.state.tier - 1].enriched.add(player.fuels.triso[this.state.tier - 1].depleted).gt(0) || player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0),
 			hasFuel: player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0),
 			enriched: player.fuels.triso[this.state.tier].enriched,
 			enrichedPercentage: player.fuels.triso[this.state.tier].enriched.div(player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted)).toNumber(),
@@ -47,7 +47,7 @@ class TRISOFuelComponent extends ReactStateComponent {
 						<div>Fuel Handling:</div>
 						<button onClick={this.reprocessDepleted.bind(this)} className={this.state.canReprocess ? "trisobtn buy" : "trisobtn locked"} id={"fuel_triso_reprocess" + (this.state.tier + 1)}>
 							<div style={{position: "absolute", transition: this.state.reprocessing ? player.fuels.triso[this.state.tier].reprocessingTime / 1000 + "s width linear" : "", width: this.state.reprocessing ? "100%" : "0"}}></div>
-							Reprocess Spent {this.state.type} Fuel Pebbles for {notation(this.state.reprocessCost)} Energy
+							Reprocess Depleted {this.state.type} Fuel Pebbles for {notation(this.state.reprocessCost)} Energy
 						</button>
 					</div>
 				</div>

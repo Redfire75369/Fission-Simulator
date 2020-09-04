@@ -2,8 +2,8 @@
 This is a short writeup on contributing to Fission Simulator.
 
 ## Github Introduction
-In order to start, you need a free Account for [Github](https://github.com). <br/>
-Follow the registration steps if you have none already. <br/>
+In order to start, you need a free Account for [Github](https://github.com).  
+Follow the registration steps if you have none already.  
 Afterwards, follow [this guide](https://github.com/Redfire75369/Fission-Simulator/blob/overhaul/github.md) for more information.
 
 ## Guidelines

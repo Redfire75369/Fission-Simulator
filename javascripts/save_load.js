@@ -9,14 +9,14 @@ function getSaveString() {
 }
 
 function getSave() {
-	return localStorage.getItem("fissionSimSave1");
+	return localStorage.getItem("FissionSimulatorSave1");
 }
 function saveGame() {
 	try {
-		localStorage.setItem("fissionSimSave1", getSaveString());
+		localStorage.setItem("FissionSimulatorSave1", getSaveString());
 	} catch(err) {
-		console.log(err);
-		console.log("Game failed to save");
+		console.log("Saving Error:");
+		console.error(err);
 	}
 }
 
@@ -33,7 +33,7 @@ function loadSave(save, imported = false) {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
 
-		if (save.version.beta < 6 || (save.version.beta == 6 && save.version.alpha < 3)) {
+		if (save.version.beta < 6 || (save.version.beta === 6 && save.version.alpha < 7)) {
 			if (imported) {
 				alert("The imported save is from a much older version and is thus, incompatible with the current version. The save has not been imported.");
 				return;
@@ -47,9 +47,6 @@ function loadSave(save, imported = false) {
 		if (save !== undefined) {
 			checkAssign(getDefaultData(), save, []);
 
-			if (player.navigation.production === "fuel_subtab") {
-				player.navigation.production = "reactors_subtab";
-			}
 			player.version = getDefaultData().version;
 		} else {
 			console.log("No existing save found");
@@ -58,12 +55,15 @@ function loadSave(save, imported = false) {
 			alert("Save imported successfully.");
 		}
 	} catch(err) {
-		console.log(err);
 		if (imported) {
+			console.log("Save Import Error:");
 			alert("Error: Imported save is in an invalid format, please make sure you've copied the save correctly and aren't just typing gibberish.");
 		} else {
-			console.log("The save didn't load.");
+			console.log("Save Loading Error:");
+			alert("The game has encountered a fatal error while loading. Please report this bug in the discord as soon as possible. The next prompt will contain debug information regarding this. Please include that in the bug report.");
+			alert("--DEBUG Information--\n" + err.stack);
 		}
+		console.error(err);
 	}
 }
 
@@ -73,7 +73,7 @@ function checkAssign(check, assignFrom, assignTo = []) {
 			for (let i = 0; i < assignFrom.length; i++) {
 				checkAssign(check[i], assignFrom[i], assignTo.concat([i]));
 			}
-		} else if (typeof check == "object" && !checkObj(check)) {
+		} else if (typeof check === "object" && !checkObj(check)) {
 			for (let i = 0, ii = Object.keys(check); i < ii.length; i++) {
 				checkAssign(check[ii[i]], assignFrom[ii[i]], assignTo.concat([ii[i]]));
 			}
@@ -103,7 +103,7 @@ function checkAssign(check, assignFrom, assignTo = []) {
 function checkObj(obj) {
 	return obj instanceof Decimal
 		|| obj instanceof Array
-		|| obj instanceof GenericEnergyProducer
+		|| obj instanceof GenericProducer
 		|| obj instanceof GenericUpgrade
 		|| obj instanceof TRISOFuel
 		|| obj instanceof Mines;
@@ -132,10 +132,10 @@ function objectify(x, type) {
 		ret.fuel = new Decimal(x.fuel);
 		ret.spent = new Decimal(x.spent);
 		return ret;
-	/*} else if (type instanceof TurbineBlade) {
+	/* } else if (type instanceof TurbineBlade) {
 		let ret = new TurbineBlade(x.name, x.efficiency, x.expansion, x.speed);
 		ret.length = x.length;
-		return ret;*/
+		return ret; */
 	} else if (type instanceof TurbineNaniteUpgrade) {
 		let ret = new TurbineNaniteUpgrade();
 		ret.bought = x.bought;

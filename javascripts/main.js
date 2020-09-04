@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 6,
-			alpha: 6
+			alpha: 7
 		},
 
 		options: {
@@ -54,6 +54,7 @@ function getDefaultData() {
 
 		moderator: 0,
 
+		mines: new Mines(),
 		fuels: {
 			triso: [
 				new TRISOFuel(0),
@@ -61,8 +62,6 @@ function getDefaultData() {
 				new TRISOFuel(2)
 			]
 		},
-
-		mines: new Mines(),
 		reactors: {
 			pebblebeds: [
 				new PebblebedFissionReactor(0, 1, 2, 10),
@@ -101,10 +100,10 @@ function getDefaultData() {
 			researchPoints: 0,
 			respec: false,
 			researches: [
-				0,
-				0,
-				0,
-				0
+				1,
+				1,
+				1,
+				1
 			]
 		},
 

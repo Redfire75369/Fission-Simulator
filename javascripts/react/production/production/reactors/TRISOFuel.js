@@ -15,7 +15,7 @@ class TRISOFuelComponent extends ReactStateComponent {
 
   tick() {
     this.setState({
-      unlocked: this.state.tier == 0 || player.fuels.triso[this.state.tier - 1].enriched.add(player.fuels.triso[this.state.tier - 1].spent).gt(0) || player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].spent).gt(0),
+      unlocked: this.state.tier === 0 || player.fuels.triso[this.state.tier - 1].enriched.add(player.fuels.triso[this.state.tier - 1].depleted).gt(0) || player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0),
       hasFuel: player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0),
       enriched: player.fuels.triso[this.state.tier].enriched,
       enrichedPercentage: player.fuels.triso[this.state.tier].enriched.div(player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted)).toNumber(),
@@ -55,7 +55,7 @@ class TRISOFuelComponent extends ReactStateComponent {
         transition: this.state.reprocessing ? player.fuels.triso[this.state.tier].reprocessingTime / 1000 + "s width linear" : "",
         width: this.state.reprocessing ? "100%" : "0"
       }
-    }), "Reprocess Spent ", this.state.type, " Fuel Pebbles for ", notation(this.state.reprocessCost), " Energy"))), /*#__PURE__*/React.createElement("div", {
+    }), "Reprocess Depleted ", this.state.type, " Fuel Pebbles for ", notation(this.state.reprocessCost), " Energy"))), /*#__PURE__*/React.createElement("div", {
       className: "flex-row horizontal-center fuelbar"
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-col"

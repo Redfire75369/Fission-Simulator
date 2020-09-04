@@ -1,30 +1,51 @@
-var gasCoolants = [
-	[new Decimal(1.008)],
-	[new Decimal(4.032)],
-	[new Decimal(16.128)]
+var gasCoolantBaseHeatCapacity = [
+	new Decimal(1.008),
+	new Decimal(4.032),
+	new Decimal(16.128)
 ];
 
 class GasCoolant {
 	constructor(tier) {
 		this.tier = tier;
 	}
-	
+
 	get flowRate() {
 		if (player.prestige.researches[1] === 0) {
 			return zero;
 		}
-		return Decimal.pow(2.2, 3 + Decimal.log(player.prestige.researches[1], 1.4));
+		return Decimal.pow(1.4, 3 + Decimal.log(player.prestige.researches[1], 1.4));
 	}
 	get heatCapacity() {
-		return Decimal.mul(gasCoolants[this.tier][0], Decimal.pow(Decimal.log(player.prestige.researches[1] + 1, 1.2 + this.tier / 6), 2.4));
+		return Decimal.mul(gasCoolantBaseHeatCapacity[this.tier], Decimal.pow(Decimal.log(player.prestige.researches[1] + 1, 1.2 + this.tier / 12), 2.4));
+	}
+	get nobility() {
+		return Decimal.pow(1.5, Decimal.log(1 + player.prestige.researches[2], 2.1));
+	}
+	get fuelEfficiency() {
+		return new Decimal(1);
 	}
 
 	get cooling() {
 		if (!player.unlocked.prestige) {
 			return new Decimal(-1);
 		}
-		return player.reactors.pebblebeds[this.tier].mul(this.flowRate).mul(this.heatCapacity).pow(this.nobility.log(1 + (this.tier + 1) / 8) + 1));
+		return player.reactors.pebblebeds[this.tier].amount.mul(this.flowRate).mul(this.heatCapacity).pow(this.nobility.log(3 + 2 * this.tier) * 0.63);
 	}
 }
 
-function netHeating
+var gasCoolants = [
+	new GasCoolant(0),
+	new GasCoolant(1),
+	new GasCoolant(2)
+];
+
+function pebblebedFissionNetHeating(tier) {
+	return player.reactors.pebblebeds[tier].heating.sub(gasCoolants[tier].cooling);
+}
+
+function coolingEfficiency(tier) {
+	if (pebblebedFissionNetHeating(tier).gt(0)) {
+		return Decimal.add(1, pebblebedFissionNetHeating(tier).div(player.reactors.pebblebeds[tier].amount).pow(5/8).add(1));
+	}
+	return Decimal.add(1.2, pebblebedFissionNetHeating(tier).div(player.reactors.pebblebeds[tier].amount).add(1).log(4));
+}

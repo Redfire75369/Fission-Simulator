@@ -1,18 +1,30 @@
 class GasCoolantComponent extends ReactStateComponent {
+  tick() {
+    this.setState({
+      percentageWidth: max(max(max(player.prestige.researches[0], player.prestige.researches[1]), player.prestige.researches[2]), player.prestige.researches[3]) / 23,
+      heatCapacityResearch: player.prestige.researches[0],
+      flowRateResearch: player.prestige.researches[1],
+      fuelEfficiencyResearch: player.prestige.researches[2],
+      nobilityResearch: player.prestige.researches[3]
+    });
+  }
+
   render() {
     return /*#__PURE__*/React.createElement("div", {
       className: "flex-col",
       style: {
-        height: "60vw",
-        marginTop: "2vw",
-        width: "60vw"
+        maxHeight: "min(76vw, 76vh)",
+        minHeight: "min(76vw, 76vh)",
+        marginTop: "min(2vw, 2vh)",
+        width: "min(60vw, 60vh)"
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-row horizontal-center vertical-center",
       style: {
-        minHeight: "6vw",
-        marginBottom: "1vw",
-        width: "6vw"
+        marginBottom: "min(1vw, 1vh)",
+        maxHeight: "min(6vw, 6vh)",
+        minHeight: "min(6vw, 6vh)",
+        width: "min(6vw, 6vh)"
       }
     }, /*#__PURE__*/React.createElement("button", {
       onClick: function () {
@@ -20,25 +32,36 @@ class GasCoolantComponent extends ReactStateComponent {
       },
       className: "",
       style: {
-        minHeight: "6vw"
+        maxHeight: "min(6vw, 6vh)",
+        minHeight: "min(6vw, 6vh)"
       }
     }, "\u25B2")), /*#__PURE__*/React.createElement("div", {
       className: "flex-row horizontal-center vertical-center",
       style: {
-        height: "23vw",
-        width: "12vw"
+        maxHeight: "min(23vw, 23vh)",
+        minHeight: "min(23vw, 23vh)",
+        width: "min(12vw, 12vh)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "flex-col vertical-bottom",
+      style: {
+        maxHeight: "min(23vw, 23vh)",
+        minHeight: "min(23vw, 23vh)",
+        width: "min(12vw, 12vh)"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#CA2B3C",
-        height: "23vw",
-        width: "12vw"
+        maxHeight: "min(" + this.state.heatCapacityResearch / this.state.percentageWidth + "vh, " + this.state.heatCapacityResearch / this.state.percentageWidth + "vw)",
+        minHeight: "min(" + this.state.heatCapacityResearch / this.state.percentageWidth + "vh, " + this.state.heatCapacityResearch / this.state.percentageWidth + "vw)",
+        width: "min(12vw, 12vh)"
       }
-    })), /*#__PURE__*/React.createElement("div", {
+    }))), /*#__PURE__*/React.createElement("div", {
       className: "flex-row horizontal-center vertical-center",
       style: {
-        height: "14vw",
-        width: "74vw"
+        maxHeight: "min(14vw, 14vh)",
+        minHeight: "min(14vw, 14vh)",
+        width: "min(74vw, 74vh)"
       }
     }, /*#__PURE__*/React.createElement("button", {
       onClick: function () {
@@ -46,65 +69,92 @@ class GasCoolantComponent extends ReactStateComponent {
       },
       className: "",
       style: {
-        marginRight: "1vw",
-        maxHeight: "6vw",
-        maxWidth: "6vw",
-        minHeight: "6vw",
-        minWidth: "6vw"
+        marginRight: "min(1vw, 1vh)",
+        maxHeight: "min(6vw, 6vh)",
+        maxWidth: "min(6vw, 6vh)",
+        minHeight: "min(6vw, 6vh)",
+        minWidth: "min(6vw, 6vh)"
       }
     }, "\u25C0"), /*#__PURE__*/React.createElement("div", {
+      className: "flex-row horizontal-right",
+      style: {
+        maxHeight: "min(12vw, 12vh)",
+        minHeight: "min(12vw, 12vh)",
+        width: "24vw"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#00B2D3",
-        maxHeight: "12vw",
-        minHeight: "12vw",
-        width: "24vw"
+        maxHeight: "min(12vw, 12vh)",
+        maxWidth: "min(" + this.state.flowRateResearch / this.state.percentageWidth + "vh, " + this.state.flowRateResearch / this.state.percentageWidth + "vw)",
+        minHeight: "min(12vw, 12vh)",
+        minWidth: "min(" + this.state.flowRateResearch / this.state.percentageWidth + "vh, " + this.state.flowRateResearch / this.state.percentageWidth + "vw)"
       }
-    }), /*#__PURE__*/React.createElement("div", {
+    })), /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#000000",
-        borderRadius: "6vw",
-        margin: "1vw",
-        maxHeight: "12vw",
-        maxWidth: "12vw",
-        minHeight: "12vw"
+        borderRadius: "min(6vw, 6vh)",
+        margin: "min(1vw, 1vh)",
+        maxHeight: "min(12vw, 12vh)",
+        maxWidth: "min(12vw, 12vh)",
+        minHeight: "min(12vw, 12vh)"
       }
     }), /*#__PURE__*/React.createElement("div", {
+      className: "flex-row horizontal-left",
       style: {
-        backgroundColor: "#40CE39",
-        maxHeight: "12vw",
-        minHeight: "12vw",
+        maxHeight: "min(12vw, 12vh)",
+        minHeight: "min(12vw, 12vh)",
         width: "24vw"
       }
-    }), /*#__PURE__*/React.createElement("button", {
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        backgroundColor: "#40CE39",
+        maxHeight: "min(12vw, 12vh)",
+        maxWidth: "min(" + this.state.fuelEfficiencyResearch / this.state.percentageWidth + "vh, " + this.state.fuelEfficiencyResearch / this.state.percentageWidth + "vw)",
+        minHeight: "min(12vw, 12vh)",
+        minWidth: "min(" + this.state.fuelEfficiencyResearch / this.state.percentageWidth + "vh, " + this.state.fuelEfficiencyResearch / this.state.percentageWidth + "vw)"
+      }
+    })), /*#__PURE__*/React.createElement("button", {
       onClick: function () {
         assignResearch(2);
       },
       className: "",
       style: {
-        marginLeft: "1vw",
-        maxHeight: "6vw",
-        maxWidth: "6vw",
-        minHeight: "6vw",
-        minWidth: "6vw"
+        marginLeft: "min(1vw, 1vh)",
+        maxHeight: "min(6vw, 6vh)",
+        maxWidth: "min(6vw, 6vh)",
+        minHeight: "min(6vw, 6vh)",
+        minWidth: "min(6vw, 6vh)"
       }
     }, "\u25B6")), /*#__PURE__*/React.createElement("div", {
       className: "flex-row horizontal-center vertical-center",
       style: {
-        height: "23vw",
-        width: "12vw"
+        maxHeight: "min(23vw, 23vh)",
+        minHeight: "min(23vw, 23vh)",
+        width: "min(12vw, 12vh)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "flex-col vertical-top",
+      style: {
+        maxHeight: "min(23vw, 23vh)",
+        minHeight: "min(23vw, 23vh)",
+        width: "min(12vw, 12vh)"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         backgroundColor: "#9037D6",
-        height: "23vw",
-        width: "12vw"
+        maxHeight: "min(" + this.state.nobilityResearch / this.state.percentageWidth + "vh, " + this.state.nobilityResearch / this.state.percentageWidth + "vw)",
+        minHeight: "min(" + this.state.nobilityResearch / this.state.percentageWidth + "vh, " + this.state.nobilityResearch / this.state.percentageWidth + "vw)",
+        width: "min(12vw, 12vh)"
       }
-    })), /*#__PURE__*/React.createElement("div", {
+    }))), /*#__PURE__*/React.createElement("div", {
       className: "flex-row horizontal-center vertical-center",
       style: {
-        minHeight: "6vw",
-        marginTop: "1vw",
-        width: "6vw"
+        marginBottom: "min(3vw, 3vh)",
+        marginTop: "min(1vw, 1vh)",
+        maxHeight: "min(6vw, 6vh)",
+        minHeight: "min(6vw, 6vh)",
+        width: "min(6vw, 6vh)"
       }
     }, /*#__PURE__*/React.createElement("button", {
       onClick: function () {
@@ -112,7 +162,8 @@ class GasCoolantComponent extends ReactStateComponent {
       },
       className: "",
       style: {
-        minHeight: "6vw"
+        maxHeight: "min(6vw, 6vh)",
+        minHeight: "min(6vw, 6vh)"
       }
     }, "\u25BC")));
   }

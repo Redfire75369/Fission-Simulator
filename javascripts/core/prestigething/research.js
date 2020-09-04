@@ -18,7 +18,8 @@ function toggleRespecResearch() {
 function respecResearch() {
 	if (player.prestige.respec) {
 		for (let i = 0; i < 4; i++) {
-			player.prestige.researchPoints += player.prestige.researches[i];
+			player.prestige.researchPoints += player.prestige.researches[i] - 1;
+			player.prestige.researches[i] = 1;
 		}
 	}
 }

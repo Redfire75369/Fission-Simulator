@@ -22,20 +22,7 @@ class ProductionTabComponent extends ReactStateComponent {
     }), /*#__PURE__*/React.createElement(ProductionNavigationButton, {
       tab: "reactors",
       text: "Reactors"
-    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(MinesComponent, null)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FissionReactorsSubTabComponent, null)), /*#__PURE__*/React.createElement("div", {
-      className: "flex-row",
-      style: {
-        marginTop: "12px"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex-col"
-    }, /*#__PURE__*/React.createElement("p", null, "You have ", notation(this.state.americium), " Americium-242"), /*#__PURE__*/React.createElement("button", {
-      onClick: buyPrestige,
-      className: this.state.canPrestige ? "prestigebtn buy" : "prestigebtn locked",
-      style: {
-        display: this.state.unlockedPrestige ? "" : "none"
-      }
-    }, "Prestige for 1 Americium-242"))));
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(MinesComponent, null)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(FissionReactorsSubTabComponent, null)));
   }
 
 }

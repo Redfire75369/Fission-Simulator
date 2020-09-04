@@ -55,7 +55,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
 						<div><b>Fuel Information</b></div>
 						<div>Capacity: {notation(this.state.totalCapacity)}</div>
 						<div>Fuel Usage: {notation(this.state.burnRate)}/s</div>
-						<div>Enriched:{notation(this.state.fuel)}</div>
+						<div>Enriched: {notation(this.state.fuel)}</div>
 						<div>Spent: {notation(this.state.spent)}</div>
 					</div>
 

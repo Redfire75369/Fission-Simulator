@@ -77,6 +77,8 @@
 		"TurbineNaniteUpgrade": true,
 		"MeltdownUpgrade": true,
 
+		"coolingEfficiency": true,
+
 		"getTotalNaniteUpMult": true,
 		"getTotalMeltdownUpMult": true,
 		"checkAchievementCompletion": true,
@@ -116,6 +118,14 @@
 			"error",
 			"always"
 		],
+		"eqeqeq": [
+			"error",
+			"always",
+			{
+				"null": "always"
+			}
+		],
+		"for-direction": "error",
 		"getter-return": "error",
 		"indent": [
 			"error",
@@ -129,6 +139,16 @@
 			"unix"
 		],
 		"no-compare-neg-zero": "warn",
+		"no-cond-assign": [
+			"error",
+			"always"
+		],
+		"no-constant-condition": [
+			"error",
+			{
+				"checkLoops": false
+			}
+		],
 		"no-else-return": [
 			"warn",
 			{
@@ -154,7 +174,7 @@
 		"no-self-assign": "warn",
         "no-setter-return": "warn",
 		"no-this-before-super": "warn",
-		"no-undef": "warn",
+		"no-undef": "error",
 		"no-unreachable": "warn",
 		"no-unused-vars": "warn",
 		"no-useless-catch": "warn",
@@ -168,6 +188,7 @@
 		],
 		"use-isnan": "error",
 		"valid-typeof": "error",
+
 		"react/jsx-curly-spacing": [
 			"warn",
 			{

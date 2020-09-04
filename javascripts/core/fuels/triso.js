@@ -19,21 +19,21 @@ class TRISOFuel {
 		return Decimal.pow(14.4, this.tier).mul(250).div(mul);
 	}
 	get reprocessingTime() {
-		return 1000 * pow(3, this.tier + 1);
+		return 2800 * pow(2, this.tier);
 	}
 	get reprocessEnergyCost() {
 		if (this.tier === 2) {
 			return this.depleted.pow(4.2).mul("1e20");
 		}
-		return this.depleted.mul(Decimal.pow(120, 3 * this.tier + 1));
-	}
-	get canReprocessDepleted() {
-		return this.depleted.gte(this.tier === 2 ? "2.5e2" : "1") && player.energy.gt(this.reprocessEnergyCost) && !document.getElementById("fuel_triso_reprocess" + (this.tier + 1)).disabled;
+		return this.depleted.mul(Decimal.pow(120, 3 * this.tier)).mul(120);
 	}
 	get energyPerPellet() {
-		return Decimal.pow(150, 3* this.tier + 1);
+		return Decimal.pow(150, 3 * this.tier).mul(300);
 	}
 
+	get canReprocessDepleted() {
+		return this.depleted.gte(this.tier === 2 ? prestigeGoal() : "1") && player.energy.gt(this.reprocessEnergyCost) && !document.getElementById("fuel_triso_reprocess" + (this.tier + 1)).disabled;
+	}
 	reprocessDepleted() {
 		if (this.canReprocessDepleted) {
 			let reprocessElement = document.getElementById("fuel_triso_reprocess" + (this.tier + 1));
@@ -50,8 +50,7 @@ class TRISOFuel {
 				reprocessing[tier] = !reprocessing[tier];
 
 				if (tier === 2) {
-					player.prestige.americium += depleted.log(12) / 2.22;
-					if (player.prestige.prestiges === 0) {
+					if (depleted.gte(prestigeGoal())) {
 						buyPrestige();
 					}
 					return;
