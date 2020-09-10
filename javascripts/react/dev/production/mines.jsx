@@ -1,3 +1,5 @@
+const mineTypes = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium", "Diamond", "Laser"];
+
 class MinesComponent extends ReactStateComponent {
 	tick() {
 		this.setState({

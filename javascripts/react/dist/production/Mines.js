@@ -1,3 +1,5 @@
+const mineTypes = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium", "Diamond", "Laser"];
+
 class MinesComponent extends ReactStateComponent {
   tick() {
     this.setState({
@@ -13,7 +15,7 @@ class MinesComponent extends ReactStateComponent {
       construction: getMineGain(),
       constructionCost: player.mines.constructionCost,
       type: player.mines.tier < 0 ? "None" : mineTypes[player.mines.tier],
-      upgradeText: player.mines.tier == -1 ? "Buy a mine" : "Upgrade mines to use " + this.state.type + " Drills",
+      upgradeText: player.mines.tier === -1 ? "Buy a mine" : "Upgrade mines to use " + this.state.type + " Drills",
       cost: player.mines.upCost,
       upgradable: player.mines.upgradable,
       canSalvage: player.mines.depleted.gt(0)

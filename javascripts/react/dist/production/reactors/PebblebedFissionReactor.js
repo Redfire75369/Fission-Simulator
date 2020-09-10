@@ -27,7 +27,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
 
   tick() {
     this.setState({
-      unlocked: this.state.tier == 0 || player.reactors.pebblebeds[this.state.tier - 1].bought > 0,
+      unlocked: this.state.tier === 0 || player.reactors.pebblebeds[this.state.tier - 1].bought > 0,
       amount: player.reactors.pebblebeds[this.state.tier].amount,
       bought: player.reactors.pebblebeds[this.state.tier].bought,
       canLoadFuel: player.fuels.triso[this.state.tier].enriched.gte(1) && player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).add(1).lt(player.reactors.pebblebeds[this.state.tier].totalCapacity),

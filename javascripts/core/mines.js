@@ -1,4 +1,3 @@
-const mineTypes = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osmium", "Diamond", "Laser"];
 const mineUpgradeCosts = [new Decimal("7.5e2"), new Decimal("1e5"), new Decimal("1e17"), new Decimal("1e26"), new Decimal("1e38"), new Decimal("1e51"), new Decimal("1e64"), new Decimal("1e80")];
 const mineSoftCaps = [new Decimal("1e1"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
 
@@ -63,22 +62,22 @@ function resetMines() {
 	player.mines = getDefaultData().mines;
 }
 
-function changeConstructionRatio(x) {
+/*function changeConstructionRatio(x) {
 	player.mines.ratio += x / 100;
 	player.mines.ratio = max(0, min(1, player.mines.ratio));
 }
-
+*/
 function getMineGain() {
 	return player.mines.metalExtraction.mul(player.mines.ratio).div(player.mines.constructionCost);
 }
 function getReactorGain(tier) {
-	if (tier < 2) {
-		if (player.reactors.pebblebeds[tier + 1].bought > 0) {
+	if (player.mines.tier > 2 * tier) {
+		//if (player.reactors.pebblebeds[tier + 1].bought > 0) {
 			const bought =  player.reactors.pebblebeds.reduce(function(accumulated, current) {
 				return accumulated + Math.sign(current.bought);
 			}, 0);
 			return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost).sqrt();
-		}
+		//}
 		return zero;
 	}
 	return zero;

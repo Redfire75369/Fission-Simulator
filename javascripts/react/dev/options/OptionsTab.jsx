@@ -9,8 +9,8 @@ class OptionsTabComponent extends ReactStateComponent {
 		return (
 			<div className="flex-col options">
 				<div className="flex-row">
-					<NotationOptionsButtonComponent/>
-					<ThemeOptionsButtonComponent/>
+					<NotationOptionsButton/>
+					<ThemeOptionsButton/>
 				</div>
 				<div className="flex-row">
 					<button onClick={save}>Save</button>

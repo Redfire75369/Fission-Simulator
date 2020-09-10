@@ -54,7 +54,7 @@ function hideToggleReactors() {
 }
 
 function showSelectIsotope() {
-	if (document.getElementById("isotope_dropdown").style.display == "none") {
+	if (document.getElementById("isotope_dropdown").style.display === "none") {
 		document.getElementById("isotope_dropdown").style.display = "";
 	} else {
 		document.getElementById("isotope_dropdown").style.display = "none";

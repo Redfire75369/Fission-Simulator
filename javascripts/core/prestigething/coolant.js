@@ -44,8 +44,8 @@ function pebblebedFissionNetHeating(tier) {
 }
 
 function coolingEfficiency(tier) {
-	if (pebblebedFissionNetHeating(tier).gt(0)) {
-		return Decimal.add(1, pebblebedFissionNetHeating(tier).div(player.reactors.pebblebeds[tier].amount).pow(5/8).add(1));
+	if (pebblebedFissionNetHeating(tier).gte(0)) {
+		return Decimal.add(1, pebblebedFissionNetHeating(tier).div(player.reactors.pebblebeds[tier].amount).add(1).log(4.2));
 	}
-	return Decimal.add(1.2, pebblebedFissionNetHeating(tier).div(player.reactors.pebblebeds[tier].amount).add(1).log(4));
+	return Decimal.add(1.2, pebblebedFissionNetHeating(tier).div(player.reactors.pebblebeds[tier].amount).mul(-1).add(1).log(2.7));
 }

@@ -108,6 +108,7 @@ function checkObj(obj) {
 	return obj instanceof Decimal
 		|| obj instanceof Array
 		|| obj instanceof GenericProducer
+		|| obj instanceof GenericAutomation
 		|| obj instanceof GenericUpgrade
 		|| obj instanceof TRISOFuel
 		|| obj instanceof Mines;
@@ -151,6 +152,21 @@ function objectify(x, type) {
 	} else if (type instanceof MeltdownUpgrade) {
 		let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
 		ret.bought = x.bought;
+		return ret;
+	} else if (type instanceof PebblebedBuyAutomation) {
+		let ret = new PebblebedBuyAutomation(x.interval, type.tier);
+		ret.cooldown = x.cooldown;
+		ret.active = x.active;
+		return ret;
+	} else if (type instanceof PebblebedFuelAutomation) {
+		let ret = new PebblebedFuelAutomation(x.interval, type.tier);
+		ret.cooldown = x.cooldown;
+		ret.active = x.active;
+		return ret;
+	} else if (type instanceof TRISOReprocessAutomation) {
+		let ret = new TRISOReprocessAutomation(x.interval, type.tier);
+		ret.cooldown = x.cooldown;
+		ret.active = x.active;
 		return ret;
 	}
 	return x;

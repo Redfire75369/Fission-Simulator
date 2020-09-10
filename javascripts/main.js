@@ -185,6 +185,23 @@ function getDefaultData() {
 			coriumUse: new Decimal(1)
 		},
 
+		automation: {
+			reactors: {
+				pebblebeds: {
+					buy: [
+						new PebblebedBuyAutomation(1000, 0),
+						new PebblebedBuyAutomation(1000, 1),
+						new PebblebedBuyAutomation(1000, 2)
+					],
+					fuel: [
+						new PebblebedFuelAutomation(1000, 0),
+						new PebblebedFuelAutomation(1000, 1),
+						new PebblebedFuelAutomation(1000, 2)
+					]
+				}
+			}
+		},
+
 		imported42: false,
 
 		time: 0,
@@ -208,12 +225,6 @@ window.onvisibilitychange = function() {
 
 function updateUI() {
 	updateUIEnergy();
-	//updateUINucleosynthesis();
-	//updateUINaniteUps();
-	//updateUINaniteResearch();
-	//updateUIMeltdown();
-	//updateUIMeltdownUps();
-	//updateUIDecayHastening();
 	updateUIHowToPlay();
 }
 function updateGame(tickInterval = 50) {
@@ -223,6 +234,7 @@ function updateGame(tickInterval = 50) {
 	simulateTRISOFuel(tickInterval);
 	simulateMines(tickInterval);
 	simulatePebblebedReactors(tickInterval);
+	simulatePebblebedAutomation(tickInterval);
 	//simulateFuelStorage(tickInterval);
 	//simulateDecayIsotope("th227", tickInterval);
 	checkAchievementCompletion();

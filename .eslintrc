@@ -1,16 +1,16 @@
 {
 	"env": {
 		"browser": true,
-		"node": true,
 		"es2020": true,
-		"es6": true
+		"es6": true,
+		"node": true,
 	},
 	"parserOptions": {
 		"ecmaVersion": 11,
-		"sourceType": "module",
 		"ecmaFeatures": {
             "jsx": true
-        }
+        },
+		"sourceType": "module"
 	},
 	"plugins": [
 		"react"
@@ -21,12 +21,18 @@
 		"getLimit": true,
 		"zero": true,
 		"infinity": true,
+		"focused": true,
+
 		"isotopes": true,
 
 		"notation": true,
 		"formatTime": true,
 		"simulateTime": true,
+		"updateUI": true,
 		"showNaviTab": true,
+
+		"notationChange": true,
+		"themeChange": true,
 		"targetedNotationChange": true,
 		"targetedThemeChange": true,
 
@@ -37,6 +43,7 @@
 		"getSaveString": true,
 		"getSave": true,
 
+		"reprocessing": true,
 		"activeCoils": true,
 		"rotors": true,
 		"coils": true,
@@ -53,6 +60,22 @@
 		"React": true,
 		"ReactDOM": true,
         "ReactStateComponent": true,
+
+		"MinesComponent": true,
+		"TRISOFuelComponent": true,
+		"PebblebedFissionReactorComponent": true,
+		"FissionReactorsSubtabComponent": true,
+		"ProductionNavigationSubtabButton": true,
+		"ProductionMinesNavigationSubtabButton": true,
+		"ProductionTabComponent": true,
+		"StatisticsTabComponent": true,
+		"AchievementComponent": true,
+		"AchievementsTabComponent": true,
+		"NotationOptionsButton": true,
+		"ThemeOptionsButton": true,
+		"GasCoolantComponent": true,
+		"GasCoolantStatsComponent": true,
+		"PrestigeTabComponent": true,
 
 		"Decimal": true,
 		"LZString": true,
@@ -76,18 +99,28 @@
 		"NaniteUpgrade": true,
 		"TurbineNaniteUpgrade": true,
 		"MeltdownUpgrade": true,
+		"PebblebedBuyAutomation": true,
+		"PebblebedFuelAutomation": true,
 
+		"gasCoolants": true,
 		"prestigeGoal": true,
+		"buyPrestige": true,
 		"coolingEfficiency": true,
 
+		"getMineGain": true,
+		"pebblebedFissionTotalEnergyGain": true,
+		"assignResearch": true,
+		"assignPercentageResearch": true,
+		"toggleRespecResearch": true,
+		"respecResearch": true,
+		"checkAchievementCompletion": true,
 		"getTotalNaniteUpMult": true,
 		"getTotalMeltdownUpMult": true,
-		"checkAchievementCompletion": true,
 
 		"resetEnergy": true,
-		"resetTRISOFuel": true,
+		"resetTRISOFuels": true,
 		"resetMines": true,
-		"resetPebblebedReactors": true,
+		"resetPebblebedFissionReactors": true,
 		"resetNucleosynthesis": true,
 		"resetNaniteResearch": true,
 		"resetNaniteUps": true,

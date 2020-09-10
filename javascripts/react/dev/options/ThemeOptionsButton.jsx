@@ -1,10 +1,10 @@
-class ThemeOptionsButtonComponent extends ReactStateComponent {
+class ThemeOptionsButton extends ReactStateComponent {
 	tick() {
 		this.setState({
 			theme: player.options.theme
 		});
 	}
-	
+
 	render() {
 		return (
 			<button onClick={themeChange}>
