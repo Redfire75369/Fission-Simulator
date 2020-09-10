@@ -1,152 +1,263 @@
+html {
+	filter: invert(1);
+}
 body {
-	background-color: #000000;
-	color: #DFDFDF;
+	background-color:#FFFFFF;
+	color: #202020;
 }
 
-button {
-	transition: all 0.5s;
-}
 button:hover {
-	border-color: #0B2DA7;
-	box-shadow: 0 0 8px 1px #0B2DA7;
+	border-color: #F4D258;
+	box-shadow: 0 0 8px 1px #F4D258;
+	cursor: pointer;
 }
 
 .navigation > button {
-	background-color: #000000;
-	border-color: #FFFFFF;
-	color: #DFDFDF;
+	background-color: #FFFFFF;
+	border-color: #000000;
+	color: #202020;
+	transition: .2s;
+}
+.navigation > button:hover {
+	background-color: #AAAAAA;
+	color: #FFFFFF;
+	transition-duration: 0.2s;
+}
+.navigation > button:active {
+	background-color: #FFFFFF;
+	color: #AAAAAA;
+}
+.navigation > button.navigation--nanite {
+	background-color: #0887CC;
+	border: 2px solid #020724;
+}
+.navigation > button.navigation--nanite:hover {
+	background-color: #020724;
+	color: #4848ef;
+}
+.navigation > button.navigation--active {
+	background-color: #202020;
+	color: #FFFFFF;
 }
 
 .subtab > button {
+	background-color: #EFEFEF;
+	border-color: #101010;
+	color: #101010;
+}
+.subtab > button:hover {
+	background-color: #AAAAAA;
+	color: #FFFFFF;
+	transition-duration: 0.2s;
+}
+.subtab > button:active {
+	background-color: #FFFFFF;
+	color: #AAAAAA;
+	transition-duration: 0.1s;
+}
+.subtab > button.navigation--active {
 	background-color: #101010;
-	border-color:#efefef;
-	color: #efefef;
+	color: #EFEFEF;
 }
 
 .popup {
-	background-color: #000000;
-	border: 3px solid #FFFFFF;
+	align-items: center;
+	background-color: #ffffff;
+	border: 3px solid #000000;
 	border-radius: 6px;
 	color: #202020;
 	padding: 10px 10px 15px;
 }
 
 .newsbar {
-	border: 3px solid #FFFFFF;
+	border: 3px solid #000000;
 	border-radius: 4px;
 }
 .newsbar > div {
-	color: #FFFFFF;
+	color: #000000;
 }
 
 .energy {
-	color: #FFFFFF;
+	color: #000000;
 }
 .energypersecond {
-	color: #CFCFCF;
+	color: #303030;
 }
 
 .storebtn {
 	border-radius: 2px;
 }
 .storebtn.buy {
-	background-color: #000000;
-	border: 2px solid #ED85DF;
-	color: #DFDFDF;
+	background-color: #FFFFFF;
+	border: 2px solid #127A20;
+	color: #202020;
+}
+.storebtn.buy:hover {
+	background-color: #10C921;
+	color: #FFFFFF;
+	transition-duration: 0.2s;
 }
 .storebtn.locked {
-	background-color: #5C5C5C;
-	border: 2px solid #1AC6CA;
-	color: #DFDFDF;
+	background-color: #A3A3A3;
+	border: 2px solid #e53935;
+	color: #202020;
+	font-size: 12px;
 }
 
 .allocationbtn {
-	background-color: #000000;
-	border: 2px solid #FFFFFF;
+	background: #FFFFFF;
+	border: 2px solid #000000;
 }
 .allocationbar {
 	background-color: #34D846;
-	border: 4px solid #FFFFFF;
+	border: 4px solid #000000;
 	border-radius: 8px;
 }
-.allocationbar.legend {
-	color: #FFFFFF;
-}
 .allocationbarcontents {
-	background-color: #4D3C89;
+	background-color: #B2C376;
 	border-radius: 4px;
 }
 .allocationbarcontents.legend {
-	border: 4px solid #FFFFFF;
+	border: 4px solid #000000;
 	border-radius: 8px;
-	color: #FFFFFF;
+}
+
+.minesdiv {
+	background-color: #C7C7C7;
+	border: 2px solid #000000;
+}
+
+.trisodiv, .pebblebeddiv {
+	background-color: #E5E5E5;
+	border: 2px solid #000000;
+}
+
+.trisodiv > .title, .pebblebeddiv > .title {
+	background-color: #14213D;
+}
+
+.trisodiv > .title > .type, .pebblebeddiv > .title > .type {
+	color: #C5861E;
+}
+.trisodiv > .title > .info, .pebblebeddiv > .title > .info {
+	background-color: #C5861E;
+	color: #14213D;
 }
 
 .trisodiv > .body > .reprocess > button > div {
-	background-color: rgba(255, 0, 255, 0.3);
+	background-color: rgba(0, 255, 0, 0.3);
+}
+
+.trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
+	background-color: #000000;
+}
+.trisodiv > .fuelbar > div > div > div, .pebblebeddiv > .fuelbar > div > div > div {
+	background-color: #A5A5A5;
+}
+.trisodiv > .fuelbar > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div {
+	background-color: #BB210D;
+}
+.trisodiv > .fuelbar > div > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div > div {
+	background-color: #8BC152;
+}
+
+.trisobtn.buy, .pebblebedbtn.buy {
+	background-color: #B5B5B5;
+	border: 2px solid #8BC152;
+	color: #000000;
+}
+.trisobtn.locked, .pebblebedbtn.locked {
+	background-color: #515151;
+	border: 2px solid #BB210D;
+	color: #000000;
 }
 
 .achcomplete {
-	background-color: #FF7FFF;
-	border: 1px solid #FFBBFF;
+	background-color: #008000;
+	border: 1px solid #004400;
 }
 .achlocked {
-	background-color: #7f7f7f;
-	border: 1px solid #00FFFF;
+	background-color: #808080;
+	border: 1px solid #ff0000;
 }
 
 .options > div > button {
-	background-color: #010101;
-	border: 2px solid #E7E7E7;
+	background-color: #fefefe;
+	border: 2px solid #181818;
 	border-radius: 2px;
-	color: #FFFFFF;
-}
-.options > div > button:hover {
-	background-color: #0101FF;
+	color: #000000;
 }
 
+.prestigebtn {
+	background-color: #202532;
+	border: 2px solid #88FF10;
+	color: #88FF10;
+}
 
 .naniteup {
 	border-radius: 4px;
 }
 .naniteup.buy {
-	background-color: #000000;
-	border: 1px solid #255ADF;
-	color: #CFCFCF;
+	background-color: #FFFFFF;
+	border: 1px solid #DAA520;
+	color: #81a6ff;
+}
+.naniteup.buy:hover {
+	background-color: #81A6FF;
+	color: #2D3B5C;
+	transition-duration: 0.2s;
 }
 .naniteup.locked {
-	background-color: #5C5C5C;
+	background-color: #A3A3A3;
 	border: 1px solid;
-	color: #CFCFCF;
+	color: #303030;
 }
 .naniteup.bought {
-	background-color: #3F3F3F;
-	border: 1px solid #FF7FFF;
-	color: #FFFFFF;
+	background-color: #81A6FF;
+	border: 1px solid green;
+	color: #000000;
 }
 
 #meltdown {
-	background-color: #000000;
-	border: 2px solid #FF7FFF;
+	background-color: #FFFFFF;
+	border: 2px solid green;
 	border-radius: 6px;
-	color: #FFFFFF;
+	color: #000000;
+}
+#meltdown:hover {
+	background-color: green;
+	border: 2px solid #000000;
+	color: #000000;
 }
 
 .meltdownup {
 	border-radius: 3px;
 }
 .meltdownup.buy {
-	background-color: #FFFFFF;
-	border: 3px solid #255ADF;
+	background-color: #000000;
+	border: 3px solid #DAA520;
+	color: #FFFFFF;
+}
+.meltdownup.buy:hover {
+	background-color: green;
+	border: 2px solid #000000;
 	color: #000000;
+	transition-duration: 0.2s;
 }
 .meltdownup.locked {
-	background-color: #AAAAAA;
-	border: 3px solid #00FFFF;
-	color: #FFFFFF;
+	background-color: #555555;
+	border: 3px solid #FF0000;
+	color: #000000;
 }
 .meltdownup.bought {
-	background-color: #BB3399;
-	border: 3px solid #255ADF;
-	color: #FFFFFF;
+	background-color: #44CC66;
+	border: 3px solid #DAA520;
+	color: #000000;
+}
+
+.isotopedecay {
+	background-color: #44AA66;
+	border: 4px solid #000000;
+	border-radius: 8px;
+	color: #000000;
 }

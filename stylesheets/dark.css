@@ -145,3 +145,48 @@ button:hover {
 	border: 3px solid #DAA520;
 	color: #000000;
 }
+
+.trisodiv, .pebblebeddiv {
+	background-color: #223344 !important;
+	border: 2px solid #000000 !important;
+}
+
+.trisodiv > .title, .pebblebeddiv > .title {
+	background-color: #14213D !important;
+}
+
+.trisodiv > .title > .type, .pebblebeddiv > .title > .type {
+	color: #C5861E !important;
+}
+.trisodiv > .title > .info, .pebblebeddiv > .title > .info {
+	background-color: #C5861E !important;
+	color: #14213D !important;
+}
+
+.trisodiv > .body > .reprocess > button > div {
+	background-color: rgba(0, 255, 0, 0.3) !important;
+}
+
+.trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
+	background-color: #000000 !important;
+}
+.trisodiv > .fuelbar > div > div > div, .pebblebeddiv > .fuelbar > div > div > div {
+	background-color: #A5A5A5 !important;
+}
+.trisodiv > .fuelbar > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div {
+	background-color: #BB210D !important;
+}
+.trisodiv > .fuelbar > div > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div > div {
+	background-color: #8BC152 !important;
+}
+
+.trisobtn.buy, .pebblebedbtn.buy {
+	background-color: #B5B5B5 !important;
+	border: 2px solid #8BC152 !important;
+	color: #000000 !important;
+}
+.trisobtn.locked, .pebblebedbtn.locked {
+	background-color: #515151 !important;
+	border: 2px solid #BB210D !important;
+	color: #000000 !important;
+}
