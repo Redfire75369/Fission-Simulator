@@ -3,6 +3,8 @@
 	<head>
 	  <meta charset="utf-8">
 		<title>Fission Simulator</title>
+		<link rel="icon" href="resources/images/logo.png">
+
 		<link rel="stylesheet" href="stylesheets/universal.css"/>
 		<link rel="stylesheet" href="stylesheets/light.css" id="style"/>
 		<link rel="stylesheet" href="stylesheets/katex.css"/>
@@ -10,11 +12,11 @@
 		<meta property="og:type" content="game"/>
 		<meta property="og:title" content="Fission Simulator"/>
 		<meta property="og:description" content="An incremental game about nuclear fission, reactors and nuclear physics."/>
-		<meta property="og:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul/index.html">
+		<meta property="og:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul-dev/index.html">
 
 		<meta property="twitter:title" content="Fission Simulator"/>
 		<meta property="twitter:description" content="An incremental game about nuclear fission, reactors and nuclear physics."/>
-		<meta property="twitter:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul/index.html">
+		<meta property="twitter:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul-dev/index.html">
 
 		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
@@ -37,6 +39,7 @@
 		<script defer src="javascripts/generics/GenericUpgrade.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/generics/GenericAutomation.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/generics/GenericIntervalAutomation.js" charset ="utf-8" type="text/javascript"></script>
+
 		<script defer src="javascripts/core/energy.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/fuels/triso.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/reactors/pebblebed_fission.js" charset ="utf-8" type="text/javascript"></script>
@@ -55,7 +58,12 @@
 		<script defer src="javascripts/core/meltdown/upgrades.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/meltdown/decayHasten.js" charset ="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/core/meltdown/moderator.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/automation/basic_automation.js" charset ="utf-8" type="text/javascript"></script>
+
+		<script defer src="javascripts/automation/fuels/triso/ReprocessAutomation.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/automation/reactors/pebblebeds/BuyAutomation.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/automation/reactors/pebblebeds/FuelAutomation.js" charset ="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/automation/reactors/pebblebeds/Automation.js" charset ="utf-8" type="text/javascript"></script>
+
 		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/achievements.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/cheats.js" charset="utf-8" type="text/javascript"></script>
@@ -63,25 +71,26 @@
 		<script defer src="javascripts/howtoplay.js" charset="utf-8" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
 
-		<script defer src="javascripts/react/production/react-utils.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/Mines.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/reactors/TRISOFuel.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/reactors/PebblebedFissionReactor.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/reactors/FissionReactorsSubTab.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/ProductionNavigationSubtabButton.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/ProductionMinesNavigationSubtabButton.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/production/ProductionTab.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/statistics/StatisticsTab.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/achievements/Achievement.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/achievements/AchievementsTab.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/options/NotationOptionsButton.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/options/ThemeOptionsButton.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/options/OptionsTab.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/prestige/GasCoolant.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/prestige/GasCoolantStats.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/prestige/PrestigeTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/react-utils.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/Mines.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/reactors/TRISOFuel.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/reactors/PebblebedFissionReactor.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/reactors/FissionReactorsSubTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/ProductionNavigationSubtabButton.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/ProductionMinesNavigationSubtabButton.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/ProductionTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/statistics/StatisticsTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/achievements/Achievement.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/achievements/AchievementsTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/options/NotationOptionsButton.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/options/ThemeOptionsButton.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/options/OptionsTab.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/prestige/GasCoolantColumn.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/prestige/GasCoolant.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/prestige/GasCoolantStats.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/prestige/PrestigeTab.js" charset="utf-8" type="text/javascript"></script>
 
-		<script defer src="javascripts/react/production/rendering.js" charset="utf-8" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/rendering.js" charset="utf-8" type="text/javascript"></script>
 
 		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
 	</head>
@@ -490,6 +499,7 @@
 		<div class="align horizontal-center vertical-center discord">
 			<a href="https://discord.gg/RyQwwzW" target="_blank" class="discordlink">Discord Server</a>
 			<a href="https://github.com/Redfire75369/Fission-Simulator/blob/mine-overhaul/guide.md" target="_blank" class="discordlink">Guide</a>
+			<a href="http://plaza.dsolver.ca/m/Redfire75369" target="_blank" class="discordlink">Incremental Games Plaza</a>
 		</div>
 	</body>
 </html>

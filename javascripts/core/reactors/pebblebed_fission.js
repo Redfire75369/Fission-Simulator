@@ -28,7 +28,8 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 	}
 
 	get totalCapacity() {
-		return this.amount.mul(25);
+		return this.amount.mul(25)
+			.mul(Decimal.pow(1.4, 6 + Decimal.log(player.prestige.researches[1], 1.4) * 2));
 	}
 	get constructionCost() {
 		return Decimal.pow(25, 4 * this.tier + 1);
@@ -39,7 +40,7 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 			return zero;
 		}
 		const factor = this.tier === 0 ? 2.1 : this.tier === 1 ? 1.005 : 1.001;
-		return Decimal.pow(1.4, this.bought)
+		return Decimal.pow(1.2, this.bought)
 			.mul(this.fuel.max(factor).log(factor))
 			.max(1).div(player.fuels.triso[this.tier].lifetime);
 	}
@@ -59,7 +60,7 @@ function resetPebblebedFissionReactors() {
 }
 
 function pebblebedFissionFuelUsage(tier) {
-	return player.reactors.pebblebeds[tier].fuel.min(player.reactors.pebblebeds[tier].burnRate);
+	return player.reactors.pebblebeds[tier].fuel.min(player.reactors.pebblebeds[tier].burnRate).max(0);
 }
 
 function pebblebedFissionEnergyGain(tier) {

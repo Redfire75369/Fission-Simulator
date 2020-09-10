@@ -14,5 +14,5 @@
 **Note: Only use this directly if the batch or shell files fail.**<br/>
 Run this command in Command Prompt/Powershell(Windows) or Terminal(Mac/Linux) for compilation. This command should be run from the `Fission-Simulator` directory.
 ```bat
-npx babel javascripts/react/dev --watch --out-dir javascripts/react/production
+npx babel javascripts/react/dev --watch --out-dir javascripts/react/dist
 ```

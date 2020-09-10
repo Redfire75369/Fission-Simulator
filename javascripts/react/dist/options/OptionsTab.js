@@ -10,7 +10,7 @@ class OptionsTabComponent extends ReactStateComponent {
       className: "flex-col options"
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-row"
-    }, /*#__PURE__*/React.createElement(NotationOptionsButtonComponent, null), /*#__PURE__*/React.createElement(ThemeOptionsButtonComponent, null)), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement(NotationOptionsButton, null), /*#__PURE__*/React.createElement(ThemeOptionsButton, null)), /*#__PURE__*/React.createElement("div", {
       className: "flex-row"
     }, /*#__PURE__*/React.createElement("button", {
       onClick: save

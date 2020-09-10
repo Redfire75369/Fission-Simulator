@@ -1,4 +1,4 @@
-class NotationOptionsButtonComponent extends ReactStateComponent {
+class NotationOptionsButton extends ReactStateComponent {
   tick() {
     this.setState({
       notation: player.options.notation
