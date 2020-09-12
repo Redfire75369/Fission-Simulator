@@ -36,7 +36,8 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
 			buyable: player.reactors.pebblebeds[this.state.tier].buyable,
 			cost: player.reactors.pebblebeds[this.state.tier].cost,
 			burnRate: player.reactors.pebblebeds[this.state.tier].burnRate,
-			totalCapacity: player.reactors.pebblebeds[this.state.tier].totalCapacity
+			totalCapacity: player.reactors.pebblebeds[this.state.tier].totalCapacity,
+			gain: getReactorGain(this.state.tier)
 		});
 	}
 
@@ -45,7 +46,13 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
 			<div className="pebblebeddiv" style={{display: this.state.unlocked ? "" : "none"}}>
 				<div className="flex-row title">
 					<div className="type"><b>{this.state.type} Pebblebed Reactor</b></div>
-					<div className="info">i</div>
+					<div className="tooltip info">
+						i
+						<div className="tooltiptext">
+							{this.state.type} pebblebed reactors convert enriched fuel into spent fuel, producing energy.<br/>
+							Your mines are producing {notation(this.state.gain)} {this.state.type} reactors every second.<br/>
+						</div>
+					</div>
 				</div>
 
 				<div className="flex-row body">

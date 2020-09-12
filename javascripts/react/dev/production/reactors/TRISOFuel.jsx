@@ -20,11 +20,15 @@ class TRISOFuelComponent extends ReactStateComponent {
 			enriched: player.fuels.triso[this.state.tier].enriched,
 			enrichedPercentage: player.fuels.triso[this.state.tier].enriched.div(player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted)).toNumber(),
 			depleted: player.fuels.triso[this.state.tier].depleted,
-			lifetime: player.fuels.triso[this.state.tier].lifetime.div(1000),
 			canReprocess: player.fuels.triso[this.state.tier].canReprocessDepleted,
 			reprocessCost: player.fuels.triso[this.state.tier].reprocessEnergyCost,
 			reprocessing: reprocessing[this.state.tier]
 		});
+		if (this.state.tier === 2) {
+			this.setState({
+				goal: prestigeGoal()
+			});
+		}
 	}
 
 	render() {
@@ -32,7 +36,13 @@ class TRISOFuelComponent extends ReactStateComponent {
 			<div className="trisodiv" style={{display: this.state.unlocked ? "" : "none"}}>
 				<div className="flex-row title">
 					<div className="type"><b>{this.state.type} TRISO Fuel</b></div>
-					<div className="info">i</div>
+					<div className="tooltip info">
+						i
+						<div className="tooltiptext">
+							{this.state.tier === 2 ? <span>Depleted {this.state.type} Fuel can be reprocessed into Enriched {mineTypes[this.state.tier + 1]} Fuel</span> : <span>Reprocessing {notation(this.state.goal)}} Depleted LEP Fuel will result in a prestige</span>}
+							
+						</div>
+					</div>
 				</div>
 
 				<div className="flex-row body">
@@ -40,7 +50,6 @@ class TRISOFuelComponent extends ReactStateComponent {
 						<div><b>Fuel Pebbles</b></div>
 						<div>Enriched: {notation(this.state.enriched)}</div>
 						<div>Depleted: {notation(this.state.depleted)}</div>
-						<div>Lifetime: {notation(this.state.lifetime)} ms</div>
 					</div>
 
 					<div className="flex-col vertical-top reprocess">

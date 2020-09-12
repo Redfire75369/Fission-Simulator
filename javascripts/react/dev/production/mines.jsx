@@ -18,7 +18,8 @@ class MinesComponent extends ReactStateComponent {
 			upgradeText: player.mines.tier === -1 ? "Buy a mine" : "Upgrade mines to use " + this.state.type + " Drills",
 			cost: player.mines.upCost,
 			upgradable: player.mines.upgradable,
-			canSalvage: player.mines.depleted.gt(0)
+			canSalvage: player.mines.depleted.gt(0),
+			softcapped: player.mines.amount.gte(mineSoftCaps[this.state.tier])
 		});
 	}
 
@@ -28,18 +29,17 @@ class MinesComponent extends ReactStateComponent {
 				<div style={{display: this.state.requirementUnlocked ? "" : "none", fontSize: "200%"}}>Obtain 500 Energy to unlock</div>
 				<div className="minesdiv" style={{display: this.state.unlocked ? "" : "none"}}>
 					<div style={{display: this.state.bought ? "" : "none"}}>
-						<div className="info">
+						<div className="flex-row info">
 							<div className="flex-col horizontal-center">
 								<div><b>Information</b></div>
 								<div>Active: {notation(this.state.activeMines)}</div>
 								<div>Depleted: {notation(this.state.depleted)}</div>
-								{/*<div>Effective: {this.state.effective}</div>*/}
 							</div>
 						</div>
 
 						<div className="body">
 							<div className="flex-col horizontal-center">
-								<div>Metal Extraction: {notation(this.state.extraction)}/s ({notation(this.state.ore)} Total)</div>
+								<div>Metal Extraction: {notation(this.state.extraction)}/s</div>
 								<div>Mine Construction: {notation(this.state.construction)}/s ({notation(this.state.constructionCost)} per Mine)</div><br/>
 								<div>Drill Tier: {this.state.type}</div>
 							</div>

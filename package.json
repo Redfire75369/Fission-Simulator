@@ -1,6 +1,6 @@
 {
 	"name": "fission-simulator",
-	"version": "0.6.6",
+	"version": "0.6.9",
 	"description": "Fission Simulator is an incremental game about nuclear fission, reactors and nuclear physics.",
 	"main": "index.js",
 	"scripts": {},
