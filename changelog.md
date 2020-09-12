@@ -13,12 +13,15 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
-## [v0.6.9] - 4/9/20
+## [v0.6.9] - 12/9/20
 ### Added
+- Information to info tooltips on Fuel and Reactors
 
 ### Modified
 - Replaced `let` with `const` in most places
 - Started using `.reduce` in some places
+- Fixed 40x reactor production
+- Fixed styles for dark and inverted themes
 
 ### Removed
 

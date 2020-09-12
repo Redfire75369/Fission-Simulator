@@ -11,7 +11,6 @@ class MinesComponent extends ReactStateComponent {
       activeMines: player.mines.amount.sub(player.mines.depleted),
       depleted: player.mines.depleted,
       extraction: player.mines.metalExtraction,
-      ore: player.mines.totalOre,
       construction: getMineGain(),
       constructionCost: player.mines.constructionCost,
       type: player.mines.tier < 0 ? "None" : mineTypes[player.mines.tier],
