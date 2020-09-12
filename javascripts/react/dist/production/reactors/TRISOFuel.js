@@ -15,14 +15,16 @@ class TRISOFuelComponent extends ReactStateComponent {
 
   tick() {
     this.setState({
-      unlocked: this.state.tier === 0 || player.fuels.triso[this.state.tier - 1].enriched.add(player.fuels.triso[this.state.tier - 1].depleted).gt(0) || player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0),
+      unlocked: player.mines.tier > - 1 && (this.state.tier === 0 || ((player.fuels.triso[this.state.tier - 1].enriched.add(player.fuels.triso[this.state.tier - 1].depleted).gt(0) || player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0)) && player.reactors.pebblebeds[this.state.tier - 1].bought > 0)),
+      unlockedReprocessing: player.mines.tier > 0,
       hasFuel: player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0),
       enriched: player.fuels.triso[this.state.tier].enriched,
       enrichedPercentage: player.fuels.triso[this.state.tier].enriched.div(player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted)).toNumber(),
       depleted: player.fuels.triso[this.state.tier].depleted,
       canReprocess: player.fuels.triso[this.state.tier].canReprocessDepleted,
       reprocessCost: player.fuels.triso[this.state.tier].reprocessEnergyCost,
-      reprocessing: reprocessing[this.state.tier]
+      reprocessing: reprocessing[this.state.tier],
+      gain: getTRISOFuelGain(this.state.tier)
     });
 
     if (this.state.tier === 2) {
@@ -52,12 +54,15 @@ class TRISOFuelComponent extends ReactStateComponent {
         minWidth: "15vw",
         padding: "1vw"
       }
-    }, this.state.tier !== 2 ? /*#__PURE__*/React.createElement("span", null, "Depleted ", this.state.type, " Fuel can be reprocessed into Enriched ", trisoFuelTypes[this.state.tier + 1], " Fuel") : /*#__PURE__*/React.createElement("span", null, "Reprocessing ", notation(this.state.goal), " Depleted LEP Fuel will result in a prestige")))), /*#__PURE__*/React.createElement("div", {
+    }, "Mines are producing ", notation(this.state.gain), " Enriched ", this.state.type, "Fuel per second.", /*#__PURE__*/React.createElement("br", null), this.state.tier !== 2 ? /*#__PURE__*/React.createElement("span", null, "Depleted ", this.state.type, " Fuel can be reprocessed into Enriched ", trisoFuelTypes[this.state.tier + 1], " Fuel") : /*#__PURE__*/React.createElement("span", null, "Reprocessing ", notation(this.state.goal), " Depleted LEP Fuel will result in a prestige")))), /*#__PURE__*/React.createElement("div", {
       className: "flex-row body"
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-col vertical-top fuelinfo"
     }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Pebbles")), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(this.state.enriched)), /*#__PURE__*/React.createElement("div", null, "Depleted: ", notation(this.state.depleted))), /*#__PURE__*/React.createElement("div", {
-      className: "flex-col vertical-top reprocess"
+      className: "flex-col vertical-top reprocess",
+      style: {
+        display: this.state.unlockedReprocessing ? "" : "none"
+      }
     }, /*#__PURE__*/React.createElement("div", null, "Fuel Handling:"), /*#__PURE__*/React.createElement("button", {
       onClick: this.reprocessDepleted.bind(this),
       className: this.state.canReprocess ? "trisobtn buy" : "trisobtn locked",

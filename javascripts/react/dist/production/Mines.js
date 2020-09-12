@@ -48,7 +48,7 @@ class MinesComponent extends ReactStateComponent {
       className: "body"
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-col horizontal-center"
-    }, /*#__PURE__*/React.createElement("div", null, "Metal Extraction: ", notation(this.state.extraction), "/s (", notation(this.state.ore), " Total)"), /*#__PURE__*/React.createElement("div", null, "Mine Construction: ", notation(this.state.construction), "/s (", notation(this.state.constructionCost), " per Mine)"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, "Drill Tier: ", this.state.type)))), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", null, "Metal Extraction: ", notation(this.state.extraction), "/s"), /*#__PURE__*/React.createElement("div", null, "Mine Construction: ", notation(this.state.construction), "/s (", notation(this.state.constructionCost), " per Mine)"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, "Drill Tier: ", this.state.type)))), /*#__PURE__*/React.createElement("div", {
       className: "flex-col actions"
     }, /*#__PURE__*/React.createElement("button", {
       onClick: function () {

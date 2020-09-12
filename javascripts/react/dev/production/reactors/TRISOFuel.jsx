@@ -15,14 +15,16 @@ class TRISOFuelComponent extends ReactStateComponent {
 
 	tick() {
 		this.setState({
-			unlocked: this.state.tier === 0 || player.fuels.triso[this.state.tier - 1].enriched.add(player.fuels.triso[this.state.tier - 1].depleted).gt(0) || player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0),
+			unlocked: player.mines.tier > - 1 && (this.state.tier === 0 || ((player.fuels.triso[this.state.tier - 1].enriched.add(player.fuels.triso[this.state.tier - 1].depleted).gt(0) || player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0)) && player.reactors.pebblebeds[this.state.tier - 1].bought > 0)),
+			unlockedReprocessing: player.mines.tier > 0,
 			hasFuel: player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted).gt(0),
 			enriched: player.fuels.triso[this.state.tier].enriched,
 			enrichedPercentage: player.fuels.triso[this.state.tier].enriched.div(player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted)).toNumber(),
 			depleted: player.fuels.triso[this.state.tier].depleted,
 			canReprocess: player.fuels.triso[this.state.tier].canReprocessDepleted,
 			reprocessCost: player.fuels.triso[this.state.tier].reprocessEnergyCost,
-			reprocessing: reprocessing[this.state.tier]
+			reprocessing: reprocessing[this.state.tier],
+			gain: getTRISOFuelGain(this.state.tier)
 		});
 		if (this.state.tier === 2) {
 			this.setState({
@@ -39,6 +41,7 @@ class TRISOFuelComponent extends ReactStateComponent {
 					<div className="tooltip info">
 						i
 						<div className="tooltiptext"  style={{fontSize: "90%", maxWidth: "15vw", minWidth: "15vw", padding: "1vw"}}>
+							Mines are producing {notation(this.state.gain)} Enriched {this.state.type} Fuel per second.<br/>
 							{this.state.tier !== 2 ? <span>Depleted {this.state.type} Fuel can be reprocessed into Enriched {trisoFuelTypes[this.state.tier + 1]} Fuel</span> : <span>Reprocessing {notation(this.state.goal)} Depleted LEP-239 Fuel will result in a prestige</span>}
 						</div>
 					</div>
@@ -51,7 +54,7 @@ class TRISOFuelComponent extends ReactStateComponent {
 						<div>Depleted: {notation(this.state.depleted)}</div>
 					</div>
 
-					<div className="flex-col vertical-top reprocess">
+					<div className="flex-col vertical-top reprocess" style={{display: this.state.unlockedReprocessing ? "" : "none"}}>
 						<div>Fuel Handling:</div>
 						<button onClick={this.reprocessDepleted.bind(this)} className={this.state.canReprocess ? "trisobtn buy" : "trisobtn locked"} id={"fuel_triso_reprocess" + (this.state.tier + 1)}>
 							<div style={{position: "absolute", transition: this.state.reprocessing ? player.fuels.triso[this.state.tier].reprocessingTime / 1000 + "s width linear" : "", width: this.state.reprocessing ? "100%" : "0"}}></div>

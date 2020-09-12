@@ -25,6 +25,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
 	tick() {
 		this.setState({
 			unlocked: this.state.tier === 0 || player.reactors.pebblebeds[this.state.tier - 1].bought >  0,
+			unlockedMines: player.mines.tier > -1,
 			amount: player.reactors.pebblebeds[this.state.tier].amount,
 			bought: player.reactors.pebblebeds[this.state.tier].bought,
 			canLoadFuel: player.fuels.triso[this.state.tier].enriched.gte(1) && player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).add(1).lt(player.reactors.pebblebeds[this.state.tier].totalCapacity),
@@ -66,7 +67,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
 						<div>Spent: {notation(this.state.spent)}</div>
 					</div>
 
-					<div className="flex-col vertical-top fuelhandling">
+					<div className="flex-col vertical-top fuelhandling" style={{display: this.state.unlockedMines ? "" : "none"}}>
 						<div>Fuel Handling:</div>
 						<button onClick={this.loadFuel.bind(this)} className={this.state.canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Load Enriched {this.state.type} Pellets</button>
 						<button onClick={this.ejectWaste.bind(this)} className={this.state.canEjectWaste ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Eject Spent {this.state.type} Pellets</button>

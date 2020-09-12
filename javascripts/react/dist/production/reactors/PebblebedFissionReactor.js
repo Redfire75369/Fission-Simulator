@@ -28,6 +28,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
   tick() {
     this.setState({
       unlocked: this.state.tier === 0 || player.reactors.pebblebeds[this.state.tier - 1].bought > 0,
+      unlockedMines: player.mines.tier > -1,
       amount: player.reactors.pebblebeds[this.state.tier].amount,
       bought: player.reactors.pebblebeds[this.state.tier].bought,
       canLoadFuel: player.fuels.triso[this.state.tier].enriched.gte(1) && player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).add(1).lt(player.reactors.pebblebeds[this.state.tier].totalCapacity),
@@ -69,7 +70,10 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-col vertical-top info"
     }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Reactor Information")), /*#__PURE__*/React.createElement("div", null, "Amount: ", notation(this.state.amount), " (", this.state.bought, " Bought)"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Information")), /*#__PURE__*/React.createElement("div", null, "Capacity: ", notation(this.state.totalCapacity)), /*#__PURE__*/React.createElement("div", null, "Fuel Usage: ", notation(this.state.burnRate), "/s"), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(this.state.fuel)), /*#__PURE__*/React.createElement("div", null, "Spent: ", notation(this.state.spent))), /*#__PURE__*/React.createElement("div", {
-      className: "flex-col vertical-top fuelhandling"
+      className: "flex-col vertical-top fuelhandling",
+      style: {
+        display: this.state.unlockedMines ? "" : "none"
+      }
     }, /*#__PURE__*/React.createElement("div", null, "Fuel Handling:"), /*#__PURE__*/React.createElement("button", {
       onClick: this.loadFuel.bind(this),
       className: this.state.canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"
