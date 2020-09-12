@@ -48,8 +48,8 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
 					<div className="type"><b>{this.state.type} Pebblebed Reactor</b></div>
 					<div className="tooltip info">
 						i
-						<div className="tooltiptext">
-							{this.state.type} pebblebed reactors convert enriched fuel into spent fuel, producing energy.<br/>
+						<div className="tooltiptext" style={{fontSize: "90%", maxWidth: "15vw", minWidth: "15vw", padding: "1vw",}}>
+							{this.state.type} Pebblebed Reactors convert Enriched fuel into Spent Fuel, producing energy.<br/>
 							Your mines are producing {notation(this.state.gain)} {this.state.type} reactors every second.<br/>
 						</div>
 					</div>
@@ -58,7 +58,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
 				<div className="flex-row body">
 					<div className="flex-col vertical-top info">
 						<div><b>Reactor Information</b></div>
-						<div>Amount: {notation(this.state.amount)}</div>
+						<div>Amount: {notation(this.state.amount)} ({this.state.bought} Bought)</div>
 						<div><b>Fuel Information</b></div>
 						<div>Capacity: {notation(this.state.totalCapacity)}</div>
 						<div>Fuel Usage: {notation(this.state.burnRate)}/s</div>

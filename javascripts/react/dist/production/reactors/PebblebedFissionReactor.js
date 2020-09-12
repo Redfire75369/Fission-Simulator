@@ -39,7 +39,8 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
       buyable: player.reactors.pebblebeds[this.state.tier].buyable,
       cost: player.reactors.pebblebeds[this.state.tier].cost,
       burnRate: player.reactors.pebblebeds[this.state.tier].burnRate,
-      totalCapacity: player.reactors.pebblebeds[this.state.tier].totalCapacity
+      totalCapacity: player.reactors.pebblebeds[this.state.tier].totalCapacity,
+      gain: getReactorGain(this.state.tier)
     });
   }
 
@@ -54,12 +55,20 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
     }, /*#__PURE__*/React.createElement("div", {
       className: "type"
     }, /*#__PURE__*/React.createElement("b", null, this.state.type, " Pebblebed Reactor")), /*#__PURE__*/React.createElement("div", {
-      className: "info"
-    }, "i")), /*#__PURE__*/React.createElement("div", {
+      className: "tooltip info"
+    }, "i", /*#__PURE__*/React.createElement("div", {
+      className: "tooltiptext",
+      style: {
+        fontSize: "90%",
+        maxWidth: "15vw",
+        minWidth: "15vw",
+        padding: "1vw"
+      }
+    }, this.state.type, " Pebblebed Reactors convert Enriched fuel into Spent Fuel, producing energy.", /*#__PURE__*/React.createElement("br", null), "Your mines are producing ", notation(this.state.gain), " ", this.state.type, " reactors every second.", /*#__PURE__*/React.createElement("br", null)))), /*#__PURE__*/React.createElement("div", {
       className: "flex-row body"
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-col vertical-top info"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Reactor Information")), /*#__PURE__*/React.createElement("div", null, "Amount: ", notation(this.state.amount)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Information")), /*#__PURE__*/React.createElement("div", null, "Capacity: ", notation(this.state.totalCapacity)), /*#__PURE__*/React.createElement("div", null, "Fuel Usage: ", notation(this.state.burnRate), "/s"), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(this.state.fuel)), /*#__PURE__*/React.createElement("div", null, "Spent: ", notation(this.state.spent))), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Reactor Information")), /*#__PURE__*/React.createElement("div", null, "Amount: ", notation(this.state.amount), " (", this.state.bought, " Bought)"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Information")), /*#__PURE__*/React.createElement("div", null, "Capacity: ", notation(this.state.totalCapacity)), /*#__PURE__*/React.createElement("div", null, "Fuel Usage: ", notation(this.state.burnRate), "/s"), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(this.state.fuel)), /*#__PURE__*/React.createElement("div", null, "Spent: ", notation(this.state.spent))), /*#__PURE__*/React.createElement("div", {
       className: "flex-col vertical-top fuelhandling"
     }, /*#__PURE__*/React.createElement("div", null, "Fuel Handling:"), /*#__PURE__*/React.createElement("button", {
       onClick: this.loadFuel.bind(this),

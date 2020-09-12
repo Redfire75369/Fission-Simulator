@@ -20,11 +20,16 @@ class TRISOFuelComponent extends ReactStateComponent {
       enriched: player.fuels.triso[this.state.tier].enriched,
       enrichedPercentage: player.fuels.triso[this.state.tier].enriched.div(player.fuels.triso[this.state.tier].enriched.add(player.fuels.triso[this.state.tier].depleted)).toNumber(),
       depleted: player.fuels.triso[this.state.tier].depleted,
-      lifetime: player.fuels.triso[this.state.tier].lifetime.div(1000),
       canReprocess: player.fuels.triso[this.state.tier].canReprocessDepleted,
       reprocessCost: player.fuels.triso[this.state.tier].reprocessEnergyCost,
       reprocessing: reprocessing[this.state.tier]
     });
+
+    if (this.state.tier === 2) {
+      this.setState({
+        goal: prestigeGoal()
+      });
+    }
   }
 
   render() {
@@ -38,12 +43,20 @@ class TRISOFuelComponent extends ReactStateComponent {
     }, /*#__PURE__*/React.createElement("div", {
       className: "type"
     }, /*#__PURE__*/React.createElement("b", null, this.state.type, " TRISO Fuel")), /*#__PURE__*/React.createElement("div", {
-      className: "info"
-    }, "i")), /*#__PURE__*/React.createElement("div", {
+      className: "tooltip info"
+    }, "i", /*#__PURE__*/React.createElement("div", {
+      className: "tooltiptext",
+      style: {
+        fontSize: "90%",
+        maxWidth: "15vw",
+        minWidth: "15vw",
+        padding: "1vw"
+      }
+    }, this.state.tier !== 2 ? /*#__PURE__*/React.createElement("span", null, "Depleted ", this.state.type, " Fuel can be reprocessed into Enriched ", trisoFuelTypes[this.state.tier + 1], " Fuel") : /*#__PURE__*/React.createElement("span", null, "Reprocessing ", notation(this.state.goal), " Depleted LEP Fuel will result in a prestige")))), /*#__PURE__*/React.createElement("div", {
       className: "flex-row body"
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-col vertical-top fuelinfo"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Pebbles")), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(this.state.enriched)), /*#__PURE__*/React.createElement("div", null, "Depleted: ", notation(this.state.depleted)), /*#__PURE__*/React.createElement("div", null, "Lifetime: ", notation(this.state.lifetime), " ms")), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Pebbles")), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(this.state.enriched)), /*#__PURE__*/React.createElement("div", null, "Depleted: ", notation(this.state.depleted))), /*#__PURE__*/React.createElement("div", {
       className: "flex-col vertical-top reprocess"
     }, /*#__PURE__*/React.createElement("div", null, "Fuel Handling:"), /*#__PURE__*/React.createElement("button", {
       onClick: this.reprocessDepleted.bind(this),

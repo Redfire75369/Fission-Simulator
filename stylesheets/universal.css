@@ -75,8 +75,9 @@ button:hover {
 .tooltip .tooltiptext {
 	background-color: #000000;
 	color: #FFFFFF;
-	data-html: true;
+	left: 50%;
 	position: absolute;
+	transform: translateX(-50%);
 	visibility: hidden;
 	z-index: 2;
 }

@@ -38,9 +38,8 @@ class TRISOFuelComponent extends ReactStateComponent {
 					<div className="type"><b>{this.state.type} TRISO Fuel</b></div>
 					<div className="tooltip info">
 						i
-						<div className="tooltiptext">
-							{this.state.tier === 2 ? <span>Depleted {this.state.type} Fuel can be reprocessed into Enriched {mineTypes[this.state.tier + 1]} Fuel</span> : <span>Reprocessing {notation(this.state.goal)}} Depleted LEP Fuel will result in a prestige</span>}
-							
+						<div className="tooltiptext"  style={{fontSize: "90%", maxWidth: "15vw", minWidth: "15vw", padding: "1vw"}}>
+							{this.state.tier !== 2 ? <span>Depleted {this.state.type} Fuel can be reprocessed into Enriched {trisoFuelTypes[this.state.tier + 1]} Fuel</span> : <span>Reprocessing {notation(this.state.goal)} Depleted LEP-239 Fuel will result in a prestige</span>}
 						</div>
 					</div>
 				</div>

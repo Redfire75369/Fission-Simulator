@@ -72,13 +72,10 @@ function getMineGain() {
 }
 function getReactorGain(tier) {
 	if (player.mines.tier > 2 * tier) {
-		//if (player.reactors.pebblebeds[tier + 1].bought > 0) {
-			const bought =  player.reactors.pebblebeds.reduce(function(accumulated, current) {
-				return accumulated + Math.sign(current.bought);
-			}, 0);
-			return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost).sqrt();
-		//}
-		return zero;
+		const bought =  player.reactors.pebblebeds.reduce(function(accumulated, current) {
+			return accumulated + Math.sign(current.bought);
+		}, 0);
+		return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost).sqrt();
 	}
 	return zero;
 }
@@ -90,7 +87,7 @@ function simulateMines(tickInterval = 50) {
 		player.mines.depletion = player.mines.depletion.add(player.mines.metalExtraction.mul(player.mines.ratio).mul(tickInterval / 1000));
 
 		for (let tier = 2; tier >= 0; tier--) {
-			player.reactors.pebblebeds[tier].amount = player.reactors.pebblebeds[tier].amount.add(getReactorGain(tier));
+			player.reactors.pebblebeds[tier].amount = player.reactors.pebblebeds[tier].amount.add(getReactorGain(tier).mul(tickInterval / 1000));
 		}
 	}
 }
