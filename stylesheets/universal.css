@@ -238,6 +238,7 @@ button:hover {
 .trisodiv, .pebblebeddiv {
 	max-width: 30vw;
 	min-width: 30vw;
+	margin: 3vw;
 }
 
 .trisodiv > .title, .pebblebeddiv > .title {
@@ -253,9 +254,7 @@ button:hover {
 }
 
 .trisodiv > .body, .pebblebeddiv > .body {
-	margin-top: 12px;
-	margin-left: 12px;
-	margin-right: 12px;
+	margin: 12px;
 }
 
 .trisodiv > .body > .fuelinfo, .pebblebeddiv > .body > .info {
@@ -294,7 +293,6 @@ button:hover {
 	height: 20%;
 	margin-left: 12px;
 	margin-right: 12px;
-	margin-top: 12px;
 }
 .trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
 	align-items: center;
