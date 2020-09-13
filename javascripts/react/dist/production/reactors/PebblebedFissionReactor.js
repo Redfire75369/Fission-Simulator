@@ -92,7 +92,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
       style: {
         maxWidth: this.state.fuelPercentage / this.state.spentPercentage + "%"
       }
-    })))))), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+    })))))), /*#__PURE__*/React.createElement("div", {
       className: "flex-row buying"
     }, /*#__PURE__*/React.createElement("button", {
       onClick: this.buy.bind(this),

@@ -211,38 +211,50 @@ button:hover {
 }
 
 .minesdiv {
-	max-width: 70vw;
-	min-width: 70px;
+	max-width: 40vw;
+	min-width: 40vw;
 }
 
 .minesdiv > div > .info {
-	font-size: 120%;
-	padding-left: 12px;
-	padding-right: 12px;
-	padding-top: 12px;
+	font-size: 1.2rem;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 1em;
 }
 .minesdiv > div > .body {
-	font-size: 120%;
-	padding-left: 12px;
-	padding-right: 12px;
+	font-size: 1.2rem;
+	padding-left: 1em;
+	padding-right: 1em;
 }
 
 .minesdiv > .actions {
-	margin-bottom: 12px;
-	margin-top: 12px;
-	padding-bottom: 12px;
-	padding-left: 12px;
-	padding-right: 12px;
+	padding-bottom: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 1em;
+}
+
+.minesdiv > .actions > button {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	max-width: 50%;
+	max-height: 4.2em;
+	min-width: 50%;
+	min-height: 4.2em;
 }
 
 .trisodiv, .pebblebeddiv {
 	max-width: 30vw;
 	min-width: 30vw;
-	margin: 3vw;
+	margin-bottom: 1.5vw;
+	margin-left: 1.5vw;
+	margin-right: 1.5vw;
 }
 
 .trisodiv > .title, .pebblebeddiv > .title {
-	font-size:120%;
+	font-size: 1.2rem;
+	max-height: 1.4em;
+	min-height: 1.4em;
 	text-align: center;
 }
 
@@ -254,82 +266,114 @@ button:hover {
 }
 
 .trisodiv > .body, .pebblebeddiv > .body {
-	margin: 12px;
+	margin: 1em;
 }
 
 .trisodiv > .body > .fuelinfo, .pebblebeddiv > .body > .info {
 	align-items: flex-start;
-	font-size: 120%;
+	font-size: 1.2rem;
 	max-width: 50%;
 	min-width: 50%;
 	text-align: left;
 }
+.trisodiv > .body > .fuelinfo {
+	max-height: 3.5em;
+	min-height: 3.5em;
+}
+.pebblebeddiv > .body > .info {
+	max-height: 9.2em;
+	min-height: 9.2em;
+}
+
 .trisodiv > .body > .reprocess, .pebblebeddiv > .body > .fuelhandling {
-	font-size: 120%;
+	font-size: 1.2rem;
 	justify-content: flex-start;
-	max-height: 80%;
 	max-width: 50%;
-	min-height: 80%;
 	min-width: 50%;
+}
+.trisodiv > .body > .reprocess {
+	max-height: 4.6em;
+	min-height: 4.6em;
+}
+.pebblebeddiv > .body > .fuelhandling {
+	max-height: 5.2em;
+	min-height: 5.2em;
 }
 
 .trisodiv > .body > .reprocess > button {
-	padding: 0;
+	max-height: calc(4.2em + 8px);
+	min-height: calc(4.2em + 8px);
+	padding: 4px;
 	position: relative;
 }
 .trisodiv > .body > .reprocess > button > div {
 	border-radius: 1px;
-	height: 100%;
+	max-height: calc(4.2em + 8px);
+	min-height: calc(4.2em + 8px);
+	left: -2px;
+	top: -2px;
 	width: 0;
 }
 
+.pebblebeddiv > .body > .fuelhandling > button {
+	max-height: 2.8em;
+	min-height: 2.8em;
+}
+
 .trisodiv > .fuelbar {
-	height: 20%;
-	margin-bottom: 12px;
-	margin-left: 12px;
-	margin-right: 12px;
+	margin-bottom: 1em;
+	margin-left: 1em;
+	margin-right: 1em;
+	max-height: calc(2.4em + 8px);
+	min-height: calc(2.4em + 8px);
 }
 .pebblebeddiv > .fuelbar {
-	height: 20%;
-	margin-left: 12px;
-	margin-right: 12px;
+	margin-bottom: 1em;
+	margin-left: 1em;
+	margin-right: 1em;
+	max-height: calc(2.4em + 8px);
+	min-height: calc(2.4em + 8px);
 }
 .trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
 	align-items: center;
 	justify-content: center;
-	max-height: 36px;
+	max-height: calc(2.4em + 8px);
 	max-width: 100%;
-	min-height: 36px;
+	min-height: calc(2.4em + 8px);
 	min-width: 100%;
 }
 .trisodiv > .fuelbar > div > div > div, .pebblebeddiv > .fuelbar > div > div > div {
 	margin: 4px;
-	max-height: 28px;
+	max-height: 2.4em;
 	max-width: calc(100% - 8px);
-	min-height: 28px;
+	min-height: 2.4em;
 	min-width: calc(100% - 8px);
 }
 .trisodiv > .fuelbar > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div {
-	height: 28px;
+	height: 2.4em;
 	max-width: 0;
 }
 .trisodiv > .fuelbar > div > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div > div {
-	height: 28px;
+	height: 2.4em;
 	max-width: 0;
 }
 
 .pebblebeddiv > .buying {
-	margin-bottom: 12px;
-	margin-left: 12px;
-	margin-right: 12px
+	margin-bottom: 1em;
+	margin-left: 1em;
+	margin-right: 1em
 }
 
 .pebblebeddiv > .buying > .buysingle {
+	max-height: 2.8em;
 	max-width: 60%;
+	min-height: 2.8em;
 	min-width: 60%;
 }
 .pebblebeddiv > .buying > .buymax {
+	max-height: 2.8em;
 	max-width: 30%;
+	min-height: 2.8em;
 	min-width: 30%;
 }
 

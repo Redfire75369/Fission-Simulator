@@ -84,7 +84,7 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
 							</div>
 						</div>
 					</div>
-				</div><br/>
+				</div>
 
 				<div className="flex-row buying">
 					<button onClick={this.buy.bind(this)} className={this.state.buyable ? "pebblebedbtn buy buysingle" : "pebblebedbtn locked buysingle"}>Buy for {notation(this.state.cost)} Energy</button>

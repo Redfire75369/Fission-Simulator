@@ -16,7 +16,7 @@ class ProductionTabComponent extends ReactStateComponent {
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "navigation subtab"
-    }, /*#__PURE__*/React.createElement(ProductionMinesNavigationSubtabButton, {
+    }, /*#__PURE__*/React.createElement(ProductionNavigationSubtabButton, {
       tab: "mines",
       text: "Mines"
     }), /*#__PURE__*/React.createElement(ProductionNavigationSubtabButton, {

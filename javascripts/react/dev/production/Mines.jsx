@@ -6,15 +6,16 @@ class MinesComponent extends ReactStateComponent {
 			active: player.navigation.production === "mines",
 			requirementUnlocked: player.energy.gt(250) && !player.unlocked.mines,
 			unlocked: player.unlocked.mines,
-			bought: player.mines.tier >= 0,
-			atMaxTier: player.mines.tier >= 7,
+			unlockedSalvage: player.mines.tier > 0,
+			bought: player.mines.tier > -1,
+			atMaxTier: player.mines.tier > 6,
 			activeMines: player.mines.amount.sub(player.mines.depleted),
 			depleted: player.mines.depleted,
 			extraction: player.mines.metalExtraction,
 			construction: getMineGain(),
 			constructionCost: player.mines.constructionCost,
 			type: player.mines.tier < 0 ? "None" : mineTypes[player.mines.tier],
-			upgradeText: player.mines.tier === -1 ? "Buy a mine" : "Upgrade mines to use " + this.state.type + " Drills",
+			upgradeText: player.mines.tier === -1 ? "Buy a mine" : "Upgrade mines to use " + mineTypes[player.mines.tier + 1] + " Drills",
 			cost: player.mines.upCost,
 			upgradable: player.mines.upgradable,
 			canSalvage: player.mines.depleted.gt(0),
@@ -39,7 +40,7 @@ class MinesComponent extends ReactStateComponent {
 						<div className="body">
 							<div className="flex-col horizontal-center">
 								<div>Metal Extraction: {notation(this.state.extraction)}/s</div>
-								<div>Mine Construction: {notation(this.state.construction)}/s ({notation(this.state.constructionCost)} per Mine)</div><br/>
+								<div>Mine Construction: {notation(this.state.construction)}/s</div><br/>
 								<div>Drill Tier: {this.state.type}</div>
 							</div>
 						</div>
@@ -50,7 +51,7 @@ class MinesComponent extends ReactStateComponent {
 							{this.state.upgradeText}<br/>
 							Cost: {notation(this.state.cost)} Energy
 						</button>
-						<button onClick={function() {player.mines.salvage();}} className={this.state.canSalvage ? "storebtn buy" : "storebtn locked"} style={{display: this.state.bought ? "" : "none"}}>
+						<button onClick={function() {player.mines.salvage();}} className={this.state.canSalvage ? "storebtn buy" : "storebtn locked"} style={{display: this.state.unlockedSalvage ? "" : "none"}}>
 							Salvage depleted mines into new mines
 						</button>
 					</div>

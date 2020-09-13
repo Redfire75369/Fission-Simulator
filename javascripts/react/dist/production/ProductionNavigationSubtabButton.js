@@ -3,14 +3,14 @@ class ProductionNavigationSubtabButton extends ReactStateComponent {
     super(props);
     this.state = {
       text: this.props.text,
-      tab: this.props.tab,
-      unlocked: true
+      tab: this.props.tab
     };
   }
 
   tick() {
     this.setState({
-      active: player.navigation.production === this.state.text.toLowerCase()
+      active: player.navigation.production === this.state.text.toLowerCase(),
+      unlocked: player.unlocked.mines || player.energy.gt(250)
     });
   }
 
