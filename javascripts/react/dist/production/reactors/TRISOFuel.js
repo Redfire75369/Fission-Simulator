@@ -14,7 +14,7 @@ class TRISOFuelComponent extends ReactStateComponent {
 
   tick() {
     this.setState({
-      unlocked: player.mines.tier > - 1 && (this.props.tier === 0 || ((player.fuels.triso[this.props.tier - 1].enriched.add(player.fuels.triso[this.props.tier - 1].depleted).gt(0) || player.fuels.triso[this.props.tier].enriched.add(player.fuels.triso[this.props.tier].depleted).gt(0)) && player.reactors.pebblebeds[this.props.tier - 1].bought > 0)),
+      unlocked: player.mines.tier > -1 && (this.props.tier === 0 || (player.fuels.triso[this.props.tier - 1].enriched.add(player.fuels.triso[this.props.tier - 1].depleted).gt(0) || player.fuels.triso[this.props.tier].enriched.add(player.fuels.triso[this.props.tier].depleted).gt(0)) && player.reactors.pebblebeds[this.props.tier - 1].bought > 0),
       unlockedReprocessing: player.mines.tier > 0,
       hasFuel: player.fuels.triso[this.props.tier].enriched.add(player.fuels.triso[this.props.tier].depleted).gt(0),
       enriched: player.fuels.triso[this.props.tier].enriched,
@@ -53,7 +53,7 @@ class TRISOFuelComponent extends ReactStateComponent {
         minWidth: "15vw",
         padding: "1vw"
       }
-    }, "Mines are producing ", notation(this.state.gain), " Enriched ", this.state.type, "Fuel per second.", /*#__PURE__*/React.createElement("br", null), this.props.tier !== 2 ? /*#__PURE__*/React.createElement("span", null, "Depleted ", this.state.type, " Fuel can be reprocessed into Enriched ", trisoFuelTypes[this.props.tier + 1], " Fuel") : /*#__PURE__*/React.createElement("span", null, "Reprocessing ", notation(this.state.goal), " Depleted LEP Fuel will result in a prestige")))), /*#__PURE__*/React.createElement("div", {
+    }, "Mines are producing ", notation(this.state.gain), " Enriched ", this.state.type, " Fuel per second.", /*#__PURE__*/React.createElement("br", null), this.props.tier !== 2 ? /*#__PURE__*/React.createElement("span", null, "Depleted ", this.state.type, " Fuel can be reprocessed into Enriched ", trisoFuelTypes[this.props.tier + 1], " Fuel") : /*#__PURE__*/React.createElement("span", null, "Reprocessing ", notation(this.state.goal), " Depleted LEP-239 Fuel will result in a prestige")))), /*#__PURE__*/React.createElement("div", {
       className: "flex-row body"
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-col vertical-top fuelinfo"

@@ -1,12 +1,12 @@
 class GasCoolantColumnComponent extends ReactStateComponent {
   assignResearch() {
-    assignResearch(this.state.type);
+    assignResearch(this.props.type);
   }
 
   tick() {
     this.setState({
       percentageWidth: log(max(max(max(player.prestige.researches[0], player.prestige.researches[1]), player.prestige.researches[2]), player.prestige.researches[3]), 2) / 40,
-      research: player.prestige.researches[this.state.type]
+      research: player.prestige.researches[this.props.type]
     });
   }
 

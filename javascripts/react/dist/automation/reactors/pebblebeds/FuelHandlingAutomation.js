@@ -18,7 +18,7 @@ class PebblebedFuelHandlingAutomationComponent extends ReactStateComponent {
   }
 
   decreaseInterval() {
-    player.automation.reactors.pebblebeds.fuel[this.props.tier].interval -= 80;
+    player.automation.reactors.pebblebeds.fuel[this.props.tier].interval = max(25, player.automation.reactors.pebblebeds.fuel[this.props.tier].interval * 0.95);
   }
 
   reprocessToggle() {
@@ -26,7 +26,7 @@ class PebblebedFuelHandlingAutomationComponent extends ReactStateComponent {
   }
 
   decreaseReprocessInterval() {
-    player.automation.fuels.triso[this.props.tier].interval -= 80;
+    player.automation.fuels.triso[this.props.tier].interval = max(25, player.automation.fuels.triso[this.props.tier].interval * 0.95);
   }
 
   render() {
@@ -36,7 +36,7 @@ class PebblebedFuelHandlingAutomationComponent extends ReactStateComponent {
       className: "flex-row"
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-col"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Pebblebed Reactor Fuel Handling")), /*#__PURE__*/React.createElement("div", null, "Interval: ", this.state.interval), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Pebblebed Reactor Fuel Handling")), /*#__PURE__*/React.createElement("div", null, "Interval: ", this.state.interval, " ms"), /*#__PURE__*/React.createElement("div", {
       className: "cooldown"
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -58,7 +58,7 @@ class PebblebedFuelHandlingAutomationComponent extends ReactStateComponent {
       className: "flex-row"
     }, /*#__PURE__*/React.createElement("div", {
       className: "flex-col"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "TRISO Fuel Reprocessing")), /*#__PURE__*/React.createElement("div", null, "Interval: ", this.state.reprocessInterval), /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "TRISO Fuel Reprocessing")), /*#__PURE__*/React.createElement("div", null, "Interval: ", this.state.reprocessInterval, " ms"), /*#__PURE__*/React.createElement("div", {
       className: "cooldown"
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -71,7 +71,7 @@ class PebblebedFuelHandlingAutomationComponent extends ReactStateComponent {
       className: this.state.reprocessActive ? "active" : "inactive"
     }, this.state.reprocessActive ? "Deactivate" : "Activate", " Automation")), /*#__PURE__*/React.createElement("div", {
       style: {
-        display: this.state.unlockedReprocessUpgrade ? "" : "none"
+        display: this.state.unlockedUpgrade ? "" : "none"
       }
     }, /*#__PURE__*/React.createElement("button", {
       onClick: this.decreaseReprocessInterval.bind(this),
