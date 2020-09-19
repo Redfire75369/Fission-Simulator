@@ -20,12 +20,12 @@ jobs:
         node-version: 12.x
 
     - name: Install Dependencies
-      run: npm install
+      run: npm ci
 
     - name: Run ESLint on Source Code
-      run: eslint --fix
+      run: npm run lint
     - name: Compile JSX
-      run: npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist
+      run: npm run compile
 
     - name: Add and Commit to Repository
       uses: EndBug/add-and-commit@v4
