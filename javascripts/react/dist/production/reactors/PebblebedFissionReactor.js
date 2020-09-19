@@ -4,44 +4,43 @@ class PebblebedFissionReactorComponent extends ReactStateComponent {
   constructor(props) {
     super(props);
     this.state = {
-      tier: this.props.tier,
       type: pebblebedReactorTypes[this.props.tier]
     };
   }
 
   loadFuel() {
-    player.reactors.pebblebeds[this.state.tier].loadFuel();
+    player.reactors.pebblebeds[this.props.tier].loadFuel();
   }
 
   ejectWaste() {
-    player.reactors.pebblebeds[this.state.tier].ejectWaste();
+    player.reactors.pebblebeds[this.props.tier].ejectWaste();
   }
 
   buy() {
-    player.reactors.pebblebeds[this.state.tier].buy();
+    player.reactors.pebblebeds[this.props.tier].buy();
   }
 
   buyMax() {
-    player.reactors.pebblebeds[this.state.tier].buyMax();
+    player.reactors.pebblebeds[this.props.tier].buyMax();
   }
 
   tick() {
     this.setState({
-      unlocked: this.state.tier === 0 || player.reactors.pebblebeds[this.state.tier - 1].bought > 0,
+      unlocked: this.props.tier === 0 || player.reactors.pebblebeds[this.props.tier - 1].bought > 0,
       unlockedMines: player.mines.tier > -1,
-      amount: player.reactors.pebblebeds[this.state.tier].amount,
-      bought: player.reactors.pebblebeds[this.state.tier].bought,
-      canLoadFuel: player.fuels.triso[this.state.tier].enriched.gte(1) && player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).add(1).lt(player.reactors.pebblebeds[this.state.tier].totalCapacity),
-      canEjectWaste: player.reactors.pebblebeds[this.state.tier].spent.gte(1),
-      fuel: player.reactors.pebblebeds[this.state.tier].fuel,
-      fuelPercentage: player.reactors.pebblebeds[this.state.tier].fuel.div(player.reactors.pebblebeds[this.state.tier].totalCapacity).toNumber() * 100,
-      spent: player.reactors.pebblebeds[this.state.tier].spent,
-      spentPercentage: player.reactors.pebblebeds[this.state.tier].fuel.add(player.reactors.pebblebeds[this.state.tier].spent).div(player.reactors.pebblebeds[this.state.tier].totalCapacity).toNumber(),
-      buyable: player.reactors.pebblebeds[this.state.tier].buyable,
-      cost: player.reactors.pebblebeds[this.state.tier].cost,
-      burnRate: player.reactors.pebblebeds[this.state.tier].burnRate,
-      totalCapacity: player.reactors.pebblebeds[this.state.tier].totalCapacity,
-      gain: getReactorGain(this.state.tier)
+      amount: player.reactors.pebblebeds[this.props.tier].amount,
+      bought: player.reactors.pebblebeds[this.props.tier].bought,
+      canLoadFuel: player.fuels.triso[this.props.tier].enriched.gte(1) && player.reactors.pebblebeds[this.props.tier].fuel.add(player.reactors.pebblebeds[this.props.tier].spent).add(1).lt(player.reactors.pebblebeds[this.props.tier].totalCapacity),
+      canEjectWaste: player.reactors.pebblebeds[this.props.tier].spent.gte(1),
+      fuel: player.reactors.pebblebeds[this.props.tier].fuel,
+      fuelPercentage: player.reactors.pebblebeds[this.props.tier].fuel.div(player.reactors.pebblebeds[this.props.tier].totalCapacity).toNumber() * 100,
+      spent: player.reactors.pebblebeds[this.props.tier].spent,
+      spentPercentage: player.reactors.pebblebeds[this.props.tier].fuel.add(player.reactors.pebblebeds[this.props.tier].spent).div(player.reactors.pebblebeds[this.props.tier].totalCapacity).toNumber(),
+      buyable: player.reactors.pebblebeds[this.props.tier].buyable,
+      cost: player.reactors.pebblebeds[this.props.tier].cost,
+      burnRate: player.reactors.pebblebeds[this.props.tier].burnRate,
+      totalCapacity: player.reactors.pebblebeds[this.props.tier].totalCapacity,
+      gain: getReactorGain(this.props.tier)
     });
   }
 

@@ -1,0 +1,4 @@
+**
+!javascripts/**/*.js
+javascripts/libs/*.js
+javascripts/react/dist/**/*.js

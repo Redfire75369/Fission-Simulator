@@ -1,13 +1,4 @@
 class GasCoolantColumnComponent extends ReactStateComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      colour: this.props.colour,
-      name: this.props.name,
-      type: this.props.type
-    };
-  }
-
   assignResearch() {
     assignResearch(this.state.type);
   }
@@ -50,7 +41,7 @@ class GasCoolantColumnComponent extends ReactStateComponent {
         minHeight: "min(" + log(this.state.research, 2) / this.state.percentageWidth + "vh, " + log(this.state.research, 2) / this.state.percentageWidth + "vw)",
         width: "min(18vw, 18vh)"
       }
-    })), /*#__PURE__*/React.createElement("span", null, this.state.name));
+    })), /*#__PURE__*/React.createElement("span", null, this.props.name));
   }
 
 }

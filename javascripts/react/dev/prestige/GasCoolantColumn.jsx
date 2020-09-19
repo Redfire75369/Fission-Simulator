@@ -1,22 +1,12 @@
 class GasCoolantColumnComponent extends ReactStateComponent {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			colour: this.props.colour,
-			name: this.props.name,
-			type: this.props.type
-		};
-	}
-
 	assignResearch() {
-		assignResearch(this.state.type);
+		assignResearch(this.props.type);
 	}
 
 	tick() {
 		this.setState({
 			percentageWidth: log(max(max(max(player.prestige.researches[0], player.prestige.researches[1]), player.prestige.researches[2]), player.prestige.researches[3]), 2) / 40,
-			research: player.prestige.researches[this.state.type]
+			research: player.prestige.researches[this.props.type]
 		});
 	}
 
@@ -27,7 +17,7 @@ class GasCoolantColumnComponent extends ReactStateComponent {
 				<div className="flex-col vertical-bottom" style={{maxHeight: "min(40vw, 40vh)", minHeight: "min(40vw, 40vh)", width: "min(20vw, 20vh)"}}>
 					<div style={{backgroundColor: this.props.colour, maxHeight: "min(" + log(this.state.research, 2) / this.state.percentageWidth + "vh, " + log(this.state.research, 2) / this.state.percentageWidth + "vw)", minHeight: "min(" + log(this.state.research, 2) / this.state.percentageWidth + "vh, " + log(this.state.research, 2) / this.state.percentageWidth + "vw)", width: "min(18vw, 18vh)"}}/>
 				</div>
-				<span>{this.state.name}</span>
+				<span>{this.props.name}</span>
 			</div>
 		);
 	}

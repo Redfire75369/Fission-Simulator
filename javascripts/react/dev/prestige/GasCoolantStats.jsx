@@ -1,18 +1,10 @@
 class GasCoolantStatsComponent extends ReactStateComponent {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			tier: this.props.tier
-		};
-	}
-
 	tick() {
 		this.setState({
-			heatCapacity: gasCoolants[this.state.tier].heatCapacity,
-			flowRate: gasCoolants[this.state.tier].flowRate,
-			nobility: gasCoolants[this.state.tier].nobility,
-			fuelEfficiency: gasCoolants[this.state.tier].fuelEfficiency
+			heatCapacity: gasCoolants[this.props.tier].heatCapacity,
+			flowRate: gasCoolants[this.props.tier].flowRate,
+			nobility: gasCoolants[this.props.tier].nobility,
+			fuelEfficiency: gasCoolants[this.props.tier].fuelEfficiency
 		});
 	}
 

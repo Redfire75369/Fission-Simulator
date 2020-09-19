@@ -13,7 +13,6 @@ class FissionReactorsSubTabComponent extends ReactStateComponent {
 					<TRISOFuelComponent tier={1}/>
 					<TRISOFuelComponent tier={2}/>
 				</div>
-				<div className="flex-row" style={{minHeight: "2vh"}}/>
 				<div className="flex-row">
 					<PebblebedFissionReactorComponent tier={0}/>
 					<PebblebedFissionReactorComponent tier={1}/>

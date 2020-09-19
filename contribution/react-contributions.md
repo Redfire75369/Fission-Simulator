@@ -2,7 +2,7 @@
 
 ## Steps
 1. Open the javascripts in a text editor of your choice
-2. Make changes and edits in the `dev` folder (**Note: Do not edit files in the `production` folder**)
+2. Make changes and edits in the `dev` folder (**Note: Do not edit files in the `dist` folder**)
 3. Save all edited files
 
 ## Compilation
@@ -13,6 +13,6 @@
 ## Terminal/Shell Command
 **Note: Only use this directly if the batch or shell files fail.**<br/>
 Run this command in Command Prompt/Powershell(Windows) or Terminal(Mac/Linux) for compilation. This command should be run from the `Fission-Simulator` directory.
-```bat
-npx babel javascripts/react/dev --watch --out-dir javascripts/react/dist
+```shell
+npx --no-install babel javascripts/react/dev --watch --out-dir javascripts/react/dist
 ```

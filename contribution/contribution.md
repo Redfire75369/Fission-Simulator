@@ -4,7 +4,7 @@ This is a short writeup on contributing to Fission Simulator.
 ## Github Introduction
 In order to start, you need a free Account for [Github](https://github.com).  
 Follow the registration steps if you have none already.  
-Afterwards, follow [this guide](https://github.com/Redfire75369/Fission-Simulator/blob/overhaul/github.md) for more information.
+Afterwards, follow [this beginner's guide to using github](https://github.com/Redfire75369/Fission-Simulator/blob/overhaul/github.md) for more information.
 
 ## Guidelines
 ### Code Formatting
@@ -20,4 +20,4 @@ All contributions that you make will be subject to this repository's "All Rights
 1. Run `setup.bat` or `setup.sh`
 
 ## React Contributions
-See [React Contribution](https://github.com/Redfire75369/Fission-Simulator/blob/overhaul/javascripts/react/contributing.md).
+See [React Contribution](https://github.com/Redfire75369/Fission-Simulator/blob/overhaul/contributions/react-contribution.md).

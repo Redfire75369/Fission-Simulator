@@ -1,4 +1,4 @@
-node_modules/*
-saves/*
+node_modules/**
+saves/**
 
 package-lock.json

@@ -1,21 +1,13 @@
 class ProductionNavigationSubtabButton extends ReactStateComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: this.props.text,
-      tab: this.props.tab
-    };
-  }
-
   tick() {
     this.setState({
-      active: player.navigation.production === this.state.text.toLowerCase(),
+      active: player.navigation.production === this.props.text.toLowerCase(),
       unlocked: player.unlocked.mines || player.energy.gt(250)
     });
   }
 
   showProductionTab() {
-    player.navigation.production = this.state.tab;
+    player.navigation.production = this.props.tab;
   }
 
   render() {
@@ -25,7 +17,7 @@ class ProductionNavigationSubtabButton extends ReactStateComponent {
       style: {
         display: this.state.unlocked ? "" : "none"
       }
-    }, this.state.text);
+    }, this.props.text);
   }
 
 }

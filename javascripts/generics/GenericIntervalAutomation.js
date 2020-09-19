@@ -9,10 +9,8 @@ class GenericIntervalAutomation extends GenericAutomation {
 		if (this.active) {
 			if (this.cooldown >= this.interval) {
 				this.cooldown -= this.interval;
-				this.cooldown += tickInterval;
-			} else {
-				this.cooldown += tickInterval;
 			}
+			this.cooldown += tickInterval;
 		}
 	}
 }
@@ -28,11 +26,9 @@ class GenericIntervalActionAutomation extends GenericActionAutomation {
 		if (this.active) {
 			if (this.cooldown >= this.interval) {
 				this.cooldown -= this.interval;
-				this.cooldown += tickInterval;
 				this.action();
-			} else {
-				this.cooldown += tickInterval;
 			}
+			this.cooldown += tickInterval;
 		}
 	}
 }

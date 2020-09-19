@@ -8,7 +8,7 @@ function log(x, y) {
 	return Math.log(x) / Math.log(y);
 }
 
-function round(x, dp) {
+function round(x, dp = 2) {
 	return x.toFixed(dp);
 }
 function floor(x) {
@@ -23,4 +23,7 @@ function min(x, y) {
 }
 function max(x, y) {
 	return Math.max(x, y);
+}
+function clamp(x, y, z) {
+	return max(x, min(y, z));
 }
