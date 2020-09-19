@@ -8,13 +8,30 @@
 	"parserOptions": {
 		"ecmaVersion": 11,
 		"ecmaFeatures": {
-            "jsx": true
-        },
+						"jsx": true
+				},
 		"sourceType": "module"
 	},
 	"plugins": [
 		"react"
 	],
+	"settings": {
+		"react": {
+			"createClass": "createReactClass",
+			"pragma": "React",
+			"version": "16.8",
+			"flowVersion": "0.53"
+		},
+		"propWrapperFunctions": [.
+				"forbidExtraProps",
+				{"property": "freeze", "object": "Object"},
+				{"property": "myFavoriteWrapper"}
+		],
+		"linkComponents": [
+			"Hyperlink",
+			{"name": "Link", "linkAttribute": "to"}
+		]
+	},
 	"globals": {
 		"player": true,
 		"getDefaultData": true,
@@ -59,7 +76,7 @@
 
 		"React": true,
 		"ReactDOM": true,
-        "ReactStateComponent": true,
+		"ReactStateComponent": true,
 
 		"MinesComponent": true,
 		"TRISOFuelComponent": true,
@@ -190,23 +207,23 @@
 			}
 		],
 		"no-dupe-args": "warn",
-        "no-dupe-class-members": "warn",
-        "no-dupe-else-if": "warn",
-        "no-dupe-keys": "warn",
-        "no-duplicate-case": "warn",
+		"no-dupe-class-members": "warn",
+		"no-dupe-else-if": "warn",
+		"no-dupe-keys": "warn",
+		"no-duplicate-case": "warn",
 		"no-empty": "warn",
-        "no-empty-character-class": "warn",
-        "no-empty-pattern": "warn",
-        "no-ex-assign": "warn",
+		"no-empty-character-class": "warn",
+		"no-empty-pattern": "warn",
+		"no-ex-assign": "warn",
 		"no-extra-boolean-cast": "warn",
 		"no-extra-semi": "warn",
 		"no-invalid-regexp": "error",
-        "no-irregular-whitespace": "warn",
+		"no-irregular-whitespace": "warn",
 		"no-mixed-spaces-and-tabs": "warn",
 		"no-redeclare": "warn",
 		"no-regex-spaces": "warn",
 		"no-self-assign": "warn",
-        "no-setter-return": "warn",
+		"no-setter-return": "warn",
 		"no-this-before-super": "warn",
 		"no-undef": "error",
 		"no-unreachable": "warn",
