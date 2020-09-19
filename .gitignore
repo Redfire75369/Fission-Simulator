@@ -1,4 +1,2 @@
-node_modules/*
-saves/*
-
-package-lock.json
+node_modules/**
+saves/**

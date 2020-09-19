@@ -142,7 +142,8 @@ button:hover {
 }
 
 .trisodiv > .body > .reprocess > button > div {
-	background-color: rgba(0, 255, 0, 0.3);
+	background-color: #00FF00;
+	opacity: 0.3
 }
 
 .trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
@@ -169,6 +170,29 @@ button:hover {
 	color: #000000;
 }
 
+.fuelhandlingautomationdiv {
+    background: #BB99Ff;
+    border: 3px solid black;
+}
+
+.fuelhandlingautomationdiv > div > div > .cooldown {
+    background-color: #000000;
+    border: 2px solid #000000;
+}
+.fuelhandlingautomationdiv > div > div > .cooldown > div {
+    background-color: #FFFFFF;
+}
+
+.fuelhandlingautomationdiv > div > div > div > button {
+    background-color: #34B191;
+}
+.fuelhandlingautomationdiv > div > div > div > button.active {
+    background-color: #339965;
+}
+.fuelhandlingautomationdiv > div > div > div > button.inactive {
+    background-color: #878889;
+}
+
 .achcomplete {
 	background-color: #008000;
 	border: 1px solid #004400;
@@ -179,7 +203,7 @@ button:hover {
 }
 
 .options > div > button {
-	background-color: #fefefe;
+	background-color: #FEFEFE;
 	border: 2px solid #181818;
 	border-radius: 2px;
 	color: #000000;

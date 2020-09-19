@@ -6,3 +6,9 @@ class TRISOReprocessAutomation extends GenericIntervalActionAutomation {
 		this.tier = tier;
 	}
 }
+
+function simulateTRISOAutomation(tickInterval = 50) {
+	for (let i = 0; i < 3; i++) {
+		player.automation.fuels.triso[i].automate(tickInterval);
+	}
+}

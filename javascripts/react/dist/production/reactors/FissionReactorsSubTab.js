@@ -19,11 +19,6 @@ class FissionReactorsSubTabComponent extends ReactStateComponent {
     }), /*#__PURE__*/React.createElement(TRISOFuelComponent, {
       tier: 2
     })), /*#__PURE__*/React.createElement("div", {
-      className: "flex-row",
-      style: {
-        minHeight: "2vh"
-      }
-    }), /*#__PURE__*/React.createElement("div", {
       className: "flex-row"
     }, /*#__PURE__*/React.createElement(PebblebedFissionReactorComponent, {
       tier: 0

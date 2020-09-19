@@ -77,6 +77,7 @@ button:hover {
 	color: #FFFFFF;
 	left: 50%;
 	position: absolute;
+	text-align: center;
 	transform: translateX(-50%);
 	visibility: hidden;
 	z-index: 2;
@@ -88,23 +89,24 @@ button:hover {
 .achcomplete > .tooltiptext {
 	bottom: 105%;
 	color: #88EE44;
-	left: 50%;
-	margin-left: -12.5vw;
-	padding-top: 5px;
-	width: 25vw;
+	data-html: true;
+	max-height: 5.6em;
+	max-width: 12.5vw;
+	min-height: 4.2em;
+	min-width: 12.5vw;
 }
 .achlocked > .tooltiptext {
 	bottom: 105%;
 	color: #DE564D;
-	left: 50%;
-	margin-left: -12.5vw;
-	padding-top: 5px;
-	width: 25vw;
+	data-html: true;
+	max-height: 5.6em;
+	max-width: 12.5vw;
+	min-height: 4.2em;
+	min-width: 12.5vw;
 }
 .tooltiptext.turbine {
 	bottom: 105%;
 	color: #FFFFFF;
-	left: 50%;
 	margin-left: -60px;
 	padding: 5px;
 	width: 120px;
@@ -145,12 +147,14 @@ button:hover {
 	font-size: 20px;
 	height: 40px;
 	margin: 2px;
+	opacity: 1;
 	width: 180px;
 }
 .navigation.main {
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: #000000;
 	height: 100vh;
 	left: 0;
+	opacity: 0.8;
 	padding: 10px;
 	position: absolute;
 	top: 0;
@@ -216,13 +220,11 @@ button:hover {
 }
 
 .minesdiv > div > .info {
-	font-size: 1.2rem;
 	padding-left: 1em;
 	padding-right: 1em;
 	padding-top: 1em;
 }
 .minesdiv > div > .body {
-	font-size: 1.2rem;
 	padding-left: 1em;
 	padding-right: 1em;
 }
@@ -246,13 +248,12 @@ button:hover {
 .trisodiv, .pebblebeddiv {
 	max-width: 30vw;
 	min-width: 30vw;
-	margin-bottom: 1.5vw;
-	margin-left: 1.5vw;
-	margin-right: 1.5vw;
+	margin-bottom: 1.2vw;
+	margin-left: 0.6vw;
+	margin-right: 0.6vw;
 }
 
 .trisodiv > .title, .pebblebeddiv > .title {
-	font-size: 1.2rem;
 	max-height: 1.4em;
 	min-height: 1.4em;
 	text-align: center;
@@ -271,7 +272,6 @@ button:hover {
 
 .trisodiv > .body > .fuelinfo, .pebblebeddiv > .body > .info {
 	align-items: flex-start;
-	font-size: 1.2rem;
 	max-width: 50%;
 	min-width: 50%;
 	text-align: left;
@@ -286,31 +286,31 @@ button:hover {
 }
 
 .trisodiv > .body > .reprocess, .pebblebeddiv > .body > .fuelhandling {
-	font-size: 1.2rem;
 	justify-content: flex-start;
 	max-width: 50%;
 	min-width: 50%;
 }
 .trisodiv > .body > .reprocess {
-	max-height: 4.6em;
-	min-height: 4.6em;
+	max-height: 5.8em;
+	min-height: 5.8em;
 }
 .pebblebeddiv > .body > .fuelhandling {
-	max-height: 5.2em;
-	min-height: 5.2em;
+	max-height: 5.8em;
+	min-height: 5.8em;
 }
 
 .trisodiv > .body > .reprocess > button {
-	max-height: calc(4.2em + 8px);
-	min-height: calc(4.2em + 8px);
+	max-height: calc(5.4em + 8px);
+	min-height: calc(5.4em + 8px);
 	padding: 4px;
 	position: relative;
 }
 .trisodiv > .body > .reprocess > button > div {
 	border-radius: 1px;
-	max-height: calc(4.2em + 8px);
-	min-height: calc(4.2em + 8px);
 	left: -2px;
+	max-height: calc(5.4em + 8px);
+	min-height: calc(5.4em + 8px);
+	position: absolute;
 	top: -2px;
 	width: 0;
 }
@@ -380,6 +380,31 @@ button:hover {
 .trisobtn, .pebblebedbtn {
 	max-width: 90%;
 	min-width: 90%;
+}
+
+.fuelhandlingautomationdiv {
+	max-width: 30vw;
+	min-width: 30vw;
+	padding: 1em;
+}
+.fuelhandlingautomationdiv > div {
+	margin: 1.5vw;
+}
+
+.fuelhandlingautomationdiv > div > div > .cooldown {
+	max-height: calc(2.2em - 4px);
+	max-width: 90%;
+	min-height: calc(2.2em - 4px);
+	min-width: 90%;
+}
+.fuelhandlingautomationdiv > div > div > .cooldown > div {
+	max-height: calc(2.2em - 4px);
+	min-height: calc(2.2em - 4px);
+}
+
+.fuelhandlingautomationdiv > div > div > div > button {
+    max-width: 80%;
+    min-width: 80%;
 }
 
 .turbinebox {
@@ -509,15 +534,17 @@ button:hover {
 	box-shadow: 0 0 5px 1px #FFBB77;
 }
 
-.achpic {
-	height: 100px;
-	opacity: 0.7;
-	width: 100px;
-	z-index: 1;
-}
 .achcomplete, .achlocked {
-	height: 100px;
+	align-items: center;
+	height: min(12vw - 40px, 100px);
+	justify-content: center;
 	width: 12vw;
+}
+.achcomplete > img, .achlocked > img {
+	height: min(12vw - 40px, 100px);
+	margin-left: 20px;
+	opacity: 0.7;
+	width: min(12vw - 40px, 100px);
 }
 
 .options > div > button {

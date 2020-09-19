@@ -109,65 +109,66 @@ function checkObj(obj) {
 		|| obj instanceof Array
 		|| obj instanceof GenericProducer
 		|| obj instanceof GenericAutomation
+		|| obj instanceof GenericActionAutomation
 		|| obj instanceof GenericUpgrade
 		|| obj instanceof TRISOFuel
 		|| obj instanceof Mines;
 }
 
-function objectify(x, type) {
-	if (type instanceof Decimal) {
-		return new Decimal(x);
-	} else if (type instanceof TRISOFuel) {
-		let ret = new TRISOFuel(type.tier);
-		ret.enriched = new Decimal(x.enriched);
-		ret.depleted = new Decimal(x.depleted);
+function objectify(obj, check) {
+	if (check instanceof Decimal) {
+		return new Decimal(obj);
+	} else if (check instanceof TRISOFuel) {
+		let ret = new TRISOFuel(check.tier);
+		ret.enriched = new Decimal(obj.enriched);
+		ret.depleted = new Decimal(obj.depleted);
 		return ret;
-	} else if (type instanceof Mines) {
+	} else if (check instanceof Mines) {
 		let ret = new Mines();
-		ret.tier = x.tier;
-		ret.amount = new Decimal(x.amount);
-		ret.depleted = new Decimal(x.depleted);
-		ret.depletion = new Decimal(x.depletion);
-		ret.ratio = x.ratio;
+		ret.tier = obj.tier;
+		ret.amount = new Decimal(obj.amount);
+		ret.depleted = new Decimal(obj.depleted);
+		ret.depletion = new Decimal(obj.depletion);
+		ret.ratio = obj.ratio;
 		return ret;
-	} else if (type instanceof PebblebedFissionReactor) {
-		let ret = new PebblebedFissionReactor(type.tier, type.startCost.log10(), type.scaleCost.log10());
-		ret.amount = new Decimal(x.amount);
-		ret.bought = x.bought;
-		ret.fuel = new Decimal(x.fuel);
-		ret.spent = new Decimal(x.spent);
+	} else if (check instanceof PebblebedFissionReactor) {
+		let ret = new PebblebedFissionReactor(check.tier, check.startCost.log10(), check.scaleCost.log10());
+		ret.amount = new Decimal(obj.amount);
+		ret.bought = obj.bought;
+		ret.fuel = new Decimal(obj.fuel);
+		ret.spent = new Decimal(obj.spent);
 		return ret;
-	/* } else if (type instanceof TurbineBlade) {
-		let ret = new TurbineBlade(x.name, x.efficiency, x.expansion, x.speed);
-		ret.length = x.length;
+	/* } else if (check instanceof TurbineBlade) {
+		let ret = new TurbineBlade(obj.name, obj.efficiency, obj.eobjpansion, obj.speed);
+		ret.length = obj.length;
 		return ret; */
-	} else if (type instanceof TurbineNaniteUpgrade) {
+	} else if (check instanceof TurbineNaniteUpgrade) {
 		let ret = new TurbineNaniteUpgrade();
-		ret.bought = x.bought;
+		ret.bought = obj.bought;
 		return ret;
-	} else if (type instanceof NaniteUpgrade) {
-		let ret = new NaniteUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
-		ret.bought = x.bought;
+	} else if (check instanceof NaniteUpgrade) {
+		let ret = new NaniteUpgrade(check.id, check.startCost, check.tiers, check.scaleCost);
+		ret.bought = obj.bought;
 		return ret;
-	} else if (type instanceof MeltdownUpgrade) {
-		let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
-		ret.bought = x.bought;
+	} else if (check instanceof MeltdownUpgrade) {
+		let ret = new MeltdownUpgrade(check.id, check.startCost, check.tiers, check.scaleCost);
+		ret.bought = obj.bought;
 		return ret;
-	} else if (type instanceof PebblebedBuyAutomation) {
-		let ret = new PebblebedBuyAutomation(x.interval, type.tier);
-		ret.cooldown = x.cooldown;
-		ret.active = x.active;
+	} else if (check instanceof PebblebedBuyAutomation) {
+		let ret = new PebblebedBuyAutomation(obj.interval, check.tier);
+		ret.cooldown = obj.cooldown;
+		ret.active = obj.active;
 		return ret;
-	} else if (type instanceof PebblebedFuelAutomation) {
-		let ret = new PebblebedFuelAutomation(x.interval, type.tier);
-		ret.cooldown = x.cooldown;
-		ret.active = x.active;
+	} else if (check instanceof PebblebedFuelAutomation) {
+		let ret = new PebblebedFuelAutomation(obj.interval, check.tier);
+		ret.cooldown = obj.cooldown;
+		ret.active = obj.active;
 		return ret;
-	} else if (type instanceof TRISOReprocessAutomation) {
-		let ret = new TRISOReprocessAutomation(x.interval, type.tier);
-		ret.cooldown = x.cooldown;
-		ret.active = x.active;
+	} else if (check instanceof TRISOReprocessAutomation) {
+		let ret = new TRISOReprocessAutomation(obj.interval, check.tier);
+		ret.cooldown = obj.cooldown;
+		ret.active = obj.active;
 		return ret;
 	}
-	return x;
+	return obj;
 }

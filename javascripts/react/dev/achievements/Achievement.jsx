@@ -1,42 +1,37 @@
 const achievementTexts = {
-	11: "The fertility of Thorium\nBuy one TBU Pebblebed Reactor.",
-	12: "I have the power inside\nObtain 1000 Energy.",
-	13: "Suggest Ideas in the Discord Server",
-	14: "WIP\nNucleosynthesise for the first time.",
-	15: "Suggest Ideas in the Discord Server>",
-	16: "All the Elements\nUnlock all 8 Reactors.",
-	17: "Suggest Ideas in the Discord Server>",
-	18: "Nanomachines, Son\nObtain 1 Nanite.",
-	21: "Suggest Ideas in the Discord Server",
-	22: "The Power of a Dying Star\nNucleosynthesise 8 Times.",
-	23: "Suggest Ideas in the Discord Server",
-	24: "WIP\nObtain 1.00e12 Energy.",
-	25: "They harden in response to physical trauma!\nObtain 8 Nanites.",
-	26: "Suggest Ideas in the Discord Server",
-	27: "WIP\nBuy all Nanite Upgrades",
-	28: "To Infinity and Beyond!\nMeltdown for the first time."
+	11: "Thoranium\nBuy one TBU Pebblebed Reactor.",
+	12: "",
+	13: "",
+	14: "",
+	15: "",
+	16: "",
+	17: "",
+	18: "",
+	21: "",
+	22: "",
+	23: "",
+	24: "",
+	25: "",
+	26: "",
+	27: "",
+	28: ""
 };
 
 class AchievementComponent extends ReactStateComponent {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			id: this.props.id
-		};
-	}
-
 	tick() {
 		this.setState({
-			completed: player.achievements[this.state.id]
+			completed: player.achievements[this.props.id]
 		});
 	}
 
 	render() {
 		return (
-			<div className={this.state.completed ? "flex-col align horizontal-center tooltip achcomplete" : "flex-col align horizontal-center tooltip achlocked"}>
-				<img className="achpic" src={"resources/images/achievements/" + this.state.id + ".png"}/>
-				<span className="tooltiptext">{achievementTexts[this.props.id]}</span>
+			<div className={"flex-col align horizontal-center tooltip " + (this.state.completed ? "achcomplete" : "achlocked")}>
+				<img src={"resources/images/achievements/" + this.props.id + ".png"}/>
+				<span className="tooltiptext" >
+					{achievementTexts[this.props.id].split("\n")[0]}<br/>
+					{achievementTexts[this.props.id].split("\n")[1]}
+				</span>
 			</div>
 		);
 	}

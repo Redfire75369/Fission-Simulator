@@ -1,3 +1,0 @@
-class PebblebedBuyAutomationComponent extends ReactStateComponent {
-	
-}

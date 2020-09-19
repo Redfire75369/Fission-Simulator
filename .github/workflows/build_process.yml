@@ -1,0 +1,34 @@
+name: Build Process
+on:
+  push:
+    branches:
+      - overhaul
+      - overhaul-dev
+  pull_request:
+    branches:
+      - overhaul
+      - overhaul-dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1.4.3
+        with:
+          node-version: 12
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Run ESLint on Source Code
+      run: eslint --fix
+    - name: Compile JSX
+      run: npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist
+
+    - name: Add and Commit to Repository
+      uses: EndBug/add-and-commit@v4
+      message: "Automated Build Process"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

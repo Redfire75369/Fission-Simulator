@@ -1,0 +1,19 @@
+{
+  "ecmaVersion": 8,
+  "libs": [
+    "browser",
+    "react"
+  ],
+  "loadEagerly": [
+    "javascripts/**/*.js"
+  ],
+  "dontLoad": [
+    "node_modules/**"
+  ],
+  "plugins": {
+    "doc_comment": {
+      "fullDocs": true,
+      "strong": true
+    }
+  }
+}

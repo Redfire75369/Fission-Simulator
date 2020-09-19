@@ -29,7 +29,7 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 
 	get totalCapacity() {
 		return this.amount.mul(25)
-			.mul(Decimal.pow(1.4, 6 + Decimal.log(player.prestige.researches[1], 1.4) * 2));
+			.mul(player.unlocked.prestige ? Decimal.pow(1.4, 6 + Decimal.log(player.prestige.researches[1], 1.4) * 2) : 1);
 	}
 	get constructionCost() {
 		return Decimal.pow(25, 4 * this.tier + 1);
@@ -77,10 +77,11 @@ function pebblebedFissionTotalEnergyGain() {
 
 function simulatePebblebedReactors(tickInterval = 50) {
 	player.energy = player.energy.add(pebblebedFissionTotalEnergyGain().mul(tickInterval / 1000));
+
 	for (let tier = 0; tier < 3; tier++) {
 		if (player.reactors.pebblebeds[tier].fuel.gt(0)) {
 			player.reactors.pebblebeds[tier].spent = player.reactors.pebblebeds[tier].spent.add(pebblebedFissionFuelUsage(tier).mul(tickInterval / 1000));
-			player.reactors.pebblebeds[tier].fuel = player.reactors.pebblebeds[tier].fuel.sub(pebblebedFissionFuelUsage(tier).mul(tickInterval / 1000));
+			player.reactors.pebblebeds[tier].fuel = player.reactors.pebblebeds[tier].fuel.sub(pebblebedFissionFuelUsage(tier).mul(tickInterval / 1000)).max(0);
 		}
 	}
 

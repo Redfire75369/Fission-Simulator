@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 6,
-			alpha: 9
+			alpha: 11
 		},
 
 		options: {
@@ -189,16 +189,23 @@ function getDefaultData() {
 			reactors: {
 				pebblebeds: {
 					buy: [
-						new PebblebedBuyAutomation(1000, 0),
-						new PebblebedBuyAutomation(1000, 1),
-						new PebblebedBuyAutomation(1000, 2)
+						new PebblebedBuyAutomation(2500, 0),
+						new PebblebedBuyAutomation(6000, 1),
+						new PebblebedBuyAutomation(20000, 2)
 					],
 					fuel: [
-						new PebblebedFuelAutomation(1000, 0),
-						new PebblebedFuelAutomation(1000, 1),
-						new PebblebedFuelAutomation(1000, 2)
+						new PebblebedFuelAutomation(2500, 0),
+						new PebblebedFuelAutomation(6000, 1),
+						new PebblebedFuelAutomation(20000, 2)
 					]
 				}
+			},
+			fuels: {
+				triso: [
+					new TRISOReprocessAutomation(2500, 0),
+					new TRISOReprocessAutomation(6000, 1),
+					new TRISOReprocessAutomation(20000, 2)
+				]
 			}
 		},
 
@@ -234,6 +241,7 @@ function updateGame(tickInterval = 50) {
 	simulateTRISOFuel(tickInterval);
 	simulateMines(tickInterval);
 	simulatePebblebedReactors(tickInterval);
+	simulateTRISOAutomation(tickInterval);
 	simulatePebblebedAutomation(tickInterval);
 	//simulateFuelStorage(tickInterval);
 	//simulateDecayIsotope("th227", tickInterval);
