@@ -72,8 +72,8 @@ function getMineGain() {
 }
 function getReactorGain(tier) {
 	if (player.mines.tier > 2 * tier) {
-		const bought =  player.reactors.pebblebeds.reduce(function(accumulated, current) {
-			return accumulated + Math.sign(current.bought);
+		const bought =  player.reactors.pebblebeds.reduce(function(acc, cur) {
+			return acc + Math.sign(cur.bought);
 		}, 0);
 		return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost).sqrt();
 	}

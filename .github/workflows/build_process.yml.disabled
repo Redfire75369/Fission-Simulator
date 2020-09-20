@@ -23,12 +23,13 @@ jobs:
       run: npm ci
 
     - name: Run ESLint on Source Code
-      run: npm run lint
+      run: npm run eslint
+    - name: Run CSSLint on Stylesheets
+      run: npm run csslint
     - name: Compile JSX
       run: npm run compile
 
-    - name: Add and Commit to Repository
-      uses: EndBug/add-and-commit@v4
+    - uses: EndBug/add-and-commit@v4
       with:
         message: "Automated Build Process"
       env:

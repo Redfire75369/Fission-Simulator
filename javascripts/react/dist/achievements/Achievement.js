@@ -1,8 +1,8 @@
 const achievementTexts = {
-  11: "Thoranium\nBuy one TBU Pebblebed Reactor.",
-  12: "",
-  13: "",
-  14: "",
+  11: "Thorium Power\nBuy one TBU Pebblebed Reactor.",
+  12: "Minecraft 2\nBuy a Mine with an iron-tipped drill.",
+  13: "Thoranium\nReprocess Depleted TBU Fuel into Enriched LEU-235 Fuel.",
+  14: "Capacity Overload\nReach a total capacity of 1000 LEU-235 Fuel in LEU-235 Pebblebed Reactors.",
   15: "",
   16: "",
   17: "",

@@ -1,8 +1,8 @@
 function checkAchievementCompletion() {
 	player.achievements[11] |= player.reactors.pebblebeds[0].bought > 0;
-	player.achievements[12] |= false
-	player.achievements[13] |= false;
-	player.achievements[14] |= false;
+	player.achievements[12] |= player.mines.tier > 0;
+	player.achievements[13] |= reprocessing[0];
+	player.achievements[14] |= player.reactors.pebblebeds[1].totalCapacity.gt(2500);
 	player.achievements[15] |= false;
 	player.achievements[16] |= false;
 	player.achievements[17] |= false;

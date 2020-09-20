@@ -1,12 +1,16 @@
 name: Pull Request Labeler
 on:
-- pull_request
+  pull_request:
+    branches:
+      - overhaul
+      - overhaul-dev
 
 jobs:
   label:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/labeler@v2
+    - name: Label Pull Requests
+      uses: actions/labeler@v2
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
