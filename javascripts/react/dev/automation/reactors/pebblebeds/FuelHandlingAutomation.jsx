@@ -1,71 +1,102 @@
 class PebblebedFuelHandlingAutomationComponent extends ReactStateComponent {
-	tick() {
-		this.setState({
-			unlockedUpgrade: player.prestiges > 1,
-			active: player.automation.reactors.pebblebeds.fuel[this.props.tier].active,
-			interval: player.automation.reactors.pebblebeds.fuel[this.props.tier].interval,
-			cooldownPercentage: min(1, player.automation.reactors.pebblebeds.fuel[this.props.tier].cooldown / player.automation.reactors.pebblebeds.fuel[this.props.tier].interval),
-			cost: new Decimal(1000),
-			reprocessActive: player.automation.fuels.triso[this.props.tier].active,
-			reprocessInterval: player.automation.fuels.triso[this.props.tier].interval,
-			reprocessCooldownPercentage: min(1, player.automation.fuels.triso[this.props.tier].cooldown / player.automation.fuels.triso[this.props.tier].interval),
-			reprocessCost: new Decimal(1000)
-		});
-	}
+	
 
 	toggle() {
-		player.automation.reactors.pebblebeds.fuel[this.props.tier].active = !player.automation.reactors.pebblebeds.fuel[this.props.tier].active;
+		player.automation.reactors.pebblebeds.fuel[props.tier].active = !player.automation.reactors.pebblebeds.fuel[props.tier].active;
 	}
 	decreaseInterval() {
-		player.automation.reactors.pebblebeds.fuel[this.props.tier].interval = max(25, player.automation.reactors.pebblebeds.fuel[this.props.tier].interval * 0.95);
+		player.automation.reactors.pebblebeds.fuel[props.tier].interval = max(25, player.automation.reactors.pebblebeds.fuel[props.tier].interval * 0.95);
 	}
 
 	reprocessToggle() {
-		player.automation.fuels.triso[this.props.tier].active = !player.automation.fuels.triso[this.props.tier].active;
+		player.automation.fuels.triso[props.tier].active = !player.automation.fuels.triso[props.tier].active;
 	}
 	decreaseReprocessInterval() {
-		player.automation.fuels.triso[this.props.tier].interval = max(25, player.automation.fuels.triso[this.props.tier].interval * 0.95);
+		player.automation.fuels.triso[props.tier].interval = max(25, player.automation.fuels.triso[props.tier].interval * 0.95);
+	}
+}
+
+function PebblebedFuelHandlingAutomationComponent(props) {
+	const [unlocked, setUnlockedUpgrade] = React.useState(false);
+	const [activeHandling, setActiveHandling] = React.useState(false);
+	const [intervalHandling, setIntervalHandling] = React.useState(null);
+	const [cooldownHandling, setCooldownHandling] = React.useState(0);
+	const [costHandling, setCostHandling] = React.useState(null);
+	const [activeReprocessing, setActiveReprocessing] = React.useState(null);
+	const [intervalReprocessing, setIntervalReprocessing] = React.useState(null);
+	const [cooldownReprocessing, setCooldownReprocessing] = React.useState(0);
+	const [costReprocessing, setCostReprocessing] = React.useState(null); 
+	
+
+	React.useEffect(function() {
+		const timerID = setInterval(function() {
+			setUnlockedUpgrade(player.prestiges > 1);
+			setActive(player.automation.reactors.pebblebeds.fuel[props.tier].active;
+			setIntervalHandling(player.automation.reactors.pebblebeds.fuel[props.tier].interval);
+			setCooldownHandling(min(1, player.automation.reactors.pebblebeds.fuel[props.tier].cooldown / player.automation.reactors.pebblebeds.fuel[props.tier].interval));
+			setCostHandling(new Decimal(1000)));
+			setActiveReprocessing(player.automation.fuels.triso[props.tier].active);
+			setIntervalReprocessing(player.automation.fuels.triso[props.tier].interval);
+			setCooldownReprocessing(min(1, player.automation.fuels.triso[props.tier].cooldown / player.automation.fuels.triso[props.tier].interval));
+			setCostReprocessing(new Decimal(1000));
+		}, 50);
+
+		return function() {
+			clearInterval(timerID);
+		};
+	}, []);
+	
+	function toggleHandling() {
+		player.automation.reactors.pebblebeds.fuel[props.tier].active = !player.automation.reactors.pebblebeds.fuel[props.tier].active;
+	}
+	function decreaseIntervalHandling() {
+		player.automation.reactors.pebblebeds.fuel[props.tier].interval = max(25, player.automation.reactors.pebblebeds.fuel[props.tier].interval * 0.95);
 	}
 
-	render() {
-		return (
-			<div className="flex-col fuelhandlingautomationdiv">
-				<div className="flex-row">
-					<div className="flex-col">
-						<div><b>Pebblebed Reactor Fuel Handling</b></div>
-						<div>Interval: {this.state.interval} ms</div>
-						<div className="cooldown">
-							<div style={{width: this.state.cooldownPercentage * 100 + "%"}}/>
-						</div>
-					</div>
-					<div className="flex-col">
-						<div>
-							<button onClick={this.toggle.bind(this)} className={this.state.active ? "active" : "inactive"}>{this.state.active ? "Deactivate" : "Activate"} Automation</button>
-						</div>
-						<div style={{display: this.state.unlockedUpgrade ? "" : "none"}}>
-							<button onClick={this.decreaseInterval.bind(this)} className="fuelhandlingautomationbtn">Decrease Automation Interval for {notation(this.state.cost)}</button>
-						</div>
+	function toggleReprocessing() {
+		player.automation.fuels.triso[props.tier].active = !player.automation.fuels.triso[props.tier].active;
+	}
+	function decreaseIntervalReprocessing() {
+		player.automation.fuels.triso[props.tier].interval = max(25, player.automation.fuels.triso[props.tier].interval * 0.95);
+	}
+
+	return (
+		<div className="flex-col fuelhandlingautomationdiv">
+			<div className="flex-row">
+				<div className="flex-col">
+					<div><b>Pebblebed Reactor Fuel Handling</b></div>
+					<div>Interval: {intervalHandling} ms</div>
+					<div className="cooldown">
+						<div style={{width: cooldownHandling * 100 + "%"}}/>
 					</div>
 				</div>
-
-				<div className="flex-row">
-					<div className="flex-col">
-						<div><b>TRISO Fuel Reprocessing</b></div>
-						<div>Interval: {this.state.reprocessInterval} ms</div>
-						<div className="cooldown">
-							<div style={{width: this.state.reprocessCooldownPercentage * 100 + "%"}}/>
-						</div>
+				<div className="flex-col">
+					<div>
+						<button onClick={toggleHandling} className={activeHandling ? "active" : "inactive"}>{activeHandling ? "Deactivate" : "Activate"} Automation</button>
 					</div>
-					<div className="flex-col">
-						<div>
-							<button onClick={this.reprocessToggle.bind(this)} className={this.state.reprocessActive ? "active" : "inactive"}>{this.state.reprocessActive ? "Deactivate" : "Activate"} Automation</button>
-						</div>
-						<div style={{display: this.state.unlockedUpgrade ? "" : "none"}}>
-							<button onClick={this.decreaseReprocessInterval.bind(this)} className="fuelhandlingautomationbtn">Decrease Automation Interval for {notation(this.state.reprocessCost)}</button>
-						</div>
+					<div style={{display: unlockedUpgrade ? "" : "none"}}>
+						<button onClick={decreaseIntervalHandling} className="fuelhandlingautomationbtn">Decrease Automation Interval for {notation(costHandling)}</button>
 					</div>
 				</div>
 			</div>
-		);
-	}
+
+			<div className="flex-row">
+				<div className="flex-col">
+					<div><b>TRISO Fuel Reprocessing</b></div>
+					<div>Interval: {intervalReprocessing} ms</div>
+					<div className="cooldown">
+						<div style={{width: cooldownReprocessing * 100 + "%"}}/>
+					</div>
+				</div>
+				<div className="flex-col">
+					<div>
+						<button onClick={toggleReprocessing} className={activeReprocessing ? "active" : "inactive"}>{activeReprocessing ? "Deactivate" : "Activate"} Automation</button>
+					</div>
+					<div style={{display: unlockedUpgrade ? "" : "none"}}>
+						<button onClick={decreaseIntervalReprocessing} className="fuelhandlingautomationbtn">Decrease Automation Interval for {notation(costReprocessing)}</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }

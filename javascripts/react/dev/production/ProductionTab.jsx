@@ -12,11 +12,6 @@ class ProductionTabComponent extends ReactStateComponent {
 	render() {
 		return (
 			<div style={{display: this.state.active ? "" : "none"}}>
-				<div className="navigation subtab">
-					<ProductionNavigationSubtabButton tab={"mines"} text={"Mines"}/>
-					<ProductionNavigationSubtabButton tab={"reactors"} text={"Reactors"}/>
-				</div>
-
 				<div>
 					<MinesComponent/>
 				</div>

@@ -15,13 +15,10 @@ function preLoad() {
 	document.getElementById("meltdown_ups_subtab").style.display = "none";
 	document.getElementById("meltdown_decay_hastening_subtab").style.display = "none";
 	document.getElementById("how_to_play_tab").style.display = "none";
-	document.getElementById("navigation").style.display = "none";
 	document.getElementById("offline_popup").style.display = "none";
 
-	document.getElementById(player.navigation.naviTab + "btn").className = "navitabbtn";
-	document.getElementById(player.navigation.naviTab).style.display = "none";
-	document.getElementById("meltdown_" + player.navigation.meltdown + "btn").className = "subtabbtn";
-	document.getElementById("meltdown_" + player.navigation.meltdown).style.display = "none";
+	/*document.getElementById("meltdown_" + player.navigation.meltdown + "btn").className = "subtabbtn";
+	document.getElementById("meltdown_" + player.navigation.meltdown).style.display = "none";*/
 
 	/*drawTurbineRotors(true);
 	drawDynamoCoils(true);
@@ -83,3 +80,4 @@ function init_game() {
 }
 
 init_game();
+console.log(JSON.stringify(player.navigation))

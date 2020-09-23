@@ -1,15 +1,19 @@
-class NotationOptionsButton extends ReactStateComponent {
-	tick() {
-		this.setState({
-			notation: player.options.notation
-		});
+function NotationOptionsButton() {
+	const [notation, setNotation] = useState("Scientific");
+
+	React.useEffect(function() {
+		const timerID = setInterval(function() {
+			setNotation(player.options.notation);
+		}, 50);
+
+		return return function() {
+			clearInterval(timerID);
+		};
 	}
 
-	render() {
-		return (
-			<button onClick={notationChange}>
-				Notation: {this.state.notation}
-			</button>
-		);
-	}
+	return (
+		<button onClick={notationChange}>
+			Theme: {notation}
+		</button>
+	);
 }

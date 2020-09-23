@@ -3,7 +3,6 @@ const mineTypes = ["Iron", "Steel", "Titanium", "Iridium", "Tungstensteel", "Osm
 class MinesComponent extends ReactStateComponent {
 	tick() {
 		this.setState({
-			active: player.navigation.production === "mines",
 			requirementUnlocked: player.energy.gt(250) && !player.unlocked.mines,
 			unlocked: player.unlocked.mines,
 			unlockedSalvage: player.mines.tier > 0,
@@ -59,4 +58,37 @@ class MinesComponent extends ReactStateComponent {
 			</div>
 		);
 	}
+}
+
+function MinesComponent() {
+	const [active, setActive] = React.useState(false);
+	const [unlockedRequirement, setUnlockedRequirement] = React.useState(false);
+	const [unlocked, setUnlocked] = React.useState(false);
+	const [unlockedSalvage, setUnlockedSalvage] = React.useState(false);
+	const [bought, setBought] = React.useState(false);
+	const [maxTier, setMaxTier] = React.useState(false);
+
+	React.useEffect(function() {
+		const timerID = setInterval(function() {
+			setActive(player.navigation.production === "mines");
+			setResearch(player.prestige.researchPoints);
+			setResearch(player.prestige.respec);
+		}, 50);
+
+		return clearInterval(timerID);
+	}, []);
+
+	return (
+		<div className="flex-col horizontal-center" style={{display: active ? "" : "none"}}>
+			<p>You have {notation(research)} Research Points</p>
+			<button onClick={toggleRespecResearch} className={respec ? "" : ""}>Respec Researches on Prestige</button>
+			<GasCoolantComponent/>
+
+			{/*<div className="flex-row vertical-top">
+				<GasCoolantStatsComponent tier={0}/>
+				<GasCoolantStatsComponent tier={1}/>
+				<GasCoolantStatsComponent tier={2}/>
+			</div>*/}
+		</div>
+	);
 }

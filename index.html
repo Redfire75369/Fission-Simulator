@@ -26,7 +26,7 @@
 		<meta property="twitter:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul-dev/index.html">
 
 		<!-- Library Scripts -->
-		
+
 		<script defer src="javascripts/libs/katex.js" type="text/javascript"></script>
 		<!--<script defer src="javascripts/libs/auto-render.js" type="text/javascript" onload="renderMathInElement(document.body)"></script>-->
 		<script defer src="javascripts/libs/react.js" type="text/javascript"></script>
@@ -83,6 +83,7 @@
 		<script defer src="javascripts/hotkey.js" type="text/javascript"></script>
 
 		<script defer src="javascripts/react/dist/react-utils.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/navigation/NavigationIcons.js" type="text/javascript"></script>
 		<script defer src="javascripts/react/dist/navigation/Navigation.js" type="text/javascript"></script>
 		<script defer src="javascripts/react/dist/production/Mines.js" type="text/javascript"></script>
 		<script defer src="javascripts/react/dist/production/reactors/TRISOFuel.js" type="text/javascript"></script>
@@ -107,7 +108,7 @@
 		<script defer src="javascripts/init_game.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<img id="navi_open" class="navigationtoggle" onclick="toggleNavigation()" src="resources/images/navi.png"/>
+		<div id="navigation" class="navigation"></div>
 
 	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px; style: none;">
 			<div id="offline_progress" style="height:175px; display:flex; align-items:center"></div>
@@ -126,19 +127,6 @@
 		<!--<div class="newsbar">
 			<div id="news"></div>
 		</div>-->
-
-		<div id="navigation" class="navigation main">
-			<button onclick="showNaviTab('production_tab')" id="production_tabbtn">Production</button>
-			<button onclick="showNaviTab('statistics_tab')" id="statistics_tabbtn">Statistics</button>
-			<button onclick="showNaviTab('achievements_tab')" id="achievements_tabbtn">Achievements</button>
-			<button onclick="showNaviTab('options_tab')" id="options_tabbtn">Options</button>
-			<button onclick="showNaviTab('automation_tab')" id="automation_tabbtn">Automation</button>
-			<button onclick="showNaviTab('prestige_tab')" id="prestige_tabbtn">Prestige</button>
-			<button onclick="showNaviTab('nanites_tab')" id="nanites_tabbtn" class="navigation--nanite" style="display: none;">Nanites</button>
-			<button onclick="showNaviTab('meltdown_tab')" id="meltdown_tabbtn" style="color: #88ee44; display: none;">Meltdown</button>
-			<button onclick="showNaviTab('cheats_tab')" id="cheats_tabbtn" style="color: #ffa500;">Cheats</button>
-			<button onclick="showNaviTab('how_to_play_tab')" id="how_to_play_tabbtn">How to Play</button>
-		</div>
 
 		<div id="production_tab"></div>
 		<div id="statistics_tab"></div>
@@ -199,10 +187,10 @@
 		</div>
 
 		<div id="meltdown_tab">
-			<div class="navigation subtab">
+			<!--<div class="navigation subtab">
 				<button onclick="showMeltdownTab('ups_subtab')" id="meltdown_ups_subtabbtn">Upgrades</button>
 				<button onclick="showMeltdownTab('decay_hastening_subtab')" id="meltdown_decay_hastening_subtabbtn">Decay Hastening</button>
-			</div>
+			</div>-->
 
 			<div id="meltdown_ups_subtab">
 					<div class="flex-row">
@@ -299,10 +287,10 @@
 					</div>
 				</div>
 				<div id="meltdown_decay_hastening_subtab">
-					<div class="navigation subtab">
+					<!--<div class="navigation subtab">
 						<button onclick="showDecaySubTab('decay_subsubtab')" id="decay_decay_subsubtabbtn">Isotope Decay</button>
 						<button onclick="showDecaySubTab('boosts_subsubtab')" id="decay_boosts_subsubtabbtn">Isotope Boosts</button>
-					</div>
+					</div>-->
 
 					<div id="toggle_reactors_popup" class="popup align horizontal-center vertical-center" style="width: 720px; height: 400px; display: none;">
 						<div class="flex-col">

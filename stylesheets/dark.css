@@ -40,6 +40,25 @@ button:hover {
 	color: #D0D0D0;
 }
 
+.navigation > div > a > svg {
+	fill: #D0D0D0;
+}
+
+.navigation > div > .dropdown {
+	background-color: #242526;
+	border: 2px solid #474A4D;
+	border-radius: 8px;
+}
+
+.navigation > div > .dropdown > div > a {
+	border: 1px solid #4A5967;
+	color: #E0E0E0;
+	text-decoration: none;
+}
+.navigation > div > .dropdown > div > a > span > svg {
+	fill: #D0D0D0;
+}
+
 .energy {
 	color: #D0D0D0;
 }
@@ -143,16 +162,16 @@ button:hover {
     background-color: #FFFFFF;
 }
 
-..fuelhandlingautomationdiv > div > div > div > button {
+.fuelhandlingautomationdiv > div > div > div > button {
     border: 2px solid #000000;
     border-bottom-color: #111111;
     color: #dddddd;
     background-color: #34B191;
 }
-..fuelhandlingautomationdiv > div > div > div > button.active {
+.fuelhandlingautomationdiv > div > div > div > button.active {
     background-color: #005522;
 }
-..fuelhandlingautomationdiv > div > div > div > button.inactive {
+.fuelhandlingautomationdiv > div > div > div > button.inactive {
     background-color: #332f40;
 }
 

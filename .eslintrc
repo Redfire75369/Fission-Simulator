@@ -8,12 +8,13 @@
 	"parserOptions": {
 		"ecmaVersion": 11,
 		"ecmaFeatures": {
-						"jsx": true
-				},
+				"jsx": true
+			},
 		"sourceType": "module"
 	},
 	"plugins": [
-		"react"
+		"react",
+        "react-hooks"
 	],
 	"settings": {
 		"react": {

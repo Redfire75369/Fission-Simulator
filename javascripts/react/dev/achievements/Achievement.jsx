@@ -17,22 +17,26 @@ const achievementTexts = {
 	28: ""
 };
 
-class AchievementComponent extends ReactStateComponent {
-	tick() {
-		this.setState({
-			completed: player.achievements[this.props.id]
-		});
-	}
+function AchievementComponent(props) {
+	const [completed, setCompleted] = React.useState("false");
 
-	render() {
-		return (
+	React.useEffect(function() {
+		const timerID = setInterval(function() {
+			setCompleted(player.achievements[props.id]);
+		}, 50);
+
+		return function() {
+			clearInterval(timerID);
+		};
+	}, []);
+
+	return (
 			<div className={"flex-col align horizontal-center tooltip " + (this.state.completed ? "achcomplete" : "achlocked")}>
-				<img src={"resources/images/achievements/" + this.props.id + ".png"}/>
+				<img src={"resources/images/achievements/" + props.id + ".png"}/>
 				<span className="tooltiptext" >
-					{achievementTexts[this.props.id].split("\n")[0]}<br/>
-					{achievementTexts[this.props.id].split("\n")[1]}
+					{achievementTexts[props.id].split("\n")[0]}<br/>
+					{achievementTexts[props.id].split("\n")[1]}
 				</span>
 			</div>
 		);
-	}
 }

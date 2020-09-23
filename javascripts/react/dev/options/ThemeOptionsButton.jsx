@@ -1,15 +1,19 @@
-class ThemeOptionsButton extends ReactStateComponent {
-	tick() {
-		this.setState({
-			theme: player.options.theme
-		});
+function ThemeOptionsButton() {
+	const [theme, setTheme] = useState("Light");
+
+	React.useEffect(function() {
+		const timerID = setInterval(function() {
+			setTheme(player.options.theme);
+		}, 50);
+
+		return function() {
+			clearInterval(timerID);
+		};
 	}
 
-	render() {
-		return (
-			<button onClick={themeChange}>
-				Theme: {this.state.theme}
-			</button>
-		);
-	}
+	return (
+		<button onClick={themeChange}>
+			Theme: {theme}
+		</button>
+	);
 }

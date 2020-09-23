@@ -1,7 +1,8 @@
 var leverMaxAll = false;
+var cheatsEnabled;
 
 function enableCheatsTab() {
-	document.getElementById("cheats_tabbtn").style.display = "inline-block";
+	cheatsEnabled = true;
 	/*clearInterval(saveGameLoop);
 	setInterval(function() {
 		localStorage.removeItem("fissionSimSave1");
@@ -79,7 +80,6 @@ function testBalancing() {
 	}
 }
 
-document.getElementById("cheats_tabbtn").style.display = "none";
 document.getElementById("cheats_tab").style.display = "none";
 document.getElementById("balance_tabbtn").style.display = "none";
 document.getElementById("balance_tab").style.display = "none";

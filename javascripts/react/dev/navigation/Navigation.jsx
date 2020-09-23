@@ -1,30 +1,25 @@
-class NavigationChevronIcon extends React.Component {
-	render() {
-		return (
-			<svg viewBox="0 0 256 512">
-				<path d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z" class=""></path>
-			</svg>
-		);
-	}
-}
-class NavigationGearIcon extends React.Component {
-	render() {
-		return (
-			<svg viewBox="0 0 512 512">
-				<path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z" class=""></path>
-			</svg>
-		);
-	}
-}
-
 function NavigationDropdownComponent() {
-	const [activeMenu, setActiveMenu] = React.useState(player.navigation.naviTab);
+	const [activeMenu, setActiveMenu] = React.useState("main");
 	const [menuHeight, setMenuHeight] = React.useState(null);
 	const dropdownRef = React.useRef(null);
 
-	React.useEffect(() => {
-		setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
-	}, [])
+	const [unlockedMines, setUnlockedMines] = React.useState(false);
+	const [unlockedPrestige, setUnlockedPrestige] = React.useState(false);
+	const [unlockedCheats, setUnlockedCheats] = React.useState(false);
+
+	React.useEffect(function() {
+		setMenuHeight(dropdownRef.current?.firstChild?.offsetHeight);
+
+		const timerID = setInterval(function() {
+			setUnlockedMines(player.energy.gte(250) || player.unlocked.mines);
+			setUnlockedPrestige(player.unlocked.prestige);
+			setUnlockedCheats(cheatsEnabled);
+		}, 50);
+
+		return function() {
+			clearInterval(timerID);
+		};
+	}, []);
 
 	function calculateHeight(el) {
 		const height = el.offsetHeight;
@@ -32,8 +27,21 @@ function NavigationDropdownComponent() {
 	}
 
 	function DropdownItem(props) {
+		function onClick() {
+			setActiveMenu(props.goToMenu || "main");
+			switch (props.type) {
+				case "main":
+					showNaviTab(props.tab + "_tab");
+					break;
+				case "production":
+					player.navigation.production = props.tab;
+					break;
+				default:
+			}
+		}
+
 		return (
-			<a href="#" className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+			<a href="#" onClick={onClick} style={props.style}>
 				<span className="icon-button">{props.leftIcon}</span>
 				{props.children}
 				<span className="icon-right">{props.rightIcon}</span>
@@ -43,39 +51,46 @@ function NavigationDropdownComponent() {
 
 	return (
 		<div className="dropdown" style={{height: menuHeight}} ref={dropdownRef}>
-			<CSSTransition in={activeMenu === "production_tab"} timeout={500} classNames="menu-primary" onEnter={calculateHeight}>
-				<div className="menu">
-					<DropdownItem>Production</DropdownItem>
-					<DropdownItem leftIcon={<NavigationGearIcon/>} rightIcon={<NavigationChevronIcon/>} goToMenu="reactors">Mines</DropdownItem>
-					<DropdownItem leftIcon={<NavigationGearIcon/>} rightIcon={<NavigationChevronIcon/>} goToMenu="mines">Reactors</DropdownItem>
+			<ReactTransitionGroup.CSSTransition in={activeMenu === "main"} timeout={500} classNames="menu-primary" onEnter={calculateHeight} unmountOnExit>
+				<div>
+					<DropdownItem rightIcon={<NavigationIcon type="chevron"/>} type="main" tab="production" goToMenu="production">Production</DropdownItem>
+					<DropdownItem type="main" tab="statistics">Statistics</DropdownItem>
+					<DropdownItem type="main" tab="achievements">Achievements</DropdownItem>
+					<DropdownItem leftIcon={<NavigationIcon type="gear"/>} type="main" tab="options">Options</DropdownItem>
+					<DropdownItem type="main" tab="prestige" style={{display: unlockedPrestige ? "" : "none"}}>Prestige</DropdownItem>
+					<DropdownItem type="main" tab="cheats" style={{display: unlockedCheats ? "" : "none"}}>Cheats</DropdownItem>
 				</div>
-			</CSSTransition>
+			</ReactTransitionGroup.CSSTransition>
+
+			<ReactTransitionGroup.CSSTransition in={activeMenu === "production"} timeout={500} classNames="menu-secondary" onEnter={calculateHeight} unmountOnExit>
+				<div>
+					<DropdownItem goToMenu="main" leftIcon={<NavigationIcon type="caret"/>}>Production</DropdownItem>
+					<DropdownItem type="production" tab="mines" style={{display: unlockedMines ? "" : "none"}}>Mines</DropdownItem>
+					<DropdownItem type="production" tab="reactors">Reactors</DropdownItem>
+				</div>
+			</ReactTransitionGroup.CSSTransition>
 		</div>
 	);
 }
 
-function NavigationComponent(props) {
-	const [open, setOpen] = useState(false);
+function NavigationItemComponent(props) {
+	const [open, setOpen] = React.useState(false);
 
 	return (
-		<li className="nav-item">
-			<a href="#" className="icon-button" onClick={() => setOpen(!open)}>
+		<div>
+			<a href="#" onClick={function() {setOpen(!open)}}>
 				{props.icon}
 			</a>
 
-			{open && props.children}
-		</li>
+			{open ? props.children : ""}
+		</div>
 	);
 }
 
-class NavigationComponent extends ReactStateComponent {
-	render() {
-		return (
-			<div>
-				<NavigationComponent icon={<NavigationIcon/>}>
-					<DropdownMenu/>
-				</NavigationComponent>
-			</div>
-		);
-	}
+function NavigationComponent() {
+	return (
+		<NavigationItemComponent icon={<NavigationIcon type="plus"/>}>
+			<NavigationDropdownComponent/>
+		</NavigationItemComponent>
+	);
 }

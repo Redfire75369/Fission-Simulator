@@ -130,36 +130,101 @@ button:hover {
 	white-space: nowrap;
 }
 
-.navigationtoggle {
-	left: 24px;
-	position: absolute;
-	top: 24px;
-}
-
 .navigation {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-.navigation > button {
-	border: 2px solid #FFFFFF;
-	border-radius: 4px;
-	font-size: 20px;
-	height: 40px;
-	margin: 2px;
-	opacity: 1;
-	width: 180px;
-}
-.navigation.main {
-	background-color: #000000;
-	height: 100vh;
-	left: 0;
-	opacity: 0.8;
-	padding: 10px;
+	height: 48px;
+	left: 1rem;
+	max-width: 48px;
+	min-width: 48px;
 	position: absolute;
-	top: 0;
-	width: 200px;
+	top: 1rem;
+}
+.navigation > div {
+	height: 48px;
+	max-width: 48px;
+	min-width: 48px;
+}
+.navigation > div > a {
+	max-width: 40px;
+	min-width: 40px;
+	transition: filter 300ms;
+}
+.navigation > div > a:hover {
+	filter: brightness(1.2);
+}
+.navigation > div > a > svg {
+	height: 40px;
+	margin: 4px;
+	width: 40px;
+}
+
+.navigation > div > .dropdown {
+	left: -1rem;
+	overflow: hidden;
+	position: absolute;
+	top: calc(48px + 1rem);
+	transition: height 500ms ease;
+	width: 180px;
 	z-index: 4;
+}
+.navigation > div > .dropdown > div {
+	width: 100%;
+}
+.navigation > div > .dropdown > div > a {
+	height: 52px;
+	display: flex;
+	align-items: center;
+	transition: background 500ms;
+}
+.navigation > div > .dropdown > div > a > span {
+	height: 40px;
+	margin-bottom: 4px;
+	margin-right: 4px;
+	margin-top: 4px;
+	width: 40px;
+}
+.navigation > div > .dropdown > div > a > span.icon-left {
+	margin-left: 4px;
+}
+.navigation > div > .dropdown > div > a > span.icon-right {
+	margin-left: auto;
+}
+.navigation > div > .dropdown > div > a > span > svg {
+	height: 40px;
+	width: 40px;
+}
+
+/* CSSTransition classes	*/
+.menu-primary-enter {
+	position: absolute;
+	transform: translateX(-110%);
+}
+.menu-primary-enter-active {
+	transform: translateX(0%);
+	transition: all 500ms ease;
+}
+.menu-primary-exit {
+	position: absolute;
+}
+.menu-primary-exit-active {
+	transform: translateX(-110%);
+	transition: all 500ms ease;
+}
+
+
+.menu-secondary-enter {
+	transform: translateX(110%);
+}
+.menu-secondary-enter-active {
+	transform: translateX(0%);
+	transition: all 500ms ease;
+}
+.menu-secondary-exit {
+
+}
+.menu-secondary-exit-active {
+	transform: translateX(110%);
+	transition: all 500ms ease;
 }
 
 .subtab > button {
@@ -403,8 +468,8 @@ button:hover {
 }
 
 .fuelhandlingautomationdiv > div > div > div > button {
-    max-width: 80%;
-    min-width: 80%;
+		max-width: 80%;
+		min-width: 80%;
 }
 
 .turbinebox {

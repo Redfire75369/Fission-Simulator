@@ -6,12 +6,8 @@ function toggleNavigation() {
 function showNaviTab(tab) {
 	document.getElementById(player.navigation.naviTab).style.display = "none";
 	document.getElementById(tab).style.display = "";
-	document.getElementById(`${player.navigation.naviTab}btn`).classList.remove("navigation--active");
-	document.getElementById(`${tab}btn`).classList.add("navigation--active");
 	player.navigation.naviTab = tab;
 	showSubTab();
-	document.getElementById("navigation").style.display = "none";
-	document.getElementById("navi_open").style.display = "block";
 }
 
 function showSubTab() {
