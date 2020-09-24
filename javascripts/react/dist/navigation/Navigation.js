@@ -35,6 +35,7 @@ function NavigationDropdownComponent() {
 
         case "production":
           player.navigation.production = props.tab;
+          alert(document.getElementById("production_tab").innerHTML);
           break;
 
         default:
