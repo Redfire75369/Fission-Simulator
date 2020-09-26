@@ -8,6 +8,6 @@ try {
 	ReactDOM.render( /*#__PURE__*/React.createElement(PrestigeTabComponent, null), document.getElementById("prestige_tab"));
 } catch(e) {
 	console.error(e);
-	alert("The game has encountered a fatal error while rendering.")
+	alert("The game has encountered a fatal error while rendering.");
 	alert("--DEBUG Information--\n" + e.stack);
 }

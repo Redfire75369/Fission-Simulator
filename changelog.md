@@ -13,16 +13,16 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
-## [v0.6.11] - 25/9/20
+## [v0.6.11] - 26/9/20
 ### Added
-- ">" Keybind to open navigation
+- ">" and "<" Keybind to open and close navigation respectively
 - A few achievements
 
 ### Modified
 - Redesigned Navigation
 - Fixed bug where negative fuel could be stored
 - Fixed bug where flow rate affected capacity before prestige
-- Started conversion of class components to functional components using React hooks
+- Converted all React class components to functional components using React hooks
 
 ### Removed
 - Subtab Navigation Buttons in Production Tab

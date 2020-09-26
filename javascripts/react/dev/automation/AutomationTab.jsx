@@ -12,7 +12,7 @@ function AutomationTabComponent() {
 	}, []);
 
 	return (
-		<div className="flex-row" style={{display: this.state.active ? "" : "none"}}>
+		<div className="flex-row" style={{display: active ? "" : "none"}}>
 			<PebblebedFuelHandlingAutomationComponent tier={0}/>
 			<PebblebedFuelHandlingAutomationComponent tier={1}/>
 			<PebblebedFuelHandlingAutomationComponent tier={2}/>

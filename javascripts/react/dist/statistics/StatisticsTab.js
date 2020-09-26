@@ -1,26 +1,31 @@
-class StatisticsTabComponent extends ReactStateComponent {
-  tick() {
-    this.setState({
-      active: player.navigation.naviTab === "statistics_tab",
-      totalTime: player.time,
-      totalEnergy: player.totalEnergy,
-      totalNanites: player.nanites.total,
-      unlockedMeltdown: player.unlocked.meltdown,
-      bestMeltdownTime: player.meltdown.bestTime
-    });
-  }
-
-  render() {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "flex-col statistics",
-      style: {
-        display: this.state.active ? "" : "none"
-      }
-    }, /*#__PURE__*/React.createElement("div", null, "Total time played: ", formatTime(this.state.totalTime)), /*#__PURE__*/React.createElement("div", null, "Total energy generated: ", notation(this.state.totalEnergy)), /*#__PURE__*/React.createElement("div", null, "Total nanites researched: ", notation(this.state.totalNanites)), /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: this.state.unlockedMeltdown ? "" : "none"
-      }
-    }, "Fastest Meltdown Time: ", formatTime(this.state.bestMeltdownTime)));
-  }
-
+function StatisticsTabComponent() {
+	const [active, setActive] = React.useState(false);
+	const [totalTime, setTotalTime] = React.useState(0);
+	const [totalEnergy, setTotalEnergy] = React.useState(zero);
+	const [totalNanites, setTotalNanites] = React.useState(0);
+	const [unlockedMeltdown, setUnlockedMeltdown] = React.useState(false);
+	const [bestMeltdownTime, setBestMeltdownTime] = React.useState(0);
+	React.useEffect(function () {
+		const timerID = setInterval(function () {
+			setActive(player.navigation.naviTab === "statistics_tab");
+			setTotalTime(player.time);
+			setTotalEnergy(player.totalEnergy);
+			setTotalNanites(player.nanites.total);
+			setUnlockedMeltdown(player.unlocked.meltdown);
+			setBestMeltdownTime(player.meltdown.bestTime);
+		}, 50);
+		return function () {
+			clearInterval(timerID);
+		};
+	}, []);
+	return /*#__PURE__*/React.createElement("div", {
+		className: "flex-col statistics",
+		style: {
+			display: active ? "" : "none"
+		}
+	}, /*#__PURE__*/React.createElement("div", null, "Total time played: ", formatTime(totalTime)), /*#__PURE__*/React.createElement("div", null, "Total energy generated: ", notation(totalEnergy)), /*#__PURE__*/React.createElement("div", null, "Total nanites researched: ", notation(totalNanites)), /*#__PURE__*/React.createElement("div", {
+		style: {
+			display: unlockedMeltdown ? "" : "none"
+		}
+	}, "Fastest Meltdown Time: ", formatTime(bestMeltdownTime)));
 }

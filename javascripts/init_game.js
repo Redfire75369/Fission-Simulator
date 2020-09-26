@@ -80,4 +80,3 @@ function init_game() {
 }
 
 init_game();
-console.log(JSON.stringify(player.navigation));

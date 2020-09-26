@@ -38,7 +38,7 @@
 	"scripts": {
 		"setup": "npm ci",
 		"compile": "npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist",
-		"eslint": "eslint \"javascripts/**/*\" --ext .js,.jsx || true",
+		"eslint": "eslint \"javascripts/**/*\" || true",
 		"csslint": "csslint . --exclude-list=stylesheets/katex.css || true",
 		"lint": "npm run eslint && npm run csslint",
 		"build": "npm run lint && npm run compile  ",

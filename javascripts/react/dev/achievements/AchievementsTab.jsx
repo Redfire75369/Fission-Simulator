@@ -12,7 +12,7 @@ function AchievementsTabComponent() {
 	}, []);
 
 	return (
-		<div className="flex-col" style={{display: this.state.active ? "" : "none"}}>
+		<div className="flex-col" style={{display: active ? "" : "none"}}>
 			<div className="flex-row">
 				<AchievementComponent id={11}/>
 				<AchievementComponent id={12}/>

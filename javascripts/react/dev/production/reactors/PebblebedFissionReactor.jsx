@@ -9,7 +9,7 @@ function PebblebedFissionReactorComponent(props) {
 	const [bought, setBought] = React.useState(0);
 	const [canLoadFuel, setCanLoadFuel] = React.useState(false);
 	const [canEjectWaste, setCanEjectWaste] = React.useState(false);
-	const [fuel, setFuel] = React.useState(pebblebedReactorTypes[props.tier]);
+	const [fuel, setFuel] = React.useState(zero);
 	const [fuelPercentage, setFuelPercentage] = React.useState(0);
 	const [spent, setSpent] = React.useState(zero);
 	const [spentPercentage, setSpentPercentage] = React.useState(zero);

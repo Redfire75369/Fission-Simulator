@@ -1,21 +1,25 @@
-class ProductionTabComponent extends ReactStateComponent {
-	tick() {
-		this.setState({
-			active: player.navigation.naviTab === "production_tab"
-		});
-	}
+function ProductionTabComponent() {
+	const [active, setActive] = React.useState(false);
 
-	render() {
-		return (
-			<div style={{display: this.state.active ? "" : "none"}}>
-				<div>
-					<MinesComponent/>
-				</div>
+	React.useEffect(function() {
+		const timerID = setInterval(function() {
+			setActive(player.navigation.naviTab === "production_tab");
+		}, 50);
 
-				<div>
-					<FissionReactorsSubTabComponent/>
-				</div>
+		return function() {
+			clearInterval(timerID);
+		};
+	}, []);
+
+	return (
+		<div style={{display: active ? "" : "none"}}>
+			<div>
+				<MinesComponent/>
 			</div>
-		);
-	}
+
+			<div>
+				<FissionReactorsSubTabComponent/>
+			</div>
+		</div>
+	);
 }

@@ -3,11 +3,11 @@ function PebblebedFuelHandlingAutomationComponent(props) {
 	const [activeHandling, setActiveHandling] = React.useState(false);
 	const [intervalHandling, setIntervalHandling] = React.useState(null);
 	const [cooldownHandling, setCooldownHandling] = React.useState(0);
-	const [costHandling, setCostHandling] = React.useState(null);
+	const [costHandling, setCostHandling] = React.useState(zero);
 	const [activeReprocessing, setActiveReprocessing] = React.useState(null);
 	const [intervalReprocessing, setIntervalReprocessing] = React.useState(null);
 	const [cooldownReprocessing, setCooldownReprocessing] = React.useState(0);
-	const [costReprocessing, setCostReprocessing] = React.useState(null); 
+	const [costReprocessing, setCostReprocessing] = React.useState(zero); 
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {

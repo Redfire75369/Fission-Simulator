@@ -1,110 +1,116 @@
 const pebblebedReactorTypes = ["TBU", "LEU-235", "LEP-239"];
 
-class PebblebedFissionReactorComponent extends ReactStateComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      type: pebblebedReactorTypes[this.props.tier]
-    };
-  }
+function PebblebedFissionReactorComponent(props) {
+	const [type, setType] = React.useState(pebblebedReactorTypes[props.tier]);
+	const [unlocked, setUnlocked] = React.useState(false);
+	const [unlockedMines, setUnlockedMines] = React.useState(false);
+	const [amount, setAmount] = React.useState(zero);
+	const [bought, setBought] = React.useState(0);
+	const [canLoadFuel, setCanLoadFuel] = React.useState(false);
+	const [canEjectWaste, setCanEjectWaste] = React.useState(false);
+	const [fuel, setFuel] = React.useState(zero);
+	const [fuelPercentage, setFuelPercentage] = React.useState(0);
+	const [spent, setSpent] = React.useState(zero);
+	const [spentPercentage, setSpentPercentage] = React.useState(zero);
+	const [buyable, setBuyable] = React.useState(false);
+	const [cost, setCost] = React.useState(zero);
+	const [burnRate, setBurnRate] = React.useState(zero);
+	const [totalCapacity, setTotalCapacity] = React.useState(zero);
+	const [gain, setGain] = React.useState(zero);
+	React.useEffect(function () {
+		const timerID = setInterval(function () {
+			setUnlocked(props.tier === 0 || player.reactors.pebblebeds[props.tier - 1].bought > 0);
+			setUnlockedMines(player.mines.tier > -1);
+			setAmount(player.reactors.pebblebeds[props.tier].amount);
+			setBought(player.reactors.pebblebeds[props.tier].bought);
+			setCanLoadFuel(player.fuels.triso[props.tier].enriched.gte(1) && player.reactors.pebblebeds[props.tier].fuel.add(player.reactors.pebblebeds[props.tier].spent).add(1).lt(player.reactors.pebblebeds[props.tier].totalCapacity));
+			setCanEjectWaste(player.reactors.pebblebeds[props.tier].spent.gte(1));
+			setFuel(player.reactors.pebblebeds[props.tier].fuel);
+			setFuelPercentage(player.reactors.pebblebeds[props.tier].fuel.div(player.reactors.pebblebeds[props.tier].totalCapacity).toNumber() * 100);
+			setSpent(player.reactors.pebblebeds[props.tier].spent);
+			setSpentPercentage(player.reactors.pebblebeds[props.tier].fuel.add(player.reactors.pebblebeds[props.tier].spent).div(player.reactors.pebblebeds[props.tier].totalCapacity).toNumber());
+			setBuyable(player.reactors.pebblebeds[props.tier].buyable);
+			setCost(player.reactors.pebblebeds[props.tier].cost);
+			setBurnRate(player.reactors.pebblebeds[props.tier].burnRate);
+			setTotalCapacity(player.reactors.pebblebeds[props.tier].totalCapacity);
+			setGain(getReactorGain(props.tier));
+		}, 50);
+	}, []);
 
-  loadFuel() {
-    player.reactors.pebblebeds[this.props.tier].loadFuel();
-  }
+	function loadFuel() {
+		player.reactors.pebblebeds[props.tier].loadFuel();
+	}
 
-  ejectWaste() {
-    player.reactors.pebblebeds[this.props.tier].ejectWaste();
-  }
+	function ejectWaste() {
+		player.reactors.pebblebeds[props.tier].ejectWaste();
+	}
 
-  buy() {
-    player.reactors.pebblebeds[this.props.tier].buy();
-  }
+	function buy() {
+		player.reactors.pebblebeds[props.tier].buy();
+	}
 
-  buyMax() {
-    player.reactors.pebblebeds[this.props.tier].buyMax();
-  }
+	function buyMax() {
+		player.reactors.pebblebeds[props.tier].buyMax();
+	}
 
-  tick() {
-    this.setState({
-      unlocked: this.props.tier === 0 || player.reactors.pebblebeds[this.props.tier - 1].bought > 0,
-      unlockedMines: player.mines.tier > -1,
-      amount: player.reactors.pebblebeds[this.props.tier].amount,
-      bought: player.reactors.pebblebeds[this.props.tier].bought,
-      canLoadFuel: player.fuels.triso[this.props.tier].enriched.gte(1) && player.reactors.pebblebeds[this.props.tier].fuel.add(player.reactors.pebblebeds[this.props.tier].spent).add(1).lt(player.reactors.pebblebeds[this.props.tier].totalCapacity),
-      canEjectWaste: player.reactors.pebblebeds[this.props.tier].spent.gte(1),
-      fuel: player.reactors.pebblebeds[this.props.tier].fuel,
-      fuelPercentage: player.reactors.pebblebeds[this.props.tier].fuel.div(player.reactors.pebblebeds[this.props.tier].totalCapacity).toNumber() * 100,
-      spent: player.reactors.pebblebeds[this.props.tier].spent,
-      spentPercentage: player.reactors.pebblebeds[this.props.tier].fuel.add(player.reactors.pebblebeds[this.props.tier].spent).div(player.reactors.pebblebeds[this.props.tier].totalCapacity).toNumber(),
-      buyable: player.reactors.pebblebeds[this.props.tier].buyable,
-      cost: player.reactors.pebblebeds[this.props.tier].cost,
-      burnRate: player.reactors.pebblebeds[this.props.tier].burnRate,
-      totalCapacity: player.reactors.pebblebeds[this.props.tier].totalCapacity,
-      gain: getReactorGain(this.props.tier)
-    });
-  }
-
-  render() {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "pebblebeddiv",
-      style: {
-        display: this.state.unlocked ? "" : "none"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex-row title"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "type"
-    }, /*#__PURE__*/React.createElement("b", null, this.state.type, " Pebblebed Reactor")), /*#__PURE__*/React.createElement("div", {
-      className: "tooltip info"
-    }, "i", /*#__PURE__*/React.createElement("div", {
-      className: "tooltiptext",
-      style: {
-        fontSize: "90%",
-        maxWidth: "15vw",
-        minWidth: "15vw",
-        padding: "1vw"
-      }
-    }, this.state.type, " Pebblebed Reactors convert Enriched fuel into Spent Fuel, producing energy.", /*#__PURE__*/React.createElement("br", null), "Your mines are producing ", notation(this.state.gain), " ", this.state.type, " reactors every second.", /*#__PURE__*/React.createElement("br", null)))), /*#__PURE__*/React.createElement("div", {
-      className: "flex-row body"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex-col vertical-top info"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Reactor Information")), /*#__PURE__*/React.createElement("div", null, "Amount: ", notation(this.state.amount), " (", this.state.bought, " Bought)"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Information")), /*#__PURE__*/React.createElement("div", null, "Capacity: ", notation(this.state.totalCapacity)), /*#__PURE__*/React.createElement("div", null, "Fuel Usage: ", notation(this.state.burnRate), "/s"), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(this.state.fuel)), /*#__PURE__*/React.createElement("div", null, "Spent: ", notation(this.state.spent))), /*#__PURE__*/React.createElement("div", {
-      className: "flex-col vertical-top fuelhandling",
-      style: {
-        display: this.state.unlockedMines ? "" : "none"
-      }
-    }, /*#__PURE__*/React.createElement("div", null, "Fuel Handling:"), /*#__PURE__*/React.createElement("button", {
-      onClick: this.loadFuel.bind(this),
-      className: this.state.canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"
-    }, "Load Enriched ", this.state.type, " Pellets"), /*#__PURE__*/React.createElement("button", {
-      onClick: this.ejectWaste.bind(this),
-      className: this.state.canEjectWaste ? "pebblebedbtn buy" : "pebblebedbtn locked"
-    }, "Eject Spent ", this.state.type, " Pellets"))), /*#__PURE__*/React.createElement("div", {
-      className: "flex-row fuelbar"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex-col"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      style: {
-        maxWidth: this.state.spentPercentage * 100 + "%"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        maxWidth: this.state.fuelPercentage / this.state.spentPercentage + "%"
-      }
-    })))))), /*#__PURE__*/React.createElement("div", {
-      className: "flex-row buying"
-    }, /*#__PURE__*/React.createElement("button", {
-      onClick: this.buy.bind(this),
-      className: this.state.buyable ? "pebblebedbtn buy buysingle" : "pebblebedbtn locked buysingle"
-    }, "Buy for ", notation(this.state.cost), " Energy"), /*#__PURE__*/React.createElement("div", {
-      style: {
-        minWidth: "5%",
-        maxWidth: "5%"
-      }
-    }), /*#__PURE__*/React.createElement("button", {
-      onClick: this.buyMax.bind(this),
-      className: this.state.buyable ? "pebblebedbtn buy buymax" : "pebblebedbtn locked buymax"
-    }, "Buy Max")));
-  }
-
+	return /*#__PURE__*/React.createElement("div", {
+		className: "pebblebeddiv",
+		style: {
+			display: unlocked ? "" : "none"
+		}
+	}, /*#__PURE__*/React.createElement("div", {
+		className: "flex-row title"
+	}, /*#__PURE__*/React.createElement("div", {
+		className: "type"
+	}, /*#__PURE__*/React.createElement("b", null, type, " Pebblebed Reactor")), /*#__PURE__*/React.createElement("div", {
+		className: "tooltip info"
+	}, "i", /*#__PURE__*/React.createElement("div", {
+		className: "tooltiptext",
+		style: {
+			fontSize: "90%",
+			maxWidth: "15vw",
+			minWidth: "15vw",
+			padding: "1vw"
+		}
+	}, type, " Pebblebed Reactors convert Enriched fuel into Spent Fuel, producing energy.", /*#__PURE__*/React.createElement("br", null), "Your mines are producing ", notation(gain), " ", type, " reactors every second.", /*#__PURE__*/React.createElement("br", null)))), /*#__PURE__*/React.createElement("div", {
+		className: "flex-row body"
+	}, /*#__PURE__*/React.createElement("div", {
+		className: "flex-col vertical-top info"
+	}, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Reactor Information")), /*#__PURE__*/React.createElement("div", null, "Amount: ", notation(amount), " (", bought, " Bought)"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Information")), /*#__PURE__*/React.createElement("div", null, "Capacity: ", notation(totalCapacity)), /*#__PURE__*/React.createElement("div", null, "Fuel Usage: ", notation(burnRate), "/s"), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(fuel)), /*#__PURE__*/React.createElement("div", null, "Spent: ", notation(spent))), /*#__PURE__*/React.createElement("div", {
+		className: "flex-col vertical-top fuelhandling",
+		style: {
+			display: unlockedMines ? "" : "none"
+		}
+	}, /*#__PURE__*/React.createElement("div", null, "Fuel Handling:"), /*#__PURE__*/React.createElement("button", {
+		onClick: loadFuel,
+		className: canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"
+	}, "Load Enriched ", type, " Pellets"), /*#__PURE__*/React.createElement("button", {
+		onClick: ejectWaste,
+		className: canEjectWaste ? "pebblebedbtn buy" : "pebblebedbtn locked"
+	}, "Eject Spent ", type, " Pellets"))), /*#__PURE__*/React.createElement("div", {
+		className: "flex-row fuelbar"
+	}, /*#__PURE__*/React.createElement("div", {
+		className: "flex-col"
+	}, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+		style: {
+			maxWidth: spentPercentage * 100 + "%"
+		}
+	}, /*#__PURE__*/React.createElement("div", {
+		style: {
+			maxWidth: fuelPercentage / spentPercentage + "%"
+		}
+	})))))), /*#__PURE__*/React.createElement("div", {
+		className: "flex-row buying"
+	}, /*#__PURE__*/React.createElement("button", {
+		onClick: buy,
+		className: buyable ? "pebblebedbtn buy buysingle" : "pebblebedbtn locked buysingle"
+	}, "Buy for ", notation(cost), " Energy"), /*#__PURE__*/React.createElement("div", {
+		style: {
+			minWidth: "5%",
+			maxWidth: "5%"
+		}
+	}), /*#__PURE__*/React.createElement("button", {
+		onClick: buyMax,
+		className: buyable ? "pebblebedbtn buy buymax" : "pebblebedbtn locked buymax"
+	}, "Buy Max")));
 }

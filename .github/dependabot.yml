@@ -1,13 +1,13 @@
 version: 2
 updates:
 - package-ecosystem: npm
-    directory: "/"
-    schedule:
-        interval: daily
-    open-pull-requests-limit: 10
-    target-branch: overhaul-dev
-    reviewers:
-        - Redfire75369
-    labels:
-        - dependabot
-    versioning-strategy: increase
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  target-branch: overhaul-dev
+  reviewers:
+    - Redfire75369
+  labels:
+      - Type: Dependabot
+  versioning-strategy: increase

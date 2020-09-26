@@ -1,10 +1,23 @@
 * text eol=lf
 
 *.js text
+*.jsx text
 *.json text
-*.md text
 *.html text
 *.css text
+*.md text
+*.yml text
+
+*.babelrc text
+*.csslintrc text
+*.eslintrc text
+*.eslintignore text
+*.gitattributes text
+*.gitignore text
+*.tern-project text
+
+*.bat text
+*.sh text
 
 *.sln text eol=crlf
 

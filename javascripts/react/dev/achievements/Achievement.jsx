@@ -31,7 +31,7 @@ function AchievementComponent(props) {
 	}, []);
 
 	return (
-		<div className={"flex-col align horizontal-center tooltip " + (this.state.completed ? "achcomplete" : "achlocked")}>
+		<div className={"flex-col align horizontal-center tooltip " + (completed ? "achcomplete" : "achlocked")}>
 			<img src={"resources/images/achievements/" + props.id + ".png"}/>
 			<span className="tooltiptext" >
 				{achievementTexts[props.id].split("\n")[0]}<br/>
