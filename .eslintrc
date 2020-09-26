@@ -1,12 +1,7 @@
 {
-	"env": {
-		"browser": true,
-		"es2020": true,
-		"node": true
-	},
 	"parser": "espree",
 	"parserOptions": {
-		"ecmaVersion": 12,
+		"ecmaVersion": 11,
 		"sourceType": "script",
 		"ecmaFeatures": {
 			"globalReturn": false,
@@ -14,9 +9,16 @@
 			"jsx": true
 		}
 	},
+
+	"env": {
+		"browser": true,
+		"es2020": true,
+		"node": true
+	},
+
 	"plugins": [
 		"react",
-        //"react-hooks"
+        "react-hooks"
 	],
 	"settings": {
 		"react": {
@@ -42,6 +44,7 @@
 			}
 		]
 	},
+
 	"globals": {
 		"player": true,
 		"getDefaultData": true,
@@ -168,6 +171,7 @@
 		"updateUIDecayHastening": true,
 		"updateUIHowToPlay": true
 	},
+
 	"rules": {
 		"array-bracket-newline": [
 			"warn",
@@ -264,12 +268,34 @@
 				]
 			}
 		],
-		"react/jsx-uses-vars": "error",
+		"react/jsx-key": [
+			"warn",
+
+		],
+		"react/jsx-no-duplicate-props": [
+			"error",
+			{
+				"ignoreCase": false
+			}
+		],
+
+		"react/jsx-no-undef": [
+			"error",
+			{
+				"allowGlobals": true
+			}
+		],
+		"react/jsx-uses-vars": "warn",
 		"react/no-adjacent-inline-elements": "error",
+		"react/no-children-prop": "warn",
+		"react/no-danger-with-children": "warn",
+		"react/no-deprecated": "error",
 		"react/no-direct-mutation-state": "error",
 		"react/no-typos": "error",
 		"react/no-unescaped-entities": "error",
+		"react/no-unknown-property": "warn",
 		"react/no-unused-state": "warn",
-		"react/prefer-read-only-props": "warn"
+		"react/prefer-read-only-props": "warn",
+		"react/require-render-return": "error"
 	}
 }

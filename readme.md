@@ -1,5 +1,6 @@
-[![Discord Server Invite](https://img.shields.io/discord/579354150639370348.svg?logo=discord&logoColor=ffffff&label=&labelColor=6A7EC2&color=7389D8)](https://discord.gg/RyQwwzW) 
-[![CodeFactor](https://www.codefactor.io/repository/github/redfire75369/fission-simulator/badge/overhaul-dev)](https://www.codefactor.io/repository/github/redfire75369/fission-simulator/overview/overhaul-dev)
+[![Discord](https://img.shields.io/discord/579354150639370348?color=7389D8&label=Discord&labelColor=6A7EC2&logo=discord&logoColor=FFFFFF&style=plastic)](https://discord.gg/RyQwwzW)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/redfire75369/fission-simulator/overhaul-dev?label=CodeFactor&labelColor=5D5D5D&logo=codefactor&logoColor=50D690&style=plastic)](https://www.codefactor.io/repository/github/redfire75369/fission-simulator/branches/overhaul-dev)
+
 
 # Fission Simulator
 This is an incremental game about nuclear fission, reactors and nuclear physics.
@@ -8,7 +9,8 @@ This is an incremental game about nuclear fission, reactors and nuclear physics.
 | File Path | Creator | Website |
 | ------------- | ------------ | ------------ |
 | javascripts/libs/react.js | Facebook | [https://github.com/facebook/react](https://github.com/facebook/react) |
-| javascripts/libs/react-dom.min.js | Facebook | [https://github.com/facebook/react](https://github.com/facebook/react) |
+| javascripts/libs/react-dom.js | Facebook | [https://github.com/facebook/react](https://github.com/facebook/react) |
+| javascripts/libs/react-transition-group.js | Facebook | [https://github.com/reactjs/react-transition-group](https://github.com/reactjs/react-transition-group) |
 | javascripts/libs/break-infinity.js | Patashu | [https://github.com/Patashu/break_infinity.js](https://github.com/Patashu/break_infinity.js)|
 | javascripts/libs/ad-notations.js | Dan Simon | [https://github.com/antimatter-dimensions/notations/](https://github.com/antimatter-dimensions/notations) |
 | javascripts/libs/ad-community-notations.js | Dan Simon | [https://github.com/antimatter-dimensions/notations](https://github.com/antimatter-dimensions/notations) |

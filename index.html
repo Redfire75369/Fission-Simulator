@@ -26,8 +26,10 @@
 		<meta property="twitter:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul-dev/index.html">
 
 		<!-- Library Scripts -->
-		<!--<script defer src="javascripts/libs/katex.js" type="text/javascript"></script>
-		<script defer src="javascripts/libs/auto-render.js" type="text/javascript" onload="renderMathInElement(document.body)"></script>-->
+		<!--
+		<script defer src="javascripts/libs/katex.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/auto-render.js" type="text/javascript" onload="renderMathInElement(document.body)"></script>
+		-->
 		<script defer src="javascripts/libs/react.js" type="text/javascript"></script>
 		<script defer src="javascripts/libs/react-dom.js" type="text/javascript"></script>
 		<script defer src="javascripts/libs/react-transition-group.js" type="text/javascript"></script>
@@ -54,10 +56,12 @@
 		<script defer src="javascripts/core/fuels/triso.js" type="text/javascript"></script>
 		<script defer src="javascripts/core/reactors/pebblebed_fission.js" type="text/javascript"></script>
 		<script defer src="javascripts/core/mines.js" type="text/javascript"></script>
-		<!--<script defer src="javascripts/core/turbine/calculations.js" type="text/javascript"></script>
+		<!--
+		<script defer src="javascripts/core/turbine/calculations.js" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/coilplacement.js" type="text/javascript"></script>
 		<script defer src="javascripts/core/turbine/drawing.js" type="text/javascript"></script>
-		<script defer src="javascripts/core/turbine/turbine.js" type="text/javascript"></script>-->
+		<script defer src="javascripts/core/turbine/turbine.js" type="text/javascript"></script>
+		-->
 		<script defer src="javascripts/core/prestigething/research.js" type="text/javascript"></script>
 		<script defer src="javascripts/core/prestigething/coolant.js" type="text/javascript"></script>
 		<script defer src="javascripts/core/nanites/upgrades.js" type="text/javascript"></script>
@@ -113,18 +117,22 @@
 			<button  onclick="closeOfflineProgress()" align="center" class="storebtn buy" style="font-size:15px; margin:auto;">Close</button>
 		</div>
 
-		<!--<div class="info">
+		<!--
+		<div class="info">
 			<p id="corium_amt" class="text" style="color: #88ee44">You have <span id="corium">0.00</span> Corium.</p> </br>
 			<button onclick="meltdown()" id="meltdown">Meltdown for <span id="corium_gain">1</span> Corium</button>
-		</div>-->
+		</div>
+		-->
 		<div class="info">
 			<p>You have <span id="energy">80.00</span> Energy.</p>
 			<p>You are gaining <span id="energy_gain">0.00</span> Energy per second.</p>
 		</div>
 
-		<!--<div class="newsbar">
+		<!--
+		<div class="newsbar">
 			<div id="news"></div>
-		</div>-->
+		</div>
+		-->
 
 		<div id="production_tab"></div>
 		<div id="statistics_tab"></div>
@@ -185,10 +193,12 @@
 		</div>
 
 		<div id="meltdown_tab">
-			<!--<div class="navigation subtab">
+			<!--
+			<div class="navigation subtab">
 				<button onclick="showMeltdownTab('ups_subtab')" id="meltdown_ups_subtabbtn">Upgrades</button>
 				<button onclick="showMeltdownTab('decay_hastening_subtab')" id="meltdown_decay_hastening_subtabbtn">Decay Hastening</button>
-			</div>-->
+			</div>
+			-->
 
 			<div id="meltdown_ups_subtab">
 					<div class="flex-row">
@@ -285,15 +295,19 @@
 					</div>
 				</div>
 				<div id="meltdown_decay_hastening_subtab">
-					<!--<div class="navigation subtab">
+					<!--
+					<div class="navigation subtab">
 						<button onclick="showDecaySubTab('decay_subsubtab')" id="decay_decay_subsubtabbtn">Isotope Decay</button>
 						<button onclick="showDecaySubTab('boosts_subsubtab')" id="decay_boosts_subsubtabbtn">Isotope Boosts</button>
-					</div>-->
+					</div>
+				-->
 
 					<div id="toggle_reactors_popup" class="popup align horizontal-center vertical-center" style="width: 720px; height: 400px; display: none;">
 						<div class="flex-col">
 							<button onclick="player.reactors[0].toggle()" class="storebtn" id="reactor_togge0">Toggle Thorium-227 Reactor</button>
-							<!--<button onclick="player.reactors[1].toggle()" class="storebtn" id="reactor_toggle1">Toggle Uranium-235 Reactor</button>!-->
+							<!--
+							<button onclick="player.reactors[1].toggle()" class="storebtn" id="reactor_toggle1">Toggle Uranium-235 Reactor</button>
+							-->
 						</div>
 					</div>
 
