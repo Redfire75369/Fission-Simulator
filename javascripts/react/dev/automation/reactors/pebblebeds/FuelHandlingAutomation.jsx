@@ -1,23 +1,5 @@
-class PebblebedFuelHandlingAutomationComponent extends ReactStateComponent {
-	
-
-	toggle() {
-		player.automation.reactors.pebblebeds.fuel[props.tier].active = !player.automation.reactors.pebblebeds.fuel[props.tier].active;
-	}
-	decreaseInterval() {
-		player.automation.reactors.pebblebeds.fuel[props.tier].interval = max(25, player.automation.reactors.pebblebeds.fuel[props.tier].interval * 0.95);
-	}
-
-	reprocessToggle() {
-		player.automation.fuels.triso[props.tier].active = !player.automation.fuels.triso[props.tier].active;
-	}
-	decreaseReprocessInterval() {
-		player.automation.fuels.triso[props.tier].interval = max(25, player.automation.fuels.triso[props.tier].interval * 0.95);
-	}
-}
-
 function PebblebedFuelHandlingAutomationComponent(props) {
-	const [unlocked, setUnlockedUpgrade] = React.useState(false);
+	const [unlockedUpgrade, setUnlockedUpgrade] = React.useState(false);
 	const [activeHandling, setActiveHandling] = React.useState(false);
 	const [intervalHandling, setIntervalHandling] = React.useState(null);
 	const [cooldownHandling, setCooldownHandling] = React.useState(0);
@@ -26,15 +8,14 @@ function PebblebedFuelHandlingAutomationComponent(props) {
 	const [intervalReprocessing, setIntervalReprocessing] = React.useState(null);
 	const [cooldownReprocessing, setCooldownReprocessing] = React.useState(0);
 	const [costReprocessing, setCostReprocessing] = React.useState(null); 
-	
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
 			setUnlockedUpgrade(player.prestiges > 1);
-			setActive(player.automation.reactors.pebblebeds.fuel[props.tier].active;
+			setActiveHandling(player.automation.reactors.pebblebeds.fuel[props.tier].active);
 			setIntervalHandling(player.automation.reactors.pebblebeds.fuel[props.tier].interval);
 			setCooldownHandling(min(1, player.automation.reactors.pebblebeds.fuel[props.tier].cooldown / player.automation.reactors.pebblebeds.fuel[props.tier].interval));
-			setCostHandling(new Decimal(1000)));
+			setCostHandling(new Decimal(1000));
 			setActiveReprocessing(player.automation.fuels.triso[props.tier].active);
 			setIntervalReprocessing(player.automation.fuels.triso[props.tier].interval);
 			setCooldownReprocessing(min(1, player.automation.fuels.triso[props.tier].cooldown / player.automation.fuels.triso[props.tier].interval));

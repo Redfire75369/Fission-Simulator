@@ -4,6 +4,7 @@ function NavigationDropdownComponent() {
 	const dropdownRef = React.useRef(null);
 
 	const [unlockedMines, setUnlockedMines] = React.useState(false);
+	const [unlockedAutomation, setUnlockedAutomation] = React.useState(false);
 	const [unlockedPrestige, setUnlockedPrestige] = React.useState(false);
 	const [unlockedCheats, setUnlockedCheats] = React.useState(false);
 
@@ -11,8 +12,9 @@ function NavigationDropdownComponent() {
 		setMenuHeight(dropdownRef.current?.firstChild?.offsetHeight);
 
 		const timerID = setInterval(function() {
-			setUnlockedMines(player.energy.gte(250) || player.unlocked.mines);
-			setUnlockedPrestige(player.unlocked.prestige);
+			setUnlockedMines(unlockedMines || player.energy.gte(250) || player.unlocked.mines);
+			setUnlockedAutomation(unlockedAutomation || player.reactors.pebblebeds[2].bought > 0);
+			setUnlockedPrestige(unlockedPrestige || player.unlocked.prestige);
 			setUnlockedCheats(cheatsEnabled);
 		}, 50);
 
@@ -57,6 +59,7 @@ function NavigationDropdownComponent() {
 					<DropdownItem type="main" tab="statistics">Statistics</DropdownItem>
 					<DropdownItem type="main" tab="achievements">Achievements</DropdownItem>
 					<DropdownItem leftIcon={<NavigationIcon type="gear"/>} type="main" tab="options">Options</DropdownItem>
+					<DropdownItem type="main" tab="automation" style={{display: unlockedAutomation ? "" : "none"}}>Automation</DropdownItem>
 					<DropdownItem type="main" tab="prestige" style={{display: unlockedPrestige ? "" : "none"}}>Prestige</DropdownItem>
 					<DropdownItem type="main" tab="cheats" style={{display: unlockedCheats ? "" : "none"}}>Cheats</DropdownItem>
 				</div>
@@ -76,9 +79,23 @@ function NavigationDropdownComponent() {
 function NavigationItemComponent(props) {
 	const [open, setOpen] = React.useState(false);
 
+	React.useEffect(function() {
+		Mousetrap.bind(">", function() {
+			setOpen(true);
+		});
+		Mousetrap.bind("<", function() {
+			setOpen(false);
+		});
+		Mousetrap.bind("tab", toggle);
+	}, []);
+	
+	function toggle() {
+		setOpen(!open);
+	}
+
 	return (
 		<div>
-			<a href="#" onClick={function() {setOpen(!open)}}>
+			<a href="#" onClick={toggle}>
 				{props.icon}
 			</a>
 

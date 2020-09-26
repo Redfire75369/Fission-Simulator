@@ -31,12 +31,12 @@ function AchievementComponent(props) {
 	}, []);
 
 	return (
-			<div className={"flex-col align horizontal-center tooltip " + (this.state.completed ? "achcomplete" : "achlocked")}>
-				<img src={"resources/images/achievements/" + props.id + ".png"}/>
-				<span className="tooltiptext" >
-					{achievementTexts[props.id].split("\n")[0]}<br/>
-					{achievementTexts[props.id].split("\n")[1]}
-				</span>
-			</div>
-		);
+		<div className={"flex-col align horizontal-center tooltip " + (this.state.completed ? "achcomplete" : "achlocked")}>
+			<img src={"resources/images/achievements/" + props.id + ".png"}/>
+			<span className="tooltiptext" >
+				{achievementTexts[props.id].split("\n")[0]}<br/>
+				{achievementTexts[props.id].split("\n")[1]}
+			</span>
+		</div>
+	);
 }

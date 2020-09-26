@@ -35,7 +35,6 @@ function NavigationDropdownComponent() {
 
         case "production":
           player.navigation.production = props.tab;
-          alert(document.getElementById("production_tab").innerHTML);
           break;
 
         default:
@@ -121,11 +120,16 @@ function NavigationDropdownComponent() {
 
 function NavigationItemComponent(props) {
   const [open, setOpen] = React.useState(false);
+  React.useEffect(function() {
+    Mousetrap.bind(">", toggle);
+    Mousetrap.bind("tab", toggle);
+  }, []);
+  function toggle() {
+    setOpen(!open);
+  }
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
     href: "#",
-    onClick: function () {
-      setOpen(!open);
-    }
+    onClick: toggle
   }, props.icon), open ? props.children : "");
 }
 

@@ -1,24 +1,25 @@
 const pebblebedReactorTypes = ["TBU", "LEU-235", "LEP-239"];
 
 function PebblebedFissionReactorComponent(props) {
-	const [type, setType] = useState(pebblebedReactorTypes[props.tier]);
+	const [type, setType] = React.useState(pebblebedReactorTypes[props.tier]);
 
-	const [unlocked, setUnlocked] = useState(false);
-	const [unlockedMines, setUnlockedMines] = useState(false);
-	const [amount, setAmount] = useState(zero);
-	const [bought, setBought] = useState(0);
-	const [canLoadFuel, setCanLoadFuel] = useState(false);
-	const [fuel, setFuel] = useState(pebblebedReactorTypes[props.tier]);
-	const [fuelPercentage, setFuelPercentage] = useState(0);
-	const [spent, setSpent] = useState(zero);
-	const [spentPercentage, setSpentPercentage] = useState(zero);
-	const [buyable, setBuyable] = useState(false);
-	const [cost, setCost] = useState(zero);
-	const [burnRate, setBurnRate] = useState(zero);
-	const [totalCapacity, setTotalCapacity] = useState(zero);
-	const [gain, setGain] = useState(zero));
+	const [unlocked, setUnlocked] = React.useState(false);
+	const [unlockedMines, setUnlockedMines] = React.useState(false);
+	const [amount, setAmount] = React.useState(zero);
+	const [bought, setBought] = React.useState(0);
+	const [canLoadFuel, setCanLoadFuel] = React.useState(false);
+	const [canEjectWaste, setCanEjectWaste] = React.useState(false);
+	const [fuel, setFuel] = React.useState(pebblebedReactorTypes[props.tier]);
+	const [fuelPercentage, setFuelPercentage] = React.useState(0);
+	const [spent, setSpent] = React.useState(zero);
+	const [spentPercentage, setSpentPercentage] = React.useState(zero);
+	const [buyable, setBuyable] = React.useState(false);
+	const [cost, setCost] = React.useState(zero);
+	const [burnRate, setBurnRate] = React.useState(zero);
+	const [totalCapacity, setTotalCapacity] = React.useState(zero);
+	const [gain, setGain] = React.useState(zero);
 
-	useEffect(function() {
+	React.useEffect(function() {
 		const timerID = setInterval(function() {
 			setUnlocked(props.tier === 0 || player.reactors.pebblebeds[props.tier - 1].bought >  0);
 			setUnlockedMines(player.mines.tier > -1);

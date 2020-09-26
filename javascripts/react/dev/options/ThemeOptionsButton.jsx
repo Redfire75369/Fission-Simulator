@@ -1,5 +1,5 @@
 function ThemeOptionsButton() {
-	const [theme, setTheme] = useState("Light");
+	const [theme, setTheme] = React.useState("Light");
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
@@ -9,7 +9,7 @@ function ThemeOptionsButton() {
 		return function() {
 			clearInterval(timerID);
 		};
-	}
+	}, []);
 
 	return (
 		<button onClick={themeChange}>

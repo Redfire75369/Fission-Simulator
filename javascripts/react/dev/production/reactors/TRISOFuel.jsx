@@ -1,28 +1,22 @@
 const trisoFuelTypes = ["TBU", "LEU-235", "LEP-239"];
 
-	reprocessDepleted() {
-		player.fuels.triso[props.tier].reprocessDepleted();
-	}
-}
-
 function TRISOFuelComponent(props) {
-	const [type, setType] = useState(trisoFuelTypes[props.tier]);
+	const [type, setType] = React.useState(trisoFuelTypes[props.tier]);
 
-	const [unlocked, setUnlocked] = useState(false);
-	const [unlocked, setUnlockedReprocessing] = useState(false);
-	const [unlocked, setHasFuel] = useState(false);
-	const [unlocked, setEnriched] = useState(zero);
-	const [unlocked, setEnrichedPercentage] = useState(0);
-	const [unlocked, setDepleted] = useState(zero);
-	const [unlocked, setCanReprocess] = useState(false);
-	const [unlocked, setReprocessCost] = useState(zero);
-	const [unlocked, setDepleted] = useState(zero);
-	const [unlocked, setReprocessing] = useState(false);
-	const [unlocked, setGain] = useState(zero); 
+	const [unlocked, setUnlocked] = React.useState(false);
+	const [unlockedReprocessing, setUnlockedReprocessing] = React.useState(false);
+	const [hasFuel, setHasFuel] = React.useState(false);
+	const [enriched, setEnriched] = React.useState(zero);
+	const [enrichedPercentage, setEnrichedPercentage] = React.useState(0);
+	const [depleted, setDepleted] = React.useState(zero);
+	const [canReprocess, setCanReprocess] = React.useState(false);
+	const [reprocessCost, setReprocessCost] = React.useState(zero);
+	const [reprocessing, setReprocessing] = React.useState(false);
+	const [gain, setGain] = React.useState(zero); 
 
-	const [goal, setGoal] = useState(zero); 
+	const [goal, setGoal] = React.useState(zero); 
 
-	useEffect(function() {
+	React.useEffect(function() {
 		const timerID = setInterval(function() {
 			setUnlocked(player.mines.tier > - 1 && (props.tier === 0 || ((player.fuels.triso[props.tier - 1].enriched.add(player.fuels.triso[props.tier - 1].depleted).gt(0) || player.fuels.triso[props.tier].enriched.add(player.fuels.triso[props.tier].depleted).gt(0)) && player.reactors.pebblebeds[props.tier - 1].bought > 0)));
 			setUnlockedReprocessing(player.mines.tier > 0);
@@ -41,8 +35,12 @@ function TRISOFuelComponent(props) {
 
 		return function() {
 			clearInterval(timerID);
-		}
+		};
 	}, []);
+	
+	function reprocessDepleted() {
+		player.fuels.triso[props.tier].reprocessDepleted();
+	}
 
 	return (
 		<div className="trisodiv" style={{display: unlocked ? "" : "none"}}>
@@ -66,7 +64,7 @@ function TRISOFuelComponent(props) {
 
 				<div className="flex-col vertical-top reprocess" style={{display: unlockedReprocessing ? "" : "none"}}>
 					<div>Fuel Handling:</div>
-					<button onClick={this.reprocessDepleted.bind(this)} className={canReprocess ? "trisobtn buy" : "trisobtn locked"} id={"fuel_triso_reprocess" + (props.tier + 1)}>
+					<button onClick={reprocessDepleted} className={canReprocess ? "trisobtn buy" : "trisobtn locked"} id={"fuel_triso_reprocess" + (props.tier + 1)}>
 						<div style={{transition: reprocessing ? player.fuels.triso[props.tier].reprocessingTime / 1000 + "s width linear" : "", width: reprocessing ? "100%" : "0"}}/>
 						Reprocess Depleted {type} Fuel Pebbles for {notation(reprocessCost)} Energy
 					</button>

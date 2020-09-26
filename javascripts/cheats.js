@@ -1,5 +1,5 @@
 var leverMaxAll = false;
-var cheatsEnabled;
+var cheatsEnabled = false;
 
 function enableCheatsTab() {
 	cheatsEnabled = true;

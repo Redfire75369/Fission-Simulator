@@ -2,19 +2,21 @@
 	"env": {
 		"browser": true,
 		"es2020": true,
-		"es6": true,
-		"node": true,
+		"node": true
 	},
+	"parser": "espree",
 	"parserOptions": {
-		"ecmaVersion": 11,
+		"ecmaVersion": 12,
+		"sourceType": "script",
 		"ecmaFeatures": {
-				"jsx": true
-			},
-		"sourceType": "module"
+			"globalReturn": false,
+			"impliedStrict": false,
+			"jsx": true
+		}
 	},
 	"plugins": [
 		"react",
-        "react-hooks"
+        //"react-hooks"
 	],
 	"settings": {
 		"react": {
@@ -25,12 +27,19 @@
 		},
 		"propWrapperFunctions": [.
 				"forbidExtraProps",
-				{"property": "freeze", "object": "Object"},
-				{"property": "myFavoriteWrapper"}
+				{
+					"property": "freeze",
+					"object": "Object"
+				},
+				{
+					"property": "myFavoriteWrapper"
+				}
 		],
 		"linkComponents": [
 			"Hyperlink",
-			{"name": "Link", "linkAttribute": "to"}
+			{
+				"name": "Link", "linkAttribute": "to"
+			}
 		]
 	},
 	"globals": {
@@ -250,7 +259,9 @@
 		"react/jsx-filename-extension": [
 			"error",
 			{
-				"extensions": [".jsx"]
+				"extensions": [
+					".jsx"
+				]
 			}
 		],
 		"react/jsx-uses-vars": "error",
@@ -259,10 +270,6 @@
 		"react/no-typos": "error",
 		"react/no-unescaped-entities": "error",
 		"react/no-unused-state": "warn",
-		"react/prefer-es6-class": [
-			"warn",
-			"always"
-		],
 		"react/prefer-read-only-props": "warn"
 	}
 }

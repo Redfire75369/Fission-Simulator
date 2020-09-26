@@ -13,6 +13,30 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.11] - 25/9/20
+### Added
+- ">" Keybind to open navigation
+- A few achievements
+
+### Modified
+- Redesigned Navigation
+- Fixed bug where negative fuel could be stored
+- Fixed bug where flow rate affected capacity before prestige
+- Started conversion of class components to functional components using React hooks
+
+### Removed
+- Subtab Navigation Buttons in Production Tab
+
+## [v0.6.10] - 13/9/20
+### Added
+
+### Modified
+- Made button sizes consistent
+- Increased padding within elements
+- Unlock conditions for various features to increase accessibility
+
+### Removed
+
 ## [v0.6.9] - 12/9/20
 ### Added
 - Information to info tooltips on Fuel and Reactors

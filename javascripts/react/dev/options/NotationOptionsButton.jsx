@@ -1,15 +1,15 @@
 function NotationOptionsButton() {
-	const [notation, setNotation] = useState("Scientific");
+	const [notation, setNotation] = React.useState("Scientific");
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
 			setNotation(player.options.notation);
 		}, 50);
 
-		return return function() {
+		return function() {
 			clearInterval(timerID);
 		};
-	}
+	}, []);
 
 	return (
 		<button onClick={notationChange}>
