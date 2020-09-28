@@ -12,7 +12,7 @@ function NavigationDropdownComponent() {
 		const timerID = setInterval(function() {
 			setUnlockedMines(player.energy.gt(250) || player.unlocked.mines);
 			setUnlockedPrestige(player.unlocked.prestige);
-			setUnlockedCheats(cheatsEnabled);
+			//setUnlockedCheats(cheatsEnabled);
 		}, 50);
 		return function() {
 			clearInterval(timerID);
@@ -93,7 +93,7 @@ function NavigationDropdownComponent() {
 		type: "main",
 		tab: "cheats",
 		style: {
-			display: unlockedCheats ? "" : "none"
+			display: ""
 		}
 	}, "Cheats"))), /*#__PURE__*/React.createElement(ReactTransitionGroup.CSSTransition, {
 		in: activeMenu === "production",

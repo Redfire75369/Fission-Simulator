@@ -51,6 +51,12 @@ function loadSave(save, imported = false) {
 		if (save !== undefined) {
 			checkAssign(getDefaultData(), save, []);
 
+			if (typeof player.options.notation === "string") {
+				player.options.notation = notations.indexOf(player.options.notation);
+			}
+			if (typeof player.options.theme === "string") {
+				player.options.theme = themes.indexOf(player.options.theme);
+			}
 			player.version = getDefaultData().version;
 		} else {
 			console.log("No existing save found");

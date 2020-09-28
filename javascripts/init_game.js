@@ -35,8 +35,7 @@ function postLoad() {
 	selectCoil(player.turbine.activeCoil);*/
 
 	showNaviTab(player.navigation.naviTab);
-	targetedNotationChange(player.options.notation);
-	targetedThemeChange(player.options.theme);
+	document.getElementById("style").setAttribute("href", "stylesheets/" + themes[player.options.theme].toLowerCase() + ".css");
 }
 
 function init_game() {

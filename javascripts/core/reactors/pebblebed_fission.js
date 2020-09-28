@@ -40,7 +40,7 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 			return zero;
 		}
 		const factor = this.tier === 0 ? 2.1 : this.tier === 1 ? 1.005 : 1.001;
-		return Decimal.pow(1.2, this.bought)
+		return Decimal.pow(1.4, this.bought + this.tier)
 			/*.mul(this.fuel.max(factor).log(factor))*/
 			.max(1).div(player.fuels.triso[this.tier].lifetime);
 	}

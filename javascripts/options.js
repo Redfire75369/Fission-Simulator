@@ -1,33 +1,7 @@
 const notations = ["Scientific", "Logarithmic", "Brackets", "Omega", "Imperial", "Cancer", "Zalgo", "Prime", "Blind"];
 const themes = ["Light", "Dark", "Inverted", "Midnight", "Void"];
 
-/*Notations Change*/
-function notationChange() {
-	player.options.notationNo = player.options.notationNo + 1 === notations.length ? 0 : player.options.notationNo + 1;
-	player.options.notation = notations[player.options.notationNo];
-}
-
-function targetedNotationChange(notation) {
-	while (player.options.notation !== notation) {
-		notationChange();
-	}
-}
-
-/*Theme Change*/
-function themeChange() {
-	player.options.themeNo = player.options.themeNo + 1 === themes.length ? 0 : player.options.themeNo + 1;
-	player.options.theme = themes[player.options.themeNo];
-	document.getElementById("style").setAttribute("href", "stylesheets/" + player.options.theme.toLowerCase() + ".css");
-}
-
-function targetedThemeChange(theme) {
-	while (player.options.theme !== theme) {
-		themeChange();
-	}
-	document.getElementById("style").setAttribute("href", "stylesheets/" + player.options.theme.toLowerCase() + ".css");
-}
-
-/*Save/Load*/
+/* Save/Load */
 function save() {
 	saveGame();
 }
@@ -37,9 +11,9 @@ function load() {
 	postLoad();
 }
 
-/*Import/Export*/
+/* Import/Export */
 function importSave() {
-	let save = prompt("Input your save. WARNING: Your current save file will be overwritten.");
+	const save = prompt("Input your save. WARNING: Your current save file will be overwritten.");
 	player.import42 |= save === "42";
 	if (save === null || save === "42") {
 		return;
@@ -55,9 +29,9 @@ function exportSave() {
 	alert("Save copied to clipboard");
 }
 
-/*Hard Reset*/
+/* Hard Reset */
 function hardReset() {
-	let confirmation = prompt("This will completely reset your game. If you are sure, type in “Hitchhiker's Guide to the Fusion-Driven Galaxy”");
+	const confirmation = prompt("This will completely reset your game. If you are sure, type in “Hitchhiker's Guide to the Fusion-Driven Galaxy”");
 	if (confirmation === "Hitchhiker's Guide to the Fusion-Driven Galaxy") {
 		preLoad();
 		player = getDefaultData();

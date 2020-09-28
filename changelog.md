@@ -43,7 +43,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Modified
 - Replaced `let` with `const` in most places
-- Started using `.reduce` in some places
+- Begun usage of `Array.prototype.reduce` and `Array.prototype.map`
 - Fixed 40x reactor production
 - Fixed styles for dark and inverted themes
 
@@ -684,12 +684,12 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 - Testing parameter in simulateTime()
 
 ### Modified
-- Ability to specify decimal places and decimal places under 1e5 with notation()
+- Ability to specify decimal places and decimal places under 1e5 with `notation`
 
 ### Code Optimisations
 - Added zero and infinity variable
 - Removed excess intermediate variables
-- Changed many things to use ternary operators instead of "if, else statements"
+- Changed many things to use ternary operators instead of if, else statements
 
 ## [v0.3.3] - 11/3/20 **PR**
 
@@ -742,6 +742,6 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Modified
 - Exact number is shown till 1e5 instead of 1e3
 - Nanite gain is floored (always integers)
-- simulateTime() checks if tab is focused
+- `simulateTime()` checks if tab is focused
 
 ### Code Optimisations

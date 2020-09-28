@@ -7,10 +7,8 @@ function getDefaultData() {
 		},
 
 		options: {
-			notation: "Scientific",
-			notationNo: 0,
-			theme: "Light",
-			themeNo: 0
+			notation: 0,
+			theme: 0
 		},
 
 		navigation: {
@@ -46,8 +44,6 @@ function getDefaultData() {
 			27: false,
 			28: false
 		},
-
-		automation: {},
 
 		energy: new Decimal(10),
 		totalEnergy: new Decimal(10),
