@@ -27,7 +27,7 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 	}
 	buyFuel() {
 		if (this.canBuyFuel) {
-			let addedFuel = this.totalCapacity.sub(this.fuel.add(this.spent))
+			let addedFuel = this.totalCapacity.sub(this.fuel.add(this.spent));
 			addedFuel = player.energy.gte(this.fuelCost.mul(addedFuel)) ? addedFuel : player.energy.div(this.fuelCost);
 			player.energy = player.energy.sub(this.fuelCost.mul(addedFuel));
 			this.fuel = this.fuel.add(addedFuel);

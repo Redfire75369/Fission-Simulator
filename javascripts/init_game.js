@@ -79,4 +79,4 @@ function init_game() {
 }
 
 init_game();
-player.options.theme = 0
+player.options.theme = 0;
