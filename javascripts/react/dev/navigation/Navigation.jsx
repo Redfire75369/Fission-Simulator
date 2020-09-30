@@ -43,11 +43,11 @@ function NavigationDropdownComponent() {
 		}
 
 		return (
-			<a href="#" onClick={onClick} style={props.style}>
+			<div onClick={onClick} style={props.style}>
 				<span className="icon-left">{props.leftIcon}</span>
 				{props.children}
 				<span className="icon-right">{props.rightIcon}</span>
-			</a>
+			</div>
 		);
 	}
 
@@ -95,9 +95,9 @@ function NavigationItemComponent(props) {
 
 	return (
 		<div>
-			<a href="#" onClick={toggle}>
+			<div onClick={toggle} className="navigation-toggle">
 				{props.icon}
-			</a>
+			</div>
 
 			{open ? props.children : ""}
 		</div>

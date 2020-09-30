@@ -1,6 +1,6 @@
 @font-face {
-	font-family: "Atomic";
-	src: url(../resources/fonts/Atomic.ttf) format("truetype");
+	font-family: Atomic;
+	src: url(../resources/fonts/Atomic.ttf) format(truetype);
 	font-weight: normal;
 	font-style: normal;
 }
@@ -156,17 +156,23 @@ button:hover {
 	max-width: 48px;
 	min-width: 48px;
 }
-.navigation > div > a {
+.navigation > div > .navigation-toggle {
+	cursor: pointer;
+	height: 40px;
 	max-width: 40px;
 	min-width: 40px;
+	margin: 4px;
 	transition: filter 300ms;
 }
-.navigation > div > a:hover {
+.navigation > div > .navigation-toggle:hover {
 	filter: brightness(1.2);
 }
-.navigation > div > a > svg {
+.navigation > div > .navigation-toggle > svg {
 	height: 40px;
-	margin: 4px;
+	width: 40px;
+}
+.navigation > div > .navigation-toggle > svg > g {
+	height: 40px;
 	width: 40px;
 }
 
@@ -182,26 +188,27 @@ button:hover {
 .navigation > div > .dropdown > div {
 	width: 100%;
 }
-.navigation > div > .dropdown > div > a {
+.navigation > div > .dropdown > div > div  {
 	align-items: center;
+	cursor: pointer;
 	display: flex;
 	height: 52px;
 	transition: background 500ms;
 }
-.navigation > div > .dropdown > div > a > span {
+.navigation > div > .dropdown > div > div  > span {
 	height: 40px;
 	margin-bottom: 4px;
 	margin-right: 4px;
 	margin-top: 4px;
 	width: 40px;
 }
-.navigation > div > .dropdown > div > a > .icon-left {
+.navigation > div > .dropdown > div > div  > .icon-left {
 	margin-left: 4px;
 }
-.navigation > div > .dropdown > div > a > .icon-right {
+.navigation > div > .dropdown > div > div > .icon-right {
 	margin-left: auto;
 }
-.navigation > div > .dropdown > div > a > span > svg {
+.navigation > div > .dropdown > div > div > span > svg {
 	height: 40px;
 	width: 40px;
 }

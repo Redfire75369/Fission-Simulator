@@ -62,7 +62,9 @@ function TRISOFuelComponent(props) {
     className: "flex-row body"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-col vertical-top fuelinfo"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Pebbles")), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(enriched)), /*#__PURE__*/React.createElement("div", null, "Depleted: ", notation(depleted))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bold"
+  }, "Fuel Pebbles"), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(enriched)), /*#__PURE__*/React.createElement("div", null, "Depleted: ", notation(depleted))), /*#__PURE__*/React.createElement("div", {
     className: "flex-col vertical-top reprocess",
     style: {
       display: unlockedReprocessing ? "" : "none"

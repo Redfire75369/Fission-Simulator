@@ -20,7 +20,7 @@ function MinesComponent() {
   React.useEffect(function () {
     const timerID = setInterval(function () {
       setActive(player.navigation.production === "mines");
-      setUnlockedRequirement(player.energy.gt(250) && !player.unlocked.mines);
+      setUnlockedRequirement(player.energy.gt(1e580) && !player.unlocked.mines);
       setUnlocked(player.unlocked.mines);
       setUnlockedSalvage(player.mines.tier > 0);
       setBought(player.mines.tier > -1);
@@ -62,7 +62,9 @@ function MinesComponent() {
     className: "flex-row info"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-col horizontal-center"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Information")), /*#__PURE__*/React.createElement("div", null, "Active: ", notation(activeMines)), /*#__PURE__*/React.createElement("div", null, "Depleted: ", notation(depleted)))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bold"
+  }, "Information"), /*#__PURE__*/React.createElement("div", null, "Active: ", notation(activeMines)), /*#__PURE__*/React.createElement("div", null, "Depleted: ", notation(depleted)))), /*#__PURE__*/React.createElement("div", {
     className: "body"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-col horizontal-center"

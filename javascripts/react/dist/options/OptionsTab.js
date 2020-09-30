@@ -18,11 +18,9 @@ function OptionsTabComponent() {
     loadSave(getSave());
     postLoad();
   }
-  /*Import/Export*/
-
 
   function importSave() {
-    let save = prompt("Input your save. WARNING: Your current save file will be overwritten.");
+    const save = prompt("Input your save. WARNING: Your current save file will be overwritten.");
     player.import42 |= save === "42";
 
     if (save === null || save === "42") {

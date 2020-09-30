@@ -9,7 +9,9 @@ function ArrowNavigationIcon() {
 }
 
 function BarsNavigationIcon() {
-  return /*#__PURE__*/React.createElement("svg", null, /*#__PURE__*/React.createElement("g", {
+  return /*#__PURE__*/React.createElement("svg", {
+    viewBox: "0 0 12.7 12.7"
+  }, /*#__PURE__*/React.createElement("g", {
     transform: "translate(0,-284.29998)"
   }, /*#__PURE__*/React.createElement("path", {
     d: "m 1.7146315,287.60681 a 1.0552077,1.1904392 0 0 1 -1.05086378,-1.19332 1.0552077,1.1904392 0 0 1 1.05599658,-1.18755 l -7.92e-4,1.19044 z",
@@ -143,6 +145,5 @@ const navigationIcons = {
 };
 
 function NavigationIcon(props) {
-  const icon = navigationIcons[props.type];
-  return icon;
+  return navigationIcons[props.type];
 }

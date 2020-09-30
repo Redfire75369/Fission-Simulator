@@ -73,8 +73,8 @@ function PebblebedFissionReactorComponent(props) {
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-row title"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "type"
-  }, /*#__PURE__*/React.createElement("b", null, type, " Pebblebed Reactor")), /*#__PURE__*/React.createElement("div", {
+    className: "type bold"
+  }, type, " Pebblebed Reactor"), /*#__PURE__*/React.createElement("div", {
     className: "tooltip info"
   }, "i", /*#__PURE__*/React.createElement("div", {
     className: "tooltiptext",
@@ -84,11 +84,15 @@ function PebblebedFissionReactorComponent(props) {
       minWidth: "15vw",
       padding: "1vw"
     }
-  }, type, " Pebblebed Reactors convert Enriched fuel into Spent Fuel, producing energy.", /*#__PURE__*/React.createElement("br", null), "Your mines are producing ", notation(gain), " ", type, " reactors every second.", /*#__PURE__*/React.createElement("br", null)))), /*#__PURE__*/React.createElement("div", {
+  }, type, " Pebblebed Reactors convert Enriched fuel into Spent Fuel, producing energy.", /*#__PURE__*/React.createElement("br", null), unlockedMines ? "Your mines are producing {notation(gain)} {type} reactors every second." : ""))), /*#__PURE__*/React.createElement("div", {
     className: "flex-row body"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-col vertical-top info"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Reactor Information")), /*#__PURE__*/React.createElement("div", null, "Amount: ", notation(amount), " (", bought, " Bought)"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Fuel Information")), /*#__PURE__*/React.createElement("div", null, "Capacity: ", notation(totalCapacity)), /*#__PURE__*/React.createElement("div", null, "Fuel Usage: ", notation(burnRate), "/s"), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(fuel)), /*#__PURE__*/React.createElement("div", null, "Spent: ", notation(spent))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bold"
+  }, "Reactor Information"), /*#__PURE__*/React.createElement("div", null, "Amount: ", notation(amount), " (", bought, " Bought)"), /*#__PURE__*/React.createElement("div", {
+    className: "bold"
+  }, "Fuel Information"), /*#__PURE__*/React.createElement("div", null, "Capacity: ", notation(totalCapacity)), /*#__PURE__*/React.createElement("div", null, "Fuel Usage: ", notation(burnRate), "/s"), /*#__PURE__*/React.createElement("div", null, "Enriched: ", notation(fuel)), /*#__PURE__*/React.createElement("div", null, "Spent: ", notation(spent))), /*#__PURE__*/React.createElement("div", {
     className: "flex-col vertical-top fuelhandling",
     style: {
       display: unlockedFuelHandling ? "" : "none"

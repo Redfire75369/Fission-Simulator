@@ -41,9 +41,7 @@ function NavigationDropdownComponent() {
       }
     }
 
-    return /*#__PURE__*/React.createElement("a", {
-      href: "#",
-      id: props.tab + "_btn",
+    return /*#__PURE__*/React.createElement("div", {
       onClick: onClick,
       style: props.style
     }, /*#__PURE__*/React.createElement("span", {
@@ -141,9 +139,9 @@ function NavigationItemComponent(props) {
     setOpen(!open);
   }
 
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
-    href: "#",
-    onClick: toggle
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    onClick: toggle,
+    className: "navigation-toggle"
   }, props.icon), open ? props.children : "");
 }
 

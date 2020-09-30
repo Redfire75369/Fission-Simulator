@@ -17,8 +17,8 @@
 	},
 
 	"plugins": [
-		"react"
-        //"react-hooks"
+		"react",
+        "react-hooks"
 	],
 	"settings": {
 		"react": {
