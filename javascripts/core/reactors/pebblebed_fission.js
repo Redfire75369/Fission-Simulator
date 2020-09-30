@@ -13,6 +13,26 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 		this.spent = zero;
 	}
 
+	get fuelCost() {
+		return Decimal.pow(150, 2 * this.tier + 1);
+	}
+	get canBuyFuel() {
+		return player.energy.gte(this.fuelCost);
+	}
+
+	mineFuel() {
+		if (player.reactors.pebblebeds[this.tier].bought > 0 && this.totalCapacity.gte(this.fuel.add(this.spent).add(1))) {
+			this.fuel = this.fuel.add(1);
+		}
+	}
+	buyFuel() {
+		if (this.canBuyFuel) {
+			let addedFuel = this.totalCapacity.sub(this.fuel.add(this.spent))
+			addedFuel = player.energy.gte(this.fuelCost.mul(addedFuel)) ? addedFuel : player.energy.div(this.fuelCost);
+			player.energy = player.energy.sub(this.fuelCost.mul(addedFuel));
+			this.fuel = this.fuel.add(addedFuel);
+		}
+	}
 	loadFuel() {
 		if (player.reactors.pebblebeds[this.tier].bought > 0 && this.totalCapacity.gte(this.fuel.add(this.spent).add(1))) {
 			const addedFuel = player.fuels.triso[this.tier].enriched.min(this.totalCapacity.sub(this.fuel.add(this.spent)));
@@ -22,7 +42,9 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 	}
 	ejectWaste() {
 		if (this.spent.gte(1)) {
-			player.fuels.triso[this.tier].depleted = player.fuels.triso[this.tier].depleted.add(this.spent);
+			if (player.unlocked.mines) {
+				player.fuels.triso[this.tier].depleted = player.fuels.triso[this.tier].depleted.add(this.spent);
+			}
 			this.spent = zero;
 		}
 	}
@@ -85,5 +107,5 @@ function simulatePebblebedReactors(tickInterval = 50) {
 		}
 	}
 
-	player.unlocked.mines |= player.energy.gte("5e2");
+	player.unlocked.mines |= player.energy.gte(1e50);
 }

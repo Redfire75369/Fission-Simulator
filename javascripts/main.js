@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 6,
-			alpha: 11
+			alpha: 12
 		},
 
 		options: {
@@ -61,7 +61,7 @@ function getDefaultData() {
 		reactors: {
 			pebblebeds: [
 				new PebblebedFissionReactor(0, 1, 2, 10),
-				new PebblebedFissionReactor(1, 6, 8, 10),
+				new PebblebedFissionReactor(1, 4, 6, 10),
 				new PebblebedFissionReactor(2, 15, 10, 10)
 			]
 		},
@@ -214,9 +214,14 @@ function getDefaultData() {
 }
 
 const isotopes = ["Thorium-227", "Uranium-235", "Neptunium-234", "Plutonium-237", "Americium-242m", "Curium-245", "Berkelium-248", "Californium-251"];
+const notations = ["Scientific", "Logarithmic", "Brackets", "Omega", "Imperial", "Cancer", "Zalgo", "Prime", "Blind"];
+const themes = ["Light", "Dark", "Inverted", "Midnight", "Void"];
+
 //const diminishFactor = [100, 200, 350, 488, 600, 733, 850, 1000];
 const infinity = Decimal.pow(2, 1024);
 const zero = new Decimal(0);
+
+var player = getDefaultData();
 
 var focused = true;
 window.onvisibilitychange = function() {
@@ -231,9 +236,6 @@ function updateUI() {
 	updateUIHowToPlay();
 }
 function updateGame(tickInterval = 50) {
-	/*if (leverMaxAll) {
-		buyMaxAll();
-	}*/
 	simulateTRISOFuel(tickInterval);
 	simulateMines(tickInterval);
 	simulatePebblebedReactors(tickInterval);
@@ -252,7 +254,7 @@ function simulateTime(seconds, actual, testing) {
 	}
 	let ticks = seconds * 20;
 	let tickInterval = 50;
-	if (ticks > 1000 & !actual) {
+	if (ticks > 1000 && !actual) {
 		tickInterval += (ticks - 1000) / 20;
 		ticks = 1000;
 	}
@@ -287,5 +289,3 @@ function simulateTime(seconds, actual, testing) {
 function closeOfflineProgress() {
 	document.getElementById("offline_popup").style.display = "none";
 }
-
-var player = getDefaultData();

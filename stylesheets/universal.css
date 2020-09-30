@@ -1,3 +1,10 @@
+@font-face {
+	font-family: "Atomic";
+	src: url(../resources/fonts/Atomic.ttf) format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
 	align-items: center;
 	display: flex;
@@ -56,6 +63,13 @@ button:hover {
 	flex: 1 0;
 }
 
+.bold {
+	font-weight: bold;
+}
+.italic {
+	font-style: italic;
+}
+
 .popup {
 	display: flex;
 	left: 50%;
@@ -89,7 +103,6 @@ button:hover {
 .achcomplete > .tooltiptext {
 	bottom: 105%;
 	color: #88EE44;
-	data-html: true;
 	max-height: 5.6em;
 	max-width: 12.5vw;
 	min-height: 4.2em;
@@ -98,7 +111,6 @@ button:hover {
 .achlocked > .tooltiptext {
 	bottom: 105%;
 	color: #DE564D;
-	data-html: true;
 	max-height: 5.6em;
 	max-width: 12.5vw;
 	min-height: 4.2em;
@@ -171,9 +183,9 @@ button:hover {
 	width: 100%;
 }
 .navigation > div > .dropdown > div > a {
-	height: 52px;
-	display: flex;
 	align-items: center;
+	display: flex;
+	height: 52px;
 	transition: background 500ms;
 }
 .navigation > div > .dropdown > div > a > span {
@@ -183,10 +195,10 @@ button:hover {
 	margin-top: 4px;
 	width: 40px;
 }
-.navigation > div > .dropdown > div > a > span.icon-left {
+.navigation > div > .dropdown > div > a > .icon-left {
 	margin-left: 4px;
 }
-.navigation > div > .dropdown > div > a > span.icon-right {
+.navigation > div > .dropdown > div > a > .icon-right {
 	margin-left: auto;
 }
 .navigation > div > .dropdown > div > a > span > svg {
@@ -295,27 +307,24 @@ button:hover {
 }
 
 .minesdiv > .actions {
-	padding-bottom: 1em;
-	padding-left: 1em;
-	padding-right: 1em;
-	padding-top: 1em;
+	padding: 1em;
 }
 
 .minesdiv > .actions > button {
-	margin-top: 0.5em;
 	margin-bottom: 0.5em;
-	max-width: 50%;
+	margin-top: 0.5em;
 	max-height: 4.2em;
-	min-width: 50%;
+	max-width: 50%;
 	min-height: 4.2em;
+	min-width: 50%;
 }
 
 .trisodiv, .pebblebeddiv {
-	max-width: 30vw;
-	min-width: 30vw;
 	margin-bottom: 1.2vw;
 	margin-left: 0.6vw;
 	margin-right: 0.6vw;
+	max-width: 30vw;
+	min-width: 30vw;
 }
 
 .trisodiv > .title, .pebblebeddiv > .title {
@@ -346,8 +355,8 @@ button:hover {
 	min-height: 3.5em;
 }
 .pebblebeddiv > .body > .info {
-	max-height: 9.2em;
-	min-height: 9.2em;
+	max-height: 10em;
+	min-height: 10em;
 }
 
 .trisodiv > .body > .reprocess, .pebblebeddiv > .body > .fuelhandling {
@@ -360,8 +369,8 @@ button:hover {
 	min-height: 5.8em;
 }
 .pebblebeddiv > .body > .fuelhandling {
-	max-height: 5.8em;
-	min-height: 5.8em;
+	max-height: 8.2em;
+	min-height: 8.2em;
 }
 
 .trisodiv > .body > .reprocess > button {

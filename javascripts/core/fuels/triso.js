@@ -28,7 +28,9 @@ class TRISOFuel {
 		return this.depleted.mul(Decimal.pow(120, 3 * this.tier)).mul(120);
 	}
 	get energyPerPellet() {
-		return Decimal.pow(150, 3 * this.tier).mul(300);
+		return Decimal.pow(150, 3 * this.tier + 1)
+			.mul(Decimal.pow(1.6, player.reactors.pebblebeds[this.tier].amount))
+			.mul(2);
 	}
 
 	get canReprocessDepleted() {

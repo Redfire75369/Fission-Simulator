@@ -27,7 +27,7 @@
 			"version": "16.8",
 			"flowVersion": "0.53"
 		},
-		"propWrapperFunctions": [.
+		"propWrapperFunctions": [
 				"forbidExtraProps",
 				{
 					"property": "freeze",
@@ -269,8 +269,7 @@
 			}
 		],
 		"react/jsx-key": [
-			"warn",
-
+			"warn"
 		],
 		"react/jsx-no-duplicate-props": [
 			"error",

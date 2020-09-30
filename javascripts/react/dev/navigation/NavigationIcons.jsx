@@ -1,6 +1,21 @@
 function ArrowNavigationIcon() {
 	return <svg viewBox="0 0 448 512"><path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" className=""></path></svg>;
 }
+function BarsNavigationIcon() {
+	return <svg>
+		<g transform="translate(0,-284.29998)">
+			<path d="m 1.7146315,287.60681 a 1.0552077,1.1904392 0 0 1 -1.05086378,-1.19332 1.0552077,1.1904392 0 0 1 1.05599658,-1.18755 l -7.92e-4,1.19044 z" style= {{strokeWidth: "0.26443422"}}/>
+			<rect y="285.22339" x="1.9817531" height="2.3865027" width="8.7364941" style= {{strokeWidth: "0.25933951"}}/>
+			<path d="m 10.848779,285.22622 a 1.0552077,1.1904393 0 0 1 1.053096,1.19081 1.0552077,1.1904393 0 0 1 -1.053753,1.19006" style= {{strokeWidth: "0.26443422"}}/>
+			<path d="m 1.714631,296.07349 a 1.0552077,1.1904393 0 0 1 -1.05086376,-1.19333 1.0552077,1.1904393 0 0 1 1.05599656,-1.18754 l -7.92e-4,1.19044 z" style= {{strokeWidth: "0.26443422"}}/>
+			<rect y="293.69006" x="1.981753" height="2.3865027" width="8.7364941" style= {{strokeWidth: "0.25933951"}}/>
+			<path d="m 10.848778,293.69289 a 1.0552077,1.1904395 0 0 1 1.053096,1.19081 1.0552077,1.1904395 0 0 1 -1.053753,1.19007" style= {{strokeWidth: "0.26443422"}}/>
+			<path d="m 1.7146313,291.84015 a 1.0552077,1.1904393 0 0 1 -1.0508637,-1.19333 1.0552077,1.1904393 0 0 1 1.0559966,-1.18754 l -7.92e-4,1.19044 z" style= {{strokeWidth: "0.26443422"}}/>
+			<rect y="289.45673" x="1.981753" height="2.3865027" width="8.7364941" style= {{strokeWidth: "0.25933951"}}/>
+			<path d="m 10.848779,289.45956 a 1.0552077,1.1904395 0 0 1 1.053096,1.1908 1.0552077,1.1904395 0 0 1 -1.053753,1.19007" style= {{strokeWidth: "0.26443422"}}/>
+		</g>
+	</svg>;
+}
 function BellNavigationIcon() {
 	return <svg viewBox="0 0 28 28"><path d="M7.847 23.488C9.207 23.488 11.443 23.363 14.467 22.806 13.944 24.228 12.581 25.247 10.98 25.247 9.649 25.247 8.483 24.542 7.825 23.488L7.847 23.488ZM24.923 15.73C25.17 17.002 24.278 18.127 22.27 19.076 21.17 19.595 18.724 20.583 14.684 21.369 11.568 21.974 9.285 22.113 7.848 22.113 7.421 22.113 7.068 22.101 6.79 22.085 4.574 21.958 3.324 21.248 3.077 19.976 2.702 18.049 3.295 17.305 4.278 16.073L4.537 15.748C5.2 14.907 5.459 14.081 5.035 11.902 4.086 7.022 6.284 3.687 11.064 2.753 15.846 1.83 19.134 4.096 20.083 8.977 20.506 11.156 21.056 11.824 21.986 12.355L21.986 12.356 22.348 12.561C23.72 13.335 24.548 13.802 24.923 15.73Z"></path></svg>;
 }
@@ -25,18 +40,17 @@ function PlusNavigationIcon() {
 
 const navigationIcons = {
 	arrow: <ArrowNavigationIcon/>,
+	bars: <BarsNavigationIcon/>,
 	bell: <BellNavigationIcon/>,
 	bolt: <BoltNavigationIcon/>,
 	caret: <CaretNavigationIcon/>,
 	chevron: <ChevronNavigationIcon/>,
 	gear: <GearNavigationIcon/>,
 	messenger: <MessengerNavigationIcon/>,
-	plus: <PlusNavigationIcon/>,
+	plus: <PlusNavigationIcon/>
 };
 
 function NavigationIcon(props) {
 	const icon = navigationIcons[props.type];
-	return (
-		{icon}
-	);
+	return icon;
 }

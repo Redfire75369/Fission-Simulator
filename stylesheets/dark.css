@@ -1,5 +1,5 @@
 body {
-	background-color:#1C1C1C;
+	background-color: #1C1C1C;
 	color: #D0D0D0;
 }
 
@@ -42,6 +42,7 @@ button:hover {
 
 .navigation > div > a > svg {
 	fill: #D0D0D0;
+	stroke: #D0D0D0;
 }
 
 .navigation > div > .dropdown {
@@ -57,6 +58,7 @@ button:hover {
 }
 .navigation > div > .dropdown > div > a > span > svg {
 	fill: #D0D0D0;
+	stroke: #D0D0D0;
 }
 
 .energy {
@@ -163,15 +165,15 @@ button:hover {
 }
 
 .fuelhandlingautomationdiv > div > div > div > button {
-    border: 2px solid #000000;
+	background-color: #34B191;
+	border: 2px solid #000000;
     border-bottom-color: #111111;
     color: #dddddd;
-    background-color: #34B191;
 }
-.fuelhandlingautomationdiv > div > div > div > button.active {
+.fuelhandlingautomationdiv > div > div > div > .active {
     background-color: #005522;
 }
-.fuelhandlingautomationdiv > div > div > div > button.inactive {
+.fuelhandlingautomationdiv > div > div > div > .inactive {
     background-color: #332f40;
 }
 

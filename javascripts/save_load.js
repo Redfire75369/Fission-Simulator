@@ -37,7 +37,7 @@ function loadSave(save, imported = false) {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
 
-		if (save.version.beta < 6 || (save.version.beta === 6 && save.version.alpha < 7)) {
+		if (save.version.beta < 6 || (save.version.beta === 6 && save.version.alpha < 12)) {
 			if (imported) {
 				alert("The imported save is from a much older version and is thus, incompatible with the current version. The save has not been imported.");
 				return;

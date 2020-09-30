@@ -9,13 +9,13 @@ function NavigationDropdownComponent() {
 	const [unlockedCheats, setUnlockedCheats] = React.useState(false);
 
 	React.useEffect(function() {
-		setMenuHeight(dropdownRef.current?.firstChild?.offsetHeight);
-
 		const timerID = setInterval(function() {
-			setUnlockedMines(unlockedMines || player.energy.gte(250) || player.unlocked.mines);
+			setUnlockedMines(unlockedMines || player.energy.gte(1e50) || player.unlocked.mines);
 			setUnlockedAutomation(unlockedAutomation || player.reactors.pebblebeds[2].bought > 0);
 			setUnlockedPrestige(unlockedPrestige || player.unlocked.prestige);
 			setUnlockedCheats(cheatsEnabled);
+
+			setMenuHeight(dropdownRef.current?.firstChild?.offsetHeight);
 		}, 50);
 
 		return function() {
@@ -44,7 +44,7 @@ function NavigationDropdownComponent() {
 
 		return (
 			<a href="#" onClick={onClick} style={props.style}>
-				<span className="icon-button">{props.leftIcon}</span>
+				<span className="icon-left">{props.leftIcon}</span>
 				{props.children}
 				<span className="icon-right">{props.rightIcon}</span>
 			</a>
@@ -88,7 +88,7 @@ function NavigationItemComponent(props) {
 		});
 		Mousetrap.bind("tab", toggle);
 	}, []);
-	
+
 	function toggle() {
 		setOpen(!open);
 	}
@@ -106,7 +106,7 @@ function NavigationItemComponent(props) {
 
 function NavigationComponent() {
 	return (
-		<NavigationItemComponent icon={<NavigationIcon type="plus"/>}>
+		<NavigationItemComponent icon={<NavigationIcon type="bars"/>}>
 			<NavigationDropdownComponent/>
 		</NavigationItemComponent>
 	);

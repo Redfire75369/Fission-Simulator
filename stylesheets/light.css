@@ -9,32 +9,25 @@ button:hover {
 	cursor: pointer;
 }
 
-.navigation > button {
-	background-color: #FFFFFF;
-	border-color: #000000;
+.navigation > div > a > svg {
+	fill: #2F2F2F;
+	stroke: #2F2F2F;
+}
+.navigation > div > .dropdown {
+	background-color: #D0D0D0;
+	border: 2px solid #383838;
+	border-radius: 8px;
+}
+
+.navigation > div > .dropdown > div > a {
+	border: 1px solid #141414;
+	border-radius: 6px;
 	color: #202020;
-	transition: .2s;
+	text-decoration: none;
 }
-.navigation > button:hover {
-	background-color: #AAAAAA;
-	color: #FFFFFF;
-	transition-duration: 0.2s;
-}
-.navigation > button:active {
-	background-color: #FFFFFF;
-	color: #AAAAAA;
-}
-.navigation > button.navigation--nanite {
-	background-color: #0887CC;
-	border: 2px solid #020724;
-}
-.navigation > button.navigation--nanite:hover {
-	background-color: #020724;
-	color: #4848ef;
-}
-.navigation > button.navigation--active {
-	background-color: #202020;
-	color: #FFFFFF;
+.navigation > div > .dropdown > div > a > span > svg {
+	fill: #2F2F2F;
+	stroke: #2F2F2F;
 }
 
 .subtab > button {
@@ -186,10 +179,10 @@ button:hover {
 .fuelhandlingautomationdiv > div > div > div > button {
     background-color: #34B191;
 }
-.fuelhandlingautomationdiv > div > div > div > button.active {
+.fuelhandlingautomationdiv > div > div > div > active {
     background-color: #339965;
 }
-.fuelhandlingautomationdiv > div > div > div > button.inactive {
+.fuelhandlingautomationdiv > div > div > div > inactive {
     background-color: #878889;
 }
 

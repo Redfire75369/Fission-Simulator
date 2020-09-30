@@ -21,7 +21,7 @@ function MinesComponent() {
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
 			setActive(player.navigation.production === "mines");
-			setUnlockedRequirement(player.energy.gt(250) && !player.unlocked.mines);
+			setUnlockedRequirement(player.energy.gt(1e580) && !player.unlocked.mines);
 			setUnlocked(player.unlocked.mines);
 			setUnlockedSalvage(player.mines.tier > 0);
 			setBought(player.mines.tier > -1);
@@ -50,7 +50,7 @@ function MinesComponent() {
 				<div style={{display: bought ? "" : "none"}}>
 					<div className="flex-row info">
 						<div className="flex-col horizontal-center">
-							<div><b>Information</b></div>
+							<div className="bold">Information</div>
 							<div>Active: {notation(activeMines)}</div>
 							<div>Depleted: {notation(depleted)}</div>
 						</div>

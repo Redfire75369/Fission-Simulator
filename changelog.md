@@ -1,5 +1,4 @@
 # Changelog
-
 This changelog format is based on the spec described on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).  
 This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
@@ -12,6 +11,19 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Modified
 ### Removed
 -->
+
+## [v0.6.12] - 30/9/20 **PR**
+### Added
+- Mining fuel manually
+- Buying fuel with energy
+
+### Modified
+- Fixed bug where automation, prestige and cheats tab would not be shown
+- Made the game unfold more at the beginning
+	- Mines are unlocked later
+
+### Removed
+
 
 ## [v0.6.11] - 26/9/20
 ### Added

@@ -4,3 +4,5 @@ ReactDOM.render(<AchievementsTabComponent/>, document.getElementById("achievemen
 ReactDOM.render(<OptionsTabComponent/>, document.getElementById("options_tab"));
 ReactDOM.render(<AutomationTabComponent/>, document.getElementById("automation_tab"));
 ReactDOM.render(<PrestigeTabComponent/>, document.getElementById("prestige_tab"));
+ReactDOM.render(<NavigationComponent/>, document.getElementById("navigation"));
+

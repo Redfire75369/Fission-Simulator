@@ -57,7 +57,7 @@ function TRISOFuelComponent(props) {
 
 			<div className="flex-row body">
 				<div className="flex-col vertical-top fuelinfo">
-					<div><b>Fuel Pebbles</b></div>
+					<div className="bold">Fuel Pebbles</div>
 					<div>Enriched: {notation(enriched)}</div>
 					<div>Depleted: {notation(depleted)}</div>
 				</div>
