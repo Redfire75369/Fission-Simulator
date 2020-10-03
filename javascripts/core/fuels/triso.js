@@ -28,13 +28,13 @@ class TRISOFuel {
 		return this.depleted.mul(Decimal.pow(120, 3 * this.tier)).mul(120);
 	}
 	get energyPerPellet() {
-		return Decimal.pow(150, 3 * this.tier + 1)
-			.mul(Decimal.pow(1.6, player.reactors.pebblebeds[this.tier].amount))
+		return Decimal.pow(150, this.tier + 1)
+			.mul(Decimal.pow(2.2, player.reactors.pebblebeds[this.tier].bought))
 			.mul(2);
 	}
 
 	get canReprocessDepleted() {
-		return this.depleted.gte(this.tier === 2 ? prestigeGoal() : "1") && player.energy.gt(this.reprocessEnergyCost) && !document.getElementById("fuel_triso_reprocess" + (this.tier + 1)).disabled;
+		return this.depleted.gte(this.tier === 2 ? prestigeGoal() : 1) && player.energy.gt(this.reprocessEnergyCost) && !document.getElementById("fuel_triso_reprocess" + (this.tier + 1)).disabled;
 	}
 	reprocessDepleted() {
 		if (this.canReprocessDepleted) {

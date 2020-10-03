@@ -60,9 +60,9 @@ function getDefaultData() {
 		},
 		reactors: {
 			pebblebeds: [
-				new PebblebedFissionReactor(0, 1, 2, 10),
-				new PebblebedFissionReactor(1, 4, 6, 10),
-				new PebblebedFissionReactor(2, 15, 10, 10)
+				new PebblebedFissionReactor(0, 1, 3, 10),
+				new PebblebedFissionReactor(1, 4, 5, 10),
+				new PebblebedFissionReactor(2, 12, 10, 10)
 			]
 		},
 

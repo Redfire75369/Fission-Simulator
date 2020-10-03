@@ -7,7 +7,6 @@ function PebblebedFissionReactorComponent(props) {
   const [unlockedMines, setUnlockedMines] = React.useState(false);
   const [amount, setAmount] = React.useState(zero);
   const [bought, setBought] = React.useState(0);
-  const [canBuyFuel, setCanBuyFuel] = React.useState(false);
   const [canLoadFuel, setCanLoadFuel] = React.useState(false);
   const [canEjectWaste, setCanEjectWaste] = React.useState(false);
   const [fuel, setFuel] = React.useState(zero);
@@ -22,11 +21,10 @@ function PebblebedFissionReactorComponent(props) {
   React.useEffect(function () {
     const timerID = setInterval(function () {
       setUnlocked(props.tier === 0 || player.reactors.pebblebeds[props.tier - 1].bought > 0);
-      setUnlockedFuelHandling(player.energy.gt(600));
+      setUnlockedFuelHandling(unlockedFuelHandling || player.energy.gte(600));
       setUnlockedMines(player.mines.tier > -1);
       setAmount(player.reactors.pebblebeds[props.tier].amount);
       setBought(player.reactors.pebblebeds[props.tier].bought);
-      setCanBuyFuel(player.reactors.pebblebeds[props.tier].canBuyFuel);
       setCanLoadFuel(player.fuels.triso[props.tier].enriched.gte(1) && player.reactors.pebblebeds[props.tier].fuel.add(player.reactors.pebblebeds[props.tier].spent).add(1).lt(player.reactors.pebblebeds[props.tier].totalCapacity));
       setCanEjectWaste(player.reactors.pebblebeds[props.tier].spent.gte(1));
       setFuel(player.reactors.pebblebeds[props.tier].fuel);
@@ -43,10 +41,6 @@ function PebblebedFissionReactorComponent(props) {
 
   function mineFuel() {
     player.reactors.pebblebeds[props.tier].mineFuel();
-  }
-
-  function buyFuel() {
-    player.reactors.pebblebeds[props.tier].buyFuel();
   }
 
   function loadFuel() {
@@ -101,9 +95,6 @@ function PebblebedFissionReactorComponent(props) {
     onClick: mineFuel,
     className: bought > 0 ? "pebblebedbtn buy" : "pebblebedbtn locked"
   }, "Mine Enriched ", type, " Pellets"), /*#__PURE__*/React.createElement("button", {
-    onClick: buyFuel,
-    className: canBuyFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"
-  }, "Buy Max Enriched ", type, " Pellets"), /*#__PURE__*/React.createElement("button", {
     onClick: loadFuel,
     className: canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked",
     style: {

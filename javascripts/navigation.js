@@ -1,8 +1,3 @@
-function toggleNavigation() {
-	document.getElementById("navigation").style.display = "block";
-	document.getElementById("navi_open").style.display = "none";
-}
-
 function showNaviTab(tab) {
 	document.getElementById(player.navigation.naviTab).style.display = "none";
 	document.getElementById(tab).style.display = "";

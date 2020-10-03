@@ -15,15 +15,14 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ## [v0.6.12] - 30/9/20 **PR**
 ### Added
 - Mining fuel manually
-- Buying fuel with energy
 
 ### Modified
 - Fixed bug where automation, prestige and cheats tab would not be shown
+- Fixed fuel handling buttons disappearing below 600 energy after initially unlocked
 - Made the game unfold more at the beginning
 	- Mines are unlocked later
 
 ### Removed
-
 
 ## [v0.6.11] - 26/9/20
 ### Added

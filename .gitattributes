@@ -10,6 +10,7 @@
 
 *.babelrc text
 *.csslintrc text
+*.editorconfig text
 *.eslintrc text
 *.eslintignore text
 *.gitattributes text

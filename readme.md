@@ -3,17 +3,7 @@
 
 # Fission Simulator
 Fission Simulator is an incremental game made with HTML5, CSS3, JS and JSX. It is a game about Nuclear Physics and various nuclear processes. As such, it aims to be complex while approachable so that many can enjoy it while also appreciating the beauty of nuclear physics.
-There are many types of fission and fusion reactors which this game spreads awareness of. Some parts of this game are based in reality while others are not, for the purpose of engaging players. Below, some of the game's mechanics are listed.
-
-## Mechanics
-### Pebblebed Fission Reactors
-This is the most simple variant of the fission reactor. Instead of large solid fuel pellets, they use pellets made of graphite, enclosing a core of fission fuel. They also use gas as a coolant instead of water.
-- Each reactor has a fuel capacity and burn rate
-- Both enriched and depleted fuel count towards filling the total fuel capacity
-- Enriched fuel can be inserted and depleted fuel can be ejected from the reactor
-- Based on the burn rate of the reactor, enriched fuel is turned into depleted fuel, producing energy
-
-### Gas Coolants
+There are many types of fission and fusion reactors which this game spreads awareness of. Some parts of this game are based in reality while others are not, for the purpose of engaging players. Currently, the game is in development and looking for testers to help balance it.
 
 ## Credits
 | File Path | Creator | Website |

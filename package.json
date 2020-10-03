@@ -3,6 +3,7 @@
 	"version": "0.6.12",
 	"description": "Fission Simulator is an incremental game about nuclear fission, reactors and nuclear physics.",
 	"main": "javascripts/server.js",
+
 	"homepage": "https://github.com/Redfire75369/Fission-Simulator#readme",
 	"repository": {
 		"type": "git",
@@ -26,20 +27,23 @@
 		}
 	],
 	"license": "UNLICENSED",
+
 	"browser": true,
 	"engines": {
 		"node": "^12.16.1"
 	},
+
 	"scripts": {
-		"start": "nodemon .",
+		"dev": "nodemon .",
 		"setup": "npm ci",
 		"compile": "npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist",
 		"eslint": "eslint \"javascripts/**/*\" || true",
 		"csslint": "csslint . --exclude-list=stylesheets/katex.css || true",
 		"lint": "npm run eslint && npm run csslint",
 		"build": "npm run lint && npm run compile  ",
-		"count": "git ls-files | xargs wc -l || true"
+		"count": "git ls-files | xargs wc -l"
 	},
+
 	"dependencies": {
 		"express": "^4.17.1",
 		"nodemon": "^2.0.4"

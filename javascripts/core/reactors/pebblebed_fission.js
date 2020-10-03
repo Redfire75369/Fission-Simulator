@@ -16,21 +16,11 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 	get fuelCost() {
 		return Decimal.pow(150, 2 * this.tier + 1);
 	}
-	get canBuyFuel() {
-		return player.energy.gte(this.fuelCost);
-	}
 
 	mineFuel() {
 		if (player.reactors.pebblebeds[this.tier].bought > 0 && this.totalCapacity.gte(this.fuel.add(this.spent).add(1))) {
-			this.fuel = this.fuel.add(1);
-		}
-	}
-	buyFuel() {
-		if (this.canBuyFuel) {
-			let addedFuel = this.totalCapacity.sub(this.fuel.add(this.spent))
-			addedFuel = player.energy.gte(this.fuelCost.mul(addedFuel)) ? addedFuel : player.energy.div(this.fuelCost);
-			player.energy = player.energy.sub(this.fuelCost.mul(addedFuel));
-			this.fuel = this.fuel.add(addedFuel);
+			const minedFuel = this.amount.eq(1) ? 1 : this.amount.add(2).sqrt();
+			this.fuel = this.fuel.add(minedFuel).min(this.totalCapacity.sub(this.spent));
 		}
 	}
 	loadFuel() {
@@ -61,10 +51,9 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 		if (player.reactors.pebblebeds[this.tier].bought < 1) {
 			return zero;
 		}
-		const factor = this.tier === 0 ? 2.1 : this.tier === 1 ? 1.005 : 1.001;
-		return Decimal.pow(1.4, this.bought + this.tier)
-			/*.mul(this.fuel.max(factor).log(factor))*/
-			.max(1).div(player.fuels.triso[this.tier].lifetime);
+		return Decimal.pow(1.8, this.bought + this.tier + 1)
+			.mul(this.amount)
+			.div(player.fuels.triso[this.tier].lifetime);
 	}
 
 	get heating() {
@@ -81,8 +70,8 @@ function resetPebblebedFissionReactors() {
 	}
 }
 
-function pebblebedFissionFuelUsage(tier) {
-	return player.reactors.pebblebeds[tier].fuel.min(player.reactors.pebblebeds[tier].burnRate).max(0);
+function pebblebedFissionFuelUsage(tier, tickInterval = 50) {
+	return player.reactors.pebblebeds[tier].fuel.min(player.reactors.pebblebeds[tier].burnRate.mul(tickInterval / 1000)).max(0);
 }
 
 function pebblebedFissionEnergyGain(tier) {
@@ -102,8 +91,8 @@ function simulatePebblebedReactors(tickInterval = 50) {
 
 	for (let tier = 0; tier < 3; tier++) {
 		if (player.reactors.pebblebeds[tier].fuel.gt(0)) {
-			player.reactors.pebblebeds[tier].spent = player.reactors.pebblebeds[tier].spent.add(pebblebedFissionFuelUsage(tier).mul(tickInterval / 1000));
-			player.reactors.pebblebeds[tier].fuel = player.reactors.pebblebeds[tier].fuel.sub(pebblebedFissionFuelUsage(tier).mul(tickInterval / 1000)).max(0);
+			player.reactors.pebblebeds[tier].spent = player.reactors.pebblebeds[tier].spent.add(pebblebedFissionFuelUsage(tier));
+			player.reactors.pebblebeds[tier].fuel = player.reactors.pebblebeds[tier].fuel.sub(pebblebedFissionFuelUsage(tier)).max(0);
 		}
 	}
 
