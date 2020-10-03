@@ -71,7 +71,7 @@ function resetPebblebedFissionReactors() {
 }
 
 function pebblebedFissionFuelUsage(tier, tickInterval = 50) {
-	return player.reactors.pebblebeds[tier].fuel.min(player.reactors.pebblebeds[tier].burnRate.mul(tickInterval / 1000)).max(0);
+	return player.reactors.pebblebeds[tier].fuel.min(player.reactors.pebblebeds[tier].burnRate).max(0);
 }
 
 function pebblebedFissionEnergyGain(tier) {
@@ -91,8 +91,8 @@ function simulatePebblebedReactors(tickInterval = 50) {
 
 	for (let tier = 0; tier < 3; tier++) {
 		if (player.reactors.pebblebeds[tier].fuel.gt(0)) {
-			player.reactors.pebblebeds[tier].spent = player.reactors.pebblebeds[tier].spent.add(pebblebedFissionFuelUsage(tier));
-			player.reactors.pebblebeds[tier].fuel = player.reactors.pebblebeds[tier].fuel.sub(pebblebedFissionFuelUsage(tier)).max(0);
+			player.reactors.pebblebeds[tier].spent = player.reactors.pebblebeds[tier].spent.add(pebblebedFissionFuelUsage(tier).mul(tickInterval / 1000));
+			player.reactors.pebblebeds[tier].fuel = player.reactors.pebblebeds[tier].fuel.sub(pebblebedFissionFuelUsage(tier).mul(tickInterval / 1000)).max(0);
 		}
 	}
 

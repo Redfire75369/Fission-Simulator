@@ -12,12 +12,14 @@ function NavigationDropdownComponent() {
       setUnlockedAutomation(unlockedAutomation || player.reactors.pebblebeds[2].bought > 0);
       setUnlockedPrestige(unlockedPrestige || player.unlocked.prestige);
       setUnlockedCheats(cheatsEnabled);
-      setMenuHeight(dropdownRef.current?.firstChild?.offsetHeight);
     }, 50);
     return function () {
       clearInterval(timerID);
     };
   }, []);
+  React.useEffect(function () {
+    setMenuHeight(dropdownRef.current?.firstChild?.offsetHeight);
+  }, [unlockedMines, unlockedAutomation, unlockedPrestige, unlockedCheats]);
 
   function calculateHeight(el) {
     const height = el.offsetHeight;
