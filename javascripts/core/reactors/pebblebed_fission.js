@@ -13,10 +13,6 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 		this.spent = zero;
 	}
 
-	get fuelCost() {
-		return Decimal.pow(150, 2 * this.tier + 1);
-	}
-
 	mineFuel() {
 		if (player.reactors.pebblebeds[this.tier].bought > 0 && this.totalCapacity.gte(this.fuel.add(this.spent).add(1))) {
 			const minedFuel = this.amount.eq(1) ? 1 : this.amount.add(2).sqrt();
@@ -51,7 +47,7 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 		if (player.reactors.pebblebeds[this.tier].bought < 1) {
 			return zero;
 		}
-		return Decimal.pow(1.8, this.bought + this.tier + 1)
+		return Decimal.pow(intermediaryVariables.burnRateBoughtMul, this.bought + this.tier + 1)
 			.mul(this.amount)
 			.div(player.fuels.triso[this.tier].lifetime);
 	}

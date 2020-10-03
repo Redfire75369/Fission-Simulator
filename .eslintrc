@@ -234,7 +234,7 @@
 		"no-invalid-regexp": "error",
 		"no-irregular-whitespace": "warn",
 		"no-mixed-spaces-and-tabs": "warn",
-		"no-redeclare": "warn",
+		"no-redeclare": "off",
 		"no-regex-spaces": "warn",
 		"no-self-assign": "warn",
 		"no-setter-return": "warn",

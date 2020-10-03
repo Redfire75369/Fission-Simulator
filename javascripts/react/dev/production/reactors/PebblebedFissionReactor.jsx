@@ -23,7 +23,9 @@ function PebblebedFissionReactorComponent(props) {
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
 			setUnlocked(props.tier === 0 || player.reactors.pebblebeds[props.tier - 1].bought >  0);
-			setUnlockedFuelHandling(unlockedFuelHandling || player.energy.gte(600));
+			setUnlockedFuelHandling(function(prevUnlockedFuelHandling) {
+				return prevUnlockedFuelHandling || player.energy.gte(600);
+			});
 			setUnlockedMines(player.mines.tier > -1);
 			setAmount(player.reactors.pebblebeds[props.tier].amount);
 			setBought(player.reactors.pebblebeds[props.tier].bought);
@@ -39,6 +41,10 @@ function PebblebedFissionReactorComponent(props) {
 			setTotalCapacity(player.reactors.pebblebeds[props.tier].totalCapacity);
 			setGain(getReactorGain(props.tier));
 		}, 50);
+
+		return function() {
+			clearInterval(timerID);
+		};
 	}, []);
 
 	function mineFuel() {
@@ -65,7 +71,7 @@ function PebblebedFissionReactorComponent(props) {
 					i
 					<div className="tooltiptext" style={{fontSize: "90%", maxWidth: "15vw", minWidth: "15vw", padding: "1vw",}}>
 						{type} Pebblebed Reactors convert Enriched fuel into Spent Fuel, producing energy.<br/>
-						{unlockedMines ? "Your mines are producing {notation(gain)} {type} reactors every second." : ""}
+						{unlockedMines ? <>Your mines are producing {notation(gain)} {type} reactors every second.</> : <></>}
 					</div>
 				</div>
 			</div>

@@ -244,6 +244,12 @@ function updateGame(tickInterval = 50) {
 	//simulateFuelStorage(tickInterval);
 	//simulateDecayIsotope("th227", tickInterval);
 	checkAchievementCompletion();
+	if (leverMaxAll) {
+		for (let i = 0; i < 3; i++) {
+			player.reactors.pebblebeds[i].mineFuel();
+			player.reactors.pebblebeds[i].ejectWaste();
+		}
+	}
 }
 
 /* Offline Progress */

@@ -1,8 +1,17 @@
 var leverMaxAll = false;
 var cheatsEnabled = false;
 
+const intermediaryVariables = {
+	burnRateBoughtMul: 1.8,
+	lifetimeBoughtDiv: 1.8,
+	lifetimeTierMul: 1.6,
+	energyTierMul: 150,
+	energyBoughtMul: 2.2
+};
+
 function enableCheatsTab() {
 	cheatsEnabled = true;
+
 	/*clearInterval(saveGameLoop);
 	setInterval(function() {
 		localStorage.removeItem("fissionSimSave1");
@@ -70,14 +79,20 @@ function harderReset() {
 }
 
 function testBalancing() {
-	for (let i = 0; i < 8; i++) {
+	/*for (let i = 0; i < 8; i++) {
 		mineUpgradeCosts[i] = Decimal.pow(10, document.getElementById("mine" + i).value);
 		mineSoftCaps[i] = Decimal.pow(10, document.getElementById("mines" + i).value);
-	}
+	}*/
 	for (let i = 0; i < 3; i++) {
 		player.reactors.pebblebeds[i].startCost = Decimal.pow(10, document.getElementById("reactor" + i).value);
 		player.reactors.pebblebeds[i].scaleCost = Decimal.pow(10, document.getElementById("reactors" + i).value);
 	}
+
+	intermediaryVariables.burnRateBoughtMul = parseFloat(document.getElementById("burnrate1").value);
+	intermediaryVariables.lifetimeBoughtDiv = parseFloat(document.getElementById("lifetime1").value);
+	intermediaryVariables.lifetimeTierMul = parseFloat(document.getElementById("lifetime2").value);
+	intermediaryVariables.energyTierMul = parseFloat(document.getElementById("energy_per1").value);
+	intermediaryVariables.energyBoughtMul = parseFloat(document.getElementById("energy_per2").value);
 }
 
 document.getElementById("cheats_tab").style.display = "none";
