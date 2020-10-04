@@ -1,22 +1,22 @@
-function rot(s, i) {
+/*function rot(s, i) {
 	return s.replace(/[a-zA-Z]/g, function (c) {
 		return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + i) ? c : c - 26);
 	});
-}
+}*/
 
 function getSaveString() {
 	return LZString.compressToBase64(JSON.stringify(player));
 }
 
 function getSave() {
-	return localStorage.getItem("fissionSimSave1");
+	return localStorage.getItem("FissionSimulatorSave1");
 }
 function saveGame() {
 	try {
-		localStorage.setItem("fissionSimSave1", getSaveString());
+		localStorage.setItem("FissionSimulatorSave1", getSaveString());
 	} catch(err) {
-		console.log(err);
-		console.log("Game failed to save");
+		console.log("Saving Error:");
+		console.error(err);
 	}
 }
 
@@ -24,6 +24,10 @@ function loadSave(save, imported = false) {
 	try {
 		if (save === undefined) {
 			save = getSave();
+		}
+		if (save === null) {
+			player = getDefaultData();
+			return;
 		}
 		save.trim();
 
@@ -33,21 +37,25 @@ function loadSave(save, imported = false) {
 			save = JSON.parse(LZString.decompressFromBase64(save));
 		}
 
-		if (save.version.beta < 6 || (save.version.beta == 6 && save.version.alpha < 3)) {
+		if (save.version.beta < 6 || (save.version.beta === 6 && save.version.alpha < 12)) {
 			if (imported) {
 				alert("The imported save is from a much older version and is thus, incompatible with the current version. The save has not been imported.");
 				return;
 			}
 			alert("Your save is from a much older version and is thus, incompatible with the current version. Your save has been cleared.");
 			localStorage.removeItem("fissionSimSave1");
-			save = JSON.parse(LZString.decompressFromBase64(LZString.compressToBase64(JSON.stringify(getDefaultData()))));
+			player = getDefaultData();
+			return;
 		}
 
 		if (save !== undefined) {
 			checkAssign(getDefaultData(), save, []);
 
-			if (player.navigation.production === "fuel_subtab") {
-				player.navigation.production = "reactors_subtab";
+			if (typeof player.options.notation === "string") {
+				player.options.notation = notations.indexOf(player.options.notation);
+			}
+			if (typeof player.options.theme === "string") {
+				player.options.theme = themes.indexOf(player.options.theme);
 			}
 			player.version = getDefaultData().version;
 		} else {
@@ -57,12 +65,15 @@ function loadSave(save, imported = false) {
 			alert("Save imported successfully.");
 		}
 	} catch(err) {
-		console.log(err);
 		if (imported) {
+			console.log("Save Import Error:");
 			alert("Error: Imported save is in an invalid format, please make sure you've copied the save correctly and aren't just typing gibberish.");
 		} else {
-			console.log("The save didn't load.");
+			console.log("Save Loading Error:");
+			alert("The game has encountered a fatal error while loading. Please report this bug in the discord as soon as possible. The next prompt will contain debug information regarding this. Please include that in the bug report.");
+			alert("--DEBUG Information--\n" + err.stack);
 		}
+		console.error(err);
 	}
 }
 
@@ -72,7 +83,7 @@ function checkAssign(check, assignFrom, assignTo = []) {
 			for (let i = 0; i < assignFrom.length; i++) {
 				checkAssign(check[i], assignFrom[i], assignTo.concat([i]));
 			}
-		} else if (typeof check == "object" && !checkObj(check)) {
+		} else if (typeof check === "object" && !checkObj(check)) {
 			for (let i = 0, ii = Object.keys(check); i < ii.length; i++) {
 				checkAssign(check[ii[i]], assignFrom[ii[i]], assignTo.concat([ii[i]]));
 			}
@@ -102,51 +113,68 @@ function checkAssign(check, assignFrom, assignTo = []) {
 function checkObj(obj) {
 	return obj instanceof Decimal
 		|| obj instanceof Array
-		|| obj instanceof GenericEnergyProducer
+		|| obj instanceof GenericProducer
+		|| obj instanceof GenericAutomation
+		|| obj instanceof GenericActionAutomation
 		|| obj instanceof GenericUpgrade
 		|| obj instanceof TRISOFuel
 		|| obj instanceof Mines;
 }
 
-function objectify(x, type) {
-	if (type instanceof Decimal) {
-		return new Decimal(x);
-	} else if (type instanceof TRISOFuel) {
-		let ret = new TRISOFuel(type.tier);
-		ret.enriched = new Decimal(x.enriched);
-		ret.depleted = new Decimal(x.depleted);
+function objectify(obj, check) {
+	if (check instanceof Decimal) {
+		return new Decimal(obj);
+	} else if (check instanceof TRISOFuel) {
+		let ret = new TRISOFuel(check.tier);
+		ret.enriched = new Decimal(obj.enriched);
+		ret.depleted = new Decimal(obj.depleted);
 		return ret;
-	} else if (type instanceof Mines) {
+	} else if (check instanceof Mines) {
 		let ret = new Mines();
-		ret.tier = x.tier;
-		ret.amount = new Decimal(x.amount);
-		ret.depleted = new Decimal(x.depleted);
-		ret.depletion = new Decimal(x.depletion);
-		ret.ratio = x.ratio;
+		ret.tier = obj.tier;
+		ret.amount = new Decimal(obj.amount);
+		ret.depleted = new Decimal(obj.depleted);
+		ret.depletion = new Decimal(obj.depletion);
+		ret.ratio = obj.ratio;
 		return ret;
-	} else if (type instanceof PebblebedFissionReactor) {
-		let ret = new PebblebedFissionReactor(type.tier, type.startCost.log10(), type.scaleCost.log10());
-		ret.amount = new Decimal(x.amount);
-		ret.bought = x.bought;
-		ret.fuel = new Decimal(x.fuel);
-		ret.spent = new Decimal(x.spent);
+	} else if (check instanceof PebblebedFissionReactor) {
+		let ret = new PebblebedFissionReactor(check.tier, check.startCost.log10(), check.scaleCost.log10());
+		ret.amount = new Decimal(obj.amount);
+		ret.bought = obj.bought;
+		ret.fuel = new Decimal(obj.fuel);
+		ret.spent = new Decimal(obj.spent);
 		return ret;
-	/*} else if (type instanceof TurbineBlade) {
-		let ret = new TurbineBlade(x.name, x.efficiency, x.expansion, x.speed);
-		ret.length = x.length;
-		return ret;*/
-	} else if (type instanceof TurbineNaniteUpgrade) {
+	/* } else if (check instanceof TurbineBlade) {
+		let ret = new TurbineBlade(obj.name, obj.efficiency, obj.eobjpansion, obj.speed);
+		ret.length = obj.length;
+		return ret; */
+	} else if (check instanceof TurbineNaniteUpgrade) {
 		let ret = new TurbineNaniteUpgrade();
-		ret.bought = x.bought;
+		ret.bought = obj.bought;
 		return ret;
-	} else if (type instanceof NaniteUpgrade) {
-		let ret = new NaniteUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
-		ret.bought = x.bought;
+	} else if (check instanceof NaniteUpgrade) {
+		let ret = new NaniteUpgrade(check.id, check.startCost, check.tiers, check.scaleCost);
+		ret.bought = obj.bought;
 		return ret;
-	} else if (type instanceof MeltdownUpgrade) {
-		let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
-		ret.bought = x.bought;
+	} else if (check instanceof MeltdownUpgrade) {
+		let ret = new MeltdownUpgrade(check.id, check.startCost, check.tiers, check.scaleCost);
+		ret.bought = obj.bought;
+		return ret;
+	} else if (check instanceof PebblebedBuyAutomation) {
+		let ret = new PebblebedBuyAutomation(obj.interval, check.tier);
+		ret.cooldown = obj.cooldown;
+		ret.active = obj.active;
+		return ret;
+	} else if (check instanceof PebblebedFuelAutomation) {
+		let ret = new PebblebedFuelAutomation(obj.interval, check.tier);
+		ret.cooldown = obj.cooldown;
+		ret.active = obj.active;
+		return ret;
+	} else if (check instanceof TRISOReprocessAutomation) {
+		let ret = new TRISOReprocessAutomation(obj.interval, check.tier);
+		ret.cooldown = obj.cooldown;
+		ret.active = obj.active;
 		return ret;
 	}
-	return x;
+	return obj;
 }

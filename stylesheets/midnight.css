@@ -31,12 +31,6 @@ body {
 	color: #FFFFFF;
 }
 
-.optionsbtn {
-	background-color: #000000;
-	border: none;
-	color: #FFFFFF;
-}
-
 .energy {
 	color: #FFFFFF;
 	font-size: 25px;
@@ -58,6 +52,12 @@ body {
 	color: #FFFFFF;
 }
 
+.optionsbtn {
+	background-color: #000000;
+	border: none;
+	color: #FFFFFF;
+}
+ 
 .naniteup {
 	border: none;
 }
@@ -83,7 +83,6 @@ body {
 	border: none;
 	color: #FFFFFF;
 }
-#meltdown:hover {}
 
 .meltdownup {
 	border: none;

@@ -1,5 +1,5 @@
 body {
-	background-color:#1C1C1C;
+	background-color: #1C1C1C;
 	color: #D0D0D0;
 }
 
@@ -40,11 +40,25 @@ button:hover {
 	color: #D0D0D0;
 }
 
-.optionsbtn {
-	background-color: #455A64;
-	border: 2px solid #E8E8E8;
-	border-radius: 2px;
-	color: #D0D0D0;
+.navigation > div > a > svg {
+	fill: #D0D0D0;
+	stroke: #D0D0D0;
+}
+
+.navigation > div > .dropdown {
+	background-color: #242526;
+	border: 2px solid #474A4D;
+	border-radius: 8px;
+}
+
+.navigation > div > .dropdown > div > a {
+	border: 1px solid #4A5967;
+	color: #E0E0E0;
+	text-decoration: none;
+}
+.navigation > div > .dropdown > div > a > span > svg {
+	fill: #D0D0D0;
+	stroke: #D0D0D0;
 }
 
 .energy {
@@ -68,12 +82,10 @@ button:hover {
 	color: #D0D0D0;
 }
 
-.reprocessbar {
-	background-color: rgba(0, 255, 0, 0.3);
-}
 .allocationbtn {
-	background: #FFFFFF;
-	border: 2px solid #000000;
+	background-color: #344445;
+	border: 2px solid #FFFFFF;
+	color: #FFFFFF;
 }
 .allocationbar {
 	background-color: #34D846;
@@ -93,10 +105,89 @@ button:hover {
 	color: #FFFFFF;
 }
 
-.allocationbtn {
-	background-color: #344445;
-	border: 2px solid #FFFFFF;
-	color: #FFFFFF;
+.trisodiv, .pebblebeddiv {
+	background-color: #223344 !important;
+	border: 2px solid #000000 !important;
+}
+
+.trisodiv > .title, .pebblebeddiv > .title {
+	background-color: #14213D !important;
+}
+
+.trisodiv > .title > .type, .pebblebeddiv > .title > .type {
+	color: #C5861E !important;
+}
+.trisodiv > .title > .info, .pebblebeddiv > .title > .info {
+	background-color: #C5861E !important;
+	color: #14213D !important;
+}
+
+.trisodiv > .body > .reprocess > button > div {
+	background-color: #00FF00;
+	opacity: 0.3;
+}
+
+.trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
+	background-color: #000000 !important;
+}
+.trisodiv > .fuelbar > div > div > div, .pebblebeddiv > .fuelbar > div > div > div {
+	background-color: #A5A5A5 !important;
+}
+.trisodiv > .fuelbar > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div {
+	background-color: #BB210D !important;
+}
+.trisodiv > .fuelbar > div > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div > div {
+	background-color: #8BC152 !important;
+}
+
+.trisobtn.buy, .pebblebedbtn.buy {
+	background-color: #B5B5B5 !important;
+	border: 2px solid #8BC152 !important;
+	color: #000000 !important;
+}
+.trisobtn.locked, .pebblebedbtn.locked {
+	background-color: #515151 !important;
+	border: 2px solid #BB210D !important;
+	color: #000000 !important;
+}
+
+.fuelhandlingautomationdiv {
+    background: #221133;
+    border: 3px solid black;
+}
+
+.fuelhandlingautomationdiv > div > div > .cooldown {
+    background-color: #000000;
+    border: 2px solid #000000;
+}
+.fuelhandlingautomationdiv > div > div > .cooldown > div {
+    background-color: #FFFFFF;
+}
+
+.fuelhandlingautomationdiv > div > div > div > button {
+	background-color: #34B191;
+	border: 2px solid #000000;
+    border-bottom-color: #111111;
+    color: #dddddd;
+}
+.fuelhandlingautomationdiv > div > div > div > .active {
+    background-color: #005522;
+}
+.fuelhandlingautomationdiv > div > div > div > .inactive {
+    background-color: #332f40;
+}
+
+.options > div > button {
+	background-color: #455A64;
+	border: 2px solid #E8E8E8;
+	border-radius: 2px;
+	color: #D0D0D0;
+}
+
+.prestigebtn {
+	background-color: #202532;
+	border: 2px solid #88FF10;
+	color: #88FF10;
 }
 
 .naniteup {

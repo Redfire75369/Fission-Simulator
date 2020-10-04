@@ -1,5 +1,4 @@
 # Changelog
-
 This changelog format is based on the spec described on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).  
 This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
@@ -13,9 +12,81 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.12] - 30/9/20 **PR**
+### Added
+- Mining fuel manually
+
+### Modified
+- Fixed bug where automation, prestige and cheats tab would not be shown
+- Fixed fuel handling buttons disappearing below 600 energy after initially unlocked
+- Made the game unfold more at the beginning
+	- Mines are unlocked later
+
+### Removed
+
+## [v0.6.11] - 26/9/20
+### Added
+- ">" and "<" Keybind to open and close navigation respectively
+- A few achievements
+
+### Modified
+- Redesigned Navigation
+- Fixed bug where negative fuel could be stored
+- Fixed bug where flow rate affected capacity before prestige
+- Converted all React class components to functional components using React hooks
+
+### Removed
+- Subtab Navigation Buttons in Production Tab
+
+## [v0.6.10] - 13/9/20
+### Added
+
+### Modified
+- Made button sizes consistent
+- Increased padding within elements
+- Unlock conditions for various features to increase accessibility
+
+### Removed
+
+## [v0.6.9] - 12/9/20
+### Added
+- Information to info tooltips on Fuel and Reactors
+
+### Modified
+- Replaced `let` with `const` in most places
+- Begun usage of `Array.prototype.reduce` and `Array.prototype.map`
+- Fixed 40x reactor production
+- Fixed styles for dark and inverted themes
+
+### Removed
+
+## [v0.6.8] - 4/9/20
+### Added
+
+### Modified
+- Fixed Buy Max
+- Fixed issue with file capitalisation
+- Fixed issue where mine tier could go above 7
+
+### Removed
+
+## [v0.6.7] - 4/9/20
+### Added
+- Contributing guidelines and guide
+- Prestige Mechanic
+- Gas Coolants Mechanic
+
+### Modified
+- Converted more tabs into React Components
+- Improved Buy Bulk and Buy Max to O(c) from O(n)
+- Balanced game mostly till prestige
+- Fixed Balancing Testing
+
+### Removed
+
 ## [v0.6.6] - 22/8/20
 ### Added
-- React-based UI
+- React Component-based UI
 
 ### Modified
 - Removed yellow border on the fuel bar for reactors
@@ -624,12 +695,12 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 - Testing parameter in simulateTime()
 
 ### Modified
-- Ability to specify decimal places and decimal places under 1e5 with notation()
+- Ability to specify decimal places and decimal places under 1e5 with `notation`
 
 ### Code Optimisations
 - Added zero and infinity variable
 - Removed excess intermediate variables
-- Changed many things to use ternary operators instead of "if, else statements"
+- Changed many things to use ternary operators instead of if, else statements
 
 ## [v0.3.3] - 11/3/20 **PR**
 
@@ -682,6 +753,6 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Modified
 - Exact number is shown till 1e5 instead of 1e3
 - Nanite gain is floored (always integers)
-- simulateTime() checks if tab is focused
+- `simulateTime()` checks if tab is focused
 
 ### Code Optimisations

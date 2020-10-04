@@ -3,6 +3,7 @@
 		"adjoining-classes"
 	],
 	"warnings": [
+		"known-properties"
 	],
 	"errors": [
 	]

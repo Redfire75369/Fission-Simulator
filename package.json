@@ -1,31 +1,61 @@
 {
 	"name": "fission-simulator",
-	"version": "0.6.6",
+	"version": "0.6.12",
 	"description": "Fission Simulator is an incremental game about nuclear fission, reactors and nuclear physics.",
-	"main": "index.js",
-	"scripts": {},
+	"main": "javascripts/server.js",
+
+	"homepage": "https://github.com/Redfire75369/Fission-Simulator#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Redfire75369/Fission-Simulator.git"
+		"url": "https://github.com/Redfire75369/Fission-Simulator.git"
 	},
-	"author": "Redfire",
-	"license": "ARR",
 	"bugs": {
 		"url": "https://github.com/Redfire75369/Fission-Simulator/issues"
 	},
-	"homepage": "https://github.com/Redfire75369/Fission-Simulator#readme",
-	"devDependencies": {
-		"@babel/cli": "^7.10.5",
-		"@babel/core": "^7.11.4",
-		"@babel/preset-env": "^7.11.0",
-		"@babel/preset-es2015": "^7.0.0-beta.53",
-		"@babel/preset-react": "^7.10.4",
-		"@babel/preset-stage-2": "^7.8.3",
-		"babel-loader": "^8.1.0",
-		"babel-plugin-transform-class-properties": "^6.24.1",
-		"babel-plugin-transform-decorators-legacy": "^1.3.5",
-		"csslint": "^1.0.5",
-		"eslint": "^7.7.0"
+	"author": {
+		"name": "Redfire",
+		"url": "https://github.com/Redfire75369"
 	},
-	"dependencies": {}
+	"contributors": [
+		{
+			"name": "Dystopia",
+			"url": "https://github.com/Dystopia-user181"
+		},
+		{
+			"name": "CodedSakura",
+			"url": "https://github.com/CodedSakura"
+		}
+	],
+	"license": "UNLICENSED",
+
+	"browser": true,
+	"engines": {
+		"node": "^12.16.1"
+	},
+
+	"scripts": {
+		"dev": "nodemon .",
+		"setup": "npm ci",
+		"compile": "npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist",
+		"eslint": "eslint \"javascripts/**/*\" || true",
+		"csslint": "csslint . --exclude-list=stylesheets/katex.css || true",
+		"lint": "npm run eslint && npm run csslint",
+		"build": "npm run lint && npm run compile  ",
+		"count": "git ls-files | xargs wc -l"
+	},
+
+	"dependencies": {
+		"express": "^4.17.1",
+		"nodemon": "^2.0.4"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.11.6",
+		"@babel/core": "^7.11.6",
+		"@babel/preset-react": "^7.10.4",
+		"babel-loader": "^8.1.0",
+		"csslint": "^1.0.5",
+		"eslint": "^7.10.0",
+		"eslint-plugin-react": "^7.21.2",
+		"eslint-plugin-react-hooks": "^4.1.2"
+	}
 }

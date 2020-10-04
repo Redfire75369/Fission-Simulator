@@ -3,14 +3,10 @@ function preLoad() {
 	//updateUINucleosynthesis();
 	//updateUINaniteUps();
 	//updateUINaniteResearch();
-	updateUIMeltdown();
+	//updateUIMeltdown();
 	//updateUIMeltdownUps();
-	updateUIAchievements();
-	updateUIStats();
 
 	document.getElementById("production_tab").style.display = "none";
-	document.getElementById("production_mines_subtab").style.display = "none";
-	document.getElementById("production_reactors_subtab").style.display = "none";
 	document.getElementById("statistics_tab").style.display = "none";
 	document.getElementById("achievements_tab").style.display = "none";
 	document.getElementById("options_tab").style.display = "none";
@@ -19,15 +15,10 @@ function preLoad() {
 	document.getElementById("meltdown_ups_subtab").style.display = "none";
 	document.getElementById("meltdown_decay_hastening_subtab").style.display = "none";
 	document.getElementById("how_to_play_tab").style.display = "none";
-	document.getElementById("navigation").style.display = "none";
 	document.getElementById("offline_popup").style.display = "none";
 
-	document.getElementById(player.navigation.naviTab + "btn").className = "navitabbtn";
-	document.getElementById(player.navigation.naviTab).style.display = "none";
-	document.getElementById("production_" + player.navigation.production + "btn").className = "subtabbtn";
-	document.getElementById("production_" + player.navigation.production).style.display = "none";
-	document.getElementById("meltdown_" + player.navigation.meltdown + "btn").className = "subtabbtn";
-	document.getElementById("meltdown_" + player.navigation.meltdown).style.display = "none";
+	/*document.getElementById("meltdown_" + player.navigation.meltdown + "btn").className = "subtabbtn";
+	document.getElementById("meltdown_" + player.navigation.meltdown).style.display = "none";*/
 
 	/*drawTurbineRotors(true);
 	drawDynamoCoils(true);
@@ -44,8 +35,7 @@ function postLoad() {
 	selectCoil(player.turbine.activeCoil);*/
 
 	showNaviTab(player.navigation.naviTab);
-	targetedNotationChange(player.options.notation);
-	targetedThemeChange(player.options.theme);
+	document.getElementById("style").setAttribute("href", "stylesheets/" + themes[player.options.theme].toLowerCase() + ".css");
 }
 
 function init_game() {
@@ -89,3 +79,4 @@ function init_game() {
 }
 
 init_game();
+player.options.theme = 0

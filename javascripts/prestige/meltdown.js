@@ -12,8 +12,8 @@ function coriumGain() {
 	return Decimal.floor(ret);
 }
 function coriumGainPassive() {
-	let ret = player.meltdown.ups[13].bought == 4 ? new Decimal(3) : player.meltdown.ups[13].bought == 3 ? new Decimal((player.meltdown.bestTime / 1000) * 720) : player.meltdown.ups[13].bought == 1 ? new Decimal(1/30) : zero;
-	if (player.meltdown.ups[13].bought == 2) {
+	let ret = player.meltdown.ups[13].bought === 4 ? new Decimal(3) : player.meltdown.ups[13].bought === 3 ? new Decimal((player.meltdown.bestTime / 1000) * 720) : player.meltdown.ups[13].bought === 1 ? new Decimal(1/30) : zero;
+	if (player.meltdown.ups[13].bought === 2) {
 		let y = 0;
 		for (let i = 0, keys = Object.keys(player.meltdown.ups), ii = keys.length; i < ii; i++) {
 			if (player.meltdown.ups[keys[i]] > 0) {
@@ -30,8 +30,8 @@ function meltdownGain() {
 }
 
 function meltdownGainPassive() {
-	let ret = player.meltdown.ups[13].bought == 4 ? 3 : player.meltdown.ups[13].bought == 3 ? (player.meltdown.bestTime / 1000) * 12 : player.meltdown.ups[13].bought == 1 ? 1/30  : 0;
-	if (player.meltdown.ups[13].bought == 2) {
+	let ret = player.meltdown.ups[13].bought === 4 ? 3 : player.meltdown.ups[13].bought === 3 ? (player.meltdown.bestTime / 1000) * 12 : player.meltdown.ups[13].bought === 1 ? 1/30  : 0;
+	if (player.meltdown.ups[13].bought === 2) {
 		let y = 0;
 		for (let i = 0, keys = Object.keys(player.meltdown.ups), ii = keys.length; i < ii; i++) {
 			if (player.meltdown.ups[keys[i]] > 0) {
@@ -55,14 +55,13 @@ function meltdown() {
 		player.meltdown.amount += meltdownGain();
 		resetEnergy();
 		resetMines();
-		resetReactors();
 		resetNucleosynthesis();
 		resetNaniteResearch();
 		resetNaniteUps();
 	}
 }
 
-function simulateMeltdown(tickinterval = 50) {
+function simulateMeltdown(tickInterval = 50) {
 	player.meltdown.corium = player.meltdown.corium.add(coriumGainPassive());
 	player.meltdown.amount += meltdownGainPassive() * tickInterval / 1000;
 }

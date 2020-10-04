@@ -1,7 +1,17 @@
 var leverMaxAll = false;
+var cheatsEnabled = false;
+
+const intermediaryVariables = {
+	burnRateBoughtMul: 1.8,
+	lifetimeBoughtDiv: 1.8,
+	lifetimeTierMul: 1.6,
+	energyTierMul: 150,
+	energyBoughtMul: 2.2
+};
 
 function enableCheatsTab() {
-	document.getElementById("cheats_tabbtn").style.display = "inline-block";
+	cheatsEnabled = true;
+
 	/*clearInterval(saveGameLoop);
 	setInterval(function() {
 		localStorage.removeItem("fissionSimSave1");
@@ -64,23 +74,29 @@ function harderReset() {
 	player = getDefaultData();
 	player.navigation.naviTab = "cheats_tab";
 	postLoad();
-	//testBalancing();
+	testBalancing();
 	saveGame();
 }
 
 function testBalancing() {
-	for (let i = 0; i < 8; i++) {
+	/*for (let i = 0; i < 8; i++) {
 		mineUpgradeCosts[i] = Decimal.pow(10, document.getElementById("mine" + i).value);
 		mineSoftCaps[i] = Decimal.pow(10, document.getElementById("mines" + i).value);
-		player.reactors[i].startCost = Decimal.pow(10, document.getElementById("reactor" + i).value);
-		player.reactors[i].scaleCost = Decimal.pow(10, document.getElementById("reactors" + i).value);
+	}*/
+	for (let i = 0; i < 3; i++) {
+		player.reactors.pebblebeds[i].startCost = Decimal.pow(10, document.getElementById("reactor" + i).value);
+		player.reactors.pebblebeds[i].scaleCost = Decimal.pow(10, document.getElementById("reactors" + i).value);
 	}
+
+	intermediaryVariables.burnRateBoughtMul = parseFloat(document.getElementById("burnrate1").value);
+	intermediaryVariables.lifetimeBoughtDiv = parseFloat(document.getElementById("lifetime1").value);
+	intermediaryVariables.lifetimeTierMul = parseFloat(document.getElementById("lifetime2").value);
+	intermediaryVariables.energyTierMul = parseFloat(document.getElementById("energy_per1").value);
+	intermediaryVariables.energyBoughtMul = parseFloat(document.getElementById("energy_per2").value);
 }
 
-document.getElementById("cheats_tabbtn").style.display = "none";
 document.getElementById("cheats_tab").style.display = "none";
 document.getElementById("balance_tabbtn").style.display = "none";
 document.getElementById("balance_tab").style.display = "none";
-document.getElementById("stuff").onclick = enableCheatsTab;
 // document.getElementById("cheats_tab").innerHTML = "";
 // document.getElementById("balance_tab").innerHTML = "";

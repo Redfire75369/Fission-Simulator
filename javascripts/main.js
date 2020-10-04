@@ -3,27 +3,24 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 6,
-			alpha: 6
+			alpha: 12
 		},
 
 		options: {
-			notation: "Scientific",
-			notationNo: 0,
-			theme: "Light",
-			themeNo: 0
+			notation: 0,
+			theme: 0
 		},
 
 		navigation: {
 			naviTab: "production_tab",
-			production: "reactors_subtab",
-			reactor: "pebblebed_subsubtab",
+			production: "reactors",
 			meltdown: "ups_subtab",
 			decay: "decay_subsubtab"
 		},
 
 		unlocked: {
 			mines: false,
-			fuelReprocessing: false,
+			prestige: false,
 			naniteUps: false,
 			meltdown: false,
 			decayHasten: false
@@ -48,13 +45,12 @@ function getDefaultData() {
 			28: false
 		},
 
-		automation: {},
-
 		energy: new Decimal(10),
 		totalEnergy: new Decimal(10),
 
 		moderator: 0,
 
+		mines: new Mines(),
 		fuels: {
 			triso: [
 				new TRISOFuel(0),
@@ -62,13 +58,11 @@ function getDefaultData() {
 				new TRISOFuel(2)
 			]
 		},
-
-		mines: new Mines(),
 		reactors: {
 			pebblebeds: [
 				new PebblebedFissionReactor(0, 1, 3, 10),
 				new PebblebedFissionReactor(1, 4, 5, 10),
-				new PebblebedFissionReactor(2, 10, 8, 10)
+				new PebblebedFissionReactor(2, 12, 10, 10)
 			]
 		},
 
@@ -95,6 +89,19 @@ function getDefaultData() {
 			dimensions: 3,
 			bearingDimensions: 1
 		},*/
+
+		prestige: {
+			americium: 0,
+			prestiges: 0,
+			researchPoints: 0,
+			respec: false,
+			researches: [
+				1,
+				1,
+				1,
+				1
+			]
+		},
 
 		nucleosynthesis: 0,
 
@@ -174,6 +181,30 @@ function getDefaultData() {
 			coriumUse: new Decimal(1)
 		},
 
+		automation: {
+			reactors: {
+				pebblebeds: {
+					buy: [
+						new PebblebedBuyAutomation(2500, 0),
+						new PebblebedBuyAutomation(6000, 1),
+						new PebblebedBuyAutomation(20000, 2)
+					],
+					fuel: [
+						new PebblebedFuelAutomation(2500, 0),
+						new PebblebedFuelAutomation(6000, 1),
+						new PebblebedFuelAutomation(20000, 2)
+					]
+				}
+			},
+			fuels: {
+				triso: [
+					new TRISOReprocessAutomation(2500, 0),
+					new TRISOReprocessAutomation(6000, 1),
+					new TRISOReprocessAutomation(20000, 2)
+				]
+			}
+		},
+
 		imported42: false,
 
 		time: 0,
@@ -183,9 +214,14 @@ function getDefaultData() {
 }
 
 const isotopes = ["Thorium-227", "Uranium-235", "Neptunium-234", "Plutonium-237", "Americium-242m", "Curium-245", "Berkelium-248", "Californium-251"];
+const notations = ["Scientific", "Logarithmic", "Brackets", "Omega", "Imperial", "Cancer", "Zalgo", "Prime", "Blind"];
+const themes = ["Light", "Dark", "Inverted", "Midnight", "Void"];
+
 //const diminishFactor = [100, 200, 350, 488, 600, 733, 850, 1000];
 const infinity = Decimal.pow(2, 1024);
 const zero = new Decimal(0);
+
+var player = getDefaultData();
 
 var focused = true;
 window.onvisibilitychange = function() {
@@ -197,27 +233,23 @@ window.onvisibilitychange = function() {
 
 function updateUI() {
 	updateUIEnergy();
-	updateUIMines();
-	//updateUINucleosynthesis();
-	//updateUINaniteUps();
-	//updateUINaniteResearch();
-	updateUIMeltdown();
-	//updateUIMeltdownUps();
-	updateUIDecayHastening();
-	updateUIAchievements();
-	updateUIStats();
 	updateUIHowToPlay();
 }
 function updateGame(tickInterval = 50) {
-	/*if (leverMaxAll) {
-		buyMaxAll();
-	}*/
 	simulateTRISOFuel(tickInterval);
 	simulateMines(tickInterval);
 	simulatePebblebedReactors(tickInterval);
+	simulateTRISOAutomation(tickInterval);
+	simulatePebblebedAutomation(tickInterval);
 	//simulateFuelStorage(tickInterval);
 	//simulateDecayIsotope("th227", tickInterval);
 	checkAchievementCompletion();
+	if (leverMaxAll) {
+		for (let i = 0; i < 3; i++) {
+			player.reactors.pebblebeds[i].mineFuel();
+			player.reactors.pebblebeds[i].ejectWaste();
+		}
+	}
 }
 
 /* Offline Progress */
@@ -228,7 +260,7 @@ function simulateTime(seconds, actual, testing) {
 	}
 	let ticks = seconds * 20;
 	let tickInterval = 50;
-	if (ticks > 1000 & !actual) {
+	if (ticks > 1000 && !actual) {
 		tickInterval += (ticks - 1000) / 20;
 		ticks = 1000;
 	}
@@ -248,7 +280,7 @@ function simulateTime(seconds, actual, testing) {
 	if (player.energy.gt(start.energy)) {
 		offlinePopup += "your energy increased by " + notation(player.energy.log10() - start.energy.log10()) + " Orders of Magnitude.";
 	}
-	if (offlinePopup == "While you were away, ") {
+	if (offlinePopup === "While you were away, ") {
 		offlinePopup += "nothing happened...";
 	}
 	if (seconds > 1) {
@@ -263,5 +295,3 @@ function simulateTime(seconds, actual, testing) {
 function closeOfflineProgress() {
 	document.getElementById("offline_popup").style.display = "none";
 }
-
-var player = getDefaultData();

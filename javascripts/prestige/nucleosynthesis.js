@@ -1,5 +1,5 @@
 function resetNucleosynthesis() {
-	player.nucleosynthesis = player.meltdown.ups[14] == 1 ? 4 : player.meltdown.ups[13] == 1 ? 3 : player.meltdown.ups[14] == 1 ? 2 : player.meltdown.ups[14] == 1 ? 1 : 0;
+	player.nucleosynthesis = player.meltdown.ups[14] === 1 ? 4 : player.meltdown.ups[13] === 1 ? 3 : player.meltdown.ups[14] === 1 ? 2 : player.meltdown.ups[14] === 1 ? 1 : 0;
 }
 
 function getNucleosynthesisCost() {
@@ -17,10 +17,7 @@ function buyNucleosynthesis() {
 	if (canBuyNucleosynthesis()) {
 		player.nucleosynthesis += 1;
 		resetEnergy();
-		resetFuel();
 		resetMines();
-		resetReactors();
-		resetTurbineRotors();
 	}
 }
 
@@ -30,11 +27,7 @@ function buyMaxNucleosynthesis() {
 	} else if (canBuyNucleosynthesis()) {
 		player.nucleosynthesis = floor(((player.reactors[7].bought - 2) / 2) + 5);
 		resetEnergy();
-		resetFuel();
 		resetMines();
-		resetReactors();
-		resetTurbineRotors();
-		resetEff();
 	}
 }
 

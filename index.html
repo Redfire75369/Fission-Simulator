@@ -1,256 +1,154 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
-	  <meta charset="utf-8">
+		<meta charset="utf-8"/>
+
+		<meta name="author" content="Redfire">
+		<meta name="description" content="An incremental game about nuclear fission, reactors and nuclear physics.">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 		<title>Fission Simulator</title>
+		<link rel="icon" href="resources/images/logo.png">
+
+		<!-- Stylesheets -->
 		<link rel="stylesheet" href="stylesheets/universal.css"/>
 		<link rel="stylesheet" href="stylesheets/light.css" id="style"/>
 		<link rel="stylesheet" href="stylesheets/katex.css"/>
 
+		<!-- Embed Metadata -->
 		<meta property="og:type" content="game"/>
 		<meta property="og:title" content="Fission Simulator"/>
 		<meta property="og:description" content="An incremental game about nuclear fission, reactors and nuclear physics."/>
-		<meta property="og:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul/index.html">
+		<meta property="og:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul-dev/index.html">
 
 		<meta property="twitter:title" content="Fission Simulator"/>
 		<meta property="twitter:description" content="An incremental game about nuclear fission, reactors and nuclear physics."/>
-		<meta property="twitter:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul/index.html">
+		<meta property="twitter:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul-dev/index.html">
 
-		<script defer src="javascripts/libs/break_infinity.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/katex.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/auto-render.js" charset="utf-8" type="text/javascript" onload="renderMathInElement(document.body)"></script>
-		<script defer src="javascripts/libs/babel.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/react.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/react-dom.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/ad-notations.umd.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/ad-notations.community.umd.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/lz-string.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/clipboard.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/libs/mousetrap.min.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/save_load.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/navigation.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/options.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/math.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/notation.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/generics/GenericProducer.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/generics/GenericEnergyProducer.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/generics/GenericUpgrade.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/generics/GenericAutomation.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/generics/GenericIntervalAutomation.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/energy.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/fuels/triso.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/reactors/pebblebed_fission.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/mines.js" charset ="utf-8" type="text/javascript"></script>
-		<!--<script defer src="javascripts/core/turbine/calculations.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/turbine/coilplacement.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/turbine/drawing.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/turbine/turbine.js" charset ="utf-8" type="text/javascript"></script>-->
-		<script defer src="javascripts/prestige/nucleosynthesis.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/prestige/nano.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/prestige/meltdown.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/nanites/upgrades.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/meltdown/upgrades.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/meltdown/decayHasten.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/meltdown/moderator.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/core/automation/basic_automation.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/main.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/achievements.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/statistics.js" charset ="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/cheats.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/newsrelay.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/howtoplay.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/hotkey.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/react-utils.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/fuels/triso.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/react/production/reactors/pebblebed_fission.js" charset="utf-8" type="text/javascript"></script>
-		<script defer src="javascripts/init_game.js" charset="utf-8" type="text/javascript"></script>
+		<!-- Library Scripts -->
+		<!--
+		<script defer src="javascripts/libs/katex.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/auto-render.js" type="text/javascript" onload="renderMathInElement(document.body)"></script>
+		-->
+		<script defer src="javascripts/libs/react.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/react-dom.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/react-transition-group.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/break-infinity.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/ad-notations.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/ad-notations.community.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/lz-string.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/clipboard.js" type="text/javascript"></script>
+		<script defer src="javascripts/libs/mousetrap.js" type="text/javascript"></script>
+
+		<!-- Javascripts -->
+		<script defer src="javascripts/save_load.js" type="text/javascript"></script>
+		<script defer src="javascripts/navigation.js" type="text/javascript"></script>
+		<script defer src="javascripts/math.js" type="text/javascript"></script>
+		<script defer src="javascripts/notation.js" type="text/javascript"></script>
+		<script defer src="javascripts/generics/GenericProducer.js" type="text/javascript"></script>
+		<script defer src="javascripts/generics/GenericEnergyProducer.js" type="text/javascript"></script>
+		<script defer src="javascripts/generics/GenericUpgrade.js" type="text/javascript"></script>
+		<script defer src="javascripts/generics/GenericAutomation.js" type="text/javascript"></script>
+		<script defer src="javascripts/generics/GenericIntervalAutomation.js" type="text/javascript"></script>
+
+		<script defer src="javascripts/core/energy.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/fuels/triso.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/reactors/pebblebed_fission.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/mines.js" type="text/javascript"></script>
+		<!--
+		<script defer src="javascripts/core/turbine/calculations.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/turbine/coilplacement.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/turbine/drawing.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/turbine/turbine.js" type="text/javascript"></script>
+		-->
+		<script defer src="javascripts/core/prestigething/research.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/prestigething/coolant.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/nanites/upgrades.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/meltdown/upgrades.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/meltdown/decayHasten.js" type="text/javascript"></script>
+		<script defer src="javascripts/core/meltdown/moderator.js" type="text/javascript"></script>
+		<script defer src="javascripts/prestige/prestigelayerthing.js" type="text/javascript"></script>
+		<script defer src="javascripts/prestige/nucleosynthesis.js" type="text/javascript"></script>
+		<script defer src="javascripts/prestige/nano.js" type="text/javascript"></script>
+		<script defer src="javascripts/prestige/meltdown.js" type="text/javascript"></script>
+
+		<script defer src="javascripts/automation/fuels/triso/ReprocessAutomation.js" type="text/javascript"></script>
+		<script defer src="javascripts/automation/reactors/pebblebeds/BuyAutomation.js" type="text/javascript"></script>
+		<script defer src="javascripts/automation/reactors/pebblebeds/FuelAutomation.js" type="text/javascript"></script>
+		<script defer src="javascripts/automation/reactors/pebblebeds/Automation.js" type="text/javascript"></script>
+
+		<script defer src="javascripts/main.js" type="text/javascript"></script>
+		<script defer src="javascripts/achievements.js" type="text/javascript"></script>
+		<script defer src="javascripts/cheats.js" type="text/javascript"></script>
+		<script defer src="javascripts/newsrelay.js" type="text/javascript"></script>
+		<script defer src="javascripts/howtoplay.js" type="text/javascript"></script>
+		<script defer src="javascripts/hotkey.js" type="text/javascript"></script>
+
+		<script defer src="javascripts/react/dist/react-utils.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/navigation/NavigationIcons.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/navigation/Navigation.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/Mines.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/reactors/TRISOFuel.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/reactors/PebblebedFissionReactor.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/reactors/FissionReactorsSubTab.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/production/ProductionTab.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/statistics/StatisticsTab.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/achievements/Achievement.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/achievements/AchievementsTab.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/options/NotationOptionsButton.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/options/ThemeOptionsButton.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/options/OptionsTab.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/automation/reactors/pebblebeds/FuelHandlingAutomation.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/automation/AutomationTab.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/prestige/GasCoolantColumn.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/prestige/GasCoolants.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/prestige/GasCoolantStats.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/prestige/PrestigeTab.js" type="text/javascript"></script>
+
+		<script defer src="javascripts/react/dist/rendering.js" type="text/javascript"></script>
+		<script defer src="javascripts/init_game.js" type="text/javascript"></script>
 	</head>
-	<body align="center">
-		<img id="navi_open" class="navigationtoggle" onclick="toggleNavigation()" src="resources/images/navi.png"/>
+	<body>
+		<div id="navigation" class="navigation"></div>
 
-	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px; style: none;">
+	 	<div id="offline_popup" class="popup" style="width: 450px; height: 200px; display: none;">
 			<div id="offline_progress" style="height:175px; display:flex; align-items:center"></div>
-			<button  onclick="closeOfflineProgress()" align="center" class="storebtn buy" style="font-size:15px; margin:auto;">Close</button>
+			<button onclick="closeOfflineProgress()" class="storebtn buy" style="font-size:15px; margin:auto;">Close</button>
 		</div>
 
+		<!--
 		<div class="info">
 			<p id="corium_amt" class="text" style="color: #88ee44">You have <span id="corium">0.00</span> Corium.</p> </br>
 			<button onclick="meltdown()" id="meltdown">Meltdown for <span id="corium_gain">1</span> Corium</button>
 		</div>
+		-->
 		<div class="info">
 			<p>You have <span id="energy">80.00</span> Energy.</p>
 			<p>You are gaining <span id="energy_gain">0.00</span> Energy per second.</p>
 		</div>
 
-		<!--<div class="newsbar">
+		<!--
+		<div class="newsbar">
 			<div id="news"></div>
-		</div>-->
-
-		<div id="navigation" class="navigation main">
-			<button onclick="showNaviTab('production_tab')" id="production_tabbtn">Production</button>
-			<button onclick="showNaviTab('statistics_tab')" id="statistics_tabbtn">Statistics</button>
-			<button onclick="showNaviTab('achievements_tab')" id="achievements_tabbtn">Achievements</button>
-			<button onclick="showNaviTab('options_tab')" id="options_tabbtn">Options</button>
-			<button onclick="showNaviTab('nanites_tab')" id="nanites_tabbtn" class="navigation--nanite" style="display: none;">Nanites</button>
-			<button onclick="showNaviTab('meltdown_tab')" id="meltdown_tabbtn" style="color: #88ee44; display: none;">Meltdown</button>
-			<button onclick="showNaviTab('cheats_tab')" id="cheats_tabbtn" style="color: #ffa500;">Cheats</button>
-			<button onclick="showNaviTab('how_to_play_tab')" id="how_to_play_tabbtn">How to Play</button>
 		</div>
+		-->
 
-		<div id="production_tab">
-			<div class="navigation subtab">
-				<button onclick="showProductionTab('mines_subtab')" id="production_mines_subtabbtn">Mines</button>
-				<button onclick="showProductionTab('reactors_subtab')" id="production_reactors_subtabbtn"> Fission Reactors</button>
-			</div>
-
-
-			<div id="production_mines_subtab">
-				<div style="font-size: 40px;">Obtain 500 Energy to unlock</div>
-				<div>
-					<div>
-						<div class="flex__row mines">
-							<div><b>Mines</b></div>
-							<div><b>Active</b></div>
-							<div><b>Depleted</b></div>
-							<div><b>Total</b></div>
-						</div>
-						<div class="flex__row mines">
-							<div>Amount</div>
-							<div><span id="mines_active"></span></div>
-							<div><span id="mines_depleted"></span></div>
-							<div><span id="mines_total"></span></div>
-						</div>
-					</div><br/>
-
-					<div>
-						<b id="production_mines_softcap">Your minefields have become oversaturated, leading to reduced ore output per mine.</b>
-
-						You are extracting <span id="ore_extraction"></span> kg of metal ore per second.<br/>
-						You have <span id="ore_total"></span> kg of metal ore that is currently extractable.<br/><br/>
-						Your mines use <span id="mine_tier"></span> Drills.<br/>
-						<span id="construction_cost"></span> kg of metal ore are needed to construct a new mine.<br/>
-						You are constructing <span id="construction_rate"></span> new mines per second.<br/><br/>
-					</div>
-
-					<!--<div class="flex__col">
-						<div>Distribution of metal ore used for construction of mines and reactors</div>
-						<div class="flex__row" style="width: 60vw;">
-							<button onclick="changeConstructionRatio(-10)" class="allocationbtn"><<</button>
-							<button onclick="changeConstructionRatio(-1)" class="allocationbtn"><</button>
-							<div id="metal_allocation" class="allocationbar">
-								<div class="allocationbarcontents"></div>
-							</div>
-							<button onclick="changeConstructionRatio(1)" class="allocationbtn">></button>
-							<button onclick="changeConstructionRatio(10)" class="allocationbtn">>></button>
-						</div><br/><br/>
-						<div class="flex__row" style="width: 45vw;">
-							<div class="allocationbarcontents legend">Mines</div>
-							<div></div>
-							<div class="allocationbar legend">Pebbeled reactors</div>
-						</div>
-					</div>-->
-
-					<button onclick="player.mines.upgrade()" id="mines_upgrade">
-						<span id="mines_upgrade_text"></span><br/>
-						Cost: <span id="mines_upcost"></span> Energy
-					</button>
-					<button onclick="player.mines.salvage()" id="mines_salvage">
-						Salvage depleted mines into new mines
-					</button>
-				</div>
-			</div>
-
-			<div id="production_reactors_subtab">
-				<div class="navigation subtab">
-					<button onclick="showReactorSubTab('pebblebed_subsubtab')" id="production_reactor_pebblebed_subsubtabbtn">Pebblebeds</button>
-				</div>
-
-				<div id="production_reactor_pebblebed_subsubtab"></div>
-			</div>
-		</div>
-		<!--<div class="flex__col">
-			<table>
-				<tr>
-					<td><div><span id="nucleosynthesis_scaling">Stellar Nucleosynthesis</span> (<span id="nucleosynthesis_amt">0</span>): Requires <span id="nucleosynthesis_cost">2 Plutonium-238</span> Reactors</div></td>
-					<td><div><button onclick="buyMaxNucleosynthesis()" id="nucleosynthesis_btn" style="width: 300px; height: 30px">Reset the game for a new mine and reactor (N)</button></div></td>
-				</tr>
-				<tr>
-					<td><div>Nanite Research: Requires <span id="naniteresearch_cost">5</span> Californium-251 Reactors</div></td>
-					<td><div><button onclick="buyNaniteResearch()" id="naniteresearch_btn" style="width: 300px; height: 40px">Reset the game for <span id="nanites_gain">1</span> Nanites (R)</button></div></td>
-				</tr>
-			</table>
-		</div>-->
-
-		<div id="statistics_tab" class="flex__col">
-			<div class="flex__row">
-				<div>Total time played:</div>
-				<div id="statistics_totaltime">0 seconds</div>
-			</div>
-			<div class="flex__row">
-				<div>Total energy generated:</div>
-				<div id="statistics_totalenergy">80</div>
-			</div>
-			<div class="flex__row">
-				<div>Total nanites researched:</div>
-				<div id="statistics_totalnanites">0.00</div>
-			</div>
-			<div class="flex__row" id="statistics_rowbestmeltdowntime">
-				<div>Fastest Meltdown Time:</div>
-				<div id="statistics_bestmeltdowntime">0.00</div>
-			</div>
-		</div>
-
-		<div id="achievements_tab" class="flex__col">
-			<div class="flex__row">
-				<div id="ach11" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach12" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach13" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach14" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach15" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach16" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach17" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach18" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			</div>
-			<div class="flex__row">
-				<div id="ach21" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach22" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach23" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach24" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach25" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach26" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach27" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-				<div id="ach28" class="tooltip achlocked"><img class="achpic" src="resources/images/null.png"/><span class="tooltiptext"></span></div>
-			</div>
-		</div>
-
-		<div id="options_tab" class="flex__col">
-			<div class="flex__row">
-				<div><button onclick="notationChange()" id="notation" class="optionsbtn"> Notation: Scientific </button></div>
-				<div><button onclick="themeChange()" id="theme" class="optionsbtn"> Theme: Light </button></div>
-			</div>
-			<div class="flex__row">
-				<div><button onclick="save()" class="optionsbtn"> Save </button></div>
-				<div><button onclick="load()" class="optionsbtn"> Load </button></div>
-			</div>
-			<div class="flex__row">
-				<div><button onclick="importSave()" class="optionsbtn"> Import Save </button></div>
-				<div><button onclick="exportSave()" class="optionsbtn"> Export Save </button></div>
-			</div>
-			<div class="flex__row">
-				<div><button onclick="hardReset()" class="optionsbtn"> Hard Reset the Game </button></div>
-				<div><button id="stuff" class="optionsbtn"> Stuff </button></div>
-			</div>
-		</div>
+		<div id="production_tab"></div>
+		<div id="statistics_tab"></div>
+		<div id="achievements_tab"></div>
+		<div id="options_tab"></div>
+		<div id="automation_tab"></div>
+		<div id="prestige_tab"></div>
 
 		<div id="nanites_tab">
-			<div class="flex__col flex--center">
+			<div class="flex-col align horizontal-center vertical-center">
 				<div>You have <span id="nanites">0</span> Nanites.</div>
 			</div>
-			<div class="flex__col">
-				<div class="flex__row flex--center">
+			<div class="flex-col">
+				<div class="flex-row align horizontal-center vertical-center">
 					<button onclick="player.nanites.ups[0].buy()" id="nanite_up0">Spend <span id="nanite_upcost0">1 Nanite</span> to increase the diameter and length of the turbine by 2.</button>
 				</div>
-				<div class="flex__row flex--center">
+				<div class="flex-row align horizontal-center vertical-center">
 					<button onclick="player.nanites.ups[1].buy()" id="nanite_up11">
 						All reactors get a boost based on time played<br/>
 						Formula: \(log_{3.2}(x)\)<br/>
@@ -264,7 +162,7 @@
 						Cost: 1 Nanite
 					</button>
 				</div>
-				<div class="flex__row flex--center">
+				<div class="flex-row align horizontal-center vertical-center">
 					<button onclick="player.nanites.ups[3].buy()" id="nanite_up21">
 						All reactors get a boost based on number of Nucleosyntheses<br/>
 						Formula: \(x^{log_{5}(x + 1)}\)<br/>
@@ -278,7 +176,7 @@
 						Cost: 2 Nanites
 					</button>
 				</div>
-				<div class="flex__row flex--center">
+				<div class="flex-row align horizontal-center vertical-center">
 					<button onclick="player.nanites.ups[5].buy()" id="nanite_up31">
 						Increase multiplier from Nucleosyntheses from 2.0→2.8×<br/>
 						Cost: 3 Nanites
@@ -294,223 +192,227 @@
 		</div>
 
 		<div id="meltdown_tab">
+			<!--
 			<div class="navigation subtab">
 				<button onclick="showMeltdownTab('ups_subtab')" id="meltdown_ups_subtabbtn">Upgrades</button>
 				<button onclick="showMeltdownTab('decay_hastening_subtab')" id="meltdown_decay_hastening_subtabbtn">Decay Hastening</button>
 			</div>
+			-->
 
 			<div id="meltdown_ups_subtab">
-					<div class="flex__row">
-						<button onclick="player.meltdown.ups[0].buy()" id="meltdown_up11">
-							Mines and reactors get a multiplier based on meltdown stat<br/>
-							Formula: \(1 + \frac{x}{2}\)<br/>
-							Currently: <span id="meltdown_upmult11">1.00</span>× <br/>
-							Cost: 1 Corium
-						</button>
-						<button onclick="player.meltdown.ups[1].buy()" id="meltdown_up12">
-							Mines and reactors are significantly stronger in the first 100 seconds of resets<br/>
-							Formula: \((\frac{x + 1}{2})^{\frac{25}{x + 1}+1}\)<br/>
-							Currently: <span id="meltdown_upmult12">1.00</span>× <br/>
-							Cost: 1 Corium
-						</button>
-						<button onclick="player.meltdown.ups[2].buy()" id="meltdown_up13">
-							Mines and reactors get a multiplier based on time spent in this meltdown<br/>
-							Formula: \(x^{0.2}\)<br/>
-							Currently: <span id="meltdown_upmult13">1.00</span>× <br/>
-							Cost: 1 Corium
-						</button>
-						<button onclick="player.meltdown.ups[3].buy()" id="meltdown_up14">
-							Mines and reactors get a multiplier based on total amount of Cf-251 reactors bought this meltdown<br/>
-							Formula: \(x\)<br/>
-							Currently: <span id="meltdown_upmult14">1.00</span>× <br/>
-							Cost: 1 Corium
-						</button>
-					</div>
-					<div class="flex__row">
-						<button onclick="player.meltdown.ups[4].buy()" id="meltdown_up21">
-							Mines and reactors get a multiplier based on total nanites<br/>
-							Formula: \(x^{1.2}\)<br/>
-							Currently: <span id="meltdown_upmult21">1.00</span>× <br/>
-							Cost: 1 Corium
-						</button>
-						<button onclick="player.meltdown.ups[5].buy()" id="meltdown_up22">
-							Mines and reactors get a multiplier based on corium<br/>
-							Formula: \(log_{2}(x+2)^{0.9}\)<br/>
-							Currently: <span id="meltdown_upmult22">1.00</span>× <br/>
-							Cost: 1 Corium
-						</button>
-						<button onclick="player.meltdown.ups[6].buy()" id="meltdown_up23">
-							<br/>
-							Formula: \(\)<br/>
-							Currently: <span id="meltdown_upmult23">1.00</span>× <br/>
-							Cost: 1 Corium
-						</button>
-						<button onclick="player.meltdown.ups[7].buy()" id="meltdown_up24">
-							<br/>
-							Formula: \(\)<br/>
-							Currently: <span id="meltdown_upmult24">1.00</span>× <br/>
-							Cost: 1 Corium
-						</button>
-					</div>
-					<div class="flex__row">
-						<button onclick="player.meltdown.ups[8].buy()" id="meltdown_up31">
-							The multiplier per bought mine and reactor is increased to 3×<br/>
-							Cost: 1 Corium
-						</button>
-						<button onclick="player.meltdown.ups[9].buy()" id="meltdown_up32">
-							Non-Rebuyable nanite upgrades are more powerful<br/>
-							Cost: 1 Corium
-						</button>
-						<button onclick="player.meltdown.ups[10].buy()" id="meltdown_up33">
-							The fuel usage of reactors is reduced by 10%<br/>
-							Cost: 1 Corium
-						</button>
-						<button onclick="player.meltdown.ups[11].buy()" id="meltdown_up34">
-							<br/>
-							Cost: 1 Corium
-						</button>
-					</div>
-					<div class="flex__row">
-						<button onclick="player.meltdown.ups[12].buy()" id="meltdown_up41">
-							Reactors and Mines boost each other<br/>
-							<span id="meltdown_up41_text"></span><br/>
-							Cost: <span id="meltdown_upcost41"></span> Corium
-						</button>
-						<button onclick="player.meltdown.ups[13].buy()" id="meltdown_up42">
-							You passively gain Corium and Meltdown stat<br/>
-							<span id="meltdown_up42_text"></span><br/>
-							Cost: <span id="meltdown_upcost42"></span> Corium
-						</button>
-						<button onclick="player.meltdown.ups[14].buy()" id="meltdown_up43">
-							You start with Nucleosynthesises<br/>
-							<span id="meltdown_up43_text"></span><br/>
-							Cost: <span id="meltdown_upcost43"></span> Corium
-						</button>
-						<button onclick="player.meltdown.ups[15].buy()" id="meltdown_up44">
-							You start with nanites<br/>
-							<span id="meltdown_up44_text"></span><br/>
-							Cost: <span id="meltdown_upcost44"></span> Corium
-						</button>
+				<div class="flex-row">
+					<button onclick="player.meltdown.ups[0].buy()" id="meltdown_up11">
+					Mines and reactors get a multiplier based on meltdown stat<br/>
+						Formula: \(1 + \frac{x}{2}\)<br/>
+						Currently: <span id="meltdown_upmult11">1.00</span>× <br/>
+						Cost: 1 Corium
+					</button>
+					<button onclick="player.meltdown.ups[1].buy()" id="meltdown_up12">
+						Mines and reactors are significantly stronger in the first 100 seconds of resets<br/>
+						Formula: \((\frac{x + 1}{2})^{\frac{25}{x + 1}+1}\)<br/>
+						Currently: <span id="meltdown_upmult12">1.00</span>× <br/>
+						Cost: 1 Corium
+					</button>
+					<button onclick="player.meltdown.ups[2].buy()" id="meltdown_up13">
+						Mines and reactors get a multiplier based on time spent in this meltdown<br/>
+						Formula: \(x^{0.2}\)<br/>
+						Currently: <span id="meltdown_upmult13">1.00</span>× <br/>
+						Cost: 1 Corium
+					</button>
+					<button onclick="player.meltdown.ups[3].buy()" id="meltdown_up14">
+						Mines and reactors get a multiplier based on total amount of Cf-251 reactors bought this meltdown<br/>
+						Formula: \(x\)<br/>
+						Currently: <span id="meltdown_upmult14">1.00</span>× <br/>
+						Cost: 1 Corium
+					</button>
+				</div>
+				<div class="flex-row">
+					<button onclick="player.meltdown.ups[4].buy()" id="meltdown_up21">
+						Mines and reactors get a multiplier based on total nanites<br/>
+						Formula: \(x^{1.2}\)<br/>
+						Currently: <span id="meltdown_upmult21">1.00</span>× <br/>
+						Cost: 1 Corium
+					</button>
+					<button onclick="player.meltdown.ups[5].buy()" id="meltdown_up22">
+						Mines and reactors get a multiplier based on corium<br/>
+						Formula: \(log_{2}(x+2)^{0.9}\)<br/>
+						Currently: <span id="meltdown_upmult22">1.00</span>× <br/>
+						Cost: 1 Corium
+					</button>
+					<button onclick="player.meltdown.ups[6].buy()" id="meltdown_up23">
+						<br/>
+						Formula: \(\)<br/>
+						Currently: <span id="meltdown_upmult23">1.00</span>× <br/>
+						Cost: 1 Corium
+					</button>
+					<button onclick="player.meltdown.ups[7].buy()" id="meltdown_up24">
+						<br/>
+						Formula: \(\)<br/>
+						Currently: <span id="meltdown_upmult24">1.00</span>× <br/>
+						Cost: 1 Corium
+					</button>
+				</div>
+				<div class="flex-row">
+					<button onclick="player.meltdown.ups[8].buy()" id="meltdown_up31">
+						The multiplier per bought mine and reactor is increased to 3×<br/>
+						Cost: 1 Corium
+					</button>
+					<button onclick="player.meltdown.ups[9].buy()" id="meltdown_up32">
+						Non-Rebuyable nanite upgrades are more powerful<br/>
+						Cost: 1 Corium
+					</button>
+					<button onclick="player.meltdown.ups[10].buy()" id="meltdown_up33">
+						The fuel usage of reactors is reduced by 10%<br/>
+						Cost: 1 Corium
+					</button>
+					<button onclick="player.meltdown.ups[11].buy()" id="meltdown_up34">
+						<br/>
+						Cost: 1 Corium
+					</button>
+				</div>
+				<div class="flex-row">
+					<button onclick="player.meltdown.ups[12].buy()" id="meltdown_up41">
+						Reactors and Mines boost each other<br/>
+						<span id="meltdown_up41_text"></span><br/>
+						Cost: <span id="meltdown_upcost41"></span> Corium
+					</button>
+					<button onclick="player.meltdown.ups[13].buy()" id="meltdown_up42">
+						You passively gain Corium and Meltdown stat<br/>
+						<span id="meltdown_up42_text"></span><br/>
+						Cost: <span id="meltdown_upcost42"></span> Corium
+					</button>
+					<button onclick="player.meltdown.ups[14].buy()" id="meltdown_up43">
+						You start with Nucleosynthesises<br/>
+						<span id="meltdown_up43_text"></span><br/>
+						Cost: <span id="meltdown_upcost43"></span> Corium
+					</button>
+					<button onclick="player.meltdown.ups[15].buy()" id="meltdown_up44">
+						You start with nanites<br/>
+						<span id="meltdown_up44_text"></span><br/>
+						Cost: <span id="meltdown_upcost44"></span> Corium
+					</button>
+				</div>
+			</div>
+			<div id="meltdown_decay_hastening_subtab">
+				<!--
+				<div class="navigation subtab">
+					<button onclick="showDecaySubTab('decay_subsubtab')" id="decay_decay_subsubtabbtn">Isotope Decay</button>
+					<button onclick="showDecaySubTab('boosts_subsubtab')" id="decay_boosts_subsubtabbtn">Isotope Boosts</button>
+				</div>
+			-->
+
+				<div id="toggle_reactors_popup" class="popup align horizontal-center vertical-center" style="width: 720px; height: 400px; display: none;">
+					<div class="flex-col">
+						<button onclick="player.reactors[0].toggle()" class="storebtn" id="reactor_togge0">Toggle Thorium-227 Reactor</button>
+						<!--
+						<button onclick="player.reactors[1].toggle()" class="storebtn" id="reactor_toggle1">Toggle Uranium-235 Reactor</button>
+						-->
 					</div>
 				</div>
-				<div id="meltdown_decay_hastening_subtab">
-					<div class="navigation subtab">
-						<button onclick="showDecaySubTab('decay_subsubtab')" id="decay_decay_subsubtabbtn">Isotope Decay</button>
-						<button onclick="showDecaySubTab('boosts_subsubtab')" id="decay_boosts_subsubtabbtn">Isotope Boosts</button>
-					</div>
 
-					<div id="toggle_reactors_popup" class="popup flex--center" style="width: 720px; height: 400px; display: none;">
-						<div class="flex__col">
-							<button onclick="player.reactors[0].toggle()" class="storebtn" id="reactor_togge0">Toggle Thorium-227 Reactor</button>
-							<!--<button onclick="player.reactors[1].toggle()" class="storebtn" id="reactor_toggle1">Toggle Uranium-235 Reactor</button>!-->
-						</div>
-					</div>
+				<div class="flex-col align horizontal-center vertical-center" style="height: 50px;">
+					<p>You have <span id="alpha_particles">0.00</span> Alpha Particles.</p>
+					<p>You have <span id="beta_particles">0.00</span> Beta Particles.</p>
+				</div>
 
-					<div class="flex__col flex--center" style="height: 50px;">
-						<p>You have <span id="alpha_particles">0.00</span> Alpha Particles.</p>
-						<p>You have <span id="beta_particles">0.00</span> Beta Particles.</p>
-					</div>
+				<div id="decay_decay_subsubtab">
+					<div>
+						<div id="decay_chain_th227">
+							<svg width="60" height="1050">
+								<defs>
+									<marker id="arrowhead" markerWidth="10" markerHeight="16" markerUnits="userSpaceOnUse" refX="0" refY="8" orient="auto">
+										<polygon points="0,0 10,8 0,16" stroke-width="1"/>
+									</marker>
+								</defs>
 
-					<div id="decay_decay_subsubtab">
-						<div>
-							<div id="decay_chain_th227">
-								<svg width="60" height="1050" xmlns="http://www.w3.org/2000/svg" version="1.1">
-									<defs>
-										<marker id="arrowhead" markerWidth="10" markerHeight="16" markerUnits="userSpaceOnUse" refX="0" refY="8" orient="auto">
-											<polygon points="0,0 10,8 0,16" stroke-width="1"/>
-										</marker>
-									</defs>
+								<line stroke="#000000" stroke-width="8" x1="30" y1="109" x2="30" y2="142" marker-end="url(#arrowhead)"/>
+								<line stroke="#000000" stroke-width="8" x1="30" y1="259" x2="30" y2="292" marker-end="url(#arrowhead)"/>
+								<line stroke="#000000" stroke-width="8" x1="30" y1="409" x2="30" y2="442" marker-end="url(#arrowhead)"/>
+								<line stroke="#000000" stroke-width="8" x1="30" y1="559" x2="30" y2="592" marker-end="url(#arrowhead)"/>
+								<line stroke="#000000" stroke-width="8" x1="30" y1="709" x2="30" y2="742" marker-end="url(#arrowhead)"/>
+								<line stroke="#000000" stroke-width="8" x1="30" y1="859" x2="30" y2="892" marker-end="url(#arrowhead)"/>
+								<line stroke="#000000" stroke-width="8" x1="30" y1="1009" x2="30" y2="1042" marker-end="url(#arrowhead)"/>
 
-									<line stroke="#000000" stroke-width="8" x1="30" y1="109" x2="30" y2="142" marker-end="url(#arrowhead)"/>
-									<line stroke="#000000" stroke-width="8" x1="30" y1="259" x2="30" y2="292" marker-end="url(#arrowhead)"/>
-									<line stroke="#000000" stroke-width="8" x1="30" y1="409" x2="30" y2="442" marker-end="url(#arrowhead)"/>
-									<line stroke="#000000" stroke-width="8" x1="30" y1="559" x2="30" y2="592" marker-end="url(#arrowhead)"/>
-									<line stroke="#000000" stroke-width="8" x1="30" y1="709" x2="30" y2="742" marker-end="url(#arrowhead)"/>
-									<line stroke="#000000" stroke-width="8" x1="30" y1="859" x2="30" y2="892" marker-end="url(#arrowhead)"/>
-									<line stroke="#000000" stroke-width="8" x1="30" y1="1009" x2="30" y2="1042" marker-end="url(#arrowhead)"/>
+								<text x="40" y="131" font-size="140%" font-weight="bold">α</text>
+								<text x="40" y="281" font-size="140%" font-weight="bold">α</text>
+								<text x="40" y="431" font-size="140%" font-weight="bold">α</text>
+								<text x="40" y="581" font-size="140%" font-weight="bold">α</text>
+								<text x="40" y="731" font-size="140%" font-weight="bold">β</text>
+								<text x="40" y="881" font-size="140%" font-weight="bold">α</text>
+								<text x="40" y="1031" font-size="140%" font-weight="bold">β</text>
+							</svg>
 
-									<text x="40" y="131" font-size="140%" font-weight="bold">α</text>
-									<text x="40" y="281" font-size="140%" font-weight="bold">α</text>
-									<text x="40" y="431" font-size="140%" font-weight="bold">α</text>
-									<text x="40" y="581" font-size="140%" font-weight="bold">α</text>
-									<text x="40" y="731" font-size="140%" font-weight="bold">β</text>
-									<text x="40" y="881" font-size="140%" font-weight="bold">α</text>
-									<text x="40" y="1031" font-size="140%" font-weight="bold">β</text>
-								</svg>
-
-								<div onclick="selectIsotope('th227')" id="isotope_decay_th227" class="isotopedecay th227" style="top: 400px; left: 50vw;">
-									<div>
-										Thorium-227<br/>
-										Stored: <span id="isotope_storage_th227">0.00</span> kg<br/>
-										Halflife: <span id="isotope_halflife_th227">2000</span> ms<br/>
-										Temperature: <span id="Isotope_temperature_th227">295</span> K<br/>
-									</div>
+							<div onclick="selectIsotope('th227')" id="isotope_decay_th227" class="isotopedecay th227" style="top: 400px; left: 50vw;">
+								<div>
+									Thorium-227<br/>
+									Stored: <span id="isotope_storage_th227">0.00</span> kg<br/>
+									Halflife: <span id="isotope_halflife_th227">2000</span> ms<br/>
+									Temperature: <span id="Isotope_temperature_th227">295</span> K<br/>
 								</div>
-								<div onclick="selectIsotope('ra223')" id="isotope_decay_ra223" class="isotopedecay ra223" style="top: 550px; left: 50vw;">
-									<div>
-										Radium-223<br/>
-										Stored: <span id="isotope_storage_ra223">0.00</span> kg<br/>
-										Halflife: <span id="isotope_halflife_ra223">2000</span> ms<br/>
-										Temperature: <span id="Isotope_temperature_ra223">295</span> K<br/>
-									</div>
+							</div>
+							<div onclick="selectIsotope('ra223')" id="isotope_decay_ra223" class="isotopedecay ra223" style="top: 550px; left: 50vw;">
+								<div>
+									Radium-223<br/>
+									Stored: <span id="isotope_storage_ra223">0.00</span> kg<br/>
+									Halflife: <span id="isotope_halflife_ra223">2000</span> ms<br/>
+									Temperature: <span id="Isotope_temperature_ra223">295</span> K<br/>
 								</div>
-								<div onclick="selectIsotope('rn219')" id="isotope_decay_rn219" class="isotopedecay rn219" style="top: 700px; left: 50vw;">
-									<div>
-										Radon-219<br/>
-										Stored: <span id="isotope_storage_rn219">0.00</span> kg<br/>
-										Halflife: <span id="isotope_halflife_rn219">2000</span> ms<br/>
-										Temperature: <span id="Isotope_temperature_rn219">295</span> K<br/>
-									</div>
+							</div>
+							<div onclick="selectIsotope('rn219')" id="isotope_decay_rn219" class="isotopedecay rn219" style="top: 700px; left: 50vw;">
+								<div>
+									Radon-219<br/>
+									Stored: <span id="isotope_storage_rn219">0.00</span> kg<br/>
+									Halflife: <span id="isotope_halflife_rn219">2000</span> ms<br/>
+									Temperature: <span id="Isotope_temperature_rn219">295</span> K<br/>
 								</div>
-								<div onclick="selectIsotope('po215)" id="isotope_decay_po215" class="isotopedecay po215" style="top: 850px; left: 50vw;">
-									<div>
-										Polonium-215<br/>
-										Stored: <span id="isotope_storage_po215">0.00</span> kg<br/>
-										Halflife: <span id="isotope_halflife_po215">2000</span> ms<br/>
-										Temperature: <span id="Isotope_temperature_po215">295</span> K<br/>
-									</div>
+							</div>
+							<div onclick="selectIsotope('po215')" id="isotope_decay_po215" class="isotopedecay po215" style="top: 850px; left: 50vw;">
+								<div>
+									Polonium-215<br/>
+									Stored: <span id="isotope_storage_po215">0.00</span> kg<br/>
+									Halflife: <span id="isotope_halflife_po215">2000</span> ms<br/>
+									Temperature: <span id="Isotope_temperature_po215">295</span> K<br/>
 								</div>
-								<div onclick="selectIsotope('pb211')" id="isotope_decay_pb211" class="isotopedecay pb211" style="top: 1000px; left: 50vw;">
-									<div>
-										Lead-211<br/>
-										Stored: <span id="isotope_storage_pb211">0.00</span> kg<br/>
-										Halflife: <span id="isotope_halflife_pb211">2000</span> ms<br/>
-										Temperature: <span id="Isotope_temperature_pb211">295</span> K<br/>
-									</div>
+							</div>
+							<div onclick="selectIsotope('pb211')" id="isotope_decay_pb211" class="isotopedecay pb211" style="top: 1000px; left: 50vw;">
+								<div>
+									Lead-211<br/>
+									Stored: <span id="isotope_storage_pb211">0.00</span> kg<br/>
+									Halflife: <span id="isotope_halflife_pb211">2000</span> ms<br/>
+									Temperature: <span id="Isotope_temperature_pb211">295</span> K<br/>
 								</div>
-								<div onclick="selectIsotope('bi211')" id="isotope_decay_bi211" class="isotopedecay bi211" style="top: 1150px; left: 50vw;">
-									<div>
-										Bismuth-211<br/>
-										Stored: <span id="isotope_storage_bi211">0.00</span> kg<br/>
-										Halflife: <span id="isotope_halflife_bi211">2000</span> ms<br/>
-										Temperature: <span id="Isotope_temperature_bi211">295</span> K<br/>
-									</div>
+							</div>
+							<div onclick="selectIsotope('bi211')" id="isotope_decay_bi211" class="isotopedecay bi211" style="top: 1150px; left: 50vw;">
+								<div>
+									Bismuth-211<br/>
+									Stored: <span id="isotope_storage_bi211">0.00</span> kg<br/>
+									Halflife: <span id="isotope_halflife_bi211">2000</span> ms<br/>
+									Temperature: <span id="Isotope_temperature_bi211">295</span> K<br/>
 								</div>
-								<div onclick="selectIsotope('tl207')" id="isotope_decay_tl207" class="isotopedecay tl207" style="top: 1300px; left: 50vw;">
-									<div>
-										Thallium-207<br/>
-										Stored: <span id="isotope_storage_tl207">0.00</span> kg<br/>
-										Halflife: <span id="isotope_halflife_tl207">2000</span> ms<br/>
-										Temperature: <span id="Isotope_temperature_tl207">295</span> K<br/>
-									</div>
+							</div>
+							<div onclick="selectIsotope('tl207')" id="isotope_decay_tl207" class="isotopedecay tl207" style="top: 1300px; left: 50vw;">
+								<div>
+									Thallium-207<br/>
+									Stored: <span id="isotope_storage_tl207">0.00</span> kg<br/>
+									Halflife: <span id="isotope_halflife_tl207">2000</span> ms<br/>
+									Temperature: <span id="Isotope_temperature_tl207">295</span> K<br/>
 								</div>
-								<div id="isotope_decay_pb207" class="isotopedecay pb207" style="top: 1450px; left: 50vw;">
-									<div>
-										Lead-207<br/>
-										Stored: <span id="isotope_storage_pb207">0.00</span> kg<br/>
-									</div>
+							</div>
+							<div id="isotope_decay_pb207" class="isotopedecay pb207" style="top: 1450px; left: 50vw;">
+								<div>
+									Lead-207<br/>
+									Stored: <span id="isotope_storage_pb207">0.00</span> kg<br/>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 
-					<div id="decay_boosts_subsubtab">
+				<div id="decay_boosts_subsubtab">
 
-					</div>
 				</div>
 			</div>
 		</div>
-		<button onclick="showNaviTab('balance_tab')" id="balance_tabbtn" class="navitabbtn">Balancing</button>
 		<div id="how_to_play_tab">
 			<div id="how_to_play_fuel_triso">
 				<u>TRISO Fuel</u><br/>
@@ -530,7 +432,7 @@
 
 
 		<div id="cheats_tab">
-			<div class="flex__row">
+			<div class="flex-row">
 				<button class="storebtn buy" onclick="defaultEnergy()" style="width: 200px; height: 40px">
 					Default Energy
 				</button>
@@ -544,7 +446,7 @@
 					Square Energy
 				</button>
 			</div>
-			<div class="flex__row">
+			<div class="flex-row">
 				<button class="storebtn buy" onclick="defaultCorium()" style="width: 200px; height: 40px">
 					Default Corium
 				</button>
@@ -558,12 +460,12 @@
 					Square Corium
 				</button>
 			</div>
-			<div class="flex__row">
+			<div class="flex-row">
 				<button class="storebtn buy" onclick="addNucleosynthesis()" style="width: 200px; height: 40px">
 					Forced Nucleosynthesis w/o reset
 				</button>
 				<button class="storebtn buy" onclick="toggleLeverMaxAll()" style="width: 200px; height: 40px">
-					Toggle Lever Max All
+					Toggle Lever for Mining Fuel and Ejecting Waste
 				</button>
 				<button class="storebtn buy" onclick="simulateTime(100, true, true)" style="width: 200px; height: 40px">
 					Simulate 100 seconds
@@ -572,7 +474,7 @@
 					Hard Reset w/o confirmation
 				</button>
 			</div>
-			<div class="flex__row">
+			<div class="flex-row">
 				<button class="storebtn buy" onclick="showNaviTab('balance_tab')" style="width: 200px; height: 40px">
 					Open Balancing Tab
 				</button>
@@ -581,40 +483,41 @@
 
 		<button onclick="showNaviTab('balance_tab')" id="balance_tabbtn" class="navitabbtn" style="display: none">Balancing</button>
 		<div id="balance_tab">
-			<form>
-				<table>
-					<tr>
-						<td>
-							<label>Mine Costs/Softcaps:</label><br/>
-							<label>Iron Drills:</label> <input type="text" id="mine0" value="0.01"> <input type="text" id="mines0" value="1"><br/>
-							<label>Steel Drills:</label> <input type="text" id="mine1" value="3"> <input type="text" id="mines1" value="5"><br/>
-							<label>Titanium Drills:</label> <input type="text" id="mine2" value="17"> <input type="text" id="mines2" value="12"><br/>
-							<label>Iridium Drills:</label> <input type="text" id="mine3" value="26"> <input type="text" id="mines3" value="20"><br/>
-							<label>Tungstensteel Drills:</label> <input type="text" id="mine4" value="38"> <input type="text" id="mines4" value="31"><br/>
-							<label>Osmium Drills:</label> <input type="text" id="mine5" value="51"> <input type="text" id="mines5" value="42"><br/>
-							<label>Diamond Drills:</label> <input type="text" id="mine6" value="64"> <input type="text" id="mines6" value="54"><br/>
-							<label>Laser Drills:</label> <input type="text" id="mine7" value="80"> <input type="text" id="mines7" value="72"><br/>
-						</td>
-						<td>
-							<label>Reactor Costs/Cost Scaling:</label><br/>
-							<label>Th-227 Reactors:</label> <input type="text" id="reactor0" value="1"> <input type="text" id="reactors0" value="3"><br/>
-							<label>U-235 Reactors:</label> <input type="text" id="reactor1" value="2"> <input type="text" id="reactors1" value="5"><br/>
-							<label>Np-234 Reactors:</label> <input type="text" id="reactor2" value="5"> <input type="text" id="reactors2" value="6"><br/>
-							<label>Pu-237 Reactors:</label> <input type="text" id="reactor3" value="8"> <input type="text" id="reactors3" value="8"><br/>
-							<label>Am-242m Reactors:</label> <input type="text" id="reactor4" value="13"> <input type="text" id="reactors4" value="9"><br/>
-							<label>Cu-245 Reactors:</label> <input type="text" id="reactor5" value="18"> <input type="text" id="reactors5" value="12"><br/>
-							<label>Bk-248 Reactors:</label> <input type="text" id="reactor6" value="25"> <input type="text" id="reactors6" value="14"><br/>
-							<label>Cf-251 Reactors:</label> <input type="text" id="reactor7" value="31"> <input type="text" id="reactors7" value="15"><br/>
-						</td>
-					</tr>
-				</table>
-			</form>
+			<table>
+				<tr>
+					<!--<td>
+						<label>Mine Costs/Softcaps:</label><br/>
+						<label>Iron Drills:</label> <input type="text" id="mine0" value="2.875"> <input type="text" id="mines0" value="1"><br/>
+						<label>Steel Drills:</label> <input type="text" id="mine1" value="4.301"> <input type="text" id="mines1" value="5"><br/>
+						<label>Titanium Drills:</label> <input type="text" id="mine2" value="17"> <input type="text" id="mines2" value="12"><br/>
+						<label>Iridium Drills:</label> <input type="text" id="mine3" value="26"> <input type="text" id="mines3" value="20"><br/>
+						<label>Tungstensteel Drills:</label> <input type="text" id="mine4" value="38"> <input type="text" id="mines4" value="31"><br/>
+						<label>Osmium Drills:</label> <input type="text" id="mine5" value="51"> <input type="text" id="mines5" value="42"><br/>
+						<label>Diamond Drills:</label> <input type="text" id="mine6" value="64"> <input type="text" id="mines6" value="54"><br/>
+						<label>Laser Drills:</label> <input type="text" id="mine7" value="80"> <input type="text" id="mines7" value="72"><br/>
+					</td>-->
+					<td>
+						<label><b>Reactor Costs/Cost Scaling:</b></label><br/>
+						<label>TBU Reactors:</label> <input type="text" id="reactor0" value="1"> <input type="text" id="reactors0" value="3"><br/>
+						<label>LEU-235 Reactors:</label> <input type="text" id="reactor1" value="4"> <input type="text" id="reactors1" value="5"><br/>
+						<label>LEP-239 Reactors:</label> <input type="text" id="reactor2" value="12"> <input type="text" id="reactors2" value="10"><br/>
+					</td>
+					<td>
+						<label><b>Fuel Values:</b></label><br/>
+						<label>Burn Rate Multiplier per Buy:</label> <input type="text" id="burnrate1" value="1.8"><br/>
+						<label>Lifetime Divider per Buy:</label> <input type="text" id="lifetime1" value="1.8"><br/>
+						<label>Lifetime Multiplier per Tier:</label> <input type="text" id="lifetime2" value="1.6"><br/>
+						<label>Energy Per Pellet  Multiplier per Buy:</label> <input type="text" id="energy_per1" value="150"><br/>
+						<label>Energy Per Pellet Multiplier per Tier:</label> <input type="text" id="energy_per2" value="2.2"><br/>
+					</td>
+				</tr>
+			</table>
 		</div>
 
 		<div style="bottom: 0; min-width: 100vw; min-height: 48px; max-height: 48px;"></div>
-		<div class="flex--center discord">
+		<div class="align horizontal-center vertical-center discord">
 			<a href="https://discord.gg/RyQwwzW" target="_blank" class="discordlink">Discord Server</a>
-			<a href="https://github.com/Redfire75369/Fission-Simulator/blob/mine-overhaul/guide.md" target="_blank" class="discordlink">Guide</a>
+			<!--<a href="https://github.com/Redfire75369/Fission-Simulator/blob/overhaul-dev/guide.md" target="_blank" class="discordlink">Guide</a>-->
 		</div>
 	</body>
 </html>

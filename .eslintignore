@@ -1,0 +1,5 @@
+!javascripts/**/*.js
+!javascripts/**/*.jsx
+javascripts/libs/*.js
+javascripts/core/turbine/*.js
+javascripts/react/dist/**/*.js
