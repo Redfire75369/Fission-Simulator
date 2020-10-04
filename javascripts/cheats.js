@@ -2,11 +2,11 @@ var leverMaxAll = false;
 var cheatsEnabled = false;
 
 const intermediaryVariables = {
-	burnRateBoughtMul: 1.8,
-	lifetimeBoughtDiv: 1.8,
-	lifetimeTierMul: 1.6,
-	energyTierMul: 150,
-	energyBoughtMul: 2.2
+	burnRateBoughtMul: 2,
+	lifetimeBoughtDiv: 2.8,
+	lifetimeTierMul: 2.2,
+	energyBoughtMul: 3.5,
+	energyTierMul: 200
 };
 
 function enableCheatsTab() {
@@ -91,8 +91,8 @@ function testBalancing() {
 	intermediaryVariables.burnRateBoughtMul = parseFloat(document.getElementById("burnrate1").value);
 	intermediaryVariables.lifetimeBoughtDiv = parseFloat(document.getElementById("lifetime1").value);
 	intermediaryVariables.lifetimeTierMul = parseFloat(document.getElementById("lifetime2").value);
-	intermediaryVariables.energyTierMul = parseFloat(document.getElementById("energy_per1").value);
-	intermediaryVariables.energyBoughtMul = parseFloat(document.getElementById("energy_per2").value);
+	intermediaryVariables.energyBoughtMul = parseFloat(document.getElementById("energy_per1").value);
+	intermediaryVariables.energyTierMul = parseFloat(document.getElementById("energy_per2").value);
 }
 
 document.getElementById("cheats_tab").style.display = "none";

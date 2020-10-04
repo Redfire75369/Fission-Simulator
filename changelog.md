@@ -1,5 +1,5 @@
 # Changelog
-This changelog format is based on the spec described on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).  
+This changelog format is based on the spec described on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
 **Note:** The presence of a **PR** tag after the release date means that this release was not made public.
@@ -11,6 +11,14 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Modified
 ### Removed
 -->
+
+## [v0.6.13] - 4/10/20 **PR**
+### Added
+
+### Modified
+- Begun rebalancing
+
+### Removed
 
 ## [v0.6.12] - 30/9/20 **PR**
 ### Added

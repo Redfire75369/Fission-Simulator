@@ -61,10 +61,11 @@
 		"updateUI": true,
 		"showNaviTab": true,
 
-		"notationChange": true,
-		"themeChange": true,
-		"targetedNotationChange": true,
-		"targetedThemeChange": true,
+		"notations": true,
+		"themes": true,
+
+  		"leverMaxAll": true,
+	  	"intermediaryVariables": true,
 
 		"preLoad": true,
 		"loadSave": true,
@@ -129,6 +130,7 @@
 		"NaniteUpgrade": true,
 		"TurbineNaniteUpgrade": true,
 		"MeltdownUpgrade": true,
+	  	"TRISOReprocessAutomation": true,
 		"PebblebedBuyAutomation": true,
 		"PebblebedFuelAutomation": true,
 
@@ -161,6 +163,8 @@
 		"simulateMines": true,
 		"simulatePebblebedReactors": true,
 		"simulateMeltdown": true,
+		"simulateTRISOAutomation": true,
+		"simulatePebblebedAutomation": true,
 
 		"updateUIEnergy": true,
 		"updateUINucleosynthesis": true,

@@ -3,7 +3,7 @@ function getDefaultData() {
 		version: {
 			release: 0,
 			beta: 6,
-			alpha: 12
+			alpha: 13
 		},
 
 		options: {
@@ -60,9 +60,9 @@ function getDefaultData() {
 		},
 		reactors: {
 			pebblebeds: [
-				new PebblebedFissionReactor(0, 1, 3, 10),
-				new PebblebedFissionReactor(1, 4, 5, 10),
-				new PebblebedFissionReactor(2, 12, 10, 10)
+				new PebblebedFissionReactor(0, 1, 3),
+				new PebblebedFissionReactor(1, 4, 4),
+				new PebblebedFissionReactor(2, 12, 10)
 			]
 		},
 
@@ -214,6 +214,7 @@ function getDefaultData() {
 }
 
 const isotopes = ["Thorium-227", "Uranium-235", "Neptunium-234", "Plutonium-237", "Americium-242m", "Curium-245", "Berkelium-248", "Californium-251"];
+
 const notations = ["Scientific", "Logarithmic", "Brackets", "Omega", "Imperial", "Cancer", "Zalgo", "Prime", "Blind"];
 const themes = ["Light", "Dark", "Inverted", "Midnight", "Void"];
 
@@ -253,18 +254,20 @@ function updateGame(tickInterval = 50) {
 }
 
 /* Offline Progress */
-function simulateTime(seconds, actual, testing) {
+function simulateTime(seconds, actual) {
 	if (seconds > 10) {
 		document.getElementById("offline_popup").style.display = "block";
 		document.getElementById("offline_progress").innerText = "Simulating " + seconds + " seconds of progress.";
 	}
+
 	let ticks = seconds * 20;
 	let tickInterval = 50;
 	if (ticks > 1000 && !actual) {
 		tickInterval += (ticks - 1000) / 20;
 		ticks = 1000;
 	}
-	let start = Object.assign({}, player);
+
+	const start = Object.assign({}, player);
 	for (let complete = 0; complete < ticks; complete++) {
 		/*if (testing) {
 			buyMaxAll();
@@ -283,6 +286,7 @@ function simulateTime(seconds, actual, testing) {
 	if (offlinePopup === "While you were away, ") {
 		offlinePopup += "nothing happened...";
 	}
+
 	if (seconds > 1) {
 		document.getElementById("offline_popup").style.display = "none";
 	}

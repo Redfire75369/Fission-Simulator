@@ -1,6 +1,6 @@
 {
 	"name": "fission-simulator",
-	"version": "0.6.12",
+	"version": "0.6.13",
 	"description": "Fission Simulator is an incremental game about nuclear fission, reactors and nuclear physics.",
 	"main": "javascripts/server.js",
 
@@ -34,7 +34,6 @@
 	},
 
 	"scripts": {
-		"dev": "nodemon .",
 		"setup": "npm ci",
 		"compile": "npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist",
 		"eslint": "eslint \"javascripts/**/*\" || true",
@@ -44,10 +43,7 @@
 		"count": "git ls-files | xargs wc -l"
 	},
 
-	"dependencies": {
-		"express": "^4.17.1",
-		"nodemon": "^2.0.4"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"@babel/cli": "^7.11.6",
 		"@babel/core": "^7.11.6",

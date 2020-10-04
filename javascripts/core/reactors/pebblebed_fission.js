@@ -66,7 +66,7 @@ function resetPebblebedFissionReactors() {
 	}
 }
 
-function pebblebedFissionFuelUsage(tier, tickInterval = 50) {
+function pebblebedFissionFuelUsage(tier) {
 	return player.reactors.pebblebeds[tier].fuel.min(player.reactors.pebblebeds[tier].burnRate).max(0);
 }
 

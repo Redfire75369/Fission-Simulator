@@ -22,12 +22,13 @@ function saveGame() {
 
 function loadSave(save, imported = false) {
 	try {
-		if (save === undefined) {
+		if (typeof save !== "string") {
 			save = getSave();
-		}
-		if (save === null) {
-			player = getDefaultData();
-			return;
+			if (save === null) {
+				console.log("No existing save found");
+				player = getDefaultData();
+				return;
+			}
 		}
 		save.trim();
 
@@ -48,19 +49,16 @@ function loadSave(save, imported = false) {
 			return;
 		}
 
-		if (save !== undefined) {
-			checkAssign(getDefaultData(), save, []);
+		checkAssign(getDefaultData(), save, []);
 
-			if (typeof player.options.notation === "string") {
-				player.options.notation = notations.indexOf(player.options.notation);
-			}
-			if (typeof player.options.theme === "string") {
-				player.options.theme = themes.indexOf(player.options.theme);
-			}
-			player.version = getDefaultData().version;
-		} else {
-			console.log("No existing save found");
+		if (typeof player.options.notation === "string") {
+			player.options.notation = notations.indexOf(player.options.notation);
 		}
+		if (typeof player.options.theme === "string") {
+			player.options.theme = themes.indexOf(player.options.theme);
+		}
+		player.version = getDefaultData().version;
+
 		if (imported) {
 			alert("Save imported successfully.");
 		}
