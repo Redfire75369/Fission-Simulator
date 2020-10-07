@@ -23,9 +23,9 @@
 	"settings": {
 		"react": {
 			"createClass": "createReactClass",
+			"flowVersion": "0.53",
 			"pragma": "React",
-			"version": "16.8",
-			"flowVersion": "0.53"
+			"version": "16.13.1"
 		},
 		"propWrapperFunctions": [
 				"forbidExtraProps",
@@ -89,7 +89,7 @@
 
 		"React": true,
 		"ReactDOM": true,
-		"ReactStateComponent": true,
+		"ReactTransitionGroup": true,
 
 		"MinesComponent": true,
 		"TRISOFuelComponent": true,
@@ -176,53 +176,27 @@
 	},
 
 	"rules": {
-		"array-bracket-newline": [
-			"warn",
-			"consistent"
-		],
+		"array-bracket-newline": ["warn", "consistent"],
 		"constructor-super": "error",
 		"default-case": "error",
-		"eol-last": [
-			"error",
-			"always"
-		],
-		"eqeqeq": [
-			"error",
-			"always",
-			{
-				"null": "always"
-			}
-		],
+		"eol-last": ["error", "always"],
+		"eqeqeq": ["error", "always",{
+			"null": "always"
+		}],
 		"for-direction": "error",
 		"getter-return": "error",
-		"indent": [
-			"error",
-			"tab",
-			{
-				"SwitchCase": 1
-			}
-		],
-		"linebreak-style": [
-			"error",
-			"unix"
-		],
+		"indent": ["error", "tab", {
+			"SwitchCase": 1
+		}],
+		"linebreak-style": ["error", "unix"],
 		"no-compare-neg-zero": "warn",
-		"no-cond-assign": [
-			"error",
-			"always"
-		],
-		"no-constant-condition": [
-			"error",
-			{
-				"checkLoops": false
-			}
-		],
-		"no-else-return": [
-			"warn",
-			{
-				"allowElseIf": true
-			}
-		],
+		"no-cond-assign": ["error", "always"],
+		"no-constant-condition": ["error", {
+			"checkLoops": false
+		}],
+		"no-else-return": ["warn", {
+			"allowElseIf": true
+		}],
 		"no-dupe-args": "warn",
 		"no-dupe-class-members": "warn",
 		"no-dupe-else-if": "warn",
@@ -246,46 +220,28 @@
 		"no-unreachable": "warn",
 		"no-unused-vars": "warn",
 		"no-useless-catch": "warn",
-		"quotes": [
-			"error",
-			"double"
-		],
-		"semi": [
-			"error",
-			"always"
-		],
+		"quotes": ["error", "double"],
+		"semi": ["error", "always"],
 		"use-isnan": "error",
 		"valid-typeof": "error",
 
-		"react/jsx-curly-spacing": [
-			"warn",
-			{
-				"when": "never"
-			}
-		],
-		"react/jsx-filename-extension": [
-			"error",
-			{
-				"extensions": [
-					".jsx"
-				]
-			}
-		],
-		"react/jsx-key": [
-			"warn"
-		],
-		"react/jsx-no-duplicate-props": [
-			"error",
-			{
-				"ignoreCase": false
-			}
-		],
-		"react/jsx-no-undef": [
-			"error",
-			{
-				"allowGlobals": true
-			}
-		],
+		"react/jsx-curly-spacing": ["warn", {
+			"when": "never"
+		}],
+		"react/jsx-filename-extension": ["error", {
+			"extensions": [
+				".jsx"
+			]
+		}],
+		"react/jsx-key": ["warn", {
+			"checkFragmentShorthand": false
+		}],
+		"react/jsx-no-duplicate-props": ["error", {
+			"ignoreCase": false
+		}],
+		"react/jsx-no-undef": ["error", {
+			"allowGlobals": true
+		}],
 		"react/jsx-uses-vars": "warn",
 		"react/no-adjacent-inline-elements": "error",
 		"react/no-children-prop": "warn",
@@ -297,6 +253,11 @@
 		"react/no-unknown-property": "warn",
 		"react/no-unused-state": "warn",
 		"react/prefer-read-only-props": "warn",
-		"react/require-render-return": "error"
+		"react/require-render-return": "error",
+
+		"react-hooks/exhaustive-deps": ["warn", {
+			"additionalHooks": ""
+		}],
+		"react-hooks/rules-of-hooks": "error"
 	}
 }
