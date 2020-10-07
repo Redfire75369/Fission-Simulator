@@ -1,6 +1,8 @@
+.idea/**
+
+.githooks/**
+
 node_modules/**
 saves/**
-
-.idea/**
 
 package-lock.json

@@ -92,5 +92,9 @@ function simulatePebblebedReactors(tickInterval = 50) {
 		}
 	}
 
-	player.unlocked.mines |= player.energy.gte(1e50);
+	if (player.energy.gte(1e10) && !player.unlocked.mines) {
+		player.unlocked.mines = true;
+		showNaviTab("production");
+		player.navigation.production = "mines";
+	}
 }

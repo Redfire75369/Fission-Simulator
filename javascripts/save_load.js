@@ -75,59 +75,48 @@ function loadSave(save, imported = false) {
 	}
 }
 
-function checkAssign(check, assignFrom, assignTo = []) {
-	if (assignFrom !== undefined) {
-		if (check instanceof Array) {
-			for (let i = 0; i < assignFrom.length; i++) {
-				checkAssign(check[i], assignFrom[i], assignTo.concat([i]));
+function checkAssign(check, item, keys = []) {
+	if (item !== undefined) {
+		if (check.constructor.name === "Array") {
+			for (let i = 0; i < item.length; i++) {
+				checkAssign(check[i], item[i], keys.concat([i]));
 			}
-		} else if (typeof check === "object" && !checkObj(check)) {
+		} else if (check.constructor.name === "Object") {
 			for (let i = 0, ii = Object.keys(check); i < ii.length; i++) {
-				checkAssign(check[ii[i]], assignFrom[ii[i]], assignTo.concat([ii[i]]));
+				checkAssign(check[ii[i]], item[ii[i]], keys.concat([ii[i]]));
 			}
 		} else {
 			let output = player;
 			let type = getDefaultData();
-			for (let i = 0; i < assignTo.length - 1; i++) {
-				output = output[assignTo[i]];
-				type = type[assignTo[i]];
+			for (let i = 0; i < keys.length - 1; i++) {
+				output = output[keys[i]];
+				type = type[keys[i]];
 			}
-			output[assignTo[assignTo.length - 1]] = objectify(assignFrom, type[assignTo[assignTo.length - 1]]);
-			/*if (assignTo.includes("turbine") && assignTo.includes("rotors")) {
-				output[assignTo[assignTo.length - 1]] = objectify(assignFrom, rotors.none);
+			output[keys[keys.length - 1]] = objectify(item, type[keys[keys.length - 1]]);
+			/*if (keys.includes("turbine") && keys.includes("rotors")) {
+				output[keys[keys.length - 1]] = objectify(item, rotors.none);
 			}*/
 		}
 	} else {
 		let output = player;
 		let def = getDefaultData();
-		for (let i = 0; i < assignTo.length - 1; i++) {
-			output = output[assignTo[i]];
-			def = def[assignTo[i]];
+		for (let i = 0; i < keys.length - 1; i++) {
+			output = output[keys[i]];
+			def = def[keys[i]];
 		}
-		output[assignTo[assignTo.length - 1]] = def[assignTo[assignTo.length - 1]];
+		output[keys[keys.length - 1]] = def[keys[keys.length - 1]];
 	}
 }
 
-function checkObj(obj) {
-	return obj instanceof Decimal
-		|| obj instanceof Array
-		|| obj instanceof GenericProducer
-		|| obj instanceof GenericAutomation
-		|| obj instanceof GenericActionAutomation
-		|| obj instanceof GenericUpgrade
-		|| obj instanceof TRISOFuel
-		|| obj instanceof Mines;
-}
-
-function objectify(obj, check) {
-	if (check instanceof Decimal) {
+function objectify(obj, type) {
+	if (type.constructor.name === "Decimal") {
 		return new Decimal(obj);
-	} else if (check instanceof TRISOFuel) {
-		let ret = new TRISOFuel(check.tier);
+	} else if (type.constructor.name === "TRISOFuel") {
+		let ret = new TRISOFuel(type.tier);
 		ret.enriched = new Decimal(obj.enriched);
 		ret.depleted = new Decimal(obj.depleted);
 		return ret;
-	} else if (check instanceof Mines) {
+	} else if (type.constructor.name === "Mines") {
 		let ret = new Mines();
 		ret.tier = obj.tier;
 		ret.amount = new Decimal(obj.amount);
@@ -135,41 +124,41 @@ function objectify(obj, check) {
 		ret.depletion = new Decimal(obj.depletion);
 		ret.ratio = obj.ratio;
 		return ret;
-	} else if (check instanceof PebblebedFissionReactor) {
-		let ret = new PebblebedFissionReactor(check.tier, check.startCost.log10(), check.scaleCost.log10());
+	} else if (type.constructor.name === "PebblebedFissionReactor") {
+		let ret = new PebblebedFissionReactor(type.tier, type.startCost.log10(), type.scaleCost.log10());
 		ret.amount = new Decimal(obj.amount);
 		ret.bought = obj.bought;
 		ret.fuel = new Decimal(obj.fuel);
 		ret.spent = new Decimal(obj.spent);
 		return ret;
-	/* } else if (check instanceof TurbineBlade) {
+	/* } else if (type instanceof TurbineBlade) {
 		let ret = new TurbineBlade(obj.name, obj.efficiency, obj.eobjpansion, obj.speed);
 		ret.length = obj.length;
 		return ret; */
-	} else if (check instanceof TurbineNaniteUpgrade) {
+	} else if (type.constructor.name === "TurbineNaniteUpgrade") {
 		let ret = new TurbineNaniteUpgrade();
 		ret.bought = obj.bought;
 		return ret;
-	} else if (check instanceof NaniteUpgrade) {
-		let ret = new NaniteUpgrade(check.id, check.startCost, check.tiers, check.scaleCost);
+	} else if (type.constructor.name === "NaniteUpgrade") {
+		let ret = new NaniteUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
 		ret.bought = obj.bought;
 		return ret;
-	} else if (check instanceof MeltdownUpgrade) {
-		let ret = new MeltdownUpgrade(check.id, check.startCost, check.tiers, check.scaleCost);
+	} else if (type.constructor.name === "MeltdownUpgrade") {
+		let ret = new MeltdownUpgrade(type.id, type.startCost, type.tiers, type.scaleCost);
 		ret.bought = obj.bought;
 		return ret;
-	} else if (check instanceof PebblebedBuyAutomation) {
-		let ret = new PebblebedBuyAutomation(obj.interval, check.tier);
+	} else if (type.constructor.name === "PebblebedBuyAutomation") {
+		let ret = new PebblebedBuyAutomation(obj.interval, type.tier);
 		ret.cooldown = obj.cooldown;
 		ret.active = obj.active;
 		return ret;
-	} else if (check instanceof PebblebedFuelAutomation) {
-		let ret = new PebblebedFuelAutomation(obj.interval, check.tier);
+	} else if (type.constructor.name === "PebblebedFuelAutomation") {
+		let ret = new PebblebedFuelAutomation(obj.interval, type.tier);
 		ret.cooldown = obj.cooldown;
 		ret.active = obj.active;
 		return ret;
-	} else if (check instanceof TRISOReprocessAutomation) {
-		let ret = new TRISOReprocessAutomation(obj.interval, check.tier);
+	} else if (type.constructor.name === "TRISOReprocessAutomation") {
+		let ret = new TRISOReprocessAutomation(obj.interval, type.tier);
 		ret.cooldown = obj.cooldown;
 		ret.active = obj.active;
 		return ret;

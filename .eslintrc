@@ -32,15 +32,13 @@
 				{
 					"property": "freeze",
 					"object": "Object"
-				},
-				{
-					"property": "myFavoriteWrapper"
 				}
 		],
 		"linkComponents": [
 			"Hyperlink",
 			{
-				"name": "Link", "linkAttribute": "to"
+				"name": "Link",
+				"linkAttribute": "to"
 			}
 		]
 	},
@@ -49,6 +47,7 @@
 		"player": true,
 		"getDefaultData": true,
 		"getLimit": true,
+
 		"zero": true,
 		"infinity": true,
 		"focused": true,
@@ -64,8 +63,8 @@
 		"notations": true,
 		"themes": true,
 
-  		"leverMaxAll": true,
-	  	"intermediaryVariables": true,
+		"leverMaxAll": true,
+		"intermediaryVariables": true,
 
 		"preLoad": true,
 		"loadSave": true,
@@ -281,7 +280,6 @@
 				"ignoreCase": false
 			}
 		],
-
 		"react/jsx-no-undef": [
 			"error",
 			{

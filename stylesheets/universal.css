@@ -103,17 +103,17 @@ button:hover {
 .achcomplete > .tooltiptext {
 	bottom: 105%;
 	color: #88EE44;
-	max-height: 5.6em;
+	max-height: 5.6rem;
 	max-width: 12.5vw;
-	min-height: 4.2em;
+	min-height: 4.2rem;
 	min-width: 12.5vw;
 }
 .achlocked > .tooltiptext {
 	bottom: 105%;
 	color: #DE564D;
-	max-height: 5.6em;
+	max-height: 5.6rem;
 	max-width: 12.5vw;
-	min-height: 4.2em;
+	min-height: 4.2rem;
 	min-width: 12.5vw;
 }
 .tooltiptext.turbine {
@@ -304,25 +304,25 @@ button:hover {
 }
 
 .minesdiv > div > .info {
-	padding-left: 1em;
-	padding-right: 1em;
-	padding-top: 1em;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 1rem;
 }
 .minesdiv > div > .body {
-	padding-left: 1em;
-	padding-right: 1em;
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 .minesdiv > .actions {
-	padding: 1em;
+	padding: 1rem;
 }
 
 .minesdiv > .actions > button {
-	margin-bottom: 0.5em;
-	margin-top: 0.5em;
-	max-height: 4.2em;
+	margin-bottom: 0.5rem;
+	margin-top: 0.5rem;
+	max-height: 4.2rem;
 	max-width: 50%;
-	min-height: 4.2em;
+	min-height: 4.2rem;
 	min-width: 50%;
 }
 
@@ -335,8 +335,8 @@ button:hover {
 }
 
 .trisodiv > .title, .pebblebeddiv > .title {
-	max-height: 1.4em;
-	min-height: 1.4em;
+	max-height: 1.4rem;
+	min-height: 1.4rem;
 	text-align: center;
 }
 
@@ -348,7 +348,7 @@ button:hover {
 }
 
 .trisodiv > .body, .pebblebeddiv > .body {
-	margin: 1em;
+	margin: 1rem;
 }
 
 .trisodiv > .body > .fuelinfo, .pebblebeddiv > .body > .info {
@@ -358,12 +358,12 @@ button:hover {
 	text-align: left;
 }
 .trisodiv > .body > .fuelinfo {
-	max-height: 3.5em;
-	min-height: 3.5em;
+	max-height: 3.5rem;
+	min-height: 3.5rem;
 }
 .pebblebeddiv > .body > .info {
-	max-height: 10em;
-	min-height: 10em;
+	max-height: 10rem;
+	min-height: 10rem;
 }
 
 .trisodiv > .body > .reprocess, .pebblebeddiv > .body > .fuelhandling {
@@ -372,12 +372,12 @@ button:hover {
 	min-width: 50%;
 }
 .trisodiv > .body > .reprocess {
-	max-height: 5.8em;
-	min-height: 5.8em;
+	max-height: 5.8rem;
+	min-height: 5.8rem;
 }
 .pebblebeddiv > .body > .fuelhandling {
-	max-height: 8.2em;
-	min-height: 8.2em;
+	max-height: 8.2rem;
+	min-height: 8.2rem;
 }
 
 .trisodiv > .body > .reprocess > button {
@@ -397,21 +397,21 @@ button:hover {
 }
 
 .pebblebeddiv > .body > .fuelhandling > button {
-	max-height: 2.8em;
-	min-height: 2.8em;
+	max-height: 2.8rem;
+	min-height: 2.8rem;
 }
 
 .trisodiv > .fuelbar {
-	margin-bottom: 1em;
-	margin-left: 1em;
-	margin-right: 1em;
+	margin-bottom: 1rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
 	max-height: calc(2.4em + 8px);
 	min-height: calc(2.4em + 8px);
 }
 .pebblebeddiv > .fuelbar {
-	margin-bottom: 1em;
-	margin-left: 1em;
-	margin-right: 1em;
+	margin-bottom: 1rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
 	max-height: calc(2.4em + 8px);
 	min-height: calc(2.4em + 8px);
 }
@@ -425,36 +425,36 @@ button:hover {
 }
 .trisodiv > .fuelbar > div > div > div, .pebblebeddiv > .fuelbar > div > div > div {
 	margin: 4px;
-	max-height: 2.4em;
+	max-height: 2.4rem;
 	max-width: calc(100% - 8px);
-	min-height: 2.4em;
+	min-height: 2.4rem;
 	min-width: calc(100% - 8px);
 }
 .trisodiv > .fuelbar > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div {
-	height: 2.4em;
+	height: 2.4rem;
 	max-width: 0;
 }
 .trisodiv > .fuelbar > div > div > div > div > div, .pebblebeddiv > .fuelbar > div > div > div > div > div {
-	height: 2.4em;
+	height: 2.4rem;
 	max-width: 0;
 }
 
 .pebblebeddiv > .buying {
-	margin-bottom: 1em;
-	margin-left: 1em;
+	margin-bottom: 1rem;
+	margin-left: 1rem;
 	margin-right: 1em
 }
 
 .pebblebeddiv > .buying > .buysingle {
-	max-height: 2.8em;
+	max-height: 2.8rem;
 	max-width: 60%;
-	min-height: 2.8em;
+	min-height: 2.8rem;
 	min-width: 60%;
 }
 .pebblebeddiv > .buying > .buymax {
-	max-height: 2.8em;
+	max-height: 2.8rem;
 	max-width: 30%;
-	min-height: 2.8em;
+	min-height: 2.8rem;
 	min-width: 30%;
 }
 
@@ -466,7 +466,7 @@ button:hover {
 .fuelhandlingautomationdiv {
 	max-width: 30vw;
 	min-width: 30vw;
-	padding: 1em;
+	padding: 1rem;
 }
 .fuelhandlingautomationdiv > div {
 	margin: 1.5vw;
