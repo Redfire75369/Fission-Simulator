@@ -24,7 +24,7 @@ function PebblebedFissionReactorComponent(props) {
       setUnlockedFuelHandling(function (prevUnlockedFuelHandling) {
         return prevUnlockedFuelHandling || player.energy.gte(600);
       });
-      setUnlockedMines(player.mines.tier > -1);
+      setUnlockedMines(player.mines.tier + 1 > props.tier);
       setAmount(player.reactors.pebblebeds[props.tier].amount);
       setBought(player.reactors.pebblebeds[props.tier].bought);
       setCanLoadFuel(player.fuels.triso[props.tier].enriched.gte(1) && player.reactors.pebblebeds[props.tier].fuel.add(player.reactors.pebblebeds[props.tier].spent).add(1).lt(player.reactors.pebblebeds[props.tier].totalCapacity));
@@ -98,7 +98,10 @@ function PebblebedFissionReactorComponent(props) {
     }
   }, /*#__PURE__*/React.createElement("div", null, "Fuel Handling:"), /*#__PURE__*/React.createElement("button", {
     onClick: mineFuel,
-    className: bought > 0 ? "pebblebedbtn buy" : "pebblebedbtn locked"
+    className: bought > 0 ? "pebblebedbtn buy" : "pebblebedbtn locked",
+    style: {
+      display: unlockedMines ? "none" : ""
+    }
   }, "Mine Enriched ", type, " Pellets"), /*#__PURE__*/React.createElement("button", {
     onClick: loadFuel,
     className: canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked",

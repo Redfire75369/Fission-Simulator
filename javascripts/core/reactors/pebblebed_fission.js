@@ -15,7 +15,7 @@ class PebblebedFissionReactor extends GenericEnergyProducer {
 
 	mineFuel() {
 		if (player.reactors.pebblebeds[this.tier].bought > 0 && this.totalCapacity.gte(this.fuel.add(this.spent).add(1))) {
-			const minedFuel = this.amount.eq(1) ? 1 : this.amount.add(2).sqrt();
+			const minedFuel = this.amount.eq(1) ? 1 : this.amount.add(2).pow(1.3);
 			this.fuel = this.fuel.add(minedFuel).min(this.totalCapacity.sub(this.spent));
 		}
 	}
@@ -92,9 +92,9 @@ function simulatePebblebedReactors(tickInterval = 50) {
 		}
 	}
 
-	if (player.energy.gte(1e10) && !player.unlocked.mines) {
+	if (player.energy.gte(5e8) && !player.unlocked.mines) {
 		player.unlocked.mines = true;
-		showNaviTab("production");
+		showNaviTab("production_tab");
 		player.navigation.production = "mines";
 	}
 }

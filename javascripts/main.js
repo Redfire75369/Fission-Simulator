@@ -227,9 +227,6 @@ var player = getDefaultData();
 var focused = true;
 window.onvisibilitychange = function() {
 	focused = !focused;
-	/*if (focused) {
-		nextNews();
-	}*/
 };
 
 function updateUI() {

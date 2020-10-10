@@ -1,5 +1,5 @@
-const mineUpgradeCosts = [new Decimal("7.5e2"), new Decimal("2e4"), new Decimal("1e15"), new Decimal("1e24"), new Decimal("1e38"), new Decimal("1e51"), new Decimal("1e64"), new Decimal("1e80")];
-const mineSoftCaps = [new Decimal("1e1"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
+const mineUpgradeCosts = [new Decimal("7.5e8"), new Decimal("1e11"), new Decimal("1e19"), new Decimal("1e24"), new Decimal("1e38"), new Decimal("1e51"), new Decimal("1e64"), new Decimal("1e80")];
+const mineSoftCaps = [new Decimal("5e2"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
 
 class Mines {
 	constructor() {

@@ -13,6 +13,7 @@ class TRISOFuel {
 		reprocessing[this.tier] = false;
 	}
 
+
 	get lifetime() {
 		const mul = Decimal.pow(intermediaryVariables.lifetimeBoughtDiv, player.reactors.pebblebeds[this.tier].bought)
 			.mul(player.reactors.pebblebeds[this.tier].amount.add(9));
@@ -30,7 +31,8 @@ class TRISOFuel {
 	get energyPerPellet() {
 		return Decimal.pow(intermediaryVariables.energyTierMul, this.tier + 1)
 			.mul(Decimal.pow(intermediaryVariables.energyBoughtMul, player.reactors.pebblebeds[this.tier].bought))
-			.mul(2);
+			.mul(player.reactors.pebblebeds[this.tier].fuel.pow((this.tier + 1) / 4))
+			.mul(4).div(this.tier + 1);
 	}
 
 	get canReprocessDepleted() {
@@ -43,8 +45,8 @@ class TRISOFuel {
 			reprocessElement.disabled = true;
 
 			player.energy = player.energy.sub(this.reprocessEnergyCost);
-			let depleted = this.depleted;
-			let tier = this.tier;
+			const depleted = this.depleted;
+			const tier = this.tier;
 
 			this.depleted = zero;
 			setTimeout(function() {

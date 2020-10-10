@@ -33,14 +33,10 @@ function NavigationDropdownComponent() {
 	function DropdownItem(props) {
 		function onClick() {
 			setActiveMenu(props.goToMenu || "main");
-			switch (props.type) {
-				case "main":
-					showNaviTab(props.tab + "_tab");
-					break;
-				case "production":
-					player.navigation.production = props.tab;
-					break;
-				default:
+			if (props.goToMenu === "main") {
+				showNaviTab(props.tab + "_tab");
+			} else if (player.navigation[props.type]) {
+				player.navigation[props.type] = props.tab;
 			}
 		}
 
