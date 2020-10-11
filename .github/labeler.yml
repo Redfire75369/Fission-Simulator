@@ -1,3 +1,5 @@
-react:
-- javascripts/react/dev
-- javascripts/react/dist
+"Feature: CSS":
+  - stylesheets/**/*.css
+
+"Feature: React":
+  - javascripts/react/**/*.js
