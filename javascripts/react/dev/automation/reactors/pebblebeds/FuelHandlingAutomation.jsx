@@ -7,7 +7,7 @@ function PebblebedFuelHandlingAutomationComponent(props) {
 	const [activeReprocessing, setActiveReprocessing] = React.useState(null);
 	const [intervalReprocessing, setIntervalReprocessing] = React.useState(null);
 	const [cooldownReprocessing, setCooldownReprocessing] = React.useState(0);
-	const [costReprocessing, setCostReprocessing] = React.useState(zero); 
+	const [costReprocessing, setCostReprocessing] = React.useState(zero);
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
@@ -26,7 +26,7 @@ function PebblebedFuelHandlingAutomationComponent(props) {
 			clearInterval(timerID);
 		};
 	}, []);
-	
+
 	function toggleHandling() {
 		player.automation.reactors.pebblebeds.fuel[props.tier].active = !player.automation.reactors.pebblebeds.fuel[props.tier].active;
 	}

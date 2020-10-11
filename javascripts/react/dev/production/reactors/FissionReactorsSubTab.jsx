@@ -24,5 +24,5 @@ function FissionReactorsSubTabComponent() {
 				<PebblebedFissionReactorComponent tier={2}/>
 			</div>
 		</div>
-	); 
+	);
 }

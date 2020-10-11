@@ -9,18 +9,15 @@
 *.yml text
 
 *.babelrc text
-*.csslintrc text
 *.editorconfig text
 *.eslintrc text
 *.eslintignore text
 *.gitattributes text
 *.gitignore text
-*.tern-project text
+*.stylelintrc text
 
 *.bat text
 *.sh text
-
-*.sln text eol=crlf
 
 *.png binary
 *.jpg binary

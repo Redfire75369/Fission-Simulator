@@ -12,9 +12,9 @@ function TRISOFuelComponent(props) {
 	const [canReprocess, setCanReprocess] = React.useState(false);
 	const [reprocessCost, setReprocessCost] = React.useState(zero);
 	const [reprocessing, setReprocessing] = React.useState(false);
-	const [gain, setGain] = React.useState(zero); 
+	const [gain, setGain] = React.useState(zero);
 
-	const [goal, setGoal] = React.useState(zero); 
+	const [goal, setGoal] = React.useState(zero);
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
@@ -37,7 +37,7 @@ function TRISOFuelComponent(props) {
 			clearInterval(timerID);
 		};
 	}, []);
-	
+
 	function reprocessDepleted() {
 		player.fuels.triso[props.tier].reprocessDepleted();
 	}

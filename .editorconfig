@@ -8,7 +8,10 @@ trim_trailing_whitespace = true
 indent_style = tab
 tab_width = 4
 
-[*.yml]
+[{*.json, *.yml}]
 indent_style = space
 indent_size = 2
 
+[{*.babelrc, *.eslintrc, *.stylelintrc}]
+indent_style = space
+indent_size = 2

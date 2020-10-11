@@ -1,0 +1,33 @@
+name: Build Process
+on:
+  push:
+    branches:
+      - overhaul
+      - overhaul-dev
+      - overhaul-indev
+  pull_request:
+    branches:
+      - overhaul
+      - overhaul-dev
+      - overhaul-indev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Node
+      uses: actions/setup-node@v1.4.3
+      with:
+        node-version: 12.x
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Run ESLint on Javascripts
+      run: npx eslint "javascripts/**/*.{js,jsx}"
+    - name: Run Stylelint on Stylesheets
+      run: npx stylelint "stylesheets/**/*.css"
+    - name: Compile JSX with Babel
+      run: npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist

@@ -24,8 +24,8 @@ button:hover {
 }
 
 .popup {
-	background-color: #455a64;
-	border: 3px solid #ffffff;
+	background-color: #455A64;
+	border: 3px solid #FFFFFF;
 	border-radius: 6px;
 	color: #D0D0D0;
 	display: none;
@@ -77,8 +77,8 @@ button:hover {
 	color: #D0D0D0;
 }
 .storebtn.locked {
-	background-color: #37474f;
-	border: 2px solid #e53935;
+	background-color: #37474F;
+	border: 2px solid #E53935;
 	color: #D0D0D0;
 }
 
@@ -152,29 +152,29 @@ button:hover {
 }
 
 .fuelhandlingautomationdiv {
-    background: #221133;
-    border: 3px solid black;
+	background: #221133;
+	border: 3px solid #000000;
 }
 
 .fuelhandlingautomationdiv > div > div > .cooldown {
-    background-color: #000000;
-    border: 2px solid #000000;
+	background-color: #000000;
+	border: 2px solid #000000;
 }
 .fuelhandlingautomationdiv > div > div > .cooldown > div {
-    background-color: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
 .fuelhandlingautomationdiv > div > div > div > button {
 	background-color: #34B191;
 	border: 2px solid #000000;
-    border-bottom-color: #111111;
-    color: #dddddd;
+	border-bottom-color: #111111;
+	color: #DDDDDD;
 }
 .fuelhandlingautomationdiv > div > div > div > .active {
-    background-color: #005522;
+	background-color: #005522;
 }
 .fuelhandlingautomationdiv > div > div > div > .inactive {
-    background-color: #332f40;
+	background-color: #332F40;
 }
 
 .options > div > button {
@@ -196,7 +196,7 @@ button:hover {
 .naniteup.buy {
 	background-color: #000000;
 	border: 1px solid #DAA520;
-	color: #81a6ff;
+	color: #81A6FF;
 }
 .naniteup.locked {
 	background-color: #505050;
@@ -205,13 +205,13 @@ button:hover {
 }
 .naniteup.bought {
 	background-color: #81A6FF;
-	border: 1px solid green;
+	border: 1px solid #008000;
 	color: #000000;
 }
 
 #meltdown {
 	background-color: #1C1C1C;
-	border: 2px solid green;
+	border: 2px solid #008000;
 	border-radius: 6px;
 	color: #D0D0D0;
 }

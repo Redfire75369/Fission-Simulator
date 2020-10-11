@@ -1,0 +1,92 @@
+{
+  "rules": {
+    "alpha-value-notation": ["number", {
+      "severity": "error",
+      "exceptProperties": []
+    }],
+    "color-function-notation": ["legacy", {
+      "severity": "warning"
+    }],
+    "color-hex-case": ["upper", {
+      "severity": "error"
+    }],
+    "color-named": ["never", {
+      "severity": "error",
+      "ignore": [],
+      "ignoreProperties": []
+    }],
+    "color-no-invalid-hex": [true, {
+      "severity": "error"
+    }],
+    "font-family-no-duplicate-names": [true, {
+      "severity": "warning",
+      "ignoreFontFamilyNames": []
+    }],
+    "font-family-no-missing-generic-family-keyword": [true, {
+      "severity": "warning",
+      "ignoreFontFamilies": []
+    }],
+    "function-calc-no-invalid": [true, {
+      "severity": "error"
+    }],
+    "function-calc-no-unspaced-operator": [true, {
+      "severity": "warning"
+    }],
+    "hue-degree-notation": ["number", {
+      "severity": "error"
+    }],
+    "indentation": ["tab", {
+      "severity": "error",
+      "baseIndentLevel": 0,
+      "indentInsideParens": "once-at-root-twice-in-block" ,
+      "indentClosingBrace": false,
+      "except": [],
+      "ignore": []
+    }],
+    "length-zero-no-unit":[true, {
+      "ignore": []
+    }],
+    "linebreaks": ["unix", {
+      "severity": "error"
+    }],
+    "no-duplicate-selectors": [true, {
+      "severity": "warning",
+      "disallowInList": true
+    }],
+    "no-empty-first-line": [true, {
+      "severity": "error"
+    }],
+    "no-eol-whitespace": [true, {
+      "severity": "error",
+      "ignore": []
+    }],
+    "no-extra-semicolons": [true, {
+      "severity": "warning"
+    }],
+    "no-invalid-double-slash-comments": [true, {
+      "severity": "error"
+    }],
+    "no-missing-end-of-source-newline": [true, {
+      "severity": "error"
+    }],
+    "property-no-unknown": [true, {
+      "ignoreProperties": [],
+      "ignoreSelectors": [],
+      "checkPrefixed": true
+    }],
+    "string-no-newline": [true, {
+      "severity": "error"
+    }],
+    "string-quotes": ["double", {
+      "severity": "error"
+    }],
+    "unicode-bom": ["never", {
+      "severity": "error"
+    }],
+    "unit-no-unknown": [true, {
+      "severity": "error",
+      "ignoreFunctions": [],
+      "ignoreUnits": []
+    }]
+  }
+}
