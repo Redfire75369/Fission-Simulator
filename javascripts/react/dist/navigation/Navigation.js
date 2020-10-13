@@ -8,9 +8,15 @@ function NavigationDropdownComponent() {
   const [unlockedCheats, setUnlockedCheats] = React.useState(false);
   React.useEffect(function () {
     const timerID = setInterval(function () {
-      setUnlockedMines(unlockedMines || player.energy.gte(1e50) || player.unlocked.mines);
-      setUnlockedAutomation(unlockedAutomation || player.reactors.pebblebeds[2].bought > 0);
-      setUnlockedPrestige(unlockedPrestige || player.unlocked.prestige);
+      setUnlockedMines(function (prevUnlockedMines) {
+        return prevUnlockedMines || player.unlocked.mines;
+      });
+      setUnlockedAutomation(function (prevUnlockedAutomation) {
+        return prevUnlockedAutomation || player.unlocked.automation;
+      });
+      setUnlockedPrestige(function (prevUnlockedPrestige) {
+        return prevUnlockedPrestige || player.unlocked.prestige;
+      });
       setUnlockedCheats(cheatsEnabled);
     }, 50);
     return function () {
@@ -18,7 +24,9 @@ function NavigationDropdownComponent() {
     };
   }, []);
   React.useEffect(function () {
-    setMenuHeight(dropdownRef.current?.firstChild?.offsetHeight);
+    var _dropdownRef$current, _dropdownRef$current$;
+
+    setMenuHeight((_dropdownRef$current = dropdownRef.current) === null || _dropdownRef$current === void 0 ? void 0 : (_dropdownRef$current$ = _dropdownRef$current.firstChild) === null || _dropdownRef$current$ === void 0 ? void 0 : _dropdownRef$current$.offsetHeight);
   }, [unlockedMines, unlockedAutomation, unlockedPrestige, unlockedCheats]);
 
   function calculateHeight(el) {
@@ -30,7 +38,7 @@ function NavigationDropdownComponent() {
     function onClick() {
       setActiveMenu(props.goToMenu || "main");
 
-      if (props.goToMenu === "main") {
+      if (props.type === "main") {
         showNaviTab(props.tab + "_tab");
       } else if (player.navigation[props.type]) {
         player.navigation[props.type] = props.tab;

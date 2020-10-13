@@ -74,13 +74,12 @@ function resetTRISOFuels() {
 function getTRISOFuelGain(tier) {
 	if (tier === 2) {
 		if (player.mines.tier >= 3) {
-			return player.mines.effective.mul(player.mines.tier - tier + 1).div(0.08 * pow(250, tier + 1));
+			return player.mines.effective.mul(player.mines.tier - tier + 1).mul(320).div(pow(120, tier + 1));
 		}
 		return zero;
-
 	}
 	if (player.mines.tier >= tier) {
-		return player.mines.effective.mul(player.mines.tier - tier + 1).div(0.08 * pow(250, tier + 1));
+		return player.mines.effective.mul(player.mines.tier - tier + 1).mul(320).div(pow(120, tier + 1));
 	}
 	return zero;
 }

@@ -22,7 +22,9 @@ function PebblebedFissionReactorComponent(props) {
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
-			setUnlocked(props.tier === 0 || player.reactors.pebblebeds[props.tier - 1].bought >  0);
+			setUnlocked(function(prevUnlocked) {
+				return prevUnlocked || props.tier === 0 || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost);
+			});
 			setUnlockedFuelHandling(function(prevUnlockedFuelHandling) {
 				return prevUnlockedFuelHandling || player.energy.gte(600);
 			});

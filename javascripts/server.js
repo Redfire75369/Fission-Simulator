@@ -5,7 +5,8 @@ const Express = require("express");
 const Path = require("path");
 
 // eslint-disable-next-line no-constant-condition
-if (false) {
+try {
+	throw "Not Currently Working";
 	const app = Express();
 	const router = Express.Router();
 
@@ -18,4 +19,6 @@ if (false) {
 	app.listen(8080);
 
 	console.log("Running local server at Port 8080");
+} catch {
+	
 }

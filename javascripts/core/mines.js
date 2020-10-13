@@ -1,5 +1,5 @@
-const mineUpgradeCosts = [new Decimal("7.5e8"), new Decimal("1e11"), new Decimal("1e19"), new Decimal("1e24"), new Decimal("1e38"), new Decimal("1e51"), new Decimal("1e64"), new Decimal("1e80")];
-const mineSoftCaps = [new Decimal("5e2"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
+const mineUpgradeCosts = [new Decimal("5e8"), new Decimal("1e11"), new Decimal("1e19"), new Decimal("1e24"), new Decimal("1e38"), new Decimal("1e51"), new Decimal("1e64"), new Decimal("1e80")];
+const mineSoftCaps = [new Decimal("2.5e1"), new Decimal("1e5"), new Decimal("1e12"), new Decimal("1e20"), new Decimal("1e31"), new Decimal("1e42"), new Decimal("1e54"), new Decimal("1e72")];
 
 class Mines {
 	constructor() {
@@ -71,11 +71,11 @@ function getMineGain() {
 	return player.mines.metalExtraction.mul(player.mines.ratio).div(player.mines.constructionCost);
 }
 function getReactorGain(tier) {
-	if (player.mines.tier > 2 * tier) {
+	if (player.mines.tier > 2 * tier - 1) {
 		const bought =  player.reactors.pebblebeds.reduce(function(acc, cur) {
 			return acc + Math.sign(cur.bought);
 		}, 0);
-		return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost).sqrt();
+		return player.mines.metalExtraction.mul(1 - player.mines.ratio).div(bought).div(player.reactors.pebblebeds[tier].constructionCost).pow(1/3).div(20);
 	}
 	return zero;
 }
