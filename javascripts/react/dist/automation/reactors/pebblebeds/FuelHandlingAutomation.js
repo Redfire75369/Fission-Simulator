@@ -12,7 +12,7 @@ function PebblebedFuelHandlingAutomationComponent(props) {
   React.useEffect(function () {
     const timerID = setInterval(function () {
       setUnlocked(function (prevUnlocked) {
-        return prevUnlocked || player.energy.gte(player.reactors.pebblebeds[props.tier].mul(1e9));
+        return prevUnlocked || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost.mul(1e9));
       });
       setUnlockedUpgrade(player.prestiges > 1);
       setActiveHandling(player.automation.reactors.pebblebeds.fuel[props.tier].active);
@@ -46,7 +46,10 @@ function PebblebedFuelHandlingAutomationComponent(props) {
   }
 
   return /*#__PURE__*/React.createElement("div", {
-    className: "flex-col fuelhandlingautomationdiv"
+    className: "flex-col fuelhandlingautomationdiv",
+    style: {
+      display: unlocked ? "" : "none"
+    }
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-row"
   }, /*#__PURE__*/React.createElement("div", {

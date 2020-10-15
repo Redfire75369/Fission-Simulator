@@ -80,6 +80,21 @@ button:hover {
 	z-index: 8;
 }
 
+.popup.offline {
+	display: none;
+	height: 200px;
+	width: 450px;
+}
+.popup.offline > div {
+	align-items: center;
+	display: flex;
+	height: 175px;
+}
+.popup.offline > button {
+	font-size: 15px;
+	margin: auto;
+}
+
 .tooltip {
 	border: 1px solid #000000;
 	display: inline-block;

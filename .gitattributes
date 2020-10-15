@@ -15,7 +15,7 @@
 *.eslintignore text
 *.gitattributes text
 *.gitignore text
-*.tern-project text
+*.npmrc text
 
 *.bat text
 *.sh text

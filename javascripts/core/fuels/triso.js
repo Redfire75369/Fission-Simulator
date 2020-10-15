@@ -29,7 +29,7 @@ class TRISOFuel {
 		return this.depleted.mul(Decimal.pow(120, 3 * this.tier)).mul(120);
 	}
 	get energyPerPellet() {
-		return Decimal.pow(intermediaryVariables.energyTierMul, this.tier + 1)
+		return Decimal.pow(intermediaryVariables.energyTierMul, pow(this.tier, log(5, 2)) + 1)
 			.mul(Decimal.pow(intermediaryVariables.energyBoughtMul, player.reactors.pebblebeds[this.tier].bought))
 			.mul(player.reactors.pebblebeds[this.tier].fuel.pow((this.tier + 1) / 4))
 			.mul(4).div(this.tier + 1);
