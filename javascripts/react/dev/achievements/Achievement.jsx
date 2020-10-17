@@ -17,26 +17,28 @@ const achievementTexts = {
 	28: ""
 };
 
-function AchievementComponent(props) {
-	const [completed, setCompleted] = React.useState("false");
-
-	React.useEffect(function() {
-		const timerID = setInterval(function() {
-			setCompleted(player.achievements[props.id]);
+class AchievementComponent extends React.Component {
+	componentDidMount() {
+		this.timerID = setInterval(function() {
+			this.setState({
+				completed: player.achievements[this.props.id]
+			});
 		}, 50);
+	}
+	
+	componentWillUnmount() {
+		clearInterval(this.timerID);
+	}
 
-		return function() {
-			clearInterval(timerID);
-		};
-	}, []);
-
-	return (
-		<div className={"flex-col align horizontal-center tooltip " + (completed ? "achcomplete" : "achlocked")}>
-			<img src={"resources/images/achievements/" + props.id + ".png"}/>
-			<span className="tooltiptext" >
-				{achievementTexts[props.id].split("\n")[0]}<br/>
-				{achievementTexts[props.id].split("\n")[1]}
-			</span>
-		</div>
-	);
+	render() {
+		return (
+			<div className={"flex-col align horizontal-center tooltip " + (this.state.completed ? "achcomplete" : "achlocked")}>
+				<img src={"resources/images/achievements/" + this.props.id + ".png"}/>
+				<span className="tooltiptext" >
+					{achievementTexts[this.props.id].split("\n")[0]}<br/>
+					{achievementTexts[this.props.id].split("\n")[1]}
+				</span>
+			</div>
+		);
+	}
 }

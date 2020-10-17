@@ -25,7 +25,9 @@ function enableCheatsTab() {
 }
 
 function defaultEnergy() {
-	player.energy = new Decimal(100);
+	if (cheatsUnlocked) {
+		player.energy = new Decimal(10);
+	}
 }
 function doubleEnergy() {
 	player.energy = player.energy.mul(2);

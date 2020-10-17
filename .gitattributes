@@ -15,6 +15,7 @@
 *.gitattributes text
 *.gitignore text
 *.stylelintrc text
+*.npmrc text
 
 *.bat text
 *.sh text

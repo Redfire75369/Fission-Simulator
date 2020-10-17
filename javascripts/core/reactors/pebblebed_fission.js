@@ -97,4 +97,8 @@ function simulatePebblebedReactors(tickInterval = 50) {
 		showNaviTab("production_tab");
 		player.navigation.production = "mines";
 	}
+	if (player.energy.gte(1e10) && !player.unlocked.automation) {
+		player.unlocked.automation = true;
+		showNaviTab("automation_tab");
+	}
 }

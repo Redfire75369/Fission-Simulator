@@ -49,9 +49,7 @@ function init_game() {
 	//nextNews();
 
 	/*Game Loops*/
-	var errored = false;
-
-	var saveGameLoop = setInterval(function() {
+	saveGameLoop = setInterval(function() {
 		saveGame();
 	}, 15000);
 
@@ -60,10 +58,10 @@ function init_game() {
 			if (player.lastUpdate === undefined) {
 				player.lastUpdate = Date.now();
 			}
-			if (Date.now() > player.lastUpdate && focused) {
+			if (Date.now() > player.lastUpdate && document.visibilityState === "visible") {
 				simulateTime((Date.now() - player.lastUpdate) / 1000);
 			}
-		} catch(e) {
+		} catch (e) {
 			if (!errored) {
 				alert("The game has encountered a fatal error. Please report this bug in the discord as soon as possible. The next prompt will contain debug information regarding this. Please include that in the bug report.");
 				alert("--DEBUG Information--\n" + e.stack);
@@ -79,4 +77,3 @@ function init_game() {
 }
 
 init_game();
-player.options.theme = 0;
