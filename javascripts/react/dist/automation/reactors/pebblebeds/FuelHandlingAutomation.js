@@ -1,4 +1,5 @@
 function PebblebedFuelHandlingAutomationComponent(props) {
+  const [unlocked, setUnlocked] = React.useState(false);
   const [unlockedUpgrade, setUnlockedUpgrade] = React.useState(false);
   const [activeHandling, setActiveHandling] = React.useState(false);
   const [intervalHandling, setIntervalHandling] = React.useState(null);
@@ -10,6 +11,9 @@ function PebblebedFuelHandlingAutomationComponent(props) {
   const [costReprocessing, setCostReprocessing] = React.useState(zero);
   React.useEffect(function () {
     const timerID = setInterval(function () {
+      setUnlocked(function (prevUnlocked) {
+        return prevUnlocked || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost.mul(1e9));
+      });
       setUnlockedUpgrade(player.prestiges > 1);
       setActiveHandling(player.automation.reactors.pebblebeds.fuel[props.tier].active);
       setIntervalHandling(player.automation.reactors.pebblebeds.fuel[props.tier].interval);
@@ -42,7 +46,10 @@ function PebblebedFuelHandlingAutomationComponent(props) {
   }
 
   return /*#__PURE__*/React.createElement("div", {
-    className: "flex-col fuelhandlingautomationdiv"
+    className: "flex-col fuelhandlingautomationdiv",
+    style: {
+      display: unlocked ? "" : "none"
+    }
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-row"
   }, /*#__PURE__*/React.createElement("div", {
@@ -65,27 +72,5 @@ function PebblebedFuelHandlingAutomationComponent(props) {
   }, /*#__PURE__*/React.createElement("button", {
     onClick: decreaseIntervalHandling,
     className: "fuelhandlingautomationbtn"
-  }, "Decrease Automation Interval for ", notation(costHandling))))), /*#__PURE__*/React.createElement("div", {
-    className: "flex-row"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "flex-col"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "TRISO Fuel Reprocessing")), /*#__PURE__*/React.createElement("div", null, "Interval: ", intervalReprocessing, " ms"), /*#__PURE__*/React.createElement("div", {
-    className: "cooldown"
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      width: cooldownReprocessing * 100 + "%"
-    }
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "flex-col"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-    onClick: toggleReprocessing,
-    className: activeReprocessing ? "active" : "inactive"
-  }, activeReprocessing ? "Deactivate" : "Activate", " Automation")), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: unlockedUpgrade ? "" : "none"
-    }
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: decreaseIntervalReprocessing,
-    className: "fuelhandlingautomationbtn"
-  }, "Decrease Automation Interval for ", notation(costReprocessing))))));
+  }, "Decrease Automation Interval for ", notation(costHandling))))));
 }

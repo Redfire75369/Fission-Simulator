@@ -20,7 +20,7 @@ function MinesComponent() {
   React.useEffect(function () {
     const timerID = setInterval(function () {
       setActive(player.navigation.production === "mines");
-      setUnlockedRequirement(player.energy.gt(1e580) && !player.unlocked.mines);
+      setUnlockedRequirement(player.energy.gte(5e8) && !player.unlocked.mines);
       setUnlocked(player.unlocked.mines);
       setUnlockedSalvage(player.mines.tier > 0);
       setBought(player.mines.tier > -1);

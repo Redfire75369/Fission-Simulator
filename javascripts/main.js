@@ -20,6 +20,7 @@ function getDefaultData() {
 
 		unlocked: {
 			mines: false,
+			automation: false,
 			prestige: false,
 			naniteUps: false,
 			meltdown: false,
@@ -224,13 +225,9 @@ const zero = new Decimal(0);
 
 var player = getDefaultData();
 
-var focused = true;
-window.onvisibilitychange = function() {
-	focused = !focused;
-	/*if (focused) {
-		nextNews();
-	}*/
-};
+var errored = false;
+
+var saveGameLoop;
 
 function updateUI() {
 	updateUIEnergy();

@@ -1,5 +1,5 @@
 function copyStringToClipboard(str) {
-	var el = document.createElement("textarea");
+	const el = document.createElement("textarea");
 	el.value = str;
 	el.setAttribute("readonly", "");
 	el.style = {
@@ -12,18 +12,23 @@ function copyStringToClipboard(str) {
 }
 
 function copyToClipboard(el) {
-	el = (typeof el === "string") ? document.querySelector(el) : el;
+	el = typeof el === "string" ? document.querySelector(el) : el;
+
 	if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-		var editable = el.contentEditable;
-		var readOnly = el.readOnly;
+		const editable = el.contentEditable;
+		const readOnly = el.readOnly;
+
 		el.contentEditable = true;
 		el.readOnly = true;
-		var range = document.createRange();
+
+		const range = document.createRange();
 		range.selectNodeContents(el);
-		var selection = window.getSelection();
+
+		const selection = window.getSelection();
 		selection.removeAllRanges();
 		selection.addRange(range);
 		el.setSelectionRange(0, 999999);
+
 		el.contentEditable = editable;
 		el.readOnly = readOnly;
 	} else {

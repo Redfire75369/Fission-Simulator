@@ -1,6 +1,14 @@
-node_modules/**
-saves/**
-
+# Editor-Specific Configurations
 .idea/**
+.vscode/**
 
+# Github Configurations
+.githooks/**
+
+# Node Package Manager
+node_modules/**
+.env
 package-lock.json
+
+# Others
+saves/**

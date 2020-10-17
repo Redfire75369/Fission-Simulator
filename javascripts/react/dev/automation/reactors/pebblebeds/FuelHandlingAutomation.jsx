@@ -1,4 +1,5 @@
 function PebblebedFuelHandlingAutomationComponent(props) {
+	const [unlocked, setUnlocked] = React.useState(false);
 	const [unlockedUpgrade, setUnlockedUpgrade] = React.useState(false);
 	const [activeHandling, setActiveHandling] = React.useState(false);
 	const [intervalHandling, setIntervalHandling] = React.useState(null);
@@ -7,10 +8,13 @@ function PebblebedFuelHandlingAutomationComponent(props) {
 	const [activeReprocessing, setActiveReprocessing] = React.useState(null);
 	const [intervalReprocessing, setIntervalReprocessing] = React.useState(null);
 	const [cooldownReprocessing, setCooldownReprocessing] = React.useState(0);
-	const [costReprocessing, setCostReprocessing] = React.useState(zero); 
+	const [costReprocessing, setCostReprocessing] = React.useState(zero);
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
+			setUnlocked(function(prevUnlocked) {
+				return prevUnlocked || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost.mul(1e9));
+			});
 			setUnlockedUpgrade(player.prestiges > 1);
 			setActiveHandling(player.automation.reactors.pebblebeds.fuel[props.tier].active);
 			setIntervalHandling(player.automation.reactors.pebblebeds.fuel[props.tier].interval);
@@ -26,7 +30,7 @@ function PebblebedFuelHandlingAutomationComponent(props) {
 			clearInterval(timerID);
 		};
 	}, []);
-	
+
 	function toggleHandling() {
 		player.automation.reactors.pebblebeds.fuel[props.tier].active = !player.automation.reactors.pebblebeds.fuel[props.tier].active;
 	}
@@ -42,7 +46,7 @@ function PebblebedFuelHandlingAutomationComponent(props) {
 	}
 
 	return (
-		<div className="flex-col fuelhandlingautomationdiv">
+		<div className="flex-col fuelhandlingautomationdiv" style={{display: unlocked ? "" : "none"}}>
 			<div className="flex-row">
 				<div className="flex-col">
 					<div><b>Pebblebed Reactor Fuel Handling</b></div>
@@ -61,7 +65,7 @@ function PebblebedFuelHandlingAutomationComponent(props) {
 				</div>
 			</div>
 
-			<div className="flex-row">
+			{/*<div className="flex-row">
 				<div className="flex-col">
 					<div><b>TRISO Fuel Reprocessing</b></div>
 					<div>Interval: {intervalReprocessing} ms</div>
@@ -77,7 +81,7 @@ function PebblebedFuelHandlingAutomationComponent(props) {
 						<button onClick={decreaseIntervalReprocessing} className="fuelhandlingautomationbtn">Decrease Automation Interval for {notation(costReprocessing)}</button>
 					</div>
 				</div>
-			</div>
+			</div>*/}
 		</div>
 	);
 }

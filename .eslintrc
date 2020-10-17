@@ -1,304 +1,268 @@
 {
-	"parser": "espree",
-	"parserOptions": {
-		"ecmaVersion": 11,
-		"sourceType": "script",
-		"ecmaFeatures": {
-			"globalReturn": false,
-			"impliedStrict": false,
-			"jsx": true
-		}
-	},
+  "parser": "espree",
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "globalReturn": false,
+      "impliedStrict": false,
+      "jsx": true
+    }
+  },
 
-	"env": {
-		"browser": true,
-		"es2020": true,
-		"node": true
-	},
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
 
-	"plugins": [
-		"react",
-        "react-hooks"
-	],
-	"settings": {
-		"react": {
-			"createClass": "createReactClass",
-			"pragma": "React",
-			"version": "16.8",
-			"flowVersion": "0.53"
-		},
-		"propWrapperFunctions": [
-				"forbidExtraProps",
-				{
-					"property": "freeze",
-					"object": "Object"
-				},
-				{
-					"property": "myFavoriteWrapper"
-				}
-		],
-		"linkComponents": [
-			"Hyperlink",
-			{
-				"name": "Link", "linkAttribute": "to"
-			}
-		]
-	},
+  "plugins": [
+    "react",
+    "react-hooks"
+  ],
 
-	"globals": {
-		"player": true,
-		"getDefaultData": true,
-		"getLimit": true,
-		"zero": true,
-		"infinity": true,
-		"focused": true,
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "flowVersion": "0.53",
+      "pragma": "React",
+      "version": "16.13.1"
+    },
+    "propWrapperFunctions": [
+        "forbidExtraProps",
+        {
+          "property": "freeze",
+          "object": "Object"
+        }
+    ],
+    "linkComponents": [
+      "Hyperlink",
+      {
+        "name": "Link",
+        "linkAttribute": "to"
+      }
+    ]
+  },
 
-		"isotopes": true,
+  "globals": {
+    "player": true,
+    "getDefaultData": true,
+    "getLimit": true,
 
-		"notation": true,
-		"formatTime": true,
-		"simulateTime": true,
-		"updateUI": true,
-		"showNaviTab": true,
+    "zero": true,
+    "infinity": true,
+    "focused": true,
 
-		"notations": true,
-		"themes": true,
+    "isotopes": true,
 
-  		"leverMaxAll": true,
-	  	"intermediaryVariables": true,
+    "notation": true,
+    "formatTime": true,
+    "simulateTime": true,
+    "updateUI": true,
+    "showNaviTab": true,
 
-		"preLoad": true,
-		"loadSave": true,
-		"postLoad": true,
-		"saveGame": true,
-		"getSaveString": true,
-		"getSave": true,
+    "notations": true,
+    "themes": true,
 
-		"reprocessing": true,
-		"activeCoils": true,
-		"rotors": true,
-		"coils": true,
+    "leverMaxAll": true,
+    "intermediaryVariables": true,
 
-		"pow": true,
-		"sqrt": true,
-		"log": true,
-		"round": true,
-		"floor": true,
-		"ceil": true,
-		"min": true,
-		"max": true,
+    "preLoad": true,
+    "loadSave": true,
+    "postLoad": true,
+    "saveGame": true,
+    "getSaveString": true,
+    "getSave": true,
 
-		"React": true,
-		"ReactDOM": true,
-		"ReactStateComponent": true,
+    "reprocessing": true,
+    "activeCoils": true,
+    "rotors": true,
+    "coils": true,
 
-		"MinesComponent": true,
-		"TRISOFuelComponent": true,
-		"PebblebedFissionReactorComponent": true,
-		"FissionReactorsSubtabComponent": true,
-		"ProductionNavigationSubtabButton": true,
-		"ProductionMinesNavigationSubtabButton": true,
-		"ProductionTabComponent": true,
-		"StatisticsTabComponent": true,
-		"AchievementComponent": true,
-		"AchievementsTabComponent": true,
-		"NotationOptionsButton": true,
-		"ThemeOptionsButton": true,
-		"GasCoolantComponent": true,
-		"GasCoolantStatsComponent": true,
-		"PrestigeTabComponent": true,
+    "pow": true,
+    "sqrt": true,
+    "log": true,
+    "round": true,
+    "floor": true,
+    "ceil": true,
+    "min": true,
+    "max": true,
 
-		"Decimal": true,
-		"LZString": true,
-		"Mousetrap": true,
-		"ADNotations": true,
-		"ADCommunityNotations": true,
-		"copyToClipboard": true,
-		"copyStringToClipboard": true,
+    "React": true,
+    "ReactDOM": true,
+    "ReactTransitionGroup": true,
 
-		"GenericProducer": true,
-		"GenericEnergyProducer": true,
-		"GenericAutomation": true,
-		"GenericIntervalAutomation": true,
-		"GenericActionAutomation": true,
-		"GenericIntervalActionAutomation": true,
-		"GenericUpgrade": true,
+    "MinesComponent": true,
+    "TRISOFuelComponent": true,
+    "PebblebedFissionReactorComponent": true,
+    "FissionReactorsSubtabComponent": true,
+    "ProductionNavigationSubtabButton": true,
+    "ProductionMinesNavigationSubtabButton": true,
+    "ProductionTabComponent": true,
+    "StatisticsTabComponent": true,
+    "AchievementComponent": true,
+    "AchievementsTabComponent": true,
+    "NotationOptionsButton": true,
+    "ThemeOptionsButton": true,
+    "GasCoolantComponent": true,
+    "GasCoolantStatsComponent": true,
+    "PrestigeTabComponent": true,
 
-		"TRISOFuel": true,
-		"Mines": true,
-		"PebblebedFissionReactor": true,
-		"NaniteUpgrade": true,
-		"TurbineNaniteUpgrade": true,
-		"MeltdownUpgrade": true,
-	  	"TRISOReprocessAutomation": true,
-		"PebblebedBuyAutomation": true,
-		"PebblebedFuelAutomation": true,
+    "Decimal": true,
+    "LZString": true,
+    "Mousetrap": true,
+    "ADNotations": true,
+    "ADCommunityNotations": true,
+    "copyToClipboard": true,
+    "copyStringToClipboard": true,
 
-		"gasCoolants": true,
-		"prestigeGoal": true,
-		"buyPrestige": true,
-		"coolingEfficiency": true,
+    "GenericProducer": true,
+    "GenericEnergyProducer": true,
+    "GenericAutomation": true,
+    "GenericIntervalAutomation": true,
+    "GenericActionAutomation": true,
+    "GenericIntervalActionAutomation": true,
+    "GenericUpgrade": true,
 
-		"getMineGain": true,
-		"pebblebedFissionTotalEnergyGain": true,
-		"assignResearch": true,
-		"assignPercentageResearch": true,
-		"toggleRespecResearch": true,
-		"respecResearch": true,
-		"checkAchievementCompletion": true,
-		"getTotalNaniteUpMult": true,
-		"getTotalMeltdownUpMult": true,
+    "TRISOFuel": true,
+    "Mines": true,
+    "PebblebedFissionReactor": true,
+    "NaniteUpgrade": true,
+    "TurbineNaniteUpgrade": true,
+    "MeltdownUpgrade": true,
+      "TRISOReprocessAutomation": true,
+    "PebblebedBuyAutomation": true,
+    "PebblebedFuelAutomation": true,
 
-		"resetEnergy": true,
-		"resetTRISOFuels": true,
-		"resetMines": true,
-		"resetPebblebedFissionReactors": true,
-		"resetNucleosynthesis": true,
-		"resetNaniteResearch": true,
-		"resetNaniteUps": true,
-		"resetMeltdown": true,
-		"resetMeltdownUps": true,
+    "gasCoolants": true,
+    "prestigeGoal": true,
+    "buyPrestige": true,
+    "coolingEfficiency": true,
 
-		"simulateTRISOFuel": true,
-		"simulateMines": true,
-		"simulatePebblebedReactors": true,
-		"simulateMeltdown": true,
-		"simulateTRISOAutomation": true,
-		"simulatePebblebedAutomation": true,
+    "getMineGain": true,
+    "pebblebedFissionTotalEnergyGain": true,
+    "assignResearch": true,
+    "assignPercentageResearch": true,
+    "toggleRespecResearch": true,
+    "respecResearch": true,
+    "checkAchievementCompletion": true,
+    "getTotalNaniteUpMult": true,
+    "getTotalMeltdownUpMult": true,
 
-		"updateUIEnergy": true,
-		"updateUINucleosynthesis": true,
-		"updateUINaniteResearch": true,
-		"updateUINaniteUps": true,
-		"updateUIMeltdown": true,
-		"updateUIMeltdownUps": true,
-		"updateUIDecayHastening": true,
-		"updateUIHowToPlay": true
-	},
+    "resetEnergy": true,
+    "resetTRISOFuels": true,
+    "resetMines": true,
+    "resetPebblebedFissionReactors": true,
+    "resetNucleosynthesis": true,
+    "resetNaniteResearch": true,
+    "resetNaniteUps": true,
+    "resetMeltdown": true,
+    "resetMeltdownUps": true,
 
-	"rules": {
-		"array-bracket-newline": [
-			"warn",
-			"consistent"
-		],
-		"constructor-super": "error",
-		"default-case": "error",
-		"eol-last": [
-			"error",
-			"always"
-		],
-		"eqeqeq": [
-			"error",
-			"always",
-			{
-				"null": "always"
-			}
-		],
-		"for-direction": "error",
-		"getter-return": "error",
-		"indent": [
-			"error",
-			"tab",
-			{
-				"SwitchCase": 1
-			}
-		],
-		"linebreak-style": [
-			"error",
-			"unix"
-		],
-		"no-compare-neg-zero": "warn",
-		"no-cond-assign": [
-			"error",
-			"always"
-		],
-		"no-constant-condition": [
-			"error",
-			{
-				"checkLoops": false
-			}
-		],
-		"no-else-return": [
-			"warn",
-			{
-				"allowElseIf": true
-			}
-		],
-		"no-dupe-args": "warn",
-		"no-dupe-class-members": "warn",
-		"no-dupe-else-if": "warn",
-		"no-dupe-keys": "warn",
-		"no-duplicate-case": "warn",
-		"no-empty": "warn",
-		"no-empty-character-class": "warn",
-		"no-empty-pattern": "warn",
-		"no-ex-assign": "warn",
-		"no-extra-boolean-cast": "warn",
-		"no-extra-semi": "warn",
-		"no-invalid-regexp": "error",
-		"no-irregular-whitespace": "warn",
-		"no-mixed-spaces-and-tabs": "warn",
-		"no-redeclare": "off",
-		"no-regex-spaces": "warn",
-		"no-self-assign": "warn",
-		"no-setter-return": "warn",
-		"no-this-before-super": "warn",
-		"no-undef": "error",
-		"no-unreachable": "warn",
-		"no-unused-vars": "warn",
-		"no-useless-catch": "warn",
-		"quotes": [
-			"error",
-			"double"
-		],
-		"semi": [
-			"error",
-			"always"
-		],
-		"use-isnan": "error",
-		"valid-typeof": "error",
+    "simulateTRISOFuel": true,
+    "simulateMines": true,
+    "simulatePebblebedReactors": true,
+    "simulateMeltdown": true,
+    "simulateTRISOAutomation": true,
+    "simulatePebblebedAutomation": true,
 
-		"react/jsx-curly-spacing": [
-			"warn",
-			{
-				"when": "never"
-			}
-		],
-		"react/jsx-filename-extension": [
-			"error",
-			{
-				"extensions": [
-					".jsx"
-				]
-			}
-		],
-		"react/jsx-key": [
-			"warn"
-		],
-		"react/jsx-no-duplicate-props": [
-			"error",
-			{
-				"ignoreCase": false
-			}
-		],
+    "updateUIEnergy": true,
+    "updateUINucleosynthesis": true,
+    "updateUINaniteResearch": true,
+    "updateUINaniteUps": true,
+    "updateUIMeltdown": true,
+    "updateUIMeltdownUps": true,
+    "updateUIDecayHastening": true,
+    "updateUIHowToPlay": true
+  },
 
-		"react/jsx-no-undef": [
-			"error",
-			{
-				"allowGlobals": true
-			}
-		],
-		"react/jsx-uses-vars": "warn",
-		"react/no-adjacent-inline-elements": "error",
-		"react/no-children-prop": "warn",
-		"react/no-danger-with-children": "warn",
-		"react/no-deprecated": "error",
-		"react/no-direct-mutation-state": "error",
-		"react/no-typos": "error",
-		"react/no-unescaped-entities": "error",
-		"react/no-unknown-property": "warn",
-		"react/no-unused-state": "warn",
-		"react/prefer-read-only-props": "warn",
-		"react/require-render-return": "error"
-	}
+  "rules": {
+    "array-bracket-newline": ["warn", "consistent"],
+    "constructor-super": "error",
+    "default-case": "error",
+    "eol-last": ["error", "always"],
+    "eqeqeq": ["error", "always",{
+      "null": "always"
+    }],
+    "for-direction": "error",
+    "getter-return": "error",
+    "indent": ["error", "tab", {
+      "SwitchCase": 1
+    }],
+    "linebreak-style": ["error", "unix"],
+    "no-compare-neg-zero": "warn",
+    "no-cond-assign": ["error", "always"],
+    "no-constant-condition": ["error", {
+      "checkLoops": false
+    }],
+    "no-else-return": ["warn", {
+      "allowElseIf": true
+    }],
+    "no-dupe-args": "warn",
+    "no-dupe-class-members": "warn",
+    "no-dupe-else-if": "warn",
+    "no-dupe-keys": "warn",
+    "no-duplicate-case": "warn",
+    "no-empty": "warn",
+    "no-empty-character-class": "warn",
+    "no-empty-pattern": "warn",
+    "no-ex-assign": "warn",
+    "no-extra-boolean-cast": "warn",
+    "no-extra-semi": "warn",
+    "no-invalid-regexp": "error",
+    "no-irregular-whitespace": "warn",
+    "no-mixed-spaces-and-tabs": "warn",
+    "no-redeclare": "off",
+    "no-regex-spaces": "warn",
+    "no-self-assign": "warn",
+    "no-setter-return": "warn",
+    "no-this-before-super": "warn",
+    "no-trailing-spaces": ["error", {
+      "skipBlankLines": false,
+      "ignoreComments": false
+    }],
+    "no-undef": "error",
+    "no-unreachable": "warn",
+    "no-unused-vars": "warn",
+    "no-useless-catch": "warn",
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "use-isnan": "error",
+    "valid-typeof": "error",
+
+    "react/jsx-curly-spacing": ["warn", {
+      "when": "never"
+    }],
+    "react/jsx-filename-extension": ["error", {
+      "extensions": [
+        ".jsx"
+      ]
+    }],
+    "react/jsx-key": ["warn", {
+      "checkFragmentShorthand": false
+    }],
+    "react/jsx-no-duplicate-props": ["error", {
+      "ignoreCase": false
+    }],
+    "react/jsx-no-undef": ["error", {
+      "allowGlobals": true
+    }],
+    "react/jsx-uses-vars": "warn",
+    "react/no-adjacent-inline-elements": "error",
+    "react/no-children-prop": "warn",
+    "react/no-danger-with-children": "warn",
+    "react/no-deprecated": "error",
+    "react/no-direct-mutation-state": "error",
+    "react/no-typos": "error",
+    "react/no-unescaped-entities": "error",
+    "react/no-unknown-property": "warn",
+    "react/no-unused-state": "warn",
+    "react/prefer-read-only-props": "warn",
+    "react/require-render-return": "error",
+
+    "react-hooks/exhaustive-deps": ["warn", {
+      "additionalHooks": ""
+    }],
+    "react-hooks/rules-of-hooks": "error"
+  }
 }

@@ -54,124 +54,124 @@
 	}
 
 	/*
-  object-assign
-  (c) Sindre Sorhus
-  @license MIT
-  */
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
 	/* eslint-disable no-unused-vars */
 	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
 	function toObject(val) {
-  	if (val === null || val === undefined) {
-  		throw new TypeError("Object.assign cannot be called with null or undefined");
-  	}
+		if (val === null || val === undefined) {
+			throw new TypeError("Object.assign cannot be called with null or undefined");
+		}
 
-  	return Object(val);
+		return Object(val);
 	}
 
 	function shouldUseNative() {
-  	try {
-  		if (!Object.assign) {
-  			return false;
-  		}
+		try {
+			if (!Object.assign) {
+				return false;
+			}
 
-  		// Detect buggy property enumeration order in older V8 versions.
+			// Detect buggy property enumeration order in older V8 versions.
 
-  		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-  		var test1 = new String("abc");  // eslint-disable-line no-new-wrappers
-  		test1[5] = "de";
-  		if (Object.getOwnPropertyNames(test1)[0] === "5") {
-  			return false;
-  		}
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String("abc"); // eslint-disable-line no-new-wrappers
+			test1[5] = "de";
+			if (Object.getOwnPropertyNames(test1)[0] === "5") {
+				return false;
+			}
 
-  		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-  		var test2 = {};
-  		for (var i = 0; i < 10; i++) {
-  			test2["_" + String.fromCharCode(i)] = i;
-  		}
-  		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-  			return test2[n];
-  		});
-  		if (order2.join("") !== "0123456789") {
-  			return false;
-  		}
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2["_" + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join("") !== "0123456789") {
+				return false;
+			}
 
-  		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-  		var test3 = {};
-  		"abcdefghijklmnopqrst".split("").forEach(function (letter) {
-  			test3[letter] = letter;
-  		});
-  		if (Object.keys(Object.assign({}, test3)).join("") !==
-  				"abcdefghijklmnopqrst") {
-  			return false;
-  		}
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			"abcdefghijklmnopqrst".split("").forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join("") !==
+					"abcdefghijklmnopqrst") {
+				return false;
+			}
 
-  		return true;
-  	} catch (err) {
-  		// We don't expect any of the above to throw, but better to be safe.
-  		return false;
-  	}
+			return true;
+		} catch (err) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
 	}
 
 	var objectAssign = shouldUseNative() ? Object.assign : function (target, source) {
-  	var from;
-  	var to = toObject(target);
-  	var symbols;
+		var from;
+		var to = toObject(target);
+		var symbols;
 
-  	for (var s = 1; s < arguments.length; s++) {
-  		from = Object(arguments[s]);
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
 
-  		for (var key in from) {
-  			if (hasOwnProperty.call(from, key)) {
-  				to[key] = from[key];
-  			}
-  		}
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
 
-  		if (getOwnPropertySymbols) {
-  			symbols = getOwnPropertySymbols(from);
-  			for (var i = 0; i < symbols.length; i++) {
-  				if (propIsEnumerable.call(from, symbols[i])) {
-  					to[symbols[i]] = from[symbols[i]];
-  				}
-  			}
-  		}
-  	}
+			if (getOwnPropertySymbols) {
+				symbols = getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
 
-  	return to;
+		return to;
 	};
 
 	/**
-   * Keeps track of the current dispatcher.
-   */
+	 * Keeps track of the current dispatcher.
+	 */
 	var ReactCurrentDispatcher = {
 		/**
-     * @internal
-     * @type {ReactComponent}
-     */
+		 * @internal
+		 * @type {ReactComponent}
+		 */
 		current: null
 	};
 
 	/**
-   * Keeps track of the current batch's configuration such as how long an update
-   * should suspend for if it needs to.
-   */
+	 * Keeps track of the current batch's configuration such as how long an update
+	 * should suspend for if it needs to.
+	 */
 	var ReactCurrentBatchConfig = {
 		suspense: null
 	};
 
 	/**
-   * Keeps track of the current owner.
-   *
-   * The current owner is the component who should own any components that are
-   * currently being constructed.
-   */
+	 * Keeps track of the current owner.
+	 *
+	 * The current owner is the component who should own any components that are
+	 * currently being constructed.
+	 */
 	var ReactCurrentOwner = {
 		/**
-     * @internal
-     * @type {ReactComponent}
-     */
+		 * @internal
+		 * @type {ReactComponent}
+		 */
 		current: null
 	};
 
@@ -205,7 +205,7 @@
 			sourceInfo = " (created by " + ownerName + ")";
 		}
 
-		return "\n    in " + (name || "Unknown") + sourceInfo;
+		return "\n		in " + (name || "Unknown") + sourceInfo;
 	}
 
 	var Resolved = 1;
@@ -325,8 +325,8 @@
 	}
 
 	/**
-   * Used by act() to track whether you're inside an act() scope.
-   */
+	 * Used by act() to track whether you're inside an act() scope.
+	 */
 	var IsSomeRendererActing = {
 		current: false
 	};
@@ -378,7 +378,7 @@
 		// When changing this logic, you might want to also
 		// update consoleWithStackDev.www.js as well.
 		{
-			var hasExistingStack = args.length > 0 && typeof args[args.length - 1] === "string" && args[args.length - 1].indexOf("\n    in") === 0;
+			var hasExistingStack = args.length > 0 && typeof args[args.length - 1] === "string" && args[args.length - 1].indexOf("\n		in") === 0;
 
 			if (!hasExistingStack) {
 				var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
@@ -431,70 +431,70 @@
 		}
 	}
 	/**
-   * This is the abstract API for an update queue.
-   */
+	 * This is the abstract API for an update queue.
+	 */
 
 
 	var ReactNoopUpdateQueue = {
 		/**
-     * Checks whether or not this composite component is mounted.
-     * @param {ReactClass} publicInstance The instance we want to test.
-     * @return {boolean} True if mounted, false otherwise.
-     * @protected
-     * @final
-     */
+		 * Checks whether or not this composite component is mounted.
+		 * @param {ReactClass} publicInstance The instance we want to test.
+		 * @return {boolean} True if mounted, false otherwise.
+		 * @protected
+		 * @final
+		 */
 		isMounted: function (publicInstance) {
 			return false;
 		},
 
 		/**
-     * Forces an update. This should only be invoked when it is known with
-     * certainty that we are **not** in a DOM transaction.
-     *
-     * You may want to call this when you know that some deeper aspect of the
-     * component's state has changed but `setState` was not called.
-     *
-     * This will not invoke `shouldComponentUpdate`, but it will invoke
-     * `componentWillUpdate` and `componentDidUpdate`.
-     *
-     * @param {ReactClass} publicInstance The instance that should rerender.
-     * @param {?function} callback Called after component is updated.
-     * @param {?string} callerName name of the calling function in the public API.
-     * @internal
-     */
+		 * Forces an update. This should only be invoked when it is known with
+		 * certainty that we are **not** in a DOM transaction.
+		 *
+		 * You may want to call this when you know that some deeper aspect of the
+		 * component's state has changed but `setState` was not called.
+		 *
+		 * This will not invoke `shouldComponentUpdate`, but it will invoke
+		 * `componentWillUpdate` and `componentDidUpdate`.
+		 *
+		 * @param {ReactClass} publicInstance The instance that should rerender.
+		 * @param {?function} callback Called after component is updated.
+		 * @param {?string} callerName name of the calling function in the public API.
+		 * @internal
+		 */
 		enqueueForceUpdate: function (publicInstance, callback, callerName) {
 			warnNoop(publicInstance, "forceUpdate");
 		},
 
 		/**
-     * Replaces all of the state. Always use this or `setState` to mutate state.
-     * You should treat `this.state` as immutable.
-     *
-     * There is no guarantee that `this.state` will be immediately updated, so
-     * accessing `this.state` after calling this method may return the old value.
-     *
-     * @param {ReactClass} publicInstance The instance that should rerender.
-     * @param {object} completeState Next state.
-     * @param {?function} callback Called after component is updated.
-     * @param {?string} callerName name of the calling function in the public API.
-     * @internal
-     */
+		 * Replaces all of the state. Always use this or `setState` to mutate state.
+		 * You should treat `this.state` as immutable.
+		 *
+		 * There is no guarantee that `this.state` will be immediately updated, so
+		 * accessing `this.state` after calling this method may return the old value.
+		 *
+		 * @param {ReactClass} publicInstance The instance that should rerender.
+		 * @param {object} completeState Next state.
+		 * @param {?function} callback Called after component is updated.
+		 * @param {?string} callerName name of the calling function in the public API.
+		 * @internal
+		 */
 		enqueueReplaceState: function (publicInstance, completeState, callback, callerName) {
 			warnNoop(publicInstance, "replaceState");
 		},
 
 		/**
-     * Sets a subset of the state. This only exists because _pendingState is
-     * internal. This provides a merging strategy that is not available to deep
-     * properties which is confusing. TODO: Expose pendingState or don't use it
-     * during the merge.
-     *
-     * @param {ReactClass} publicInstance The instance that should rerender.
-     * @param {object} partialState Next partial state to be merged with state.
-     * @param {?function} callback Called after component is updated.
-     * @param {?string} Name of the calling function in the public API.
-     * @internal
-     */
+		 * Sets a subset of the state. This only exists because _pendingState is
+		 * internal. This provides a merging strategy that is not available to deep
+		 * properties which is confusing. TODO: Expose pendingState or don't use it
+		 * during the merge.
+		 *
+		 * @param {ReactClass} publicInstance The instance that should rerender.
+		 * @param {object} partialState Next partial state to be merged with state.
+		 * @param {?function} callback Called after component is updated.
+		 * @param {?string} Name of the calling function in the public API.
+		 * @internal
+		 */
 		enqueueSetState: function (publicInstance, partialState, callback, callerName) {
 			warnNoop(publicInstance, "setState");
 		}
@@ -506,8 +506,8 @@
 		Object.freeze(emptyObject);
 	}
 	/**
-   * Base class helpers for the updating state of a component.
-   */
+	 * Base class helpers for the updating state of a component.
+	 */
 
 
 	function Component(props, context, updater) {
@@ -522,30 +522,30 @@
 
 	Component.prototype.isReactComponent = {};
 	/**
-   * Sets a subset of the state. Always use this to mutate
-   * state. You should treat `this.state` as immutable.
-   *
-   * There is no guarantee that `this.state` will be immediately updated, so
-   * accessing `this.state` after calling this method may return the old value.
-   *
-   * There is no guarantee that calls to `setState` will run synchronously,
-   * as they may eventually be batched together.  You can provide an optional
-   * callback that will be executed when the call to setState is actually
-   * completed.
-   *
-   * When a function is provided to setState, it will be called at some point in
-   * the future (not synchronously). It will be called with the up to date
-   * component arguments (state, props, context). These values can be different
-   * from this.* because your function may be called after receiveProps but before
-   * shouldComponentUpdate, and this new state, props, and context will not yet be
-   * assigned to this.
-   *
-   * @param {object|function} partialState Next partial state or function to
-   *        produce next partial state to be merged with current state.
-   * @param {?function} callback Called after state is updated.
-   * @final
-   * @protected
-   */
+	 * Sets a subset of the state. Always use this to mutate
+	 * state. You should treat `this.state` as immutable.
+	 *
+	 * There is no guarantee that `this.state` will be immediately updated, so
+	 * accessing `this.state` after calling this method may return the old value.
+	 *
+	 * There is no guarantee that calls to `setState` will run synchronously,
+	 * as they may eventually be batched together.	You can provide an optional
+	 * callback that will be executed when the call to setState is actually
+	 * completed.
+	 *
+	 * When a function is provided to setState, it will be called at some point in
+	 * the future (not synchronously). It will be called with the up to date
+	 * component arguments (state, props, context). These values can be different
+	 * from this.* because your function may be called after receiveProps but before
+	 * shouldComponentUpdate, and this new state, props, and context will not yet be
+	 * assigned to this.
+	 *
+	 * @param {object|function} partialState Next partial state or function to
+	 *				produce next partial state to be merged with current state.
+	 * @param {?function} callback Called after state is updated.
+	 * @final
+	 * @protected
+	 */
 
 	Component.prototype.setState = function (partialState, callback) {
 		if (!(typeof partialState === "object" || typeof partialState === "function" || partialState == null)) {
@@ -557,29 +557,29 @@
 		this.updater.enqueueSetState(this, partialState, callback, "setState");
 	};
 	/**
-   * Forces an update. This should only be invoked when it is known with
-   * certainty that we are **not** in a DOM transaction.
-   *
-   * You may want to call this when you know that some deeper aspect of the
-   * component's state has changed but `setState` was not called.
-   *
-   * This will not invoke `shouldComponentUpdate`, but it will invoke
-   * `componentWillUpdate` and `componentDidUpdate`.
-   *
-   * @param {?function} callback Called after update is complete.
-   * @final
-   * @protected
-   */
+	 * Forces an update. This should only be invoked when it is known with
+	 * certainty that we are **not** in a DOM transaction.
+	 *
+	 * You may want to call this when you know that some deeper aspect of the
+	 * component's state has changed but `setState` was not called.
+	 *
+	 * This will not invoke `shouldComponentUpdate`, but it will invoke
+	 * `componentWillUpdate` and `componentDidUpdate`.
+	 *
+	 * @param {?function} callback Called after update is complete.
+	 * @final
+	 * @protected
+	 */
 
 
 	Component.prototype.forceUpdate = function (callback) {
 		this.updater.enqueueForceUpdate(this, callback, "forceUpdate");
 	};
 	/**
-   * Deprecated APIs. These APIs used to exist on classic React classes but since
-   * we would like to deprecate them, we're not going to move them over to this
-   * modern base class. Instead, we define a getter that warns if it's accessed.
-   */
+	 * Deprecated APIs. These APIs used to exist on classic React classes but since
+	 * we would like to deprecate them, we're not going to move them over to this
+	 * modern base class. Instead, we define a getter that warns if it's accessed.
+	 */
 
 
 	{
@@ -609,8 +609,8 @@
 
 	ComponentDummy.prototype = Component.prototype;
 	/**
-   * Convenience component with default shallow equality check for sCU.
-   */
+	 * Convenience component with default shallow equality check for sCU.
+	 */
 
 	function PureComponent(props, context, updater) {
 		this.props = props;
@@ -731,25 +731,25 @@
 		}
 	}
 	/**
-   * Factory method to create a new React element. This no longer adheres to
-   * the class pattern, so do not use new to call it. Also, instanceof check
-   * will not work. Instead test $$typeof field against Symbol.for('react.element') to check
-   * if something is a React Element.
-   *
-   * @param {*} type
-   * @param {*} props
-   * @param {*} key
-   * @param {string|object} ref
-   * @param {*} owner
-   * @param {*} self A *temporary* helper to detect places where `this` is
-   * different from the `owner` when React.createElement is called, so that we
-   * can warn. We want to get rid of owner and replace string `ref`s with arrow
-   * functions, and as long as `this` and owner are the same, there will be no
-   * change in behavior.
-   * @param {*} source An annotation object (added by a transpiler or otherwise)
-   * indicating filename, line number, and/or other information.
-   * @internal
-   */
+	 * Factory method to create a new React element. This no longer adheres to
+	 * the class pattern, so do not use new to call it. Also, instanceof check
+	 * will not work. Instead test $$typeof field against Symbol.for('react.element') to check
+	 * if something is a React Element.
+	 *
+	 * @param {*} type
+	 * @param {*} props
+	 * @param {*} key
+	 * @param {string|object} ref
+	 * @param {*} owner
+	 * @param {*} self A *temporary* helper to detect places where `this` is
+	 * different from the `owner` when React.createElement is called, so that we
+	 * can warn. We want to get rid of owner and replace string `ref`s with arrow
+	 * functions, and as long as `this` and owner are the same, there will be no
+	 * change in behavior.
+	 * @param {*} source An annotation object (added by a transpiler or otherwise)
+	 * indicating filename, line number, and/or other information.
+	 * @internal
+	 */
 
 
 	var ReactElement = function (type, key, ref, self, source, owner, props) {
@@ -806,9 +806,9 @@
 		return element;
 	};
 	/**
-   * Create and return a new ReactElement of the given type.
-   * See https://reactjs.org/docs/react-api.html#createelement
-   */
+	 * Create and return a new ReactElement of the given type.
+	 * See https://reactjs.org/docs/react-api.html#createelement
+	 */
 
 	function createElement(type, config, children) {
 		var propName; // Reserved names are extracted
@@ -896,9 +896,9 @@
 		return newElement;
 	}
 	/**
-   * Clone and return a new ReactElement using element as the starting point.
-   * See https://reactjs.org/docs/react-api.html#cloneelement
-   */
+	 * Clone and return a new ReactElement using element as the starting point.
+	 * See https://reactjs.org/docs/react-api.html#cloneelement
+	 */
 
 	function cloneElement(element, config, children) {
 		if (element === null || element === undefined) {
@@ -972,12 +972,12 @@
 		return ReactElement(element.type, key, ref, self, source, owner, props);
 	}
 	/**
-   * Verifies the object is a ReactElement.
-   * See https://reactjs.org/docs/react-api.html#isvalidelement
-   * @param {?object} object
-   * @return {boolean} True if `object` is a ReactElement.
-   * @final
-   */
+	 * Verifies the object is a ReactElement.
+	 * See https://reactjs.org/docs/react-api.html#isvalidelement
+	 * @param {?object} object
+	 * @return {boolean} True if `object` is a ReactElement.
+	 * @final
+	 */
 
 	function isValidElement(object) {
 		return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
@@ -986,11 +986,11 @@
 	var SEPARATOR = ".";
 	var SUBSEPARATOR = ":";
 	/**
-   * Escape and wrap key so it is safe to use as a reactid
-   *
-   * @param {string} key to be escaped.
-   * @return {string} the escaped key.
-   */
+	 * Escape and wrap key so it is safe to use as a reactid
+	 *
+	 * @param {string} key to be escaped.
+	 * @return {string} the escaped key.
+	 */
 
 	function escape(key) {
 		var escapeRegex = /[=:]/g;
@@ -1004,9 +1004,9 @@
 		return "$" + escapedString;
 	}
 	/**
-   * TODO: Test that a single child and an array with one item have the same key
-   * pattern.
-   */
+	 * TODO: Test that a single child and an array with one item have the same key
+	 * pattern.
+	 */
 
 
 	var didWarnAboutMaps = false;
@@ -1036,7 +1036,7 @@
 			context: mapContext,
 			count: 0
 		};
-    
+		
 	}
 
 	function releaseTraverseContext(traverseContext) {
@@ -1051,13 +1051,13 @@
 		}
 	}
 	/**
-   * @param {?*} children Children tree container.
-   * @param {!string} nameSoFar Name of the key path so far.
-   * @param {!function} callback Callback to invoke with each child found.
-   * @param {?*} traverseContext Used to pass information throughout the traversal
-   * process.
-   * @return {!number} The number of children in this subtree.
-   */
+	 * @param {?*} children Children tree container.
+	 * @param {!string} nameSoFar Name of the key path so far.
+	 * @param {!function} callback Callback to invoke with each child found.
+	 * @param {?*} traverseContext Used to pass information throughout the traversal
+	 * process.
+	 * @return {!number} The number of children in this subtree.
+	 */
 
 
 	function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext) {
@@ -1153,21 +1153,21 @@
 		return subtreeCount;
 	}
 	/**
-   * Traverses children that are typically specified as `props.children`, but
-   * might also be specified through attributes:
-   *
-   * - `traverseAllChildren(this.props.children, ...)`
-   * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
-   *
-   * The `traverseContext` is an optional argument that is passed through the
-   * entire traversal. It can be used to store accumulations or anything else that
-   * the callback might find relevant.
-   *
-   * @param {?*} children Children tree object.
-   * @param {!function} callback To invoke upon traversing each child.
-   * @param {?*} traverseContext Context for traversal.
-   * @return {!number} The number of children in this subtree.
-   */
+	 * Traverses children that are typically specified as `props.children`, but
+	 * might also be specified through attributes:
+	 *
+	 * - `traverseAllChildren(this.props.children, ...)`
+	 * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
+	 *
+	 * The `traverseContext` is an optional argument that is passed through the
+	 * entire traversal. It can be used to store accumulations or anything else that
+	 * the callback might find relevant.
+	 *
+	 * @param {?*} children Children tree object.
+	 * @param {!function} callback To invoke upon traversing each child.
+	 * @param {?*} traverseContext Context for traversal.
+	 * @return {!number} The number of children in this subtree.
+	 */
 
 
 	function traverseAllChildren(children, callback, traverseContext) {
@@ -1178,12 +1178,12 @@
 		return traverseAllChildrenImpl(children, "", callback, traverseContext);
 	}
 	/**
-   * Generate a key string that identifies a component within a set.
-   *
-   * @param {*} component A component that could contain a manual key.
-   * @param {number} index Index that is used if a manual key is not provided.
-   * @return {string}
-   */
+	 * Generate a key string that identifies a component within a set.
+	 *
+	 * @param {*} component A component that could contain a manual key.
+	 * @param {number} index Index that is used if a manual key is not provided.
+	 * @return {string}
+	 */
 
 
 	function getComponentKey(component, index) {
@@ -1204,17 +1204,17 @@
 		func.call(context, child, bookKeeping.count++);
 	}
 	/**
-   * Iterates through children that are typically specified as `props.children`.
-   *
-   * See https://reactjs.org/docs/react-api.html#reactchildrenforeach
-   *
-   * The provided forEachFunc(child, index) will be called for each
-   * leaf child.
-   *
-   * @param {?*} children Children tree container.
-   * @param {function(*, int)} forEachFunc
-   * @param {*} forEachContext Context for forEachContext.
-   */
+	 * Iterates through children that are typically specified as `props.children`.
+	 *
+	 * See https://reactjs.org/docs/react-api.html#reactchildrenforeach
+	 *
+	 * The provided forEachFunc(child, index) will be called for each
+	 * leaf child.
+	 *
+	 * @param {?*} children Children tree container.
+	 * @param {function(*, int)} forEachFunc
+	 * @param {*} forEachContext Context for forEachContext.
+	 */
 
 
 	function forEachChildren(children, forEachFunc, forEachContext) {
@@ -1261,18 +1261,18 @@
 		releaseTraverseContext(traverseContext);
 	}
 	/**
-   * Maps children that are typically specified as `props.children`.
-   *
-   * See https://reactjs.org/docs/react-api.html#reactchildrenmap
-   *
-   * The provided mapFunction(child, key, index) will be called for each
-   * leaf child.
-   *
-   * @param {?*} children Children tree container.
-   * @param {function(*, int)} func The map function.
-   * @param {*} context Context for mapFunction.
-   * @return {object} Object containing the ordered map of results.
-   */
+	 * Maps children that are typically specified as `props.children`.
+	 *
+	 * See https://reactjs.org/docs/react-api.html#reactchildrenmap
+	 *
+	 * The provided mapFunction(child, key, index) will be called for each
+	 * leaf child.
+	 *
+	 * @param {?*} children Children tree container.
+	 * @param {function(*, int)} func The map function.
+	 * @param {*} context Context for mapFunction.
+	 * @return {object} Object containing the ordered map of results.
+	 */
 
 
 	function mapChildren(children, func, context) {
@@ -1285,14 +1285,14 @@
 		return result;
 	}
 	/**
-   * Count the number of children that are typically specified as
-   * `props.children`.
-   *
-   * See https://reactjs.org/docs/react-api.html#reactchildrencount
-   *
-   * @param {?*} children Children tree container.
-   * @return {number} The number of children.
-   */
+	 * Count the number of children that are typically specified as
+	 * `props.children`.
+	 *
+	 * See https://reactjs.org/docs/react-api.html#reactchildrencount
+	 *
+	 * @param {?*} children Children tree container.
+	 * @return {number} The number of children.
+	 */
 
 
 	function countChildren(children) {
@@ -1301,11 +1301,11 @@
 		}, null);
 	}
 	/**
-   * Flatten a children object (typically specified as `props.children`) and
-   * return an array with appropriately re-keyed children.
-   *
-   * See https://reactjs.org/docs/react-api.html#reactchildrentoarray
-   */
+	 * Flatten a children object (typically specified as `props.children`) and
+	 * return an array with appropriately re-keyed children.
+	 *
+	 * See https://reactjs.org/docs/react-api.html#reactchildrentoarray
+	 */
 
 
 	function toArray(children) {
@@ -1316,19 +1316,19 @@
 		return result;
 	}
 	/**
-   * Returns the first child in a collection of children and verifies that there
-   * is only one child in the collection.
-   *
-   * See https://reactjs.org/docs/react-api.html#reactchildrenonly
-   *
-   * The current implementation of this function assumes that a single child gets
-   * passed without a wrapper, but the purpose of this helper function is to
-   * abstract away the particular structure of children.
-   *
-   * @param {?object} children Child collection structure.
-   * @return {ReactElement} The first and only `ReactElement` contained in the
-   * structure.
-   */
+	 * Returns the first child in a collection of children and verifies that there
+	 * is only one child in the collection.
+	 *
+	 * See https://reactjs.org/docs/react-api.html#reactchildrenonly
+	 *
+	 * The current implementation of this function assumes that a single child gets
+	 * passed without a wrapper, but the purpose of this helper function is to
+	 * abstract away the particular structure of children.
+	 *
+	 * @param {?object} children Child collection structure.
+	 * @return {ReactElement} The first and only `ReactElement` contained in the
+	 * structure.
+	 */
 
 
 	function onlyChild(children) {
@@ -1526,7 +1526,7 @@
 
 	function isValidElementType(type) {
 		return typeof type === "string" || typeof type === "function" || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-    type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+		type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
 	}
 
 	function memo(type, compare) {
@@ -1618,11 +1618,11 @@
 	}
 
 	/**
-   * Copyright (c) 2013-present, Facebook, Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE file in the root directory of this source tree.
-   */
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 */
 
 	var ReactPropTypesSecret = "SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED";
 
@@ -1650,16 +1650,16 @@
 	}
 
 	/**
-   * Assert that the values match with the type specs.
-   * Error messages are memorized and will only be shown once.
-   *
-   * @param {object} typeSpecs Map of name to a ReactPropType
-   * @param {object} values Runtime values that need to be type-checked
-   * @param {string} location e.g. "prop", "context", "child context"
-   * @param {string} componentName Name of the component for error messages.
-   * @param {?Function} getStack Returns the component stack.
-   * @private
-   */
+	 * Assert that the values match with the type specs.
+	 * Error messages are memorized and will only be shown once.
+	 *
+	 * @param {object} typeSpecs Map of name to a ReactPropType
+	 * @param {object} values Runtime values that need to be type-checked
+	 * @param {string} location e.g. "prop", "context", "child context"
+	 * @param {string} componentName Name of the component for error messages.
+	 * @param {?Function} getStack Returns the component stack.
+	 * @private
+	 */
 	function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 		{
 			for (var typeSpecName in typeSpecs) {
@@ -1674,7 +1674,7 @@
 						if (typeof typeSpecs[typeSpecName] !== "function") {
 							var err = Error(
 								(componentName || "React class") + ": " + location + " type `" + typeSpecName + "` is invalid; " +
-                "it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`."
+								"it must be a function, usually from the `prop-types` package, but received `" + typeof typeSpecs[typeSpecName] + "`."
 							);
 							err.name = "Invariant Violation";
 							throw err;
@@ -1686,11 +1686,11 @@
 					if (error && !(error instanceof Error)) {
 						printWarning$1(
 							(componentName || "React class") + ": type specification of " +
-              location + " `" + typeSpecName + "` is invalid; the type checker " +
-              "function must return `null` or an `Error` but returned a " + typeof error + ". " +
-              "You may have forgotten to pass an argument to the type checker " +
-              "creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and " +
-              "shape all require an argument)."
+							location + " `" + typeSpecName + "` is invalid; the type checker " +
+							"function must return `null` or an `Error` but returned a " + typeof error + ". " +
+							"You may have forgotten to pass an argument to the type checker " +
+							"creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and " +
+							"shape all require an argument)."
 						);
 					}
 					if (error instanceof Error && !(error.message in loggedTypeFailures)) {
@@ -1710,10 +1710,10 @@
 	}
 
 	/**
-   * Resets warning cache when testing.
-   *
-   * @private
-   */
+	 * Resets warning cache when testing.
+	 *
+	 * @private
+	 */
 	checkPropTypes.resetWarningCache = function() {
 		{
 			loggedTypeFailures = {};
@@ -1758,10 +1758,10 @@
 		return "";
 	}
 	/**
-   * Warn if there's no key explicitly set on dynamic arrays of children or
-   * object keys are not valid. This allows us to keep track of children between
-   * updates.
-   */
+	 * Warn if there's no key explicitly set on dynamic arrays of children or
+	 * object keys are not valid. This allows us to keep track of children between
+	 * updates.
+	 */
 
 
 	var ownerHasKeyUseWarning = {};
@@ -1780,16 +1780,16 @@
 		return info;
 	}
 	/**
-   * Warn if the element doesn't have an explicit key assigned to it.
-   * This element is in an array. The array could grow and shrink or be
-   * reordered. All children that haven't already been validated are required to
-   * have a "key" property assigned to it. Error statuses are cached so a warning
-   * will only be shown once.
-   *
-   * @internal
-   * @param {ReactElement} element Element that requires a key.
-   * @param {*} parentType element's parent's type.
-   */
+	 * Warn if the element doesn't have an explicit key assigned to it.
+	 * This element is in an array. The array could grow and shrink or be
+	 * reordered. All children that haven't already been validated are required to
+	 * have a "key" property assigned to it. Error statuses are cached so a warning
+	 * will only be shown once.
+	 *
+	 * @internal
+	 * @param {ReactElement} element Element that requires a key.
+	 * @param {*} parentType element's parent's type.
+	 */
 
 
 	function validateExplicitKey(element, parentType) {
@@ -1824,14 +1824,14 @@
 		setCurrentlyValidatingElement(null);
 	}
 	/**
-   * Ensure that every element either is passed in a static location, in an
-   * array with an explicit keys property defined, or in an object literal
-   * with valid key property.
-   *
-   * @internal
-   * @param {ReactNode} node Statically passed child of any type.
-   * @param {*} parentType node's parent's type.
-   */
+	 * Ensure that every element either is passed in a static location, in an
+	 * array with an explicit keys property defined, or in an object literal
+	 * with valid key property.
+	 *
+	 * @internal
+	 * @param {ReactNode} node Statically passed child of any type.
+	 * @param {*} parentType node's parent's type.
+	 */
 
 
 	function validateChildKeys(node, parentType) {
@@ -1872,11 +1872,11 @@
 		}
 	}
 	/**
-   * Given an element, validate that its props follow the propTypes definition,
-   * provided by the type.
-   *
-   * @param {ReactElement} element
-   */
+	 * Given an element, validate that its props follow the propTypes definition,
+	 * provided by the type.
+	 *
+	 * @param {ReactElement} element
+	 */
 
 
 	function validatePropTypes(element) {
@@ -1893,8 +1893,8 @@
 			if (typeof type === "function") {
 				propTypes = type.propTypes;
 			} else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
-      // Inner props are checked in the reconciler.
-      type.$$typeof === REACT_MEMO_TYPE)) {
+			// Inner props are checked in the reconciler.
+			type.$$typeof === REACT_MEMO_TYPE)) {
 				propTypes = type.propTypes;
 			} else {
 				return;
@@ -1916,9 +1916,9 @@
 		}
 	}
 	/**
-   * Given a fragment, validate that it can only be provided with fragment props
-   * @param {ReactElement} fragment
-   */
+	 * Given a fragment, validate that it can only be provided with fragment props
+	 * @param {ReactElement} fragment
+	 */
 
 
 	function validateFragmentProps(fragment) {
@@ -2059,7 +2059,7 @@
 	if ( // If Scheduler runs in a non-DOM environment, it falls back to a naive
 	// implementation using setTimeout.
 		typeof window === "undefined" || // Check if MessageChannel is supported, too.
-  typeof MessageChannel !== "function") {
+	typeof MessageChannel !== "function") {
 		// If this accidentally gets imported in a non-browser environment, e.g. JavaScriptCore,
 		// fallback to a naive implementation.
 		var _callback = null;
@@ -2263,7 +2263,7 @@
 			return first;
 		} 
 		return null;
-    
+		
 	}
 
 	function siftUp(heap, node, i) {
@@ -2333,11 +2333,11 @@
 	var runIdCounter = 0;
 	var mainThreadIdCounter = 0;
 	var profilingStateSize = 4;
-	var sharedProfilingBuffer =  // $FlowFixMe Flow doesn't know about SharedArrayBuffer
-  typeof SharedArrayBuffer === "function" ? new SharedArrayBuffer(profilingStateSize * Int32Array.BYTES_PER_ELEMENT) : // $FlowFixMe Flow doesn't know about ArrayBuffer
-  	typeof ArrayBuffer === "function" ? new ArrayBuffer(profilingStateSize * Int32Array.BYTES_PER_ELEMENT) : null // Don't crash the init path on IE9
-  ;
-	var profilingState =  sharedProfilingBuffer !== null ? new Int32Array(sharedProfilingBuffer) : []; // We can't read this but it helps save bytes for null checks
+	var sharedProfilingBuffer = // $FlowFixMe Flow doesn't know about SharedArrayBuffer
+	typeof SharedArrayBuffer === "function" ? new SharedArrayBuffer(profilingStateSize * Int32Array.BYTES_PER_ELEMENT) : // $FlowFixMe Flow doesn't know about ArrayBuffer
+	typeof ArrayBuffer === "function" ? new ArrayBuffer(profilingStateSize * Int32Array.BYTES_PER_ELEMENT) : null; // Don't crash the init path on IE9
+
+	var profilingState = sharedProfilingBuffer !== null ? new Int32Array(sharedProfilingBuffer) : []; // We can't read this but it helps save bytes for null checks
 
 	var PRIORITY = 0;
 	var CURRENT_TASK_ID = 1;
@@ -2662,7 +2662,7 @@
 		}
 
 		return false;
-    
+		
 	}
 
 	function unstable_runWithPriority(priorityLevel, eventHandler) {
@@ -2863,7 +2863,7 @@
 	}
 
 	var unstable_requestPaint = requestPaint;
-	var unstable_Profiling =  {
+	var unstable_Profiling = {
 		startLoggingProfilingEvents: startLoggingProfilingEvents,
 		stopLoggingProfilingEvents: stopLoggingProfilingEvents,
 		sharedProfilingBuffer: sharedProfilingBuffer
@@ -3275,9 +3275,9 @@
 		}
 	}
 
-	var createElement$1 =  createElementWithValidation ;
-	var cloneElement$1 =  cloneElementWithValidation ;
-	var createFactory =  createFactoryWithValidation ;
+	var createElement$1 = createElementWithValidation ;
+	var cloneElement$1 = cloneElementWithValidation ;
+	var createFactory = createFactoryWithValidation ;
 	var Children = {
 		map: mapChildren,
 		forEach: forEachChildren,

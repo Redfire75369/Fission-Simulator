@@ -11,7 +11,7 @@ const notationFunctions = {
 };
 
 function notation(x, dp = 2, dpUnder1e5 = 2, showAboveInfinite = false) {
-	if (Decimal.gte(x, getLimit()) && !showAboveInfinite) {
+	if (Decimal.gte(x, getLimit()) && notations[player.options.notation] !== "Blind" && !showAboveInfinite) {
 		return "Infinite";
 	}
 	if (Object.keys(notationFunctions).includes(notations[player.options.notation])) {
@@ -23,8 +23,7 @@ function notation(x, dp = 2, dpUnder1e5 = 2, showAboveInfinite = false) {
 function formatTime(time) {
 	if (notations[player.options.notation] === "Blind") {
 		return "";
-	}
-	if (time >= 31536000000) {
+	} else if (time >= 31536000000) {
 		return floor(time / 31536000000) + " years, " + floor((time % 31536000000) / 86400000) + " days, " + floor((time % 86400000) / 3600000) + " hours, " + floor((time % 3600000) / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds";
 	} else if (time >= 86400000) {
 		return floor(time / 86400000) + " days, " + floor((time % 86400000) / 3600000) + " hours, " + floor((time % 3600000) / 60000) + " minutes, and " + floor(time % 60000 / 1000) + " seconds";

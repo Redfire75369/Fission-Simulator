@@ -12,13 +12,15 @@ function TRISOFuelComponent(props) {
 	const [canReprocess, setCanReprocess] = React.useState(false);
 	const [reprocessCost, setReprocessCost] = React.useState(zero);
 	const [reprocessing, setReprocessing] = React.useState(false);
-	const [gain, setGain] = React.useState(zero); 
+	const [gain, setGain] = React.useState(zero);
 
-	const [goal, setGoal] = React.useState(zero); 
+	const [goal, setGoal] = React.useState(zero);
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
-			setUnlocked(player.mines.tier > - 1 && (props.tier === 0 || ((player.fuels.triso[props.tier - 1].enriched.add(player.fuels.triso[props.tier - 1].depleted).gt(0) || player.fuels.triso[props.tier].enriched.add(player.fuels.triso[props.tier].depleted).gt(0)) && player.reactors.pebblebeds[props.tier - 1].bought > 0)));
+			setUnlocked(function(prevUnlocked) {
+				return prevUnlocked || (player.mines.tier > - 1 && (props.tier === 0 || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost)));
+			});
 			setUnlockedReprocessing(player.mines.tier > 0);
 			setHasFuel(player.fuels.triso[props.tier].enriched.add(player.fuels.triso[props.tier].depleted).gt(0));
 			setEnriched(player.fuels.triso[props.tier].enriched);
@@ -37,7 +39,7 @@ function TRISOFuelComponent(props) {
 			clearInterval(timerID);
 		};
 	}, []);
-	
+
 	function reprocessDepleted() {
 		player.fuels.triso[props.tier].reprocessDepleted();
 	}

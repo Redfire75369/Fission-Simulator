@@ -314,8 +314,8 @@
 					display: false
 				}, // LaTeX uses $…$, but it ruins the display of normal `$` in text:
 				// {left: "$", right: "$", display: false},
-				//  \[…\] must come last in this array. Otherwise, renderMathInElement
-				//  will search for \[ before it searches for $$ or  \(
+				// \[…\] must come last in this array. Otherwise, renderMathInElement
+				// will search for \[ before it searches for $$ or \(
 				// That makes it susceptible to finding a \\[0.3em] row delimiter and
 				// treating it as if it were the start of a KaTeX math zone.
 				{

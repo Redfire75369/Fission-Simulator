@@ -13,6 +13,7 @@ class TRISOFuel {
 		reprocessing[this.tier] = false;
 	}
 
+
 	get lifetime() {
 		const mul = Decimal.pow(intermediaryVariables.lifetimeBoughtDiv, player.reactors.pebblebeds[this.tier].bought)
 			.mul(player.reactors.pebblebeds[this.tier].amount.add(9));
@@ -28,9 +29,10 @@ class TRISOFuel {
 		return this.depleted.mul(Decimal.pow(120, 3 * this.tier)).mul(120);
 	}
 	get energyPerPellet() {
-		return Decimal.pow(intermediaryVariables.energyTierMul, this.tier + 1)
+		return Decimal.pow(intermediaryVariables.energyTierMul, pow(this.tier, log(5, 2)) + 1)
 			.mul(Decimal.pow(intermediaryVariables.energyBoughtMul, player.reactors.pebblebeds[this.tier].bought))
-			.mul(2);
+			.mul(player.reactors.pebblebeds[this.tier].fuel.pow((this.tier + 1) / 4))
+			.mul(4).div(this.tier + 1);
 	}
 
 	get canReprocessDepleted() {
@@ -43,8 +45,8 @@ class TRISOFuel {
 			reprocessElement.disabled = true;
 
 			player.energy = player.energy.sub(this.reprocessEnergyCost);
-			let depleted = this.depleted;
-			let tier = this.tier;
+			const depleted = this.depleted;
+			const tier = this.tier;
 
 			this.depleted = zero;
 			setTimeout(function() {
@@ -72,13 +74,12 @@ function resetTRISOFuels() {
 function getTRISOFuelGain(tier) {
 	if (tier === 2) {
 		if (player.mines.tier >= 3) {
-			return player.mines.effective.mul(player.mines.tier - tier + 1).div(0.08 * pow(250, tier + 1));
+			return player.mines.effective.mul(player.mines.tier - tier + 1).mul(320).div(pow(120, tier + 1));
 		}
 		return zero;
-
 	}
 	if (player.mines.tier >= tier) {
-		return player.mines.effective.mul(player.mines.tier - tier + 1).div(0.08 * pow(250, tier + 1));
+		return player.mines.effective.mul(player.mines.tier - tier + 1).mul(320).div(pow(120, tier + 1));
 	}
 	return zero;
 }

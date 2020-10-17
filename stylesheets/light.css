@@ -52,7 +52,7 @@ button:hover {
 
 .popup {
 	align-items: center;
-	background-color: #ffffff;
+	background-color: #FFFFFF;
 	border: 3px solid #000000;
 	border-radius: 6px;
 	color: #202020;
@@ -89,7 +89,7 @@ button:hover {
 }
 .storebtn.locked {
 	background-color: #A3A3A3;
-	border: 2px solid #e53935;
+	border: 2px solid #E53935;
 	color: #202020;
 	font-size: 12px;
 }
@@ -164,26 +164,26 @@ button:hover {
 }
 
 .fuelhandlingautomationdiv {
-    background: #BB99Ff;
-    border: 3px solid black;
+	background: #BB99FF;
+	border: 3px solid #000000;
 }
 
 .fuelhandlingautomationdiv > div > div > .cooldown {
-    background-color: #000000;
-    border: 2px solid #000000;
+	background-color: #000000;
+	border: 2px solid #000000;
 }
 .fuelhandlingautomationdiv > div > div > .cooldown > div {
-    background-color: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
 .fuelhandlingautomationdiv > div > div > div > button {
-    background-color: #34B191;
+	background-color: #34B191;
 }
-.fuelhandlingautomationdiv > div > div > div > active {
-    background-color: #339965;
+.fuelhandlingautomationdiv > div > div > div > .active {
+	background-color: #339965;
 }
-.fuelhandlingautomationdiv > div > div > div > inactive {
-    background-color: #878889;
+.fuelhandlingautomationdiv > div > div > div > .inactive {
+	background-color: #878889;
 }
 
 .achcomplete {
@@ -192,7 +192,7 @@ button:hover {
 }
 .achlocked {
 	background-color: #808080;
-	border: 1px solid #ff0000;
+	border: 1px solid #FF0000;
 }
 
 .options > div > button {
@@ -214,7 +214,7 @@ button:hover {
 .naniteup.buy {
 	background-color: #FFFFFF;
 	border: 1px solid #DAA520;
-	color: #81a6ff;
+	color: #81A6FF;
 }
 .naniteup.buy:hover {
 	background-color: #81A6FF;
@@ -228,18 +228,18 @@ button:hover {
 }
 .naniteup.bought {
 	background-color: #81A6FF;
-	border: 1px solid green;
+	border: 1px solid #008000;
 	color: #000000;
 }
 
 #meltdown {
 	background-color: #FFFFFF;
-	border: 2px solid green;
+	border: 2px solid #008000;
 	border-radius: 6px;
 	color: #000000;
 }
 #meltdown:hover {
-	background-color: green;
+	background-color: #008000;
 	border: 2px solid #000000;
 	color: #000000;
 }
@@ -253,7 +253,7 @@ button:hover {
 	color: #FFFFFF;
 }
 .meltdownup.buy:hover {
-	background-color: green;
+	background-color: #008000;
 	border: 2px solid #000000;
 	color: #000000;
 	transition-duration: 0.2s;

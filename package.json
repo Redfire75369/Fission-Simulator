@@ -1,57 +1,53 @@
 {
-	"name": "fission-simulator",
-	"version": "0.6.13",
-	"description": "Fission Simulator is an incremental game about nuclear fission, reactors and nuclear physics.",
-	"main": "javascripts/server.js",
+  "name": "fission-simulator",
+  "version": "0.6.13",
+  "description": "Fission Simulator is an incremental game about nuclear fission, reactors and nuclear physics.",
 
-	"homepage": "https://github.com/Redfire75369/Fission-Simulator#readme",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Redfire75369/Fission-Simulator.git"
-	},
-	"bugs": {
-		"url": "https://github.com/Redfire75369/Fission-Simulator/issues"
-	},
-	"author": {
-		"name": "Redfire",
-		"url": "https://github.com/Redfire75369"
-	},
-	"contributors": [
-		{
-			"name": "Dystopia",
-			"url": "https://github.com/Dystopia-user181"
-		},
-		{
-			"name": "CodedSakura",
-			"url": "https://github.com/CodedSakura"
-		}
-	],
-	"license": "UNLICENSED",
+  "main": "javascripts/server.js",
+  "homepage": "https://github.com/Redfire75369/Fission-Simulator#readme",
 
-	"browser": true,
-	"engines": {
-		"node": "^12.16.1"
-	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Redfire75369/Fission-Simulator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Redfire75369/Fission-Simulator/issues"
+  },
 
-	"scripts": {
-		"setup": "npm ci",
-		"compile": "npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist",
-		"eslint": "eslint \"javascripts/**/*\" || true",
-		"csslint": "csslint . --exclude-list=stylesheets/katex.css || true",
-		"lint": "npm run eslint && npm run csslint",
-		"build": "npm run lint && npm run compile  ",
-		"count": "git ls-files | xargs wc -l"
-	},
+  "author": {
+    "name": "Redfire",
+    "url": "https://github.com/Redfire75369"
+  },
+  "contributors": [
+    {
+      "name": "Dystopia",
+      "url": "https://github.com/Dystopia-user181"
+    },
+    {
+      "name": "CodedSakura",
+      "url": "https://github.com/CodedSakura"
+    }
+  ],
 
-	"dependencies": {},
-	"devDependencies": {
-		"@babel/cli": "^7.11.6",
-		"@babel/core": "^7.11.6",
-		"@babel/preset-react": "^7.12.1",
-		"babel-loader": "^8.1.0",
-		"csslint": "^1.0.5",
-		"eslint": "^7.10.0",
-		"eslint-plugin-react": "^7.21.4",
-		"eslint-plugin-react-hooks": "^4.1.2"
-	}
+  "license": "UNLICENSED",
+  "browser": true,
+  "engines": {
+    "node": "^12.16.1"
+  },
+
+  "scripts": {
+    "count": "git ls-files | xargs wc -l"
+  },
+
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.11.0",
+    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "stylelint": "^13.7.2"
+  }
 }

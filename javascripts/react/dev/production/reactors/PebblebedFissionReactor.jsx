@@ -22,11 +22,13 @@ function PebblebedFissionReactorComponent(props) {
 
 	React.useEffect(function() {
 		const timerID = setInterval(function() {
-			setUnlocked(props.tier === 0 || player.reactors.pebblebeds[props.tier - 1].bought >  0);
+			setUnlocked(function(prevUnlocked) {
+				return prevUnlocked || props.tier === 0 || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost);
+			});
 			setUnlockedFuelHandling(function(prevUnlockedFuelHandling) {
 				return prevUnlockedFuelHandling || player.energy.gte(600);
 			});
-			setUnlockedMines(player.mines.tier > -1);
+			setUnlockedMines(player.mines.tier + 1 > props.tier);
 			setAmount(player.reactors.pebblebeds[props.tier].amount);
 			setBought(player.reactors.pebblebeds[props.tier].bought);
 			setCanLoadFuel(player.fuels.triso[props.tier].enriched.gte(1) && player.reactors.pebblebeds[props.tier].fuel.add(player.reactors.pebblebeds[props.tier].spent).add(1).lt(player.reactors.pebblebeds[props.tier].totalCapacity));
@@ -89,7 +91,7 @@ function PebblebedFissionReactorComponent(props) {
 
 				<div className="flex-col vertical-top fuelhandling" style={{display: unlockedFuelHandling ? "" : "none"}}>
 					<div>Fuel Handling:</div>
-					<button onClick={mineFuel} className={bought > 0 ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Mine Enriched {type} Pellets</button>
+					<button onClick={mineFuel} className={bought > 0 ? "pebblebedbtn buy" : "pebblebedbtn locked"} style={{display: unlockedMines ? "none" : ""}}>Mine Enriched {type} Pellets</button>
 					<button onClick={loadFuel} className={canLoadFuel ? "pebblebedbtn buy" : "pebblebedbtn locked"} style={{display: unlockedMines ? "" : "none"}}>Load Enriched {type} Pellets</button>
 					<button onClick={ejectWaste} className={canEjectWaste ? "pebblebedbtn buy" : "pebblebedbtn locked"}>Eject Spent {type} Pellets</button>
 				</div>

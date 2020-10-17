@@ -10,7 +10,7 @@ function OptionsTabComponent() {
 			clearInterval(timerID);
 		};
 	}, []);
-	
+
 	function save() {
 		saveGame();
 	}
@@ -19,7 +19,7 @@ function OptionsTabComponent() {
 		loadSave(getSave());
 		postLoad();
 	}
-	
+
 	function importSave() {
 		const save = prompt("Input your save. WARNING: Your current save file will be overwritten.");
 		player.import42 |= save === "42";
@@ -36,7 +36,7 @@ function OptionsTabComponent() {
 		copyStringToClipboard(getSaveString());
 		alert("Save copied to clipboard");
 	}
-	
+
 	function hardReset() {
 		const confirmation = prompt("This will completely reset your game. If you are sure, type in “Hitchhiker's Guide to the Fusion-Driven Galaxy”");
 		if (confirmation === "Hitchhiker's Guide to the Fusion-Driven Galaxy") {
@@ -45,7 +45,7 @@ function OptionsTabComponent() {
 			postLoad();
 			save();
 		}
-	} 
+	}
 
 	return (
 		<div className="flex-col options">

@@ -14,9 +14,11 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ## [v0.6.13] - 4/10/20 **PR**
 ### Added
+- Replacement of Mine Fuel with Load Fuel after unlocking mines
 
 ### Modified
-- Begun rebalancing
+- Began rebalancing
+- Reenabled Mine unlocks at 5e8 Energy
 
 ### Removed
 
