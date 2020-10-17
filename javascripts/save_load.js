@@ -24,7 +24,7 @@ function loadSave(save, imported = false) {
 	try {
 		if (typeof save !== "string") {
 			save = getSave();
-			if (save === null) {
+			if (save == null) {
 				console.log("No existing save found");
 				player = getDefaultData();
 				return;

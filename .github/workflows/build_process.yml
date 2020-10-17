@@ -26,8 +26,8 @@ jobs:
       run: npm ci
 
     - name: Run ESLint on Javascripts
-      run: npx eslint "javascripts/**/*.{js,jsx}"
+      run: npx --no-install eslint "javascripts/**/*.{js,jsx}" || true
     - name: Run Stylelint on Stylesheets
-      run: npx stylelint "stylesheets/**/*.css"
+      run: npx --no-install stylelint "stylesheets/**/*.css" || true
     - name: Compile JSX with Babel
       run: npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist

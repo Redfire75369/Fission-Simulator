@@ -433,9 +433,9 @@ button:hover {
 .trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
 	align-items: center;
 	justify-content: center;
-	max-height: calc(2.4em + 8px);
+	max-height: calc(2.4rem + 8px);
 	max-width: 100%;
-	min-height: calc(2.4em + 8px);
+	min-height: calc(2.4rem + 8px);
 	min-width: 100%;
 }
 .trisodiv > .fuelbar > div > div > div, .pebblebeddiv > .fuelbar > div > div > div {

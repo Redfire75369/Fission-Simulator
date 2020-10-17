@@ -51,7 +51,8 @@
 
     "zero": true,
     "infinity": true,
-    "focused": true,
+    "errored": true,
+    "saveGameLoop": true,
 
     "isotopes": true,
 
@@ -64,6 +65,7 @@
     "notations": true,
     "themes": true,
 
+    "cheatsUnlocked": true,
     "leverMaxAll": true,
     "intermediaryVariables": true,
 
@@ -182,7 +184,7 @@
     "default-case": "error",
     "eol-last": ["error", "always"],
     "eqeqeq": ["error", "always",{
-      "null": "always"
+      "null": "never"
     }],
     "for-direction": "error",
     "getter-return": "error",

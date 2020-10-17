@@ -36,7 +36,7 @@ const rotorCosts = {
 	osmiridium: [8, 6],
 	extreme: [12, 8],
 	sicsiccmc: [16, 12]
-}
+};
 const rotorLevels = {
 	steel: 1,
 	titanium: 2,

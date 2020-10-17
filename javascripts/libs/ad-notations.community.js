@@ -272,11 +272,11 @@
 				return "ω(" + this.formatDecimal(omegaAmount) + ")^" + lastLetter;
 			} else if (omegaOrder < 5) {
 				return "ω(" + this.formatDecimal(omegaAmount) + ")";
-			} 
+			}
 			var val = Decimal.pow(8000, omegaOrder % 1);
 			var orderStr = omegaOrder < 100 ? Math.floor(omegaOrder).toFixed(0) : this.formatDecimal(Decimal.floor(omegaOrder));
 			return "ω[" + orderStr + "](" + this.formatDecimal(val) + ")";
-			
+
 		};
 
 		return OmegaNotation;
@@ -321,11 +321,11 @@
 				return omegas.join("^") + "^" + lastLetter;
 			} else if (omegaAmount.gt(2) && omegaAmount.lt(10)) {
 				return "ω(" + omegaAmount.toFixed(0) + ")^" + lastLetter;
-			} 
+			}
 			var val = Decimal.pow(8000, omegaOrder % 1);
 			var orderStr = omegaOrder < 100 ? Math.floor(omegaOrder).toFixed(0) : this.formatDecimal(Decimal.floor(omegaOrder));
 			return "ω[" + orderStr + "](" + this.formatDecimal(val) + ")";
-			
+
 		};
 
 		return OmegaShortNotation;
@@ -461,7 +461,7 @@
 			for (var _i = 0, _a = [2, 3]; _i < _a.length; _i++) {
 				var k = _a[_i];
 
-				for (; n % k == 0; n /= k) {
+				for (; n % k === 0; n /= k) {
 					l.push(k);
 				}
 			}
@@ -469,13 +469,13 @@
 			var lim = Math.min(MAX_FACTOR, Math.floor(Math.sqrt(n)));
 
 			for (var a = 5; a <= lim && a < n;) {
-				for (; n % a == 0; n /= a) {
+				for (; n % a === 0; n /= a) {
 					l.push(a);
 				}
 
 				a += 2;
 
-				for (; n % a == 0; n /= a) {
+				for (; n % a === 0; n /= a) {
 					l.push(a);
 				}
 
@@ -519,9 +519,9 @@
 		JapaneseNotation.prototype.formatDecimal = function (value, places) {
 			if (value.exponent < 72) {
 				return this.jpnNotation(value);
-			} 
+			}
 			return value.mantissa.toFixed(places) + "×10の" + this.jpnNotation(new Decimal(value.exponent)) + "乗";
-			
+
 		};
 
 		JapaneseNotation.prototype.getSuffix = function (x) {

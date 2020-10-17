@@ -16,3 +16,4 @@ for (let tier = 0; tier < 3; tier++) {
 		player.reactors.pebblebeds[tier].ejectWaste();
 	});
 }
+Mousetrap.bind("f 1", function() {console.log(480);});

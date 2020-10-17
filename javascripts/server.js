@@ -20,5 +20,5 @@ try {
 
 	console.log("Running local server at Port 8080");
 } catch {
-	
+
 }
