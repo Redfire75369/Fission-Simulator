@@ -1,19 +1,26 @@
 class AchievementsTabComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			active: false
+		};
+	}
+
 	componentDidMount() {
 		this.timerID = setInterval(function() {
 			this.setState({
 				active: player.navigation.naviTab === "achievements_tab"
 			});
-		}, 50);
+		}.bind(this), 1000);
 	}
-	
+
 	componentWillUnmount() {
 		clearInterval(this.timerID);
 	}
 
 	render() {
 		return (
-			<div className="flex-col" style={{display: active ? "" : "none"}}>
+			<div className="flex-col" style={{display: this.state.active ? "" : "none"}}>
 				<div className="flex-row">
 					<AchievementComponent id={11}/>
 					<AchievementComponent id={12}/>

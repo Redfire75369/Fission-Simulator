@@ -1,13 +1,6 @@
 {
 	"plugins": [],
 	"presets": [
-		["@babel/preset-react", {
-		  "runtime": "classic",
-		  "development": true,
-		  "throwIfNamespace": true,
-          "pragma": "React.createElement",
-          "pragmaFrag": "React.Fragment"
-        }]
-      }
+		["@babel/preset-react"]
 	]
 }

@@ -18,14 +18,21 @@ const achievementTexts = {
 };
 
 class AchievementComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			completed: false
+		};
+	}
+
 	componentDidMount() {
 		this.timerID = setInterval(function() {
 			this.setState({
 				completed: player.achievements[this.props.id]
 			});
-		}, 50);
+		}.bind(this), 50);
 	}
-	
+
 	componentWillUnmount() {
 		clearInterval(this.timerID);
 	}

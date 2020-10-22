@@ -8,7 +8,7 @@ function NotationOptionsButton() {
 
 	return (
 		<button onClick={notationChange}>
-			Theme: {notation}
+			Notation: {notation}
 		</button>
 	);
 }

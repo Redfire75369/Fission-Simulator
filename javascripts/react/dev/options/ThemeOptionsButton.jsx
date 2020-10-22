@@ -5,6 +5,7 @@ function ThemeOptionsButton() {
 		player.options.theme = (player.options.theme + 1) % themes.length;
 		setTheme(themes[player.options.theme]);
 		document.getElementById("style").setAttribute("href", "stylesheets/" + theme.toLowerCase() + ".css");
+		document.getElementById("colour").content = themeBackgroundColours[player.options.theme];
 	}
 
 	return (

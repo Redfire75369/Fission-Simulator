@@ -218,6 +218,7 @@ const isotopes = ["Thorium-227", "Uranium-235", "Neptunium-234", "Plutonium-237"
 
 const notations = ["Scientific", "Logarithmic", "Brackets", "Omega", "Imperial", "Cancer", "Zalgo", "Prime", "Blind"];
 const themes = ["Light", "Dark", "Inverted", "Midnight", "Void"];
+const themeBackgroundColours = ["#FFFFFF", "#1C1C1C", "#000000", "#000000", "#FFFFFF"];
 
 //const diminishFactor = [100, 200, 350, 488, 600, 733, 850, 1000];
 const infinity = Decimal.pow(2, 1024);
