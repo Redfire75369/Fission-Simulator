@@ -1,29 +1,29 @@
-function pow(x, y) {
-	return Math.pow(x, y);
+function pow(base, exponent) {
+	return Math.pow(base, exponent);
 }
-function sqrt(x) {
-	return Math.sqrt(x);
+function sqrt(value) {
+	return Math.sqrt(value);
 }
-function log(x, y) {
-	return Math.log(x) / Math.log(y);
-}
-
-function round(x, dp = 2) {
-	return x.toFixed(dp);
-}
-function floor(x) {
-	return Math.floor(x);
-}
-function ceil(x) {
-	return Math.ceil(x);
+function log(value, base) {
+	return Math.log(value) / Math.log(base);
 }
 
-function min(x, y) {
-	return Math.min(x, y);
+function round(value, dp = 2) {
+	return value.toFixed(dp);
 }
-function max(x, y) {
-	return Math.max(x, y);
+function floor(value) {
+	return Math.floor(value);
 }
-function clamp(x, y, z) {
-	return max(x, min(y, z));
+function ceil(value) {
+	return Math.ceil(value);
+}
+
+function min(value1, value2) {
+	return Math.min(value1, value2);
+}
+function max(value1, value2) {
+	return Math.max(value1, value2);
+}
+function clamp(minimum, value, maximum) {
+	return max(minimum, min(value, maximum));
 }
