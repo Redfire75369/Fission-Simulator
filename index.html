@@ -1,3 +1,9 @@
+<!--
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+  -->
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
@@ -85,7 +91,7 @@
 		<script defer src="javascripts/main.js" type="text/javascript"></script>
 		<script defer src="javascripts/achievements.js" type="text/javascript"></script>
 		<script defer src="javascripts/cheats.js" type="text/javascript"></script>
-		<script defer src="javascripts/newsrelay.js" type="text/javascript"></script>
+		<!--<script defer src="javascripts/newsrelay.js" type="text/javascript"></script>-->
 		<script defer src="javascripts/howtoplay.js" type="text/javascript"></script>
 		<script defer src="javascripts/hotkey.js" type="text/javascript"></script>
 
@@ -113,15 +119,13 @@
 		<script defer src="javascripts/react/dist/rendering.js" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" type="text/javascript"></script>
 
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-180303079-1"></script>
+		<!-- Segment (analytics.js) -->
 		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-
-			gtag('config', 'UA-180303079-1');
-		</script>-->
+			!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
+				analytics.load("T4aB0xPIBFl1ZhGXXDcaF0MBeCb4ov7w");
+				analytics.page();
+			}}();
+		</script>
 	</head>
 	<body>
 		<div id="navigation" class="navigation"></div>

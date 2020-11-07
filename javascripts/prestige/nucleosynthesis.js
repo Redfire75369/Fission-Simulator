@@ -1,3 +1,9 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 function resetNucleosynthesis() {
 	player.nucleosynthesis = player.meltdown.ups[14] === 1 ? 4 : player.meltdown.ups[13] === 1 ? 3 : player.meltdown.ups[14] === 1 ? 2 : player.meltdown.ups[14] === 1 ? 1 : 0;
 }

@@ -1,3 +1,9 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 try {
   ReactDOM.render( /*#__PURE__*/React.createElement(ProductionTabComponent, null), document.getElementById("production_tab"));
   ReactDOM.render( /*#__PURE__*/React.createElement(StatisticsTabComponent, null), document.getElementById("statistics_tab"));

@@ -1,3 +1,9 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 function resetNaniteResearch() {
 	player.nanites.nanites = player.meltdown.ups[44] === 4 ? player.nanites.nanites : player.meltdown.ups[44] === 3 ? player.nanites.total : player.meltdown.ups[44] === 2 ? player.meltdown.corium.mul(3).sub(3).log2() : player.meltdown.ups[44] === 1 ? new Decimal(1) : zero;
 	player.nanites.total = player.nanites.nanites;

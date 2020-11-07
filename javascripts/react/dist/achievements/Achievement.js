@@ -1,3 +1,9 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 const achievementTexts = {
   11: "Thorium Power\nBuy one TBU Pebblebed Reactor.",
   12: "Minecraft 2\nBuy a Mine with an iron-tipped drill.",

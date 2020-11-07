@@ -28,20 +28,22 @@
   "license": "UNLICENSED",
   "browser": true,
   "engines": {
-    "node": "^12.16.1"
+    "node": "^12.19.0"
   },
   "scripts": {
-    "compile-jsx": "npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist --watch",
+    "start": "npx --no-install http-server ./ --port 8000",
+    "compile_jsx": "npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist --watch",
     "count": "git ls-files | xargs wc -l"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
-    "@babel/preset-react": "^7.10.4",
-    "eslint": "^7.11.0",
-    "eslint-plugin-react": "^7.21.4",
-    "eslint-plugin-react-hooks": "^4.1.2",
+    "@babel/preset-react": "^7.12.5",
+    "eslint": "^7.13.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "http-server": "^0.12.3",
     "stylelint": "^13.7.2"
   }
 }

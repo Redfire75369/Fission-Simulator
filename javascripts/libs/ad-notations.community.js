@@ -123,7 +123,7 @@
 		};
 
 		Notation.prototype.formatExponent = function (exponent) {
-			if (exponent < Settings.exponentCommas.min) {
+			if (this.noSpecialFormatting(exponent)) {
 				return exponent.toString();
 			}
 
@@ -132,6 +132,10 @@
 			}
 
 			return this.formatDecimal(new Decimal(exponent), 3);
+		};
+
+		Notation.prototype.noSpecialFormatting = function (exponent) {
+			return exponent < Settings.exponentCommas.min;
 		};
 
 		Notation.prototype.showCommas = function (exponent) {
@@ -270,7 +274,7 @@
 				return "ω(" + omegaAmount.toFixed(0) + ")^" + lastLetter;
 			} else if (omegaOrder < 3) {
 				return "ω(" + this.formatDecimal(omegaAmount) + ")^" + lastLetter;
-			} else if (omegaOrder < 5) {
+			} else if (omegaOrder < 6) {
 				return "ω(" + this.formatDecimal(omegaAmount) + ")";
 			}
 			var val = Decimal.pow(8000, omegaOrder % 1);
@@ -461,7 +465,7 @@
 			for (var _i = 0, _a = [2, 3]; _i < _a.length; _i++) {
 				var k = _a[_i];
 
-				for (; n % k === 0; n /= k) {
+				for (; n % k == 0; n /= k) {
 					l.push(k);
 				}
 			}
@@ -469,13 +473,13 @@
 			var lim = Math.min(MAX_FACTOR, Math.floor(Math.sqrt(n)));
 
 			for (var a = 5; a <= lim && a < n;) {
-				for (; n % a === 0; n /= a) {
+				for (; n % a == 0; n /= a) {
 					l.push(a);
 				}
 
 				a += 2;
 
-				for (; n % a === 0; n /= a) {
+				for (; n % a == 0; n /= a) {
 					l.push(a);
 				}
 
@@ -909,10 +913,298 @@
 		return CoronavirusNotation;
 	}(Notation);
 
+	var ChineseNotPrefixes = ["", "万", "亿", "兆", "京", "垓", "秭", "穰", "沟", "涧", "正", "载", "极"];
+	var ChineseNotDigits = ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+	var ChineseNotPlaces = ["", "十", "百", "千"];
+
+	var ChineseNotation = function (_super) {
+		__extends(ChineseNotation, _super);
+
+		function ChineseNotation() {
+			return _super !== null && _super.apply(this, arguments) || this;
+		}
+
+		Object.defineProperty(ChineseNotation.prototype, "name", {
+			get: function get() {
+				return "Chinese";
+			},
+			enumerable: true,
+			configurable: true
+		});
+		Object.defineProperty(ChineseNotation.prototype, "infinite", {
+			get: function get() {
+				return "無窮";
+			},
+			enumerable: true,
+			configurable: true
+		});
+
+		ChineseNotation.prototype.formatUnder1000 = function (value) {
+			return this.formatUnder10000(value);
+		};
+
+		ChineseNotation.prototype.formatDecimal = function (value) {
+			return this.formatChinese(value);
+		};
+
+		ChineseNotation.prototype.formatChinese = function (value) {
+			if (value.exponent < 4) {
+				return this.formatUnder10000(value.toNumber());
+			}
+
+			if (value.exponent < 52) {
+				return this.formatAbove10000(value);
+			}
+
+			var replacement = Math.floor(value.exponent / 48);
+
+			if (replacement < 6) {
+				return this.formatAbove1e48(value.div(Decimal.pow(1e48, replacement))) + ChineseNotPrefixes[12].repeat(replacement);
+			}
+
+			return this.formatAbove1e48(value.div(Decimal.pow(1e48, replacement))) + "(" + this.formatChinese(new Decimal(replacement)) + ")" + ChineseNotPrefixes[12];
+		};
+
+		ChineseNotation.prototype.formatAbove1e48 = function (value) {
+			var exp = Math.floor(value.exponent / 4) * 4;
+			var man = value.mantissa * Math.pow(10, value.exponent - exp);
+			return this.formatUnder10000WithPlaces(man) + ChineseNotPrefixes[exp / 4];
+		};
+
+		ChineseNotation.prototype.formatAbove10000 = function (value) {
+			var exp = Math.floor(value.exponent / 4) * 4;
+			var man = Math.floor(value.mantissa * Math.pow(10, value.exponent - exp));
+			var manb = Math.floor(value.mantissa * Math.pow(10, value.exponent - exp + 4)) % 10000;
+			return this.formatUnder10000(man) + ChineseNotPrefixes[exp / 4] + (manb > 0 ? this.formatUnder10000(manb) + ChineseNotPrefixes[exp / 4 - 1] : "");
+		};
+
+		ChineseNotation.prototype.formatUnder10000WithPlaces = function (value) {
+			return this.formatUnder1000(value) + "點" + [1, 2, 3].map(function (x) {
+				return ChineseNotDigits[Math.floor(value * Math.pow(10, x)) % 10];
+			}).join("");
+		};
+
+		ChineseNotation.prototype.formatUnder10000 = function (value) {
+			return [3, 2, 1, 0].map(function (x) {
+				var digit = Math.floor(value / Math.pow(10, x)) % 10;
+
+				if (digit === 0) {
+					return "";
+				}
+
+				if (digit === 1 && x === 1) {
+					return ChineseNotPlaces[x];
+				}
+
+				return ChineseNotDigits[digit] + ChineseNotPlaces[x];
+			}).join("") || ChineseNotDigits[0];
+		};
+
+		return ChineseNotation;
+	}(Notation);
+
+	var ELEMENT_LISTS = [["H"], ["He", "Li", "Be", "B", "C", "N", "O", "F"], ["Ne", "Na", "Mg", "Al", "Si", "P", "S", "Cl"], ["Ar", "K", "Ca", "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Ga", "Ge", "As", "Se", "Br"], ["Kr", "Rb", "Sr", "Y", "Zr", "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn", "Sb", "Te", "I"], ["Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd", "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb", "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg", "Tl", "Pb", "Bi", "Po", "At"], ["Rn", "Fr", "Ra", "Ac", "Th", "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm", "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds", "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts"], ["Og"]];
+
+	var ElementalNotation = function (_super) {
+		__extends(ElementalNotation, _super);
+
+		function ElementalNotation() {
+			return _super !== null && _super.apply(this, arguments) || this;
+		}
+
+		Object.defineProperty(ElementalNotation.prototype, "name", {
+			get: function get() {
+				return "Elemental";
+			},
+			enumerable: true,
+			configurable: true
+		});
+		Object.defineProperty(ElementalNotation.prototype, "infinite", {
+			get: function get() {
+				return "Infinity";
+			},
+			enumerable: true,
+			configurable: true
+		});
+
+		ElementalNotation.prototype.formatUnder1000 = function (value, placesUnder1000) {
+			return this.elemental(new Decimal(value), placesUnder1000);
+		};
+
+		ElementalNotation.prototype.formatDecimal = function (value, places) {
+			return this.elemental(value, places);
+		};
+
+		ElementalNotation.prototype.getAbbreviationAndValue = function (x) {
+			var abbreviationListIndexUnfloored = Math.log(x) / Math.log(118);
+			var abbreviationListIndex = Math.floor(abbreviationListIndexUnfloored);
+			var abbreviationList = ELEMENT_LISTS[Math.floor(abbreviationListIndex)];
+			var abbreviationSublistIndex = Math.floor((abbreviationListIndexUnfloored - abbreviationListIndex) * abbreviationList.length);
+			var abbreviation = abbreviationList[abbreviationSublistIndex];
+			var value = Math.pow(118, abbreviationListIndex + abbreviationSublistIndex / abbreviationList.length);
+			return [abbreviation, value];
+		};
+
+		ElementalNotation.prototype.formatElementalPart = function (abbreviation, n) {
+			if (n === 1) {
+				return abbreviation;
+			}
+
+			return n + " " + abbreviation;
+		};
+
+		ElementalNotation.prototype.elemental = function (value, places) {
+			var _this = this;
+
+			var log = value.log(118);
+			var parts = [];
+
+			while (log >= 1 && parts.length < 4) {
+				var _a = this.getAbbreviationAndValue(log),
+					abbreviation = _a[0],
+					value_1 = _a[1];
+
+				var n = Math.floor(log / value_1);
+				log -= n * value_1;
+				parts.unshift([abbreviation, n]);
+			}
+
+			if (parts.length >= 4) {
+				return parts.map(function (x) {
+					return _this.formatElementalPart(x[0], x[1]);
+				}).join(" + ");
+			}
+
+			var formattedMantissa = Decimal.pow(118, log).toFixed(places);
+
+			if (parts.length === 0) {
+				return formattedMantissa;
+			}
+
+			if (parts.length === 1) {
+				return formattedMantissa + " \xD7 " + this.formatElementalPart(parts[0][0], parts[0][1]);
+			}
+
+			return formattedMantissa + " \xD7 (" + parts.map(function (x) {
+				return _this.formatElementalPart(x[0], x[1]);
+			}).join(" + ") + ")";
+		};
+
+		return ElementalNotation;
+	}(Notation);
+
+	var CustomBaseNotation = function (_super) {
+		__extends(CustomBaseNotation, _super);
+
+		function CustomBaseNotation(digits) {
+			var _this = this;
+
+			if (digits.length < 2) {
+				throw new Error("The supplied digits must contain at least 2 digits");
+			}
+
+			_this = _super.call(this) || this;
+			_this.base = digits.length;
+			_this.digits = digits;
+			return _this;
+		}
+
+		Object.defineProperty(CustomBaseNotation.prototype, "name", {
+			get: function get() {
+				return "Custom Base";
+			},
+			enumerable: true,
+			configurable: true
+		});
+
+		CustomBaseNotation.prototype.formatUnder1000 = function (valueIn, places) {
+			var value = Math.round(valueIn * Math.pow(this.base, places));
+			var digits = [];
+
+			while (value > 0) {
+				digits.push(this.digits[value % this.base]);
+				value = Math.floor(value / this.base);
+			}
+
+			var result = digits.reverse().join("");
+
+			if (places > 0) {
+				result = result.padStart(places + 1, "0");
+				result = result.slice(0, -places) + "." + result.slice(-places);
+			}
+
+			return result;
+		};
+
+		CustomBaseNotation.prototype.formatExponent = function (exponent) {
+			if (this.noSpecialFormatting(exponent)) {
+				return this.formatUnder1000(exponent, 0);
+			}
+
+			if (this.showCommas(exponent)) {
+				return formatWithCommas(this.formatUnder1000(exponent, 0));
+			}
+
+			return this.formatDecimal(new Decimal(exponent), Math.floor(Decimal.log(1000, this.base)));
+		};
+
+		CustomBaseNotation.prototype.formatDecimal = function (value, places) {
+			var exponent = Math.floor(value.log(this.base));
+			var mantissa = value.div(Decimal.pow(this.base, exponent)).toNumber();
+
+			if (mantissa >= this.base - Math.pow(this.base, -places) / 2) {
+				mantissa = 1;
+				exponent++;
+			}
+
+			return this.formatUnder1000(mantissa, places) + "e" + this.formatExponent(exponent);
+		};
+
+		return CustomBaseNotation;
+	}(Notation);
+
+	var BinaryNotation = function (_super) {
+		__extends(BinaryNotation, _super);
+
+		function BinaryNotation() {
+			return _super.call(this, "01") || this;
+		}
+
+		Object.defineProperty(BinaryNotation.prototype, "name", {
+			get: function get() {
+				return "Binary";
+			},
+			enumerable: true,
+			configurable: true
+		});
+		return BinaryNotation;
+	}(CustomBaseNotation);
+
+	var HexadecimalNotation = function (_super) {
+		__extends(HexadecimalNotation, _super);
+
+		function HexadecimalNotation() {
+			return _super.call(this, "0123456789ABCDEF") || this;
+		}
+
+		Object.defineProperty(HexadecimalNotation.prototype, "name", {
+			get: function get() {
+				return "Hexadecimal";
+			},
+			enumerable: true,
+			configurable: true
+		});
+		return HexadecimalNotation;
+	}(CustomBaseNotation);
+
+	exports.BinaryNotation = BinaryNotation;
+	exports.ChineseNotation = ChineseNotation;
 	exports.CoronavirusNotation = CoronavirusNotation;
+	exports.ElementalNotation = ElementalNotation;
 	exports.EvilNotation = EvilNotation;
 	exports.FlagsNotation = FlagsNotation;
 	exports.GreekLettersNotation = GreekLettersNotation;
+	exports.HexadecimalNotation = HexadecimalNotation;
 	exports.JapaneseNotation = JapaneseNotation;
 	exports.MixedLogarithmSciNotation = MixedLogarithmSciNotation;
 	exports.Notation = Notation;
