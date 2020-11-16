@@ -25,15 +25,17 @@
       "url": "https://github.com/CodedSakura"
     }
   ],
-  "license": "UNLICENSED",
+  "license": "MPL-2.0",
   "browser": true,
   "engines": {
-    "node": "^12.19.0"
+    "node": "^14.15.0"
   },
   "scripts": {
-    "start": "npx --no-install http-server ./ --port 8000",
-    "compile_jsx": "npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist --watch",
-    "count": "git ls-files | xargs wc -l"
+    "eslint": "npm exec --no eslint \"javascripts/**/*.{js,jsx}\"",
+    "stylelint": "npm exec --no stylelint \"stylesheets/**/*.css\"",
+    "compile-jsx": "npm exec --no babel javascripts/react/dev --out-dir javascripts/react/dist --watch",
+    "cloc": "git ls-files | xargs wc -l",
+    "tokei": "tokei ./"
   },
   "dependencies": {},
   "devDependencies": {
