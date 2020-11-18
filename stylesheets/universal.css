@@ -4,12 +4,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-@font-face {
+/*@font-face {
 	font-family: Atomic;
 	src: url(../resources/fonts/Atomic.ttf) format(truetype);
 	font-weight: normal;
 	font-style: normal;
-}
+}*/
 
 body {
 	align-items: center;

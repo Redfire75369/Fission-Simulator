@@ -4,6 +4,12 @@
   ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
   -->
 
+<!--
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
+  -->
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
@@ -33,6 +39,13 @@
 		<meta property="twitter:title" content="Fission Simulator"/>
 		<meta property="twitter:description" content="An incremental game about nuclear fission, reactors and nuclear physics."/>
 		<meta property="twitter:url" content="https://raw.githack.com/Redfire75369/Fission-Simulator/overhaul-indev/index.html"/>
+
+		<!-- Redirect HTTP users to HTTPS -->
+		<script type="text/javascript">
+			if (location.protocol === 'http:') {
+				location.replace("https:" + location.href.substring(location.protocol.length));
+			}
+		</script>
 
 		<!-- React, ReactDOM and Addons-->
 		<script defer src="javascripts/libs/react.js" type="text/javascript"></script>
@@ -116,8 +129,8 @@
 		<script defer src="javascripts/react/dist/prestige/GasCoolantStats.js" type="text/javascript"></script>
 		<script defer src="javascripts/react/dist/prestige/PrestigeTab.js" type="text/javascript"></script>
 
-		<script defer src="javascripts/react/dist/rendering.js" type="text/javascript"></script>
 		<script defer src="javascripts/init_game.js" type="text/javascript"></script>
+		<script defer src="javascripts/react/dist/rendering.js" type="text/javascript"></script>
 
 		<!-- Segment (analytics.js) -->
 		<script>
