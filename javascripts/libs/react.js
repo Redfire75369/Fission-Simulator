@@ -2596,6 +2596,8 @@
 	;
 	var profilingState =  sharedProfilingBuffer !== null ? new Int32Array(sharedProfilingBuffer) : []; // We can't read this but it helps save bytes for null checks
 
+	var profilingState = sharedProfilingBuffer !== null ? new Int32Array(sharedProfilingBuffer) : []; // We can't read this but it helps save bytes for null checks
+
 	var PRIORITY = 0;
 	var CURRENT_TASK_ID = 1;
 	var CURRENT_RUN_ID = 2;
@@ -3114,7 +3116,7 @@
 	}
 
 	var unstable_requestPaint = requestPaint;
-	var unstable_Profiling =  {
+	var unstable_Profiling = {
 		startLoggingProfilingEvents: startLoggingProfilingEvents,
 		stopLoggingProfilingEvents: stopLoggingProfilingEvents,
 		sharedProfilingBuffer: sharedProfilingBuffer
@@ -3516,9 +3518,9 @@
 		}
 	}
 
-	var createElement$1 =  createElementWithValidation ;
-	var cloneElement$1 =  cloneElementWithValidation ;
-	var createFactory =  createFactoryWithValidation ;
+	var createElement$1 = createElementWithValidation ;
+	var cloneElement$1 = cloneElementWithValidation ;
+	var createFactory = createFactoryWithValidation ;
 	var Children = {
 		map: mapChildren,
 		forEach: forEachChildren,
