@@ -1,3 +1,9 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 const trisoFuelTypes = ["TBU", "LEU-235", "LEP-239"];
 
 function TRISOFuelComponent(props) {
@@ -16,7 +22,7 @@ function TRISOFuelComponent(props) {
   React.useEffect(function () {
     const timerID = setInterval(function () {
       setUnlocked(function (prevUnlocked) {
-        return prevUnlocked || (player.mines.tier > -1 && (props.tier === 0 || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost)));
+        return prevUnlocked || player.mines.tier > -1 && (props.tier === 0 || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost));
       });
       setUnlockedReprocessing(player.mines.tier > 0);
       setHasFuel(player.fuels.triso[props.tier].enriched.add(player.fuels.triso[props.tier].depleted).gt(0));

@@ -2,22 +2,18 @@
 This is a short writeup on contributing to Fission Simulator.
 
 ## Github Introduction
-In order to start, you need a free Account for [Github](https://github.com).  
-Follow the registration steps if you have none already.  
+In order to start, you need a free Account for [Github](https://github.com).
+Follow the registration steps if you have none already.
 Afterwards, follow [this beginner's guide to using github](github.md) for more information.
 
 ## Guidelines
-### Code Formatting
-Try to follow the specified ESLint Rules as far as possible, this includes the following:
-- Use tabs instead of spaces
-- Use double quotes, `"` instead of single quotes, `'`
-- Place semicolons at the end of statements
-
 ### Licensing
-By contributing to this repository, you are agreeing to your contributions being licensed under this repository's "All Rights Reserved" license.
+By contributing to this repository,
+- You agree to have your code licensed under the Mozilla Public License Version 2.0.
 
-## Setting up your dev environment
-1. Run `setup.bat` or `setup.sh`
+## Setting up your development environment
+1. Run `npm install --legacy-peer-deps`
+2. Set up your Text Editor or IDE of choice by following [Editor/IDE Configuration](ide-configuration.md)
 
 ## React Contributions
-See [React Contribution](react-contribution.md).
+See [React Contributions](react-contribution.md).

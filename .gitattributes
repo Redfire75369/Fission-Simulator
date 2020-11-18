@@ -20,6 +20,8 @@
 *.bat text
 *.sh text
 
+*.sln eol=crlf
+
 *.png binary
 *.jpg binary
 *.svg binary

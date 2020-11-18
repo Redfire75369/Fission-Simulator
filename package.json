@@ -2,10 +2,8 @@
   "name": "fission-simulator",
   "version": "0.6.13",
   "description": "Fission Simulator is an incremental game about nuclear fission, reactors and nuclear physics.",
-
   "main": "javascripts/server.js",
   "homepage": "https://github.com/Redfire75369/Fission-Simulator#readme",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/Redfire75369/Fission-Simulator.git"
@@ -13,7 +11,6 @@
   "bugs": {
     "url": "https://github.com/Redfire75369/Fission-Simulator/issues"
   },
-
   "author": {
     "name": "Redfire",
     "url": "https://github.com/Redfire75369"
@@ -28,26 +25,27 @@
       "url": "https://github.com/CodedSakura"
     }
   ],
-
-  "license": "UNLICENSED",
+  "license": "MPL-2.0",
   "browser": true,
   "engines": {
-    "node": "^12.16.1"
+    "node": "^14.15.0"
   },
-
   "scripts": {
-    "count": "git ls-files | xargs wc -l"
+    "eslint": "npm exec --no eslint \"javascripts/**/*.{js,jsx}\"",
+    "stylelint": "npm exec --no stylelint \"stylesheets/**/*.css\"",
+    "compile-jsx": "npm exec --no babel --watch javascripts/react/dev --out-dir javascripts/react/dist",
+    "cloc": "git ls-files | xargs wc -l",
+    "tokei": "tokei ./"
   },
-
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "@babel/preset-react": "^7.10.4",
-    "babel-loader": "^8.1.0",
-    "eslint": "^7.11.0",
-    "eslint-plugin-react": "^7.21.4",
-    "eslint-plugin-react-hooks": "^4.1.2",
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-react": "^7.12.5",
+    "eslint": "^7.13.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "http-server": "^0.12.3",
     "stylelint": "^13.7.2"
   }
 }

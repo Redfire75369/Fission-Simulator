@@ -1,14 +1,40 @@
-# Editor-Specific Configurations
-.idea/**
-.vscode/**
-
 # Github Configurations
 .githooks/**
 
-# Node Package Manager
-node_modules/**
-.env
-package-lock.json
-
 # Others
 saves/**
+
+## Node ##
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variables file
+.env
+.env.test
+.env*.local
+
+# NPM
+package-lock.json
+node_modules/
+jspm_packages/
+
+# Yarn V2
+yarn.lock
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+### Editors/IDEs ###
+## VS Code ##
+.vscode/**/*
+.vscode-test
+*.code-workspace
+
+## WebStorm ##
+.idea/**/*

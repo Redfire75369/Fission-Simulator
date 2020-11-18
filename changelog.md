@@ -12,6 +12,21 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.14] - 18/11/20 **PR**
+### Added
+- Redirect to HTTPS
+- Hotkeys for fuel mining, loading and ejecting
+- License (Mozilla Public License 2.0)
+- Automation for Fuel Handling and Reactor Buying
+
+### Modified
+- Updated React
+- Continued rebalancing till LEP Reactors
+- Fixed Options Button Desyncs on Notation and Theme
+- Replaced CSSLint with Stylelint
+
+### Removed
+
 ## [v0.6.13] - 4/10/20 **PR**
 ### Added
 - Replacement of Mine Fuel with Load Fuel after unlocking mines

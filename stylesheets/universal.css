@@ -1,9 +1,15 @@
-@font-face {
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+/*@font-face {
 	font-family: Atomic;
 	src: url(../resources/fonts/Atomic.ttf) format(truetype);
 	font-weight: normal;
 	font-style: normal;
-}
+}*/
 
 body {
 	align-items: center;
@@ -433,9 +439,9 @@ button:hover {
 .trisodiv > .fuelbar > div > div, .pebblebeddiv > .fuelbar > div > div {
 	align-items: center;
 	justify-content: center;
-	max-height: calc(2.4em + 8px);
+	max-height: calc(2.4rem + 8px);
 	max-width: 100%;
-	min-height: calc(2.4em + 8px);
+	min-height: calc(2.4rem + 8px);
 	min-width: 100%;
 }
 .trisodiv > .fuelbar > div > div > div, .pebblebeddiv > .fuelbar > div > div > div {

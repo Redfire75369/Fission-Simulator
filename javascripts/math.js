@@ -1,29 +1,35 @@
-function pow(x, y) {
-	return Math.pow(x, y);
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+function pow(base, exponent) {
+	return Math.pow(base, exponent);
 }
-function sqrt(x) {
-	return Math.sqrt(x);
+function sqrt(value) {
+	return Math.sqrt(value);
 }
-function log(x, y) {
-	return Math.log(x) / Math.log(y);
+function log(value, base) {
+	return Math.log(value) / Math.log(base);
 }
 
-function round(x, dp = 2) {
-	return x.toFixed(dp);
+function round(value, dp = 2) {
+	return value.toFixed(dp);
 }
-function floor(x) {
-	return Math.floor(x);
+function floor(value) {
+	return Math.floor(value);
 }
-function ceil(x) {
-	return Math.ceil(x);
+function ceil(value) {
+	return Math.ceil(value);
 }
 
-function min(x, y) {
-	return Math.min(x, y);
+function min(value1, value2) {
+	return Math.min(value1, value2);
 }
-function max(x, y) {
-	return Math.max(x, y);
+function max(value1, value2) {
+	return Math.max(value1, value2);
 }
-function clamp(x, y, z) {
-	return max(x, min(y, z));
+function clamp(minimum, value, maximum) {
+	return max(minimum, min(value, maximum));
 }

@@ -1,3 +1,9 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 /* Use “ & ” for Quotation Marks in Messages */
 const newsArray = [
 	["News brought to you by Nuclear Experimental News Array, in partnership with Hevipelle.", true],

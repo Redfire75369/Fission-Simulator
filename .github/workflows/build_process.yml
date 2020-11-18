@@ -17,17 +17,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install Node
-      uses: actions/setup-node@v1.4.3
-      with:
-        node-version: 12.x
 
     - name: Install Dependencies
       run: npm ci
 
-    - name: Run ESLint on Javascripts
-      run: npx eslint "javascripts/**/*.{js,jsx}"
+    - name: Run ESLint on Scripts
+      run: npm exec --no eslint "javascripts/**/*.{js,jsx}" || true
     - name: Run Stylelint on Stylesheets
-      run: npx stylelint "stylesheets/**/*.css"
+      run: npm exec --no stylelint "stylesheets/**/*.css" || true
     - name: Compile JSX with Babel
-      run: npx --no-install babel javascripts/react/dev --out-dir javascripts/react/dist
+      run: npm exec --no babel javascripts/react/dev --out-dir javascripts/react/dist

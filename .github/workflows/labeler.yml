@@ -4,6 +4,7 @@ on:
     branches:
       - overhaul
       - overhaul-dev
+      - overhaul-indev
 
 jobs:
   label:

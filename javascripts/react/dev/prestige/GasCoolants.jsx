@@ -1,3 +1,9 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 function GasCoolantsComponent() {
 	return (
 		<div className="flex-row" style={{marginTop: "min(2vw, 2vh)", maxHeight: "min(55vw, 55vh)", minHeight: "min(55vw, 55vh)", width: "min(80vw, 80vh)"}}>

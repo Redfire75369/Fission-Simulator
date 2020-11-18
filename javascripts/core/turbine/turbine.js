@@ -1,3 +1,9 @@
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
 class TurbineBlade {
 	constructor(name, eff = 1, exp = 1.1, speed = 0.8) {
 		this.name = name;
@@ -36,7 +42,7 @@ const rotorCosts = {
 	osmiridium: [8, 6],
 	extreme: [12, 8],
 	sicsiccmc: [16, 12]
-}
+};
 const rotorLevels = {
 	steel: 1,
 	titanium: 2,
