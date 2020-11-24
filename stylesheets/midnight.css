@@ -9,10 +9,9 @@ body {
 	color: #FFFFFF;
 }
 
-.navigation > button {
-	background-color: #000000;
-	border: none;
-	color: #FFFFFF;
+.navigation > div > .navigation-toggle > svg {
+	fill: #FFFFFF;
+	stroke: #FFFFFF;
 }
 
 .subtab > button {

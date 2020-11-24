@@ -18,7 +18,7 @@ function PebblebedFuelHandlingAutomationComponent(props) {
   React.useEffect(function () {
     const timerID = setInterval(function () {
       setUnlocked(function (prevUnlocked) {
-        return prevUnlocked || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost.mul(1e9));
+        return prevUnlocked || player.energy.gte(player.reactors.pebblebeds[props.tier].startCost.mul(pow(10, 9 - props.tier)));
       });
       setUnlockedUpgrade(player.prestiges > 1);
       setActiveHandling(player.automation.reactors.pebblebeds.fuel[props.tier].active);
@@ -60,7 +60,7 @@ function PebblebedFuelHandlingAutomationComponent(props) {
     className: "flex-row"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-col"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, "Pebblebed Reactor Fuel Handling")), /*#__PURE__*/React.createElement("div", null, "Interval: ", intervalHandling, " ms"), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, pebblebedReactorTypes[props.tier]," Pebblebed Reactor Fuel Handling")), /*#__PURE__*/React.createElement("div", null, "Interval: ", intervalHandling, " ms"), /*#__PURE__*/React.createElement("div", {
     className: "cooldown"
   }, /*#__PURE__*/React.createElement("div", {
     style: {

@@ -166,11 +166,11 @@ button:hover {
 .navigation {
 	display: flex;
 	height: 48px;
-	left: 1rem;
+	left: 0.2rem;
 	max-width: 48px;
 	min-width: 48px;
 	position: absolute;
-	top: 1rem;
+	top: 0.2rem;
 }
 .navigation > div {
 	height: 48px;
@@ -198,10 +198,10 @@ button:hover {
 }
 
 .navigation > div > .dropdown {
-	left: -1rem;
+	left: -0.1rem;
 	overflow: hidden;
 	position: absolute;
-	top: calc(48px + 1rem);
+	top: calc(48px + 0.1rem);
 	transition: height 500ms ease;
 	width: 180px;
 	z-index: 4;
@@ -485,9 +485,10 @@ button:hover {
 }
 
 .fuelhandlingautomationdiv {
-	max-width: 30vw;
-	min-width: 30vw;
+	max-width: 25vw;
+	min-width: 25vw;
 	padding: 1rem;
+	margin: 0.75rem;
 }
 .fuelhandlingautomationdiv > div {
 	margin: 1.5vw;

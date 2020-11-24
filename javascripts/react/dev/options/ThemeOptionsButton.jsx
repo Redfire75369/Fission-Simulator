@@ -16,7 +16,7 @@ function ThemeOptionsButton() {
 	function themeChange() {
 		player.options.theme = (player.options.theme + 1) % themes.length;
 		setTheme(themes[player.options.theme]);
-		document.getElementById("style").setAttribute("href", "stylesheets/" + theme.toLowerCase() + ".css");
+		document.getElementById("style").setAttribute("href", "stylesheets/" + themes[player.options.theme].toLowerCase() + ".css");
 		document.getElementById("colour").content = themeBackgroundColours[player.options.theme];
 	}
 

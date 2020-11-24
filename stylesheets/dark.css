@@ -46,7 +46,7 @@ button:hover {
 	color: #D0D0D0;
 }
 
-.navigation > div > a > svg {
+.navigation > div > .navigation-toggle > svg {
 	fill: #D0D0D0;
 	stroke: #D0D0D0;
 }

@@ -12,6 +12,16 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 ### Removed
 -->
 
+## [v0.6.15] - 21/11/20 **PR**
+### Added
+
+### Modified
+- Fixed Theme Option Button Desync with Active Stylesheet
+- Reduced energy requirement for automation unlocks of higher tiers
+- Fixed navigation hamburger bars in themes
+
+### Removed
+
 ## [v0.6.14] - 18/11/20 **PR**
 ### Added
 - Redirect to HTTPS

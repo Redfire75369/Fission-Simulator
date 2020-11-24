@@ -15,9 +15,9 @@ button:hover {
 	cursor: pointer;
 }
 
-.navigation > div > a > svg {
-	fill: #2F2F2F;
-	stroke: #2F2F2F;
+.navigation > div > .navigation-toggle > svg {
+	fill: #1C1C1C;
+	stroke: #1C1C1C;
 }
 .navigation > div > .dropdown {
 	background-color: #D0D0D0;
@@ -32,8 +32,8 @@ button:hover {
 	text-decoration: none;
 }
 .navigation > div > .dropdown > div > a > span > svg {
-	fill: #2F2F2F;
-	stroke: #2F2F2F;
+	fill: #1C1C1C;
+	stroke: #1C1C1C;
 }
 
 .subtab > button {
