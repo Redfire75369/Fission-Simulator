@@ -30,7 +30,9 @@ function NavigationDropdownComponent() {
     };
   }, []);
   React.useEffect(function () {
-    setMenuHeight(dropdownRef.current?.firstChild?.offsetHeight);
+    var _dropdownRef$current, _dropdownRef$current$;
+
+    setMenuHeight((_dropdownRef$current = dropdownRef.current) === null || _dropdownRef$current === void 0 ? void 0 : (_dropdownRef$current$ = _dropdownRef$current.firstChild) === null || _dropdownRef$current$ === void 0 ? void 0 : _dropdownRef$current$.offsetHeight);
   }, [unlockedMines, unlockedAutomation, unlockedPrestige, unlockedCheats]);
 
   function calculateHeight(el) {

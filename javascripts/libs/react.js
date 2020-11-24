@@ -3114,7 +3114,7 @@
 	}
 
 	var unstable_requestPaint = requestPaint;
-	var unstable_Profiling =  {
+	var unstable_Profiling = {
 		startLoggingProfilingEvents: startLoggingProfilingEvents,
 		stopLoggingProfilingEvents: stopLoggingProfilingEvents,
 		sharedProfilingBuffer: sharedProfilingBuffer
@@ -3516,9 +3516,9 @@
 		}
 	}
 
-	var createElement$1 =  createElementWithValidation ;
-	var cloneElement$1 =  cloneElementWithValidation ;
-	var createFactory =  createFactoryWithValidation ;
+	var createElement$1 = createElementWithValidation ;
+	var cloneElement$1 = cloneElementWithValidation ;
+	var createFactory = createFactoryWithValidation ;
 	var Children = {
 		map: mapChildren,
 		forEach: forEachChildren,
