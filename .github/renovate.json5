@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "labels": [
+    "Type: RenovateBot"
+  ],
+  "baseBranches": [
+    "overhaul-indev"
+  ],
+  "packageRules": [
+    {
+      "updateTypes": [
+        "minor",
+        "patch"
+      ]
+    },
+    {
+      "depTypeList": [
+        "dependencies",
+        "devDependencies"
+      ],
+    },
+    {
+      "depTypeList": [
+        "peerDependencies"
+      ]
+    }
+  ]
+}
