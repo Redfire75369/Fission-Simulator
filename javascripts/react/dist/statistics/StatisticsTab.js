@@ -3,7 +3,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-
 function StatisticsTabComponent() {
   const [active, setActive] = React.useState(false);
   const [totalTime, setTotalTime] = React.useState(0);

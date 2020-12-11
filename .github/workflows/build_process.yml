@@ -30,4 +30,4 @@ jobs:
     - name: Run Stylelint on Stylesheets
       run: npm exec --no stylelint "stylesheets/**/*.css" || true
     - name: Compile JSX with Babel
-      run: npm exec --no babel javascripts/react/dev --out-dir javascripts/react/dist
+      run: npm exec --no -c "babel --watch javascripts/react/dev --out-dir javascripts/react/dist"

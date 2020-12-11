@@ -3,7 +3,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-
 function NavigationDropdownComponent() {
   const [activeMenu, setActiveMenu] = React.useState("main");
   const [menuHeight, setMenuHeight] = React.useState(null);
@@ -30,9 +29,7 @@ function NavigationDropdownComponent() {
     };
   }, []);
   React.useEffect(function () {
-    var _dropdownRef$current, _dropdownRef$current$;
-
-    setMenuHeight((_dropdownRef$current = dropdownRef.current) === null || _dropdownRef$current === void 0 ? void 0 : (_dropdownRef$current$ = _dropdownRef$current.firstChild) === null || _dropdownRef$current$ === void 0 ? void 0 : _dropdownRef$current$.offsetHeight);
+    setMenuHeight(dropdownRef.current?.firstChild?.offsetHeight);
   }, [unlockedMines, unlockedAutomation, unlockedPrestige, unlockedCheats]);
 
   function calculateHeight(el) {

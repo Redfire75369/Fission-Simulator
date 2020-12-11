@@ -33,7 +33,7 @@
   "scripts": {
     "eslint": "npm exec --no eslint \"javascripts/**/*.{js,jsx}\"",
     "stylelint": "npm exec --no stylelint \"stylesheets/**/*.css\"",
-    "compile-jsx": "npm exec --no babel --watch javascripts/react/dev --out-dir javascripts/react/dist",
+    "compile-jsx": "npm exec --no -c \"babel --watch javascripts/react/dev --out-dir javascripts/react/dist\"",
     "cloc": "git ls-files | xargs wc -l",
     "tokei": "tokei ./"
   },

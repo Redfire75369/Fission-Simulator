@@ -2,7 +2,7 @@
 javascripts/libs/**
 stylesheets/libs/**
 
-## Automatically generated
+## Compiled
 javascripts/react/dist/**
 
 ## NPM

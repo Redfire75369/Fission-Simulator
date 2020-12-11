@@ -3,7 +3,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-
 const pebblebedReactorTypes = ["TBU", "LEU-235", "LEP-239"];
 
 function PebblebedFissionReactorComponent(props) {

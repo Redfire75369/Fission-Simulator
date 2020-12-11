@@ -3,7 +3,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-
 function PebblebedFuelHandlingAutomationComponent(props) {
   const [unlocked, setUnlocked] = React.useState(false);
   const [unlockedUpgrade, setUnlockedUpgrade] = React.useState(false);
@@ -58,9 +57,11 @@ function PebblebedFuelHandlingAutomationComponent(props) {
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-row"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, pebblebedReactorTypes[props.tier], " Pebblebed Reactor Fuel Handling"))), /*#__PURE__*/React.createElement("div", {
+    className: "flex-row"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex-col"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("b", null, pebblebedReactorTypes[props.tier]," Pebblebed Reactor Fuel Handling")), /*#__PURE__*/React.createElement("div", null, "Interval: ", intervalHandling, " ms"), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("div", null, "Interval: ", intervalHandling, " ms"), /*#__PURE__*/React.createElement("div", {
     className: "cooldown"
   }, /*#__PURE__*/React.createElement("div", {
     style: {

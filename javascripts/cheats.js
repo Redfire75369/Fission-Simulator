@@ -77,7 +77,7 @@ function toggleLeverMaxAll() {
 	leverMaxAll = !leverMaxAll;
 }
 
-function harderReset() {
+function hardcoreReset() {
 	preLoad();
 	player = getDefaultData();
 	player.navigation.naviTab = "cheats_tab";
