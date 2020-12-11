@@ -1,39 +1,30 @@
 {
-	"enabled": true,
-	"separateMajorMinor": true,
-	"separateMultipleMajor": true,
-	"separateMinorPatch": false,
-	"branchPrefix": "renovate/",
-	"rebaseWhen": "behind-base-branch",
-	"prCreation": "immediate",
-	"ignoreUnstable": true,
-	"respectLatest": true,
-	"updateNotScheduled": true,
-	"automerge": false,
-	"prHourlyLimit": 1,
-	"prConcurrentLimit": 3,
-	"npm": {
-		"enabled": true
-	},
-	"lockFileMaintenance": {
-		"enabled": true
-	},
-	"labels": [
-		"Type: RenovateBot"
-	],
-	"packageRules": [
-		{
-			"depTypeList": [
-				"depdendencies",
-				"devDependencies"
-			],
-			"enabled": true
-		},
-		{
-			"depTypeList": [
-				"peerDependencies"
-			],
-			"enabled": false
-		}
-	]
+  "extends": [
+    "config:base"
+  ],
+  "labels": [
+    "Type: RenovateBot"
+  ],
+  "baseBranches": [
+    "overhaul-indev"
+  ],
+  "packageRules": [
+    {
+      "updateTypes": [
+        "minor",
+        "patch"
+      ]
+    },
+    {
+      "depTypeList": [
+        "dependencies",
+        "devDependencies"
+      ],
+    },
+    {
+      "depTypeList": [
+        "peerDependencies"
+      ]
+    }
+  ]
 }
