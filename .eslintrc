@@ -103,6 +103,7 @@
     "ProductionTabComponent": true,
     "StatisticsTabComponent": true,
     "AchievementComponent": true,
+    "AchievementsRowComponent": true,
     "AchievementsTabComponent": true,
     "NotationOptionsButton": true,
     "ThemeOptionsButton": true,

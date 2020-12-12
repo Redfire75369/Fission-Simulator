@@ -66,12 +66,12 @@ function NavigationDropdownComponent() {
 		<div className="dropdown" style={{height: menuHeight}} ref={dropdownRef}>
 			<ReactTransitionGroup.CSSTransition in={activeMenu === "main"} timeout={500} classNames="menu-primary" onEnter={calculateHeight} unmountOnExit>
 				<div>
-					<DropdownItem rightIcon={<NavigationIcon type="chevron"/>} type="main" tab="production" goToMenu="production">Production</DropdownItem>
-					<DropdownItem type="main" tab="statistics">Statistics</DropdownItem>
-					<DropdownItem type="main" tab="achievements">Achievements</DropdownItem>
-					<DropdownItem leftIcon={<NavigationIcon type="gear"/>} type="main" tab="options">Options</DropdownItem>
+					<DropdownItem type="main" tab="production" rightIcon={<NavigationIcon type="chevron"/>} goToMenu="production">Production</DropdownItem>
 					<DropdownItem type="main" tab="automation" style={{display: unlockedAutomation ? "" : "none"}}>Automation</DropdownItem>
 					<DropdownItem type="main" tab="prestige" style={{display: unlockedPrestige ? "" : "none"}}>Prestige</DropdownItem>
+					<DropdownItem type="main" tab="statistics">Statistics</DropdownItem>
+					<DropdownItem type="main" tab="achievements">Achievements</DropdownItem>
+					<DropdownItem type="main" tab="options" leftIcon={<NavigationIcon type="gear"/>}>Options</DropdownItem>
 					<DropdownItem type="main" tab="cheats" style={{display: unlockedCheats ? "" : "none"}}>Cheats</DropdownItem>
 				</div>
 			</ReactTransitionGroup.CSSTransition>

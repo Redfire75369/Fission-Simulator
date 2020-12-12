@@ -4,10 +4,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 const achievementTexts = {
-  11: "Thorium Power\nBuy one TBU Pebblebed Reactor.",
-  12: "Minecraft 2\nBuy a Mine with an iron-tipped drill.",
-  13: "Thoranium\nReprocess Depleted TBU Fuel into Enriched LEU-235 Fuel.",
-  14: "Capacity Overload\nReach a total capacity of 1000 LEU-235 Fuel in LEU-235 Pebblebed Reactors.",
+  11: "Thorium Power: Buy one TBU Pebblebed Reactor.",
+  12: "Minecraft 2: Buy a Mine with an iron-tipped drill.",
+  13: "Thoranium: Reprocess Depleted TBU Fuel into Enriched LEU-235 Fuel.",
+  14: "Capacity Overload: Reach a total capacity of 2500 LEU-235 Fuel in LEU-235 Pebblebed Reactors.",
   15: "",
   16: "",
   17: "",
@@ -46,10 +46,11 @@ class AchievementComponent extends React.Component {
     return /*#__PURE__*/React.createElement("div", {
       className: "flex-col align horizontal-center tooltip " + (this.state.completed ? "achcomplete" : "achlocked")
     }, /*#__PURE__*/React.createElement("img", {
-      src: "resources/images/achievements/" + this.props.id + ".png"
+      src: "resources/images/achievements/" + this.props.id + ".png",
+      alt: "Achievement " + this.props.id + achievementTexts[this.props.id].split(":")[0]
     }), /*#__PURE__*/React.createElement("span", {
       className: "tooltiptext"
-    }, achievementTexts[this.props.id].split("\n")[0], /*#__PURE__*/React.createElement("br", null), achievementTexts[this.props.id].split("\n")[1]));
+    }, achievementTexts[this.props.id].split(":")[0], /*#__PURE__*/React.createElement("br", null), achievementTexts[this.props.id].split(":")[1].substr(1)));
   }
 
 }

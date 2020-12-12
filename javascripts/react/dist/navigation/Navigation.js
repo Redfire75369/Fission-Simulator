@@ -71,25 +71,13 @@ function NavigationDropdownComponent() {
     onEnter: calculateHeight,
     unmountOnExit: true
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(DropdownItem, {
+    type: "main",
+    tab: "production",
     rightIcon: /*#__PURE__*/React.createElement(NavigationIcon, {
       type: "chevron"
     }),
-    type: "main",
-    tab: "production",
     goToMenu: "production"
   }, "Production"), /*#__PURE__*/React.createElement(DropdownItem, {
-    type: "main",
-    tab: "statistics"
-  }, "Statistics"), /*#__PURE__*/React.createElement(DropdownItem, {
-    type: "main",
-    tab: "achievements"
-  }, "Achievements"), /*#__PURE__*/React.createElement(DropdownItem, {
-    leftIcon: /*#__PURE__*/React.createElement(NavigationIcon, {
-      type: "gear"
-    }),
-    type: "main",
-    tab: "options"
-  }, "Options"), /*#__PURE__*/React.createElement(DropdownItem, {
     type: "main",
     tab: "automation",
     style: {
@@ -102,6 +90,18 @@ function NavigationDropdownComponent() {
       display: unlockedPrestige ? "" : "none"
     }
   }, "Prestige"), /*#__PURE__*/React.createElement(DropdownItem, {
+    type: "main",
+    tab: "statistics"
+  }, "Statistics"), /*#__PURE__*/React.createElement(DropdownItem, {
+    type: "main",
+    tab: "achievements"
+  }, "Achievements"), /*#__PURE__*/React.createElement(DropdownItem, {
+    type: "main",
+    tab: "options",
+    leftIcon: /*#__PURE__*/React.createElement(NavigationIcon, {
+      type: "gear"
+    })
+  }, "Options"), /*#__PURE__*/React.createElement(DropdownItem, {
     type: "main",
     tab: "cheats",
     style: {
