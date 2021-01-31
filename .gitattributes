@@ -1,0 +1,31 @@
+* text eol=lf
+
+*.js text
+*.jsx text
+*.json text
+*.html text
+*.css text
+*.md text
+*.yml text
+
+*.babelrc text
+*.editorconfig text
+*.eslintrc text
+*.eslintignore text
+*.gitattributes text
+*.gitignore text
+*.stylelintrc text
+*.npmrc text
+
+*.bat text
+*.sh text
+
+*.sln eol=crlf
+
+*.png binary
+*.jpg binary
+*.svg text
+
+*.ttf binary
+*.woff binary
+*.woff2 binary

@@ -1,0 +1,9 @@
+## Libraries
+javascripts/libs/**
+stylesheets/libs/**
+
+## Compiled
+javascripts/react/dist/**
+
+## NPM
+npm-shrinkwrap.json

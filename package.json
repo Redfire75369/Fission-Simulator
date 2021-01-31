@@ -1,0 +1,36 @@
+{
+  "name": "fission-simulator",
+  "version": "0.1.0",
+  "description": "Incremental Game about Nuclear Fission",
+  "private": true,
+  "homepage": "https://github.com/Redfire75369/Fission-Simulator#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Redfire75369/Fission-Simulator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Redfire75369/Fission-Simulator/issues"
+  },
+  "author": {
+    "name": "Redfire",
+    "url": "https://github.com/Redfire75369"
+  },
+  "license": "MPL-2.0",
+  "browser": true,
+  "engines": {
+    "node": "15.6.1"
+  },
+  "scripts": {
+    "compile-jsx": "npm exec --no -- babel --watch javascripts/react/dev --out-dir javascripts/react/dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "7.12.10",
+    "@babel/core": "7.12.10",
+    "@babel/preset-react": "7.12.10",
+    "eslint": "7.17.0",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "stylelint": "13.8.0"
+  }
+}
