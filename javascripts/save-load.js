@@ -9,6 +9,7 @@ function get_save_string() {
 }
 
 function get_save() {
+	// localStorage.setItem("FissionSimulatorSave1", "");
 	return localStorage.getItem("FissionSimulatorSave1");
 }
 function save_game() {
@@ -24,8 +25,8 @@ function load_save(save, imported = false) {
 	try {
 		if (typeof save !== "string") {
 			save = get_save();
-			if (save == null) {
-				console.log("No existing save found");
+			if (save == null && !imported) {
+				console.debug("No existing save found");
 				player = getDefaultData();
 				return;
 			}
@@ -36,12 +37,6 @@ function load_save(save, imported = false) {
 
 		check_assign(getDefaultData(), save, []);
 
-		/* if (typeof player.options.notation === "string") {
-			player.options.notation = notations.indexOf(player.options.notation);
-		}
-		if (typeof player.options.theme === "string") {
-			player.options.theme = themes.indexOf(player.options.theme);
-		} */
 		player.version = getDefaultData().version;
 
 		if (imported) {
@@ -52,7 +47,7 @@ function load_save(save, imported = false) {
 			console.log("Save Import Error:");
 			alert("Error: Imported save is in an invalid format, please make sure you've copied the save correctly and aren't just typing gibberish.");
 		} else {
-			console.log("Save Loading Error:");
+			console.log("Save Load Error:");
 			alert("The game has encountered a fatal error while loading. Please report this bug in the discord as soon as possible. The next prompt will contain debug information regarding this. Please include that in the bug report.");
 			alert("--DEBUG Information--\n" + err.stack);
 		}
@@ -98,16 +93,24 @@ function objectify(obj, type) {
 		ret.regular = new Decimal(obj.regular);
 		ret.enriched = new Decimal(obj.enriched);
 		ret.enrichment = new Decimal(obj.enrichment);
+		
 		ret.mine = new LightWaterMine();
 		ret.mine.bought = obj.mine.bought;
-		ret.mine.amount = new Decimal(obj.mine.amount);
 		return ret;
 	} else if (type.constructor.name === "LightWaterReactor") {
 		let ret = new LightWaterReactor();
 		ret.fuel.amount = new Decimal(obj.fuel.amount);
 		ret.fuel.enriched = new Decimal(obj.fuel.enriched);
+		
 		ret.bought = obj.bought;
 		ret.amount = new Decimal(obj.amount);
+		return ret;
+	} else if (type.constructor.name === "LightWaterCentrifuge") {
+		let ret = new LightWaterCentrifuge();
+		ret.fuel = new Decimal(obj.fuel);
+		ret.time = obj.time;
+		
+		ret.bought = obj.bought;
 		return ret;
 	}
 

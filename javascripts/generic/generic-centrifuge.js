@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-class GenericMine extends GenericEnergyBuyable {
+class GenericCentrifuge extends GenericEnergyBuyable {
 	constructor(start, scale, secScale = 10, scalePrice = 308) {
 		super(start, scale, secScale, scalePrice);
 	}

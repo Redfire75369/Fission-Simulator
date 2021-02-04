@@ -57,19 +57,18 @@ function LightWaterReactorComponent() {
 		setFuelUsage(lwr.current.fuel_usage);
 	}, [storedFuelRegular, storedFuelEnriched, enrichment]);
 
-	function mineFuel() {
+	function mineFuelRegular() {
 		player.fuels.light_water.mine_fuel();
 		setFuelRegular(player.fuels.light_water.regular);
 	}
-	function upgradeMining() {
+	function buyMine() {
 		player.fuels.light_water.mine.buy();
 
 		setMineBought(player.fuels.light_water.mine.bought);
 	}
 
 	function loadFuelRegular() {
-		player.reactors.light_water.fuel.regular = player.reactors.light_water.fuel.regular.add(fuelRegular);
-		player.fuels.light_water.regular = zero;
+		player.reactors.light_water.load_fuel();
 
 		setStoredFuelRegular(player.reactors.light_water.fuel.regular);
 		setFuelRegular(zero);
@@ -99,10 +98,10 @@ function LightWaterReactorComponent() {
 					<div className="flex flex-row items-center justify-center">
 						<div className="flex flex-col items-center justify-center ma2">
 							<div>
-								<button className="h-50 w-100 bg-moon-gray b--green" onClick={mineFuel}>
+								<button className="h-50 w-100 bg-moon-gray b--green pa1" onClick={mineFuelRegular}>
 									Mine Uranium Fuel
 								</button>
-								<button className="h-50 w-100 bg-moon-gray b--green" onClick={upgradeMining}>
+								<button className="h-50 w-100 bg-moon-gray b--green pa1" onClick={buyMine}>
 									Upgrade Mining for {notation(mineCost)} Energy
 								</button>
 							</div>
@@ -127,10 +126,10 @@ function LightWaterReactorComponent() {
 					<div className="flex flex-row items-center justify-center">
 						<div className="flex flex-col justify-center ma2">
 							<div>
-								<button className="h-50 w-100 bg-moon-gray b--green" onClick={loadFuelRegular}>
+								<button className="w-100 bg-moon-gray b--green pa1" onClick={loadFuelRegular}>
 									Load Uranium Fuel
 								</button>
-								<button className="h-50 w-100 bg-moon-gray b--green" onClick={buyLWR}>
+								<button className="w-100 bg-moon-gray b--green pa1" onClick={buyLWR}>
 									Upgrade Reactors for {notation(cost)} Energy
 								</button>
 							</div>

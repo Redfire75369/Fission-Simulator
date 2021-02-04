@@ -1,15 +1,9 @@
-/*
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
-
-class GenericMine extends GenericEnergyBuyable {
+class GenericEnergyBuyable {
 	constructor(start, scale, secScale = 10, scalePrice = 308) {
-		super(start, scale, secScale, scalePrice);
-	}
-
-	reset() {
+		this.start = new Decimal(start);
+		this.scale = new Decimal(scale);
+		this.sec_scale = secScale;
+		this.scale_start = Decimal.pow(10, scalePrice);
 		this.bought = 0;
 	}
 
@@ -39,24 +33,4 @@ class GenericMine extends GenericEnergyBuyable {
 	get cost_max() {
 		return this.start.mul(this.scale.pow(this.buyable_max + this.bought)).mul(Decimal.pow(this.sec_scale, Decimal.max(0, this.buyable_max + this.bought - this.pre_sec_scale - 1).mul(this.buyable_max + this.bought - this.pre_sec_scale).div(2)));
 	}
-
-	buy() {
-		if (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-		}
-	}
-	buy_max() {
-		while (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
-		}
-	}
-	/* buy_bulk(bulk) {
-		if (this.buyable) {
-			player.energy = player.energy.sub(this.bulkCost(bulk));
-			this.amount = this.amount.add(this.bulkBuyable(bulk));
-			this.bought += this.bulkBuyable(bulk);
-		}
-	} */
 }

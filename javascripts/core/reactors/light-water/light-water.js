@@ -14,14 +14,12 @@ class LightWaterReactor extends GenericReactor {
 	}
 
 	get multiplier() {
-		return Decimal.pow(2.5, this.amount - 1);
+		return Decimal.pow(2.8, this.amount - 1);
 	}
 
 	get fuel_usage() {
 		if (this.fuel.regular.gt(0)) {
-			return Decimal.min(this.fuel.regular, Decimal.max(1, this.amount.log10()).div(20));
-		} else if (this.fuel.enriched.gt(0)) {
-			return Decimal.min(this.fuel.enriched, Decimal.pow(this.amount, 2.5 + player.fuels.light_water.enrichment.log(3)));
+			return Decimal.min(this.fuel.regular, this.amount.add(1).log(1.11) / 10);
 		}
 		return zero;
 	}
@@ -29,32 +27,10 @@ class LightWaterReactor extends GenericReactor {
 	get energy_production() {
 		return this.amount.mul(this.multiplier).mul(this.fuel_usage);
 	}
-	
+
 	load_fuel() {
-		
-	}
-}
-
-class LightWaterMine extends GenericMine {
-	constructor() {
-		super(20, 3, 5);
-	}
-	
-	get fuel_extraction() {
-		return Decimal.pow(1.5, this.bought);
-	}
-}
-
-class LightWaterFuel {
-	constructor() {
-		this.regular = zero;
-		this.enriched = zero;
-		this.enrichment = new Decimal(0.01);
-		this.mine = new LightWaterMine();
-	}
-	
-	mine_fuel() {
-		this.regular = this.regular.add(this.mine.fuel_extraction);
+		this.fuel.regular = this.fuel.regular.add(player.fuels.light_water.regular);
+		player.fuels.light_water.regular = zero;
 	}
 }
 
@@ -64,8 +40,9 @@ function simulate_light_water_reactor(tick_interval = 50) {
 	player.energy = player.energy.add(lwr.energy_production.mul(tick_interval / 1000));
 
 	if (lwr.fuel.regular.gt(0)) {
-		player.reactors.light_water.fuel.regular = lwr.fuel.regular.sub(lwr.fuel_usage.mul(tick_interval / 1000));
+		// alert(tick_interval)
+		player.reactors.light_water.fuel.regular = lwr.fuel.regular.sub(lwr.fuel_usage.mul(tick_interval / 1000)).max(0);
 	} else if (lwr.fuel.enriched.gt(0)) {
-		player.reactors.light_water.fuel.enriched = lwr.fuel.enriched.sub(lwr.fuel_usage.mul(tick_interval / 1000));
+		player.reactors.light_water.fuel.enriched = lwr.fuel.enriched.sub(lwr.fuel_usage.mul(tick_interval / 1000)).max(0);
 	}
 }

@@ -47,19 +47,18 @@ function LightWaterReactorComponent() {
     setFuelUsage(lwr.current.fuel_usage);
   }, [storedFuelRegular, storedFuelEnriched, enrichment]);
 
-  function mineFuel() {
+  function mineFuelRegular() {
     player.fuels.light_water.mine_fuel();
     setFuelRegular(player.fuels.light_water.regular);
   }
 
-  function upgradeMining() {
+  function buyMine() {
     player.fuels.light_water.mine.buy();
     setMineBought(player.fuels.light_water.mine.bought);
   }
 
   function loadFuelRegular() {
-    player.reactors.light_water.fuel.regular = player.reactors.light_water.fuel.regular.add(fuelRegular);
-    player.fuels.light_water.regular = zero;
+    player.reactors.light_water.load_fuel();
     setStoredFuelRegular(player.reactors.light_water.fuel.regular);
     setFuelRegular(zero);
   }
@@ -88,11 +87,11 @@ function LightWaterReactorComponent() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col items-center justify-center ma2"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-    className: "h-50 w-100 bg-moon-gray b--green",
-    onClick: mineFuel
+    className: "h-50 w-100 bg-moon-gray b--green pa1",
+    onClick: mineFuelRegular
   }, "Mine Uranium Fuel"), /*#__PURE__*/React.createElement("button", {
-    className: "h-50 w-100 bg-moon-gray b--green",
-    onClick: upgradeMining
+    className: "h-50 w-100 bg-moon-gray b--green pa1",
+    onClick: buyMine
   }, "Upgrade Mining for ", notation(mineCost), " Energy")))))), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col items-center justify-center h-100 w1"
   }), /*#__PURE__*/React.createElement("div", {
@@ -112,10 +111,10 @@ function LightWaterReactorComponent() {
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-col justify-center ma2"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-    className: "h-50 w-100 bg-moon-gray b--green",
+    className: "w-100 bg-moon-gray b--green pa1",
     onClick: loadFuelRegular
   }, "Load Uranium Fuel"), /*#__PURE__*/React.createElement("button", {
-    className: "h-50 w-100 bg-moon-gray b--green",
+    className: "w-100 bg-moon-gray b--green pa1",
     onClick: buyLWR
   }, "Upgrade Reactors for ", notation(cost), " Energy")))))));
 }

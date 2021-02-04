@@ -1,6 +1,6 @@
 ## Libraries
-javascripts/libs/**
-stylesheets/libs/**
+javascripts/libraries/**
+stylesheets/libraries/**
 
 ## Compiled
 javascripts/react/dist/**

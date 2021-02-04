@@ -1,10 +1,12 @@
-class GenericReactor {
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+class GenericReactor extends GenericEnergyBuyable {
 	constructor(start, scale, secScale = 10, scalePrice = 308) {
-		this.start = new Decimal(start);
-		this.scale = new Decimal(scale);
-		this.sec_scale = secScale;
-		this.scale_start = Decimal.pow(10, scalePrice);
-		this.bought = 0;
+		super(start, scale, secScale, scalePrice);
 		this.amount = zero;
 	}
 
