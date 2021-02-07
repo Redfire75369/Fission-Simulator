@@ -17,6 +17,12 @@ function getDefaultData() {
 			notation: 0
 		},
 
+		unlocked: {
+			light_water: {
+				centrifuge: false
+			}
+		},
+
 		last_update: Date.now(),
 
 		energy: new Decimal(100),
@@ -38,9 +44,7 @@ player = getDefaultData();
 
 function update_game(tick_interval = 50) {
 	simulate_light_water_reactor(tick_interval);
-	if (player.energy.e >= 10) {
-		simulate_light_water_centrifuge(tick_interval);
-	}
+	simulate_light_water_centrifuge(tick_interval);
 }
 
 function simulate_time(seconds, actual) {

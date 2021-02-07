@@ -12,34 +12,47 @@ class LightWaterCentrifuge extends GenericCentrifuge {
 	}
 
 	get enrichment() {
-		if (this.bought > 10) {
-			return new Decimal(0.3);
+		if (this.bought > 6) {
+			return new Decimal(0.35);
 		} else {
-			return new Decimal(0.1 + 0.2 * this.bought);
+			return new Decimal(0.1 + 0.1 * this.bought);
 		}
 	}
 
 	get max_fuel_enriched() {
 		return Decimal.pow(10, 4 + this.bought);
 	}
-	
+
 	load_fuel() {
 		this.fuel = this.fuel.add(player.fuels.light_water.regular);
 		player.fuels.light_water.regular = zero;
+
+		if (this.time === 0) {
+			this.time = 8000;
+		}
 	}
 }
 
 function simulate_light_water_centrifuge(tick_interval = 50) {
-	let lwc = player.centrifuges.light_water;
-	
-	let fuel_enriched = lwc.fuel.min(lwc.max_fuel_enriched);
-	
-	lwc.time = Math.max(0, lwc.time - tick_interval);
-	
-	if (lwc.time === 0) {
-		player.fuels.light_water.enriched = player.fuels.light_water.enriched.add(fuel_enriched);
-		if (lwc.fuel.gt(0)) {
-			lwc.time = 8000;
+	if (player.unlocked.light_water.centrifuge) {
+		let lwc = player.centrifuges.light_water;
+
+		let fuel_enriched = lwc.fuel.min(lwc.max_fuel_enriched);
+
+
+		player.centrifuges.light_water.time = Math.max(0, lwc.time - tick_interval);
+
+
+		if (lwc.time === 0) {
+			player.fuels.light_water.enriched = player.fuels.light_water.enriched.add(fuel_enriched);
+			player.centrifuges.light_water.fuel = lwc.fuel.sub(fuel_enriched);
+
+			if (lwc.fuel.gt(0) && lwc.time < 0) {
+				lwc.time = 8000;
+			}
 		}
+	} else {
+		player.unlocked.light_water.centrifuge |= player.energy.e >= 12;
+		player.reactors.light_water.fuel_enriched = true;
 	}
 }

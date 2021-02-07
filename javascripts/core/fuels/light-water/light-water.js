@@ -18,7 +18,6 @@ class LightWaterFuel {
 	constructor() {
 		this.regular = zero;
 		this.enriched = zero;
-		this.enrichment = new Decimal(0.01);
 		this.mine = new LightWaterMine();
 	}
 

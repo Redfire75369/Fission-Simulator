@@ -6,11 +6,9 @@
 
 class LightWaterReactor extends GenericReactor {
 	constructor() {
-		super(10, 5, 5);
-		this.fuel = {
-			regular: zero,
-			enriched: zero
-		};
+		super(10, 4, 5);
+		this.fuel = zero;
+		this.fuel_enriched = false;
 	}
 
 	get multiplier() {
@@ -18,8 +16,8 @@ class LightWaterReactor extends GenericReactor {
 	}
 
 	get fuel_usage() {
-		if (this.fuel.regular.gt(0)) {
-			return Decimal.min(this.fuel.regular, this.amount.add(1).log(1.11) / 10);
+		if (this.fuel.gt(0)) {
+			return Decimal.min(this.fuel, this.amount.add(1).log(1.06));
 		}
 		return zero;
 	}
@@ -29,8 +27,13 @@ class LightWaterReactor extends GenericReactor {
 	}
 
 	load_fuel() {
-		this.fuel.regular = this.fuel.regular.add(player.fuels.light_water.regular);
-		player.fuels.light_water.regular = zero;
+		if (!this.fuel_enriched) {
+			this.fuel = this.fuel.add(player.fuels.light_water.regular);
+			player.fuels.light_water.regular = zero;
+		} else {
+			this.fuel = this.fuel.add(player.fuels.light_water.enriched);
+			player.fuels.light_water.enriched = zero;
+		}
 	}
 }
 
@@ -39,10 +42,7 @@ function simulate_light_water_reactor(tick_interval = 50) {
 
 	player.energy = player.energy.add(lwr.energy_production.mul(tick_interval / 1000));
 
-	if (lwr.fuel.regular.gt(0)) {
-		// alert(tick_interval)
-		player.reactors.light_water.fuel.regular = lwr.fuel.regular.sub(lwr.fuel_usage.mul(tick_interval / 1000)).max(0);
-	} else if (lwr.fuel.enriched.gt(0)) {
-		player.reactors.light_water.fuel.enriched = lwr.fuel.enriched.sub(lwr.fuel_usage.mul(tick_interval / 1000)).max(0);
+	if (lwr.fuel.gt(0)) {
+			player.reactors.light_water.fuel = lwr.fuel.sub(lwr.fuel_usage.mul(tick_interval / 1000)).max(0);
 	}
 }

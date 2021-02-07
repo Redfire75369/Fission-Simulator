@@ -11,3 +11,7 @@ var save_game_loop;
 
 
 var player;
+
+function $(element_id) {
+	return document.getElementById(element_id);
+}

@@ -8,9 +8,9 @@ function RootComponent() {
 	return (
 		<>
 			<EnergyComponent/>
-			<LightWaterReactorComponent/>
+			<LightWaterComponent/>
 		</>
 	);
 }
 
-ReactDOM.render(<RootComponent/>, document.getElementById("root"));
+ReactDOM.render(<RootComponent/>, $("root"));
