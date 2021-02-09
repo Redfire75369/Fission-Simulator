@@ -43,6 +43,6 @@ function simulate_light_water_reactor(tick_interval = 50) {
 	player.energy = player.energy.add(lwr.energy_production.mul(tick_interval / 1000));
 
 	if (lwr.fuel.gt(0)) {
-			player.reactors.light_water.fuel = lwr.fuel.sub(lwr.fuel_usage.mul(tick_interval / 1000)).max(0);
+		player.reactors.light_water.fuel = lwr.fuel.sub(lwr.fuel_usage.mul(tick_interval / 1000)).max(0);
 	}
 }

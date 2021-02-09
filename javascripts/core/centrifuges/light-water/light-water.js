@@ -44,6 +44,7 @@ function simulate_light_water_centrifuge(tick_interval = 50) {
 
 
 		if (lwc.time === 0) {
+			player.reactors.light_water.fuel_enriched = true;
 			player.fuels.light_water.enriched = player.fuels.light_water.enriched.add(fuel_enriched);
 			player.centrifuges.light_water.fuel = lwc.fuel.sub(fuel_enriched);
 
@@ -53,6 +54,5 @@ function simulate_light_water_centrifuge(tick_interval = 50) {
 		}
 	} else {
 		player.unlocked.light_water.centrifuge |= player.energy.e >= 12;
-		player.reactors.light_water.fuel_enriched = true;
 	}
 }

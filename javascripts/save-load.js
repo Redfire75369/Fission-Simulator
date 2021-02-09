@@ -36,6 +36,11 @@ function load_save(save, imported = false) {
 
 		check_assign(getDefaultData(), save, []);
 
+		if (player.version.minor === 1 && player.version.hotfix === 0) {
+			player = getDefaultData();
+			return;
+		}
+
 		player.version = getDefaultData().version;
 
 		if (imported) {
