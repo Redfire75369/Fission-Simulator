@@ -42,6 +42,15 @@ function getDefaultData() {
 
 player = getDefaultData();
 
+document.addEventListener('keydown', function(e) {
+	if (e.key === "U+000A" || e.key === "Enter" || e.keyCode === 13) {
+		if (e.target.nodeName === "BUTTON") {
+			e.preventDefault();
+			return false;
+		}
+	}
+}, true);
+
 function update_game(tick_interval = 50) {
 	simulate_light_water_reactor(tick_interval);
 	simulate_light_water_centrifuge(tick_interval);

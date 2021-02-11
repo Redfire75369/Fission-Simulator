@@ -17,13 +17,17 @@ class LightWaterReactor extends GenericReactor {
 
 	get fuel_usage() {
 		if (this.fuel.gt(0)) {
-			return Decimal.min(this.fuel, this.amount.add(1).log(1.06));
+			return Decimal.min(this.fuel, this.amount.add(1).log(1.06) / 2);
 		}
 		return zero;
 	}
 
 	get energy_production() {
-		return this.amount.mul(this.multiplier).mul(this.fuel_usage);
+		if (!this.fuel_enriched) {
+			return this.amount.mul(this.multiplier).mul(this.fuel_usage);
+		} else {
+			return this.amount.mul(this.multiplier).mul(this.fuel_usage).mul(Decimal.pow(12, player.centrifuges.light_water.enrichment.mul(10)));
+		}
 	}
 
 	load_fuel() {

@@ -10,7 +10,7 @@ class LightWaterMine extends GenericMine {
 	}
 
 	get fuel_extraction() {
-		return Math.log(this.bought + 1) / Math.log(1.1) / 4;
+		return Math.log(this.bought + 1) / (4 * Math.log(1.1));
 	}
 }
 
