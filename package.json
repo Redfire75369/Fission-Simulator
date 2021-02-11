@@ -24,8 +24,8 @@
     "compile-jsx": "npm exec --no -- babel --watch javascripts/react/dev --out-dir javascripts/react/dist"
   },
   "devDependencies": {
-    "@babel/cli": "7.12.13",
-    "@babel/core": "7.12.13",
+    "@babel/cli": "7.12.16",
+    "@babel/core": "7.12.16",
     "@babel/preset-react": "7.12.13",
     "eslint": "7.17.0",
     "eslint-plugin-react": "7.22.0",
