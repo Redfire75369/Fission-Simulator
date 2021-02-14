@@ -9,7 +9,7 @@ function getDefaultData() {
 		version: {
 			major: 0,
 			minor: 1,
-			hotfix: 1
+			hotfix: 2
 		},
 
 		navigation: {},

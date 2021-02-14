@@ -6,21 +6,21 @@
 
 class LightWaterCentrifuge extends GenericCentrifuge {
 	constructor() {
-		super(1e12, 1e3, 25);
+		super(1e12, 4e4, 25);
 		this.fuel = zero;
 		this.time = 0;
 	}
 
 	get enrichment() {
 		if (this.bought > 6) {
-			return new Decimal(0.35);
+			return new Decimal(0.8);
 		} else {
 			return new Decimal(0.1 + 0.1 * this.bought);
 		}
 	}
 
 	get max_fuel_enriched() {
-		return Decimal.pow(10, 4 + this.bought);
+		return Decimal.pow(5, 3 + this.bought);
 	}
 
 	load_fuel() {
