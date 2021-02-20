@@ -1,12 +1,12 @@
 {
   "name": "fission-simulator",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "fission-simulator",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "license": "MPL-2.0",
       "devDependencies": {
         "@babel/cli": "7.12.17",
@@ -27,6 +27,8 @@
       "integrity": "sha512-R9dQbDshWvAp3x5XjANsfthqka+ToEdDUonKgtALNgzQxgiUg2Xa4ZwKIcE84wnoiobIJFXF+TCM4ylJvUuW5w==",
       "dev": true,
       "dependencies": {
+        "@nicolo-ribaudo/chokidar-2": "2.1.8-no-fsevents",
+        "chokidar": "^3.4.0",
         "commander": "^4.0.1",
         "convert-source-map": "^1.1.0",
         "fs-readdir-recursive": "^1.1.0",
@@ -1024,6 +1026,7 @@
       "dependencies": {
         "anymatch": "~3.1.1",
         "braces": "~3.0.2",
+        "fsevents": "~2.3.1",
         "glob-parent": "~5.1.0",
         "is-binary-path": "~2.1.0",
         "is-glob": "~4.0.1",

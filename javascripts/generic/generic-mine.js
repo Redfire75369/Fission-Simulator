@@ -47,9 +47,9 @@ class GenericMine extends GenericEnergyBuyable {
 		}
 	}
 	buy_max() {
-		while (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.bought++;
+		if (this.buyable) {
+			player.energy = player.energy.sub(this.cost_max);
+			this.bought += this.buyable_max;
 		}
 	}
 	/* buy_bulk(bulk) {

@@ -50,10 +50,10 @@ class GenericReactor extends GenericEnergyBuyable {
 		}
 	}
 	buy_max() {
-		while (this.buyable) {
-			player.energy = player.energy.sub(this.cost);
-			this.amount = this.amount.add(1);
-			this.bought++;
+		if (this.buyable) {
+			player.energy = player.energy.sub(this.cost_max);
+			this.amount = this.amount.add(this.buyable_max);
+			this.bought += this.buyable_max;
 		}
 	}
 	/* buy_bulk(bulk) {

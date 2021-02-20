@@ -12,6 +12,12 @@ var save_game_loop;
 
 var player;
 
+var mobile = isMobilePortrait();
+
 function $(element_id) {
 	return document.getElementById(element_id);
+}
+
+function isMobilePortrait() {
+	return window.matchMedia("(min-width: 1.56in) and (max-width: 2.73in)").matches;
 }

@@ -6,7 +6,7 @@ npm-debug.log*
 
 # NPM
 package-lock.json
-node_modules/
+node_modules/**
 
 ### Editors/IDEs ###
 ## VS Code ##
