@@ -19,5 +19,5 @@ function $(element_id) {
 }
 
 function isMobilePortrait() {
-	return window.matchMedia("(min-width: 1.56in) and (max-width: 2.73in)").matches;
+	return window.matchMedia("only (max-height: 8.5in) and (max-width: 4in) and (orientation: portrait)").matches;
 }

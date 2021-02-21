@@ -98,152 +98,143 @@ function LightWaterComponent() {
   }, [reactorFuel, centrifugeEnrichment]);
   /* Fuel and Mine */
 
-  function FuelMineComponent() {
-    function mine_fuel() {
-      player.fuels.light_water.mine_fuel();
-      setFuelRegular(player.fuels.light_water.regular);
-    }
-
-    function buy_mine() {
-      player.fuels.light_water.mine.buy();
-      setMineBought(player.fuels.light_water.mine.bought);
-    }
-
-    return /*#__PURE__*/React.createElement("div", {
-      className: "bg-washed-yellow b--dark-gray b--solid br2 bw1"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row items-center justify-center h2 bg-light-yellow br1 br--bottom"
-    }, "Uranium Fuel"), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row items-center justify-center h4"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-column items-center justify-center"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "tc"
-    }, /*#__PURE__*/React.createElement("span", null, "Mine Upgrades: ", notation(mineBought)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", null, "Uranium Fuel: ", notation(fuelRegular)), /*#__PURE__*/React.createElement("br", null), centrifugeUnlock ? /*#__PURE__*/React.createElement("span", null, "Enriched Fuel: ", notation(fuelEnriched)) : /*#__PURE__*/React.createElement(React.Fragment, null)))), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row items-center justify-center ma2"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-column items-center justify-center"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row"
-    }, /*#__PURE__*/React.createElement("button", {
-      className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
-      onClick: mine_fuel
-    }, "Mine Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row"
-    }, /*#__PURE__*/React.createElement("button", {
-      className: "w-100 mt1 pa1 " + (mineBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",
-      onClick: buy_mine
-    }, "Upgrade Mining for ", notation(mineCost), " Energy"))))));
+  function mine_fuel() {
+    player.fuels.light_water.mine_fuel();
+    setFuelRegular(player.fuels.light_water.regular);
   }
+
+  function buy_mine() {
+    player.fuels.light_water.mine.buy();
+    setMineBought(player.fuels.light_water.mine.bought);
+  }
+
+  let FuelMineComponent = /*#__PURE__*/React.createElement("div", {
+    className: "bg-washed-yellow b--dark-gray b--solid br2 bw1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center h2 bg-light-yellow br1 br--bottom"
+  }, "Uranium Fuel"), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center h4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-column items-center justify-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tc"
+  }, /*#__PURE__*/React.createElement("span", null, "Mine Upgrades: ", notation(mineBought)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", null, "Uranium Fuel: ", notation(fuelRegular)), /*#__PURE__*/React.createElement("br", null), centrifugeUnlock ? /*#__PURE__*/React.createElement("span", null, "Enriched Fuel: ", notation(fuelEnriched)) : /*#__PURE__*/React.createElement(React.Fragment, null)))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center ma2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-column items-center justify-center"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
+    onClick: mine_fuel
+  }, "Mine Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "w-100 mt1 pa1 " + (mineBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",
+    onClick: buy_mine
+  }, "Upgrade Mining for ", notation(mineCost), " Energy"))))));
   /* Centrifuge */
 
-
-  function CentrifugeComponent() {
-    function load_fuel_lwc() {
-      player.centrifuges.light_water.load_fuel();
-      setFuelRegular(zero);
-    }
-
-    function buy_centrifuge() {
-      player.centrifuges.light_water.buy();
-      setCentrifugeBought(player.centrifuges.light_water.bought);
-    }
-
-    return /*#__PURE__*/React.createElement("div", {
-      className: "bg-washed-yellow b--dark-gray b--solid br2 bw1"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row items-center justify-center h2 bg-light-yellow br1 br--bottom"
-    }, "Centrifuge"), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row items-center justify-center h4"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-column items-center justify-center"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "tc"
-    }, /*#__PURE__*/React.createElement("span", null, "Centrifuge Upgrades: ", notation(centrifugeBought)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", null, "Stored Uranium Fuel: ", notation(centrifugeFuelStored))))), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row items-center justify-center"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-column items-center justify-center ma2"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row"
-    }, /*#__PURE__*/React.createElement("button", {
-      className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
-      onClick: load_fuel_lwc
-    }, "Mine Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row"
-    }, /*#__PURE__*/React.createElement("button", {
-      className: "w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",
-      onClick: buy_centrifuge
-    }, "Upgrade Centrifuges for ", notation(centrifugeCost), " Energy"))))));
+  function load_fuel_lwc() {
+    player.centrifuges.light_water.load_fuel();
+    setFuelRegular(zero);
   }
+
+  function buy_centrifuge() {
+    player.centrifuges.light_water.buy();
+    setCentrifugeBought(player.centrifuges.light_water.bought);
+  }
+
+  const CentrifugeComponent = /*#__PURE__*/React.createElement("div", {
+    className: "bg-washed-yellow b--dark-gray b--solid br2 bw1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center h2 bg-light-yellow br1 br--bottom"
+  }, "Centrifuge"), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center h4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-column items-center justify-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tc"
+  }, /*#__PURE__*/React.createElement("span", null, "Centrifuge Upgrades: ", notation(centrifugeBought)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", null, "Stored Uranium Fuel: ", notation(centrifugeFuelStored))))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-column items-center justify-center ma2"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
+    onClick: load_fuel_lwc
+  }, "Mine Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",
+    onClick: buy_centrifuge
+  }, "Upgrade Centrifuges for ", notation(centrifugeCost), " Energy"))))));
   /* Reactor */
 
+  function load_fuel_lwr() {
+    player.reactors.light_water.load_fuel();
+    setReactorFuel(player.reactors.light_water.fuel);
 
-  function ReactorComponent() {
-    function load_fuel_lwr() {
-      player.reactors.light_water.load_fuel();
-      setReactorFuel(player.reactors.light_water.fuel);
-
-      if (!reactorFuelEnrichment) {
-        setFuelRegular(zero);
-      } else {
-        setFuelEnriched(zero);
-      }
+    if (!reactorFuelEnrichment) {
+      setFuelRegular(zero);
+    } else {
+      setFuelEnriched(zero);
     }
-
-    function buy_lwr() {
-      player.reactors.light_water.buy();
-      setReactorBought(player.reactors.light_water.bought);
-      setReactorAmount(player.reactors.light_water.amount);
-    }
-
-    return /*#__PURE__*/React.createElement("div", {
-      className: "bg-washed-yellow b--dark-gray b--solid br2 bw1"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row items-center justify-center h2 bg-light-yellow br1 br--bottom"
-    }, "Light Water Reactor"), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row items-center justify-center h4"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-column items-center justify-center"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "tc"
-    }, /*#__PURE__*/React.createElement("span", null, "Reactor Upgrades: ", notation(reactorAmount)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", null, "Loaded Fuel: ", notation(reactorFuel))))), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row items-center justify-center"
-    }, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-column items-center justify-center ma2"
-    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row"
-    }, /*#__PURE__*/React.createElement("button", {
-      className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
-      onClick: load_fuel_lwr
-    }, "Load ", reactorFuelEnrichment ? "Enriched" : "Uranium", " Fuel")), /*#__PURE__*/React.createElement("div", {
-      className: "flex flex-row"
-    }, /*#__PURE__*/React.createElement("button", {
-      className: "w-100 mt1 pa1 " + (reactorBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",
-      onClick: buy_lwr
-    }, "Upgrade Reactors for ", notation(reactorCost), " Energy"))))));
   }
 
+  function buy_lwr() {
+    player.reactors.light_water.buy();
+    setReactorBought(player.reactors.light_water.bought);
+    setReactorAmount(player.reactors.light_water.amount);
+  }
+
+  const ReactorComponent = /*#__PURE__*/React.createElement("div", {
+    className: "bg-washed-yellow b--dark-gray b--solid br2 bw1"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center h2 bg-light-yellow br1 br--bottom"
+  }, "Light Water Reactor"), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center h4"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-column items-center justify-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "tc"
+  }, /*#__PURE__*/React.createElement("span", null, "Reactor Upgrades: ", notation(reactorAmount)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", null, "Loaded Fuel: ", notation(reactorFuel))))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-column items-center justify-center ma2"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
+    onClick: load_fuel_lwr
+  }, "Load ", reactorFuelEnrichment ? "Enriched" : "Uranium", " Fuel")), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "w-100 mt1 pa1 " + (reactorBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",
+    onClick: buy_lwr
+  }, "Upgrade Reactors for ", notation(reactorCost), " Energy"))))));
   return !mobile ? /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row items-center justify-center vh-50"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center h-100 w-25"
-  }, /*#__PURE__*/React.createElement(FuelMineComponent, null)), centrifugeUnlock ? /*#__PURE__*/React.createElement("div", {
+  }, FuelMineComponent), centrifugeUnlock ? /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center h-100 w-25 pa1"
-  }, /*#__PURE__*/React.createElement(CentrifugeComponent, null)) : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+  }, CentrifugeComponent) : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center h-100 w-25 pa1"
-  }, /*#__PURE__*/React.createElement(ReactorComponent, null))) : /*#__PURE__*/React.createElement("div", {
+  }, ReactorComponent)) : /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row items-center justify-center"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center pa1"
-  }, /*#__PURE__*/React.createElement(FuelMineComponent, null))), centrifugeUnlock ? /*#__PURE__*/React.createElement("div", {
+  }, FuelMineComponent)), centrifugeUnlock ? /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row items-center justify-center"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center pa1"
-  }, /*#__PURE__*/React.createElement(CentrifugeComponent, null))) : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
+  }, CentrifugeComponent)) : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row items-center justify-center"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center pa1"
-  }, /*#__PURE__*/React.createElement(ReactorComponent, null))));
+  }, ReactorComponent)));
 }
