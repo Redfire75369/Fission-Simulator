@@ -7,6 +7,7 @@ function LightWaterComponent() {
   let lwf = React.useRef(null);
   let lwc = React.useRef(null);
   let lwr = React.useRef(null);
+  let [rerender, setRerender] = React.useState(false);
   /* Fuel and Mine */
 
   let [fuelRegular, setFuelRegular] = React.useState(zero);
@@ -34,6 +35,17 @@ function LightWaterComponent() {
   let [reactorCost, setReactorCost] = React.useState(zero);
   let [reactorMultiplier, setReactorMultiplier] = React.useState(zero);
   React.useEffect(function () {
+    update_once();
+    let update_loop_id = setInterval(function () {
+      setRerender(cache.light_water.rerender);
+      update_loop();
+    }, 50);
+    return function () {
+      clearInterval(update_loop_id);
+    };
+  }, []);
+
+  function update_once() {
     lwf.current = player.fuels.light_water;
     lwc.current = player.centrifuges.light_water;
     lwr.current = player.reactors.light_water;
@@ -44,37 +56,42 @@ function LightWaterComponent() {
     setMineBought(lwf.current.mine.bought);
     /* Centrifuge */
 
+    setCentrifugeTime(lwc.current.time);
     setCentrifugeBought(lwc.current.bought);
     /* Reactor */
 
     setReactorBought(lwr.current.bought);
     setReactorAmount(lwr.current.bought);
-    let update_loop = setInterval(function () {
-      lwf.current = player.fuels.light_water;
-      lwc.current = player.centrifuges.light_water;
-      lwr.current = player.reactors.light_water;
-      /* Fuel and Mine */
+  }
 
-      setFuelEnriched(lwf.current.enriched);
-      setMineBuyable(lwf.current.mine.buyable);
-      /* Centrifuge */
+  function update_loop() {
+    lwf.current = player.fuels.light_water;
+    lwc.current = player.centrifuges.light_water;
+    lwr.current = player.reactors.light_water;
+    /* Fuel and Mine */
 
-      setCentrifugeUnlock(function (prevState) {
-        return prevState || player.unlocked.light_water.centrifuge;
-      });
-      setCentrifugeFuelStored(player.centrifuges.light_water.fuel);
-      setCentrifugeBuyable(lwc.current.buyable);
-      setCentrifugeTime(lwc.current.time);
-      /* Reactor */
+    setFuelEnriched(lwf.current.enriched);
+    setMineBuyable(lwf.current.mine.buyable);
+    /* Centrifuge */
 
-      setReactorFuel(lwr.current.fuel);
-      setReactorFuelEnrichment(lwr.current.fuel_enriched);
-      setReactorBuyable(lwr.current.buyable); // setReactorAmount(lwr.current.amount);
-    }, 50);
-    return function () {
-      clearInterval(update_loop);
-    };
-  }, []);
+    setCentrifugeUnlock(player.unlocked.light_water.centrifuge);
+    setCentrifugeFuelStored(player.centrifuges.light_water.fuel);
+    setCentrifugeBuyable(lwc.current.buyable);
+    setCentrifugeTime(lwc.current.time);
+    /* Reactor */
+
+    setReactorFuel(lwr.current.fuel);
+    setReactorFuelEnrichment(lwr.current.fuel_enriched);
+    setReactorBuyable(lwr.current.buyable); // setReactorAmount(lwr.current.amount);
+  }
+
+  React.useEffect(function () {
+    if (rerender) {
+      update_once();
+      update_loop();
+      cache.light_water.rerender = false;
+    }
+  }, [rerender]);
   /* Fuel and Mine */
 
   React.useEffect(function () {
@@ -164,7 +181,7 @@ function LightWaterComponent() {
   }, /*#__PURE__*/React.createElement("button", {
     className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
     onClick: load_fuel_lwc
-  }, "Mine Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
+  }, "Load Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
     className: "w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",

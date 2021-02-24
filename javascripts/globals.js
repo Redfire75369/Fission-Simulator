@@ -12,6 +12,12 @@ var save_game_loop;
 
 var player;
 
+var cache = {
+	light_water: {
+		rerender: false
+	}
+}
+
 var mobile = isMobilePortrait();
 
 function $(element_id) {

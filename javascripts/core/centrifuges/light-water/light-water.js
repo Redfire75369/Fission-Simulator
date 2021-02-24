@@ -11,9 +11,15 @@ class LightWaterCentrifuge extends GenericCentrifuge {
 		this.time = 0;
 	}
 
+	reset() {
+		this.bought = 0;
+		this.fuel = zero;
+		this.time = 0;
+	}
+
 	get enrichment() {
-		if (this.bought > 6) {
-			return new Decimal(0.8);
+		if (this.bought > 4) {
+			return new Decimal(0.5);
 		} else {
 			return new Decimal(0.1 + 0.1 * this.bought);
 		}
@@ -37,8 +43,11 @@ function simulate_light_water_centrifuge(tick_interval = 50) {
 	if (player.unlocked.light_water.centrifuge) {
 		let lwc = player.centrifuges.light_water;
 
-		let fuel_enriched = lwc.fuel.min(lwc.max_fuel_enriched);
+		if (lwc.bought >= 4 && lwc.fuel.gte(1e2)) {
+			overspin();
+		}
 
+		let fuel_enriched = lwc.fuel.min(lwc.max_fuel_enriched);
 
 		player.centrifuges.light_water.time = Math.max(0, lwc.time - tick_interval);
 

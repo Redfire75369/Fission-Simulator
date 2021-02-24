@@ -12,7 +12,9 @@ function getDefaultData() {
 			hotfix: 3
 		},
 
-		navigation: {},
+		navigation: {
+			primary: "reactors"
+		},
 		options: {
 			notation: 0
 		},
@@ -20,6 +22,9 @@ function getDefaultData() {
 		unlocked: {
 			light_water: {
 				centrifuge: false
+			},
+			overspin: {
+				overspin: false
 			}
 		},
 
@@ -36,7 +41,11 @@ function getDefaultData() {
 		},
 		centrifuges: {
 			light_water: new LightWaterCentrifuge()
-		}
+		},
+
+		/*coolants: {
+			light_water: new LightWaterCoolant()
+		}*/
 	};
 }
 

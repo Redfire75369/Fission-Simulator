@@ -11,13 +11,20 @@ class LightWaterReactor extends GenericReactor {
 		this.fuel_enriched = false;
 	}
 
+	reset() {
+		this.amount = zero;
+		this.bought = 0;
+		this.fuel = zero;
+		this.fuel_enriched = false;
+	}
+
 	get multiplier() {
 		return Decimal.pow(2.8, this.amount - 1);
 	}
 
 	get fuel_usage() {
 		if (this.fuel.gt(0)) {
-			return Decimal.min(this.fuel, this.amount.add(1).log(1.06) / 2);
+			return Decimal.min(this.fuel, this.amount.mul(this.amount.add(1).log(1.06) / 8));
 		}
 		return zero;
 	}
