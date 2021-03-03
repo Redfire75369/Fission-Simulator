@@ -5,7 +5,15 @@
  */
 function RootComponent() {
   let [navigation, setNavigation] = React.useState("reactors");
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(EnergyComponent, null), /*#__PURE__*/React.createElement(React.Fragment, null, navigation === "reactors" ? /*#__PURE__*/React.createElement(LightWaterComponent, null) : navigation === "options" ? /*#__PURE__*/React.createElement(OptionComponent, null) : /*#__PURE__*/React.createElement(React.Fragment, null)));
+  React.useEffect(function () {
+    let update_loop_id = setInterval(function () {
+      setNavigation(player.navigation.primary);
+    }, 50);
+    return function () {
+      clearInterval(update_loop_id);
+    };
+  });
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(EnergyComponent, null), /*#__PURE__*/React.createElement(React.Fragment, null, navigation === "reactors" ? /*#__PURE__*/React.createElement(LightWaterComponent, null) : navigation === "options" ? /*#__PURE__*/React.createElement(OptionsComponent, null) : /*#__PURE__*/React.createElement(React.Fragment, null)), /*#__PURE__*/React.createElement(NavigationComponent, null), /*#__PURE__*/React.createElement(PopupComponent, null));
 }
 
 ReactDOM.render( /*#__PURE__*/React.createElement(RootComponent, null), $("root"));

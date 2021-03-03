@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-function getDefaultData() {
+function get_default_data() {
 	return {
 		version: {
 			major: 0,
@@ -31,7 +31,7 @@ function getDefaultData() {
 		last_update: Date.now(),
 
 		energy: new Decimal(100),
-		total_energy: new Decimal(0),
+		total_energy: zero,
 
 		fuels: {
 			light_water: new LightWaterFuel()
@@ -43,13 +43,23 @@ function getDefaultData() {
 			light_water: new LightWaterCentrifuge()
 		},
 
-		/*coolants: {
-			light_water: new LightWaterCoolant()
-		}*/
+		overspin: {
+			uranium: zero
+		}
 	};
 }
 
-player = getDefaultData();
+function get_default_cache() {
+	return {
+		popups: [],
+		light_water: {
+			rerender: false
+		},
+	};
+}
+
+player = get_default_data();
+cache = get_default_cache();
 
 document.addEventListener("keydown", function(e) {
 	if (e.key === "U+000A" || e.key === "Enter" || e.keyCode === 13) {
@@ -60,8 +70,8 @@ document.addEventListener("keydown", function(e) {
 	}
 }, true);
 
-document.addEventListener("orientationchange", function (e) {
-	mobile = isMobilePortrait();
+document.addEventListener("orientationchange", function () {
+	mobile = is_mobile_portrait();
 });
 
 function update_game(tick_interval = 50) {

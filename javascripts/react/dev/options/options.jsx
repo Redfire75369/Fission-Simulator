@@ -9,6 +9,7 @@ function OptionsComponent() {
 	function save() {
 		save_game();
 	}
+
 	function load() {
 		pre_load();
 		load_save(get_save());
@@ -26,6 +27,7 @@ function OptionsComponent() {
 		post_load();
 		save_game();
 	}
+
 	function export_save() {
 		save_game();
 		copyStringToClipboard(get_save_string());
@@ -37,37 +39,37 @@ function OptionsComponent() {
 		let confirmation = prompt("This will completely reset your game. If you are sure, type in “Fusion-Driven Galaxy”");
 		if (confirmation === "Fusion-Driven Galaxy") {
 			pre_load();
-			player = getDefaultData();
+			player = get_default_data();
 			post_load();
 			save_game();
 		}
-
+	}
 
 
 	return (
-		<div className="flex flex-column">
+		<div className="flex flex-column items-center justify-center">
 			<div className="flex flex-row">
 				<div className="flex flex-column">
-					<button onClick={save}>Save Game</button>
+					<button className="bg-washed-red b--light-red br1 bw1 ma1" onClick={save}>Save Game</button>
 				</div>
 				<div className="flex flex-column">
-					<button onClick={load}>Load Game</button>
+					<button className="bg-washed-red b--light-red br1 bw1 ma1" onClick={load}>Load Game</button>
 				</div>
 			</div>
 			<div className="flex flex-row">
 				<div className="flex flex-column">
-					<button onClick={import_save}>Save Game</button>
+					<button className="bg-washed-red b--light-red br1 bw1 ma1" onClick={import_save}>Import Save</button>
 				</div>
 				<div className="flex flex-column">
-					<button onClick={export_save}>Load Game</button>
+					<button className="bg-washed-red b--light-red br1 bw1 ma1" onClick={export_save}>Export Save</button>
 				</div>
 			</div>
 			<div className="flex flex-row">
 				<div className="flex flex-column">
-					<button onClick={hard_reset}>Hard Reset</button>
+					<button className="bg-washed-red b--light-red br1 bw1 ma1" onClick={hard_reset}>Hard Reset</button>
 				</div>
 				<div className="flex flex-column">
-					<button onClick={}>Empty Button</button>
+					<button className="bg-washed-red b--light-red br1 bw1 ma1">Empty Button</button>
 				</div>
 			</div>
 		</div>

@@ -142,12 +142,12 @@ function LightWaterComponent() {
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
+    className: "w-100 mb1 pa1 bg-green b--dark-green br1 bw1",
     onClick: mine_fuel
   }, "Mine Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mt1 pa1 " + (mineBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",
+    className: "w-100 mt1 pa1 " + (mineBuyable ? "bg-green b--dark-green" : "bg-light-red b--dark-red") + " br1 bw1",
     onClick: buy_mine
   }, "Upgrade Mining for ", notation(mineCost), " Energy"))))));
   /* Centrifuge */
@@ -172,19 +172,36 @@ function LightWaterComponent() {
     className: "flex flex-column items-center justify-center"
   }, /*#__PURE__*/React.createElement("div", {
     className: "tc"
-  }, /*#__PURE__*/React.createElement("span", null, "Centrifuge Upgrades: ", notation(centrifugeBought)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", null, "Stored Uranium Fuel: ", notation(centrifugeFuelStored))))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("span", null, "Centrifuge Upgrades: ", notation(centrifugeBought)), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", null, "Stored Uranium Fuel: ", notation(centrifugeFuelStored))), /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center mt3",
+    style: {
+      minWidth: "90%"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "flex items-start bg-red b--dark-gray b--solid br2 bw1",
+    style: {
+      minHeight: "2em",
+      minWidth: "100%"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "bg-green br1 bw1",
+    style: {
+      minHeight: "1.75em",
+      minWidth: centrifugeTime / 80 + "%"
+    }
+  }))))), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row items-center justify-center"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center ma2"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
+    className: "w-100 mb1 pa1 bg-green b--dark-green br1 bw1",
     onClick: load_fuel_lwc
   }, "Load Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",
+    className: "w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-green b--dark-green" : "bg-light-red b--dark-red") + " br1 bw1",
     onClick: buy_centrifuge
   }, "Upgrade Centrifuges for ", notation(centrifugeCost), " Energy"))))));
   /* Reactor */
@@ -223,15 +240,22 @@ function LightWaterComponent() {
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mb1 pa1 bg-light-silver b--green br1 bw1",
+    className: "w-100 mb1 pa1 bg-green b--dark-green br1 bw1",
     onClick: load_fuel_lwr
   }, "Load ", reactorFuelEnrichment ? "Enriched" : "Uranium", " Fuel")), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mt1 pa1 " + (reactorBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1",
+    className: "w-100 mt1 pa1 " + (reactorBuyable ? "bg-green b--dark-green" : "bg-light-red b--dark-red") + " br1 bw1",
     onClick: buy_lwr
   }, "Upgrade Reactors for ", notation(reactorCost), " Energy"))))));
   return !mobile ? /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-column items-center justify-center"
+  }, centrifugeBought > 4 && centrifugeFuelStored.gt(1e3) ? /*#__PURE__*/React.createElement("div", {
+    className: "flex flex-row items-center justify-center"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "bg-light-green b--dark-green b--solid br1 bw1 f2",
+    onClick: overspin
+  }, "Overspin")) : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row items-center justify-center vh-50"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center h-100 w-25"
@@ -239,7 +263,7 @@ function LightWaterComponent() {
     className: "flex flex-column items-center justify-center h-100 w-25 pa1"
   }, CentrifugeComponent) : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center h-100 w-25 pa1"
-  }, ReactorComponent)) : /*#__PURE__*/React.createElement("div", {
+  }, ReactorComponent))) : /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row items-center justify-center"

@@ -43,8 +43,9 @@ function simulate_light_water_centrifuge(tick_interval = 50) {
 	if (player.unlocked.light_water.centrifuge) {
 		let lwc = player.centrifuges.light_water;
 
-		if (lwc.bought >= 4 && lwc.fuel.gte(1e2)) {
+		if (lwc.bought > 4 && lwc.fuel.gte(1e3) && !player.unlocked.overspin.overspin) {
 			overspin();
+			return;
 		}
 
 		let fuel_enriched = lwc.fuel.min(lwc.max_fuel_enriched);
