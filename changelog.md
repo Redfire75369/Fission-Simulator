@@ -15,9 +15,16 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 -->
 
 ## [Unreleased]
-## Fixed
+### Added
+- Options Tab (Basic)
+- Bottom Navigation Bar
+- Overspin Prestige
+- Centrifuge Progress Indicator
+
+### Fixed
 - Buttons only working occasionally due to speed of DOM updates
 - Mobile UI did not activate on mobile devices
+- Colours of Buttons
 
 
 ## [v0.1.3] - 20/02/2021

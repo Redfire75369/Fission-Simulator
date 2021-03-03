@@ -9,6 +9,8 @@ function LightWaterComponent() {
 	let lwc = React.useRef(null);
 	let lwr = React.useRef(null);
 
+	let [rerender, setRerender] = React.useState(false);
+
 	/* Fuel and Mine */
 	let [fuelRegular, setFuelRegular] = React.useState(zero);
 	let [fuelEnriched, setFuelEnriched] = React.useState(zero);
@@ -36,6 +38,20 @@ function LightWaterComponent() {
 	let [reactorMultiplier, setReactorMultiplier] = React.useState(zero);
 
 	React.useEffect(function() {
+		update_once();
+
+		let update_loop_id = setInterval(function() {
+			setRerender(cache.light_water.rerender);
+
+			update_loop();
+		}, 50);
+
+		return function() {
+			clearInterval(update_loop_id);
+		};
+	}, []);
+
+	function update_once() {
 		lwf.current = player.fuels.light_water;
 		lwc.current = player.centrifuges.light_water;
 		lwr.current = player.reactors.light_water;
@@ -46,40 +62,42 @@ function LightWaterComponent() {
 		setMineBought(lwf.current.mine.bought);
 
 		/* Centrifuge */
+		setCentrifugeTime(lwc.current.time);
 		setCentrifugeBought(lwc.current.bought);
 
 		/* Reactor */
 		setReactorBought(lwr.current.bought);
 		setReactorAmount(lwr.current.bought);
+	}
+	function update_loop() {
+		lwf.current = player.fuels.light_water;
+		lwc.current = player.centrifuges.light_water;
+		lwr.current = player.reactors.light_water;
 
-		let update_loop = setInterval(function() {
-			lwf.current = player.fuels.light_water;
-			lwc.current = player.centrifuges.light_water;
-			lwr.current = player.reactors.light_water;
+		/* Fuel and Mine */
+		setFuelEnriched(lwf.current.enriched);
+		setMineBuyable(lwf.current.mine.buyable);
 
-			/* Fuel and Mine */
-			setFuelEnriched(lwf.current.enriched);
-			setMineBuyable(lwf.current.mine.buyable);
+		/* Centrifuge */
+		setCentrifugeUnlock(player.unlocked.light_water.centrifuge);
+		setCentrifugeFuelStored(player.centrifuges.light_water.fuel);
+		setCentrifugeBuyable(lwc.current.buyable);
+		setCentrifugeTime(lwc.current.time);
 
-			/* Centrifuge */
-			setCentrifugeUnlock(function (prevState) {
-				return prevState || player.unlocked.light_water.centrifuge;
-			});
-			setCentrifugeFuelStored(player.centrifuges.light_water.fuel);
-			setCentrifugeBuyable(lwc.current.buyable);
-			setCentrifugeTime(lwc.current.time);
+		/* Reactor */
+		setReactorFuel(lwr.current.fuel);
+		setReactorFuelEnrichment(lwr.current.fuel_enriched);
+		setReactorBuyable(lwr.current.buyable);
+		// setReactorAmount(lwr.current.amount);
+	}
 
-			/* Reactor */
-			setReactorFuel(lwr.current.fuel);
-			setReactorFuelEnrichment(lwr.current.fuel_enriched);
-			setReactorBuyable(lwr.current.buyable);
-			// setReactorAmount(lwr.current.amount);
-		}, 50);
-
-		return function() {
-			clearInterval(update_loop);
-		};
-	}, []);
+	React.useEffect(function() {
+		if (rerender) {
+			update_once();
+			update_loop();
+			cache.light_water.rerender = false;
+		}
+	}, [rerender]);
 
 	/* Fuel and Mine */
 	React.useEffect(function() {
@@ -130,12 +148,12 @@ function LightWaterComponent() {
 				<div className="flex flex-column items-center justify-center">
 					<div>
 						<div className="flex flex-row">
-							<button className="w-100 mb1 pa1 bg-light-silver b--green br1 bw1" onClick={mine_fuel}>
+							<button className="w-100 mb1 pa1 bg-green b--dark-green br1 bw1" onClick={mine_fuel}>
 								Mine Uranium Fuel
 							</button>
 						</div>
 						<div className="flex flex-row">
-							<button className={"w-100 mt1 pa1 " + (mineBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1"} onClick={buy_mine}>
+							<button className={"w-100 mt1 pa1 " + (mineBuyable ? "bg-green b--dark-green" : "bg-light-red b--dark-red") + " br1 bw1"} onClick={buy_mine}>
 								Upgrade Mining for {notation(mineCost)} Energy
 							</button>
 						</div>
@@ -166,18 +184,23 @@ function LightWaterComponent() {
 						<span>Centrifuge Upgrades: {notation(centrifugeBought)}</span><br/>
 						<span>Stored Uranium Fuel: {notation(centrifugeFuelStored)}</span>
 					</div>
+					<div className="flex flex-row items-center justify-center mt3" style={{minWidth: "90%"}}>
+						<div className="flex items-start bg-red b--dark-gray b--solid br2 bw1" style={{minHeight: "2em",  minWidth: "100%"}}>
+							<div className="bg-green br1 bw1" style={{minHeight: "1.75em", minWidth: centrifugeTime / 80 + "%"}}/>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div className="flex flex-row items-center justify-center">
 				<div className="flex flex-column items-center justify-center ma2">
 					<div>
 						<div className="flex flex-row">
-							<button className="w-100 mb1 pa1 bg-light-silver b--green br1 bw1" onClick={load_fuel_lwc}>
-								Mine Uranium Fuel
+							<button className="w-100 mb1 pa1 bg-green b--dark-green br1 bw1" onClick={load_fuel_lwc}>
+								Load Uranium Fuel
 							</button>
 						</div>
 						<div className="flex flex-row">
-							<button className={"w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1"} onClick={buy_centrifuge}>
+							<button className={"w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-green b--dark-green" : "bg-light-red b--dark-red") + " br1 bw1"} onClick={buy_centrifuge}>
 								Upgrade Centrifuges for {notation(centrifugeCost)} Energy
 							</button>
 						</div>
@@ -220,12 +243,12 @@ function LightWaterComponent() {
 				<div className="flex flex-column items-center justify-center ma2">
 					<div>
 						<div className="flex flex-row">
-							<button className="w-100 mb1 pa1 bg-light-silver b--green br1 bw1" onClick={load_fuel_lwr}>
+							<button className="w-100 mb1 pa1 bg-green b--dark-green br1 bw1" onClick={load_fuel_lwr}>
 								Load {reactorFuelEnrichment ? "Enriched" : "Uranium"} Fuel
 							</button>
 						</div>
 						<div className="flex flex-row">
-							<button className={"w-100 mt1 pa1 " + (reactorBuyable ? "bg-light-silver b--green" : "bg-mid-gray b--red") + " br1 bw1"} onClick={buy_lwr}>
+							<button className={"w-100 mt1 pa1 " + (reactorBuyable ? "bg-green b--dark-green" : "bg-light-red b--dark-red") + " br1 bw1"} onClick={buy_lwr}>
 								Upgrade Reactors for {notation(reactorCost)} Energy
 							</button>
 						</div>
@@ -236,15 +259,22 @@ function LightWaterComponent() {
 	);
 
 	return (
-		!mobile ? <div className="flex flex-row items-center justify-center vh-50">
-			<div className="flex flex-column items-center justify-center h-100 w-25">
-				{FuelMineComponent}
-			</div>
-			{centrifugeUnlock ? <div className="flex flex-column items-center justify-center h-100 w-25 pa1">
-				{CentrifugeComponent}
-			</div> : <></>}
-			<div className="flex flex-column items-center justify-center h-100 w-25 pa1">
-				{ReactorComponent}
+		!mobile ? <div className="flex flex-column items-center justify-center">
+			{centrifugeBought > 4 && centrifugeFuelStored.gt(1e3) ? <div className="flex flex-row items-center justify-center">
+				<button className="bg-light-green b--dark-green b--solid br1 bw1 f2" onClick={overspin}>
+					Overspin
+				</button>
+			</div>: <></>}
+			<div className="flex flex-row items-center justify-center vh-50">
+				<div className="flex flex-column items-center justify-center h-100 w-25">
+					{FuelMineComponent}
+				</div>
+				{centrifugeUnlock ? <div className="flex flex-column items-center justify-center h-100 w-25 pa1">
+					{CentrifugeComponent}
+				</div> : <></>}
+				<div className="flex flex-column items-center justify-center h-100 w-25 pa1">
+					{ReactorComponent}
+				</div>
 			</div>
 		</div> : <div className="flex flex-column items-center justify-center">
 			<div className="flex flex-row items-center justify-center">

@@ -5,10 +5,29 @@
  */
 
 function RootComponent() {
+	let [navigation, setNavigation] = React.useState("reactors");
+
+	React.useEffect(function() {
+		let update_loop_id = setInterval(function () {
+			setNavigation(player.navigation.primary);
+		}, 50);
+
+		return function () {
+			clearInterval(update_loop_id);
+		};
+	});
+
 	return (
 		<>
 			<EnergyComponent/>
-			<LightWaterComponent/>
+			<>
+				{navigation === "reactors" ? <LightWaterComponent/>
+					: navigation === "options" ? <OptionsComponent/>
+						: <></>}
+			</>
+			<NavigationComponent/>
+
+			<PopupComponent/>
 		</>
 	);
 }

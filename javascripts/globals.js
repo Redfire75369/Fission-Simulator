@@ -12,12 +12,14 @@ var save_game_loop;
 
 var player;
 
-var mobile = isMobilePortrait();
+var cache;
+
+var mobile = is_mobile_portrait();
 
 function $(element_id) {
 	return document.getElementById(element_id);
 }
 
-function isMobilePortrait() {
+function is_mobile_portrait() {
 	return window.matchMedia("only (max-height: 8.5in) and (max-width: 4in) and (orientation: portrait)").matches;
 }
