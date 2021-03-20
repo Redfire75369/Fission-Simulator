@@ -8,7 +8,7 @@ const notations = [
 	"Scientific"
 ];
 
-const notationFunctions = {
+const notation_functions = {
 	"Scientific": new ADNotations.ScientificNotation()
 };
 
@@ -20,13 +20,13 @@ function notation(x, dp = 2, dp_under_1e5 = 2, show_above_infinity = false) {
 	if (Decimal.gte(x, get_limit()) && notations[player.options.notation] !== "Blind" && !show_above_infinity) {
 		return "Infinite";
 	}
-	if (Object.keys(notationFunctions).includes(notations[player.options.notation])) {
-		return notationFunctions[notations[player.options.notation]].format(x, dp, dp_under_1e5);
+	if (Object.keys(notation_functions).includes(notations[player.options.notation])) {
+		return notation_functions[notations[player.options.notation]].format(x, dp, dp_under_1e5);
 	}
 	return "NaN";
 }
 
-function formatTime(time) {
+function format_time(time) {
 	if (notations[player.options.notation] === "Blind") {
 		return "";
 	} else if (time >= 31536000000) {
@@ -38,5 +38,5 @@ function formatTime(time) {
 	} else if (time >= 60000) {
 		return Math.floor(time / 60000) + " minutes, and " + Math.floor(time % 60000 / 1000) + " seconds";
 	}
-	return Math.round(time / 1000, 3) + " seconds";
+	return Math.round(time / 1000) + " seconds";
 }

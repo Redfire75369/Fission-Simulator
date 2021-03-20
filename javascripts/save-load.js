@@ -116,6 +116,11 @@ function objectify(obj, type) {
 
 		ret.bought = obj.bought;
 		return ret;
+	} else if (type_name === "OverspinUpgrade") {
+		let ret = new OverspinUpgrade(type.cost, type.method);
+
+		ret.bought = obj.bought;
+		return ret;
 	}
 
 	return obj;

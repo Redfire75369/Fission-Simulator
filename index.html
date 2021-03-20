@@ -33,7 +33,7 @@
 
 		<!-- Redirect HTTP users to HTTPS -->
 		<script type="text/javascript">
-			if (location.protocol === 'http:') {
+			if (location.protocol === "http:") {
 				location.replace("https:" + location.href.substring(location.protocol.length));
 			}
 		</script>
@@ -41,6 +41,8 @@
 
 		<!-- Stylesheet Libraries -->
 		<link rel="stylesheet" href="stylesheets/libraries/tachyon.css"/>
+
+		<link rel="stylesheet" href="stylesheets/libraries/katex.css"/>
 
 
 		<!-- Stylesheets -->
@@ -56,6 +58,9 @@
 		<script defer type="text/javascript" src="javascripts/libraries/react.js"></script>
 		<script defer type="text/javascript" src="javascripts/libraries/react-dom.js"></script>
 
+		<script defer type="text/javascript" src="javascripts/libraries/katex.js"></script>
+		<script defer type="text/javascript" src="javascripts/libraries/react-katex.js"></script>
+
 		<!-- JavaScripts -->
 		<script defer type="text/javascript" src="javascripts/globals.js"></script>
 		<script defer type="text/javascript" src="javascripts/generic/generic-energy-buyable.js"></script>
@@ -68,6 +73,7 @@
 		<script defer type="text/javascript" src="javascripts/core/fuels/light-water/light-water.js"></script>
 		<script defer type="text/javascript" src="javascripts/core/reactors/light-water/light-water.js"></script>
 		<script defer type="text/javascript" src="javascripts/core/centrifuges/light-water/light-water.js"></script>
+		<script defer type="text/javascript" src="javascripts/core/overspin/upgrades.js"></script>
 
 		<script defer type="text/javascript" src="javascripts/main.js"></script>
 		<script defer type="text/javascript" src="javascripts/notations.js"></script>
@@ -75,9 +81,12 @@
 		<script defer type="text/javascript" src="javascripts/init-game.js"></script>
 
 		<script defer type="text/javascript" src="javascripts/react/dist/reactors/light-water/light-water.js"></script>
+		<script defer type="text/javascript" src="javascripts/react/dist/reactors/reactors.js"></script>
+		<script defer type="text/javascript" src="javascripts/react/dist/overspin/upgrades/upgrades.js"></script>
+		<script defer type="text/javascript" src="javascripts/react/dist/overspin/overspin.js"></script>
 		<script defer type="text/javascript" src="javascripts/react/dist/navigation/navigation.js"></script>
 		<script defer type="text/javascript" src="javascripts/react/dist/options/options.js"></script>
-		<script defer type="text/javascript" src="javascripts/react/dist/energy.js"></script>
+		<script defer type="text/javascript" src="javascripts/react/dist/resources.js"></script>
 		<script defer type="text/javascript" src="javascripts/react/dist/popup.js"></script>
 		<script defer type="text/javascript" src="javascripts/react/dist/root.js"></script>
 	</head>

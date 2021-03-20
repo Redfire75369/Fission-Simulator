@@ -33,7 +33,7 @@ class LightWaterReactor extends GenericReactor {
 		if (!this.fuel_enriched) {
 			return this.amount.mul(this.multiplier).mul(this.fuel_usage);
 		} else {
-			return this.amount.mul(this.multiplier).mul(this.fuel_usage).mul(Decimal.pow(12, player.centrifuges.light_water.enrichment.mul(10)));
+			return this.amount.mul(this.multiplier).mul(this.fuel_usage).mul(Decimal.pow(12, -24 * (player.centrifuges.light_water.enrichment.neg().add(1).log10())));
 		}
 	}
 

@@ -41,7 +41,7 @@ function LightWaterComponent() {
 		update_once();
 
 		let update_loop_id = setInterval(function() {
-			setRerender(cache.light_water.rerender);
+			setRerender(cache.reactors.light_water.rerender);
 
 			update_loop();
 		}, 50);
@@ -95,7 +95,7 @@ function LightWaterComponent() {
 		if (rerender) {
 			update_once();
 			update_loop();
-			cache.light_water.rerender = false;
+			cache.reactors.light_water.rerender = false;
 		}
 	}, [rerender]);
 
@@ -265,7 +265,7 @@ function LightWaterComponent() {
 					Overspin
 				</button>
 			</div>: <></>}
-			<div className="flex flex-row items-center justify-center vh-50">
+			<div className="flex flex-row items-center justify-center vh-50 w-100">
 				<div className="flex flex-column items-center justify-center h-100 w-25">
 					{FuelMineComponent}
 				</div>

@@ -32,7 +32,7 @@ function OptionsComponent() {
 
   function export_save() {
     save_game();
-    copyStringToClipboard(get_save_string());
+    copy_string_to_clipboard(get_save_string());
     alert("Save copied to clipboard");
   }
   /* Hard Reset */

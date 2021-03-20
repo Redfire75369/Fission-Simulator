@@ -9,7 +9,7 @@ function get_default_data() {
 		version: {
 			major: 0,
 			minor: 1,
-			hotfix: 3
+			hotfix: 5
 		},
 
 		navigation: {
@@ -44,7 +44,21 @@ function get_default_data() {
 		},
 
 		overspin: {
-			uranium: zero
+			uranium: zero,
+			overspin: 0,
+			upgrades: [
+				new OverspinUpgrade(1, function() {
+					return player.reactors.light_water.amount.max(1).pow(1.5);
+				}),
+				new OverspinUpgrade(3, function() {}),
+				new OverspinUpgrade(8, function() {
+					return new Decimal(player.energy.max(15).log(15));
+				}),
+				new OverspinUpgrade(18, function() {
+					return player.overspin.uranium.div(6);
+				}),
+				new OverspinUpgrade(120, function() {})
+			]
 		}
 	};
 }
@@ -52,9 +66,20 @@ function get_default_data() {
 function get_default_cache() {
 	return {
 		popups: [],
-		light_water: {
+		navigation: {
 			rerender: false
 		},
+
+		reactors: {
+			light_water: {
+				rerender: false
+			}
+		},
+		overspin: {
+			upgrades: {
+				rerender: false
+			}
+		}
 	};
 }
 

@@ -18,11 +18,23 @@ class LightWaterCentrifuge extends GenericCentrifuge {
 	}
 
 	get enrichment() {
-		if (this.bought > 4) {
-			return new Decimal(0.5);
+		if (player.overspin.upgrades[3].bought) {
+			if (player.overspin.upgrades[3].multiplier.add(4).gt(this.bought)) {
+				return new Decimal(1 - 1/this.bought);
+			} else {
+				return new Decimal(1 - 1/player.overspin.upgrades[3].multiplier.add(4));
+			}
 		} else {
-			return new Decimal(0.1 + 0.1 * this.bought);
+			if (this.bought > 4) {
+				return new Decimal(0.1 + 0.1 * 4);
+			} else {
+				return new Decimal(0.1 + 0.1 * this.bought);
+			}
 		}
+	}
+
+	get enrichment_time() {
+		return player.overspin.upgrades[1].bought ? 5000 : 8000;
 	}
 
 	get max_fuel_enriched() {
@@ -34,7 +46,7 @@ class LightWaterCentrifuge extends GenericCentrifuge {
 		player.fuels.light_water.regular = zero;
 
 		if (this.time === 0) {
-			this.time = 8000;
+			this.time = this.enrichment_time;
 		}
 	}
 }
@@ -59,7 +71,7 @@ function simulate_light_water_centrifuge(tick_interval = 50) {
 			player.centrifuges.light_water.fuel = lwc.fuel.sub(fuel_enriched);
 
 			if (lwc.fuel.gt(0) && lwc.time < 0) {
-				lwc.time = 8000;
+				lwc.time = lwc.enrichment_time;
 			}
 		}
 	} else {

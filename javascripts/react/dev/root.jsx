@@ -17,16 +17,33 @@ function RootComponent() {
 		};
 	});
 
+	function current_tab() {
+		let tab = <></>;
+
+		switch(navigation) {
+			case "reactors":
+				tab = <ReactorsTabComponent/>;
+				break;
+			case "options":
+				tab = <OptionsComponent/>;
+				break;
+			case "overspin":
+				tab = <OverspinTabComponent/>;
+				break;
+		}
+
+		return tab;
+	}
+
 	return (
 		<>
-			<EnergyComponent/>
-			<>
-				{navigation === "reactors" ? <LightWaterComponent/>
-					: navigation === "options" ? <OptionsComponent/>
-						: <></>}
-			</>
-			<NavigationComponent/>
+			<ResourcesComponent/>
 
+			<>
+				{current_tab()}
+			</>
+
+			<NavigationComponent/>
 			<PopupComponent/>
 		</>
 	);

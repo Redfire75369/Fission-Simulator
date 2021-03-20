@@ -1,4 +1,4 @@
-function copyStringToClipboard(str) {
+function copy_string_to_clipboard(str) {
 	const el = document.createElement("textarea");
 	el.value = str;
 	el.setAttribute("readonly", "");
@@ -7,11 +7,11 @@ function copyStringToClipboard(str) {
 		left: "-9999px"
 	};
 	document.body.appendChild(el);
-	copyToClipboard(el);
+	copy_to_clipboard(el);
 	document.body.removeChild(el);
 }
 
-function copyToClipboard(el) {
+function copy_to_clipboard(el) {
 	el = typeof el === "string" ? document.querySelector(el) : el;
 
 	if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
