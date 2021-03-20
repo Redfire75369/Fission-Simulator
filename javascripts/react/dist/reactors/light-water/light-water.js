@@ -37,7 +37,7 @@ function LightWaterComponent() {
   React.useEffect(function () {
     update_once();
     let update_loop_id = setInterval(function () {
-      setRerender(cache.light_water.rerender);
+      setRerender(cache.reactors.light_water.rerender);
       update_loop();
     }, 50);
     return function () {
@@ -89,7 +89,7 @@ function LightWaterComponent() {
     if (rerender) {
       update_once();
       update_loop();
-      cache.light_water.rerender = false;
+      cache.reactors.light_water.rerender = false;
     }
   }, [rerender]);
   /* Fuel and Mine */
@@ -256,7 +256,7 @@ function LightWaterComponent() {
     className: "bg-light-green b--dark-green b--solid br1 bw1 f2",
     onClick: overspin
   }, "Overspin")) : /*#__PURE__*/React.createElement(React.Fragment, null), /*#__PURE__*/React.createElement("div", {
-    className: "flex flex-row items-center justify-center vh-50"
+    className: "flex flex-row items-center justify-center vh-50 w-100"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-center h-100 w-25"
   }, FuelMineComponent), centrifugeUnlock ? /*#__PURE__*/React.createElement("div", {
