@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 function PopupComponent() {
-  let [popupText, setPopupText] = React.useState("");
+  let [popupText, setPopupText] = React.useState(cache.popups[0] ?? "");
   React.useEffect(function () {
     let update_loop = setInterval(function () {
       setPopupText(cache.popups[0] ?? "");

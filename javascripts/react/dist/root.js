@@ -4,37 +4,35 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 function RootComponent() {
-  let [navigation, setNavigation] = React.useState("reactors");
-  React.useEffect(function () {
-    let update_loop_id = setInterval(function () {
-      setNavigation(player.navigation.primary);
-    }, 50);
-    return function () {
-      clearInterval(update_loop_id);
-    };
-  });
+  let [navigation, setNavigation] = React.useState(player.navigation);
+  let [unlocked, setUnlocked] = React.useState(player.unlocked);
 
-  function current_tab() {
-    let tab = /*#__PURE__*/React.createElement(React.Fragment, null);
-
-    switch (navigation) {
+  function CurrentTab(props) {
+    switch (props.navigation.primary) {
       case "reactors":
-        tab = /*#__PURE__*/React.createElement(ReactorsTabComponent, null);
-        break;
+        return /*#__PURE__*/React.createElement(ReactorsTabComponent, {
+          unlocked: unlocked
+        });
 
       case "options":
-        tab = /*#__PURE__*/React.createElement(OptionsComponent, null);
-        break;
+        return /*#__PURE__*/React.createElement(OptionsComponent, null);
 
       case "overspin":
-        tab = /*#__PURE__*/React.createElement(OverspinTabComponent, null);
-        break;
-    }
+        return /*#__PURE__*/React.createElement(OverspinTabComponent, null);
 
-    return tab;
+      default:
+        return /*#__PURE__*/React.createElement(React.Fragment, null);
+    }
   }
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ResourcesComponent, null), /*#__PURE__*/React.createElement(React.Fragment, null, current_tab()), /*#__PURE__*/React.createElement(NavigationComponent, null), /*#__PURE__*/React.createElement(PopupComponent, null));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ResourcesComponent, {
+    unlocked: unlocked
+  }), /*#__PURE__*/React.createElement(CurrentTab, {
+    navigation: navigation
+  }), /*#__PURE__*/React.createElement(NavigationComponent, {
+    unlocked: unlocked,
+    setNavigation: setNavigation
+  }), /*#__PURE__*/React.createElement(PopupComponent, null));
 }
 
 ReactDOM.render( /*#__PURE__*/React.createElement(RootComponent, null), $("root"));
