@@ -5,45 +5,29 @@
  */
 
 function RootComponent() {
-	let [navigation, setNavigation] = React.useState("reactors");
+	let [navigation, setNavigation] = React.useState(player.navigation);
+	let [unlocked, setUnlocked] = React.useState(player.unlocked);
 
-	React.useEffect(function() {
-		let update_loop_id = setInterval(function () {
-			setNavigation(player.navigation.primary);
-		}, 50);
-
-		return function () {
-			clearInterval(update_loop_id);
-		};
-	});
-
-	function current_tab() {
-		let tab = <></>;
-
-		switch(navigation) {
+	function CurrentTab(props) {
+		switch(props.navigation.primary) {
 			case "reactors":
-				tab = <ReactorsTabComponent/>;
-				break;
+				return <ReactorsTabComponent unlocked={unlocked}/>;
 			case "options":
-				tab = <OptionsComponent/>;
-				break;
+				return <OptionsComponent/>;
 			case "overspin":
-				tab = <OverspinTabComponent/>;
-				break;
+				return <OverspinTabComponent/>;
+			default:
+				return <></>;
 		}
-
-		return tab;
 	}
 
 	return (
 		<>
-			<ResourcesComponent/>
+			<ResourcesComponent unlocked={unlocked}/>
 
-			<>
-				{current_tab()}
-			</>
+			<CurrentTab navigation={navigation}/>
 
-			<NavigationComponent/>
+			<NavigationComponent unlocked={unlocked} setNavigation={setNavigation}/>
 			<PopupComponent/>
 		</>
 	);

@@ -9,7 +9,7 @@ Afterwards, follow [this beginner's guide to using GitHub](github.md) for more i
 
 ### Setting up your development environment
 1. Run `npm install --legacy-peer-deps`
-2. Set up your Text Editor or IDE of choice by following [Editor/IDE Configuration](ide-configuration.md)
+2. Set up your Text Editor or IDE of choice following [Editor/IDE Configuration](ide-configuration.md)
 
 
 ## Guidelines

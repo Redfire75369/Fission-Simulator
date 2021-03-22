@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 
 ### Changed
 - Formula for Enrichment's contribution to Energy Production
+- Reduced unnecessary state updates
 
 ### Fixed
 - UI is squished horizontally after overspin

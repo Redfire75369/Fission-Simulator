@@ -3,6 +3,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-function ReactorsTabComponent() {
-  return /*#__PURE__*/React.createElement(LightWaterComponent, null);
+function ReactorsTabComponent(props) {
+  return /*#__PURE__*/React.createElement(LightWaterComponent, props);
 }
