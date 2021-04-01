@@ -134,12 +134,12 @@ function LightWaterComponent(props) {
 				<div className="flex flex-column items-center justify-center">
 					<div>
 						<div className="flex flex-row">
-							<button className="w-100 mb1 pa1 bg-green b--dark-green br1 bw1" onClick={mine_fuel}>
+							<button className="w-100 mb1 pa1 bg-light-red b--dark-red br1 bw1" onClick={mine_fuel}>
 								Mine Uranium Fuel
 							</button>
 						</div>
 						<div className="flex flex-row">
-							<button className={"w-100 mt1 pa1 " + (mineBuyable ? "bg-green b--dark-green" : "bg-light-red b--dark-red") + " br1 bw1"} onClick={buy_mine}>
+							<button className={"w-100 mt1 pa1 " + (mineBuyable ? "bg-light-red b--dark-red" : "bg-green b--dark-green") + " br1 bw1"} onClick={buy_mine}>
 								Upgrade Mining for {notation(mineCost)} Energy
 							</button>
 						</div>
@@ -181,12 +181,12 @@ function LightWaterComponent(props) {
 				<div className="flex flex-column items-center justify-center ma2">
 					<div>
 						<div className="flex flex-row">
-							<button className="w-100 mb1 pa1 bg-green b--dark-green br1 bw1" onClick={load_fuel_lwc}>
+							<button className="w-100 mb1 pa1 bg-light-red b--dark-red br1 bw1" onClick={load_fuel_lwc}>
 								Load Uranium Fuel
 							</button>
 						</div>
 						<div className="flex flex-row">
-							<button className={"w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-green b--dark-green" : "bg-light-red b--dark-red") + " br1 bw1"} onClick={buy_centrifuge}>
+							<button className={"w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-light-red b--dark-red" : "bg-green b--dark-green") + " br1 bw1"} onClick={buy_centrifuge}>
 								Upgrade Centrifuges for {notation(centrifugeCost)} Energy
 							</button>
 						</div>
@@ -229,12 +229,12 @@ function LightWaterComponent(props) {
 				<div className="flex flex-column items-center justify-center ma2">
 					<div>
 						<div className="flex flex-row">
-							<button className="w-100 mb1 pa1 bg-green b--dark-green br1 bw1" onClick={load_fuel_lwr}>
+							<button className="w-100 mb1 pa1 bg-light-red b--dark-red br1 bw1" onClick={load_fuel_lwr}>
 								Load {reactorFuelEnrichment ? "Enriched" : "Uranium"} Fuel
 							</button>
 						</div>
 						<div className="flex flex-row">
-							<button className={"w-100 mt1 pa1 " + (reactorBuyable ? "bg-green b--dark-green" : "bg-light-red b--dark-red") + " br1 bw1"} onClick={buy_lwr}>
+							<button className={"w-100 mt1 pa1 " + (reactorBuyable ? "bg-light-red b--dark-red" : "bg-green b--dark-green") + " br1 bw1"} onClick={buy_lwr}>
 								Upgrade Reactors for {notation(reactorCost)} Energy
 							</button>
 						</div>
