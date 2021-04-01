@@ -5,11 +5,11 @@
  */
 
 const notations = [
-	"Scientific"
+	"Zalgo"
 ];
 
 const notation_functions = {
-	"Scientific": new ADNotations.ScientificNotation()
+	"Zalgo": new ADNotations.ZalgoNotation()
 };
 
 function get_limit() {

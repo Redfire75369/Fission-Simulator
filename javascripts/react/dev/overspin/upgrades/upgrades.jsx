@@ -54,7 +54,7 @@ function OverspinUpgradeComponent(props) {
 	}
 
 	return (
-		<div className={"vw-20 mh2 " + (bought ? "bg-blue" : "bg-light-blue") + " b--dark-gray b--solid br1 br--bottom pointer"} onClick={buy}>
+		<div className={"vw-20 mh2 " + (bought ? "bg-light-blue" : "bg-blue") + " b--dark-gray b--solid br1 br--bottom pointer"} onClick={buy}>
 			<div className="flex flex-column items-center justify-between h4 pa3">
 				<span className="flex flex-row b tc">{props.description}</span>
 				{props.multiplier ? <span className="flex flex-row tc">

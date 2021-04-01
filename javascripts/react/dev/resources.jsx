@@ -21,9 +21,9 @@ function ResourcesComponent(props) {
 
 	return (
 		<div className="flex flex-column items-center justify-center pa2">
-			<span className="flex flex-row">You have {notation(energy)} J of Energy</span>
+			<span className="flex flex-row">You have {notation(energy)} kg⋅m<sup>2</sup>⋅s<sup>-2</sup> of Energy</span>
 			{props.unlocked.overspin.overspin ? <span className="flex flex-row">
-				You have {notation(uranium)} Weapon-Grade Uranium
+				You have {notation(uranium)} Childproof Caesium
 			</span> : <></>}
 		</div>
 	);
