@@ -28,7 +28,7 @@
     "@babel/core": "7.13.8",
     "@babel/preset-react": "7.12.13",
     "eslint": "7.21.0",
-    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react": "7.23.2",
     "eslint-plugin-react-hooks": "4.2.0",
     "stylelint": "13.11.0"
   }
