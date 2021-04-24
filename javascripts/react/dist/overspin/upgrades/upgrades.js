@@ -45,7 +45,7 @@ function OverspinUpgradeComponent(props) {
   }
 
   return /*#__PURE__*/React.createElement("div", {
-    className: "vw-20 mh2 " + (bought ? "bg-light-blue" : "bg-blue") + " b--dark-gray b--solid br1 br--bottom pointer",
+    className: "vw-20 mh2 " + (bought ? "bg-blue" : "bg-light-blue") + " b--dark-gray b--solid br1 br--bottom pointer",
     onClick: buy
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-column items-center justify-between h4 pa3"

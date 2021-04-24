@@ -130,12 +130,12 @@ function LightWaterComponent(props) {
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mb1 pa1 bg-light-red b--dark-red br1 bw1",
+    className: "w-100 mb1 pa1 bg-green b--dark-green br1 bw1",
     onClick: mine_fuel
   }, "Mine Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mt1 pa1 " + (mineBuyable ? "bg-light-red b--dark-red" : "bg-green b--dark-green") + " br1 bw1",
+    className: "w-100 mt1 pa1 " + (mineBuyable ? "bg-green b--dark-green" : "bg-green b--dark-green") + " br1 bw1",
     onClick: buy_mine
   }, "Upgrade Mining for ", notation(mineCost), " Energy"))))));
   /* Centrifuge */
@@ -184,12 +184,12 @@ function LightWaterComponent(props) {
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mb1 pa1 bg-light-red b--dark-red br1 bw1",
+    className: "w-100 mb1 pa1 bg-green b--dark-green br1 bw1",
     onClick: load_fuel_lwc
   }, "Load Uranium Fuel")), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-light-red b--dark-red" : "bg-green b--dark-green") + " br1 bw1",
+    className: "w-100 mt1 pa1 " + (centrifugeBuyable ? "bg-green b--dark-green" : "bg-green b--dark-green") + " br1 bw1",
     onClick: buy_centrifuge
   }, "Upgrade Centrifuges for ", notation(centrifugeCost), " Energy"))))));
   /* Reactor */
@@ -228,12 +228,12 @@ function LightWaterComponent(props) {
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mb1 pa1 bg-light-red b--dark-red br1 bw1",
+    className: "w-100 mb1 pa1 bg-green b--dark-green br1 bw1",
     onClick: load_fuel_lwr
   }, "Load ", reactorFuelEnrichment ? "Enriched" : "Uranium", " Fuel")), /*#__PURE__*/React.createElement("div", {
     className: "flex flex-row"
   }, /*#__PURE__*/React.createElement("button", {
-    className: "w-100 mt1 pa1 " + (reactorBuyable ? "bg-light-red b--dark-red" : "bg-green b--dark-green") + " br1 bw1",
+    className: "w-100 mt1 pa1 " + (reactorBuyable ? "bg-green b--dark-green" : "bg-green b--dark-green") + " br1 bw1",
     onClick: buy_lwr
   }, "Upgrade Reactors for ", notation(reactorCost), " Energy"))))));
   return !mobile ? /*#__PURE__*/React.createElement("div", {

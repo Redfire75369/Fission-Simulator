@@ -19,7 +19,7 @@ function ResourcesComponent(props) {
     className: "flex flex-column items-center justify-center pa2"
   }, /*#__PURE__*/React.createElement("span", {
     className: "flex flex-row"
-  }, "You have ", notation(energy), " kg\u22C5m", /*#__PURE__*/React.createElement("sup", null, "2"), "\u22C5s", /*#__PURE__*/React.createElement("sup", null, "-2"), " of Energy"), props.unlocked.overspin.overspin ? /*#__PURE__*/React.createElement("span", {
+  }, "You have ", notation(energy), " J of Energy"), props.unlocked.overspin.overspin ? /*#__PURE__*/React.createElement("span", {
     className: "flex flex-row"
-  }, "You have ", notation(uranium), " Childproof Caesium") : /*#__PURE__*/React.createElement(React.Fragment, null));
+  }, "You have ", notation(uranium), " Weapon-Grade Uranium") : /*#__PURE__*/React.createElement(React.Fragment, null));
 }
