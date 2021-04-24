@@ -17,19 +17,16 @@
   },
   "license": "MPL-2.0",
   "browser": true,
-  "engines": {
-    "node": "15.8.0"
-  },
   "scripts": {
     "compile-jsx": "npm exec --no -- babel --watch javascripts/react/dev --out-dir javascripts/react/dist"
   },
   "devDependencies": {
-    "@babel/cli": "7.13.0",
-    "@babel/core": "7.13.8",
-    "@babel/preset-react": "7.12.13",
-    "eslint": "7.21.0",
-    "eslint-plugin-react": "7.22.0",
+    "@babel/cli": "7.13.16",
+    "@babel/core": "7.13.16",
+    "@babel/preset-react": "7.13.13",
+    "eslint": "7.25.0",
+    "eslint-plugin-react": "7.23.2",
     "eslint-plugin-react-hooks": "4.2.0",
-    "stylelint": "13.11.0"
+    "stylelint": "13.12.0"
   }
 }
