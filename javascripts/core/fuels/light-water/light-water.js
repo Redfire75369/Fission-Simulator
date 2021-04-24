@@ -10,7 +10,7 @@ class LightWaterMine extends GenericMine {
 	}
 
 	get fuel_extraction() {
-		return Math.log(this.bought + 1) / (4 * Math.log(1.1));
+		return new Decimal(Math.log(this.bought + 1) * this.bought / (16 * Math.log(1.1)));
 	}
 }
 
@@ -19,6 +19,12 @@ class LightWaterFuel {
 		this.regular = zero;
 		this.enriched = zero;
 		this.mine = new LightWaterMine();
+	}
+
+	reset() {
+		this.regular = zero;
+		this.enriched = zero;
+		this.mine.reset();
 	}
 
 	mine_fuel() {

@@ -16,7 +16,6 @@ function init_game() {
 	if (Date.now() > player.last_update + 1000) {
 		simulate_time((Date.now() - player.last_update) / 1000);
 	}
-	// nextNews();
 
 	/*Game Loops*/
 	save_game_loop = setInterval(function() {

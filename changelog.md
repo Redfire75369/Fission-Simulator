@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 <!--**Note:** The presence of a **PR** tag after the release date means that this release was not made public.-->
 
 <!-- This is an example of a update block
-  ## [v1.0.0] - 1/1/2021 **PR**
+  ## [v1.0.0] - 01/01/2021 **PR**
   ### Added
   ### Changed
   ### Deprecated
@@ -15,9 +15,28 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 -->
 
 ## [Unreleased]
-## Fixed
+### Added
+- Weapon-Grade Uranium from Overspins
+- Overspin Upgrades
+
+### Changed
+- Formula for Enrichment's contribution to Energy Production
+- Reduced unnecessary state updates
+
+### Fixed
+- UI is squished horizontally after overspin
+
+## [v0.1.4] - 03/03/2021
+### Added
+- Options Tab (Basic)
+- Bottom Navigation Bar
+- Overspin Prestige
+- Centrifuge Progress Indicator
+
+### Fixed
 - Buttons only working occasionally due to speed of DOM updates
 - Mobile UI did not activate on mobile devices
+- Colours of Buttons
 
 
 ## [v0.1.3] - 20/02/2021
@@ -49,7 +68,8 @@ This project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0
 - Uranium Centrifuges
 
 
-[Unreleased]: https://github.com/Redfire75369/Fission-Simulator/compare/8a45d8391cd59419071741d01968399cf2a6d14c..master
+[Unreleased]: https://github.com/Redfire75369/Fission-Simulator/compare/a1524a1e4a9104ac432ec295fad7b360575fe98b..master
+[v0.1.4]: https://github.com/Redfire75369/Fission-Simulator/compare/8a45d8391cd59419071741d01968399cf2a6d14c..a1524a1e4a9104ac432ec295fad7b360575fe98b
 [v0.1.3]: https://github.com/Redfire75369/Fission-Simulator/compare/656f3cba87d2cba4db996f0489c2294eb987a6df..8a45d8391cd59419071741d01968399cf2a6d14c
 [v0.1.2]: https://github.com/Redfire75369/Fission-Simulator/compare/1e136e035baf624d1b25bfc3058407517bcb5df9..656f3cba87d2cba4db996f0489c2294eb987a6df
 [v0.1.1]: https://github.com/Redfire75369/Fission-Simulator/compare/391d035dc98d79a2acd4779a20f7d042c5e07e76..1e136e035baf624d1b25bfc3058407517bcb5df9

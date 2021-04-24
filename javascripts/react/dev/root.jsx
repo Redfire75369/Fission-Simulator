@@ -5,10 +5,30 @@
  */
 
 function RootComponent() {
+	let [navigation, setNavigation] = React.useState(player.navigation);
+	let [unlocked, setUnlocked] = React.useState(player.unlocked);
+
+	function CurrentTab(props) {
+		switch(props.navigation.primary) {
+			case "reactors":
+				return <ReactorsTabComponent unlocked={unlocked}/>;
+			case "options":
+				return <OptionsComponent/>;
+			case "overspin":
+				return <OverspinTabComponent/>;
+			default:
+				return <></>;
+		}
+	}
+
 	return (
 		<>
-			<EnergyComponent/>
-			<LightWaterComponent/>
+			<ResourcesComponent unlocked={unlocked}/>
+
+			<CurrentTab navigation={navigation}/>
+
+			<NavigationComponent unlocked={unlocked} setNavigation={setNavigation}/>
+			<PopupComponent/>
 		</>
 	);
 }

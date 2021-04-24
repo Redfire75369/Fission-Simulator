@@ -26,7 +26,7 @@ function load_save(save, imported = false) {
 			save = get_save();
 			if (save == null && !imported) {
 				console.debug("No existing save found");
-				player = getDefaultData();
+				player = get_default_data();
 				return;
 			}
 		}
@@ -34,14 +34,14 @@ function load_save(save, imported = false) {
 
 		save = JSON.parse(LZString.decompressFromBase64(save));
 
-		check_assign(getDefaultData(), save, []);
+		check_assign(get_default_data(), save, []);
 
 		if (player.version.minor === 1 && player.version.hotfix === 0) {
-			player = getDefaultData();
+			player = get_default_data();
 			return;
 		}
 
-		player.version = getDefaultData().version;
+		player.version = get_default_data().version;
 
 		if (imported) {
 			alert("Save imported successfully.");
@@ -71,7 +71,7 @@ function check_assign(check, item, keys = []) {
 			}
 		} else {
 			let output = player;
-			let type = getDefaultData();
+			let type = get_default_data();
 			for (let i = 0; i < keys.length - 1; i++) {
 				output = output[keys[i]];
 				type = type[keys[i]];
@@ -80,7 +80,7 @@ function check_assign(check, item, keys = []) {
 		}
 	} else {
 		let output = player;
-		let def = getDefaultData();
+		let def = get_default_data();
 		for (let i = 0; i < keys.length - 1; i++) {
 			output = output[keys[i]];
 			def = def[keys[i]];
@@ -113,6 +113,11 @@ function objectify(obj, type) {
 		let ret = new LightWaterCentrifuge();
 		ret.fuel = new Decimal(obj.fuel);
 		ret.time = obj.time;
+
+		ret.bought = obj.bought;
+		return ret;
+	} else if (type_name === "OverspinUpgrade") {
+		let ret = new OverspinUpgrade(type.cost, type.method);
 
 		ret.bought = obj.bought;
 		return ret;

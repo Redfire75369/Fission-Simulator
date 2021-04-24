@@ -9,15 +9,15 @@ const zero = new Decimal(0);
 var errored = false;
 var save_game_loop;
 
-
+var cache;
 var player;
 
-var mobile = isMobilePortrait();
+var mobile = is_mobile_portrait();
+
+function is_mobile_portrait() {
+	return window.matchMedia("only (max-height: 8.5in) and (max-width: 4in) and (orientation: portrait)").matches;
+}
 
 function $(element_id) {
 	return document.getElementById(element_id);
-}
-
-function isMobilePortrait() {
-	return window.matchMedia("only (max-height: 8.5in) and (max-width: 4in) and (orientation: portrait)").matches;
 }
