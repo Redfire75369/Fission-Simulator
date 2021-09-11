@@ -3,6 +3,7 @@
   "version": "0.1.5",
   "description": "Incremental Game about Nuclear Fission",
   "private": true,
+  "type": "module",
   "homepage": "https://github.com/Redfire75369/Fission-Simulator#readme",
   "repository": {
     "type": "git",
@@ -16,20 +17,32 @@
     "url": "https://github.com/Redfire75369"
   },
   "license": "MPL-2.0",
-  "browser": true,
-  "engines": {
-    "node": "15.8.0"
-  },
+  "browser": "src/main.js",
   "scripts": {
-    "compile-jsx": "npm exec --no -- babel --watch javascripts/react/dev --out-dir javascripts/react/dist"
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "dependencies": {
+    "@antimatter-dimensions/notations": "1.6.0",
+    "break_infinity.js": "1.2.0",
+    "lz-string": "1.4.4",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "react-katex": "2.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "7.13.0",
-    "@babel/core": "7.13.8",
-    "@babel/preset-react": "7.12.13",
-    "eslint": "7.21.0",
-    "eslint-plugin-react": "7.22.0",
+    "@babel/core": "7.13.16",
+    "@babel/preset-react": "7.13.13",
+    "@babel/preset-typescript": "7.15.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-replace": "^3.0.0",
+    "eslint": "7.25.0",
+    "eslint-plugin-react": "7.23.2",
     "eslint-plugin-react-hooks": "4.2.0",
-    "stylelint": "13.11.0"
+    "npm-run-all": "4.1.5",
+    "rollup": "2.56.3",
+    "stylelint": "13.12.0"
   }
 }
